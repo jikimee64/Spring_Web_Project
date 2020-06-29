@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.springframework.org/security/tags">
+<!-- xmlns:sec="http://www.thymeleaf.org/extras/spring-security"> -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index</title>
+<link th:href="@{/resources/css/index.css}" type="text/css" rel="stylesheet" />  
+</head>
+<body>
+	<div id="main">Main Content</div>
+	
+	<a href="/vue/vue.do">vue이동</a>
+	
+	<a href="/manager/index.do">어드민 페이지 이동</a>
+	
+	
+	<img width="1000" th:src="@{/resources//images/attach.png}"/>
+	<script th:src="@{/resources/js/index.js}"></script> 
+</body>
+</html>

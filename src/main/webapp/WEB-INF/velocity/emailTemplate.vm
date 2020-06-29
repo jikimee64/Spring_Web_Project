@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>vm</title>
+</head>
+<body>
+<div style = "border : 3px solid lightgray; padding : 5em;">
+	<p style = "color : #005792"><b>안녕하세요 ${mailTo} 고객님,</b></p><br>
+	<p style = "color : #005792"><b>주식회사 스쿱을 이용해 주셔서 감사합니다.</b></p><br>
+	<p>-------------------------------------------------------------</p><br>
+	<p> 본 이메일은</p><br>
+	<p> Social Cooperation 스쿱 회원가입을 위한 이메일 인증입니다 </p><br>
+	<p> 회원가입을 완료하시려면 아래의 인증을 클릭해 주세요.  </p><br>
+	<p> <a href = "http://192.168.6.16:8090/Scoop_Project/frontpage.jsp"><input type="button" style="width: 60px; height: 30px; margin-left: 12%" value="인증"></a>  </p><br>
+	<p>-------------------------------------------------------------</p><br>
+	<p>(주)스쿱</p>
+	<p>010-2720-****</p>
+	<p>서울특별시 강남구 테헤란로5길 11 YBM빌딩 2층</p>
+	
+</div>
+</body>
+</html>

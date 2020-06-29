@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<security:http>
+		<security:csrf disabled="true" />
+		<security:form-login
+			default-target-url="/index.htm" login-page="/joinus/login.htm"
+			authentication-failure-url="/joinus/login.htm?error" /> <!-- 이건 로그인을 실패할 때 error를 붙이면 에러페이지로 스프링이 자동으로 넘겨줌 -->
+		<security:logout logout-success-url="/index.htm" />
+		<security:intercept-url
+			pattern="/customer/*Reg.htm" access="hasRole('ROLE_USER')" />
+		<security:intercept-url
+			pattern="/customer/*Detail.htm" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/admin/**"
+			access="hasRole('ROLE_ADMIN')" />
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:jdbc-user-service
+				data-source-ref="driverManagerDataSource"
+				users-by-username-query="SELECT USERID, pwd AS PASSWORD, 1 enabled FROM member where userid=?"
+
+				authorities-by-username-query="select m.USERID , r.ROLE_NAME  
+         										  from member m join roll r 
+        										   on m.userid = r.userid 
+       											    where m.userid=?" />
+
+			<!-- 이사람이 정말 우리사이트 사용자인지 판단 -->
+			<security:password-encoder
+				ref="bCryptPasswordEncoder" />
+		</security:authentication-provider>
+
+	</security:authentication-manager>
+
+</beans>
