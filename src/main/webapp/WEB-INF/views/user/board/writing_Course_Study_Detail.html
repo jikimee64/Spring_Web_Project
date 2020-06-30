@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>writing_course_study_detail</title>
+	<link href="login.css" type="text/css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+</head>
+
+<style>
+	._textarea_readonly:read-only {
+		background-color: aquamarine;
+	}
+</style>
+
+<body>
+	<div th:replace="/user/includes/header :: header"> </div>
+
+	<div class="container mt-3">
+		<span class="badge badge-pill badge-primary">모집중</span>
+		<span class="badge badge-pill badge-secondary">Spring</span>
+		<span class="badge badge-pill badge-success">4명</span>
+		<span class="badge badge-pill badge-warning">온라인</span>
+		<span class="badge badge-pill badge-info">온라인강의</span>
+		<div class="row">
+			<div class="col-md-7">
+
+				<span style="font-size: x-large;">스터디 모집 글 상세보기(인강)</span>
+
+			</div>
+			<div class="col-md-2" style="align-self: flex-end;">
+				<b> 작성자: </b> <span>슬기슬기</span>
+			</div>
+			<div class="col-md-2" style="align-self: flex-end;">
+				<b> 조회수: </b> <span style="margin-right: 50px;">2341</span>
+
+			</div>
+			<div class="col-md-1" style="align-self: flex-end;">
+
+				<button type="button" class="btn btn-danger">신고</button>
+			</div>
+
+		</div>
+	</div>
+	<hr style="border-color: rgb(224, 224, 224); width:95%">
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<form action="">
+					<div class="row">
+						<div class="col-md-9">
+							<br />
+
+							<h2>Node.js스터디원 모집합니다!!!</h2>
+
+						</div>
+
+						<div class="col-md-3" style="width:100%">
+							<div class="row">
+								<div class="form-group" style="margin:0">
+									<div class="custom-file mb-3">
+										<input type="file" class="custom-file-input" id="customFile" name="filename">
+										<label class="custom-file-label" for="customFile">이건다운로드</label>
+									</div>
+								</div>
+
+								<div class="form-group" style="margin:0">
+									<div class="custom-file mb-3">
+										<input type="file" class="custom-file-input" id="customFile" name="filename">
+										<label class="custom-file-label" for="customFile">로 바꿔야됨</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
+					<textarea name="" id="" cols="30" rows="10" class="form-control _textarea_readonly"
+						placeholder="글 내용을 입력해주세요" readonly>
+와우~ 안녕 친구들~ 빡빡이 아저씨야~
+					</textarea>
+					<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
+						나중에 썸머노트로 바꿔야할듯 -->
+
+
+					<!-- 여기부터는 댓글 -->
+					<div style="transform:translate(10px, 10px)">
+						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
+							alt="" style="width:50px;">
+						<textarea name="" id="" cols="30" rows="1"
+							style="transform:translate(10px, 10px)"> 슬기: 저 참가요~</textarea>
+					</div>
+					<div style="transform:translate(70px, 10px)">
+						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
+							alt="" style="width:50px;">
+						<textarea name="" id="" cols="30" rows="1"
+							style="transform:translate(10px, 10px)"> 미네미네: 네~ 오세용~</textarea>
+					</div>
+					<div style="transform:translate(70px, 10px)">
+						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
+							alt="" style="width:50px;">
+						<textarea name="" id="" cols="30" rows="1"
+							style="transform:translate(10px, 10px)"> 우철: 안녕안녕</textarea>
+					</div>
+					<div style="transform:translate(70px, 10px)">
+						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
+							alt="" style="width:50px;">
+						<textarea name="" id="" cols="30" rows="1"
+							style="transform:translate(10px, 10px)"> 정아: 안뇽안뇽</textarea>
+					</div>
+					<!-- 여기까지가 댓글 -->
+
+
+					<br />
+					<div style="text-align: end;">
+						<a href="/board/writing_Course_Study_Edit.do">
+						<button type="button" class="btn btn-warning" style="width:15%;">수정</button>
+						</a>
+						<button type="button" class="btn btn-primary" style="width:15%;">삭제</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-md-3">
+				<div style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
+					<div class="card" style="width:100%">
+						<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+					" alt="Card image" style="width:100%">
+						<div class="card-body">
+							<h5 class="card-title">Do it! Node.js 프로그래밍(개정판)</h5>
+						</div>
+					</div>
+					<div style="text-align: center; margin:10px 0px 10px 0px;">
+						<button type="submit" class="btn btn-warning" style="width:80%;">모집완료</button>
+						<!-- 이거는 방장 권한 -->
+					</div>
+
+					<div style="text-align: center; margin:10px 0px 10px 0px;">
+						<button type="submit" class="btn btn-success" style="width:80%;">지원하기</button>
+						<!-- 이거는 사용자 권한 -->
+					</div>
+					<div style="text-align: center; margin:10px 0px 10px 0px;">
+						<button type="button" class="btn btn-info" style="width:80%;">목록으로</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	<div th:replace="/user/includes/footer :: footer"> </div>
+	<script>
+		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
+		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+</body>
+
+
+
+</html>

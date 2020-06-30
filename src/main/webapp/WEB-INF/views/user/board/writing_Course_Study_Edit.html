@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>writing_normal_study_edit</title>
+	<link href="login.css" type="text/css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<div th:replace="/user/includes/header :: header"> </div>
+
+	<div class="container mt-3">
+		<h2>스터디 모집 글 수정하기(인강)</h2>
+		<br />
+		<form>
+
+			<select name="" class="custom-select mb-3" style="width:10%;">
+				<option selected>언어</option>
+				<option value="_java">자바</option>
+				<option value="_javascript">자바스크립트</option>
+			</select>
+
+			<select name="" class="custom-select mb-3" style="width:10%;">
+				<option selected>모집인원</option>
+				<option value="_one">1명</option>
+				<option value="_two">2명</option>
+				<option value="_three">3명</option>
+				<option value="_four">4명</option>
+				<option value="_five">5명</option>
+				<option value="_six">6명</option>
+				<option value="_seven">7명</option>
+				<option value="_eight">8명</option>
+				<option value="_nine">9명</option>
+				<option value="_ten">10명</option>
+			</select>
+
+			<select name="" class="custom-select mb-3" style="width:10%;">
+				<option selected>지역선택</option>
+				<option value="_seoul">서울</option>
+				<option value="_gyeonggi">경기</option>
+			</select>
+
+			<select name="" class="custom-select mb-3" style="width:10%;">
+				<option selected>난이도</option>
+				<option value="_introduction">입문</option>
+				<option value="_beginner">초급</option>
+				<option value="_middleclass">중급이상</option>
+			</select>
+
+			<select name="" class="custom-select mb-3" style="width:10%;">
+				<option selected>모집마감일</option>
+				<option value="_calendar">달력</option>
+			</select>
+
+		</form>
+	</div>
+
+	<hr style="border-color: rgb(224, 224, 224); width:95%">
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-9">
+				<form action="">
+					<div class="row">
+						<div class="col-md-9">
+							<br />
+							<div class="form-group">
+								<label for="usr">글 제목</label>
+								<input type="text" class="form-control" id="usr" name="username"
+									placeholder="글 제목을 입력해주세요" value="Node.js스터디원 모집합니다!!!">
+							</div>
+						</div>
+
+						<div class="col-md-3" style="width:100%">
+							<div class="row">
+								<div class="form-group" style="margin:0">
+									<div class="custom-file mb-3">
+										<input type="file" class="custom-file-input" id="customFile" name="filename">
+										<label class="custom-file-label" for="customFile">Choose file</label>
+									</div>
+								</div>
+
+								<div class="form-group" style="margin:0">
+									<div class="custom-file mb-3">
+										<input type="file" class="custom-file-input" id="customFile" name="filename">
+										<label class="custom-file-label" for="customFile">Choose file</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="usr">글 내용</label>
+						<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
+						<textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="글 내용을 입력해주세요">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세
+				동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세
+				
+				동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세
+				동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세
+			</textarea>
+						<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
+						나중에 썸머노트로 바꿔야할듯 -->
+					</div>
+					<div style="text-align: center;">
+						<button type="submit" class="btn btn-primary" style="width:15%;">수정</button>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-md-3">
+				<div style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
+					<div class="card" style="width:100%">
+						<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+					" alt="Card image" style="width:100%">
+						<div class="card-body">
+							<h4 class="card-title">Do it! Node.js 프로그래밍(개정판)</h4>
+							<p class="card-text" style="color:gray">이지스 퍼블리싱</p>
+							<a href="#" class="stretched-link"></a>
+							<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+								alt="" style="height:40px;">
+							<span>(6)</span>
+							<br>
+							<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="/user/includes/footer :: footer"> </div>
+
+	<script>
+		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
+		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+	</script>
+</body>
+
+
+
+</html>
