@@ -2,6 +2,7 @@
 .settings
 .project
 .springBeans
+.factorypath
 target/
 /target/
 **target/
