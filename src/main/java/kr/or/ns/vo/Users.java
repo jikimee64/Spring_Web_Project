@@ -7,17 +7,22 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-
 public class Users {
 
-	private String USER_ID;
-	private String USER_PWD;
-	private int ENABLED;
-	private String USER_NAME;
-	private String USER_EMAIL;
-	private String PROFILE_IMG;
-	private String NICKNAME;
-	private String INTRODUCE;
-	private int BLAME_COUNT;
+	private String user_id;
+	private String user_pwd;
+	private int enabled; 
+	private String user_name;
+	private String user_email;
+	private String profile_img;
+	private String nickname;
+	private String introduce;
+	private int blame_count;
+	private String java;
+	private String python;
+	private String html_css;
+	private String javascript;
+	private String sql;
+	
 	
 }

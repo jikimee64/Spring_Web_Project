@@ -32,10 +32,19 @@ public class MemberController {
 	}
 	//회원가입처리
 		@RequestMapping(value="join.do" , method=RequestMethod.POST)
-		public String joininsert(Users users, Skill skill) {
-			System.out.println("이거타나요");	
+		public String joininsert(Users users) {
+
+			System.out.println("1123 :" + users.getUser_id());
+			System.out.println("1123 :" + users.getUser_pwd());
+			
+			System.out.println("1 :" + users.getJava());
+			System.out.println("2 :" + users.getPython());
+			System.out.println("3 :" + users.getHtml_css());
+			System.out.println("4 :" + users.getJavascript());
+			System.out.println("5 :" + users.getSql());
+			
 			try {
-				service.joininsert(users, skill);
+				service.joininsert(users);
 			}catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

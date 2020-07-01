@@ -10,6 +10,6 @@ import kr.or.ns.vo.Users;
 @Service
 public interface MemberService {
 
-	public int joininsert(Users users, Skill skill) throws Exception, SQLException;
+	public int joininsert(Users users) throws Exception, SQLException;
 	
 }
