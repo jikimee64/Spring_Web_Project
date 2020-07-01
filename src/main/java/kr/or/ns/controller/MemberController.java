@@ -1,22 +1,50 @@
 package kr.or.ns.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.ns.dao.MemberDao;
+import kr.or.ns.service.MemberService;
+import kr.or.ns.vo.Users;
 
 @Controller
 @RequestMapping("/member/")
 public class MemberController {
+	
+	@Autowired
+	MemberService service;
+	 
 	
 	@RequestMapping("/login.do")
 	public String loginPage() {
 		System.out.println("로그인으로 이동이동(연규가씀)");
 		return "/user/member/login"; 
 	}
+	
+	//회원가입 페이지 이동
 	@RequestMapping("/join.do")
 	public String joinPage() {
 		System.out.println("회원가입으로 이동이동(연규가씀)");
 		return "/user/member/join"; 
 	}
+	//회원가입처리
+		@RequestMapping(value="join.do" , method=RequestMethod.POST)
+		public String joininsert(Users users) {
+			System.out.println("이거타나요");	
+			try {
+				service.joininsert(users);
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			return "redirect:/index.do";  // /index.htm  
+			//주의사항
+			//요청 주소 ...아래처럼 ..
+			//http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
+			//return "redirect:noticeDetail.htm?seq="+n.getSeq();
+		}
+		
 	@RequestMapping("/find_Id.do")
 	public String findIdPage() {
 		System.out.println("아이디 찾기로 이동이동(연규가씀)");

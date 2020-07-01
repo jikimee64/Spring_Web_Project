@@ -8,20 +8,20 @@
                            http://www.springframework.org/schema/context 
                            http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.springframework.org/schema/mvc 
-                           http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+                           http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+                           http://www.springframework.org/schema/security
+							http://www.springframework.org/schema/security/spring-security.xsd">
 	<!-- Root 공통빈 DB관련 작업 (드라이버 로딩 , 템플릿 객체) view 작업 (공통 UI) (internalResourceViewResolver) 
 		import org.springframework.jdbc.datasource.DriverManagerDataSource; import 
 		org.springframework.jdbc.core.JdbcTemplate; -->
 	<!-- 공통 DB작업 -->
 	<bean id="driverManagerDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver"></property>
-		<property name="url"
-			value="jdbc:mysql://localhost:3306/ns?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true&amp;serverTimezone=UTC">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/ns?characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true&amp;serverTimezone=UTC">
 		</property>
-		<property name="username" value="ns"></property>
-		<property name="password" value="1004"></property>
+		<property name="username" value="ns" />
+		<property name="password" value="1004" />
 	</bean>
 
 	<bean id="" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -40,8 +40,7 @@
 	<bean id="sqlSessionFactoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
-		<property name="mapperLocations"
-			value="classpath*:mapper/*xml" />
+		<property name="mapperLocations" value="classpath*:kr/or/ns/mapper/*xml" />
 		<!-- *이건 약속 매퍼로 저 경로안에 있는 모든xml을 다 쓴다 ex) a.xml, b.xml, c.xml 다 쓰는것이다 -->
 	</bean>
 
