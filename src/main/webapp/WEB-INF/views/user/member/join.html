@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>join</title>
-<link href="login.css" type="text/css" rel="stylesheet" />
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -34,17 +33,16 @@
 		style="width: 37%; margin-top: 30px; margin-top: 25px; margin-bottom: 25px;">
 		<h2>회원가입</h2>
 		<br />
-		<form action="" method="post" class="needs-validation" name="joinform" id="joinform"
-			novalidate>
-			<div id="kwc">
-				<div class="form-group">
-					<label for="user_id">아이디</label>
-					<div class="row" style="place-content: center;">
-						<input type="text" class="form-control" id="user_id"
-							placeholder="아이디를 입력해주세요." name="user_id" style="width: 80%;"
-							required> &nbsp;
-						<button type="button" class="btn btn-warning" style="width: 15%;">인증</button>
-					</div>
+		<form action="login.do" method="post" class="needs-validation joinform" id="joinform" novalidate>
+
+			<div class="form-group">
+				<label for="user_id">아이디</label>
+				<div class="row" style="place-content: center;">
+					<input type="text" class="form-control" id="user_id"
+						placeholder="아이디를 입력해주세요." name="user_id" style="width: 80%;"
+						required> &nbsp;
+					<button type="button" class="btn btn-warning" style="width: 15%;">인증</button>
+				</div>
 				<div class="form-group">
 					<label for="pwd">비밀번호</label> <input type="password"
 						class="form-control" id="user_pwd" placeholder="비밀번호를 입력해주세요."
@@ -74,28 +72,29 @@
 						class="form-control" id="user_email" placeholder="이메일을 입력해주세요"
 						name="user_email" required>
 				</div>
+		</form>
 
-				<!-- <div class="form-group form-check">
+		<!-- <div class="form-group form-check">
 				<label class="form-check-label">
 					<input class="form-check-input" type="checkbox" name="remember" required> I agree on blabla.
 					<div class="valid-feedback">ok.</div>
 					<div class="invalid-feedback">Check this checkbox to continue.</div>
 				</label>
 			</div> -->
-				<!-- </div> -->
+		<!-- </div> -->
 
+		<br /> <br /> <br />
+
+		<!-- <div class="container"> -->
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col">
+				<b style="margin-left: 10px; font-size: larger;">내 실력 체크</b>
 			</div>
-			<br /> <br /> <br />
+		</div>
+		<br />
 
-			<!-- <div class="container"> -->
-			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col">
-					<b style="margin-left: 10px; font-size: larger;">내 실력 체크</b>
-				</div>
-			</div>
-			<br />
-
+		
 			<div class="row" style="font-size: x-large;">
 				<div class="col-md-2"></div>
 				<div class="col-md-2" style="text-align: center">
@@ -106,7 +105,7 @@
 				<div class="col-md-2" style="text-align: center">중급이상</div>
 				<div class="col-md-2"></div>
 			</div>
-
+		<form action="login.do" method="post" id="joinform" class="needs-validation joinform">
 			<hr
 				style="border: solid 2px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 2px; width: 68%" />
 			<div class="row" style="font-size: x-large;">
@@ -115,13 +114,15 @@
 				<input type="hidden" name="skill_name" value="java">
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="입문" id="입문" checked="" />
+
+					<input type="radio" name="java" value="입문" checked="" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="초급" id="초급" />
+					<input type="radio" name="java" value="초급" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="중급이상" id="중급이상" />
+					<input type="radio" name="java" value="중급이상" />
+
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
@@ -133,13 +134,15 @@
 				<input type="hidden" name="skill_name" value="python">
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="입문" id="입문" checked="" />
+
+					<input type="radio" name="python" value="입문" checked="" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level"  value="초급"  id="초급"  />
+					<input type="radio" name="python" value="초급" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="중급이상" id="중급이상" />
+					<input type="radio" name="python" value="중급이상"/>
+
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
@@ -151,13 +154,15 @@
 				<input type="hidden" name="skill_name" value="HTML/CSS">
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="입문" id="입문" checked="" />
+
+					<input type="radio" name="html_css" value="입문" checked="" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="초급"  id="초급" />
+					<input type="radio" name="html_css" value="초급"  />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level"  value="중급이상" id="중급이상" />
+					<input type="radio" name="html_css" value="중급이상" />
+
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
@@ -171,13 +176,15 @@
 				<input type="hidden" name="skill_name" value="javascript">
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="입문" id="입문" checked="" />
+
+					<input type="radio" name="javascript" value="입문" checked="" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="초급"  id="초급" />
+					<input type="radio" name="javascript" value="초급" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="중급이상" id="중급이상" />
+					<input type="radio" name="javascript" value="중급이상" />
+
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
@@ -191,52 +198,59 @@
 				<input type="hidden" name="skill_name" value="SQL">
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level" value="입문" id="입문"  checked="" />
+
+					<input type="radio" name="sql" value="입문" checked="" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level"  value="초급" id="초급"/>
+					<input type="radio" name="sql" value="초급"/>
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="skill_level"  value="중급이상" id="중급이상" />
+					<input type="radio" name="sql" value="중급이상" />
+
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
 			<hr
 				style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
 
-			<br /> <br />
+		</form>
+		<br /> <br />
 
-			<div class="row">
-				<div class="col-md-2"></div>
-				<div class="col-md-8">
-					<b style="font-size: larger;">저는 이런것도 할줄 알아요~</b>
-					<p></p>
-					<textarea name="introduce" id="introduce" rows="5" required></textarea>
-				</div>
-				<div class="col-md-2"></div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<b style="font-size: larger;">저는 이런것도 할줄 알아요~</b>
+				<p></p>
+				<textarea name="introduce" id="introduce" rows="5" required></textarea>
 			</div>
+			<div class="col-md-2"></div>
+		</div>
 
 
-			<br />
-			<div class="row" style="font-size: x-large; place-content: center;">
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
-					<button type="submit" class="btn btn-primary"
-						style="width: 100%; height: 60px;">
-						<h4 style="margin: 0">회원가입</h4>
-					</button>
-				</div>
-				<div class="col-md-4"></div>
-
+		<br />
+		<div class="row" style="font-size: x-large; place-content: center;">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<!-- <button type="submit" class="btn btn-primary"
+					style="width: 100%; height: 60px;">
+					<h4 style="margin: 0">회원가입</h4>
+				</button> -->
+				<button id="btn_submit" class="btn btn-primary"
+					style="width: 100%; height: 60px;">
+					<h4 style="margin: 0">회원가입</h4>
+				</button>
 			</div>
+			<div class="col-md-4"></div>
 
-			<!-- 	</div> -->
+		</div>
+
+		<!-- 	</div> -->
 
 		<!-- </div>
 	</div> -->
 	</div>
-	</form>
-		</div>
+
+	</div>
 
 	<br />
 	<br />
@@ -245,6 +259,24 @@
 	<br />
 	<div th:replace="/user/includes/footer :: footer"></div>
 
+
+	<script>
+		$(function() {
+			$("#btn_submit").click(function() {
+
+				var formData = $(".joinform").serialize()
+				console.log("데이터 : " + formData)
+				$.ajax({
+					url : "/member/join.do",
+					type : 'POST',
+					data : formData,
+					success : function(data) {
+
+					}
+				})
+			});
+		})
+	</script>
 	<!-- <script>
 		// Disable form submissions if there are invalid fields
 		(function() {

@@ -21,6 +21,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int joininsert(Users users) throws Exception, SQLException {
+
 		
 		System.out.println("서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
@@ -28,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
 		int result = 0;
 		 MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		result = dao.joininsert(users);
+
 		
 		return result;
 	}

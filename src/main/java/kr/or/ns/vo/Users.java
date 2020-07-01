@@ -7,7 +7,6 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-
 public class Users {
 
 	private String user_id;
@@ -19,6 +18,11 @@ public class Users {
 	private String nickname;
 	private String introduce;
 	private int blame_count;
+	private String java;
+	private String python;
+	private String html_css;
+	private String javascript;
+	private String sql;
 
 	
 	
