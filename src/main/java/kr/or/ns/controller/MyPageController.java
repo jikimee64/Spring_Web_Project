@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/mypage/")
-public class MypageController {
+public class MyPageController {
 	
 	@RequestMapping("/mypage.do")
 	public String myPagePage() {

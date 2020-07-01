@@ -19,6 +19,8 @@
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <style>
@@ -30,6 +32,7 @@
 <body>
 	<div th:replace="/user/includes/header :: header"> </div>
 	<br />
+	<div id="app">
 	<div class="container" style="width:27%;">
 		<h3 style="text-align: center;"><b>아이디 찾기</b> </h3>
 		<hr />
@@ -81,6 +84,7 @@
 		<br />
 		<br />
 
+		</div>
 	</div>
 	<div th:replace="/user/includes/footer :: footer"> </div>
 	<script>
@@ -103,6 +107,47 @@
 			}, false);
 		})();
 	</script>
+	
+	    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                year: 2018,
+                text: 'text'
+            },
+            methods: {
+                // plus(){
+                //     this.year++;
+                // },
+                // minus(){
+                //     this.year--;
+                // }
+                // alert(){
+                //     alert('hi kossie coder');
+                // }
+                // submit(){
+                //     alert('oh mt got');
+                //     console.log("ss");
+                // }
+
+                // event Object를 자동으로 넣어준것
+                // updateText(e){
+                //     // console.log(e);
+                //     this.text = e.target.value;
+                // }
+                
+            	axiosTest(){
+            		axios({
+            			method:'post',
+            			url:'jobList.htm',
+            		}).then(function(res) {
+            			console.log(res);
+            		})
+            	}
+
+            }
+        })
+    </script>
 
 </body>
 
