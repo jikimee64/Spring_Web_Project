@@ -7,7 +7,14 @@
 		values(#{user_id}, #{user_pwd}, 1, #{user_name}, #{user_email}, 'A', #{nickname}, #{introduce}, #{blame_count})
 		<!-- insert into member(userid, pwd, name,regdate)
 		values(#{userid}, #{pwd}, #{name},sysdate) -->
+		
 	</insert>
+	
+		<insert id="skillinsert" parameterType="kr.or.ns.vo.Skill">
+	insert into skill(skill_seq, user_id, skill_name, skill_level)
+		values(#{skill_seq}, #{user_id}, #{skill_name}, #{skill_level})
+	</insert>
+	
 	
 
 </mapper>

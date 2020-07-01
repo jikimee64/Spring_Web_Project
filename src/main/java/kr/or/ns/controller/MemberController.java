@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.or.ns.dao.MemberDao;
 import kr.or.ns.service.MemberService;
+import kr.or.ns.vo.Skill;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -31,10 +32,10 @@ public class MemberController {
 	}
 	//회원가입처리
 		@RequestMapping(value="join.do" , method=RequestMethod.POST)
-		public String joininsert(Users users) {
+		public String joininsert(Users users, Skill skill) {
 			System.out.println("이거타나요");	
 			try {
-				service.joininsert(users);
+				service.joininsert(users, skill);
 			}catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

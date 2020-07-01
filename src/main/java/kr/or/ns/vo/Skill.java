@@ -7,6 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
 public class Skill {
 	private int skill_seq;
 	private String user_id;
