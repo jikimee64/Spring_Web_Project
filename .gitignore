@@ -2,4 +2,8 @@
 .settings
 .project
 .springBeans
+target/
 /target/
+**target/
+target/**
+*/target/**
