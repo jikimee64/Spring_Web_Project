@@ -32,10 +32,10 @@ public class MemberController {
 	}
 	//회원가입처리
 		@RequestMapping(value="join.do" , method=RequestMethod.POST)
-		public String joininsert(Users users, Skill skill) {
+		public String joininsert(Users users) {
 			System.out.println("이거타나요");	
 			try {
-				service.joininsert(users, skill);
+				service.joininsert(users);	
 			}catch (Exception e) {
 				System.out.println(e.getMessage());
 			}

@@ -20,15 +20,18 @@ public class MemberServiceImpl implements MemberService {
 		this.sqlsession = sqlsession;
 	}
 	@Override
-	public int joininsert(Users users, Skill skill) throws Exception, SQLException {
+	public int joininsert(Users users) throws Exception, SQLException {
+		
 		System.out.println("서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
+	
 		int result = 0;
 		 MemberDao dao = sqlsession.getMapper(MemberDao.class);
-		result = dao.joininsert(users, skill);
+		result = dao.joininsert(users);
 		
 		return result;
 	}
+	
 	/*
 	 * public int skillinsert(Skill skill) throws Exception, SQLException {
 	 * System.out.println("서비스오나요"); System.out.println("유저정보" +
@@ -37,4 +40,5 @@ public class MemberServiceImpl implements MemberService {
 	 * 
 	 * return result; }
 	 */
+
 }

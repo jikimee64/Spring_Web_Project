@@ -9,10 +9,7 @@ import kr.or.ns.vo.Users;
 public interface MemberDao {
 
 	//회원가입
-		public int joininsert(Users users, Skill skill) throws ClassNotFoundException, SQLException;
+		public int joininsert(Users users) throws ClassNotFoundException, SQLException;
 	
-		/*
-		 * //회원가입 시 skill 인서트 public int skillinsert(Skill skill);
-		 */
 	
 }
