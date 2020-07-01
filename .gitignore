@@ -2,4 +2,4 @@
 .settings
 .project
 .springBeans
-target
+/target/
