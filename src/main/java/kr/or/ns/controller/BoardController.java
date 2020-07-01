@@ -27,7 +27,7 @@ public class BoardController {
 		
 		return "/user/board/board_Select"; 
 	}
-되는거냐 안되는거냐
+	그만해
 	@RequestMapping("board_Select_Online_Bookmark.do")
 	public String boardSelectOnlinePage() {
 		System.out.println("온라인강의 선택페이지(북마크)로 이동이동(연규가씀)");
