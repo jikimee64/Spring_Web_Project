@@ -40,8 +40,7 @@
 	<bean id="sqlSessionFactoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
-		<property name="mapperLocations"
-			value="classpath*:mapper/*xml" />
+		<property name="mapperLocations" value="classpath*:kr/or/ns/mapper/*xml" />
 		<!-- *이건 약속 매퍼로 저 경로안에 있는 모든xml을 다 쓴다 ex) a.xml, b.xml, c.xml 다 쓰는것이다 -->
 	</bean>
 
@@ -81,8 +80,8 @@
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="관리자 아아디" />
-		<property name="password" value="관리자앱 비번" />
+		<property name="username" value="ksks723@gmail.com" />
+		<property name="password" value="sgoxzcplzaedafez" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.debug">true</prop>
