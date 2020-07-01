@@ -8,8 +8,8 @@
 		where user_name = #{user_name} and user_email = #{user_email}
 	</select>
 	
-	<select id="checkEmail" resultType="users">
+	<!-- <select id="checkEmail" resultType="users">
 		select * from users
 		where user_name = #{user_name} and user_email = #{user_email}
-	</select>
+	</select> -->
 </mapper>

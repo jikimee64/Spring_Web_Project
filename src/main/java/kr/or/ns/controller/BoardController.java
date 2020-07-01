@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.vo.Study;
@@ -53,7 +54,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "writing_Course_Study.do", method = RequestMethod.POST)
-	public String writingCourseStudyPage2(Study study, HttpServletRequest request) {
+	public String writingCourseStudyPage(Study study, HttpServletRequest request) {
 
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
@@ -61,7 +62,8 @@ public class BoardController {
 		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
 			for (CommonsMultipartFile multifile : files) {
 				String filename = multifile.getOriginalFilename();
-				String path = request.getServletContext().getRealPath("/customer/upload");
+				System.out.println("파일업로드 1 : " + filename);
+				String path = request.getServletContext().getRealPath("/studyboard/upload");
 
 				String fpath = path + "\\" + filename;
 
@@ -78,11 +80,16 @@ public class BoardController {
 			}
 
 		}
-
-		/*
-		 * System.out.println(study.getTitle());
-		 * System.out.println(study.getLanguage());
-		 */
+		
+		  System.out.println("제목 : " + study.getTitle());
+		  System.out.println("내용 : " + study.getContent());
+		  System.out.println("언어" + study.getSelectlan());
+		  System.out.println("모집인원" + study.getSelectPeo());
+		  System.out.println("지역선택" + study.getSelectloc());
+		  System.out.println("난이도" + study.getSelectlev());
+		  System.out.println("모집마감일" + study.getSelectend());
+		
+		
 		System.out.println("온라인강의 선택페이지(북마크)에서 다음페이지인 강의전용 글쓰기페이지로 이동이동(연규가씀)");
 
 		return "/user/board/writing_Course_Study";
