@@ -19,6 +19,8 @@
 	<context:component-scan
 		base-package="kr.or.ns.controller" />
 	<context:component-scan
+		base-package="kr.or.ns.dao" />
+	<context:component-scan
 		base-package="kr.or.ns.service" />
 	<context:component-scan
 		base-package="kr.or.ns.dao" />

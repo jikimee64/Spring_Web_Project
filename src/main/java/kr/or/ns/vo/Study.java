@@ -19,7 +19,7 @@ public class Study {
 	private int loc_seq;
 	private int lan_seq;
 	private int people;
-	private Date deadline;
+	/* private Date deadline; */
 	private String title;
 	private String content;
 	private Date write_date;
@@ -30,4 +30,5 @@ public class Study {
 	private String status;
 	private int readnum;
 	private List<CommonsMultipartFile> files;
+	private String language;
 }

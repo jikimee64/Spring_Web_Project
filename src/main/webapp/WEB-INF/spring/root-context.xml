@@ -80,8 +80,8 @@
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="관리자 아아디" />
-		<property name="password" value="관리자앱 비번" />
+		<property name="username" value="ksks723@gmail.com" />
+		<property name="password" value="sgoxzcplzaedafez" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.debug">true</prop>

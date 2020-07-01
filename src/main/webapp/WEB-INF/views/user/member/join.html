@@ -29,6 +29,7 @@
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
+
 	<div class="container"
 		style="width: 37%; margin-top: 30px; margin-top: 25px; margin-bottom: 25px;">
 		<h2>회원가입</h2>
@@ -44,8 +45,6 @@
 							required> &nbsp;
 						<button type="button" class="btn btn-warning" style="width: 15%;">인증</button>
 					</div>
-				</div>
-
 				<div class="form-group">
 					<label for="pwd">비밀번호</label> <input type="password"
 						class="form-control" id="user_pwd" placeholder="비밀번호를 입력해주세요."
@@ -232,10 +231,12 @@
 			</div>
 
 			<!-- 	</div> -->
-		</form>
+
 		<!-- </div>
 	</div> -->
 	</div>
+	</form>
+		</div>
 
 	<br />
 	<br />
@@ -246,22 +247,26 @@
 
 	<!-- <script>
 		// Disable form submissions if there are invalid fields
-		(function () {
+		(function() {
 			'use strict';
-			window.addEventListener('load', function () {
-				// Get the forms we want to add validation styles to
-				var forms = document.getElementsByClassName('needs-validation');
-				// Loop over them and prevent submission
-				var validation = Array.prototype.filter.call(forms, function (form) {
-					form.addEventListener('submit', function (event) {
-						if (form.checkValidity() === false) {
-							event.preventDefault();
-							event.stopPropagation();
-						}
-						form.classList.add('was-validated');
+			window.addEventListener('load',
+					function() {
+						// Get the forms we want to add validation styles to
+						var forms = document
+								.getElementsByClassName('needs-validation');
+						// Loop over them and prevent submission
+						var validation = Array.prototype.filter.call(forms,
+								function(form) {
+									form.addEventListener('submit', function(
+											event) {
+										if (form.checkValidity() === false) {
+											event.preventDefault();
+											event.stopPropagation();
+										}
+										form.classList.add('was-validated');
+									}, false);
+								});
 					}, false);
-				});
-			}, false);
 		})();
 	</script> -->
 
