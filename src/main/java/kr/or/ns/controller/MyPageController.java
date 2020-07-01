@@ -12,6 +12,11 @@ public class MyPageController {
 		System.out.println("마이페이지로 이동이동(연규가씀)");
 		return "/user/mypage/mypage"; 
 	}
+	@RequestMapping("/mypage_User_Edit.do")
+	public String mypageUserEditPage() {
+		System.out.println("유저 수정페이지로 이동이동(연규가씀)");
+		return "/user/mypage/mypage_User_Edit"; 
+	}
 	@RequestMapping("/mypage_Myboard.do")
 	public String myBoardPage() {
 		System.out.println("내가 쓴 게시판으로 이동이동(연규가씀)");
