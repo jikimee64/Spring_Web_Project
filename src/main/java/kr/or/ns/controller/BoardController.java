@@ -104,7 +104,8 @@ public class BoardController {
 
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
-
+		System.out.println("?? " + files);
+		
 		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
 			for (CommonsMultipartFile multifile : files) {
 				String filename = multifile.getOriginalFilename();
@@ -123,6 +124,7 @@ public class BoardController {
 					}
 				}
 				filenames.add(filename); // 파일명을 별도 관리 (DB insert)
+				System.out.println("fs" + filename);
 			}
 
 		}

@@ -2,6 +2,7 @@ package kr.or.ns.service;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -58,5 +59,13 @@ public class AjaxServiceImpl implements AjaxService {
 		}
 		return null;
 	}
-
+	
+	
+	public int idcheck(String user_id) throws ClassNotFoundException {
+		System.out.println("여기오나");
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		int result = dao.idcheck(user_id);	
+		System.out.println("result" + result);
+		return result;
+	}
 }
