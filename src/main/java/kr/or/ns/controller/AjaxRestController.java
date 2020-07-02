@@ -32,8 +32,6 @@ public class AjaxRestController {
 		System.out.println("우철 : " + flag);
 		
 		
-		
-		
 		if(flag == 1) {
 			//이메일 보내기
 			String key =  service.emailSend(useremail);
@@ -41,10 +39,16 @@ public class AjaxRestController {
 		}else {
 			System.out.println("존재하지 않는 계쩡이라고 안내해야함");
 		}
+	}
 		
-		
-		
+	//아이디 중복체크
+	@RequestMapping(value = "idcheck.do", method=RequestMethod.POST)
+	public void idcheck(String user_id) throws ClassNotFoundException {
+		System.out.println(user_id + "user_id 컨트롤러");
+		int userid = service.idcheck(user_id);
 		
 	}
+		
+	
 
 }

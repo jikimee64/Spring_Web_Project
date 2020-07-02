@@ -270,10 +270,6 @@
 		<!-- 데이터 한개 넣기 끝~ -->
 		<!-- 데이터 한개 넣기 끝~ -->
 
-
-
-<<<<<<< HEAD
-=======
 			</div>
 			<div class="col-md-9">
 				<div class="row" style="margin-top: 10px;">
@@ -309,9 +305,6 @@
 				</div>
 			</div>
 		</div>
->>>>>>> 1e15fcafb1d25dd3e040a97cc17634462a580276
-
-
 
 
 <!-- 		<div class="row"> -->
@@ -395,23 +388,23 @@
 
 
 	 <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-		<th:block th:each="i : ${#numbers.sequence(${pageMaker.startPage},${pageMaker.endPage })" th:value="pageNum">
+		<!-- <th:block th:each="i : ${#numbers.sequence(${pageMaker.startPage},${pageMaker.endPage })" th:value="pageNum">
 			<li>
 				<a th:href='<c:url value="/user/board/study_List.do?page=${pageNum }"/>'>
 					<i class="fa">${pageNum }</i>
 				</a>
 			</li>
-		</th:block>
+		</th:block> -->
 
 
 	 <!-- 다음버튼 생성여부 -->
-	 		<th:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+	 		 <th:if test="${pageMaker.next && pageMaker.endPage > 0 }">
 	 		<li>
 				<a href='<c:url value="/user/board/study_List.do?page=${pageMaker.endPage+1}"/>'>
 					<i class="fa fa-chevron-right"></i>
 				</a>
 			</li>
-	 		</c:if>
+	 		</c:if> 
 	 	
 	 	
 	</ul>
@@ -421,34 +414,12 @@
 	
 		</div>
 	</div>
-<<<<<<< HEAD
+
 	
 	
 	<!-- 페이징 버튼 끝 -->
-	<!-- 페이징 버튼 끝 -->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-=======
+
 	<div th:replace="/user/member/user_Info_Modal :: user_Info_Modal"> </div>
->>>>>>> 1e15fcafb1d25dd3e040a97cc17634462a580276
 	<div th:replace="/user/includes/footer :: footer"> </div>
 
 </body>

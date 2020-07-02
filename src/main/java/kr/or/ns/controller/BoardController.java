@@ -63,26 +63,24 @@ public class BoardController {
 	public String studyListPage(Criteria cri, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		
-		
-		//서비스를 안가는ㄴㄴㄴ구먼........................
-		
-		System.out.println("서비스 가냐");
-		pageMaker.setTotalCount(service.getStudyBoardCount());
-		
-		System.out.println("서비스 갔다오냐");
-		
-		//DAO받아오기 + 매퍼를 통한 인터페이스 연결
-		List<Map<String,Object>> list = null;
-		list = service.getStudyBoardList(cri);
-		model.addAttribute("list",list); //view까지 전달(forward)
-		model.addAttribute("pageMaker",pageMaker); 
-		
-		System.out.println(list.toString());
-		System.out.println("찍어보자2");
-		return "/user/board/study_List"; //study_List.html
+		/*
+		 * PageMaker pageMaker = new PageMaker(); pageMaker.setCri(cri);
+		 * 
+		 * 
+		 * //서비스를 안가는ㄴㄴㄴ구먼........................
+		 * 
+		 * System.out.println("서비스 가냐");
+		 * pageMaker.setTotalCount(service.getStudyBoardCount());
+		 * 
+		 * System.out.println("서비스 갔다오냐");
+		 * 
+		 * //DAO받아오기 + 매퍼를 통한 인터페이스 연결 List<Map<String,Object>> list = null; list =
+		 * service.getStudyBoardList(cri); model.addAttribute("list",list); //view까지
+		 * 전달(forward) model.addAttribute("pageMaker",pageMaker);
+		 * 
+		 * System.out.println(list.toString()); System.out.println("찍어보자2");
+		 */
+		return "user/board/study_List"; //study_List.html
 	}
 	@RequestMapping("board_Select.do")
 	public String boardSelectPage() {
@@ -110,7 +108,8 @@ public class BoardController {
 
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
-
+		System.out.println("?? " + files);
+		
 		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
 			for (CommonsMultipartFile multifile : files) {
 				String filename = multifile.getOriginalFilename();
@@ -129,6 +128,7 @@ public class BoardController {
 					}
 				}
 				filenames.add(filename); // 파일명을 별도 관리 (DB insert)
+				System.out.println("fs" + filename);
 			}
 
 		}
