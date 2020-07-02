@@ -29,6 +29,8 @@
 		base-package="kr.or.ns.service" />
 	<context:component-scan
 		base-package="kr.or.ns.websocket" />
+	<context:component-scan
+		base-package="kr.or.ns.util" />
 
 
 	<!-- 뷰리조버1 -->

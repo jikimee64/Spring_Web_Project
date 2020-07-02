@@ -5,7 +5,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>find_pwd</title>
-	<link href="login.css" type="text/css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -19,6 +18,10 @@
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <style>
@@ -29,33 +32,32 @@
 
 <body>
 	<div th:replace="/user/includes/header :: header"> </div>
+	
+	<div id="app">
 	<div class="container" style="width:27%;margin-top: 25px;margin-bottom: 25px;">
 		<h3 style="text-align: center;"><b>비밀번호 찾기</b> </h3>
 		<hr />
 		<br />
 		<form action="" class="needs-validation" novalidate>
 			<div class="form-group">
-				<label for="username">이름</label>
+				<label for="username">ID</label>
 				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="username" placeholder="Enter username" name="username"
+					<input type="text" v-model="userId" class="form-control" id="userId" placeholder="Enter user Id" name="userId"
 						style="width:95%;" required>
-					<div class="valid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok.</div>
-					<div class="invalid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름을 입력해주세요.</div>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="userid">이메일주소</label>
 				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="userid" placeholder="Enter userid" name="uname"
+					<input type="text" v-model="userEmail" class="form-control" id="userEmail" placeholder="Enter user email" name="uEmail"
 						style="width:65%;" required>
 					&nbsp;
-					<button type="submit" class="btn btn-success" style="width:30%;font-size: small;">임시비밀번호 발급</button>
-					<div class="valid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok.(이거이상함 수정필요)</div>
-					<div class="invalid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아이디를 입력해주세요.</div>
-
+					<button v-on:click="pwCheck" type="submit" class="btn btn-success" style="width:30%;font-size: small;" id="Authbtn">임시비밀번호 발급</button>
+					<div id="alert"></div>
 				</div>
 			</div>
+		</form>
 
 
 			<br />
@@ -65,7 +67,6 @@
 				<button type="button" class="btn btn-warning" style="width:40%;height:55px;">로그인 하러가기</button>
 				</a>
 			</div>
-		</form>
 
 		<p></p>
 
@@ -76,28 +77,42 @@
 
 
 	</div>
+	</div>
 	<div th:replace="/user/includes/footer :: footer"> </div>
-	<script>
-		// Disable form submissions if there are invalid fields
-		(function () {
-			'use strict';
-			window.addEventListener('load', function () {
-				// Get the forms we want to add validation styles to
-				var forms = document.getElementsByClassName('needs-validation');
-				// Loop over them and prevent submission
-				var validation = Array.prototype.filter.call(forms, function (form) {
-					form.addEventListener('submit', function (event) {
-						if (form.checkValidity() === false) {
-							event.preventDefault();
-							event.stopPropagation();
-						}
-						form.classList.add('was-validated');
-					}, false);
-				});
-			}, false);
-		})();
-	</script>
 
+	<script>
+	
+	new Vue({
+        el: '#app',
+        data: {
+        	userId: '',
+        	userEmail: ''
+        },
+        methods: {
+        	pwCheck(){
+        		if(this.userId !== '' && this.userEmail !== ''){ //userId이랑 userEmail  빈값이 아닐 때
+        		
+        			//$('#alert').css("display", "block");	
+        			alert(" 임시비밀번호를 발급했습니다");
+        		axios.post('/ajax/pwCheck.do', 
+        				{userId: this.userId, 
+        				userEmail: this.userEmail})
+        			.then(res => { 
+        				console.log(res.data) ;
+        				
+        			
+        			})
+        		}
+        	}
+        } //methods
+    })
+	
+	
+	/* $('#Authbtn').on('click', function(){
+		$('#alert').html('임시비밀번호를 발급했습니다 ')
+	}); */
+	
+	</script>
 </body>
 
 </html>

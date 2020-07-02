@@ -15,7 +15,7 @@ public class Criteria {
 	//생성자(최초로 게시판 목록에 들어왔을 때를 위한 기본세팅)
 	public Criteria() {
 		this.page = 1;   //시작페이지
-		this.perPageNum = 10;  //페이지 갯수
+		this.perPageNum = 5;  //페이지 갯수
 	}
 	
 	

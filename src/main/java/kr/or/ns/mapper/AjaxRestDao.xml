@@ -8,6 +8,19 @@
 		where user_name = #{user_name} and user_email = #{user_email}
 	</select>
 
+	<!-- 이름과 이메일 받아서 아이디 제공  -->
+	<select id="searchId" parameterType="hashMap" resultType="kr.or.ns.vo.Users">
+		select * from users
+		where user_name = #{user_name} and user_email = #{user_email}
+	</select>
+	
+	
+	<!-- 새로운 임시 비밀번호 생성 -->
+	<update id="updatePw">
+		update users set user_pwd =#{user_pwd} 
+		where user_id = #{user_id} and user_email = #{user_email}
+	</update>
+
 	<!-- 아이디 중복체크 -->
 	<select id="idcheck" resultType="int">
 		select count(*) from users where user_id = #{user_id}
