@@ -57,6 +57,7 @@ public class MemberController {
 		users.setUser_pwd(this.bCryptPasswordEncoder.encode(users.getUser_pwd()));
 
 		try {
+			System.out.println("여긴오니...?");
 			service.joininsert(users, request);
 
 		} catch (Exception e) {

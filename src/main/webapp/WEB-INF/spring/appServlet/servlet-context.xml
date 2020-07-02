@@ -32,7 +32,6 @@
 	<context:component-scan
 		base-package="kr.or.ns.util" />
 
-
 	<!-- 뷰리조버1 -->
 	<bean id="templateResolver"
 		class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
@@ -83,8 +82,8 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="3" />
 	</bean>
-	
-	<!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동-->
+
+	<!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="driverManagerDataSource" />
