@@ -32,6 +32,7 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760"></property> <!-- 10M -->
+		 <property name="defaultEncoding" value="UTF-8"/> <!-- 한글처리 -->
 	</bean>
 
 	<!-- Mybatis 설정 기본 자바코드 : MapConfig.xml 에서 설정했던 작업 (DB연결 ,mapper 설정) 파일 
@@ -42,6 +43,7 @@
 		<property name="dataSource" ref="driverManagerDataSource"></property>
 		<property name="mapperLocations" value="classpath*:kr/or/ns/mapper/*xml" />
 		<!-- *이건 약속 매퍼로 저 경로안에 있는 모든xml을 다 쓴다 ex) a.xml, b.xml, c.xml 다 쓰는것이다 -->
+		<!-- <property name="mapperLocations" value="classpath*:kr.or.ns.mapper/*xml" /> -->
 	</bean>
 
 	<bean id="sqlSession"

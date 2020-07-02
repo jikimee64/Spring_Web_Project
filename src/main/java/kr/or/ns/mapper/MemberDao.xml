@@ -3,18 +3,22 @@
 <mapper namespace="kr.or.ns.dao.MemberDao">
 
 	<insert id="joininsert" parameterType="kr.or.ns.vo.Users">
-	insert into users(user_id, user_pwd, enabled, user_name, user_email, profile_img, nickname, introduce, blame_count)
-		values(#{user_id}, #{user_pwd}, 1, #{user_name}, #{user_email}, 'A', #{nickname}, #{introduce}, #{blame_count})
-		<!-- insert into member(userid, pwd, name,regdate)
-		values(#{userid}, #{pwd}, #{name},sysdate) -->
-		
+		insert into users(user_id, user_pwd, enabled, user_name, user_email,
+		profile_img, nickname, introduce, blame_count)
+		values(#{user_id}, #{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img}, #{nickname},
+		#{introduce}, #{blame_count})
+		<!-- insert into member(userid, pwd, name,regdate) values(#{userid}, #{pwd}, 
+			#{name},sysdate) -->
+
 	</insert>
-	
-		<insert id="skillinsert" parameterType="kr.or.ns.vo.Skill">
-	insert into skill(skill_seq, user_id, skill_name, skill_level)
-		values(#{skill_seq}, #{user_id}, #{skill_name}, #{skill_level})
+
+	<insert id="insertskill" parameterType="hashMap">
+		INSERT INTO skill(skill_seq, user_id, skill_name, skill_level) values
+		<foreach collection="insertlist" item="item" separator = "," >
+		(#{skill_seq}, #{item.user_id}, #{item.skill_name}, #{item.skill_level})
+		</foreach>
 	</insert>
-	
-	
+
+
 
 </mapper>

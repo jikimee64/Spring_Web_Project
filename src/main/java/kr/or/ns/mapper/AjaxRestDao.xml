@@ -21,4 +21,8 @@
 		where user_id = #{user_id} and user_email = #{user_email}
 	</update>
 
+	<!-- 아이디 중복체크 -->
+	<select id="idcheck" resultType="int">
+		select user_id from users where user_id = #{user_id}
+	</select>
 </mapper>

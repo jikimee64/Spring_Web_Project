@@ -3,7 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	
-	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>a.b</groupId>
 	<artifactId>c</artifactId>
@@ -265,7 +264,7 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>1.4</version>
+			<version>2.4</version>
 		</dependency>
 
 

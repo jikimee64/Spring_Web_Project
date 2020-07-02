@@ -12,27 +12,33 @@
 
 	<security:http>
 		<security:csrf disabled="true" />
+		<!-- default-target-url : 로그인이 성공한 경우 호출할 주소  -->
 		<security:form-login
-			default-target-url="/index.htm" login-page="/joinus/login.htm"
-			authentication-failure-url="/joinus/login.htm?error" /> <!-- 이건 로그인을 실패할 때 error를 붙이면 에러페이지로 스프링이 자동으로 넘겨줌 -->
-		<security:logout logout-success-url="/index.htm" />
-		<security:intercept-url
-			pattern="/customer/*Reg.htm" access="hasRole('ROLE_USER')" />
-		<security:intercept-url
-			pattern="/customer/*Detail.htm" access="hasRole('ROLE_USER')" />
+			username-parameter="user_id"
+			password-parameter="user_pwd"
+			default-target-url="/user/main.do" login-page="/member/login.do"
+			authentication-failure-url="/member/login.do?error" /> <!-- 이건 로그인을 실패할 때 error를 붙이면 에러페이지로 스프링이 자동으로 넘겨줌 -->
+		<security:logout logout-success-url="/user/main.do" />
+		
+		<!-- 비로그인 막는 페이지..   -->
+ 	<security:intercept-url
+			pattern="/board/board_Select.do" access="hasRole('ROLE_USER')" />  
+			<!-- 스터디모집하기 버튼  -->
+		<!-- <security:intercept-url
+			pattern="/board/*Detail.do" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/admin/**"
-			access="hasRole('ROLE_ADMIN')" />
+			access="hasRole('ROLE_ADMIN')" /> -->
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="driverManagerDataSource"
-				users-by-username-query="SELECT USERID, pwd AS PASSWORD, 1 enabled FROM member where userid=?"
+				users-by-username-query="SELECT USER_ID, USER_PWD AS PASSWORD, 1 enabled FROM users where user_id=?"
 
-				authorities-by-username-query="select m.USERID , r.ROLE_NAME  
-         										  from member m join roll r 
-        										   on m.userid = r.userid 
-       											    where m.userid=?" />
+				authorities-by-username-query="select u.USER_ID , a.USER_ROLE  
+         										  from users u join authorities a 
+        										   on u.user_id = a.user_id 
+       											    where u.user_id=?" />
 
 			<!-- 이사람이 정말 우리사이트 사용자인지 판단 -->
 			<security:password-encoder
