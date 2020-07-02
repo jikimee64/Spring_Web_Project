@@ -1,11 +1,46 @@
 package kr.or.ns.controller;
 
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import kr.or.ns.page.PageMaker;
+import kr.or.ns.service.BoardServiceImpl;
+import kr.or.ns.vo.Criteria;
+
+
+
+
+/*
+클래스명 : BoardController
+버전 정보 v.1.0
+마지막 업데이트 날짜 : 2020 - 07 - 01
+작업자 : 박민혜
+
+study_List 목록뿌리기 작업
+
+*/
+
+
+
+
+
+
 
 @Controller
 @RequestMapping("/board/")
 public class BoardController {
+	
+	
+	@Autowired
+	private BoardServiceImpl service;
+	
+	
 
 	@RequestMapping("course_List.do")
 	public String courseListPage() {
@@ -14,12 +49,45 @@ public class BoardController {
 		return "/user/board/course_List"; 
 	}
 	
+	
+	
+	
+	
+	
+	//스터디목록 + 페이징
 	@RequestMapping("study_List.do")
-	public String studyListPage() {
+	public String studyListPage(Criteria cri, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 		
-		return "/user/board/study_List"; 
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		
+		//서비스를 안가는ㄴㄴㄴ구먼........................
+		
+		System.out.println("서비스 가냐");
+		pageMaker.setTotalCount(service.getStudyBoardCount());
+		
+		System.out.println("서비스 갔다오냐");
+		
+		//DAO받아오기 + 매퍼를 통한 인터페이스 연결
+		List<Map<String,Object>> list = null;
+		list = service.getStudyBoardList(cri);
+		model.addAttribute("list",list); //view까지 전달(forward)
+		model.addAttribute("pageMaker",pageMaker); 
+		
+		System.out.println(list.toString());
+		System.out.println("찍어보자2");
+		return "/user/board/study_List"; //study_List.html
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("board_Select.do")
 	public String boardSelectPage() {

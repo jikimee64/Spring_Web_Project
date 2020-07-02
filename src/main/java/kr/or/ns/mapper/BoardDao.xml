@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="kr.or.ns.BoardDao">
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<mapper namespace="kr.or.ns.dao.BoardDao">
 
+	<!-- 총 스터디게시글 수 -->
+	<select id="getStudyBoardCount" resultType="Integer">
+	SELECT COUNT(*) FROM STUDY_BOARD
+	</select>
+	
+	
+	<!-- 페이징 스터디 글목록 -->
+	<select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap">
+		<![CDATA[
+			SELECT * FROM STUDY_BOARD
+			ORDER BY S_SEQ DESC
+			LIMIT #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	
 
 </mapper>

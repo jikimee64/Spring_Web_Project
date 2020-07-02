@@ -40,9 +40,9 @@
 	<bean id="sqlSessionFactoryBean"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="driverManagerDataSource"></property>
-		<property name="mapperLocations"
-			value="classpath*:mapper/*xml" />
+		<property name="mapperLocations" value="classpath*:kr/or/ns/mapper/*xml" />
 		<!-- *이건 약속 매퍼로 저 경로안에 있는 모든xml을 다 쓴다 ex) a.xml, b.xml, c.xml 다 쓰는것이다 -->
+		<!-- <property name="mapperLocations" value="classpath*:kr.or.ns.mapper/*xml" /> -->
 	</bean>
 
 	<bean id="sqlSession"
