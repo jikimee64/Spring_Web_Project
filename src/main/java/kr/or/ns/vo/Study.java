@@ -19,7 +19,7 @@ public class Study {
 	private int loc_seq;
 	private int lan_seq;
 	private int people;
-	private Date deadline;
+	private Date deadline; 
 	private String title;
 	private String content;
 	private Date write_date;
@@ -29,5 +29,17 @@ public class Study {
 	private String filesrc2;
 	private String status;
 	private int readnum;
+	private String selectlan;
+	private String selectPeo;
+	private String selectloc;
+	private String selectlev;
+	private String selectend;
+	
 	private List<CommonsMultipartFile> files;
+	public List<CommonsMultipartFile> getFiles() {
+		return files;
+	}
+	public void setFiles(List<CommonsMultipartFile> files) {
+		this.files = files;
+	}
 }
