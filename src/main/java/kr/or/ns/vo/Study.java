@@ -30,7 +30,7 @@ public class Study {
 	private String status;
 	private int readnum;
 	private String selectlan;
-	private String selectPeo;
+	private String selectpeo;
 	private String selectloc;
 	private String selectlev;
 	private String selectend;
