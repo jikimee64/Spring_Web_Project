@@ -46,20 +46,6 @@ public class BoardController {
 	private BoardServiceImpl service;
 	
 	
-
-	@RequestMapping("course_List.do")
-	public String courseListPage() {
-		System.out.println("강좌페이지로 이동이동(연규가씀)");
-
-		return "user/board/course_List";
-	}
-	
-	  @RequestMapping("course_List.do") public String courseListPage() {
-	  System.out.println("강좌페이지로 이동이동(연규가씀)");
-	  
-	  return "/user/board/course_List"; 
-	  }
-	
 //	@RequestMapping("course_List.do")
 //	public String courseListPage(Model model) {
 //		System.out.println("강좌페이지로 이동이동(연규가씀)");

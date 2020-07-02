@@ -100,6 +100,7 @@ public class MemberServiceImpl implements MemberService {
 
 		try {
 			result = dao.joininsert(users);
+			System.out.println("회원강비 결과 : "  +result);
 			result2 = dao.insertskill(mo);
 			System.out.println("정상적인 처리 일 때 출력되는 부분 insert 정상, update 정상");
 		} catch (Exception e) {
