@@ -28,7 +28,6 @@
 		background-color: #F6D258;
 		text-align: center;
 		align-self: center;
-		padding: 30px;
 	}
 
 	._category_button {
@@ -162,42 +161,9 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<!-- 여기부터 스터디 목록 -->
 	<div class="container" style="margin-top: 50px;  margin-bottom: 25px;overflow-y:scroll;">
-	
-	
-	
-				
-		
-		
-		
-		
-		
+
 		<!-- 타임리프 반복시작 -->
 		<div th:each="list : ${list}">
 		
@@ -272,8 +238,6 @@
 
 
 
-<<<<<<< HEAD
-=======
 			</div>
 			<div class="col-md-9">
 				<div class="row" style="margin-top: 10px;">
@@ -309,8 +273,6 @@
 				</div>
 			</div>
 		</div>
->>>>>>> 1e15fcafb1d25dd3e040a97cc17634462a580276
-
 
 
 
@@ -395,13 +357,13 @@
 
 
 	 <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-		<th:block th:each="i : ${#numbers.sequence(${pageMaker.startPage},${pageMaker.endPage })" th:value="pageNum">
+		<!-- <th:block th:each="i : ${#numbers.sequence(${pageMaker.startPage},${pageMaker.endPage })" th:value="pageNum">
 			<li>
 				<a th:href='<c:url value="/user/board/study_List.do?page=${pageNum }"/>'>
 					<i class="fa">${pageNum }</i>
 				</a>
 			</li>
-		</th:block>
+		</th:block> -->
 
 
 	 <!-- 다음버튼 생성여부 -->
@@ -421,7 +383,6 @@
 	
 		</div>
 	</div>
-<<<<<<< HEAD
 	
 	
 	<!-- 페이징 버튼 끝 -->

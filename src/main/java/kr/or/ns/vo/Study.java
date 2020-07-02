@@ -34,12 +34,6 @@ public class Study {
 	private String selectloc;
 	private String selectlev;
 	private String selectend;
-	
 	private List<CommonsMultipartFile> files;
-	public List<CommonsMultipartFile> getFiles() {
-		return files;
-	}
-	public void setFiles(List<CommonsMultipartFile> files) {
-		this.files = files;
-	}
+	
 }

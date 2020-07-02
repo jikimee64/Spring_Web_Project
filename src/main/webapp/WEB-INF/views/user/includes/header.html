@@ -1,3 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<style>
+li {
+	list-style-type: none;
+}
+</style>
+</head>
 
 <!-- 헤더 -->
 <div th:fragment="header">
@@ -14,32 +24,49 @@
 					</h1>
 				</a>
 			</div>
-			<div class="col-md-1">
-				<a href="/member/login.do" id="" class="btn btn-warning"
-					role="button" style="float: right;">LOGIN</a>
-			</div>
-			<div class="col-md-1">
-				<a href="/member/join.do" id="" class="btn btn-danger" role="button"
-					style="float: right;">JOIN</a>
-			</div>
-			<div class="col-md-1">
-				<ul class="navbar-nav" style="place-content: center;">
-					<!-- Dropdown -->
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbardrop"
-						data-toggle="dropdown"> <img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU"
-							alt="" style="height: 50px; border-radius: 50%;">
-					</a>
-						<div class="dropdown-menu" style="transform: translateX(-55px);">
-							<a class="dropdown-item" href="/mypage/mypage.do">마이페이지</a> <a
-								class="dropdown-item" href="/mypage/mypage_Myboard.do">내가 쓴
-								게시글</a> <a class="dropdown-item"
-								href="/mypage/mypage_Message_From_Board.do">쪽지함</a>
-						</div></li>
-				</ul>
-			</div>
 
+
+			<th:block sec:authorize="!hasRole('ROLE_USER')">
+				<div class="col-md-1">
+					<a href="/member/login.do" id="" class="btn btn-warning"
+						role="button" style="float: right;">LOGIN</a>
+				</div>
+			</th:block>
+
+
+			<th:block sec:authorize="!hasRole('ROLE_USER')">
+				<div class="col-md-1">
+					<a href="/member/join.do" id="" class="btn btn-danger"
+						role="button" style="float: right;">JOIN</a>
+				</div>
+			</th:block>
+
+
+			<th:block sec:authorize="hasRole('ROLE_USER')">
+				<sec:authentication property="principal.user_id" var="loginuser" />
+				<div class="col-md-1">
+					<ul class="navbar-nav" style="place-content: center;">
+						<!-- Dropdown -->
+						<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" href="#" id="navbardrop"
+							data-toggle="dropdown"> <img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU"
+								alt="" style="height: 50px; border-radius: 50%;">
+						</a>
+							<div class="dropdown-menu" style="transform: translateX(-55px);">
+								<a class="dropdown-item" href="/mypage/mypage.do">마이페이지</a> <a
+									class="dropdown-item" href="/mypage/mypage_Myboard.do">내가 쓴
+									게시글</a> <a class="dropdown-item"
+									href="/mypage/mypage_Message_From_Board.do">쪽지함</a> <a
+									class="dropdown-item" th:href="@{/logout}">로그아웃</a>
+							</div></li>
+					</ul>
+				</div>
+			</th:block>
+
+			<th:block sec:authorize="hasRole('ROLE_USER')">
+				<div id="alertArea"></div>
+			</th:block>
 
 		</nav>
 
@@ -71,6 +98,56 @@
 			<div class="col-md-2"></div>
 		</nav>
 	</header>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			connect();
+		})
+
+		var wsocket;
+
+		function connect() {
+			wsocket = new WebSocket(
+			"ws://localhost:8001/messageSocket.do");
+			wsocket.onopen = onOpen;
+			//서버와 클라이언트의 정상 연결 후 데이터 송수신이 가능할 시 호출
+			wsocket.onmessage = onMessage;
+			//서버에서 메시지를 받을 때 호출
+			wsocket.onclose = onClose;
+			//서버와 연결이 종료되었을 때 호출
+		}
+		function disconnect() {
+			wsocket.close();
+		}
+
+		function onOpen(evt) {
+			console.log("정상연결");
+			send();
+		}
+
+		function onMessage(evt) {
+			console.log(evt);
+			//evt.data에 서버가 보낸 데이터가 들어가 있음
+			var data = evt.data;
+			appendMessage(data);
+		}
+
+		function onClose(evt) {
+		}
+
+		function send() {
+			wsocket.send("login");
+		}
+
+		function appendMessage(msg) {
+			$("#alertArea").empty();
+			$("#alertArea")
+					.append(
+							msg.substring(0, 8)
+									+ "<a href='${pageContext.request.contextPath}/messageView.do'>"
+									+ msg.substring(9, 11) + "</a>");
+		}
+	</script>
 
 
 </div>
