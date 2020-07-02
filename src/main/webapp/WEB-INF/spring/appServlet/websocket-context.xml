@@ -1,6 +1,6 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -14,18 +14,27 @@
     http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<websocket:handlers>
-		<websocket:mapping handler="test01" path="/test01.do/*"/>
-		<websocket:handshake-interceptors>
-	    	<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
-	    </websocket:handshake-interceptors>		
+		<!--웹소켓 클라이언트가 /test01.htm으로 접속하면
+		    test01라는 bean으로 처리('test01'에 설정한 클래스 경로는 웹소켓을 구현한 클래스 -->
+		<websocket:mapping handler="test01" path="/messageSocket.do"/>
+		<!-- 
+			WebSocketHandler 를 구현한 클래스 안에서는 HttpServletRequest 등의 서블릿 관련 클래스를 
+			사용할 수 없음!!
+			그래서 WebSocketHandler보다 앞서 실행되는  websocket:HandshakeInterceptor를 이용하여
+			이용자의 HttpSession에 접속하고 세션에 저장된 내용을 WebSocketHandler로 전달
+		 -->
+		 <websocket:handshake-interceptors>
+	       <bean class="kr.or.ns.interceptor.HandShakeInterceptor"/>
+		 </websocket:handshake-interceptors> 	
 	</websocket:handlers>
-	
-	<bean id="test01" class="websocket.Test01SocketHandler">
-	</bean>
 
-	<bean class="org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean">
-        <property name="maxTextMessageBufferSize" value="8192"/>
-        <property name="maxBinaryMessageBufferSize" value="819200"/>
-    </bean>
+	<!-- class : 웹소켓을 구현할 클래스 경로-->
+	<bean id="test01" class="kr.or.ns.websocket.Test01SocketHandler" />
+
+	<bean
+		class="org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean">
+		<property name="maxTextMessageBufferSize" value="8192" />
+		<property name="maxBinaryMessageBufferSize" value="819200" />
+	</bean>
+	<mvc:annotation-driven /> 
 </beans>
- -->

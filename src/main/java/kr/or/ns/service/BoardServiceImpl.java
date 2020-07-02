@@ -4,12 +4,15 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.ns.dao.BoardDao;
 import kr.or.ns.vo.Criteria;
+import kr.or.ns.vo.Study;
 
 /*
 클래스명 : BoardServiceImpl
@@ -47,6 +50,14 @@ public class BoardServiceImpl implements BoardService {
 		int cnt = dao.getStudyBoardCount();
 		System.out.println(cnt+"cnt찍냐");
 		return cnt;
+	}
+	
+	public int studyReg(Study study, HttpServletRequest request) {
+		
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		
+		
+		return 0;
 	}
 
 

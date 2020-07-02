@@ -1,131 +1,149 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>LOGIN</title>
-	<link href="login.css" type="text/css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LOGIN</title>
+<link href="login.css" type="text/css" rel="stylesheet" />
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <style>
-	a:link {
-		color: red;
-		text-decoration: none;
-	}
+a:link {
+	color: red;
+	text-decoration: none;
+}
 
-	a:visited {
-		color: black;
-		text-decoration: none;
-	}
+a:visited {
+	color: black;
+	text-decoration: none;
+}
 
-	a:hover {
-		color: darkgoldenrod;
-		text-decoration: underline;
-	}
+a:hover {
+	color: darkgoldenrod;
+	text-decoration: underline;
+}
 
-	._find {
-		color: #d8a80a;
-	}
+._find {
+	color: #d8a80a;
+}
 
-	._other_login:hover {
-		background-color: #E2E6EA;
-	}
+._other_login:hover {
+	background-color: #E2E6EA;
+}
 
-	._other_login {
-		background-color: white;
-	}
+._other_login {
+	background-color: white;
+}
 </style>
 
 <body>
-	<div th:replace="/user/includes/header :: header"> </div>
+	<div th:replace="/user/includes/header :: header"></div>
 
-	
-		<div class="container" style="width:27%;margin-top: 25px;margin-bottom: 25px;">
-			<h2 style="text-align: center;">LOGIN</h2>
-			<hr />
-			<form action="" class="needs-validation" novalidate>
-				<div class="form-group">
-					<label for="uname">ID</label>
-					<input type="text" class="form-control" id="userid" placeholder="Enter userid" name="uname"
-						required>
+	<c:if test="${param.error != null}">
+		<div>
+			로그인 실패<br>
+			<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+				<!-- 스프링에서 예외가 발생하면 자동으로 만들어지는 객체이다. 마지막 예외가 터지면 -->
+				<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+			</c:if>
+		</div>
+	</c:if>
+
+	<div class="container"
+		style="width: 27%; margin-top: 25px; margin-bottom: 25px;">
+		<h2 style="text-align: center;">LOGIN</h2>
+		<hr />
+		<form th:action="@{/login}" method="post" class="needs-validation" novalidate>
+			<div class="form-group">
+				<label for="uname">ID</label> <input type="text"
+					class="form-control" id="user_id" placeholder="Enter userid"
+					name="user_id" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>
+			<div class="form-group">
+				<label for="pwd">Password</label> <input type="password"
+					class="form-control" id="user_pwd" placeholder="Enter password"
+					name="user_pwd" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>
+			<!-- <div class="form-group form-check">
+				<label class="form-check-label"> <input
+					class="form-check-input" type="checkbox" name="remember" required>
+					I agree on blabla.
 					<div class="valid-feedback">Valid.</div>
-					<div class="invalid-feedback">Please fill out this field.</div>
-				</div>
-				<div class="form-group">
-					<label for="pwd">Password</label>
-					<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd"
-						required>
-					<div class="valid-feedback">Valid.</div>
-					<div class="invalid-feedback">Please fill out this field.</div>
-				</div>
-				<div class="form-group form-check">
-					<label class="form-check-label">
-						<input class="form-check-input" type="checkbox" name="remember" required> I agree on blabla.
-						<div class="valid-feedback">Valid.</div>
-						<div class="invalid-feedback">Check this checkbox to continue.</div>
-					</label>
-				</div>
-				<button type="submit" class="btn btn-warning" style="width:100%;height:45px;">Login</button>
-			</form>
+					<div class="invalid-feedback">Check this checkbox to
+						continue.</div>
+				</label>
+			</div> -->
+			<button type="submit" class="btn btn-warning"
+				style="width: 100%; height: 45px;">Login</button>
+		</form>
 
-			<p></p>
+		<p></p>
 
-			<div style="text-align: end; font-size: small;">
-				<a href="/member/find_Id.do">
-					<span class="_find">아이디 찾기</span>
-				</a>
-				&nbsp;&nbsp;&nbsp;
-				<a href="/member/find_Passward.do">
-					<span class="_find">비밀번호 찾기</span>
-				</a>
-			</div>
+		<div style="text-align: end; font-size: small;">
+			<a href="/member/find_Id.do"> <span class="_find">아이디 찾기</span>
+			</a> &nbsp;&nbsp;&nbsp; <a href="/member/find_Passward.do"> <span
+				class="_find">비밀번호 찾기</span>
+			</a>
+		</div>
 
-			<br />
-			<br />
+		<br /> <br />
 
-			<div style="margin-bottom: 5px;">
+		<div style="margin-bottom: 5px;">
 
-				<button type="button" class="btn btn-light _other_login" style="border:2px solid #395795;
-				width:97%;">
-					<img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;">
-					<span>페이스북 계정으로 로그인 하기</span>
-				</button>
-			</div>
+			<button type="button" class="btn btn-light _other_login"
+				style="border: 2px solid #395795; width: 97%;">
+				<img src="/resources/images/img/facebook.png" alt=""
+					style="height: 25px; float: left;"> <span>페이스북 계정으로
+					로그인 하기</span>
+			</button>
+		</div>
 
-			<div style="margin-bottom: 5px;">
-				<button type="button" class="btn btn-light _other_login" style="border:2px solid #1CB863;
-				width:97%;">
-					<img src="/resources/images/img/naver.png" alt="" style="height: 25px; float: left;">
-					<span>네이버 계정으로 로그인하기</span>
-				</button>
+		<div style="margin-bottom: 5px;">
+			<button type="button" class="btn btn-light _other_login"
+				style="border: 2px solid #1CB863; width: 97%;">
+				<img src="/resources/images/img/naver.png" alt=""
+					style="height: 25px; float: left;"> <span>네이버 계정으로
+					로그인하기</span>
+			</button>
 
-			</div>
-			<div style="margin-bottom: 5px;">
-				<button type="button" class="btn btn-light _other_login" style="border:2px solid #FFC71C;
-				width:97%;">
-					<img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">
-					<span>카카오톡 계정으로 로그인하기</span>
-				</button>
-
-			</div>
+		</div>
+		<div style="margin-bottom: 5px;">
+			<button type="button" class="btn btn-light _other_login"
+				style="border: 2px solid #FFC71C; width: 97%;">
+				<img src="/resources/images/img/kakao.png" alt=""
+					style="height: 25px; float: left;"> <span>카카오톡 계정으로
+					로그인하기</span>
+			</button>
 
 		</div>
 
-		<script>
+	</div>
+
+	<script>
 			// Disable form submissions if there are invalid fields
 			(function () {
 				'use strict';
@@ -146,8 +164,8 @@
 			})();
 		</script>
 
-		<div th:replace="/user/includes/footer :: footer"> </div>
-	</body>
+	<div th:replace="/user/includes/footer :: footer"></div>
+</body>
 
-	</html>
+</html>
 
