@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-
+<!-- 
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+ -->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>mypage_user_edit</title>
@@ -83,7 +83,7 @@
 
 			</div>
 			<div class="col-md-7">
-				<form action="">
+				<form action="MyPageUserEdit.do" method="post">
 					<!-- 폼태그 제대로 된건지 모르겟음 할때 확인해봐야함 -->
 					<br />
 					<input type="text" readonly
@@ -240,7 +240,7 @@
 			<div class="col-md-2">
 			</div>
 			<div class="col-md-8" style="text-align: center;">
-				<button type="submit" class="btn btn-primary" style="width:150px;">수정하기</button>
+				<input class="button" type="submit" class="btn btn-primary" style="width:150px;">수정하기
 			</div>
 			<div class="col-md-2">
 				&nbsp; &nbsp; &nbsp;
@@ -254,11 +254,6 @@
 	<!-- 여기까지 마지막 부분 끝/// 회원정보수정 -->
 	<div th:replace="/user/includes/footer :: footer"> </div>
 
-	<script>
-
-
-
-	</script>
 </body>
 
 

@@ -2,22 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ns.dao.MemberDao">
 
+	<!-- 회원가입 -->
 	<insert id="joininsert" parameterType="kr.or.ns.vo.Users">
 		insert into users(user_id, user_pwd, enabled, user_name, user_email,
 		profile_img, nickname, introduce, blame_count)
-		values(#{user_id}, #{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img}, #{nickname},
+		values(#{user_id},
+		#{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img},
+		#{nickname},
 		#{introduce}, #{blame_count})
 		<!-- insert into member(userid, pwd, name,regdate) values(#{userid}, #{pwd}, 
 			#{name},sysdate) -->
 
 	</insert>
-
+	<!-- skill table -->
 	<insert id="insertskill" parameterType="hashMap">
 		INSERT INTO skill(skill_seq, user_id, skill_name, skill_level) values
-		<foreach collection="insertlist" item="item" separator = "," >
-		(#{skill_seq}, #{item.user_id}, #{item.skill_name}, #{item.skill_level})
+		<foreach collection="insertlist" item="item" separator=",">
+			(#{skill_seq}, #{item.user_id}, #{item.skill_name},
+			#{item.skill_level})
 		</foreach>
 	</insert>
+
+	<!-- 회원정보 가져오기 -->
+	<select id="getUsers" resultType="kr.or.ns.vo.Users">
+		select user_id
+		,user_pwd,name,enabled,user_name,user_email,profile_img,nickname,
+		introduce,blame_count
+		from users
+		where user_id=#{user_id}
+	</select>
+
+	<!-- 회원정보 수정 -->
+	<update id="MyPageUserEdit" parameterType="kr.or.ns.vo.Users">
+		update users
+		set
+		user_id = #{user_id}, user_pwd=#{user_pwd}, enabled=1,
+		user_name=#{user_name}, user_email=#{user_email},
+		profile_img =
+		#{profile_img},nickname = #{nickname},
+		introduce = #{introduce},
+		blame_count = #{blame_count},
+		where user_id = #{user_id}
+	</update>
 
 
 

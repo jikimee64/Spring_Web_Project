@@ -1,22 +1,54 @@
 package kr.or.ns.controller;
 
+import java.security.Principal;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.or.ns.service.MyPageService;
+import kr.or.ns.vo.Users;
 
 @Controller
 @RequestMapping("/mypage/")
 public class MyPageController {
+	
+	@Autowired
+	MyPageService service;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	
 	@RequestMapping("mypage.do")
 	public String myPagePage() {
 		System.out.println("마이페이지로 이동이동(연규가씀)");
 		return "/user/mypage/mypage"; 
 	}
-	@RequestMapping("mypage_User_Edit.do")
+	@RequestMapping(value="MyPageUserEdit.do", method=RequestMethod.GET)
 	public String mypageUserEditPage() {
 		System.out.println("유저 수정페이지로 이동이동(연규가씀)");
-		return "/user/mypage/mypage_User_Edit"; 
+		return "user/mypage/mypage_User_Edit"; 
 	}
+	
+	@RequestMapping(value="MyPageUserEdit.do", method=RequestMethod.POST)
+	public String mypageUserEdit(Users users, Principal principal) {
+		Users user = service.getUsers(principal.getName());
+		
+		user.setUser_pwd(bCryptPasswordEncoder.encode(users.getUser_pwd()));
+		user.setNickname(users.getNickname());
+		user.setJava(users.getJava());
+		user.setPython(users.getPython());
+		user.setHtml_css(users.getHtml_css());
+		user.setJavascript(users.getJavascript());
+		user.setSql(users.getSql());
+		service.MyPageUserEdit(user);
+		
+		return "redirect:user/mypage/mypage";
+	}
+	
 	@RequestMapping("mypage_Myboard.do")
 	public String myBoardPage() {
 		System.out.println("내가 쓴 게시판으로 이동이동(연규가씀)");

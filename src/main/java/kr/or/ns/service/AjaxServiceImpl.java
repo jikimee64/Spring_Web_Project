@@ -164,7 +164,8 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("여기오나");
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		int result = dao.idcheck(user_id);	
-		System.out.println("result" + result);
+		System.out.println("result:" + result);
+		
 		return result;
 	}
 }
