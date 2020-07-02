@@ -18,14 +18,12 @@ public class MemberController {
 	MemberService service;
 	 
 	
-	@RequestMapping("/login.do")
+	@RequestMapping("login.do")
 	public String loginPage() {
 		System.out.println("로그인으로 이동이동(연규가씀)");
 		return "/user/member/login"; 
 	}
-	
-	//회원가입 페이지 이동
-	@RequestMapping("/join.do")
+	@RequestMapping("join.do")
 	public String joinPage() {
 		System.out.println("회원가입으로 이동이동(연규가씀)");
 		return "/user/member/join"; 
@@ -57,12 +55,12 @@ public class MemberController {
 			//return "redirect:noticeDetail.htm?seq="+n.getSeq();
 		}
 		
-	@RequestMapping("/find_Id.do")
+	@RequestMapping("find_Id.do")
 	public String findIdPage() {
 		System.out.println("아이디 찾기로 이동이동(연규가씀)");
 		return "/user/member/find_Id"; 
 	}
-	@RequestMapping("/find_Passward.do")
+	@RequestMapping("find_Passward.do")
 	public String findPasswardPage() {
 		System.out.println("비밀번호 찾기로 이동이동(연규가씀)");
 		return "/user/member/find_Passward"; 

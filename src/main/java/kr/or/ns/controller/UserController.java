@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
 	
 	
-	@RequestMapping("/main.do")
+	@RequestMapping("main.do")
 	public String mainPage() {
 		System.out.println("메인으로 이동이동(연규가씀)");
 

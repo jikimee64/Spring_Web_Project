@@ -29,7 +29,8 @@
 	<div th:replace="/user/includes/header :: header"> </div>
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 
-	<div class="container" style="margin-top: 25px;margin-bottom: 25px; padding:0px; background-color: white; height:950px; width:900px;">
+	<div class="container"
+		style="margin-top: 25px;margin-bottom: 25px; padding:0px; background-color: white; height:950px; width:900px;">
 		<a href="/mypage/mypage_Message_From_Board.do">
 			<button type="button" class="btn btn-secondary"
 				style="height:110px; position: relative; left:-74px; border-radius: 15px 0px 0px 15px; "> <span>받은<br>
@@ -53,8 +54,10 @@
 			<div class="col-md-6" style="text-align: right; right:18px;">
 				<button type="button" class="btn btn-danger" style="width:90px;">삭제</button>
 				&nbsp; &nbsp;
-
-				<button type="button" class="btn btn-danger" style="width:90px; background-color: tomato;">스팸신고</button>
+				<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
+					<button type="button" class="btn btn-danger"
+						style="width:90px; background-color: tomato;">스팸신고</button>
+				</a>
 				&nbsp; &nbsp;
 				<a href="/mypage/mypage_Message_From_Send_Message.do">
 					<button type="button" class="btn btn-primary" style="width:90px;">답장</button>
@@ -119,7 +122,7 @@
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
-
+	<div th:replace="/user/member/declation_Page_Modal :: declation_Page_Modal"> </div>
 	<div th:replace="/user/includes/footer :: footer"> </div>
 
 
