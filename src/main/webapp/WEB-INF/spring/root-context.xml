@@ -32,6 +32,7 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10485760"></property> <!-- 10M -->
+		 <property name="defaultEncoding" value="UTF-8"/> <!-- 한글처리 -->
 	</bean>
 
 	<!-- Mybatis 설정 기본 자바코드 : MapConfig.xml 에서 설정했던 작업 (DB연결 ,mapper 설정) 파일 
@@ -70,19 +71,36 @@
 		</property>
 	</bean>
 
-	<bean id="velocityEngine"
+	<!-- <bean id="velocityEngine"  우철이가 해놓은거
 		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
 		<property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
-	</bean>
+	</bean> -->
 	
+		<bean id="velocityEngine"
+	 class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+	    <property name="velocityProperties">
+	        <props>
+	            <prop key="resource.loader">class</prop>
+	            <prop key="class.resource.loader.class">
+	                org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+	            </prop>
+	        </props>
+	    </property>
+	</bean>
+
+	<bean id="mailer" class="kr.or.ns.util.Mailer">
+		<property name="mailSender" ref="mailSender" />
+		<property name="velocityEngine" ref="velocityEngine" />
+	</bean>	
+		
 	
 	<!-- 구글gmail -->
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="ksks723@gmail.com" />
-		<property name="password" value="sgoxzcplzaedafez" />
+		<property name="username" value="nosangcoding@gmail.com" />
+		<property name="password" value="lfbelobmdswohvqi" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.debug">true</prop>

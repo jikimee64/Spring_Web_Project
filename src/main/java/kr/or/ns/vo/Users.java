@@ -1,5 +1,9 @@
 package kr.or.ns.vo;
 
+import java.util.List;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -23,7 +27,7 @@ public class Users {
 	private String html_css;
 	private String javascript;
 	private String sql;
-
+	private CommonsMultipartFile file;
 	
 	
 }

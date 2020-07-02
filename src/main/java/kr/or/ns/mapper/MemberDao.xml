@@ -5,8 +5,7 @@
 	<insert id="joininsert" parameterType="kr.or.ns.vo.Users">
 		insert into users(user_id, user_pwd, enabled, user_name, user_email,
 		profile_img, nickname, introduce, blame_count)
-		values(#{user_id},
-		#{user_pwd}, 1, #{user_name}, #{user_email}, 'A', #{nickname},
+		values(#{user_id}, #{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img}, #{nickname},
 		#{introduce}, #{blame_count})
 		<!-- insert into member(userid, pwd, name,regdate) values(#{userid}, #{pwd}, 
 			#{name},sysdate) -->
