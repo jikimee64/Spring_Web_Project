@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>신고페이지</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+</style>
+
+<body>
+	<div th:fragment="declation_Page_Modal">
+		<style>
+			.filter {
+				position: absolute;
+				left: -9999px;
+			}
+
+			.burger {
+				display: flex;
+				flex-direction: column;
+
+				padding: 30px;
+			}
+
+			.radios-boxes {
+				display: flex;
+			}
+
+			.radios {
+				display: flex;
+				filter: url('#gooeyness');
+				flex-direction: column;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.radio {
+				-moz-appearance: none;
+				-ms-appearance: none;
+				-webkit-appearance: none;
+				appearance: none;
+				border-radius: 50%;
+				border: 16px solid #ccc;
+				cursor: pointer;
+				height: 60px;
+				margin: 10px;
+				outline: 0;
+				-webkit-tap-highlight-color: transparent;
+				transition: border-color 800ms;
+				width: 60px;
+			}
+
+			.radio.active {
+				border-color: white;
+			}
+
+			.ball {
+				background: white;
+				border-radius: 50%;
+				height: 34px;
+				left: 23px;
+				pointer-events: none;
+				position: absolute;
+				top: 23px;
+				transform: translateY(-80px);
+				transition: transform 800ms;
+				width: 34px;
+			}
+
+			.ball.pos0 {
+				transform: translateY(0px);
+			}
+
+			.ball.pos1 {
+				transform: translateY(80px);
+			}
+
+			.ball.pos2 {
+				transform: translateY(160px);
+			}
+
+			.ball.pos3 {
+				transform: translateY(240px);
+			}
+
+			.labels {
+				margin-left: 5px;
+			}
+
+			.label {
+				color: #ccc;
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				font-size: 20px;
+				line-height: 50px;
+				padding: 12px 8px;
+				-webkit-tap-highlight-color: transparent;
+				transition: color 800ms;
+			}
+
+			.label.active {
+				color: white;
+			}
+		</style>
+
+
+
+
+
+		<!--여기서부터 화면코드-->
+
+
+		<!-- Button trigger modal -->
+		<!-- <span id="type"></span>
+	<br />
+	<button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModalCenter">
+		신고합니다
+	</button> -->
+
+		<!-- -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalCenterTitle">신고하기</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="container-fluid">
+							<div>
+								<div class="row">
+									<b>제 목 : </b> 고소합니다.
+								</div>
+								<br />
+								<div class="row">
+									<b>작성자 :</b> 구슬구슬(ksks723)
+								</div>
+								<br />
+							</div>
+
+							<hr
+								style="border: thin 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom: 10px; width:100%" />
+
+							<div>
+								<b>사유선택 :</b> 여러 사유에 해당되는 경우, 대표적인 사유 1개를 선택해 주세요.
+							</div>
+							<br />
+							<div style="background-color: #708fd4;" class="mb-4">
+								<!--두번째 row-->
+
+
+								<div class="radios-boxes">
+									<svg class="filter" version="1.1">
+										<defs>
+											<filter id="gooeyness">
+												<feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+												<feColorMatrix in="blur" mode="matrix"
+													values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10"
+													result="gooey" />
+												<feComposite in="SourceGraphic" in2="gooey" operator="atop" />
+											</filter>
+										</defs>
+									</svg>
+									<div class="radios">
+										<input type="radio" name="radio" id="radio1" class="radio" value="">
+										<input type="radio" name="radio" id="radio2" class="radio" value="">
+										<input type="radio" name="radio" id="radio3" class="radio" value="">
+										<input type="radio" name="radio" id="radio4" class="radio" value="">
+										<div class="ball"></div>
+									</div>
+
+									<div class="labels">
+										<label for="radio1" class="label" id="radio1">게시판 성격과 맞지 않는 게시글</label>
+										<label for="radio2" class="label" id="radio2">부적절한 홍보 게시글</label>
+										<label for="radio3" class="label" id="radio3">욕설 및 비방</label>
+										<label for="radio4" class="label" id="etc">기타</label>
+										<span id="spsp"></span>
+									</div>
+
+								</div>
+
+
+
+
+							</div>
+							<div class="mb-2 row">
+								<div class="col-6" style="text-align-last: right;"><button type="button"
+										class="btn btn-light" data-dismiss="modal">신고하기</button></div>
+								<div class="col-6"><button type="button" class="btn btn-light"
+										data-dismiss="modal">취소</button></div>
+
+
+							</div>
+							<br>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<script>
+			//라디오버튼 커스텀 관련 js
+			let radios = document.querySelectorAll('.radio');
+			let labels = document.querySelectorAll('.label');
+			let ball = document.querySelector('.ball');
+			let prevRadio, prevLabel;
+			radios.forEach((radio, index) => {
+				radio.addEventListener('click', function (e) {
+					if (prevRadio) prevRadio.classList.toggle('active');
+					if (prevLabel) prevLabel.classList.toggle('active');
+					radio.classList.toggle('active');
+					prevRadio = radio;
+					labels[index].classList.toggle('active');
+					prevLabel = labels[index];
+					ball.className = `ball pos${index}`;
+				});
+			});
+		</script>
+
+		<script>
+			window.onload = function () {
+
+				document.getElementById("etc").addEventListener("click", () => {
+					console.log("두 번째 클릭부턴 안나와용");
+					var x = document.createElement("INPUT");
+					x.setAttribute("type", "text");
+					x.setAttribute("value", "Hello World!");
+					x.setAttribute("class", "mb-3");
+					document.body.querySelector("#spsp").appendChild(x);
+
+				}, { once: true })
+
+				/*     //다른 라디오 버튼 클릭시, 인풋태그 숨기기1 
+				document.getElementById("radio3").addEventListener("click",() => {
+				   console.log("dd");
+				  document.body.querySelector("#spsp").style.display = "none";
+				}, {once: true})
+				*/
+
+
+			}
+
+		</script>
+	</div>
+</body>
+
+</html>
