@@ -3,5 +3,4 @@
 .project
 .springBeans
 /target/
-**/target/**
-*/target/**
+.factorypath
