@@ -142,7 +142,7 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- 자바 Email 관련 라이브러리? -->
+		<!-- 자바 Email 관련 라이브러리 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
