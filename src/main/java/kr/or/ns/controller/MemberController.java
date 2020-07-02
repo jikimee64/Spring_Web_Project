@@ -12,13 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
-=======
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
->>>>>>> 80961d5cf705b20658bd1a3daca6d6913f023caf
 
 import kr.or.ns.dao.MemberDao;
 import kr.or.ns.service.MemberService;
