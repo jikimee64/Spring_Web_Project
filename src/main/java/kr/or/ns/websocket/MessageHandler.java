@@ -35,7 +35,10 @@ public class MessageHandler extends TextWebSocketHandler{
 	
 		System.out.println("정상연결");
 		
-		
+		System.out.println(session);
+		System.out.println(session.getPrincipal());
+		//인증하지 않았으면(로그인 안했으면..) null 발생 -> 멈춤
+		System.out.println(session.getPrincipal().getName());
 		/*
 		 * //session : 브라우저가 WebSocket을 접속했을 때의 커넥션 정보(id, uri)
 		 * System.out.println(session); System.out.println(session.getPrincipal());

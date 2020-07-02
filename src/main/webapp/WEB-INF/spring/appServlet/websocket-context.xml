@@ -29,7 +29,7 @@
 	</websocket:handlers>
 
 	<!-- class : 웹소켓을 구현할 클래스 경로-->
-	<bean id="test01" class="kr.or.ns.websocket.Test01SocketHandler" />
+	<bean id="test01" class="kr.or.ns.websocket.MessageHandler" />
 
 	<bean
 		class="org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean">

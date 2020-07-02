@@ -21,12 +21,15 @@ public class HandShakeInterceptor extends HttpSessionHandshakeInterceptor{
     	
     	//HttpServletReques를 이용하여 파라미터 추출
     	//파라미터로 받은 roomNumber와 userid 추출
-    	String roomNumber  = req.getParameter("roomNumber");
-    	String userid  = req.getParameter("userid");
+		/*
+		 * String roomNumber = req.getParameter("roomNumber"); String userid =
+		 * req.getParameter("userid");
+		 */
     	
     	// 파라미터로 입력된 attributes에 put을 하면 WebSocketSession에서 접근가능
-    	attributes.put("roomNumber", roomNumber);
-    	attributes.put("userid", userid);
+		/*
+		 * attributes.put("roomNumber", roomNumber); attributes.put("userid", userid);
+		 */
     	
         return super.beforeHandshake(request, response, wsHandler, attributes);
     }
