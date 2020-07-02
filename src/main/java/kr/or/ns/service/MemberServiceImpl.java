@@ -1,14 +1,19 @@
 package kr.or.ns.service;
 
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.dao.MemberDao;
 import kr.or.ns.vo.Users;
@@ -25,13 +30,33 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	@Transactional
-	public int joininsert(Users users) throws Exception, SQLException {
+	
+	public int joininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
 
 		System.out.println("서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
+		System.out.println("기타 : " + users.getIntroduce());
 
+		 CommonsMultipartFile imagefile = users.getFile();
+		 users.setProfile_img(imagefile.getName()); 
+		 System.out.println("받아온 이미지파일이름" +imagefile);
+		 
+				
+		
+		String filename = users.getFile().getOriginalFilename();
+		System.out.println("파일 이름 : " + filename);
+		String path = request.getServletContext().getRealPath("/userboard/upload"); 
+		String fpath = path + "\\" + filename;
+		
+		FileOutputStream fs = new FileOutputStream(fpath);
+		fs.write(users.getFile().getBytes()); 
+		fs.close();
+		users.setProfile_img(filename);
+		
 		int result = 0;
 		int result2 = 0;
+		
+		
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 		
 		List<HashMap<String,String>> list = new ArrayList();
@@ -69,7 +94,6 @@ public class MemberServiceImpl implements MemberService {
 		HashMap<String, Object> mo = new HashMap();
 		mo.put("insertlist", list); 
 		
-		System.out.println("dsd " + mo.get("insertlist"));
 
 		try {
 			result = dao.joininsert(users);
@@ -84,5 +108,6 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	
 
 }

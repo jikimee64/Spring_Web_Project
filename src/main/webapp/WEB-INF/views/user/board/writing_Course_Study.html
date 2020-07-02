@@ -22,9 +22,12 @@
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
 
-	<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
-		<h2>스터디 모집 글 작성하기(인강)</h2>
-		<form id="sform" method="POST" class="sform" action="asd">
+	<!-- form하나로 묶어야 전송됨 -->
+	<form id="sform" method="POST" class="sform" action=""
+		enctype="multipart/form-data">
+		<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
+			<h2>스터디 모집 글 작성하기(인강)</h2>
+
 			<br /> <select name="selectlan" class="custom-select mb-3"
 				style="width: 10%;">
 				<option>언어</option>
@@ -54,23 +57,23 @@
 				<option selected value="_introduction">입문</option>
 				<option value="_beginner">초급</option>
 				<option value="_middleclass">중급이상</option>
-			</select> 
-			<input type="text" class="result" name="selectend" id="date-time"
-				placeholder="모집마감일">
-			<!-- <select name="selectend" class="custom-select mb-3"
+			</select>
+			<!-- <input type="text" class="result" name="selectend" id="date-time"
+			placeholder="모집마감일"> -->
+			<select name="selectend" class="custom-select mb-3"
 				style="width: 10%;">
 				<option>모집마감일</option>
 				<option selected value="_calendar">달력</option>
-			</select> -->
-		</form>
-	</div>
+			</select>
+			<!-- </form> -->
+		</div>
 
-	<hr style="border-color: rgb(224, 224, 224); width: 95%">
+		<hr style="border-color: rgb(224, 224, 224); width: 95%">
 
 
-	<div class="container" style="margin-bottom: 25px;">
-		<form class="sform" id="sform" action="asd" method="POST"
-			enctype="multipart/form-data">
+		<div class="container" style="margin-bottom: 25px;">
+			<!-- <form class="sform" id="sform" action="" method="POST"
+			enctype="multipart/form-data"> -->
 			<div class="row">
 
 				<div class="col-md-9">
@@ -114,33 +117,33 @@
 						나중에 썸머노트로 바꿔야할듯 -->
 					</div>
 					<div style="text-align: center;">
-						<!-- <button type="submit" class="btn btn-primary" style="width:15%;">작성</button> -->
-						<span id="btn_submit" class="btn btn-primary" style="width: 15%;">
-							작성</span>
+						<button type="submit" class="btn btn-primary" style="width: 15%;">작성</button>
+						<!-- 	<span id="btn_submit" class="btn btn-primary" style="width: 15%;">
+							작성</span> -->
 					</div>
 
 				</div>
-		</form>
+	</form>
 
-		<div class="col-md-3">
-			<div
-				style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
-				<div class="card" style="width: 100%">
-					<img class="card-img-top"
-						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
-						alt="Card image" style="width: 100%">
-					<div class="card-body">
-						<h4 class="card-title">Do it! Node.js 프로그래밍(개정판)</h4>
-						<p class="card-text" style="color: gray">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a> <img
-							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height: 40px;"> <span>(6)</span> <br> <span
-							style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
-						</span>
-					</div>
+	<div class="col-md-3">
+		<div
+			style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
+			<div class="card" style="width: 100%">
+				<img class="card-img-top"
+					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
+					alt="Card image" style="width: 100%">
+				<div class="card-body">
+					<h4 class="card-title">Do it! Node.js 프로그래밍(개정판)</h4>
+					<p class="card-text" style="color: gray">이지스 퍼블리싱</p>
+					<a href="#" class="stretched-link"></a> <img
+						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+						alt="" style="height: 40px;"> <span>(6)</span> <br> <span
+						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
+					</span>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 	</div>
@@ -186,11 +189,21 @@
 
 			//form 태그 두개 한번에 전송하기
 
-			$("#btn_submit").click(function() {
-
-				var formData = $(".sform").serialize()
+			/* $("#btn_submit").click(function() { */
+			$(".sform").submit(function(e) {
+				/* 	e.preventDefault(); */
+				/*  var formData2 = $(".sform").serialize() 
+				 console.log(formData2) */
+				/* var formData = new FormData($("#sform")[0]);  */
+				var formData = new FormData(this);
+				/* formData.append("NOT_TYPE", $("#title").val());
+				console.log($("#title").val()) */
+				console.log(formData)
 
 				$.ajax({
+					cache : false,
+					contentType : false,
+					processData : false,
 					url : "/board/writing_Course_Study.do",
 					type : 'POST',
 					data : formData,
@@ -199,10 +212,10 @@
 					}
 				})
 			});
-			
-			 $('#date-time').bootstrapMaterialDatePicker({
-		            format: 'YYYY-MM-DD HH:mm'
-		        });
+
+			$('#date-time').bootstrapMaterialDatePicker({
+				format : 'YYYY-MM-DD HH:mm'
+			});
 		})
 	</script>
 </body>

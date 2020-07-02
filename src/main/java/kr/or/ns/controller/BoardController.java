@@ -37,10 +37,6 @@ study_List 목록뿌리기 작업
 
 
 
-
-
-
-
 @Controller
 @RequestMapping("/board/")
 public class BoardController {
@@ -121,11 +117,12 @@ public class BoardController {
 
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
-
+		System.out.println("?? " + files);
+		
 		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
 			for (CommonsMultipartFile multifile : files) {
 				String filename = multifile.getOriginalFilename();
-				System.out.println("파일업로드 1 : " + filename);
+				System.out.println("파일업로드 : " + filename);
 				String path = request.getServletContext().getRealPath("/studyboard/upload");
 
 				String fpath = path + "\\" + filename;
@@ -140,6 +137,7 @@ public class BoardController {
 					}
 				}
 				filenames.add(filename); // 파일명을 별도 관리 (DB insert)
+				System.out.println("fs" + filename);
 			}
 
 		}
@@ -152,8 +150,8 @@ public class BoardController {
 //		  System.out.println("난이도" + study.getSelectlev());
 //		  System.out.println("모집마감일" + study.getSelectend());
 		
+		  service.studyReg(study, request);
 		
-		System.out.println("온라인강의 선택페이지(북마크)에서 다음페이지인 강의전용 글쓰기페이지로 이동이동(연규가씀)");
 
 		return "user/board/writing_Course_Study";
 	}

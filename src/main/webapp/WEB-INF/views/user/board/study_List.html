@@ -28,7 +28,6 @@
 		background-color: #F6D258;
 		text-align: center;
 		align-self: center;
-		padding: 30px;
 	}
 
 	._category_button {
@@ -162,34 +161,8 @@
 		</div>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<!-- 여기부터 스터디 목록 -->
 	<div class="container" style="margin-top: 50px;  margin-bottom: 25px;overflow-y:scroll;">
-		
 		<!-- 타임리프 반복시작 -->
 		<div th:each="list : ${list}">
 		
@@ -262,6 +235,97 @@
 		<!-- 데이터 한개 넣기 끝~ -->
 		<!-- 데이터 한개 넣기 끝~ -->
 
+			</div>
+			<div class="col-md-9">
+				<div class="row" style="margin-top: 10px;">
+					<div class="col-md-2">
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+						<b>
+							<!-- 여기에 닉네임 -->
+							미네미네
+						</b>
+						</a>
+					</div>
+					<div class="col-md-7">
+						<!-- 여기에 뱃지 -->
+						<span class="badge badge-pill badge-primary">모집중</span>
+						<span class="badge badge-pill badge-secondary">Spring</span>
+						<span class="badge badge-pill badge-success">4명</span>
+						<span class="badge badge-pill badge-warning">온라인</span>
+						<span class="badge badge-pill badge-info">온라인강의</span>
+					</div>
+					<div class="col-md-3" style="text-align: center;">
+						<!-- 여기에 시간 -->
+						<b>20-06-25 17:20</b>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 30px;">
+					<a href="/board/writing_Normal_Study_Detail.do">
+					<h2>스터디 같이 하실분 모집합니다</h2>
+					</a>
+				</div>
+				<div class="row" style="margin: 10px 5px 0px 2px;">
+					고행을 하였으며 예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다
+					그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을
+				</div>
+			</div>
+		</div>
+
+
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-md-3"> -->
+<!-- 				<div class="card" style="width:100%"> -->
+<!-- 					<img class="card-img-top" src="https://gif.fmkorea.com/files/attach/new/20170526/33854530/107245139/663534888/a2665ff58845b4244c11aba533739472.gif -->
+<!-- 				" alt="Card image" style="width:100%"> -->
+<!-- 					<div class="card-body"> -->
+<!-- 						<h6 class="card-title _margin_0">일반스터디~~</h6> -->
+<!-- 						<p class="card-text _margin_0" style="color:gray; font-size: small;">하나 둘 셋 야!</p> -->
+<!-- 						<a href="/board/writing_Normal_Study_Detail.do" class="stretched-link"></a> -->
+<!-- 						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+<!-- 							alt="" style="height:40px;"> -->
+<!-- 						<span>(6)</span>
+<!-- 						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span> --> 
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+<!-- 			</div> -->
+<!-- 			<div class="col-md-9"> -->
+<!-- 				<div class="row" style="margin-top: 10px;"> -->
+<!-- 					<div class="col-md-2"> -->
+<!-- 						<b> -->
+<!-- 							여기에 닉네임 -->
+<!-- 							미네미네 -->
+<!-- 						</b> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-7"> -->
+<!-- 						여기에 뱃지 -->
+<!-- 						<span class="badge badge-pill badge-primary">모집중</span> -->
+<!-- 						<span class="badge badge-pill badge-secondary">Spring</span> -->
+<!-- 						<span class="badge badge-pill badge-success">4명</span> -->
+<!-- 						<span class="badge badge-pill badge-warning">온라인</span> -->
+<!-- 						<span class="badge badge-pill badge-info">온라인강의</span> -->
+<!-- 					</div> -->
+<!-- 					<div class="col-md-3" style="text-align: center;"> -->
+<!-- 						여기에 시간 -->
+<!-- 						<b>20-06-25 17:20</b> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="row" style="margin-top: 30px;"> -->
+<!-- 					<a href="/board/writing_Normal_Study_Detail.do"> -->
+<!-- 					<h2>스터디 같이 하실분 모집합니다</h2> -->
+<!-- 					</a> -->
+<!-- 				</div> -->
+<!-- 				<div class="row" style="margin: 10px 5px 0px 2px;"> -->
+<!-- 					고행을 하였으며 예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 -->
+<!-- 					그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		
+		
+
+<!-- 		<hr style="border: solid 1px rgb(224, 224, 224);margin-top:10px; margin-bottom:10px" /> -->
+
 
 	</div>
 	<!-- 경계끝 -->
@@ -286,8 +350,14 @@
 				<a th:href="@{/samplehome/board/listPage(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
 
 
+	 <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+		<!-- <th:block th:each="i : ${#numbers.sequence(${pageMaker.startPage},${pageMaker.endPage })" th:value="pageNum">
+			<li>
+				<a th:href='<c:url value="/user/board/study_List.do?page=${pageNum }"/>'>
+					<i class="fa">${pageNum }</i>
+				</a>
 			</li>
-		</th:block>
+		</th:block> -->
 
 
 	 <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
@@ -338,28 +408,8 @@
 	<!-- 페이징 버튼 끝 -->
 	<!-- 페이징 버튼 끝 -->
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	<div th:replace="/user/member/user_Info_Modal :: user_Info_Modal"> </div>
-
 	<div th:replace="/user/includes/footer :: footer"> </div>
 
 </body>

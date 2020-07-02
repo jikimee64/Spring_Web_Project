@@ -49,9 +49,6 @@
 						<input type="text" v-model="username" class="form-control"
 							id="username" placeholder="Enter username" name="username"
 							style="width: 95%;" required>
-						<div class="valid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok.</div>
-						<div class="invalid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이름을
-							입력해주세요.</div>
 					</div>
 				</div>
 
@@ -63,23 +60,19 @@
 							style="width: 70%;" required> &nbsp;
 						<button v-on:click="emailCheck" type="submit"
 							class="btn btn-warning" style="width: 25%; font-size: small;">인증받기</button>
-						<div class="valid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok.</div>
-						<div class="invalid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;아이디를
-							입력해주세요.</div>
+						<div id="alert">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="userid"></label>
 					<div class="row" style="place-content: center;">
-						<input type="text" class="form-control" id="userid"
+						<input type="text" class="form-control" id="AuthInput"
 							placeholder="인증 번호 입력" name="uname" style="width: 70%;" required>
 						&nbsp;
 						<button type="button" class="btn btn-success"
-							style="width: 25%; font-size: small;">확인</button>
-						<div class="valid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ok.</div>
-						<div class="invalid-feedback">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;인증번호를
-							입력해주세요.</div>
+							style="width: 25%; font-size: small;" id="Authbtn">확인</button>
+							<div id="alert2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 					</div>
 				</div>
 				<br />
@@ -92,7 +85,8 @@
 		</form>
 
 			<p></p>
-
+					<input type="hidden" value="" id="aa">
+					<input type="hidden" value="" id="bb">
 
 			<br /> <br />
 
@@ -134,12 +128,52 @@
             				{username: this.username, 
             				useremail: this.useremail})
             			.then(res => { 
-            				console.log(res.data) 
+            				//데이터를 받아와서 히든태그에 넣어준다 
+            				console.log(res.data.key);
+            				console.log(res.data.id);
+            				 $('#aa').val(res.data.key);
+                             $('#bb').val(res.data.id);
+                             console.log($('#aa').val()); 
+                             console.log($('#bb').val()); 
+            				
+            				if(res.data.key === "null"){
+            					$('#alert').html('일치하는 데이터가 없습니다. <br>이름과 이메일 주소를 확인해주세요. ')
+            					console.log("키값이 널입니다.")
+            				}else{
+            					$('#alert').html('인증번호를 발급했습니다 ')
+            					console.log("키값이 널이아닙니다.")
+            				}
             			})
             		}
             	}
             } //methods
         })
+        
+        $('#Authbtn').on('click', function(){
+            console.log("나 불렀니?");
+         	var uu = $('#AuthInput').val();
+        	var aa = $('#aa').val(); //인증번호
+        	var bb = $('#bb').val(); //id
+        	console.log("확인버튼 누름+++ uu ::::"+uu);
+        	console.log("확인버튼 누름"+aa);
+        	console.log("확인버튼 누름"+bb);
+                    
+                    if($.trim(uu) != aa){
+                    	$('#alert2').html('인증번호를 다시 입력해주세요 ')
+
+    		        }else if($.trim(uu)===""){
+
+    		        	$('#alert2').html('인증번호를 입력해주세요')
+
+                    }else{
+                    	$('#alert2').html('<br>회원님의 아이디는 [ <b>'+ bb +'</b> ] 입니다.')
+    	                        
+    	                    
+                    }
+
+                    
+                });
+        
     </script>
 
 </body>

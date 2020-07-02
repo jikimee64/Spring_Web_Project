@@ -3,7 +3,8 @@ package kr.or.ns.dao;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import kr.or.ns.vo.Skill;
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.ns.vo.Users;
 
 public interface MemberDao {
