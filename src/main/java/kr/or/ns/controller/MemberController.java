@@ -7,22 +7,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member/")
 public class MemberController {
 	
-	@RequestMapping("/login.do")
+	@RequestMapping("login.do")
 	public String loginPage() {
 		System.out.println("로그인으로 이동이동(연규가씀)");
 		return "/user/member/login"; 
 	}
-	@RequestMapping("/join.do")
+	@RequestMapping("join.do")
 	public String joinPage() {
 		System.out.println("회원가입으로 이동이동(연규가씀)");
 		return "/user/member/join"; 
 	}
-	@RequestMapping("/find_Id.do")
+	@RequestMapping("find_Id.do")
 	public String findIdPage() {
 		System.out.println("아이디 찾기로 이동이동(연규가씀)");
 		return "/user/member/find_Id"; 
 	}
-	@RequestMapping("/find_Passward.do")
+	@RequestMapping("find_Passward.do")
 	public String findPasswardPage() {
 		System.out.println("비밀번호 찾기로 이동이동(연규가씀)");
 		return "/user/member/find_Passward"; 

@@ -49,8 +49,9 @@
 
 			</div>
 			<div class="col-md-1" style="align-self: flex-end;">
-
+		<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
 				<button type="button" class="btn btn-danger">신고</button>
+				</a>
 			</div>
 
 		</div>
@@ -162,6 +163,7 @@
 		</div>
 
 	</div>
+	<div th:replace="/user/member/declation_Page_Modal :: declation_Page_Modal"> </div>
 	<div th:replace="/user/includes/footer :: footer"> </div>
 	<script>
 		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
