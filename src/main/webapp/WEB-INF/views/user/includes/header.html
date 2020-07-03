@@ -63,10 +63,9 @@ li {
 				</div>
 			</th:block>
 			
-			<span th:text="${principal}"></span>
-			<!-- <sec:authentication property="principal.user_id" var="loginuser" /> -->
 			<th:block sec:authorize="hasRole('ROLE_USER')">
-				<span sec:authentication property="principal.username" ></span>님 반가워요!&&
+
+				 <span sec:authentication="principal.username"></span>님 반가워요!&& 
 			</th:block>
 
 			<th:block sec:authorize="hasRole('ROLE_USER')">
