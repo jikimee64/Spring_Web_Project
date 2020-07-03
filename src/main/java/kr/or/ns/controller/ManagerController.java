@@ -14,17 +14,17 @@ public class ManagerController {
 		return "manager/index"; 
 	}
 
-	@RequestMapping("board/member_Management.do")
+	@RequestMapping("includes/board/member_Management.do")
 	public String memberManagementPage() {
 		System.out.println("어드민 테이블페이지이동");
 
-		return "manager/board/member_Management"; 
+		return "manager/includes/board/member_Management"; 
 	}
 	
-	@RequestMapping("board/report_Management.do")
+	@RequestMapping("includes/board/report_Management.do")
 	public String reportManagementPage() {
 		System.out.println("어드민 테이블페이지이동");
 
-		return "manager/board/report_Management"; 
+		return "manager/includes/board/report_Management"; 
 	}
 }

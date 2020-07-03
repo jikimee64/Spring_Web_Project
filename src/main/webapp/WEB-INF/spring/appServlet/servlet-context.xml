@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:task="http://www.springframework.org/schema/task"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:task="http://www.springframework.org/schema/task"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/mvc 
                            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
@@ -14,99 +14,98 @@
                            http://www.springframework.org/schema/task
                            http://www.springframework.org/schema/task/spring-task-3.0.xsd
                            http://www.springframework.org/schema/tx
- 						   http://www.springframework.org/schema/tx/spring-tx.xsd">
+                      http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<task:annotation-driven />
-	<tx:annotation-driven
-		transaction-manager="transactionManager" />
-	<mvc:annotation-driven />
-	<context:annotation-config />
-	<context:component-scan
-		base-package="kr.or.ns.controller" />
-	<context:component-scan
-		base-package="kr.or.ns.dao" />
-	<context:component-scan
-		base-package="kr.or.ns.service" />
-	<context:component-scan
-		base-package="kr.or.ns.websocket" />
-	<context:component-scan
-		base-package="kr.or.ns.util" />
+   <task:annotation-driven />
+   <tx:annotation-driven
+      transaction-manager="transactionManager" />
+   <mvc:annotation-driven />
+   <context:annotation-config />
+   <context:component-scan
+      base-package="kr.or.ns.controller" />
+   <context:component-scan
+      base-package="kr.or.ns.dao" />
+   <context:component-scan
+      base-package="kr.or.ns.service" />
+   <context:component-scan
+      base-package="kr.or.ns.websocket" />
+   <context:component-scan
+      base-package="kr.or.ns.util" />
 
+   <!-- 뷰리조버1 -->
+   <bean id="templateResolver"
+      class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
+      <property name="prefix" value="/WEB-INF/views/" />
+      <property name="suffix" value=".html" />
+      <property name="templateMode" value="HTML" />
+      <property name="characterEncoding" value="UTF-8" />
+      <property name="cacheable" value="false" />
+   </bean>
 
-	<!-- 뷰리조버1 -->
-	<bean id="templateResolver"
-		class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".html" />
-		<property name="templateMode" value="HTML" />
-		<property name="characterEncoding" value="UTF-8" />
-		<property name="cacheable" value="false" />
-	</bean>
+   <bean id="templateEngine"
+      class="org.thymeleaf.spring4.SpringTemplateEngine">
+      <property name="templateResolver">
+         <ref bean="templateResolver" />
+      </property>
+      <property name="additionalDialects">
+         <set>
+            <bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
+            <bean
+               class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
+            <bean
+               class="org.thymeleaf.extras.java8time.dialect.Java8TimeDialect" />
+         </set>
+      </property>
+   </bean>
 
-	<bean id="templateEngine"
-		class="org.thymeleaf.spring4.SpringTemplateEngine">
-		<property name="templateResolver">
-			<ref bean="templateResolver" />
-		</property>
-		<property name="additionalDialects">
-			<set>
-				<bean class="nz.net.ultraq.thymeleaf.LayoutDialect" />
-				<bean
-					class="org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect" />
-				<bean
-					class="org.thymeleaf.extras.java8time.dialect.Java8TimeDialect" />
-			</set>
-		</property>
-	</bean>
+   <!-- thymeleaf laytout ViewResolver 설정 -->
+   <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+      <property name="templateEngine" ref="templateEngine" />
+      <property name="characterEncoding" value="UTF-8" />
+      <property name="order" value="1" />
+   </bean>
 
-	<!-- thymeleaf laytout ViewResolver 설정 -->
-	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-		<property name="templateEngine" ref="templateEngine" />
-		<property name="characterEncoding" value="UTF-8" />
-		<property name="order" value="1" />
-	</bean>
+   <!-- bean네임추가 -->
+   <bean id="viewResolver"
+      class="org.springframework.web.servlet.view.BeanNameViewResolver">
+      <property name="order" value="2"></property>
+   </bean>
 
-	<!-- bean네임추가 -->
-	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="2"></property>
-	</bean>
-
-	<!-- 파일 다운로드할 클래스 경로 설정 -->
-	<!-- <bean id="download" class=""/> -->
-
-
-	<!-- 뷰리조버3 -->
-	<bean id="internalResourceViewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
-		<property name="order" value="3" />
-	</bean>
-
-	<!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="driverManagerDataSource" />
-		<!-- driverManagerDataSource는 루트컨테이너에 있는거 사용 그럼왜 트랜잭션을 루트에안만들었는가?? 적용할라고 
-			하는 빈객체가 servlet-context.xml에 있기 때문에 여기에 사용 -->
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<!-- <bean id="naverLoginBO" class="경로설정필요" /> -->
-
-	<!-- google Class Bean설정 추가 -->
-	<!-- 클라이언트ID와 보안비밀 세팅 -->
-	<!-- <bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory"> 
-		<constructor-arg value="721060596854-347klibg22no5e7lr18vql8q1c7qqnu1.apps.googleusercontent.com" 
-		/> <constructor-arg value="aR7f4R2w0jhittBeXyyP24tM" /> </bean> -->
+   <!-- 파일 다운로드할 클래스 경로 설정 -->
+   <!-- <bean id="download" class=""/> -->
 
 
-	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
-	<!-- <bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters"> 
-		<property name="scope" value="https://www.googleapis.com/auth/plus.login" 
-		/> <property name="redirectUri" value="http://localhost:8020/bit/oauth2callback(설정 
-		필요)" /> </bean> -->
+   <!-- 뷰리조버3 -->
+   <bean id="internalResourceViewResolver"
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/views/" />
+      <property name="suffix" value=".jsp" />
+      <property name="order" value="3" />
+   </bean>
+
+   <!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동 -->
+   <bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="driverManagerDataSource" />
+      <!-- driverManagerDataSource는 루트컨테이너에 있는거 사용 그럼왜 트랜잭션을 루트에안만들었는가?? 적용할라고 
+         하는 빈객체가 servlet-context.xml에 있기 때문에 여기에 사용 -->
+   </bean>
+
+   <!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+   <!-- <bean id="naverLoginBO" class="경로설정필요" /> -->
+
+   <!-- google Class Bean설정 추가 -->
+   <!-- 클라이언트ID와 보안비밀 세팅 -->
+   <!-- <bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory"> 
+      <constructor-arg value="721060596854-347klibg22no5e7lr18vql8q1c7qqnu1.apps.googleusercontent.com" 
+      /> <constructor-arg value="aR7f4R2w0jhittBeXyyP24tM" /> </bean> -->
+
+
+   <!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+   <!-- <bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters"> 
+      <property name="scope" value="https://www.googleapis.com/auth/plus.login" 
+      /> <property name="redirectUri" value="http://localhost:8020/bit/oauth2callback(설정 
+      필요)" /> </bean> -->
 
 
 </beans>

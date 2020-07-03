@@ -1,6 +1,7 @@
 package kr.or.ns.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,9 @@ public class MyPageController {
 	public String mypageUserEdit(Model model, Principal principal) {
 		System.out.println("유저 수정페이지로 이동이동(연규가씀)");
 		Users user = service.getUsers(principal.getName());
+		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
+		model.addAttribute("skill", list);
 		return "user/mypage/mypage_User_Edit.html"; 
 	}
 	

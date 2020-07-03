@@ -64,6 +64,7 @@ li {
 			</th:block>
 			
 			<th:block sec:authorize="hasRole('ROLE_USER')">
+
 				 <span sec:authentication="principal.username"></span>님 반가워요!&& 
 			</th:block>
 

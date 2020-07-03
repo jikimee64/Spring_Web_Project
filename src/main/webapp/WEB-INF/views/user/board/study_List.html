@@ -1,141 +1,196 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>stydy_list</title>
-	<!-- 아이콘 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>stydy_list</title>
+<link href="login.css" type="text/css" rel="stylesheet" />
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
+<!-- 아이콘 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
 </head>
 
 <style>
-	._category {
-		background-color: #F6D258;
-		text-align: center;
-		align-self: center;
-	}
+._category {
+	background-color: #F6D258;
+	text-align: center;
+	align-self: center;
+}
 
-	._category_button {
-		place-self: center;
-	}
+._category_button {
+	place-self: center;
+}
 
-	._button_color {
-		background-color: #BCF1D3;
-		color: black;
-		border-color: darkseagreen;
-	}
+._button_color {
+	background-color: #BCF1D3;
+	color: black;
+	border-color: darkseagreen;
+}
 
-	._margin_0 {
-		margin: 0;
-	}
+._margin_0 {
+	margin: 0;
+}
+/* 	body{ */
+/* 	background-color:lightgray; */
+/* 	} */
 </style>
 
 
 <body>
-	<div th:replace="/user/includes/header :: header"> </div>
+	<div th:replace="user/includes/header :: header"></div>
 	<div class="container" style="margin-top: 25px;">
 
-		<div class="row">
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+		<div class="row" style="background-color: coral;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">상태</b>
 				</div>
 				<div class="col-md-9 _category_button">
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>모집중</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>모집중</b>
+					</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"><b>모집완료</b></button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>모집완료</b>
+					</button>
 				</div>
 			</div>
 
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">난이도</b>
 				</div>
 				<div class="col-md-9 _category_button">
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>입문</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>입문</b>
+					</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"><b>초급</b></button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>초급</b>
+					</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"><b>중급이상</b></button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>중급이상</b>
+					</button>
 				</div>
 			</div>
 
 
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">언어</b>
 				</div>
 				<div class="col-md-9 _category_button">
-					<div class="row" style="margin-bottom:7px;">
+					<div class="row" style="margin-bottom: 7px;">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>JAVA</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>JAVA</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Javascript</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Javascript</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>HTML/CSS</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>HTML/CSS</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Spring</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Spring</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>데이터베이스</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>데이터베이스</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>파이썬</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>파이썬</b>
+						</button>
 					</div>
 					<div class="row">
 						&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Vue.js</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Vue.js</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>React</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>React</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Jquery</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Jquery</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>JSP</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>JSP</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Bootstrap</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Bootstrap</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>JPA</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>JPA</b>
+						</button>
 					</div>
 				</div>
 			</div>
 
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">지역</b>
 				</div>
 				<div class="col-md-9 _category_button">
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>온라인</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>온라인</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>서울</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>서울</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>경기도</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>경기도</b>
+					</button>
 				</div>
 			</div>
 
 
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">스터디 콘텐츠</b>
 				</div>
 				<div class="col-md-9 _category_button">
 					&nbsp; &nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>온라인강의</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>온라인강의</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>일반</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>일반</b>
+					</button>
 				</div>
 			</div>
 
@@ -145,190 +200,111 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-md-7">
-
-			</div>
-			<div class="col-md-3">
-
-			</div>
+			<div class="col-md-7"></div>
+			<div class="col-md-3"></div>
 			<div class="col-md-2">
-				<a href="/board/board_Select.do" class="btn btn-success"><b>스터디 모집하기</b></a>
-				
+				<a href="/board/board_Select.do" class="btn btn-success"><b>스터디
+						모집하기</b></a>
+
 			</div>
 
 		</div>
 	</div>
 
 	<!-- 여기부터 스터디 목록 -->
-	<div class="container" style="margin-top: 50px;  margin-bottom: 25px;overflow-y:scroll;">
+	<div class="container" style="margin-top: 50px; margin-bottom: 25px;">
 		<!-- 타임리프 반복시작 -->
 		<div th:each="list : ${list}">
-		
-		
-			<div class="row"> 
+
+
+			<div class="row" style="background-color: aliceblue;">
 				<div class="col-md-3">
-					<div class="card" style="width:100%">
-						<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-					" alt="Card image" style="width:100%">
+					<div class="card" style="width: 100%">
+						<img class="card-img-top"
+							src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+					"
+							alt="Card image" style="width: 100%">
 						<div class="card-body">
-						
+
 							<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-							
-							<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-							<a href="/board/writing_Course_Study_Detail.do" class="stretched-link"></a>
-							<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-								alt="" style="height:40px;">
-							<span>(6)</span>
-							<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
+
+							<p class="card-text _margin_0"
+								style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+							<a href="/board/writing_Course_Study_Detail.do"
+								class="stretched-link"></a> <img
+								src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+								alt="" style="height: 40px;"> <span>(6)</span> <span
+								style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
+							</span>
 						</div>
 					</div>
-	
+
 				</div>
 				<div class="col-md-9">
 					<div class="row" style="margin-top: 10px;">
-						<div class="col-md-2">
+						<!-- <div class="col-md-2">
+						
 							<b th:text="${list.USER_ID}">
-								<!-- 여기에 닉네임 -->
+								여기에 닉네임
 								미네미네
 							</b>
+						</div> -->
+						<div class="col-md-2">
+							<a href="" data-toggle="modal" data-target="#exampleModalCenter">
+								<b th:text="${list.USER_ID}"> <!-- 여기에 닉네임 --> 미네미네
+							</b>
+							</a>
 						</div>
 						<div class="col-md-7">
 							<!-- 여기에 뱃지 -->
-							<span class="badge badge-pill badge-primary" th:text="${list.STATUS}">모집중</span>
-							<span class="badge badge-pill badge-info" th:text="${list.LEVEL}">난이도</span>
-							<span class="badge badge-pill badge-secondary" th:text="${list.LAN_SEQ}">Spring</span>
-							<span class="badge badge-pill badge-success" th:text="${list.PEOPLE}">4명</span>
-							<span class="badge badge-pill badge-warning" th:text="${list.LOC_SEQ}">온라인</span>
+							<span class="badge badge-pill badge-primary"
+								th:text="${list.STATUS}">모집중</span> <span
+								class="badge badge-pill badge-info" th:text="${list.LEVEL}">난이도</span>
+							<span class="badge badge-pill badge-secondary"
+								th:text="${list.LAN_SEQ}">Spring</span> <span
+								class="badge badge-pill badge-success" th:text="${list.PEOPLE}">4명</span>
+							<span class="badge badge-pill badge-warning"
+								th:text="${list.LOC_SEQ}">온라인</span>
 						</div>
 						<div class="col-md-3" style="text-align: center;">
 							<!-- 여기에 시간 -->
 							<b>20-06-25 17:20</b>
 						</div>
 					</div>
-					
+
 					<div class="row" style="margin-top: 30px;">
 						<a href="/board/writing_Course_Study_Detail.do">
 							<h2 th:text="${list.TITLE}">스터디 같이 하실분 모집합니다</h2>
 						</a>
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
-	
-					</div>
-					<div class="row" style="margin: 10px 5px 0px 2px;">
-						고행을 하였으며 예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다
-						그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을
-					</div>
-				</div>
-			</div>
-			
-			
-			
-			
-			
-	
-			<hr style="border: solid 1px rgb(224, 224, 224);margin-top:10px; margin-bottom:10px" />
-			
-			
-		</div><!-- 반복끝 -->
-		<!-- 데이터 한개 넣기 끝~ -->
-		<!-- 데이터 한개 넣기 끝~ -->
-		<!-- 데이터 한개 넣기 끝~ -->
 
-			</div>
-			<div class="col-md-9">
-				<div class="row" style="margin-top: 10px;">
-					<div class="col-md-2">
-						<a href="" data-toggle="modal" data-target="#exampleModalCenter">
-						<b>
-							<!-- 여기에 닉네임 -->
-							미네미네
-						</b>
-						</a>
 					</div>
-					<div class="col-md-7">
-						<!-- 여기에 뱃지 -->
-						<span class="badge badge-pill badge-primary">모집중</span>
-						<span class="badge badge-pill badge-secondary">Spring</span>
-						<span class="badge badge-pill badge-success">4명</span>
-						<span class="badge badge-pill badge-warning">온라인</span>
-						<span class="badge badge-pill badge-info">온라인강의</span>
-					</div>
-					<div class="col-md-3" style="text-align: center;">
-						<!-- 여기에 시간 -->
-						<b>20-06-25 17:20</b>
-					</div>
-				</div>
-				<div class="row" style="margin-top: 30px;">
-					<a href="/board/writing_Normal_Study_Detail.do">
-					<h2>스터디 같이 하실분 모집합니다</h2>
-					</a>
-				</div>
-				<div class="row" style="margin: 10px 5px 0px 2px;">
-					고행을 하였으며 예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다
-					그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을
+					<div class="row" style="margin: 10px 5px 0px 2px;">고행을 하였으며
+						예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서
+						미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을</div>
 				</div>
 			</div>
+
+
+
+
+
+
+			<hr
+				style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px" />
+
+
 		</div>
-
-
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-md-3"> -->
-<!-- 				<div class="card" style="width:100%"> -->
-<!-- 					<img class="card-img-top" src="https://gif.fmkorea.com/files/attach/new/20170526/33854530/107245139/663534888/a2665ff58845b4244c11aba533739472.gif -->
-<!-- 				" alt="Card image" style="width:100%"> -->
-<!-- 					<div class="card-body"> -->
-<!-- 						<h6 class="card-title _margin_0">일반스터디~~</h6> -->
-<!-- 						<p class="card-text _margin_0" style="color:gray; font-size: small;">하나 둘 셋 야!</p> -->
-<!-- 						<a href="/board/writing_Normal_Study_Detail.do" class="stretched-link"></a> -->
-<!-- 						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-<!-- 							alt="" style="height:40px;"> -->
-<!-- 						<span>(6)</span>
-<!-- 						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span> --> 
-<!-- 					</div> -->
-<!-- 				</div> -->
-
-<!-- 			</div> -->
-<!-- 			<div class="col-md-9"> -->
-<!-- 				<div class="row" style="margin-top: 10px;"> -->
-<!-- 					<div class="col-md-2"> -->
-<!-- 						<b> -->
-<!-- 							여기에 닉네임 -->
-<!-- 							미네미네 -->
-<!-- 						</b> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-md-7"> -->
-<!-- 						여기에 뱃지 -->
-<!-- 						<span class="badge badge-pill badge-primary">모집중</span> -->
-<!-- 						<span class="badge badge-pill badge-secondary">Spring</span> -->
-<!-- 						<span class="badge badge-pill badge-success">4명</span> -->
-<!-- 						<span class="badge badge-pill badge-warning">온라인</span> -->
-<!-- 						<span class="badge badge-pill badge-info">온라인강의</span> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-md-3" style="text-align: center;"> -->
-<!-- 						여기에 시간 -->
-<!-- 						<b>20-06-25 17:20</b> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="row" style="margin-top: 30px;"> -->
-<!-- 					<a href="/board/writing_Normal_Study_Detail.do"> -->
-<!-- 					<h2>스터디 같이 하실분 모집합니다</h2> -->
-<!-- 					</a> -->
-<!-- 				</div> -->
-<!-- 				<div class="row" style="margin: 10px 5px 0px 2px;"> -->
-<!-- 					고행을 하였으며 예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서 미인을 구하기 위하여서 그리하였는가? 아니다 -->
-<!-- 					그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을 -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-		
-		
-
-<!-- 		<hr style="border: solid 1px rgb(224, 224, 224);margin-top:10px; margin-bottom:10px" /> -->
+		<!-- 반복끝 -->
+		<!-- 데이터 한개 넣기 끝~ -->
+		<!-- 데이터 한개 넣기 끝~ -->
+		<!-- 데이터 한개 넣기 끝~ -->
 
 
 	</div>
 	<!-- 경계끝 -->
-	
-	
+
+
 	<!-- 타임리프로 바꾸자 -->
 	<!-- 페이징 버튼 시작-->
 	<!-- 페이징 버튼 시작-->
@@ -336,81 +312,52 @@
 		<div class="pager clear">
 
 
-	<!-- 경계 -->
-	<ul class="btn-group pagination">
+			<!-- 경계 -->
+			<ul class="btn-group pagination" style="place-content: center;">
 
-	<!-- 이전버튼 생성여부 -->
-			<li th:if="${pageMaker.prev} == true">
-<!--  			<a href='<c:url value="/notice/notice.htm?page=${pageMaker.startPage-1 }"/>'>  -->
-<!-- 				<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage-1})}"> -->
-<!-- 					<i class="fa fa-chevron-left"></i> -->
-<!-- 				</a>  -->
-				<a th:href="@{/samplehome/board/listPage(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
+				<!-- 이전버튼 생성여부 -->
+				<li th:if="${pageMaker.prev} == true">
+					<a th:href="@{study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
+<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
-	 <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-		<!-- <th:block th:each="i : ${#numbers.sequence(${pageMaker.startPage},${pageMaker.endPage })" th:value="pageNum">
-			<li>
-				<a th:href='<c:url value="/user/board/study_List.do?page=${pageNum }"/>'>
-					<i class="fa">${pageNum }</i>
-				</a>
-			</li>
-		</th:block> -->
+		
+				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+				<li
+					th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
+					th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+					<a th:href="@{study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> 
+<!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+				</li>
 
 
-	 <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-<!-- 	 <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum"> -->
-<!-- 			<li th:each="pageNum : ${#numbers.sequence(${pageMaker.startPage},${pageMaker.endPage})}"> -->
-<!-- 			<li th:each="pageNum : ${#numbers.sequence(1,5)}"> -->
-<!-- 			<li th:each="pageNum : ${#numbers.sequence((${pageMaker.startPage}),(${pageMaker.endPage}))}"> -->
-<!-- 				<a th:href="@{user/board/study_List.do(page=${pageNum})}"> -->
-<!-- 						<i class="fa">${pageNum }</i> -->
-<!-- <!-- 					<i class="fa" th:text="${pageNum}"></i> --> 
-<!-- 				</a> -->
-<!-- 			</li> -->
 
-  			  <li th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"  th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
-                <a th:href="@{/samplehome/board/listPage(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a>
-              </li>
-                
+				<!-- 다음버튼 생성여부 -->
+				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }">
+
+					<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
+						<a th:href="@{study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
+<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+					</li>
+			</ul>
+
+			<!-- 경계끝 -->
 
 
-<!-- 검사용 -->
-<!-- 	<div th:text="${pageMaker.next}"></div> -->
-<!-- 	<div th:text="${pageMaker.endPage}"></div> -->
-	
-	 <!-- 다음버튼 생성여부 -->
-	 		<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }">
-<!-- 	 		<li> -->
-<!-- <!-- 	 		<a href='<c:url value="/notice/notice.htm?page=${pageMaker.endPage+1}"/>'> --> 
-<!-- 				<a href="@{user/board/study_List.do(page=${pageMaker.endPage+1})}"> -->
-<!-- 					<i class="fa fa-chevron-right"></i> -->
-<!-- 				</a> -->
-<!-- 			</li> -->
-
-			  <li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
-              	<a th:href="@{/samplehome/board/listPage(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
-              </li>
-	 	
-	 	
-	</ul>
-
-	<!-- 경계끝 -->
-	
-	
 		</div>
 	</div>
 
-	
-	
-	<!-- 페이징 버튼 끝 -->
-	<!-- 페이징 버튼 끝 -->
-	
 
-	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal"> </div>
-	<div th:replace="/user/includes/footer :: footer"> </div>
+
+	<!-- 페이징 버튼 끝 -->
+	<!-- 페이징 버튼 끝 -->
+
+
+	<div th:replace="user/user_Info_Modal :: user_Info_Modal"></div>
+	<div th:replace="user/includes/footer :: footer"></div>
 
 </body>
 
 
 </html>
+
