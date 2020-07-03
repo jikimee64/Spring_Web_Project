@@ -19,7 +19,7 @@ public class PageMaker {
 	private int endPage; //화면에 보여질 마지막 페이지 번호,끝페이지 번호
 	private boolean prev; //이전
 	private boolean next; //다음
-	private int displayPageNum = 1;  //5개씩 보여준다
+	private int displayPageNum = 5;  //5개씩 보여준다
 	
 	
 	//VO
