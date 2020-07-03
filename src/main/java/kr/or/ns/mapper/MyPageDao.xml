@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ns.dao.MyPageDao">
+
+<!-- 회원정보 가져오기 -->
+	<select id="getUsers" resultType="kr.or.ns.vo.Users">
+		select * from users where user_id=#{userid};
+	</select>
+	
+	<select id="getSkill" resultType="hashmap">
+		select skill_name, skill_level from skill where user_id=#{userid};
+	</select>
+
+	<!-- 회원정보 수정 -->
+<!-- 	<update id="MyPageUserEdit" parameterType="kr.or.ns.vo.Users">
+		update users
+		set
+		user_id = #{user_id}, user_pwd=#{user_pwd}, enabled=1,
+		user_name=#{user_name}, user_email=#{user_email},
+		profile_img =
+		#{profile_img},nickname = #{nickname},
+		introduce = #{introduce},
+		blame_count = #{blame_count},
+		where user_id = #{user_id}
+	</update> -->
+	
+	</mapper>

@@ -4,9 +4,21 @@
 
 	<!-- public int getmsgcount(String userid); -->
 	<select id="getmsgcount" resultType="int">
-		select count(*) from message where opendate is not null and receptionid = #{user_id}
+		select count(*) from message
+		where opendate is not null and receptionid = #{user_id}
 	</select>
 
-
+	<!-- public int insertMessage(Message message) -->
+	<insert id="insertMessage" parameterType="kr.or.ns.vo.Message">
+		insert into message(receptionid, senderid, rs_code, content, opendate, senddate)
+		values(
+		#{receptionid},
+		#{senderid},
+		#{rs_code},
+		#{content},
+		now(),
+		now()
+		)
+	</insert>
 
 </mapper>

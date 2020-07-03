@@ -43,7 +43,6 @@ li {
 
 
 			<th:block sec:authorize="hasRole('ROLE_USER')">
-				<sec:authentication property="principal.user_id" var="loginuser" />
 				<div class="col-md-1">
 					<ul class="navbar-nav" style="place-content: center;">
 						<!-- Dropdown -->
@@ -63,9 +62,14 @@ li {
 					</ul>
 				</div>
 			</th:block>
+			
+			<th:block sec:authorize="hasRole('ROLE_USER')">
+
+				 <span sec:authentication="principal.username"></span>님 반가워요!&& 
+			</th:block>
 
 			<th:block sec:authorize="hasRole('ROLE_USER')">
-				<div id="alertArea">ss</div>
+				<div id="alertArea"></div>
 			</th:block>
 
 		</nav>
@@ -109,7 +113,7 @@ li {
 		
 		function connect() {
 			wsocket = new WebSocket(
-					"ws://localhost:8001/messageSocket.do");
+					"ws://192.168.0.2:8001/messageSocket.do");
 			wsocket.onopen = onOpen; 
 			//서버와 클라이언트의 정상 연결 후 데이터 송수신이 가능할 시 호출
 			wsocket.onmessage = onMessage;
