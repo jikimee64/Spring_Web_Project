@@ -21,10 +21,8 @@
 			(#{skill_seq}, #{item.user_id}, #{item.skill_name},
 			#{item.skill_level})
 		</foreach>
-	</insert>
-
 	
-
+	</insert>
 
 
 </mapper>
