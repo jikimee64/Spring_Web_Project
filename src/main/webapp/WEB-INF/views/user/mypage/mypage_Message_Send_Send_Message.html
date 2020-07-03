@@ -80,9 +80,18 @@ body {
 					<span style="font-size: large;"> <b>받는 사람</b>
 					</span>
 				</div>
-				<div class="col-md-10" style="align-self: center;">
-					<input type="text" name="m_to" id="m_to" />
-				</div>
+				
+				<th:block th:if="${senderid != null}">
+					<input type="text" name="m_to" id="m_to" th:value="${senderid}" readonly/>
+				</th:block>
+				
+				<th:block th:if="${senderid == null}">
+					<div class="col-md-10" style="align-self: center;">
+						<input type="text" name="m_to" id="m_to" />
+					</div>
+				</th:block>
+				
+				
 			</div>
 
 			<hr

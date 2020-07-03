@@ -1,133 +1,184 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>course_list</title>
-	<link href="login.css" type="text/css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>course_list</title>
+<link href="login.css" type="text/css" rel="stylesheet" />
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
 </head>
 
 <style>
-	._category {
-		background-color: #F6D258;
-		text-align: center;
-		align-self: center;
-		padding: 30px;
-	}
+._category {
+	background-color: #F6D258;
+	text-align: center;
+	align-self: center;
+	padding: 30px;
+}
 
-	._category_button {
-		place-self: center;
-	}
+._category_button {
+	place-self: center;
+}
 
-	._button_color {
-		background-color: #BCF1D3;
-		color: black;
-		border-color: darkseagreen;
-	}
+._button_color {
+	background-color: #BCF1D3;
+	color: black;
+	border-color: darkseagreen;
+}
 
-	._margin_0 {
-		margin: 0;
-	}
+._margin_0 {
+	margin: 0;
+}
 </style>
 
 
 <body>
 	<!-- course란 강좌라는 뜻이에염~ -->
-	<div th:replace="/user/includes/header :: header"> </div>
-	<div class="container" style="margin-top: 25px;margin-bottom: 25px;">
+	<div th:replace="/user/includes/header :: header"></div>
+	<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
 
 		<div class="row">
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">난이도</b>
 				</div>
 				<div class="col-md-9 _category_button">
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>입문</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>입문</b>
+					</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"><b>초급</b></button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>초급</b>
+					</button>
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"><b>중급이상</b></button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>중급이상</b>
+					</button>
 				</div>
 			</div>
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">가격</b>
 				</div>
 
 				<div class="col-md-9 _category_button">
 					&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>무료</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>무료</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>3만원 이상</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>3만원 이상</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>3~5만원</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>3~5만원</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>5~10만원</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>5~10만원</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>10만원 이상</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>10만원 이상</b>
+					</button>
 
 				</div>
 			</div>
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">언어</b>
 				</div>
 				<div class="col-md-9 _category_button">
-					<div class="row" style="margin-bottom:7px;">
+					<div class="row" style="margin-bottom: 7px;">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>JAVA</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>JAVA</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Javascript</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Javascript</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>HTML/CSS</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>HTML/CSS</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Spring</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Spring</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>데이터베이스</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>데이터베이스</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>파이썬</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>파이썬</b>
+						</button>
 					</div>
 					<div class="row">
 						&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Vue.js</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Vue.js</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>React</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>React</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Jquery</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Jquery</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>JSP</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>JSP</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>Bootstrap</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>Bootstrap</b>
+						</button>
 						&nbsp;
-						<button type="button" class="btn btn-success _button_color"> <b>JPA</b> </button>
+						<button type="button" class="btn btn-success _button_color">
+							<b>JPA</b>
+						</button>
 					</div>
 				</div>
 			</div>
-			<div class="row" style="width: 100%;margin-bottom: 1px;">
+			<div class="row" style="width: 100%; margin-bottom: 1px;">
 				<div class="col-md-3 _category">
 					<b style="font-size: large;">사이트</b>
 				</div>
 				<div class="col-md-9 _category_button">
 					&nbsp; &nbsp;&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>인프런</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>인프런</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>구름DEU</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>구름DEU</b>
+					</button>
 					&nbsp;
-					<button type="button" class="btn btn-success _button_color"> <b>udemy</b> </button>
+					<button type="button" class="btn btn-success _button_color">
+						<b>udemy</b>
+					</button>
 				</div>
 			</div>
 
@@ -137,173 +188,147 @@
 
 
 
+
+	<!-- ddddddddd -->
 
 	<!-- 여기부터 강의 목록 -->
+	<!-- 	th:each="idx,iterStat : ${#numbers.sequence(pagedkdklsjnalksnldkfjalskdjflzheldgksmstlrkqnldkfMaker.startPage,pageMaker.endPage)}" -->
 	<div class="container" style="margin-top: 50px;">
-		<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;">
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
-				</div>
-			</div>
-			<!-- 여기까지 카드 하나 끝 -->
 
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
+		<!-- 		<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
+
+<!-- 		<th:block th:each="data : ${list}"> -->
+<!-- 			<th:block th:if="`"th:utext="<div class='row' style='width:100%;margin: auto;margin-bottom: 20px;'>"/> -->
+
+			<div th:each="data : ${list}" class='row' style='width:100%;margin: auto;margin-bottom: 20px;'>
+				
+				<div class="col">
+				
+					<div th:each="datacol : ${list}"  class="card" style="width: 100%">
+						<img class="card-img-top"
+							src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
+							alt="Card image" style="width: 100%">
+						<div class="card-body">
+							<h6 class="card-title _margin_0" th:text="${datacol.L_TITLE}">Do
+								it! Node.js 프로그래밍(개정판)</h6>
+							<p class="card-text _margin_0"
+								style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+							<a href="" class="stretched-link"></a> <img
+								src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+								alt="" style="height: 40px;"> <span>(6)</span> <span
+								style="color: rgb(23, 92, 190)"> <b
+								th:text="${datacol.P_SEQ}">₩44,000</b>
+							</span>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
+					
+				</div><!-- col -->
+<!-- 			<th:block th:if="${list.index}%5==0" th:utext="</div>"/> -->
+<!-- 		</th:block> -->
+
+		<!-- 여기까지 카드 하나 끝 -->
+
+
+		<!--  
+		<div class="col">
+			<div class="card" style="width: 100%">
+				<img class="card-img-top"
+					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+				"
+					alt="Card image" style="width: 100%">
+				<div class="card-body">
+					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+					<p class="card-text _margin_0"
+						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+					<a href="#" class="stretched-link"></a> <img
+						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+						alt="" style="height: 40px;"> <span>(6)</span> <span
+						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
+					</span>
 				</div>
 			</div>
 		</div>
-
-
-
-		<div class="row" style="width:100%;margin: auto; margin-bottom: 20px;">
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
-				</div>
-			</div>
-			<!-- 여기까지 카드 하나 끝 -->
-
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
-				</div>
-			</div>
-			<div class="col">
-				<div class="card" style="width:100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				" alt="Card image" style="width:100%">
-					<div class="card-body">
-						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color:gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="#" class="stretched-link"></a>
-						<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height:40px;">
-						<span>(6)</span>
-						<span style="color:rgb(23, 92, 190)"> <b>₩44,000</b> </span>
-					</div>
+		<div class="col">
+			<div class="card" style="width: 100%">
+				<img class="card-img-top"
+					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+				"
+					alt="Card image" style="width: 100%">
+				<div class="card-body">
+					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+					<p class="card-text _margin_0"
+						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+					<a href="#" class="stretched-link"></a> <img
+						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+						alt="" style="height: 40px;"> <span>(6)</span> <span
+						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
+					</span>
 				</div>
 			</div>
 		</div>
+		<div class="col">
+			<div class="card" style="width: 100%">
+				<img class="card-img-top"
+					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+				"
+					alt="Card image" style="width: 100%">
+				<div class="card-body">
+					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+					<p class="card-text _margin_0"
+						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+					<a href="#" class="stretched-link"></a> <img
+						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+						alt="" style="height: 40px;"> <span>(6)</span> <span
+						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="card" style="width: 100%">
+				<img class="card-img-top"
+					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+				"
+					alt="Card image" style="width: 100%">
+				<div class="card-body">
+					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+					<p class="card-text _margin_0"
+						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+					<a href="#" class="stretched-link"></a> <img
+						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+						alt="" style="height: 40px;"> <span>(6)</span> <span
+						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		-->
+		
+		
+	</div><!-- row -->
 
-	</div>
-	<div th:replace="/user/includes/footer :: footer"> </div>
+
+
+	<!-- dddddd -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div><!-- 컨테이너 -->
+	<div th:replace="/user/includes/footer :: footer"></div>
 
 </body>
 

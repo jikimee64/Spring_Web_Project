@@ -316,9 +316,9 @@
 			<ul class="btn-group pagination" style="place-content: center;">
 
 				<!-- 이전버튼 생성여부 -->
-				<li th:if="${pageMaker.prev} == true">
-					<a th:href="@{study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
-<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
+				<li th:if="${pageMaker.prev} == true"><a
+					th:href="@{study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
+					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
 		
@@ -335,8 +335,9 @@
 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }">
 
 					<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
-						<a th:href="@{study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
-<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+						<a
+						th:href="@{study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
+						<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
 					</li>
 			</ul>
 
