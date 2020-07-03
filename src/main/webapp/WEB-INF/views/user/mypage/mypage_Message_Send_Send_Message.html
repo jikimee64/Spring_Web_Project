@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>mypage_message_send_send_massage</title>
-<link href="login.css" type="text/css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -57,8 +56,9 @@ body {
 				</span>
 			</div>
 			<div class="col-md-4"></div>
+		
 			<div class="col-md-6" style="text-align: right;">
-				<button type="button" class="btn btn-primary" style="width: 90px;">보내기</button>
+			<button type="submit" id="sendBtn" class="btn btn-primary" style="width: 90px;">보내기</button>
 				&nbsp; &nbsp;
 
 
@@ -71,36 +71,34 @@ body {
 			style="border: solid 2px rgb(224, 224, 224); margin-top: 5px; margin-bottom: 10px; width: 96%; position: relative; top: -90px;" />
 
 
+			<form action="sendMessage.do">
+			<div class="row"
+				style="margin: 0px 20px 10px 20px; position: relative; top: -90px;">
+				<div class="col-md-2"
+					style="place-self: flex-end; text-align: center;">
 
-
-		<div class="row"
-			style="margin: 0px 20px 10px 20px; position: relative; top: -90px;">
-			<div class="col-md-2"
-				style="place-self: flex-end; text-align: center;">
-
-				<span style="font-size: large;"> <b>받는 사람</b>
-				</span>
+					<span style="font-size: large;"> <b>받는 사람</b>
+					</span>
+				</div>
+				<div class="col-md-10" style="align-self: center;">
+					<input type="text" name="m_to" id="m_to" />
+				</div>
 			</div>
-			<div class="col-md-10" style="align-self: center;">
-				<span> 하이하이</span>
+
+			<hr
+				style="border: solid 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom: 10px; width: 96%; position: relative; top: -90px;" />
+			<!-- 여기부터 데이터 시작~~~~~~~////////////////////// -->
+			<!-- 여기부터 데이터 시작~~~~~~~////////////////////// -->
+
+
+			<!-- 여기까지 더미데이터 끝 -->
+
+			<div class="row"
+				style="margin: 20px 30px 0px 30px; position: relative; top: -90px;">
+				<textarea name="msg" id="msg" cols="30" rows="10" style="width: 100%"
+					placeholder="내용을 입력해주세요"></textarea>
 			</div>
-		</div>
-
-
-
-		<hr
-			style="border: solid 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom: 10px; width: 96%; position: relative; top: -90px;" />
-		<!-- 여기부터 데이터 시작~~~~~~~////////////////////// -->
-		<!-- 여기부터 데이터 시작~~~~~~~////////////////////// -->
-
-
-		<!-- 여기까지 더미데이터 끝 -->
-
-		<div class="row"
-			style="margin: 20px 30px 0px 30px; position: relative; top: -90px;">
-			<textarea name="" id="" cols="30" rows="10" style="width: 100%"
-				placeholder="내용을 입력해주세요"></textarea>
-		</div>
+		</form>
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
@@ -108,9 +106,58 @@ body {
 	<div th:replace="/user/includes/footer :: footer"></div>
 
 
-	<script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			connect();
+			$('#sendBtn').click(function() { 
+				console.log("하이욤")
+				send(); 
+				//form태그 이동..
+			});
+		})
 		
-	</script>
+		var wsocket;
+		
+		function connect() {
+			wsocket = new WebSocket("ws://192.168.0.2:8001/messageSocket.do");
+			wsocket.onopen = onOpen;
+			wsocket.onmessage = onMessage;
+			wsocket.onclose = onClose;
+		}
+		function disconnect() {
+			wsocket.close();
+		}
+		
+		function onOpen(evt) {
+			console.log("onOpen(evt)");
+		}
+		
+		function onMessage(evt) {
+			/* console.log("evt :" + evt);
+			var data = evt.data;
+			appendMessage(data); */
+		}
+		
+		function onClose(evt) {
+		}
+		
+		function send() {
+			let m_to = $('#m_to').val();
+			
+			let msg = $('#msg').val();
+			
+			wsocket.send(m_to + "," + msg);
+			$('#m_to').val("");
+			$('#msg').val("");
+		}
+
+		//자기 자신한테 보냈을때 실행
+		function appendMessage(msg) {
+			console.log(msg);
+			alert("msg : " + msg);
+		}
+		
+	</script> 
 
 </body>
 

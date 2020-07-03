@@ -74,12 +74,12 @@ public class MemberController {
 	@RequestMapping("find_Id.do")
 	public String findIdPage() {
 		System.out.println("아이디 찾기로 이동이동(연규가씀)");
-		return "/user/member/find_Id";
+		return "user/member/find_Id";
 	}
 
 	@RequestMapping("find_Passward.do")
 	public String findPasswardPage() {
 		System.out.println("비밀번호 찾기로 이동이동(연규가씀)");
-		return "/user/member/find_Passward";
+		return "user/member/find_Passward";
 	}
 }
