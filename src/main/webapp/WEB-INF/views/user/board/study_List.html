@@ -323,9 +323,8 @@
 
 		
 				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-				<li
-					th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
-					th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+				<li th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}">
+<!-- 					th:classappend="${pageMaker.cri.page} == ${idx} ? active : null"> -->
 					<a th:href="@{study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> 
 <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
