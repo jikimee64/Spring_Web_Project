@@ -13,21 +13,14 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import kr.or.ns.service.MemberService;
-import kr.or.ns.service.MemberServiceImpl;
 import kr.or.ns.service.MessageService;
+import kr.or.ns.vo.Message;
 
 @Configuration
-@Component("messageSocket")
 public class MessageHandler extends TextWebSocketHandler {
 
 	@Autowired
 	private MessageService service;
-
-	// 왜 @Autowired가 안먹냐!!
-
-	/* @Autowired */
-	/* private MessageService service = new MessageServiceImpl(); */
 
 	private static Map<String, WebSocketSession> users = new HashMap<String, WebSocketSession>();
 
@@ -80,14 +73,14 @@ public class MessageHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
 		System.out.println("하이욤 : " + message.getPayload());
+		String userid = session.getPrincipal().getName();
 		// 사용자가 보낸 텍스트 데이터 추출 후 분기 처리
 		if (message.getPayload().equals("login") || message.getPayload().equals("view")) {
-			String userid = session.getPrincipal().getName();
 
 			System.out.println("아나!! : " + userid);
-			System.out.println("오ㅙ 널이냐? " + service);
+
 			int result = service.getmsgcount(userid);
-			System.out.println("admin이 받은 메시지 개수 : " + result);
+
 			// 내가 받은 메시지 개수 추출
 
 			// 사용자 아이디값이 소켓 접속시 users에 넣은 아이디값이 존재하는지 비교
@@ -100,30 +93,39 @@ public class MessageHandler extends TextWebSocketHandler {
 				log(userid + " / " + message.getPayload() + " / " + msg.getPayload());
 			}
 		} else { // 쪽지 보냈을때 탐(message.jsp에서 데이터 전송받음)
+			System.out.println("여긴타냐??");
+			
+			String receptionid = message.getPayload().split(",")[0];
+			String content = message.getPayload().split(",")[1];
 
-			/*
-			 * String fromid = message.getPayload().split(",")[1];
-			 * 
-			 * Message savemsg = new Message(message.getPayload().split(",")[0],
-			 * message.getPayload().split(",")[1], message.getPayload().split(",")[2]);
-			 * service.insertMessage(savemsg);
-			 */
+			Message savemsg = new Message();
+			savemsg.setReceptionid(receptionid);//수신인
+			savemsg.setSenderid(userid); //발신인
+			savemsg.setRs_code("발신");
+			savemsg.setContent(content);
+					
+					/*(message.getPayload().split(",")[0], message.getPayload().split(",")[1],
+					message.getPayload().split(",")[2]);*/
+			System.out.println("dㅎㅎㅎㅎㅎㅎㅎ");
+			System.out.println(service);
+			int result2 = service.insertMessage(savemsg);
+			System.out.println("삽입ㅂ 결과 ' " + result2);
+			
 			// ★★★쪽지 테이블에 보낸 쪽지 데이터 삽입
 
-			// int result = service.getmsgcount(fromid);
+			int result = service.getmsgcount(receptionid);
 			// 수신인이 받은 문자 개수 추출
 
-			/*
-			 * if(users.containsKey(fromid)) { TextMessage msg = new TextMessage("수신된 쪽지 : "
-			 * + result + "건"); users.get(fromid).sendMessage(msg);
-			 */
-			// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
-			/*
-			 * log(fromid + " / " + message.getPayload() + " / " + msg.getPayload()); }
-			 * 
-			 * System.out.println("fromid : " + fromid);
-			 * System.out.println(message.getPayload());
-			 */
+			if (users.containsKey(receptionid)) {
+				TextMessage msg = new TextMessage("수신된 쪽지 : " + result + "건");
+				users.get(receptionid).sendMessage(msg);
+
+				// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
+
+				log(receptionid + " / " + message.getPayload() + " / " + msg.getPayload());
+			}
+
+
 		}
 
 	}

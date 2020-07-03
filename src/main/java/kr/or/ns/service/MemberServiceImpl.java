@@ -31,7 +31,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public int joininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
-
+		
 		System.out.println("서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
 		System.out.println("기타 : " + users.getIntroduce());

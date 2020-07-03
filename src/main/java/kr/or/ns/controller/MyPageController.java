@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.Users;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -57,6 +59,7 @@ public class MyPageController {
 		
 		System.out.println("컨트롤러2");
 		return "redirect:user/mypage/mypage";
+
 	}
 	
 	@RequestMapping("mypage_Myboard.do")
@@ -92,6 +95,18 @@ public class MyPageController {
 	@RequestMapping("mypage_Message_Send_Send_Message.do")
 	public String mypageMessageSendSendMessagePage() {
 		System.out.println("받은쪽지함 상세보기에서 답장 클릭 시 답장하는 페이지로 이동이동(연규가씀)");
+		return "user/mypage/mypage_Message_Send_Send_Message"; 
+	}
+	
+	
+	//쪽지 보내기
+	@RequestMapping(value="sendMessage.do", method = RequestMethod.POST)
+	public String sendMessage(@RequestParam(value="title", required=false) String title,
+							  @RequestParam(value="content", required=false) String content) {
+		
+		System.out.println("title : "  + title);
+		System.out.println("content : " + content);
+		
 		return "user/mypage/mypage_Message_Send_Send_Message"; 
 	}
 }
