@@ -67,7 +67,7 @@
 	</bean>
 
 	<!-- bean네임추가 -->
-	<bean id="viewResolver"
+	<bean id="beanNameviewResolver"
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="2"></property>
 	</bean>
@@ -81,10 +81,10 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
-		<property name="order" value="3" />
+		<property name="order" value="4" />
 	</bean>
-	
-	<!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동-->
+
+	<!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="driverManagerDataSource" />
@@ -107,6 +107,40 @@
 		<property name="scope" value="https://www.googleapis.com/auth/plus.login" 
 		/> <property name="redirectUri" value="http://localhost:8020/bit/oauth2callback(설정 
 		필요)" /> </bean> -->
+
+	<!-- Velocity 설정 -->
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="WEB-INF/views/vm/" />
+		<property name="velocityProperties">
+			<value>
+				input.encoding=UTF-8
+				output.encoding=UTF-8
+			</value>
+		</property>
+	</bean>
+
+	<!-- VelocityViewResolver -->
+	<!-- 뷰리조버3 -->
+	<bean id="velocityViewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="cache" value="true" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".vm" />
+		<property name="order" value="3" />
+	</bean>
+
+	<bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath"
+			value="/WEB-INF/views/vm/" />
+	</bean>
+
+	<bean id="mailer" class="kr.or.ns.util.Mailer">
+		<property name="mailSender" ref="mailSender" />
+		<property name="velocityEngine" ref="velocityEngine" />
+	</bean>
 
 
 </beans>

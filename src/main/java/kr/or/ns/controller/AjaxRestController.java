@@ -61,19 +61,42 @@ public class AjaxRestController {
 		
 	}
 	
-	
+	//임시비밀번호 만들기 
 	@RequestMapping(value = "pwCheck.do", method=RequestMethod.POST)
-	public void pwCheck(@RequestBody HashMap<String, Object> params) {
-	
+	public int pwCheck(@RequestBody HashMap<String, Object> params) {
+		System.out.println("----------------------------------------------------------컨트롤러-시작-------");
 		String userid = (String) params.get("userId");
 		String useremail = (String) params.get("userEmail");
-		System.out.println("************************");
-		System.out.println(userid);
-		System.out.println(useremail);
-		System.out.println("************************");
+		//서비스단에서 있는 이메일과, 아이디 인지 확인
+		int result = 0; 
+		result = service.searchId(userid, useremail);
 		
-		service.makeNewPw(userid,useremail);
+		if(result == 0) {
+			System.out.println("--id 비어있어 --");
+			
+			return result;
+			
+		}else {
+			System.out.println("result : " + result);
+			System.out.println("----------------------------------------------------------컨트롤러-중간-------");
+			//service.makeNewPw(userid,useremail);
+			System.out.println("----------------------------------------------------------컨트롤러-끝-------");
+			System.out.println("이메일 발급후 리턴 전");
+			System.out.println("result : " + result);
+			return result;
+		}
+		
 	}
+
+	//크크크
+		@RequestMapping(value = "kwc.do", method=RequestMethod.POST)
+		public void pwCheck22(@RequestBody HashMap<String, Object> params) {
+			System.out.println("----------------------------------------------------------컨트롤러-시작-------");
+			String userid = (String) params.get("userId");
+			String useremail = (String) params.get("userEmail");
+			service.makeNewPw(userid,useremail);
+			
+		}
 
 	//아이디 중복체크
 	@RequestMapping(value = "idcheck.do", method=RequestMethod.POST)

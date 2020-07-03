@@ -2,13 +2,13 @@ package kr.or.ns.util;
 
 import java.io.UnsupportedEncodingException;
 
+
 import javax.activation.DataSource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-
 public class MailHandler {
 	private JavaMailSender mailSender;
     private MimeMessage message;

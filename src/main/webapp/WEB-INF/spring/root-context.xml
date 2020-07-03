@@ -60,7 +60,18 @@
 	<!-- Mybatis 설정 -->
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="velocityConfig"
+																									<!--  -->
+	<!-- <bean id="templateMailMessage"
+		class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="bitcamp104@gmail.com" />
+		<property name="subject" value="[템플릿]회원 가입 안내" />
+		<property name="text" value="[템플릿]회원 가입을 환영합니다." />
+	</bean> -->
+
+
+																									<!--  -->
+	
+	<!-- <bean id="velocityConfig"  원래 쓰던거
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
 		<property name="velocityProperties">
@@ -69,14 +80,14 @@
 				output.encoding=UTF-8
 			</value>
 		</property>
-	</bean>
+	</bean> -->
 
 	<!-- <bean id="velocityEngine"  우철이가 해놓은거
 		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
 		<property name="resourceLoaderPath" value="/WEB-INF/velocity/" />
-	</bean> -->
+	</bean> 
 	
-		<bean id="velocityEngine"
+		<bean id="velocityEngine"   원래쓰던거
 	 class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
 	    <property name="velocityProperties">
 	        <props>
@@ -86,13 +97,9 @@
 	            </prop>
 	        </props>
 	    </property>
-	</bean>
+	</bean> -->
 
-	<bean id="mailer" class="kr.or.ns.util.Mailer">
-		<property name="mailSender" ref="mailSender" />
-		<property name="velocityEngine" ref="velocityEngine" />
-	</bean>	
-		
+
 	
 	<!-- 구글gmail -->
 	<bean id="mailSender"
@@ -101,6 +108,7 @@
 		<property name="port" value="587" />
 		<property name="username" value="nosangcoding@gmail.com" />
 		<property name="password" value="lfbelobmdswohvqi" />
+		<property name="defaultEncoding" value="UTF-8" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.debug">true</prop>
