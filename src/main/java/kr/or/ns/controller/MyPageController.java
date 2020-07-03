@@ -4,6 +4,9 @@ import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.Users;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -29,12 +33,11 @@ public class MyPageController {
 	
 	@RequestMapping("mypage.do")
 	public String myPagePage() {
-		System.out.println("마이페이지로 이동이동(연규가씀)");
 		return "user/mypage/mypage"; 
 	}
+	//유저정보 뿌리기
 	@RequestMapping(value="MyPageUserEdit.do", method=RequestMethod.GET)
 	public String mypageUserEdit(Model model, Principal principal) {
-		System.out.println("유저 수정페이지로 이동이동(연규가씀)");
 		Users user = service.getUsers(principal.getName());
 		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
@@ -42,28 +45,37 @@ public class MyPageController {
 		return "user/mypage/mypage_User_Edit.html"; 
 	}
 	
+	//유저정보 수정하기
 	@RequestMapping(value="MyPageUserEdit.do", method=RequestMethod.POST)
-	public String mypageUserEdit(Model model, Users users, Principal principal) {
+	public String mypageUserEdit(@RequestParam(value = "file", required = false) MultipartFile ipload, Users user,
+			HttpServletRequest request) {
+		
+		
+		user.setUser_pwd(this.bCryptPasswordEncoder.encode(user.getUser_pwd()));
 		
 		System.out.println("컨트롤러1");
-		System.out.println(users);
-		System.out.println(principal);
-		Users user = service.getUsers(principal.getName());
+		System.out.println(user);
 		System.out.println("userrrrr:"+ user);
 		
-		
-		user.setUser_pwd(bCryptPasswordEncoder.encode(users.getUser_pwd()));
-		user.setNickname(users.getNickname());
-		user.setJava(users.getJava());
-		user.setPython(users.getPython());
-		user.setHtml_css(users.getHtml_css());
-		user.setJavascript(users.getJavascript());
-		user.setSql(users.getSql());
-		service.MyPageUserEdit(user);
-		
-		System.out.println("컨트롤러2");
-		return "redirect:user/mypage/mypage";
+		/*
+		 * 
+		 * user.setJava(user.getJava()); user.setPython(user.getPython());
+		 * user.setHtml_css(user.getHtml_css());
+		 * user.setJavascript(user.getJavascript()); user.setSql(user.getSql());
+		 */
+		service.MyPageUserEdit(user, request);
 
+
+		System.out.println("컨트롤러2");
+		return "redirect:mypage_User_Edit";
+
+	}
+	//회원탈퇴
+	@RequestMapping(value="userDelete.do", method=RequestMethod.POST)
+	public String userDelte(Users user, HttpSession session) {
+		
+		
+		return "/"; 
 	}
 	
 	@RequestMapping("mypage_Myboard.do")

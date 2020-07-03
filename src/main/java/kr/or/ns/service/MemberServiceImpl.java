@@ -66,31 +66,31 @@ public class MemberServiceImpl implements MemberService {
 		List<HashMap<String, String>> list = new ArrayList();
 
 		HashMap<String, String> map = new HashMap();
-		map.put("user_id", "admin");
+		map.put("user_id", users.getUser_id());
 		map.put("skill_name", "java");
 		map.put("skill_level", users.getJava());
 		list.add(map);
 
 		HashMap<String, String> map2 = new HashMap();
-		map2.put("user_id", "admin");
+		map2.put("user_id", users.getUser_id());
 		map2.put("skill_name", "python");
 		map2.put("skill_level", users.getPython());
 		list.add(map2);
 
 		HashMap<String, String> map3 = new HashMap();
-		map3.put("user_id", "admin");
+		map3.put("user_id", users.getUser_id());
 		map3.put("skill_name", "html_css");
 		map3.put("skill_level", users.getHtml_css());
 		list.add(map3);
 
 		HashMap<String, String> map4 = new HashMap();
-		map4.put("user_id", "admin");
+		map4.put("user_id", users.getUser_id());
 		map4.put("skill_name", "javascript");
 		map4.put("skill_level", users.getJavascript());
 		list.add(map4);
 
 		HashMap<String, String> map5 = new HashMap();
-		map5.put("user_id", "admin");
+		map5.put("user_id", users.getUser_id());
 		map5.put("skill_name", "sql");
 		map5.put("skill_level", users.getSql());
 		list.add(map5);
