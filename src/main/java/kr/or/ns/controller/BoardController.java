@@ -71,7 +71,7 @@ public class BoardController {
 		System.out.println(list.toString());
 		System.out.println("컨트롤러2");
 		
-		return "/user/board/study_List"; //study_List.html
+		return "user/board/study_List"; //study_List.html
 	}
 	
 	
