@@ -36,7 +36,7 @@ public class AjaxServiceImpl implements AjaxService {
 	@Autowired
 	private Mailer mailer;
 
-	// 이름과 이메일 받아서 존재하는 회원인지 확인
+	/////////////////////////////////////////////////////////////////// 이름과 이메일 받아서 존재하는 회원인지 확인
 	@Override
 	public int emailCheck(String user_name, String user_email) {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
@@ -51,7 +51,7 @@ public class AjaxServiceImpl implements AjaxService {
 		return result;
 	}
 
-	// (암호키)이메일 전송하는 서비스
+	//////////////////////////////////////////////////////////////////// (암호키)이메일 전송하는 서비스
 	@Override
 	public String emailSend(String user_email) {
 		String key = new Tempkey().getKey(6, false);
@@ -62,15 +62,9 @@ public class AjaxServiceImpl implements AjaxService {
 			Mail mail = new Mail();
 			mail.setMailFrom("nosangcoding@gmail.com");
 			mail.setMailTo(user_email);
-			mail.setMailSubject("[이메일 인증번호]");
-			mail.setTemplateName("emailtemplate.vm");
-			/*
-			 * ApplicationContext context = new
-			 * GenericXmlApplicationContext("classpath*:root-context.xml");
-			 */
-			
-			/* Mailer mailer = (Mailer) context.getBean("mailer",Mailer.class); */
-			mailer.sendMail(mail);
+			mail.setMailSubject("[이메일 인증번호 --노상코딩단]");
+			mail.setTemplateName("forID.vm");
+		 mailer.sendMail(mail,key);
 			System.out.println("트라이 구문 타고갑니다");
 			
 		} catch (Exception e) {
@@ -80,38 +74,16 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("키는 반환합니다");
 		return key;
 	}
-	/*
-	// (암호키)이메일 전송하는 서비스
-	@Override
-	public String emailSend(String user_email) {
-		String key = new Tempkey().getKey(6, false);
-		System.out.println("#############################        이메일 전송서비스 왔습니다");
-		try {
-			
-			MailHandler sendMail = new MailHandler(mailSender);
-			
-			// 제목
-			sendMail.setSubject("[이메일 인증번호]");
-			// 내용
-			sendMail.setText(new StringBuffer().append("<h1>메일인증번호입니다</h1>").append("여기는 노상코딩단!. <br/>")
-					.append("고객님의 인증번호는 [ " + key + " ] 입니다.").toString());
-			// 보낸사람
-			sendMail.setFrom("nosangcoding@gmail.com", "노상코딩단");
-			// 받는사람
-			sendMail.setTo(user_email);
-			sendMail.send();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return key;
-	}
-	*/
-	//id 찾아주는 함수
+
+//////////////////////////////////////////////////////////////////////id 찾아주는 함수
 	@Override
 	public String findId(String user_name, String user_email) {
 		System.out.println("아이디 찾으러 왔다 ");
+		System.out.println(user_name + user_email+"user_name + user_email");
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		
 		HashMap<String, String> map = new HashMap();
+		
 		map.put("user_name", user_name);
 		map.put("user_email", user_email);
 		
@@ -122,50 +94,63 @@ public class AjaxServiceImpl implements AjaxService {
 	}
 	
 	
-	//임시비밀번호 발급해주는 로직 
+//////////////////////////////////////////////////////////////////////임시비밀번호 발급해주는 로직 
 	@Override
 	public void makeNewPw(String userid, String useremail) {
+		//입력받은 id, email 있는지 확인
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		Users vo = new Users();
 		vo.setUser_id(userid);
 		vo.setUser_email(useremail);
+		HashMap<String, String> map = new HashMap();
+		map.put("user_id", userid);
+		map.put("user_email", useremail);
 		
-		String key = new Tempkey().getKey(10, false);
-		String temp_pw = key;
-		vo.setUser_pwd(temp_pw);
-		dao.updatePw(vo);
-		System.out.println("업데이트 하고 왔어욤");
-		
-		try {
-
-			MailHandler sendMail = new MailHandler(mailSender);
-
-			// 제목
-			sendMail.setSubject("[임시비밀번호 발급 --노상코딩단]");
-			// 내용
-			sendMail.setText(new StringBuffer().append("<h1>임시비밀번호입니다</h1>").append("여기는 노상코딩단!. <br/>")
-					.append("고객님의 임시비밀번호는 [ " + temp_pw + " ] 입니다.").toString());
-			// 보낸사람
-			sendMail.setFrom("nosangcoding@gmail.com", "노상코딩단");
-			// 받는사람
-			sendMail.setTo(vo.getUser_email());
-			sendMail.send();
-			System.out.println("이메일 보냈ㅅ브니다!!!!!!!!!!!!!!!!!!!");
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		System.out.println("서비스끝@@@@");
-	}
+					String key = new Tempkey().getKey(10, false);
+					String temp_pw = key;
+					vo.setUser_pwd(temp_pw);
+					dao.updatePw(vo);
+					
+					try {
+						Mail mail = new Mail();
+						mail.setMailFrom("nosangcoding@gmail.com");
+						mail.setMailTo(vo.getUser_email());
+						mail.setMailSubject("[임시비밀번호 발급 --노상코딩단]");
+						mail.setTemplateName("forPWD.vm");
+						
+						mailer.sendMail(mail,key);
+						
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+					}
+				}
 	
-	
+//////////////////////////////////////////////////////////////////////ID 중복체크 해주는 로직
 	public int idcheck(String user_id) throws ClassNotFoundException {
-		System.out.println("여기오나");
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		int result = dao.idcheck(user_id);	
 		System.out.println("result:" + result);
 		
+		return result;
+	}
+
+	
+//////////////////////////////////////////////////////////////////////받아온 아이디, 이메일로 id 확인	
+	@Override
+	public int searchId(String user_id, String user_email) {
+		
+		System.out.println("  아이디로 아이디 찾으러 왔다 ");
+		System.out.println(user_id + user_email+"user_name + user_email");
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		
+		HashMap<String, String> map = new HashMap();
+		
+		map.put("user_id", user_id);
+		map.put("user_email", user_email);
+		int result = 0;
+		result = dao.checkEmail(map);
+		
+		System.out.println(result+"결과 찍어보기  dao 에서 가져온 반환값 ");
 		return result;
 	}
 }

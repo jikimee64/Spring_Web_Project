@@ -10,7 +10,7 @@
                            http://www.springframework.org/schema/mvc 
                            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
                            http://www.springframework.org/schema/security
-							http://www.springframework.org/schema/security/spring-security.xsd">
+                     http://www.springframework.org/schema/security/spring-security.xsd">
 
 
 	<!-- Root 공통빈 DB관련 작업 (드라이버 로딩 , 템플릿 객체) view 작업 (공통 UI) (internalResourceViewResolver) 
@@ -69,8 +69,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath"
-			value="/WEB-INF/velocity/" />
+		<property name="resourceLoaderPath" value="WEB-INF/views/vm/" />
 		<property name="velocityProperties">
 			<value>
 				input.encoding=UTF-8
@@ -84,14 +83,8 @@
 
 	<bean id="velocityEngine"
 		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
-		<property name="velocityProperties">
-			<props>
-				<prop key="resource.loader">class</prop>
-				<prop key="class.resource.loader.class">
-					org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
-				</prop>
-			</props>
-		</property>
+		<property name="resourceLoaderPath"
+			value="/WEB-INF/views/vm/" />
 	</bean>
 
 	<bean id="mailer" class="kr.or.ns.util.Mailer">
@@ -118,4 +111,3 @@
 		</property>
 	</bean>
 </beans>
-

@@ -14,7 +14,7 @@
                            http://www.springframework.org/schema/task
                            http://www.springframework.org/schema/task/spring-task-3.0.xsd
                            http://www.springframework.org/schema/tx
- 						   http://www.springframework.org/schema/tx/spring-tx.xsd">
+                      http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<task:annotation-driven />
 	<tx:annotation-driven
@@ -75,13 +75,23 @@
 	<!-- 파일 다운로드할 클래스 경로 설정 -->
 	<!-- <bean id="download" class=""/> -->
 
-
 	<!-- 뷰리조버3 -->
+	<bean id="velocityViewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="cache" value="true" />
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".vm" />
+		<property name="order" value="3" />
+	</bean>
+
+
+	<!-- 뷰리조버4 -->
 	<bean id="internalResourceViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
-		<property name="order" value="3" />
+		<property name="order" value="4" />
 	</bean>
 
 	<!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동 -->
@@ -91,7 +101,10 @@
 		<!-- driverManagerDataSource는 루트컨테이너에 있는거 사용 그럼왜 트랜잭션을 루트에안만들었는가?? 적용할라고 
 			하는 빈객체가 servlet-context.xml에 있기 때문에 여기에 사용 -->
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
 	<!-- <bean id="naverLoginBO" class="경로설정필요" /> -->
 

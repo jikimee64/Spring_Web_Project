@@ -52,6 +52,8 @@ public class BoardServiceImpl implements BoardService {
 		return cnt;
 	}
 	
+	
+	
 	public int studyReg(Study study, HttpServletRequest request) {
 		
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
@@ -60,5 +62,6 @@ public class BoardServiceImpl implements BoardService {
 		return 0;
 	}
 
+	
 
 }

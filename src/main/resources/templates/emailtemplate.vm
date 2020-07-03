@@ -1,7 +1,0 @@
-Dear ${firstName} ${lastName}
- 
-Sending Email Using Spring Smtp Email + Velocity Template from ${location} location.
- 
-Thanks
-
-한글도 되는지 궁금해  ${eee}

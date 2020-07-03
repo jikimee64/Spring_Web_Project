@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ns.dao.LectureDao">
+
+	<!-- 총 게시글 수 -->
+	<select id="getLectureCount" resultType="Integer">
+		SELECT COUNT(*) FROM LECTURE_BOARD
+	</select>
+
+
+
+	<!-- 강의 리스트 -->
+	<select id="getLectureList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria">
+	   <![CDATA[
+			SELECT * FROM LECTURE_BOARD
+			ORDER BY L_SEQ DESC
+			LIMIT #{pageStart}, #{perPageNum}     
+		]]>
+
+	</select>
+
+
+	<!-- <delete id="deleteLecture"> DELETE NOTICES WHERE SEQ=#{seq} </delete> 
+		<update id="updateLecture" parameterType="vo.Lecture"> UPDATE NOTICES SET 
+		TITLE=#{title}, CONTENT=#{content}, FILESRC=#{fileSrc , jdbcType=VARCHAR} 
+		, FILESRC2=#{fileSrc2 , jdbcType=VARCHAR} WHERE SEQ=#{seq} </update> <select 
+		id="getLectureDetail" resultType="vo.Lecture"> SELECT seq,title,writer,content,regdate,hit,filesrc,filesrc2 
+		FROM NOTICES WHERE SEQ=#{seq} </select> <insert id="insertLecture" parameterType="vo.Lecture" 
+		> <selectKey order="BEFORE" keyProperty="seq" resultType="String"> SELECT 
+		MAX(TO_NUMBER(SEQ))+1 FROM NOTICES </selectKey> INSERT INTO NOTICES(SEQ, 
+		TITLE, CONTENT, WRITER, REGDATE, HIT, FILESRC , FILESRC2) VALUES(#{seq} , 
+		#{title}, #{content}, #{writer}, SYSDATE, 0, #{fileSrc},#{fileSrc2}) </insert> -->
+</mapper>
