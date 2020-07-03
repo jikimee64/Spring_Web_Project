@@ -52,14 +52,16 @@
 
 			</div>
 			<div class="col-md-6" style="text-align: right; right:18px;">
-				<button type="button" class="btn btn-danger" style="width:90px;">삭제</button>
+			<!--  삭제할 쪽지번호 넘겨주기 -->
+				 <button type="button" class="btn btn-danger" style="width:90px;">삭제</button>
 				&nbsp; &nbsp;
 				<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
 					<button type="button" class="btn btn-danger"
 						style="width:90px; background-color: tomato;">스팸신고</button>
 				</a>
 				&nbsp; &nbsp;
-				<a href="/mypage/mypage_Message_From_Send_Message.do">
+				<!--  보낸사람 넘겨주기? -->
+				<a th:href="@{/mypage/mypage_Message_From_Send_Message.do(senderid=${message.senderid})}">
 					<button type="button" class="btn btn-primary" style="width:90px;">답장</button>
 				</a>
 			</div>
@@ -85,7 +87,7 @@
 
 			</div>
 			<div class="col-md-10" style="align-self: center;">
-				<span> 하이하이</span>
+				<span th:text="${message.senderid}"></span>
 			</div>
 		</div>
 
@@ -100,7 +102,7 @@
 
 			</div>
 			<div class="col-md-10" style="align-self: center;">
-				<span> 20-05-20 [15:10]</span>
+				<span th:text="${message.senddate}"> 20-05-20 [15:10]</span>
 			</div>
 		</div>
 
@@ -112,19 +114,13 @@
 
 		<!-- 여기까지 더미데이터 끝 -->
 
-		<div class="row" style="margin: 20px 30px 0px 30px;position: relative; top:-90px;">
-			것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다
-			보이는 끝까지 찾아다녀도 목숨이것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은
-			사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고 희망의 놀이 뜨고 열락의 새가
-			운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이것은 청춘의 끓는 피다 청춘의 피가 뜨거운지라 인간의 동산에는 사랑의 풀이 돋고 이상의 꽃이 피고
-			희망의 놀이 뜨고 열락의 새가 운다사랑의 풀이 없으면 인간은 사막이다 오아이스도 없는 사막이다 보이는 끝까지 찾아다녀도 목숨이
+		<div th:text="${message.content}" class="row" style="margin: 20px 30px 0px 30px;position: relative; top:-90px;">
 		</div>
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
 	<div th:replace="/user/member/declation_Page_Modal :: declation_Page_Modal"> </div>
 	<div th:replace="/user/includes/footer :: footer"> </div>
-
 
 	<script>
 

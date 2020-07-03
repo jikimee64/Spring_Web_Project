@@ -14,7 +14,6 @@
 		where user_name = #{user_name} and user_email = #{user_email}
 	</select>
 	
-	
 	<!-- 새로운 임시 비밀번호 생성 -->
 	<update id="updatePw">
 		update users set user_pwd =#{user_pwd} 
@@ -24,5 +23,12 @@
 	<!-- 아이디 중복체크 -->
 	<select id="idcheck" resultType="int">
 		select count(*) from users where user_id = #{user_id}
+	</select>
+
+
+	<!-- 아이디와 이메일 받아서 이름 제공  -->
+	<select id="checkEmail" parameterType="hashMap" resultType="int">
+		select count(*) from users
+		where user_id = #{user_id} and user_email = #{user_email}
 	</select>
 </mapper>

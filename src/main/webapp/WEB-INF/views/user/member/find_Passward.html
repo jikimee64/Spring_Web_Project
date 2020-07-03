@@ -1,87 +1,97 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>find_pwd</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>find_pwd</title>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
-	
-	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <style>
-
 </style>
 
 
 
 <body>
-	<div th:replace="/user/includes/header :: header"> </div>
-	
-	<div id="app">
-	<div class="container" style="width:27%;margin-top: 25px;margin-bottom: 25px;">
-		<h3 style="text-align: center;"><b>비밀번호 찾기</b> </h3>
-		<hr />
-		<br />
-		<form action="" class="needs-validation" novalidate>
-			<div class="form-group">
-				<label for="username">ID</label>
-				<div class="row" style="place-content: center;">
-					<input type="text" v-model="userId" class="form-control" id="userId" placeholder="Enter user Id" name="userId"
-						style="width:95%;" required>
-				</div>
-			</div>
+	<div th:replace="/user/includes/header :: header"></div>
 
-			<div class="form-group">
-				<label for="userid">이메일주소</label>
-				<div class="row" style="place-content: center;">
-					<input type="text" v-model="userEmail" class="form-control" id="userEmail" placeholder="Enter user email" name="uEmail"
-						style="width:65%;" required>
-					&nbsp;
-					<button v-on:click="pwCheck" type="submit" class="btn btn-success" style="width:30%;font-size: small;" id="Authbtn">임시비밀번호 발급</button>
-					<div id="alert"></div>
+	<div id="app">
+		<div class="container"
+			style="width: 27%; margin-top: 25px; margin-bottom: 25px;">
+			<h3 style="text-align: center;">
+				<b>비밀번호 찾기</b>
+			</h3>
+			<hr />
+			<br />
+			<form action="" class="needs-validation" novalidate>
+				<div class="form-group">
+					<label for="username">ID</label>
+					<div class="row" style="place-content: center;">
+						<input type="text" v-model="userId" class="form-control"
+							id="userId" placeholder="Enter user Id" name="userId"
+							style="width: 95%;" required>
+					</div>
 				</div>
-			</div>
-		</form>
+
+				<div class="form-group">
+					<label for="userid">이메일주소</label>
+					<div class="row" style="place-content: center;">
+						<input type="text" v-model="userEmail" class="form-control"
+							id="userEmail" placeholder="Enter user email" name="uEmail"
+							style="width: 65%;" required> &nbsp;
+						<button v-on:click="pwCheck" type="submit" class="btn btn-success"
+							style="width: 30%; font-size: small;" id="Authbtn">임시비밀번호
+							발급</button>
+						<div id="alert"></div>
+					</div>
+				</div>
+			</form>
 
 
 			<br />
 
 			<div style="text-align: end;">
 				<a href="/member/login.do">
-				<button type="button" class="btn btn-warning" style="width:40%;height:55px;">로그인 하러가기</button>
+					<button type="button" class="btn btn-warning"
+						style="width: 40%; height: 55px;">로그인 하러가기</button>
 				</a>
 			</div>
 
-		<p></p>
+			<p></p>
 
 
-		<br />
-		<br />
+			<br /> <br />
 
 
 
+		</div>
 	</div>
-	</div>
-	<div th:replace="/user/includes/footer :: footer"> </div>
+	<div th:replace="/user/includes/footer :: footer"></div>
 
 	<script>
-	
 	new Vue({
         el: '#app',
         data: {
@@ -89,29 +99,46 @@
         	userEmail: ''
         },
         methods: {
-        	pwCheck(){
-        		if(this.userId !== '' && this.userEmail !== ''){ //userId이랑 userEmail  빈값이 아닐 때
-        		
-        			//$('#alert').css("display", "block");	
-        			alert(" 임시비밀번호를 발급했습니다");
-        		axios.post('/ajax/pwCheck.do', 
-        				{userId: this.userId, 
-        				userEmail: this.userEmail})
-        			.then(res => { 
-        				console.log(res.data) ;
-        				
-        			
-        			})
-        		}
-        	}
-        } //methods
-    })
-	
-	
-	/* $('#Authbtn').on('click', function(){
-		$('#alert').html('임시비밀번호를 발급했습니다 ')
-	}); */
-	
+		        	pwCheck(){
+				        		if(this.userId !== '' && this.userEmail !== ''){ //userId이랑 userEmail  빈값이 아닐 때
+				        		
+						        		axios.post('/ajax/pwCheck.do', 
+						        				{userId: this.userId, 
+						        				userEmail: this.userEmail})
+						        				
+						        			.then(res =>{  
+						        				console.log('11221 : ' + res)
+						        				console.log('22122 : ' + res.data)
+						        				if(res.data === 0){
+						        					alert(" 입력하신 아이디와 이메일을 다시한번 확인 해주세요  ");
+						        					console.log("키값이 0입니다.   ")
+						        					
+						        				}else{
+						        					alert(" 임시비밀번호를 발급했습니다 ---------------");
+						        					axios.post('/ajax/kwc.do', 
+						        	        				{userId: this.userId, 
+						        	        				userEmail: this.userEmail})
+						        	        				
+						        	        			.then(res =>{  
+						        	        				console.log('11221 : ' + res)
+						        	        				console.log('22122 : ' + res.data)
+						            						}).catch(error => {
+						            							console.log(error)
+						            							alert(error);
+						            						})
+						        				}
+				        						}).catch(error => {
+				        							console.log(error)
+				        							alert(error);
+				        						})
+				        	}else{
+				        					alert(" 아이디와 이메일을 입력바랍니다  ");
+				        	}
+		        } //pwCheck,
+		        
+		        	
+    }//methods  
+	})//Vues
 	</script>
 </body>
 
