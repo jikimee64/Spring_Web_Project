@@ -59,21 +59,22 @@ a:hover {
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
 
-	<c:if test="${param.error != null}">
-		<div>
-			로그인 실패<br>
-			<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-				<!-- 스프링에서 예외가 발생하면 자동으로 만들어지는 객체이다. 마지막 예외가 터지면 -->
-				<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-			</c:if>
-		</div>
-	</c:if>
+	<div th:if="${param.error!=null}">
+		로그인 실패 <br />
+		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
+			<!-- <c:if test="${SPRING_SECURITY_LAST_EXCEPTION !=null }"> -->
+			<span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
+			<!-- <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"></c:out> -->
+		</th:block>
+		<!-- </c:if> -->
+	</div>
 
 	<div class="container"
 		style="width: 27%; margin-top: 25px; margin-bottom: 25px;">
 		<h2 style="text-align: center;">LOGIN</h2>
 		<hr />
-		<form th:action="@{/login}" method="post" class="needs-validation" novalidate>
+		<form th:action="@{/login}" method="post" class="needs-validation"
+			novalidate>
 			<div class="form-group">
 				<label for="uname">ID</label> <input type="text"
 					class="form-control" id="user_id" placeholder="Enter userid"

@@ -11,6 +11,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 	crossorigin="anonymous"></script>
@@ -37,12 +38,14 @@
 			<br />
 
 			<div class="form-group">
-				<label for="profile_img"></label>
-				<div id="holder">
-					<img id="preview" src="/userboard/upload/" alt="썸네일"
-						style="margin-bottom: 15px;">
-				</div>
-				<input type="file" name="file">
+
+				<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
+					style="margin-bottom: 15px; width: 50px;"> <input type="file"
+					class="form-control" name="file" id="file"> <label
+					class="custom-file-label" for="inputGroupFile01"
+					style="text-align: left">Choose file</label>
+
+
 			</div>
 
 			<div class="form-group">
@@ -286,39 +289,13 @@
 		});
 	</script>
 
-	<!-- 썸네일 -->
-	<!-- <script>
-var upload = document.getElementsByTagName('input')[0],
-    holder = document.getElementById('holder');
- 
-upload.onchange = function (e) {
-    e.preventDefault();
-   
-    var file = upload.files[0],
-        reader = new FileReader();
-   
-   
-    reader.onload = function (event) {
-        var img = new Image();
-        img.src = event.target.result;
-        //if (img.width > 200 || img.height > 200) { // holder width
-          img.width = 200;
-          img.height = 200;
-        }
-        holder.innerHTML = '';
-        holder.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-   
-    return false;
-};
-</script> -->
+
 
 	<script>
 		//내용입력 이랑 입력 강제 
 		$(function() {
 			var toggle = false;
-			var pwCheck = false;
+			var user_pwd = false;
 			$('#joinform')
 					.submit(
 							function() {
@@ -339,22 +316,13 @@ upload.onchange = function (e) {
 									alert('이름을 입력해 주세요.');
 									$('#user_name').focus();
 									return false;
-								} else if ($('#email').val() == "") { // 나이 검사
+								} else if ($('#nickname').val() == "") { // 이메일 검사
+									alert('닉네임을 입력해 주세요.');
+									$('#nickname').focus();
+									return false;
+								} else if ($('#user_email').val() == "") { // 이메일 검사
 									alert('이메일을 입력해 주세요.');
-									$('#email').focus();
-									return false;
-
-								} else if (regFlag[0] === false
-										|| regFlag[1] === false
-										|| regFlag[2] === false
-										|| regFlag[3] === false) {
-									alert('정규표현식을 맞춰주세요.')
-									return false;
-								} else if (toggle === false) {
-									alert('아이디 중복체크를 해주세요.')
-									return false;
-								} else if (user_pwd === false) {
-									alert('입력하신 비밀번호가 일치하지 않습니다.')
+									$('#user_email').focus();
 									return false;
 								} else {
 									return true;
@@ -364,7 +332,7 @@ upload.onchange = function (e) {
 		});
 		</script>
 
-		<!-- <script>
+	<!-- <script>
 		//내용입력 이랑 입력 강제 
 		$(function() {
 			//유효성 검사
@@ -468,20 +436,19 @@ upload.onchange = function (e) {
 						$.ajax({
 							url : "/ajax/idcheck.do",
 							type : 'POST',
-							dataType : 'json',
 							data : {
 								id : $('#user_id').val()
 							},
 							success : function(data) {
 								//아이디 중복시 아이디 인풋값 제거
-
-								if ($('#id').val() === '') {
+								console.log(data);
+								if ($('#user_id').val() === '') {
 									$('.idcheck').html("아이디를 입력해주세요.")
 									toggle = false;
-								} else if (data.checkResult === 1) { //아이디 존재
+								} else if (data == 1) { //아이디 존재
 									$('.idcheck').html("아이디가 존재합니다.")
-									$('#id').val("");
-									$('#id').focus();
+									$('#user_id').val("");
+									$('#user_id').focus();
 									toggle = false;
 								} else {
 									$('.idcheck').html("사용하셔도 됩니다.")
@@ -498,15 +465,49 @@ upload.onchange = function (e) {
 					});
 		});
 	</script>
-	<script>
+	<!-- 	<script>
 		if(typeof file=='undefined'){
 			file = new File(["un"], "default",){
 				type:"text/plain",
 			});
 		}
-		if(addEmpVo.getFile().getOriginalFilename().equals("default")){
-			profile_img}
+		if(Users.getFile().getOriginalFilename().equals("default")){
+			profilePicturePath = "/userboard/upload/member.png";}
+		else	{
+			profilePicturePath = fileuploadService.restore(Users.getFile());
 		}
+				}
+		
+	</script> -->
+	<script>
+	$(function() {
+
+		// Add the following code if you want the name of the file appear on select
+		$(".custom-file-input").on(
+				"change",
+				function() {
+					var fileName = $(this).val().split("\\").pop();
+					$(this).siblings(".custom-file-label").addClass(
+							"selected").html(fileName);
+				});
+
+		//썸네일 시작
+		var file = document.querySelector('#file');
+
+		file.onchange = function() {
+			var fileList = file.files;
+
+			// 읽기
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+
+			//로드 한 후
+			reader.onload = function() {
+				document.querySelector('#preview').src = reader.result;
+			};
+		};
+		
+	});
 	</script>
 
 </body>

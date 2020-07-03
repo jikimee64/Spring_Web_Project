@@ -50,13 +50,13 @@ public class MemberController {
 	@RequestMapping(value = "join.do", method = RequestMethod.POST)
 	public String joininsert(@RequestParam(value = "file", required = false) MultipartFile ipload, Users users,
 			HttpServletRequest request) throws IOException {
+		
 
-		System.out.println("화나네 : " + ipload);
-		System.out.println(users + "유저스 널?");
-
+		
 		users.setUser_pwd(this.bCryptPasswordEncoder.encode(users.getUser_pwd()));
 
 		try {
+			System.out.println("여긴오니...?");
 			service.joininsert(users, request);
 
 		} catch (Exception e) {
@@ -73,12 +73,12 @@ public class MemberController {
 	@RequestMapping("find_Id.do")
 	public String findIdPage() {
 		System.out.println("아이디 찾기로 이동이동(연규가씀)");
-		return "/user/member/find_Id";
+		return "user/member/find_Id";
 	}
 
 	@RequestMapping("find_Passward.do")
 	public String findPasswardPage() {
 		System.out.println("비밀번호 찾기로 이동이동(연규가씀)");
-		return "/user/member/find_Passward";
+		return "user/member/find_Passward";
 	}
 }

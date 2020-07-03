@@ -43,7 +43,6 @@ public class BoardController {
 	@Autowired
 	private BoardServiceImpl service;
 	
-
 	//스터디목록 + 페이징
 	@RequestMapping("study_List.do")
 	public String studyListPage(Criteria cri, Model model) throws ClassNotFoundException, SQLException {

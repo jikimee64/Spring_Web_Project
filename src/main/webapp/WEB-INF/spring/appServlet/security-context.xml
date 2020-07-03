@@ -21,8 +21,13 @@
 		<security:logout logout-success-url="/user/main.do" />
 		
 		<!-- 비로그인 막는 페이지..   -->
+	<!-- 스터디 게시판 게시글 등록  -->
  	<security:intercept-url
 			pattern="/board/board_Select.do" access="hasRole('ROLE_USER')" />  
+	<!-- 마이페이지 -->
+	<security:intercept-url
+			pattern="/mypage/**.do" access="hasRole('ROLE_USER')" /> 
+			
 			<!-- 스터디모집하기 버튼  -->
 		<!-- <security:intercept-url
 			pattern="/board/*Detail.do" access="hasRole('ROLE_USER')" />
