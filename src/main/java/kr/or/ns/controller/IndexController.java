@@ -10,7 +10,7 @@ public class IndexController {
 	public String indexPage() {
 		System.out.println("대문이동");
 
-		return "user/index"; 
+		return "/user/index"; 
 	}
 	
 	

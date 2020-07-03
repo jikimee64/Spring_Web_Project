@@ -20,7 +20,7 @@ public class LectureController {
 	public String courseListPage() {
 		System.out.println("강좌페이지로 이동이동(연규가씀)");
 
-		return "user/board/course_List";
+		return "/user/board/course_List";
 	}
 	
 
