@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ns.dao.MessageDao">
+
+	<!-- public int getmsgcount(String userid); -->
+	<select id="getmsgcount" resultType="int">
+		select count(*) from message
+		where opendate is not null and receptionid = #{user_id}
+	</select>
+
+	<!-- public int insertMessage(Message message) -->
+	<insert id="insertMessage" parameterType="kr.or.ns.vo.Message">
+		insert into
+		message(receptionid, senderid, rs_code, content, opendate, senddate)
+		values(
+		#{receptionid},
+		#{senderid},
+		#{rs_code},
+		#{content},
+		now(),
+		now()
+		)
+	</insert>
+
+	<select id="getListMessage" parameterType="String"
+		resultType="kr.or.ns.vo.Message">
+		select * from message where receptionid = #{userid}
+	</select>
+
+	<select id="getMessage" parameterType="String"
+		resultType="kr.or.ns.vo.Message">
+		select * from message where m_seq = #{m_seq}
+	</select>
+
+	<select id="sendListMessage" parameterType="String"
+		resultType="kr.or.ns.vo.Message">
+		select * from message where senderid = #{userid}
+	</select>
+
+</mapper>

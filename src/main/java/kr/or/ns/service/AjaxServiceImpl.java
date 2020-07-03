@@ -129,7 +129,8 @@ public class AjaxServiceImpl implements AjaxService {
 	public int idcheck(String user_id) throws ClassNotFoundException {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		int result = dao.idcheck(user_id);	
-		System.out.println("result" + result);
+		System.out.println("result:" + result);
+		
 		return result;
 	}
 
