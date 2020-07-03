@@ -1,5 +1,8 @@
 package kr.or.ns.service;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,6 +29,12 @@ public class MyPageServiceImpl implements MyPageService {
 		return user;
 	}
 	
+	public List<HashMap<String, String>> getSkill(String userid){
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		List<HashMap<String, String>> list = dao.getSkill(userid);
+		System.out.println("우철 : " + list);
+ 		return list;
+	}
 	
 	//회원정보 수정
 	@Override

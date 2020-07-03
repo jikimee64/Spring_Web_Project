@@ -128,23 +128,26 @@ body {
 			<hr
 				style="border: solid 2px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 2px; width: 68%" />
 
-
 			<div class="row" style="font-size: x-large;">
 				<div class="col-md-2"></div>
 				<div class="col-md-2" style="text-align: center">
 					<span>Java</span>
 				</div>
+			<!-- 	<div class="col-md-2" style="text-align: center">
+				<label><input type="radio" name="java" value="입문"
+						th:if="${skill[0].skill_level == '입문'}" checked /></label>
+				</div> -->
 				<div class="col-md-2" style="text-align: center">
 					<label><input type="radio" name="java" value="입문"
-						th:checked="${isExist and (#strings.contains(member.java, java.toString()))}"/></label>
-				</div>
+						th:attr="checked=${skill[0].skill_level == '입문' ? 'true' : 'false'}" /></label>
+				</div> 
 				<div class="col-md-2" style="text-align: center">
 					<label><input type="radio" name="java" value="초급"
-						th:checked="${isExist and (#strings.contains(member.java, java.toString()))}" /></label>
+					th:attr="checked=${skill[0].skill_level == '초급' ? 'true' : 'false'}" /></label>
 				</div>
 				<div class="col-md-2" style="text-align: center">
 					<label><input type="radio" name="java" value="중급이상"
-						th:checked="${isExist and (#strings.contains(member.java, java.toString()))}" /></label>
+					th:attr="checked=${skill[0].skill_level == '중급이상' ? 'true' : 'false'}" /></label>
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 				<!-- 					</div> -->
@@ -160,15 +163,15 @@ body {
 				</div>
 				<div class="col-md-2" style="text-align: center">
 					<input type="radio" name="python" value="입문"
-						th:checked="${phthon eq '입문' ? 'checked' : ''}" />
+						th:attr="checked=${skill[1].skill_level == '입문' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
 					<input type="radio" name="python" value="초급"
-						th:checked="${phthon eq '초급' ? 'checked' : ''}" />
+						th:attr="checked=${skill[1].skill_level == '초급' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
 					<input type="radio" name="python" value="중급이상"
-						th:checked="${phthon eq '중급이상' ? 'checked' : ''}" />
+							th:attr="checked=${skill[1].skill_level == '중급이상' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
@@ -182,13 +185,16 @@ body {
 					<span>HTML/CSS</span>
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="html_css" checked="" />
+					<input type="radio" name="html_css" value="입문"
+						th:attr="checked=${skill[2].skill_level == '입문' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="html_css" />
+				<input type="radio" name="html_css" value="초급"
+						th:attr="checked=${skill[2].skill_level == '초급' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="html_css" />
+					<input type="radio" name="html_css" value="중급이상"
+						th:attr="checked=${skill[2].skill_level == '중급이상' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
@@ -202,13 +208,16 @@ body {
 					<span>JavaScript</span>
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="javascript" checked="" />
+					<input type="radio" name="javascript" value="입문"
+						th:attr="checked=${skill[3].skill_level == '입문' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="javascript" />
+					<input type="radio" name="javascript" value="초급"
+						th:attr="checked=${skill[3].skill_level == '초급' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="javascript" />
+					<input type="radio" name="javascript" value="중급이상"
+						th:attr="checked=${skill[3].skill_level == '중급이상' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
@@ -222,13 +231,16 @@ body {
 					<span>SQL</span>
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="sql" checked="" />
+					<input type="radio" name="sql" value="입문"
+						th:attr="checked=${skill[4].skill_level == '입문' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="sql" />
+					<input type="radio" name="sql" value="초급"
+						th:attr="checked=${skill[4].skill_level == '초급' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center">
-					<input type="radio" name="sql" />
+						<input type="radio" name="sql" value="중급이상"
+						th:attr="checked=${skill[4].skill_level == '중급이상' ? 'true' : 'false'}" />
 				</div>
 				<div class="col-md-2" style="text-align: center"></div>
 			</div>
