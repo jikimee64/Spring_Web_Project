@@ -97,7 +97,8 @@ public class MemberServiceImpl implements MemberService {
 
 		HashMap<String, Object> mo = new HashMap();
 		mo.put("insertlist", list);
-
+		
+		System.out.println( "실력리스트"+ list);
 		try {
 			result = dao.joininsert(users);
 			System.out.println("회원강비 결과 : "  +result);
