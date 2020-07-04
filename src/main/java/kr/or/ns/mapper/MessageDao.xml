@@ -36,5 +36,9 @@
 		resultType="kr.or.ns.vo.Message">
 		select * from message where senderid = #{userid}
 	</select>
+	
+	<delete id="deleteMessageOne">
+		delete from message where m_seq = #{m_seq}
+	</delete>
 
 </mapper>

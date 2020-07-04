@@ -108,21 +108,5 @@ public class AjaxRestController {
 				
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
 
 }
