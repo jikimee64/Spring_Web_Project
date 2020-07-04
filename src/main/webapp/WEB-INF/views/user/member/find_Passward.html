@@ -114,18 +114,19 @@
 						        					console.log("키값이 0입니다.   ")
 						        					
 						        				}else{
-						        					alert(" 임시비밀번호를 발급했습니다 ---------------");
-						        					axios.post('/ajax/kwc.do', 
-						        	        				{userId: this.userId, 
-						        	        				userEmail: this.userEmail})
-						        	        				
-						        	        			.then(res =>{  
-						        	        				console.log('11221 : ' + res)
-						        	        				console.log('22122 : ' + res.data)
-						            						}).catch(error => {
-						            							console.log(error)
-						            							alert(error);
-						            						})
+						        							alert(" 임시비밀번호를 발급했습니다.");
+									        					//여기서 콜백으로 비동기 부른다
+							        							axios.post('/ajax/makeNewPWD.do', 
+									        	        				{userId: this.userId, 
+									        	        				userEmail: this.userEmail})
+									        	        				
+									        	        			.then(res =>{  
+									        	        				console.log('11221 : ' + res)
+									        	        				console.log('22122 : ' + res.data)
+									            						}).catch(error => {
+									            							console.log(error)
+									            							alert(error);
+									            						})
 						        				}
 				        						}).catch(error => {
 				        							console.log(error)
