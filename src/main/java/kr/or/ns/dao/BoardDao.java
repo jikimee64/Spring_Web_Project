@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import kr.or.ns.vo.Criteria;
+import kr.or.ns.vo.Study;
 
 
 /*
@@ -23,6 +24,9 @@ public interface BoardDao {
 
 	//총 스터디게시글 수
 	public int getStudyBoardCount();
+
+	//스터디 글 상세보기
+	public Study getStudy(String s_seq);
 	
 
 

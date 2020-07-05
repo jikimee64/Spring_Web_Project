@@ -35,4 +35,7 @@ public interface BoardService {
 	
 	//스터디 모집 글 작성하기
 	public int studyReg(Study study, HttpServletRequest request);
+	
+	//스터디 글 상세보기
+	public Study getStudy(String s_seq);
 }

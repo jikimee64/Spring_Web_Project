@@ -22,5 +22,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
+	
+	<!-- 스터디 글 상세보기 -->
+	<select id="getStudy" resultType="kr.or.ns.vo.Study">
+		SELECT * 
+		FROM STUDY_BOARD 
+		WHERE S_SEQ=#{S_SEQ}
+	</select>
+	
+	
+	
 
 </mapper>
