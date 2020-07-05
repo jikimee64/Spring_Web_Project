@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import org.aspectj.weaver.tools.cache.AsynchronousFileCacheBacking.ClearCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -55,8 +54,8 @@ public class MyPageController {
 		model.addAttribute("skill", list);
 		return "user/mypage/mypage_User_Detail.html";
 	}
-	
-	//유저정보 수정페이지로 이동
+
+	// 유저정보 수정페이지로 이동
 	@RequestMapping(value = "MyPageUserEdit.do")
 	public String mypageUserEdit(Model model, Principal principal) {
 		Users user = service.getUsers(principal.getName());
@@ -66,9 +65,6 @@ public class MyPageController {
 		return "user/mypage/mypage_User_Edit.html";
 	}
 
-	
-	
-	
 	// 유저정보 수정하기
 	@RequestMapping(value = "MyPageUserEdit.do", method = RequestMethod.POST)
 	public String mypageUserEdit(@RequestParam(value = "file", required = false) MultipartFile ipload, Users user,
@@ -82,16 +78,16 @@ public class MyPageController {
 		service.MyPageUserEdit(user, request);
 
 		System.out.println("컨트롤러2");
-		return "user/mypage/mypage?seq="+user.getUser_id();
+		return "user/mypage/mypage?seq=" + user.getUser_id();
 
 	}
 
 	// 회원탈퇴
 	@RequestMapping(value = "userDelete.do", method = RequestMethod.GET)
 	public String userDelte(Principal principal, HttpServletRequest request, HttpServletResponse response) {
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		new SecurityContextLogoutHandler().logout(request,response,auth);
+		new SecurityContextLogoutHandler().logout(request, response, auth);
 		String users = principal.getName();
 		service.userDelete(users);
 		return "redirect:/index.do";
@@ -139,11 +135,10 @@ public class MyPageController {
 
 	@RequestMapping("mypage_Message_Send_Detail_Board.do")
 	public String mypageMessageSendDetailBoardPage(String m_seq, Model model) {
-		
+
 		Message message = mservice.getMessage(m_seq);
 		model.addAttribute("message", message);
-		
-		
+
 		System.out.println("보낸 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Message_Send_Detail_Board";
 	}
@@ -167,37 +162,34 @@ public class MyPageController {
 		return "user/mypage/mypage_Message_Send_Send_Message";
 	}
 
-	
-	//(받은편지함)상세페이지서 쪽지 삭제
-	@RequestMapping(value="deleteMessageOneFrom.do", method = RequestMethod.GET)
+	// (받은편지함)상세페이지서 쪽지 삭제
+	@RequestMapping(value = "deleteMessageOneFrom.do", method = RequestMethod.GET)
 	public String deleteMessageOne(String m_seq) {
-		
+
 		System.out.println("쪽지 번호 : " + m_seq);
-		
+
 		int result = mservice.deleteMessageOne(m_seq);
-		
+
 		return "redirect:mypage_Message_From_Board.do";
 	}
-	
-	//(보낸편지함)상세페이지서 쪽지 삭제
-		@RequestMapping(value="deleteMessageOneSend.do", method = RequestMethod.GET)
-		public String deleteMessageOneSend(String m_seq) {
-			
-			System.out.println("쪽지 번호 : " + m_seq);
-			
-			int result = mservice.deleteMessageOne(m_seq);
-			
-			return "redirect:mypage_Message_Send_Board.do";
-		}
-	
-	
-	
-	//쪽지 보내기
-	@RequestMapping(value="sendMessage.do", method = RequestMethod.POST)
-	public String sendMessage(@RequestParam(value="title", required=false) String title,
-							  @RequestParam(value="content", required=false) String content) {
-		
-		System.out.println("title : "  + title);
+
+	// (보낸편지함)상세페이지서 쪽지 삭제
+	@RequestMapping(value = "deleteMessageOneSend.do", method = RequestMethod.GET)
+	public String deleteMessageOneSend(String m_seq) {
+
+		System.out.println("쪽지 번호 : " + m_seq);
+
+		int result = mservice.deleteMessageOne(m_seq);
+
+		return "redirect:mypage_Message_Send_Board.do";
+	}
+
+	// 쪽지 보내기
+	@RequestMapping(value = "sendMessage.do", method = RequestMethod.POST)
+	public String sendMessage(@RequestParam(value = "title", required = false) String title,
+			@RequestParam(value = "content", required = false) String content) {
+
+		System.out.println("title : " + title);
 		System.out.println("content : " + content);
 
 		return "user/mypage/mypage_Message_Send_Send_Message";
