@@ -21,7 +21,7 @@ public interface MyPageDao {
 	public List<HashMap<String, String>> getSkill(String userid);
 
 	//회원탈퇴
-	public void userDelete(Users user);
+	public void userDelete(String userid);
 	
 
 }
