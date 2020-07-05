@@ -25,6 +25,9 @@
 	crossorigin="anonymous"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	 <!-- xeicon -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
 
 <!-- 스타일 -->
@@ -261,6 +264,8 @@ button:focus {
 
 	<form action="login.do" method="post" class="joinform" id="joinform"
 		enctype="multipart/form-data" novalidate>
+
+
 		<div class="container"
 			style="margin-top: 30px; margin-top: 25px; margin-bottom: 25px;">
 			&nbsp;&nbsp;
@@ -273,40 +278,29 @@ button:focus {
 
 
 
-			<div class="form-group">
-
-				<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
-					style="margin-bottom: 15px; width: 50px;"> 
-					<input type="file"
-					class="form-control" name="file" id="file"> <label
-					class="custom-file-label" for="inputGroupFile01"
-					style="text-align: left">Choose file</label>
-
-
-			</div>
-
-			<!-- <div class="value">
+			<div class="value">
 				<div class="row" style="place-content: center;">
-					<div class="col-2"> 
+					<div class="col-2">
 						<label class="label-input100" for="pwd" style="place-self:center">첨부파일</label>
-						
+						<!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
 					</div>
 
 					<div class="col-8">
+						<!-- <input type="file" class="form-control" name="file" id="file">  -->
 						<div class="custom-file mb-3">
-							<input type="file" class="custom-file-input" id="customFile" name="filename">
-							<label class="custom-file-label" for="customFile">Choose file</label>
+							<input type="file" class="custom-file-input" id="file" name="file">
+							<label class="custom-file-label" for="customFile" style="color: #aaaaaa;">이미지파일을 첨부해주세요</label>
  						 </div>
-						
-					</div>		
-
+					</div>
+					
 					<div class="col-2">
 						<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
 						style="margin-bottom: 15px; width: 50px;"> 
 					</div>
-
+						
 				</div>
-			</div> -->
+			</div>
+
 
 
 			&nbsp;&nbsp;
@@ -325,7 +319,7 @@ button:focus {
 					</div>
 
 					<div class="col-2">
-						<button class="login100-form-btn" id="IdCheck" style="border: 1.5px solid #18d26e;">중복체크</button>
+						<button class="login100-form-btn" id="IdCheck" style="border: 1px solid #18d26e;">중복체크</button>
 						<span class="idcheck hide"></span>
 					</div>
 				</div>
@@ -418,7 +412,7 @@ button:focus {
 			<div class="value">
 				<div class="row" style="place-content: center;">
 					<div class="col-2 _label_center">
-						<label class="label-input100" for="pwd" class="ml-5" style="align-self:center">이메일 주소</label>
+						<label class="label-input100" for="pwd" style="align-self:center">이메일 주소</label>
 					</div>	
 					
 					<div class="col-8">
@@ -435,13 +429,17 @@ button:focus {
 				&nbsp;&nbsp;
 
 				<br /> <br /> <br />
-
-				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col">
-						<b style="margin-left: 10px; font-size: larger;">내 실력 체크</b>
+				<hr>
+				&nbsp;
+					<div class="row" style="text-align: center;">
+						<div class="col-2"></div>
+							<div class="col-8">
+								<h3><b style="margin-left: 10px; font-size: larger;">내 실력 체크</b></h3>
+							</div>
+						<div class="col-2"></div>
+						&nbsp;&nbsp;
 					</div>
-				</div>
+					
 				<br />
 
 
@@ -562,27 +560,36 @@ button:focus {
 					</div>
 					<div class="col-md-2" style="text-align: center"></div>
 				</div>
-				<hr
-					style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
+				<hr style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
 
 
 				<br /> <br />
+				<hr>
+				&nbsp;&nbsp;
 
+				
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
-						<b style="font-size: larger;">저는 이런것도 할줄 알아요~</b>
+						
+						<b style="font-size: larger;">
+							<i class="xi-emoticon-cool-o" aria-hidden="true"></i>
+						저는 이런것도 할줄 알아요~</b>
 						<p></p>
-						<textarea name="introduce" id="introduce" rows="5" required></textarea>
+						<textarea class="textarea--style-6" name="introduce" id="introduce" rows="5" required></textarea>
+					
+						&nbsp;&nbsp;
 					</div>
+
+					&nbsp;&nbsp;
 					<div class="col-md-2"></div>
 				</div>
 
 				<br />
 				<div class="row" style="font-size: x-large; place-content: center;">
 					<div class="col-md-4">
-						<button type="submit" class="btn btn-primary" style="width: 80%;">
-							<h4>회원가입</h4>
+						<button type="submit" class="login100-form-btn" style="width: 80%;border: 1.5px solid #18d26e;">
+							<h4><i class="xi-border-color" aria-hidden="true"></i>&nbsp;<b>회원가입</b></h4>
 						</button>
 					</div>
 				</div>
