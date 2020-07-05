@@ -42,6 +42,7 @@
 		text-align: center;
 		align-self: center;
 		padding: 30px;
+		height: 93px;
 	}
 
 	._category_button {
@@ -75,38 +76,21 @@
 
 
 <body>
+	<div th:replace="/user/includes/header :: header"></div>
 	<!--포트폴리오 section 으로 감싸줘야 css가 입혀짐-->
 	<section id="portfolio" class="section-bg">
-		<!--	    참고한애들		
-		<ul id="portfolio-flters">
-						<li data-filter="*" >All</li>
-						<li data-filter=".filter-app">App</li>
-						<li data-filter=".filter-card">Card</li>
-						<li data-filter=".filter-web">Web</li>
-						<li data-filter="" >All</li>
-		</ul>
-		-->
-
-		<!--
-							<div class="col-lg-4 col-md-6 box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-								<div class="icon"><i class="ion-ios-paper-outline"></i></div>
-								<h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-								<p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-							</div>
-		-->
 
 		<!-- course란 강좌라는 뜻이에염~ -->
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
-		<div th:replace="/user/includes/header :: header"></div>
 		<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
 			<div class="row">
-				<div class="row" style="width: 100%; margin-bottom: 1px;">
+				<div class="row" style="width: 100%; margin-bottom: 1px; ">
 					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">난이도</span>
 					</div>
 					<div class="col-md-9 _category_button">
 						<ul id="portfolio-flters">
-
+							&nbsp;
 							<li data-filter=".filter-level">입문</li>
 							&nbsp;&nbsp;&nbsp;
 							<li data-filter=".filter-level">초급</li>
@@ -115,15 +99,13 @@
 						</ul>
 					</div>
 				</div>
-
 				<div class="row" style="width: 100%; margin-bottom: 1px;">
 					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">가격</span>
 					</div>
-
 					<div class="col-md-9 _category_button">
 						<ul id="portfolio-flters">
-
+							&nbsp;
 							<li data-filter=".filter-price">무료</li>
 							&nbsp;
 							<li data-filter=".filter-price">3만원 이하</li>
@@ -137,17 +119,15 @@
 					</div>
 				</div>
 
-
 				<div class="row" style="width: 100%; margin-bottom: 1px;">
 					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<div>
-							<span class="title _category_list">언어</span>
+							<span class="title _category_list  " >언어</span>
 						</div>
 					</div>
-
 					<div class="col-md-9 _category_button">
-
 						<ul id="portfolio-flters">
+							&nbsp;
 							<li data-filter=".filter-lan">JAVA</li>
 							&nbsp;
 							<li data-filter=".filter-lan">Javascript</li>
@@ -172,7 +152,6 @@
 							&nbsp;
 							<li data-filter=".filter-lan">JPA</li>
 						</ul>
-
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin-bottom: 1px;">
@@ -181,7 +160,7 @@
 					</div>
 					<div class="col-md-9 _category_button">
 						<ul id="portfolio-flters">
-
+							&nbsp;
 							<li data-filter=".filter-site">인프런</li>
 							&nbsp;
 							<li data-filter=".filter-site">구름EDU</li>
@@ -190,9 +169,7 @@
 						</ul>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
 	</section>
 
