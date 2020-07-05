@@ -36,8 +36,8 @@
 	<!-- 회원정보 수정 끝 -->
 	
 	<!-- 회원탈퇴 -->
-	<!-- <delete id="userDelete">
+	<delete id="userDelete">
 	delete from users
 	where user_id = #{user_id}
-	</delete> -->
+	</delete>
 	</mapper>

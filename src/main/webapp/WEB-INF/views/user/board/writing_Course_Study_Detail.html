@@ -59,6 +59,8 @@
 	<hr style="border-color: rgb(224, 224, 224); width:95%">
 
 
+
+	<!-- 타임리프 -->
 	<div class="container" style="margin-bottom: 25px;">
 		<div class="row">
 			<div class="col-md-9">
@@ -67,7 +69,7 @@
 						<div class="col-md-9">
 							<br />
 
-							<h2>Node.js스터디원 모집합니다!!!</h2>
+							<h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2>
 
 						</div>
 
@@ -76,14 +78,14 @@
 								<div class="form-group" style="margin:0">
 									<div class="custom-file mb-3">
 										<input type="file" class="custom-file-input" id="customFile" name="filename">
-										<label class="custom-file-label" for="customFile">이건다운로드</label>
+										<label class="custom-file-label" for="customFile" th:text="${study.FILESRC}">이건다운로드</label>
 									</div>
 								</div>
 
 								<div class="form-group" style="margin:0">
 									<div class="custom-file mb-3">
 										<input type="file" class="custom-file-input" id="customFile" name="filename">
-										<label class="custom-file-label" for="customFile">로 바꿔야됨</label>
+										<label class="custom-file-label" for="customFile" th:text="${study.FILESRC2}">로 바꿔야됨</label>
 									</div>
 								</div>
 							</div>
@@ -91,8 +93,8 @@
 					</div>
 					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
 					<textarea name="" id="" cols="30" rows="10" class="form-control _textarea_readonly"
-						placeholder="글 내용을 입력해주세요" readonly>
-와우~ 안녕 친구들~ 빡빡이 아저씨야~
+						placeholder="글 내용을 입력해주세요" readonly th:text="${study.CONTENT}">
+
 					</textarea>
 					<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
 						나중에 썸머노트로 바꿔야할듯 -->
