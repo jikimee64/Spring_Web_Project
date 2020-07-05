@@ -61,7 +61,7 @@ public class AjaxRestController {
 		
 	}
 	
-	//임시비밀번호 만들기 
+	//임시비밀번호를 만들기 전에 이메일과 아이디값 확인하는 함수 
 	@RequestMapping(value = "pwCheck.do", method=RequestMethod.POST)
 	public int pwCheck(@RequestBody HashMap<String, Object> params) {
 		System.out.println("----------------------------------------------------------컨트롤러-시작-------");
@@ -88,9 +88,9 @@ public class AjaxRestController {
 		
 	}
 
-	//크크크
-		@RequestMapping(value = "kwc.do", method=RequestMethod.POST)
-		public void pwCheck22(@RequestBody HashMap<String, Object> params) {
+	//임시비밀번호 발급 하는 함수
+		@RequestMapping(value = "makeNewPWD.do", method=RequestMethod.POST)
+		public void makeNewPWD(@RequestBody HashMap<String, Object> params) {
 			System.out.println("----------------------------------------------------------컨트롤러-시작-------");
 			String userid = (String) params.get("userId");
 			String useremail = (String) params.get("userEmail");
@@ -107,22 +107,6 @@ public class AjaxRestController {
 		return userid;
 				
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
 	
 
 }

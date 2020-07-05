@@ -12,5 +12,6 @@ public interface MessageService {
 	public List<Message> getListMessage(String userid);
 	public Message getMessage(String m_seq);
 	public List<Message> sendListMessage(String userid);
+	public int deleteMessageOne(String m_seq);
 	
 }
