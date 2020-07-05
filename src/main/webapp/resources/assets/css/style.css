@@ -929,14 +929,14 @@ section {
 
 #portfolio #portfolio-flters {
   padding: 0;
-  margin: 5px 0 35px 0;
+  margin: 5px 0 0 0;
   list-style: none;
-  text-align: center;
+  text-align: left;
 }
 
 #portfolio #portfolio-flters li {
   cursor: pointer;
-  margin: 15px 15px 15px 0;
+  margin:  0;
   display: inline-block;
   padding: 10px 20px;
   font-size: 12px;
@@ -1665,4 +1665,8 @@ section {
   display: inline-block;
   position:absolute;
   text-align:center;
+}
+=======
+._category_list{
+  font-size: x-large;
 }
