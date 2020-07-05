@@ -273,13 +273,13 @@
 					</div>
 
 					<div class="row" style="margin-top: 30px;">
-						<a href="/board/writing_Course_Study_Detail.do">
+						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}">
 							<h2 th:text="${list.TITLE}">스터디 같이 하실분 모집합니다</h2>
 						</a>
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 
 					</div>
-					<div class="row" style="margin: 10px 5px 0px 2px;">고행을 하였으며
+					<div class="row" style="margin: 10px 5px 0px 2px;" th:text="${list.CONTENT}">고행을 하였으며
 						예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서
 						미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을</div>
 				</div>
@@ -355,7 +355,7 @@
 	<!-- 페이징 버튼 끝 -->
 
 
-	<div th:replace="user/user_Info_Modal :: user_Info_Modal"></div>
+	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div>
 	<div th:replace="user/includes/footer :: footer"></div>
 
 </body>

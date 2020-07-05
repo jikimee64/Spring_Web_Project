@@ -37,13 +37,14 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	
+	
+	
 	//총 스터디게시글 수
 	public int getStudyBoardCount() throws ClassNotFoundException, SQLException {
 		System.out.println("serviceImpl오냐");
 		
 		//여기까지는 오네
-		
-		
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		System.out.println("매퍼갔다오냐");
 		
@@ -55,11 +56,19 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	public int studyReg(Study study, HttpServletRequest request) {
-		
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		
-		
 		return 0;
+	}
+
+	
+	
+	
+	//스터디 글 상세보기
+	public Study getStudy(String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		Study study = dao.getStudy(s_seq);
+		
+		return study;
 	}
 
 	

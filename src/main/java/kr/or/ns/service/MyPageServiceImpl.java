@@ -133,9 +133,10 @@ public class MyPageServiceImpl implements MyPageService {
 
 	// 회원 탈퇴
 	@Override
-	public void userDelete(Users user, Principal principal) {
+	public void userDelete(String user) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		dao.userDelete(user);
+		System.out.println("탈퇴오는거겠지");
 	}
 
 }
