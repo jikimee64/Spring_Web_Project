@@ -1,59 +1,421 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LOGIN</title>
-<link href="login.css" type="text/css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>LOGIN</title>
+	<link href="login.css" type="text/css" rel="stylesheet" />
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<!-- 폰트어썸 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
+	<!-- xeicon -->
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
 
 <style>
-a:link {
-	color: red;
-	text-decoration: none;
+	a:link {
+		color: red;
+		text-decoration: none;
+	}
+
+	a:visited {
+		color: black;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: darkgoldenrod;
+		text-decoration: underline;
+	}
+
+	._find {
+		color: #d8a80a;
+	}
+
+	._other_login:hover {
+		background-color: #E2E6EA;
+	}
+
+	._other_login {
+		background-color: white;
+	}
+
+	/*//////////////////////////////////////////////////////////////////
+[ login ]*/
+
+	.limiter {
+		width: 100%;
+		margin: 0 auto;
+	}
+
+	.container-login100 {
+		width: 100%;
+		min-height: 100vh;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+		padding: 15px;
+		background: white;
+
+		position: relative;
+		z-index: 1;
+	}
+
+	.container-login100::before {
+		content: "";
+		display: block;
+		position: absolute;
+		z-index: -1;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-image: url('../images/img-01.png');
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+
+	.wrap-login100 {
+		width: 450px;
+		background: #fff;
+		border-radius: 3px;
+		overflow: hidden;
+	}
+
+
+/*---------------------------------------------*/
+.wrap-input100 {
+  position: relative;
+  width: 100%;
+  z-index: 1;
 }
 
-a:visited {
-	color: black;
-	text-decoration: none;
+/* .input100 {
+  font-family: Raleway-SemiBold;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #686868;
+
+  display: block;
+  width: 100%;
+  background: #f0f0f0;
+  height: 62px;
+  border-radius: 3px;
+  padding: 0 10px 0 10px;
+
+  border-style: hidden;
+} */
+/*------------------------------------------------------------------
+[ Focus ]*/
+/* *:focus{
+	outline: none;
+} */
+
+*:focus{
+border : solid 1px #18d26e;
+
 }
 
-a:hover {
-	color: darkgoldenrod;
-	text-decoration: underline;
+.focus-input100 {
+  display: block;
+  position: absolute;
+  border-radius: 3px;
+  border-style: hidden;
+  bottom: 0;
+  outline: none;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 0px 0px 0px;
+  color: #18d26e;
 }
 
-._find {
-	color: #d8a80a;
+.input100:focus + .focus-input100 {
+  -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
+  animation: anim-shadow 0.5s ease-in-out forwards;
+}
+.input100:focus{
+	outline: none !important;
+    border:1.5px solid #18d26e;
+    /* box-shadow: 0 0 10px #719ECE; */
+}
+@-webkit-keyframes anim-shadow {
+  to {
+    box-shadow: 0px 0px 60px 20px;
+    opacity: 0;
+  }
 }
 
-._other_login:hover {
-	background-color: #E2E6EA;
+@keyframes anim-shadow {
+  to {
+    box-shadow: 0px 0px 60px 20px;
+    opacity: 0;
+  }
 }
 
-._other_login {
-	background-color: white;
+.symbol-input100 {
+  font-size: 24px;
+  color: #999999;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  border-radius: 25px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-left: 23px;
+  padding-bottom: 5px;
+  pointer-events: none;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
 }
+
+.input100:focus + .focus-input100 + .symbol-input100 {
+  color: #d33f8d;
+  padding-left: 18px;
+}
+
+input:focus {
+	outline:none;
+}
+
+/*------------------------------------------------------------------
+[ Button ]*/
+.container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.login100-form-btn {
+  font-family: Raleway-Bold;
+  font-size: 16px;
+  line-height: 1.5;
+  color:#18d26e;
+  text-transform: uppercase;
+  width: 100%;
+  height: 62px;
+  border-radius: 3px;
+  outline: 0px;
+  background: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+  border-style: hidden;
+  color:
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background: #18d26e;
+  color:white;
+}
+
+button:focus {
+  outline: none;
+}
+
+
+
+
+
+
+.input--style-6,
+.textarea--style-6 {
+  font-family: Raleway-SemiBold;
+  font-size: 18px;
+  background: #f0f0f0;
+  /* background: transparent; */
+  line-height: 1.2;
+  display: block;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #cccccc;
+  /* border-style: hidden; */
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #666;
+  font-size: 15px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  padding: 0 15px;
+}
+
+.input--style-6::-webkit-input-placeholder,
+.textarea--style-6::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #999;
+}
+
+.input--style-6:-moz-placeholder,
+.textarea--style-6:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  opacity: 1;
+}
+
+.input--style-6::-moz-placeholder,
+.textarea--style-6::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  opacity: 1;
+}
+
+.input--style-6:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #999;
+}
+
+.input--style-6:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #999;
+}
+
+.input--style-6:focus,
+.textarea--style-6:focus {
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+/*------------------------------------------------------------------
+[ Button sign in with ]*/
+.btn-face,
+.btn-naver,
+.btn-kakao {
+  font-family: Raleway-Bold;
+  font-size: 16px;
+  line-height: 1.2;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc((100% - 10px) / 2);
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid #e6e6e6;
+  background-color: #fff;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+
+.btn-face {
+  color: #3b5998;
+}
+
+.btn-face i {
+  font-size: 20px;
+  margin-right: 10px;
+  padding-bottom: 1px;
+}
+
+.btn-naver {
+  color: #1CB863;
+}
+
+.btn-kakao {
+  color: #FFC71C;
+}
+
+.btn-google img {
+  width: 19px;
+  margin-right: 10px;
+  padding-bottom: 1px;
+}
+
+
+.btn-face:hover {
+  background: #3b5998;
+  color:white;
+}
+
+.btn-naver:hover {
+  background: #1CB863;
+  color:white;
+}
+
+.btn-kakao:hover {
+  background: #FFC71C;
+  color:white;
+}
+
+/* 아이콘 */
+.fa-a:before {
+    font-family: Arial; /* your font family here! */
+    font-weight: bold;
+    content: 'A';
+}
+
+._find{
+	color: #c5c5c5;
+}
+
+
+*:focus{
+border : solid 1px #18d26e;
+}
+
 </style>
 
 <body>
@@ -69,104 +431,113 @@ a:hover {
 		<!-- </c:if> -->
 	</div>
 
-	<div class="container"
-		style="width: 27%; margin-top: 25px; margin-bottom: 25px;">
-		<h2 style="text-align: center;">LOGIN</h2>
-		<hr />
-		<form th:action="@{/login}" method="post" class="needs-validation"
-			novalidate>
-			<div class="form-group">
-				<label for="uname">ID</label> <input type="text"
-					class="form-control" id="user_id" placeholder="Enter userid"
-					name="user_id" required>
-				<div class="valid-feedback">Valid.</div>
-				<div class="invalid-feedback">Please fill out this field.</div>
+	<div class="limiter">
+		<div class="container-login100">
+			
+			<!-- 로그인 작업시작 -->
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+				<h2 style="text-align: center;"><b>LOGIN</b></h2>
+				<hr />
+				<form th:action="@{/login}" method="post" class="needs-validation" novalidate>
+					<div class="form-group">
+						<label for="uname"><b>ID</b></label> 
+						<input class="input--style-6" type="text" id="user_id"
+							placeholder="Enter userid" name="user_id" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>
+					<div class="form-group">
+						<label for="pwd"><b>Password</b></label> 
+						<input class="input--style-6" type="password" id="user_pwd"
+							placeholder="Enter password" name="user_pwd" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>
+					<!-- <div class="form-group form-check">
+					<label class="form-check-label"> <input
+						class="form-check-input" type="checkbox" name="remember" required>
+						I agree on blabla.
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Check this checkbox to
+							continue.</div>
+					</label>
+				</div> -->
+					<button type="submit" class="login100-form-btn" style="border: 1.5px solid #18d26e;" ><b>Login</b></button>
+				</form>
+
+				<p></p>
+
+				<div style="text-align: end; font-size: small;">
+					<a href="/member/find_Id.do"> <span class="_find">아이디 찾기</span>
+					</a> &nbsp;&nbsp;<b style="color: #c5c5c5;">|</b>&nbsp;&nbsp; <a href="/member/find_Passward.do"> <span class="_find">비밀번호 찾기</span>
+					</a>
+				</div>
+
+				<br /> <br />
+
+				<div style="margin-bottom: 5px;">
+
+					<button type="button" class="btn-face btn-light _other_login"
+						style="border: 1.5px solid #395795; width: 97%;">
+						<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
+						<i class="fa fa-facebook-square" aria-hidden="true"></i>
+						<span>페이스북 계정으로 로그인 하기</span>
+					</button>
+				</div>
+
+
+				<div style="margin-bottom: 5px;">
+					<button type="button" class="btn-naver btn-light _other_login"
+						style="border: 1.5px solid #1CB863; width: 97%;">
+						
+						
+						<i class="xi-naver-square xi-x" aria-hidden="true"></i>&nbsp;
+						<span>네이버 계정으로 로그인 하기</span>
+					</button>
+				</div>
+
+
+				<div style="margin-bottom: 5px;">
+					<button type="button" class="btn-kakao btn-light _other_login" style="border: 1.5px solid #FFC71C; width: 97%;">
+
+						
+							<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
+							<i class="xi-kakaotalk xi-x" aria-hidden="true"></i>&nbsp;
+							
+						
+						<span>카카오톡 계정으로 로그인 하기</span>
+					</button>
+				</div>
+
 			</div>
-			<div class="form-group">
-				<label for="pwd">Password</label> <input type="password"
-					class="form-control" id="user_pwd" placeholder="Enter password"
-					name="user_pwd" required>
-				<div class="valid-feedback">Valid.</div>
-				<div class="invalid-feedback">Please fill out this field.</div>
-			</div>
-			<!-- <div class="form-group form-check">
-				<label class="form-check-label"> <input
-					class="form-check-input" type="checkbox" name="remember" required>
-					I agree on blabla.
-					<div class="valid-feedback">Valid.</div>
-					<div class="invalid-feedback">Check this checkbox to
-						continue.</div>
-				</label>
-			</div> -->
-			<button type="submit" class="btn btn-warning"
-				style="width: 100%; height: 45px;">Login</button>
-		</form>
-
-		<p></p>
-
-		<div style="text-align: end; font-size: small;">
-			<a href="/member/find_Id.do"> <span class="_find">아이디 찾기</span>
-			</a> &nbsp;&nbsp;&nbsp; <a href="/member/find_Passward.do"> <span
-				class="_find">비밀번호 찾기</span>
-			</a>
-		</div>
-
-		<br /> <br />
-
-		<div style="margin-bottom: 5px;">
-
-			<button type="button" class="btn btn-light _other_login"
-				style="border: 2px solid #395795; width: 97%;">
-				<img src="/resources/images/img/facebook.png" alt=""
-					style="height: 25px; float: left;"> <span>페이스북 계정으로
-					로그인 하기</span>
-			</button>
-		</div>
-
-		<div style="margin-bottom: 5px;">
-			<button type="button" class="btn btn-light _other_login"
-				style="border: 2px solid #1CB863; width: 97%;">
-				<img src="/resources/images/img/naver.png" alt=""
-					style="height: 25px; float: left;"> <span>네이버 계정으로
-					로그인하기</span>
-			</button>
-
-		</div>
-		<div style="margin-bottom: 5px;">
-			<button type="button" class="btn btn-light _other_login"
-				style="border: 2px solid #FFC71C; width: 97%;">
-				<img src="/resources/images/img/kakao.png" alt=""
-					style="height: 25px; float: left;"> <span>카카오톡 계정으로
-					로그인하기</span>
-			</button>
 
 		</div>
 
 	</div>
 
+
 	<script>
-			// Disable form submissions if there are invalid fields
-			(function () {
-				'use strict';
-				window.addEventListener('load', function () {
-					// Get the forms we want to add validation styles to
-					var forms = document.getElementsByClassName('needs-validation');
-					// Loop over them and prevent submission
-					var validation = Array.prototype.filter.call(forms, function (form) {
-						form.addEventListener('submit', function (event) {
-							if (form.checkValidity() === false) {
-								event.preventDefault();
-								event.stopPropagation();
-							}
-							form.classList.add('was-validated');
-						}, false);
-					});
-				}, false);
-			})();
-		</script>
+		// Disable form submissions if there are invalid fields
+		(function () {
+			'use strict';
+			window.addEventListener('load', function () {
+				// Get the forms we want to add validation styles to
+				var forms = document.getElementsByClassName('needs-validation');
+				// Loop over them and prevent submission
+				var validation = Array.prototype.filter.call(forms, function (form) {
+					form.addEventListener('submit', function (event) {
+						if (form.checkValidity() === false) {
+							event.preventDefault();
+							event.stopPropagation();
+						}
+						form.classList.add('was-validated');
+					}, false);
+				});
+			}, false);
+		})();
+	</script>
 
 	<div th:replace="/user/includes/footer :: footer"></div>
 </body>
 
 </html>
-

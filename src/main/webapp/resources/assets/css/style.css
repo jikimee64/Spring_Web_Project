@@ -180,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   color: #fff;
   transition: 0.3s;
-  font-size: 12px;
+  font-size: 17px;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   font-weight: 600;
@@ -929,14 +929,14 @@ section {
 
 #portfolio #portfolio-flters {
   padding: 0;
-  margin: 5px 0 35px 0;
+  margin: 5px 0 0 0;
   list-style: none;
-  text-align: center;
+  text-align: left;
 }
 
 #portfolio #portfolio-flters li {
   cursor: pointer;
-  margin: 15px 15px 15px 0;
+  margin:  0;
   display: inline-block;
   padding: 10px 20px;
   font-size: 12px;
@@ -1653,4 +1653,7 @@ section {
   text-align: center;
   font-size: 13px;
   color: #ddd;
+}
+._category_list{
+  font-size: x-large;
 }

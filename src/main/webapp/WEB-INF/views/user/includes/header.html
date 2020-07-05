@@ -1,156 +1,44 @@
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-<style>
-li {
-	list-style-type: none;
-}
-</style>
-</head>
+<div th:fragment="header2">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top header-transparent">
+        <div class="container-fluid">
 
-<!-- 헤더 -->
-<div th:fragment="header">
-	<header>
-		<nav class="navbar navbar-expand-sm navbar-light"
-			style="background-color: rgba(18, 214, 103, 0.79);">
-			<!-- Brand -->
-			<div class="col-md-3"></div>
-			<div class="col-md-6" style="text-align: center;">
-				<a class="navbar-brand" href="/user/main.do">
-					<h1 style="font-family: inherit; font-size: xxx-large; margin: 0;">
-						<img src="/resources/images/img/logo.png" style="height: 100px;" alt=""> Road
-						Coding
-					</h1>
-				</a>
-			</div>
+            <div class="row justify-content-center">
+                <div class="col-xl-9 d-flex align-items-center">
+                    <h1 class="logo mr-auto"><a href="main.do">WeStudy</a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
 
-			<th:block sec:authorize="!hasRole('ROLE_USER')">
-				<div class="col-md-1">
-					<a href="/member/login.do" id="" class="btn btn-warning"
-						role="button" style="float: right;">LOGIN</a>
-				</div>
-			</th:block>
+                    <nav class="nav-menu d-none d-lg-block">
+                        <ul>
+                            <li class="active"><a href="main.do">Home</a></li>
+                            <li><a href="/board/course_List.do">온라인 강의</a></li>
+                            <li><a href="/board/study_List.do">스터디 모임</a></li>
+                            <li style="color:white; font-size: 30px; padding:0px; padding-left:20px; margin-top:5px;">|</li>
+                            <li><a href="/member/login.do">로그인</a></li>
+                              <li class="drop-down" style="padding-left:0px;"><a href=""></a>
+                                <ul>
+                                    <li><a href="#">마이페이지</a></li>
+                                    <li><a href="#">내가 쓴 게시글</a></li>
+                                    <li><a href="#">쪽지함</a></li>
+                                    <li><a href="#">로그아웃</a></li>
+                                </ul>
+                            </li>
+                              <li><a href="/member/join.do">회원가입</a></li>
+                          
 
+                        </ul>
+                    </nav><!-- .nav-menu -->
+                </div>
+            </div>
 
-			<th:block sec:authorize="!hasRole('ROLE_USER')">
-				<div class="col-md-1">
-					<a href="/member/join.do" id="" class="btn btn-danger"
-						role="button" style="float: right;">JOIN</a>
-				</div>
-			</th:block>
+        </div>
+    </header><!-- End Header -->
 
+  
 
-			<th:block sec:authorize="hasRole('ROLE_USER')">
-				<div class="col-md-1">
-					<ul class="navbar-nav" style="place-content: center;">
-						<!-- Dropdown -->
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbardrop"
-							data-toggle="dropdown"> <img
-								src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU"
-								alt="" style="height: 50px; border-radius: 50%;">
-						</a>
-							<div class="dropdown-menu" style="transform: translateX(-55px);">
-								<a class="dropdown-item" href="/mypage/mypage.do">마이페이지</a> <a
-									class="dropdown-item" href="/mypage/mypage_Myboard.do">내가 쓴
-									게시글</a> <a class="dropdown-item"
-									href="/mypage/mypage_Message_From_Board.do">쪽지함</a> <a
-									class="dropdown-item" th:href="@{/logout}">로그아웃</a>
-							</div></li>
-					</ul>
-				</div>
-			</th:block>
-			
-			<th:block sec:authorize="hasRole('ROLE_USER')">
-
-				 <span sec:authentication="principal.username"></span>님 반가워요!
-			</th:block>
-
-			<th:block sec:authorize="hasRole('ROLE_USER')">
-				<div id="alertArea"></div>
-			</th:block>
-
-		</nav>
-
-
-		<nav class="navbar navbar-expand-sm bg-light navbar-light"
-			style="border-top: solid 5px #E5E5E5; border-bottom: solid 1px #E5E5E5;">
-			<!-- Brand -->
-			<div class="col-md-2"></div>
-
-			<div class="col-md-8">
-				<ul class="navbar-nav" style="place-content: center;">
-					<li class="nav-item"><a class="nav-link" href="/user/main.do">
-							<h5>HOME</h5>
-					</a></li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<li class="nav-item"><a class="nav-link"
-						href="/board/course_List.do">
-							<h5>
-								<b>온라인 강의</b>
-							</h5>
-					</a></li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<li class="nav-item"><a class="nav-link"
-						href="/board/study_List.do">
-							<h5>
-								<b>스터디 모임</b>
-							</h5>
-					</a></li>
-				</ul>
-			</div>
-			<div class="col-md-2"></div>
-		</nav>
-	</header>
-	
-	
-	<script type="text/javascript">
-		$(document).ready(function() {
-			connect();
-		})
-		
-		var wsocket;
-		
-		function connect() {
-			wsocket = new WebSocket(
-					"ws://192.168.0.2:8001/messageSocket.do");
-			wsocket.onopen = onOpen; 
-			//서버와 클라이언트의 정상 연결 후 데이터 송수신이 가능할 시 호출
-			wsocket.onmessage = onMessage;
-			//서버에서 메시지를 받을 때 호출
-			wsocket.onclose = onClose;
-			//서버와 연결이 종료되었을 때 호출
-		}
-		function disconnect() {
-			wsocket.close();
-		}
-		
-		function onOpen(evt) {
-			console.log("여긴오냐222")
-			send();
-		}
-		
-		function onMessage(evt) {
-			console.log(evt);
-			//evt.data에 서버가 보낸 데이터가 들어가 있음
-			var data = evt.data;
-			appendMessage(data);
-		}
-		
-		function onClose(evt) {
-		}
-		
-		function send() {
-			console.log("여긴오냐")
-			wsocket.send("login");
-		}
-	
-		function appendMessage(msg) {
-			$("#alertArea").empty();
-			$("#alertArea").append(msg.substring(0,8) +"<a href='${pageContext.request.contextPath}/messageView.do'>"+ msg.substring(9,11) +"</a>");
-		}
-		
-	</script>
-
+    
 
 </div>
