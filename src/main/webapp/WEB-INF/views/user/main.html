@@ -3,102 +3,155 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	
-	<title>main</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <title>main</title>
+   <link href="../../../resources/assets/img/favicon.png" rel="icon">
+   <link href="../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+   <link href="../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="../../../resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+   <link href="../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+   <link href="../../../resources/assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+   <link href="../../../resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+   <link href="../../../resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
+   <link href="../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+   <link href="../../../resources/assets/vendor/aos/aos.css" rel="stylesheet">
 
-   	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+   <!-- Template Main CSS File -->
+   <link href="../../../resources/assets/css/style.css" rel="stylesheet">
 
-		._align_center {
-			text-align: center;
-		}
+   <style>
+      @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
-		.keywords .keyword_item {
-			position: absolute;
-			width: 119px;
-			height: 119px;
-			text-align: center;
-			border: 1px solid #eee;
-			z-index: 1;
-		}
+      ._align_center {
+         text-align: center;
+      }
 
-		.keywords .keyword_item .keyword_item_txt {
-			display: block;
-			position: relative;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+      .keywords .keyword_item {
+         position: absolute;
+         width: 119px;
+         height: 119px;
+         text-align: center;
+         border: 1px solid #eee;
+         z-index: 1;
+      }
 
-		.keyword_item:hover {
-			border-color: #00C3BD;
-			color: #00C3BD;
-			z-index: 2;
-			text-decoration: none;
-		}
+      .keywords .keyword_item .keyword_item_txt {
+         display: block;
+         position: relative;
+         top: 50%;
+         transform: translateY(-50%);
+      }
 
-		._img_width {
-			width: 100%;
-		}
+      .keyword_item:hover {
+         border-color: #00C3BD;
+         color: #00C3BD;
+         z-index: 2;
+         text-decoration: none;
+      }
 
-		._a:link {
-			color: black;
-			text-decoration: none;
-		}
+      ._img_width {
+         width: 100%;
+      }
 
-		._a:visited {
-			color: black;
-			text-decoration: none;
-		}
+      ._a:link {
+         color: black;
+         text-decoration: none;
+      }
 
-		._b:hover {
-			border-color: #00C3BD;
-			color: #00C3BD;
-			z-index: 2;
-			text-decoration: none;
-		}
- 
+      ._a:visited {
+         color: black;
+         text-decoration: none;
+      }
+
+      ._b:hover {
+         border-color: #00C3BD;
+         color: #00C3BD;
+         z-index: 2;
+         text-decoration: none;
+      }
+
+      body {
+         background-color: white;
+         font-family: 'Nanum Gothic', sans-serif;
+      }
 
 
-		body {
-			background-color: white;
-			font-family: 'Nanum Gothic', sans-serif;
-		}
-		
-		      .keyword_list img{
-         padding:10px;
-      } 
-		
-		#skills .portfolio-item figure {
-            overflow: hidden;
-            height: 240px;
-            position: relative;
-            border-radius: 4px 4px 0 0;
-            margin: 0;
-        }
+      .skills {
+         /* background: url("../img/about-bg.jpg") center top no-repeat fixed; */
+         background-size: cover;
+         padding: 60px 0 40px 0;
+         position: relative;
+      }
 
-        #skills .portfolio-item {
-        background: #fff;
-        border-radius: 0 0 4px 4px;
-        box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
-        margin-bottom: 20px;
-        }
+      #skills .portfolio-item figure {
+         overflow: hidden;
+         height: 240px;
+         position: relative;
+         border-radius: 4px 4px 0 0;
+         margin: 0;
+      }
 
-        #skills .portfolio-item figure:hover {
-            opacity: 0.4;
-            transition: 0.3s;
-        }
-				
-		
-	</style>
+      #skills .portfolio-item {
+         background: #fff;
+         border-radius: 0 0 4px 4px;
+         box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+         margin-bottom: 20px;
+      }
+
+      #skills .portfolio-item figure:hover {
+         opacity: 0.4;
+         transition: 0.3s;
+      }
+
+
+
+      .kwc_center>div {
+         padding-left: 0px;
+         padding-right: 0px;
+      }
+
+      @media (min-width: 768px) and (max-width:992px) {
+
+         #skills .portfolio-wrap>figure {
+            margin-left: 30px;
+         }
+
+         /* .skills .portfolio-item {
+            position: static;
+            margin-top: 30px;
+         } */
+      }
+
+      @media (max-width: 768px) {
+         #skills .portfolio-wrap>figure {
+            margin: 0 auto;
+            /* margin-left:100px; */
+            /* background-color:yellow; */
+         }
+
+         /* #skills .portfolio-wrap figure {
+            margin-left:30px;
+         } */
+
+         /* .skills .portfolio-item {
+            position: static;
+            margin-top: 30px;
+         } */
+      }
+
+      /* .keyword_list img {
+         padding: 10px;
+      } */
+   </style>
+
+
+
 </head>
 
 <body>
-	   <div th:replace="/user/includes/header :: header"></div>
+   <div th:replace="/user/includes/header :: header"></div>
 
-  <!-- ======= Intro Section ======= -->
+   <!-- ======= Intro Section ======= -->
    <section id="intro">
       <div class="intro-container">
 
@@ -106,7 +159,8 @@
 
          <div class="carousel-inner" role="listbox">
 
-            <div class="carousel-item active" style="background-image: url(/resources/assets/img/intro-carousel/1.jpg)">
+            <div class="carousel-item active"
+               style="background-image: url(/../../../resources/assets/img/intro-carousel/1.jpg)">
                <div class="carousel-container">
                   <div class="container">
                      <h2 class="animate__animated animate__fadeInDown">We are professional</h2>
@@ -142,6 +196,7 @@
                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
                   <div class="about-col">
                      <div class="img">
+                        <!-- <img src="/resources/assets/img/about-mission.jpg" alt="" class="img-fluid"> -->
                         <img src="../../../resources/assets/img/about-mission.jpg" alt="" class="img-fluid">
                         <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
                      </div>
@@ -206,7 +261,8 @@
                   aliquip ex ea commodo consequat.</p>
             </header>
 
-            <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+            <div class="row portfolio-container aos-init aos-animate kwc_center" data-aos="fade-up"
+               data-aos-delay="200">
 
                <div class="col-lg-2 col-md-4 portfolio-item filter-card">
                   <div class="portfolio-wrap">
@@ -230,7 +286,7 @@
                <div class="col-lg-2 col-md-4 portfolio-item filter-app">
                   <div class="portfolio-wrap">
                      <figure
-                        style="margin-right:300px; vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
+                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
                         <img style="width:120px; height:150px;" src="../../../resources/images/img/css3.png"
                            class="img-fluid" alt="">
                      </figure>
@@ -351,10 +407,8 @@
                   style="position: absolute; left: 0px; top: 720px;">
                   <div class="portfolio-wrap">
                      <figure
-                        style="text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <span style="vertical-align:middle; line-height: 180px;" class="keyword_item_txt">
-                           <h3 style="font-weight: bolder; padding-top:70px;" >입문</h3>
-                        </span>
+                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
+                        <div style="font-weight: bolder; font-size:24px;">입문</div>
                      </figure>
 
                   </div>
@@ -365,9 +419,7 @@
                   <div class="portfolio-wrap">
                      <figure
                         style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <span style="vertical-align: middle;" class="keyword_item_txt">
-                           <h3 style="font-weight: bolder; padding-top:70px;">중급</h3>
-                        </span>
+                        <div style="font-weight: bolder; font-size:24px;">중급</div>
                      </figure>
 
                   </div>
@@ -379,7 +431,7 @@
                      <figure
                         style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
                         <span class="keyword_item_txt">
-                           <h3 style="font-weight: bolder; padding-top:70px;">중고급</h3>
+                           <div style="font-weight: bolder; font-size:24px;">중고급</div>
                         </span>
                      </figure>
 
@@ -573,10 +625,25 @@
          </div>
       </section>
 
-	<div th:replace="/user/includes/footer :: footer"></div>
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+
+      </div>
+
+
+      <div th:replace="/user/includes/footer :: footer"></div>
+
+      <script src="../../../resources/assets/vendor/jquery/jquery.min.js"></script>
+      <script src="../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+      <script src="../../../resources/assets/vendor/php-email-form/validate.js"></script>
+      <script src="../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+      <script src="../../../resources/assets/vendor/counterup/counterup.min.js"></script>
+      <script src="../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+      <script src="../../../resources/assets/vendor/venobox/venobox.min.js"></script>
+      <script src="../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+      <script src="../../../resources/assets/vendor/aos/aos.js"></script>
+
+      <script src="../../../resources/assets/js/main.js"></script>
 
 </body>
-
 
 </html>
