@@ -3,14 +3,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<<<<<<< HEAD
-	
-	<title>main</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-   	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-=======
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>main</title>
 	<link href="../../../resources/assets/img/favicon.png" rel="icon">
@@ -27,9 +19,6 @@
 	<!-- Template Main CSS File -->
 	<link href="../../../resources/assets/css/style.css" rel="stylesheet">
 
-
-
->>>>>>> dc765efc5db2b4644bac4141203b99a9d3117e97
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
@@ -81,510 +70,13 @@
 			text-decoration: none;
 		}
 
-
 		body {
 			background-color: white;
 			font-family: 'Nanum Gothic', sans-serif;
 		}
-		
-		      .keyword_list img{
-         padding:10px;
-      } 
-		
-		
-	</style>
-</head>
 
-<body>
-	   <div th:replace="/user/includes/header :: header"></div>
 
-   <!-- ======= Intro Section ======= -->
-  <!-- ======= Intro Section ======= -->
-   <section id="intro">
-      <div class="intro-container">
-
-         <ol class="carousel-indicators"></ol>
-
-         <div class="carousel-inner" role="listbox">
-
-            <div class="carousel-item active" style="background-image: url(/resources/assets/img/intro-carousel/1.jpg)">
-               <div class="carousel-container">
-                  <div class="container">
-                     <h2 class="animate__animated animate__fadeInDown">We are professional</h2>
-                     <p class="animate__animated animate__fadeInUp">Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat.</p>
-                  </div>
-               </div>
-            </div>
-         </div>
-
-      </div>
-      </div>
-   </section><!-- End Intro Section -->
-
-   <main id="main">
-      <!-- 내가쓴 게시글 페이지 -->
-      <section id="about">
-         <div class="container" data-aos="fade-up">
-
-            <header class="section-header">
-               <h3>우리 사이트 소개</h3>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                  labore
-                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut
-                  aliquip ex ea commodo consequat.</p>
-            </header>
-
-            <div class="row about-cols">
-
-               <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                  <div class="about-col">
-                     <div class="img">
-                        <img src="../../../resources/assets/img/about-mission.jpg" alt="" class="img-fluid">
-                        <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-                     </div>
-                     <h2 class="title"><a href="#">온라인 강의</a></h2>
-                     <p>
-                        Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip ex ea commodo consequat.
-                     </p>
-                  </div>
-               </div>
-
-               <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                  <div class="about-col">
-                     <div class="img">
-                        <img src="../../../resources/assets/img/about-plan.jpg" alt="" class="img-fluid">
-                        <div class="icon"><i class="ion-ios-list-outline"></i></div>
-                     </div>
-                     <h2 class="title"><a href="#">Our Plan</a></h2>
-                     <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium,
-                        totam
-                        rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae
-                        vitae
-                        dicta sunt explicabo.
-                     </p>
-                  </div>
-               </div>
-
-               <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-                  <div class="about-col">
-                     <div class="img">
-                        <img src="../../../resources/assets/img/about-vision.jpg" alt="" class="img-fluid">
-                        <div class="icon"><i class="ion-ios-eye-outline"></i></div>
-                     </div>
-                     <h2 class="title"><a href="#">Our Vision</a></h2>
-                     <p>
-                        Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores
-                        eos
-                        qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia
-                        dolor
-                        sit amet.
-                     </p>
-                  </div>
-               </div>
-
-            </div>
-
-         </div>
-      </section><!-- End About Us Section -->
-
-
-      <section id="skills">
-         <div class="container aos-init aos-animate" data-aos="fade-up">
-
-            <header class="section-header">
-               <h3 class="section-title">우리 스킬</h3>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                  labore
-                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut
-                  aliquip ex ea commodo consequat.</p>
-            </header>
-
-            <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-card">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; line-height: 180px; height:180px; background-color:white;">
-                        <img src="../../../resources/images/img/java.jpg" class="img-fluid" alt="">
-                     </figure>
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; line-height: 180px; height:180px; background-color:white;">
-                        <img style=" width:150px; height:150px;" src="../../../resources/images/img/html5.png"
-                           class="img-fluid" alt="">
-                     </figure>
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-app">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="margin-right:300px; vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img style="width:120px; height:150px;" src="../../../resources/images/img/css3.png"
-                           class="img-fluid" alt="">
-                     </figure>
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-card">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img src="../../../resources/images/img/js.png" class="img-fluid" alt="">
-                     </figure>
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-card">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img src="../../../resources/images/img/spring.png" class="img-fluid" alt="">
-                     </figure>
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img style="width:140px; height:140px;" src="../../../resources/images/img/db.png"
-                           class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-               <!-- 1행 끝 -->
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 360px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img src="../../../resources/images/img/python.png" class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 360px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img src="../../../resources/images/img/jsp.png" class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 360px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img style="width:140px; height:140px;" src="../../../resources/images/img/vuejs.png"
-                           class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 360px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img src="../../../resources/images/img/react.png" class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 360px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img src="../../../resources/images/img/jquery.png" class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 360px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img src="../../../resources/images/img/bootstrap.png" class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-               <!-- 2행 끝 -->
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 720px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <img style="width:140px; height:140px;" src="../../../resources/images/img/jpa.png"
-                           class="img-fluid" alt="">
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 720px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <span style="vertical-align:middle; line-height: 180px;" class="keyword_item_txt">
-                           <h3 style="font-weight: bolder; padding-top:70px;" >입문</h3>
-                        </span>
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 720px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <span style="vertical-align: middle;" class="keyword_item_txt">
-                           <h3 style="font-weight: bolder; padding-top:70px;">중급</h3>
-                        </span>
-                     </figure>
-
-                  </div>
-               </div>
-
-               <div class="col-lg-2 col-md-4 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 720px;">
-                  <div class="portfolio-wrap">
-                     <figure
-                        style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-                        <span class="keyword_item_txt">
-                           <h3 style="font-weight: bolder; padding-top:70px;">중고급</h3>
-                        </span>
-                     </figure>
-
-                  </div>
-               </div>
-
-               <!-- 3행 끝 -->
-
-            </div>
-
-         </div>
-      </section>
-
-
-
-
-      <!-- <section id="skills" style="padding-bottom:0px;">
-         <div class="container" data-aos="fade-up">
-            <header class="section-header">
-               <h3>딱! 맞는 강의를 소개해드립니다.</h3>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                  labore
-                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut
-                  aliquip ex ea commodo consequat.</p>
-            </header>
-
-            
-            
-
-         </div>
-      </section> -->
-      <!-- End About Us Section -->
-
-
-
-
-      <section id="portfolio" class="section-bg">
-         <div class="container aos-init aos-animate" data-aos="fade-up">
-
-            <header class="section-header">
-               <h3 class="section-title">Our Portfolio</h3>
-            </header>
-
-            <br />
-
-            <div style="float: right ;">
-               <a href="#" title="More Details"><i class="ion ion-android-open"></i></a>
-            </div>
-            <br />
-
-            <div class="row aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-               <div class=" col-lg-12">
-                  <ul id="portfolio-flters" style="display:none">
-                     <li data-filter="*" class="filter-active">All</li>
-                  </ul>
-               </div>
-            </div>
-
-            <div class="row portfolio-container aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"
-               style="position: relative; height: 3240px;">
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-app"
-                  style="position: absolute; left: 0px; top: 0px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/app1.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">App 1</a></h4>
-                        <p>App</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 360px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/web3.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">Web 3</a></h4>
-                        <p>Web</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-app"
-                  style="position: absolute; left: 0px; top: 720px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/app2.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">App 2</a></h4>
-                        <p>App</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-card"
-                  style="position: absolute; left: 0px; top: 1080px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/card2.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">Card 2</a></h4>
-                        <p>Card</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 1440px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/web2.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">Web 2</a></h4>
-                        <p>Web</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-app"
-                  style="position: absolute; left: 0px; top: 1800px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/app3.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">App 3</a></h4>
-                        <p>App</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-card"
-                  style="position: absolute; left: 0px; top: 2160px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/card1.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">Card 1</a></h4>
-                        <p>Card</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-card"
-                  style="position: absolute; left: 0px; top: 2520px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/card3.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">Card 3</a></h4>
-                        <p>Card</p>
-                     </div>
-                  </div>
-               </div>
-
-               <div class="col-lg-4 col-md-6 portfolio-item filter-web"
-                  style="position: absolute; left: 0px; top: 2880px;">
-                  <div class="portfolio-wrap">
-                     <figure>
-                        <img src="assets/img/portfolio/web1.jpg" class="img-fluid" alt="">
-                     </figure>
-
-                     <div class="portfolio-info">
-                        <h4><a href="portfolio-details.html">Web 1</a></h4>
-                        <p>Web</p>
-                     </div>
-                  </div>
-               </div>
-
-            </div>
-
-         </div>
-      </section>
-
-
-
-	<div th:replace="/user/includes/footer :: footer"></div>
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-=======
-
-		.kwc div {
-			height: 200px;
-		}
-
-		.skills{
+		.skills {
 			/* background: url("../img/about-bg.jpg") center top no-repeat fixed; */
 			background-size: cover;
 			padding: 60px 0 40px 0;
@@ -598,12 +90,12 @@
 			border-radius: 4px 4px 0 0;
 			margin: 0;
 		}
-		
+
 		#skills .portfolio-item {
-		background: #fff;
-		border-radius: 0 0 4px 4px;
-		box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
-		margin-bottom: 20px;
+			background: #fff;
+			border-radius: 0 0 4px 4px;
+			box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+			margin-bottom: 20px;
 		}
 
 		#skills .portfolio-item figure:hover {
@@ -611,9 +103,40 @@
 			transition: 0.3s;
 		}
 
-		.kwc > div{
-			padding-left:0px;
-			padding-right:0px;
+
+
+		.kwc_center>div {
+			padding-left: 0px;
+			padding-right: 0px;
+		}
+
+		@media (min-width: 768px) and (max-width:992px) {
+
+			#skills .portfolio-wrap>figure {
+				margin-left: 30px;
+			}
+
+			/* .skills .portfolio-item {
+				position: static;
+				margin-top: 30px;
+			} */
+		}
+
+		@media (max-width: 768px) {
+			#skills .portfolio-wrap>figure {
+				margin: 0 auto;
+				/* margin-left:100px; */
+				/* background-color:yellow; */
+			}
+
+			/* #skills .portfolio-wrap figure {
+				margin-left:30px;
+			} */
+
+			/* .skills .portfolio-item {
+				position: static;
+				margin-top: 30px;
+			} */
 		}
 
 		/* .keyword_list img {
@@ -636,7 +159,8 @@
 
 			<div class="carousel-inner" role="listbox">
 
-				<div class="carousel-item active" style="background-image: url(assets/img/intro-carousel/1.jpg)">
+				<div class="carousel-item active"
+					style="background-image: url(/../../../resources/assets/img/intro-carousel/1.jpg)">
 					<div class="carousel-container">
 						<div class="container">
 							<h2 class="animate__animated animate__fadeInDown">We are professional</h2>
@@ -672,6 +196,7 @@
 					<div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
 						<div class="about-col">
 							<div class="img">
+								<!-- <img src="/resources/assets/img/about-mission.jpg" alt="" class="img-fluid"> -->
 								<img src="../../../resources/assets/img/about-mission.jpg" alt="" class="img-fluid">
 								<div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
 							</div>
@@ -736,7 +261,8 @@
 						aliquip ex ea commodo consequat.</p>
 				</header>
 
-				<div class="row portfolio-container aos-init aos-animate kwc" data-aos="fade-up" data-aos-delay="200">
+				<div class="row portfolio-container aos-init aos-animate kwc_center" data-aos="fade-up"
+					data-aos-delay="200">
 
 					<div class="col-lg-2 col-md-4 portfolio-item filter-card">
 						<div class="portfolio-wrap">
@@ -760,7 +286,7 @@
 					<div class="col-lg-2 col-md-4 portfolio-item filter-app">
 						<div class="portfolio-wrap">
 							<figure
-								style="margin-right:300px; vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
+								style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
 								<img style="width:120px; height:150px;" src="../../../resources/images/img/css3.png"
 									class="img-fluid" alt="">
 							</figure>
@@ -882,7 +408,7 @@
 						<div class="portfolio-wrap">
 							<figure
 								style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-									<h3 style="font-weight: bolder;" >입문</h3>
+								<div style="font-weight: bolder; font-size:24px;">입문</div>
 							</figure>
 
 						</div>
@@ -893,9 +419,7 @@
 						<div class="portfolio-wrap">
 							<figure
 								style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
-								<span style="vertical-align: middle;" class="keyword_item_txt">
-									<h3 style="font-weight: bolder; padding-top:70px;">중급</h3>
-								</span>
+								<div style="font-weight: bolder; font-size:24px;">중급</div>
 							</figure>
 
 						</div>
@@ -907,7 +431,7 @@
 							<figure
 								style="vertical-align:middle; text-align: center; width:180px; height:180px; line-height: 180px; background-color:white;">
 								<span class="keyword_item_txt">
-									<h3 style="font-weight: bolder; padding-top:70px;">중고급</h3>
+									<div style="font-weight: bolder; font-size:24px;">중고급</div>
 								</span>
 							</figure>
 
@@ -1120,21 +644,6 @@
 
 		<script src="../../../resources/assets/js/main.js"></script>
 
-
-		<!-- 날릴지 말지 고민.. -->
-		<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script> -->
-
->>>>>>> dc765efc5db2b4644bac4141203b99a9d3117e97
-
 </body>
-
 
 </html>
