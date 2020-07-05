@@ -27,6 +27,221 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
+<!-- 스타일 -->
+<style>
+/*[ Input ]*/
+
+
+.wrap-input100 {
+  position: relative;
+  width: 100%;
+  z-index: 1;
+}
+
+input,
+textarea {
+  outline: none;
+  margin: 0;
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+.input-group {
+  position: relative;
+  margin: 0;
+}
+
+
+
+.input100 {
+
+
+  color: #686868;
+
+  
+  background: #f0f0f0;
+
+  
+
+
+ 
+}
+
+
+
+
+.input--style-6,
+.textarea--style-6 {
+  font-family: Raleway-SemiBold;
+  font-size: 18px;
+  background: transparent;
+  line-height: 1.2;
+  display: block;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #cccccc;
+  /* border-style: hidden; */
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #666;
+  font-size: 15px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  padding: 0 15px;
+}
+
+.input--style-6::-webkit-input-placeholder,
+.textarea--style-6::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #999;
+}
+
+.input--style-6:-moz-placeholder,
+.textarea--style-6:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #999;
+  opacity: 1;
+}
+
+.input--style-6::-moz-placeholder,
+.textarea--style-6::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #999;
+  opacity: 1;
+}
+
+.input--style-6:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #999;
+}
+
+.input--style-6:-ms-input-placeholder,
+.textarea--style-6:-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #999;
+}
+
+.input--style-6:focus,
+.textarea--style-6:focus {
+  -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  -ms-transform: translateY(-3px);
+  -o-transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+.textarea--style-6 {
+  line-height: 1.2;
+  min-height: 120px;
+  padding: 10px 20px;
+}
+
+.label--desc {
+  font-size: 13px;
+  color: #999;
+  margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+  .label--desc {
+    margin-top: 14px;
+  }
+}
+
+.input-file {
+  display: none;
+}
+
+.input-file + label {
+  font-size: 15px;
+  color: #fff;
+  color: white;
+  line-height: 40px;
+  background-color: #666666;
+  padding: 0 20px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 15px;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.input-file:focus + label,
+.input-file + label:hover {
+  background: #1b1b1b;
+}
+
+.input-file__info {
+  font-size: 15px;
+  color: #666;
+}
+
+@media (max-width: 767px) {
+  .input-file__info {
+    display: block;
+    margin-top: 6px;
+  }
+}
+
+/* 버튼 */
+.login100-form-btn {
+  font-family: Raleway-Bold;
+  font-size: 16px;
+  line-height: 1.5;
+  color:#18d26e;
+  text-transform: uppercase;
+  width: 100%;
+  height: 62px;
+  border-radius: 3px;
+  outline: 0px;
+  background: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 25px;
+  border-style: hidden;
+  color:
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+  background: #18d26e;
+  color:white;
+}
+</style>
+
+
+
+
+
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
 
@@ -40,7 +255,8 @@
 			<div class="form-group">
 
 				<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
-					style="margin-bottom: 15px; width: 50px;"> <input type="file"
+					style="margin-bottom: 15px; width: 50px;"> 
+					<input type="file"
 					class="form-control" name="file" id="file"> <label
 					class="custom-file-label" for="inputGroupFile01"
 					style="text-align: left">Choose file</label>
@@ -48,55 +264,121 @@
 
 			</div>
 
-			<div class="form-group">
-				<label for="pwd">아이디</label>
+			<div class="value">
 				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="user_id"
-						placeholder="아이디를 입력해주세요." name="user_id" style="width: 60%;"
-						required>
-					<button class="btn btn-warning" id="IdCheck">중복체크</button>
-					<span class="idcheck hide"></span>
+					<div class="col-2">
+						<label class="label-input100" for="pwd">아이디</label>
+					</div>
+
+					<div class="col-8">
+						<input type="text" class="input--style-6" id="user_id"
+							placeholder="아이디를 입력해주세요." name="user_id" required/>
+							&nbsp;&nbsp;
+					</div>
+
+					<div class="col-2">
+						<button class="login100-form-btn" id="IdCheck" style="border: 1.5px solid #18d26e;">중복체크</button>
+						<span class="idcheck hide"></span>
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="pwd">비밀번호</label>
+
+
+
+			<div class="value">
 				<div class="row" style="place-content: center;">
-					<input type="password" class="form-control" id="user_pwd"
-						placeholder="비밀번호를 입력해주세요." name="user_pwd" style="width: 60%;"
+					<div class="col-2">
+						<label class="label-input100" for="pwd">비밀번호</label>
+					</div>
+
+					<div class="col-8">
+						<input type="password" class="input--style-6" id="user_pwd"
+						placeholder="비밀번호를 입력해주세요." name="user_pwd"
 						required> <span class="password hide"></span>
+						&nbsp;&nbsp;
+					</div>
+
+					<div class="col-2"></div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="pwd">비밀번호 확인</label>
+
+
+
+
+
+			<div class="value">
 				<div class="row" style="place-content: center;">
-					<input type="password" class="form-control" id="re-password"
-						placeholder="비밀번호를 입력해주세요. " name="re-password"
-						style="width: 60%;" required>
-					<div id="message"></div>
+					<div class="col-2">
+						<label class="label-input100" for="pwd">비밀번호 확인</label>
+					</div>
+
+					<div class="col-8">
+						<input type="password" class="input--style-6" id="re-password"
+							placeholder="비밀번호를 입력해주세요. " name="re-password" required>
+						<div id="message"></div>
+						&nbsp;&nbsp;
+					</div>
+
+					<div class="col-2"></div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="pwd">이름</label>
+
+
+
+			<div class="value">
 				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="user_name"
-						placeholder="이름을 입력해주세요." name="user_name" style="width: 60%;"
-						required><span class="name hide"></span>
+					<div class="col-2">
+						<label class="label-input100" for="pwd">이름</label>
+					</div>
+
+					<div class="col-8">
+						<input type="text" class="input--style-6" id="user_name"
+						placeholder="이름을 입력해주세요." name="user_name" required>
+						<span class="name hide"></span>
+						&nbsp;&nbsp;
+					</div>
+
+					<div class="col-2"></div>
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="pwd">닉네임</label>
+
+
+
+
+			<div class="value">
 				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="nickname"
-						placeholder="닉네임을 입력해주세요" name="nickname" style="width: 60%;"
+					<div class="col-2">
+						<label class="label-input100" for="pwd">닉네임</label>
+					</div>
+
+					<div class="col-8">
+						<input type="text" class="input--style-6" id="nickname"
+						placeholder="닉네임을 입력해주세요" name="nickname" required>
+						&nbsp;&nbsp;
+					</div>
+
+					<div class="col-2"></div>
+				
+				</div>
+			</div>
+
+
+
+
+			<div class="value">
+				<div class="row" style="place-content: center;">
+					<div class="col-2">
+						<label class="label-input100" for="pwd" class="ml-5">이메일 주소</label>
+					</div>	
+					
+					<div class="col-8">
+						<input type="email" class="input--style-6" id="user_email" placeholder="이메일을 입력해주세요" name="user_email"
 						required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="pwd" class="ml-5">이메일 주소</label>
-				<div class="row" style="place-content: center;">
-					<input type="email" class="form-control" id="user_email"
-						style="width: 60%;" placeholder="이메일을 입력해주세요" name="user_email"
-						required>
+						&nbsp;&nbsp;
+					</div>
+
+					<div class="col-2"></div>
+									
 				</div>
 
 				<br /> <br /> <br />
@@ -251,6 +533,14 @@
 						</button>
 					</div>
 				</div>
+			
+			
+			
+			
+			
+			
+			
+			
 			</div>
 		</div>
 	</form>
