@@ -46,6 +46,20 @@
 ._margin_0 {
 	margin: 0;
 }
+
+.col-md-15 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+@media ( min-width : 992px) {
+	.col-md-15 {
+		width: 20%;
+		float: left;
+	}
+}
 </style>
 
 
@@ -173,7 +187,7 @@
 					</button>
 					&nbsp;
 					<button type="button" class="btn btn-success _button_color">
-						<b>구름DEU</b>
+						<b>구름EDU</b>
 					</button>
 					&nbsp;
 					<button type="button" class="btn btn-success _button_color">
@@ -192,142 +206,225 @@
 	<!-- ddddddddd -->
 
 	<!-- 여기부터 강의 목록 -->
-	<!-- 	th:each="idx,iterStat : ${#numbers.sequence(pagedkdklsjnalksnldkfjalskdjflzheldgksmstlrkqnldkfMaker.startPage,pageMaker.endPage)}" -->
+	<!-- 	th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}" -->
 	<div class="container" style="margin-top: 50px;">
 
-		<!-- 		<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
 
-<!-- 		<th:block th:each="data : ${list}"> -->
-<!-- 			<th:block th:if="`"th:utext="<div class='row' style='width:100%;margin: auto;margin-bottom: 20px;'>"/> -->
 
-			<div th:each="data : ${list}" class='row' style='width:100%;margin: auto;margin-bottom: 20px;'>
-				
-				<div class="col">
-				
-					<div th:each="datacol : ${list}"  class="card" style="width: 100%">
-						<img class="card-img-top"
-							src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
-							alt="Card image" style="width: 100%">
-						<div class="card-body">
-							<h6 class="card-title _margin_0" th:text="${datacol.L_TITLE}">Do
-								it! Node.js 프로그래밍(개정판)</h6>
-							<p class="card-text _margin_0"
-								style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-							<a href="" class="stretched-link"></a> <img
-								src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-								alt="" style="height: 40px;"> <span>(6)</span> <span
-								style="color: rgb(23, 92, 190)"> <b
-								th:text="${datacol.P_SEQ}">₩44,000</b>
-							</span>
-						</div>
+		<!--<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
+
+		<th:block th:each="list,index : ${list}">
+			<th:block th:if="${index.index%5==0}"
+				th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
+			<div class="col-md-15">
+				<div class="card" style="width: 100%">
+					<img class="card-img-top"
+						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
+						alt="Card image" style="width: 100%">
+					<div class="card-body">
+						<h6 class="card-title _margin_0" th:text="${list.L_TITLE}">Do
+							it! Node.js 프로그래밍(개정판)</h6>
+						<p class="card-text _margin_0"
+							style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+						<a href="" class="stretched-link"></a> <img
+							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+							alt="" style="height: 40px;"> <span>(6)</span> <br /> <span
+							style="color: rgb(23, 92, 190)"> <b
+							th:text="${list.P_SEQ}">₩44,000</b>
+						</span>
 					</div>
-					
-				</div><!-- col -->
-<!-- 			<th:block th:if="${list.index}%5==0" th:utext="</div>"/> -->
-<!-- 		</th:block> -->
+				</div>
+			</div>
+			<th:block th:if="${index.index%5==4}" th:utext="'&lt;/div&gt;'" />
+
+		</th:block>
 
 		<!-- 여기까지 카드 하나 끝 -->
 
+		<th:block th:unless="${#lists.size(list)%5==4}"
+			th:utext="'&lt;/div&gt;'" />
 
-		<!--  
-		<div class="col">
-			<div class="card" style="width: 100%">
-				<img class="card-img-top"
-					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				"
-					alt="Card image" style="width: 100%">
-				<div class="card-body">
-					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-					<p class="card-text _margin_0"
-						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-					<a href="#" class="stretched-link"></a> <img
-						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-						alt="" style="height: 40px;"> <span>(6)</span> <span
-						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
-					</span>
-				</div>
+
+
+
+
+		<!-- 		<div class="row" -->
+		<!-- 			style="width: 100%; margin: auto; margin-bottom: 20px;"> -->
+		<!-- 			<div class="col"> -->
+		<!-- 				<div class="card" style="width: 100%"> -->
+		<!-- 					<img class="card-img-top" -->
+		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
+		<!-- 				" -->
+		<!-- 						alt="Card image" style="width: 100%"> -->
+		<!-- 					<div class="card-body"> -->
+		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
+		<!-- 						<p class="card-text _margin_0" -->
+		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
+		<!-- 						<a href="#" class="stretched-link"></a> <img -->
+		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
+		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
+		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
+		<!-- 						</span> -->
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 			<!-- 여기까지 카드 하나 끝 -->
+
+		<!-- 			<div class="col"> -->
+		<!-- 				<div class="card" style="width: 100%"> -->
+		<!-- 					<img class="card-img-top" -->
+		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
+		<!-- 				" -->
+		<!-- 						alt="Card image" style="width: 100%"> -->
+		<!-- 					<div class="card-body"> -->
+		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
+		<!-- 						<p class="card-text _margin_0" -->
+		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
+		<!-- 						<a href="#" class="stretched-link"></a> <img -->
+		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
+		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
+		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
+		<!-- 						</span> -->
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 			<div class="col"> -->
+		<!-- 				<div class="card" style="width: 100%"> -->
+		<!-- 					<img class="card-img-top" -->
+		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
+		<!-- 				" -->
+		<!-- 						alt="Card image" style="width: 100%"> -->
+		<!-- 					<div class="card-body"> -->
+		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
+		<!-- 						<p class="card-text _margin_0" -->
+		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
+		<!-- 						<a href="#" class="stretched-link"></a> <img -->
+		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
+		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
+		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
+		<!-- 						</span> -->
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 			<div class="col"> -->
+		<!-- 				<div class="card" style="width: 100%"> -->
+		<!-- 					<img class="card-img-top" -->
+		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
+		<!-- 				" -->
+		<!-- 						alt="Card image" style="width: 100%"> -->
+		<!-- 					<div class="card-body"> -->
+		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
+		<!-- 						<p class="card-text _margin_0" -->
+		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
+		<!-- 						<a href="#" class="stretched-link"></a> <img -->
+		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
+		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
+		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
+		<!-- 						</span> -->
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 			<div class="col"> -->
+		<!-- 				<div class="card" style="width: 100%"> -->
+		<!-- 					<img class="card-img-top" -->
+		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
+		<!-- 				" -->
+		<!-- 						alt="Card image" style="width: 100%"> -->
+		<!-- 					<div class="card-body"> -->
+		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
+		<!-- 						<p class="card-text _margin_0" -->
+		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
+		<!-- 						<a href="#" class="stretched-link"></a> <img -->
+		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
+		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
+		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
+		<!-- 						</span> -->
+		<!-- 					</div> -->
+		<!-- 				</div> -->
+		<!-- 			</div> -->
+		<!-- 		</div> -->
+		<!-- 페이징 버튼 시작-->
+		<div id="pager-wrapper" class="margin-small">
+			<div class="pager clear">
+
+
+				<!-- 경계 -->
+				<ul class="btn-group pagination" style="place-content: center;">
+
+					<!-- 이전버튼 생성여부 -->
+					<li th:if="${pageMaker.prev} == true"><a
+						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
+						<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
+					</li>
+
+
+					<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+					<li
+						th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
+						th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+						<a
+						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
+						th:text="${idx}"></a> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+					</li>
+
+
+
+					<!-- 다음버튼 생성여부 -->
+<!-- 					<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
+
+						<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
+							<a
+							th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
+							<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+						</li>
+				</ul>
+
+				<!-- 경계끝 -->
+
+
 			</div>
 		</div>
-		<div class="col">
-			<div class="card" style="width: 100%">
-				<img class="card-img-top"
-					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				"
-					alt="Card image" style="width: 100%">
-				<div class="card-body">
-					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-					<p class="card-text _margin_0"
-						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-					<a href="#" class="stretched-link"></a> <img
-						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-						alt="" style="height: 40px;"> <span>(6)</span> <span
-						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
-					</span>
-				</div>
-			</div>
-		</div>
-		<div class="col">
-			<div class="card" style="width: 100%">
-				<img class="card-img-top"
-					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				"
-					alt="Card image" style="width: 100%">
-				<div class="card-body">
-					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-					<p class="card-text _margin_0"
-						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-					<a href="#" class="stretched-link"></a> <img
-						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-						alt="" style="height: 40px;"> <span>(6)</span> <span
-						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
-					</span>
-				</div>
-			</div>
-		</div>
-		<div class="col">
-			<div class="card" style="width: 100%">
-				<img class="card-img-top"
-					src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-				"
-					alt="Card image" style="width: 100%">
-				<div class="card-body">
-					<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-					<p class="card-text _margin_0"
-						style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-					<a href="#" class="stretched-link"></a> <img
-						src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-						alt="" style="height: 40px;"> <span>(6)</span> <span
-						style="color: rgb(23, 92, 190)"> <b>₩44,000</b>
-					</span>
-				</div>
-			</div>
-		</div>
+		<!-- 페이징 버튼 끝 -->
+
+
+
+
+
+		<!-- 페이징 부트스트랩 버튼 생성하기  -->
+		<ul class="pagination" style="place-content: center;">
 		
-		-->
-		
-		
-	</div><!-- row -->
+			<!-- 이전버튼 생성여부-->
+			<li th:if="${pageMaker.prev} == true">
+				<a th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link">
+				Previous
+				</a>
+			</li>
 
 
+	<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+			<li class="page-item"th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
+						th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+				<a class="page-link"th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
+						th:text="${idx}">1
+				</a>
+			</li>
+			
+			
+			<!-- 다음버튼 생성여부 -->
+			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}" class="page-item">
+				<a
+				th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link">
+				Next</a>
+				<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+			</li>
 
-	<!-- dddddd -->
+
+		</ul>
+		<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
+
+	</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	</div><!-- 컨테이너 -->
 	<div th:replace="/user/includes/footer :: footer"></div>
 
 </body>

@@ -138,7 +138,12 @@ public class MyPageController {
 	}
 
 	@RequestMapping("mypage_Message_Send_Detail_Board.do")
-	public String mypageMessageSendDetailBoardPage() {
+	public String mypageMessageSendDetailBoardPage(String m_seq, Model model) {
+		
+		Message message = mservice.getMessage(m_seq);
+		model.addAttribute("message", message);
+		
+		
 		System.out.println("보낸 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Message_Send_Detail_Board";
 	}
@@ -162,12 +167,37 @@ public class MyPageController {
 		return "user/mypage/mypage_Message_Send_Send_Message";
 	}
 
-	// 쪽지 보내기
-	@RequestMapping(value = "sendMessage.do", method = RequestMethod.POST)
-	public String sendMessage(@RequestParam(value = "title", required = false) String title,
-			@RequestParam(value = "content", required = false) String content) {
-
-		System.out.println("title : " + title);
+	
+	//(받은편지함)상세페이지서 쪽지 삭제
+	@RequestMapping(value="deleteMessageOneFrom.do", method = RequestMethod.GET)
+	public String deleteMessageOne(String m_seq) {
+		
+		System.out.println("쪽지 번호 : " + m_seq);
+		
+		int result = mservice.deleteMessageOne(m_seq);
+		
+		return "redirect:mypage_Message_From_Board.do";
+	}
+	
+	//(보낸편지함)상세페이지서 쪽지 삭제
+		@RequestMapping(value="deleteMessageOneSend.do", method = RequestMethod.GET)
+		public String deleteMessageOneSend(String m_seq) {
+			
+			System.out.println("쪽지 번호 : " + m_seq);
+			
+			int result = mservice.deleteMessageOne(m_seq);
+			
+			return "redirect:mypage_Message_Send_Board.do";
+		}
+	
+	
+	
+	//쪽지 보내기
+	@RequestMapping(value="sendMessage.do", method = RequestMethod.POST)
+	public String sendMessage(@RequestParam(value="title", required=false) String title,
+							  @RequestParam(value="content", required=false) String content) {
+		
+		System.out.println("title : "  + title);
 		System.out.println("content : " + content);
 
 		return "user/mypage/mypage_Message_Send_Send_Message";
