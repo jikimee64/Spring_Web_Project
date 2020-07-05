@@ -28,7 +28,6 @@
 </head>
 
 <body>
-	<div th:replace="/user/includes/header :: header"></div>
 
 	<form action="login.do" method="post" class="joinform" id="joinform"
 		enctype="multipart/form-data" novalidate>
@@ -338,21 +337,16 @@
 			//유효성 검사
 			// 목표 : 이름은 2글자 이상 10글자 이하로 정한다
 			// 숫자나 특수문자가 입력되면 안된다.
-
 			// 1. input창에 값을 받아서 확인한다.
 			// 2. 값이 올바르게 입력되면 "GOOD"을 프린트한다.
 			// 3. 값이 올바르지 않으면 "글자나 영어를 2~5개까지 입력하셔야 합니다."라는 경고창이 뜬다.
-
 			var regFlag = [ false, false, false, false ];
-
 			let check_num = /[0-9]/; // 숫자
 			let check_eng = /[a-zA-Z]/; // 문자
 			let check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 			let check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
-
 			let nameInput = document.querySelector("#user_name");
 			let nameResult = document.querySelector(".name");
-
 			function nameCheck() {
 				if (nameInput.value.length > 1 && nameInput.value.length < 10) {
 					if (check_kor.test(nameInput.value)
@@ -373,15 +367,11 @@
 					regFlag[0] = false;
 				}
 			}
-
 			nameInput.addEventListener("blur", nameCheck);
-
 			// 목표 : 이메일문법확인하기
-
 			let emailInput = document.querySelector("#email");
 			let emailResult = document.querySelector(".email");
 			let reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
-
 			function emailCheck() {
 				if (reg_email.test(emailInput.value)) {
 					emailResult.innerHTML = "GOOD";
@@ -391,15 +381,11 @@
 					regFlag[1] = false;
 				}
 			}
-
 			emailInput.addEventListener("blur", emailCheck);
-
 			// 목표 : 비밀번호를 입력하세요.
-
 			let passwordInput = document.querySelector("#user_pwd");
 			let passwordResult = document.querySelector(".password");
 			let reg_password = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-
 			function passwordCkeck() {
 				if (reg_password.test(passwordInput.value)) {
 					passwordResult.innerHTML = "GOOD";
@@ -410,7 +396,6 @@
 				}
 			}
 			passwordInput.addEventListener("blur", passwordCkeck)
-
 			$('#re-password').keyup(function() {
 				if ($('#user_pwd').val() != $('#re-password').val()) {
 					$('#message').text('암호가 일치하지 않습니다');
@@ -420,7 +405,6 @@
 					pwCheck = true;
 				}
 			});
-
 		});
 	</script> -->
 
