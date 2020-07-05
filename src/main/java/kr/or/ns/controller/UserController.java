@@ -11,4 +11,9 @@ public class UserController {
 		System.out.println("메인으로 이동이동(연규가씀)");
 		return "user/main"; 
 	}
+	@RequestMapping("main2.do")
+	public String main2Page() {
+		System.out.println("메인으로 이동이동(연규가씀)");
+		return "user/main2"; 
+	}
 }
