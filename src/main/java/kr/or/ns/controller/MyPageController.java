@@ -118,6 +118,8 @@ public class MyPageController {
 		model.addAttribute("message", mlist);
 		System.out.println("보낸 목록 : " + mlist);
 
+		
+		
 		System.out.println("보낸 쪽지함으로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Message_Send_Board";
 	}
