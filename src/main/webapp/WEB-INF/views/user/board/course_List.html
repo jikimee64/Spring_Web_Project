@@ -305,50 +305,11 @@
 		<!-- 			</div> -->
 		<!-- 		</div> -->
 		<!-- 페이징 버튼 시작-->
-		<div id="pager-wrapper" class="margin-small">
-			<div class="pager clear">
-
-
-				<!-- 경계 -->
-				<ul class="btn-group pagination" style="place-content: center;">
-
-					<!-- 이전버튼 생성여부 -->
-					<li th:if="${pageMaker.prev} == true"><a
-						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
-						<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
-					</li>
-
-
-					<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-					<li
-						th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
-						th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
-						<a
-						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
-						th:text="${idx}"></a> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
-					</li>
-
-
-
-					<!-- 다음버튼 생성여부 -->
-<!-- 					<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
-
-						<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
-							<a
-							th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
-							<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
-						</li>
-				</ul>
-
-				<!-- 경계끝 -->
-
-
-			</div>
-		</div>
+		
 		<!-- 페이징 버튼 끝 -->
 
 
-
+		<br />
 
 
 		<!-- 페이징 부트스트랩 버튼 생성하기  -->
