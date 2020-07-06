@@ -9,10 +9,17 @@
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-      <div th:replace="/user/includes/header :: header"></div>
-      <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-
-   
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://rawgit.com/ftlabs/fastclick/master/lib/fastclick.js"></script>
    <!-- xeicon -->
    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
@@ -21,7 +28,10 @@
 <style>
    /*[ Input ]*/
 
+button:focus {
 
+      outline: none !important;
+   }
    .wrap-input100 {
       position: relative;
       width: 100%;
@@ -77,7 +87,7 @@
       line-height: 1.2;
       display: block;
       width: 100%;
-      height: 60px;
+      height: 39px;
       border: 1px solid #cccccc;
       /* border-style: hidden; */
       -webkit-border-radius: 3px;
@@ -200,12 +210,13 @@
       font-size: 16px;
       line-height: 1.5;
       color: #18d26e;
+      outline: none;
       text-transform: uppercase;
-      width: 100%;
-      height: 62px;
+      width: auto;
+      height: auto;
       border-radius: 3px;
       border: 0;
-      outline: 0;
+/*       outline: 0; */
       background: 0;
       display: -webkit-box;
       display: -webkit-flex;
@@ -214,7 +225,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 25px;
+      padding: 0px;
+      margin: 0px;
       border-style: hidden;
 
       -webkit-transition: all 0.4s;
@@ -236,9 +248,7 @@
       border: solid 1px #18d26e;
    }
 
-   button:focus {
-      outline: none;
-   }
+   
 
    ._border_box_shadow {
       background: #fff;
@@ -322,7 +332,7 @@
 
       <div class="container" style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
          &nbsp;&nbsp;
-         <div style="text-align:-webkit-center;">
+         <div style="text-align:center;">
          <span style="text-align: center; font-size: xx-large;"><b>회원가입</b></span>
       </div>
          <hr style="width:17%;"/>
@@ -333,23 +343,36 @@
          <div class="_border_box_shadow">
 
             <div class="value">
-               <div class="row" style="place-content: center;">
-                  <div class="col-2">
-                     <label class="label-input100" for="pwd" style="place-self:center">첨부파일</label>
+            
+            
+            <div class="row">
+                  <div class="col-2"></div>
+   
+                  <div class="col-8" style="text-align: center;">
+                     <img id="preview" src="/userboard/upload/member.png" alt="썸네일"
+                     style="margin-bottom: 15px; width: 150px; height: 150px;">
+                  </div>
+   
+                  <div class="col-2"></div>
+               </div> 
+            
+               <div class="row" style="place-content: center; padding-left: 100px">
+                  <div class="col-2" style="align-self: center; text-align: right;">
+                     <label class="label-input100" for="pwd" style="place-self:center">프로필 사진</label>
                      <!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
                   </div>
 
                   <div class="col-8">
                      <!-- <input type="file" class="form-control" name="file" id="file">  -->
-                     <div class="custom-file mb-3">
+                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="file" name="file">
                         <label class="custom-file-label" for="customFile" style="color: #aaaaaa;">이미지파일을 첨부해주세요</label>
                      </div>
                   </div>
 
                   <div class="col-2">
-                     <img id="preview" src="/userboard/upload/member.png" alt="썸네일"
-                        style="margin-bottom: 15px; width: 50px;">
+<!--                      <img id="preview" src="/userboard/upload/member.png" alt="썸네일" -->
+<!--                         style="margin-bottom: 15px; width: 50px;"> -->
                   </div>
 
                </div>
@@ -361,20 +384,20 @@
 
 
             <div class="value">
-               <div class="row" style="place-content: center;">
-                  <div class="col-2 _label_center">
+               <div class="row" style="place-content: center; padding-left: 100px">
+                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
                      <label class="label-input100" for="pwd" style="place-self:center">아이디</label>
                   </div>
 
-                  <div class="col-8">
+                  <div class="col-7">
                      <input type="text" class="input--style-6" id="user_id" placeholder="아이디를 입력해주세요." name="user_id"
                         required />
 
                   </div>
 
-                  <div class="col-2">
-                     <button class="login100-form-btn" id="IdCheck" style="border: 1px solid #18d26e;">중복체크</button>
-                     <span class="idcheck hide"></span>
+                  <div class="col-3" style="align-self: center; padding-left: 0px">
+                     <button class="login100-form-btn" id="IdCheck" style="border: 1px solid #18d26e; height: 39px; width:78px;transform: translateX(-13px);">중복체크</button>
+                     <div class="idcheck hide" style="transform: translateX(-533px);color: tomato;"></div>
                   </div>
                </div>
             </div>
@@ -384,8 +407,8 @@
 
 
             <div class="value">
-               <div class="row" style="place-content: center;">
-                  <div class="col-2 _label_center">
+               <div class="row" style="place-content: center; padding-left: 100px">
+                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
                      <label class="label-input100" for="pwd" style="align-self:center">비밀번호</label>
                   </div>
 
@@ -404,8 +427,8 @@
 
 
             <div class="value">
-               <div class="row" style="place-content: center;">
-                  <div class="col-2 _label_center">
+               <div class="row" style="place-content: center; padding-left: 100px">
+                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
                      <label class="label-input100" for="pwd" style="align-self:center">비밀번호 확인</label>
                   </div>
 
@@ -423,8 +446,8 @@
             &nbsp;&nbsp;
 
             <div class="value">
-               <div class="row" style="place-content: center;">
-                  <div class="col-2 _label_center">
+               <div class="row" style="place-content: center; padding-left: 100px">
+                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
                      <label class="label-input100" for="pwd" style="align-self:center">이름</label>
                   </div>
 
@@ -443,8 +466,8 @@
 
 
             <div class="value">
-               <div class="row" style="place-content: center;">
-                  <div class="col-2 _label_center">
+               <div class="row" style="place-content: center; padding-left: 100px">
+                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
                      <label class="label-input100" for="pwd" style="align-self:center">닉네임</label>
                   </div>
 
@@ -463,8 +486,8 @@
          
 
             <div class="value">
-               <div class="row" style="place-content: center;">
-                  <div class="col-2 _label_center">
+               <div class="row" style="place-content: center; padding-left: 100px">
+                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
                      <label class="label-input100" for="pwd" style="align-self:center">이메일 주소</label>
                   </div>
 
@@ -500,7 +523,7 @@
                <form class="_form_radio">
                   <div class="_form_radio">
                      <group class="inline-radio">
-                        <span style="font-size: x-large;width:140px;">Java</span>
+                        <span style="font-size: larger;width:140px;">Java</span>
                         <div class="_div_radio"><input type="radio" name="Java" class="_input_radio" checked><label
                               class="_radio_label">입문</label></div>
                         <div class="_div_radio"><input type="radio" name="Java" class="_input_radio"><label
@@ -510,7 +533,7 @@
                      </group>
 
                      <group class="inline-radio">
-                        <span style="font-size: x-large;width:140px;">Python</span>
+                        <span style="font-size: larger;width:140px;">Python</span>
                         <div class="_div_radio"><input type="radio" name="Python" class="_input_radio" checked><label
                               class="_radio_label">입문</label></div>
                         <div class="_div_radio"><input type="radio" name="Python" class="_input_radio"><label
@@ -520,7 +543,7 @@
                      </group>
                      <group class="inline-radio">
 
-                        <span style="font-size: x-large;width:140px;">HTML/CSS</span>
+                        <span style="font-size: larger;width:140px;">HTML/CSS</span>
                         <div class="_div_radio"><input type="radio" name="HTML/CSS" class="_input_radio" checked><label
                               class="_radio_label">입문</label></div>
                         <div class="_div_radio"><input type="radio" name="HTML/CSS" class="_input_radio"><label
@@ -530,7 +553,7 @@
                      </group>
                      <group class="inline-radio">
 
-                        <span style="font-size: x-large;width:140px;">Javascript</span>
+                        <span style="font-size: larger;width:140px;">Javascript</span>
                         <div class="_div_radio"><input type="radio" name="Javascript" class="_input_radio"
                               checked><label class="_radio_label">입문</label></div>
                         <div class="_div_radio"><input type="radio" name="Javascript" class="_input_radio"><label
@@ -540,7 +563,7 @@
                      </group>
                      <group class="inline-radio">
 
-                        <span style="font-size: x-large;width:140px;">SQL</span>
+                        <span style="font-size: larger;width:140px;">SQL</span>
                         <div class="_div_radio"><input type="radio" name="SQL" class="_input_radio" checked><label
                               class="_radio_label">입문</label></div>
                         <div class="_div_radio"><input type="radio" name="SQL" class="_input_radio"><label

@@ -28,13 +28,13 @@ public class MemberController {
 	@RequestMapping("login.do")
 	public String loginPage() {
 		System.out.println("로그인으로 이동이동(연규가씀)");
-		return "/user/member/login";
+		return "user/member/login";
 	}
 
 	@RequestMapping("join.do")
 	public String joinPage() {
 		System.out.println("회원가입으로 이동이동(연규가씀)");
-		return "/user/member/join";
+		return "user/member/join";
 	}
 
 	// 회원가입처리
