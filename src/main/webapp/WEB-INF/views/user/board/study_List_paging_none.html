@@ -7,8 +7,35 @@
 	<title>stydy_list</title>
 	<link href="login.css" type="text/css" rel="stylesheet" />
 
-	<div th:replace="user/includes/bootstrap_link :: bootstrap_link"></div>
+	<!-- 아이콘 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+
+
+	<link href="../../../../resources/assets/img/favicon.png" rel="icon">
+	<link href="../../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+	<link href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../../../resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+	<link href="../../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../../../../resources/assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
+	<link href="../../../../resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+	<link href="../../../../resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
+	<link href="../../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+	<link href="../../../../resources/assets/vendor/aos/aos.css" rel="stylesheet">
+
+	<!-- Template Main CSS File -->
+	<link href="../../../../resources/assets/css/style.css" rel="stylesheet">
 
 
 </head>
@@ -174,8 +201,14 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
 		<!-- 타임리프 반복시작 -->
-		<div th:each="list : ${list}">
+		
+
+<!-- 		<div th:each="list : ${list}"> -->
+		<div th:each="num: ${#numbers.sequence(1,5)}"><!-- 인덱스,갯수 -->
 			<div class="row">
 				<div class="col-md-3">
 					<div class="card" style="width: 100%">
@@ -201,18 +234,18 @@
 						</div> -->
 						<div class="col-md-3" style="padding-right: 0px;">
 							<a href="" data-toggle="modal" data-target="#exampleModalCenter">
-								<b th:text="${list.USER_ID}" style="color:black;">
+								<b style="color:black;">
 									작성자 : <!-- 여기에 닉네임 --> 미네미네
 								</b>
 							</a>
 						</div>
 						<div class="col-md-6" style="padding: 0px;">
 							<!-- 여기에 뱃지 -->
-							<span class="badge badge-pill badge-primary" th:text="${list.STATUS}">모집중</span> <span
-								class="badge badge-pill badge-info" th:text="${list.LEVEL}">난이도</span>
-							<span class="badge badge-pill badge-secondary" th:text="${list.LAN_SEQ}">Spring</span> <span
-								class="badge badge-pill badge-success" th:text="${list.PEOPLE}">4명</span>
-							<span class="badge badge-pill badge-warning" th:text="${list.LOC_SEQ}">온라인</span>
+							<span class="badge badge-pill badge-primary">모집중</span> <span
+								class="badge badge-pill badge-info">난이도</span>
+							<span class="badge badge-pill badge-secondary">Spring</span> <span
+								class="badge badge-pill badge-success">4명</span>
+							<span class="badge badge-pill badge-warning">온라인</span>
 						</div>
 						<div class="col-md-3" style="text-align: center;">
 							<!-- 여기에 시간 -->
@@ -221,15 +254,15 @@
 					</div>
 
 					<div class="row" style="margin-top: 30px;">
-<!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
+						<a href="/board/writing_Course_Study_Detail.do">
 <!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
+<!-- 						<a th:href="@{/board/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ})}"> -->
 						
-						<a th:href="@{/board/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ})}">
-							<h2 th:text="${list.TITLE}">스터디 같이 하실분 모집합니다</h2>
+							<h2>스터디 같이 하실분 모집합니다</h2>
 						</a>
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 					</div>
-					<div class="row" style="margin: 0px 5px 0px 2px;" th:text="${list.CONTENT}"><p>고행을 하였으며
+					<div class="row" style="margin: 0px 5px 0px 2px;"><p>고행을 하였으며
 						예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서
 						미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을</p></div>
 				</div>
@@ -264,12 +297,14 @@
 				<li th:if="${pageMakerb.prev} == true">
 				<a
 					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a>
+<!-- 					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a> -->
 					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
 		
 				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-				<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
+<!-- 				<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}" -->
+				<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(1,5)}"
 					th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
 					<a class="page-link" th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}" th:text="${idx}">1</a> 
 <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
@@ -292,8 +327,20 @@
 
 	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div>
 	<div th:replace="user/includes/footer :: footer"></div>
-	<div th:replace="user/includes/bootstrap_script :: bootstrap_script"></div>
-	
+	<!-- Vendor JS Files -->
+	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+	<script src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
+	<script src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+	<script src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
+	<script src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
+	<script src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+	<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="../../../../resources/assets/js/main.js"></script>
 
 </body>
 
