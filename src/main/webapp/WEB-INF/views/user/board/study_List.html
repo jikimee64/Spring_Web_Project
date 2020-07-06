@@ -247,9 +247,12 @@
 						</div>
 					</div>
 
-					<div class="row" style="margin-top: 20px;">
-						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}">
-							<h4 th:text="${list.TITLE}"><b style="color:black; margin-left: 15px;">스터디 같이 하실분 모집합니다</b></h4>
+					<div class="row" style="margin-top: 30px;">
+<!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
+<!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
+						
+						<a th:href="@{/board/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ})}">
+							<h2 th:text="${list.TITLE}">스터디 같이 하실분 모집합니다</h2>
 						</a>
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 					</div>
@@ -278,10 +281,15 @@
 
 
 			<!-- 경계 -->
-			<ul class="btn-group pagination" style="place-content: center;">
+<!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
 
+			<!-- 페이징 부트스트랩 버튼 생성하기  -->
+			<ul class="pagination" style="place-content: center;">
+			
+			
 				<!-- 이전버튼 생성여부 -->
 				<li th:if="${pageMaker.prev} == true"><a
+<<<<<<< HEAD
 						th:href="@{study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a>
 					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
@@ -291,16 +299,34 @@
 				<li th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}">
 <!-- 					th:classappend="${pageMaker.cri.page} == ${idx} ? active : null"> -->
 					<a th:href="@{study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> 
+=======
+					th:href="@{study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a>
+					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
+
+
+		
+				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+				<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
+					th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+					<a class="page-link" th:href="@{study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}">1</a> 
+>>>>>>> 27cc232a6845a93496794c2b6783482cb4b16e77
 <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
 
 				<!-- 다음버튼 생성여부 -->
+<<<<<<< HEAD
 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }">
 
 					<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
 						<a
 						th:href="@{study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
 						<!--<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+=======
+<!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
+					<li class="page-item" th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
+						<a th:href="@{study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link" th:text="Next">&raquo;</a>
+						<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+>>>>>>> 27cc232a6845a93496794c2b6783482cb4b16e77
 					</li>
 			</ul>
 
