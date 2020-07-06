@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import kr.or.ns.page.PageMaker;
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardServiceImpl;
-import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Study;
 
 
@@ -45,11 +46,11 @@ public class BoardController {
 	
 	//스터디목록 + 페이징
 	@RequestMapping("study_List.do")
-	public String studyListPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
+	public String studyListPage(Criteria cri, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 		
-		PageMaker_Board pageMaker = new PageMaker_Board();
-		pageMaker.setCri_b(cri_b);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
 		
 		//서비스를 안가는ㄴㄴㄴ구먼........................
 		
@@ -63,7 +64,7 @@ public class BoardController {
 		
 		//DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String,Object>> list = null;
-		list = service.getStudyBoardList(cri_b);
+		list = service.getStudyBoardList(cri);
 		model.addAttribute("list",list); //view까지 전달(forward)
 		model.addAttribute("pageMaker",pageMaker); 
 		System.out.println("미네미네미네미네미네미넴니ㅔ " + pageMaker.isNext());
