@@ -1,6 +1,7 @@
 package kr.or.ns.page;
 
 import kr.or.ns.vo.Criteria;
+import kr.or.ns.vo.Criteria_Board;
 
 
 /*
@@ -12,8 +13,9 @@ import kr.or.ns.vo.Criteria;
 
 
 //페이징 버튼 만들거임
-public class PageMaker {
-	private Criteria cri; //이미지게시판 pageVO
+public class PageMaker_Board {
+	private Criteria_Board cri_b; //게시판 pageVO
+	
 	private int totalCount; //총 게시글수
 	private int startPage; //화면에 보여질 첫번째 페이지 번호,시작페이지 번호
 	private int endPage; //화면에 보여질 마지막 페이지 번호,끝페이지 번호
@@ -25,13 +27,17 @@ public class PageMaker {
 	
 	
 	//VO
-	public Criteria getCri() {
-		return cri;
+	public void setCri_b(Criteria_Board cri_b) {
+		this.cri_b = cri_b;
 	}
-	public void setCri(Criteria cri) {
-		this.cri = cri;
+	
+	public Criteria_Board getCri_b() {
+		return cri_b;
+		
 	}
-
+	
+	
+	
 	
 	
 	//총 게시글 수
@@ -48,7 +54,7 @@ public class PageMaker {
 	//페이징 관련 버튼 계산
 	private void calcData() {
 		//끝페이지    				------------현재 페이지 번호		
-		endPage = (int)(Math.ceil(cri.getPage()/(double)displayPageNum)*displayPageNum);
+		endPage = (int)(Math.ceil(cri_b.getPage()/(double)displayPageNum)*displayPageNum);
 	//  끝페이지 번호 = (현재 페이지 번호/화면에 보여질 페이지 번호의 갯수)*화면에 보여질 페이지 번호의 갯수
 		
 		//시작페이지
@@ -58,7 +64,7 @@ public class PageMaker {
 			startPage = 1;
 		}
 															 //---------------한 페이지 당 보여줄 게시글의 갯수
-		int tempEndPage = (int)(Math.ceil(totalCount/(double)cri.getPerPageNum()));
+		int tempEndPage = (int)(Math.ceil(totalCount/(double)cri_b.getPerPageNum()));
 		System.out.println("tempEndPage : " + tempEndPage);
 	//  마지막 페이지 번호 = 총 게시글 수 /한 페이지당 보여줄 게시글의 갯수	
 		if(endPage > tempEndPage) {
@@ -70,8 +76,8 @@ public class PageMaker {
 		prev = startPage == 1? false : true;
 		//다음
 		//다음버튼 생성여부 = 끝페이지 번호 * 한페이지당 보여줄 게시글의 갯수 < 총 게시글의 수? true:false;
-		next = endPage*cri.getPerPageNum() < totalCount? true : false;
-		System.out.println("1ㄴㄴㅇㅁㄴ : "  + endPage*cri.getPerPageNum());
+		next = endPage*cri_b.getPerPageNum() < totalCount? true : false;
+		System.out.println("1ㄴㄴㅇㅁㄴ : "  + endPage*cri_b.getPerPageNum());
 		System.out.println("미네미네바보 : " + next);
 	}
 	
