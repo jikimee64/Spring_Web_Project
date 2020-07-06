@@ -6,11 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Study;
 
 
@@ -28,7 +24,7 @@ study_List 목록뿌리기 작업
 public interface BoardService {
 	
 	//페이징 스터디 글목록
-	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
+	public List<Map<String, Object>> getStudyBoardList(Criteria cri);
 	
 	//총 스터디게시글 수
 	public int getStudyBoardCount() throws ClassNotFoundException, SQLException;
