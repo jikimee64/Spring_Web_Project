@@ -9,18 +9,32 @@
 
 
 <link href="../../../../resources/assets/img/favicon.png" rel="icon">
-  <link href="../../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <link href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../../../resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="../../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../../../../resources/assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="../../../../resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../../../../resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="../../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="../../../../resources/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="../../../../resources/assets/img/apple-touch-icon.png"
+	rel="apple-touch-icon">
+<link
+	href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../../../../resources/assets/vendor/icofont/icofont.min.css"
+	rel="stylesheet">
+<link
+	href="../../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css"
+	rel="stylesheet">
+<link
+	href="../../../../resources/assets/vendor/ionicons/css/ionicons.min.css"
+	rel="stylesheet">
+<link
+	href="../../../../resources/assets/vendor/animate.css/animate.min.css"
+	rel="stylesheet">
+<link href="../../../../resources/assets/vendor/venobox/venobox.css"
+	rel="stylesheet">
+<link
+	href="../../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+<link href="../../../../resources/assets/vendor/aos/aos.css"
+	rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="../../../resources/assets/css/style.css" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="../../../resources/assets/css/style.css" rel="stylesheet">
 
 <title>mypage_message_from_detail_board</title>
 
@@ -49,7 +63,7 @@ body {
 
 				<div class="d-flex justify-content-between align-items-center">
 					<h2 style="color: #666666;">
-						<b><span sec:authentication="principal.username"></span>님의 쪽지함</b> 
+						<b><span sec:authentication="principal.username"></span>님의 쪽지함</b>
 					</h2>
 				</div>
 
@@ -72,8 +86,9 @@ body {
 				</span></b>
 			</button>
 		</a> <br />
-		<div class="row" style="position: relative; top: -90px; margin-bottom:15px;">
-			<div class="col-md-5"
+		<div class="row"
+			style="position: relative; top: -90px; margin-bottom: 15px;">
+			<div class="col-md-4"
 				style="padding: 30px 30px 0px 30px; margin-left: 30px;">
 				<img src="../../../../resources/images/img/message_black.png" alt=""
 					style="height: 45px;"> &nbsp; <span
@@ -81,28 +96,42 @@ body {
 				</span>
 				<!-- <hr style="border: solid 0.5px; margin-top: 0px;"> -->
 			</div>
-			<div class="col-md-2" style="width:20px; text-align:right; margin-top:30px;">
+			<div class="col-md-7" style="text-align:right; padding-right:28px;">
+				<!-- <div class="col-md-2"
+					style="width: 120px; text-align: right; margin-top: 30px; margin-left: 15px;"> -->
+					<a href="/mypage/mypage_Message_Send_Send_Message.do">
+						<button type="button" class="btn btn-primary"
+							style="width: 100px; margin-top: 30px;">쪽지 쓰기</button>
+					</a>
+				<!-- </div>
+				<div class="col-md-2"
+					style="width: 120px; text-align: center; margin-top: 30px;"> -->
+					<button type="button" class="btn btn-warning" style="width: 80px; margin-top: 30px;">삭제</button>
+				<!-- </div>
+
+				<div class="col-md-2"
+					style="width: 20px; margin-top: 30px; margin-left: 15px;"> -->
+					<a href="">
+						<button data-toggle="modal" data-target="#declationPageModal"
+							type="button" class="btn btn-danger" style="width: 80px; margin-top: 30px;">신고</button>
+					</a>
+			<!-- 	</div> -->
 			</div>
 
-			<div class="col-md-2" style="width:120px; text-align:right; margin-top:30px; margin-left:15px; ">
-				<a href="">
-					<button type="button" class="btn btn-primary" style="width:100px;">쪽지
-							쓰기</button>
-				</a>
-			</div>
-			<div class="col-md-2" style="padding-right:25px; width:120px; text-align:center; margin-top:30px; ">
-				<button type="button" class="btn btn-danger" style="width:80px;">삭제</button>
-			</div>
 			<hr style="border: solid 0.5px; margin-top: 0px;">
 		</div>
 
 		<div class="row"
 			style="margin: 0px 20px 10px 20px; position: relative; top: -90px; text-align: center;">
-			<div class="col-md-3" style="place-self: flex-end;">
+			<div class="col-md-1"
+				style="place-self: flex-end; text-align: center;">
+				<input type="checkbox" id="_all_check" />
+			</div>
+			<div class="col-md-2" style="place-self: flex-end;">
 				<span style="font-size: medium"> 보낸 사람 </span>
 			</div>
-			<div class="col-md-5">
-				<span style="font-size: medium;"> 내용 </span>
+			<div class="col-md-6">
+				<span style="font-size: medium;"> 제목 </span>
 			</div>
 			<div class="col-md-3">
 				<span style="font-size: medium;"> 시간 </span>
@@ -115,21 +144,30 @@ body {
 				<div class="col-md-11"
 					style="padding: 0px 30px 0px 30px; margin-left: 30px;">
 					<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
-					<hr style="border: solid 0.5px; margin-top: 0px;">
+					<hr style="color: #dfe4ea; border: solid 0.5px; margin-top: 0px;">
 				</div>
 			</div>
 			<div class="row"
-				style="margin: 0px 20px 10px 20px; position: relative; top: -77px; text-align: center;">
-				<div class="col-md-3">
-					<span th:text="${list.senderid}"></span>
+				style="margin: 0px 20px 10px 20px; position: relative; top: -93px; text-align: center;">
+				<div class="col-md-1"
+					style="place-self: center; text-align: center;">
+					<input type="checkbox" class="_input_check" />
 				</div>
-				<div class="col-md-5">
+				<div class="col-md-2"
+					style="place-self: center; text-align: center;">
+					<a href="" data-toggle="modal" data-target="#userInfoModal"> <span
+						th:text="${list.senderid}"></span>
+					</a>
+				</div>
+				<div class="col-md-6"
+					style="place-self: center; text-align: center;">
 					<a style="color: black;"
 						th:href="@{/mypage/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
 						<span th:text="${list.content}"></span>
 					</a>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3"
+					style="place-self: center; text-align: center;">
 					<span th:text="${list.senddate}"></span>
 				</div>
 			</div>
@@ -157,9 +195,7 @@ body {
 			</ul>
 			<div class="" style="visibility: hidden;">
 				<a href="/mypage/mypage_Message_Send_Send_Message.do">
-					<button type="hidden" class="btn btn-primary">
-						쪽지 쓰기
-					</button>
+					<button type="hidden" class="btn btn-primary">쪽지 쓰기</button>
 				</a>
 			</div>
 		</div>
@@ -168,24 +204,48 @@ body {
 
 
 	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-    <script src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
-    <script src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-    <script src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
-    <script src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
-    <script src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-    <script src="../../../../resources/assets/vendor/aos/aos.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+	<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
 
-    <script src="../../../../../resources/assets/js/main.js"></script>
+	<script src="../../../../../resources/assets/js/main.js"></script>
 
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div
-		th:replace="/user/member/declation_Page_Modal :: declation_Page_Modal">
+		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
+	</div>
+	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
 	</div>
 
+	<script>
+		$(function() {
+			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
+			$('#_all_check').click(function() {
 
+				var chk = $(this).is(":checked");//.attr('checked');
+				if (chk)
+					$("._input_check").prop('checked', true);
+				else
+					$("._input_check").prop('checked', false);
+
+			});
+
+		});
+	</script>
 </body>
 
 

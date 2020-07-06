@@ -25,12 +25,13 @@
 
 	<!--여기서부터 화면코드-->
 	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#exampleModalCenter">
+	<div th:fragment="declation_Page_Modal">
+	<button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#declationPageModal">
 		신고합니다
 	</button>
 	<!-- Modal -->
 	<div class="container-md">
-		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+		<div class="modal fade" id="declationPageModal" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<form>
 				<div class="modal-dialog modal-dialog-centered" role="document">
