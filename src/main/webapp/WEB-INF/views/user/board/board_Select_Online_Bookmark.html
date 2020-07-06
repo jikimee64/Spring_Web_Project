@@ -22,14 +22,33 @@ hover-css>div {
 		rgba(0, 0, 0, 0.22);
 }
 
-/* .kwc:hover{
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-} */
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
 	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 500;
 	line-height: 1.1;
 	color: inherit;
+}
+
+#portfolio .portfolio-wrap:hover {
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+#portfolio .portfolio-item figure .link-preview, #portfolio .portfolio-item figure .link-details
+	{
+	position: absolute;
+	display: inline-block;
+	opacity: 0;
+	line-height: 1;
+	text-align: center;
+	width: 80px;
+	height: 36px;
+	background: #fff;
+	border-radius: 15%;
+	transition: 0.3s linear;
+}
+
+.portfolio-info > h4 > a{
+	text-decoration:none;
 }
 
 .page-link {
@@ -70,7 +89,7 @@ hover-css>div {
 		<!-- Breadcrumbs Section -->
 
 		<section id="portfolio" class="section-bg"
-			style="background-color: white;">
+			style="background-color: white; padding-top: 30px; padding-bottom: 30px;">
 			<div class="container aos-init aos-animate" data-aos="fade-up">
 
 				<div style="float: right;">
@@ -92,31 +111,35 @@ hover-css>div {
 					data-aos="fade-up" data-aos-delay="200"
 					style="position: relative; height: 3240px;">
 
-					<a href="">
-						<div class="col-lg-4 col-md-6 portfolio-item filter-app kwc"
-							style="position: absolute; left: 0px; top: 0px;">
-							<div class="portfolio-wrap">
-								<figure>
-									<img src="assets/img/portfolio/app1.jpg" class="img-fluid"
-										alt="">
-								</figure>
+					<div class="col-lg-4 col-md-6 portfolio-item filter-app kwc"
+						style="position: absolute; left: 0px; top: 0px;">
+						<div class="portfolio-wrap">
+							<figure>
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="/board/writing_Course_Study.do?" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
+							</figure>
 
-								<div class="portfolio-info">
-									<h4>
-										<a href="portfolio-details.html">App 1</a>
-									</h4>
-									<p>App</p>
-								</div>
+							<div class="portfolio-info">
+								<h4>
+									<a href="/board/writing_Course_Study.do?">등록 폼이동(임시)</a>
+								</h4>
+								<p>App</p>
 							</div>
 						</div>
-					</a>
+					</div>
 
 					<div class="col-lg-4 col-md-6 portfolio-item filter-web"
 						style="position: absolute; left: 0px; top: 360px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/web3.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
@@ -132,8 +155,11 @@ hover-css>div {
 						style="position: absolute; left: 0px; top: 720px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/app2.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
@@ -149,8 +175,11 @@ hover-css>div {
 						style="position: absolute; left: 0px; top: 1080px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/card2.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
@@ -166,8 +195,11 @@ hover-css>div {
 						style="position: absolute; left: 0px; top: 1440px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/web2.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
@@ -183,8 +215,11 @@ hover-css>div {
 						style="position: absolute; left: 0px; top: 1800px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/app3.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
@@ -200,8 +235,11 @@ hover-css>div {
 						style="position: absolute; left: 0px; top: 2160px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/card1.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
@@ -217,8 +255,11 @@ hover-css>div {
 						style="position: absolute; left: 0px; top: 2520px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/card3.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
@@ -234,8 +275,11 @@ hover-css>div {
 						style="position: absolute; left: 0px; top: 2880px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img src="assets/img/portfolio/web1.jpg" class="img-fluid"
-									alt="">
+								<img src="../../../../resources/assets/img/portfolio/app1.jpg"
+									class="img-fluid" alt="">
+								<!-- 강의번호 넘기기  -->
+								<a href="#" data-lightbox="portfolio" data-title="App 1"
+									class="link-details"><i class="ion ion-heart"></i></a>
 							</figure>
 
 							<div class="portfolio-info">
