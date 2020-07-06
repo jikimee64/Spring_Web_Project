@@ -60,19 +60,7 @@
   	border-left: solid 0.5px #979696;
  
 	}
-	.col-md-15 {
-		position: relative;
-		min-height: 1px;
-		padding-right: 10px;
-		padding-left: 10px;
-	}
 
-	@media (min-width : 992px) {
-		.col-md-15 {
-			width: 20%;
-			float: left;
-		}
-	}
 </style>
 
 
@@ -190,9 +178,9 @@
 		<!--<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
 
 		<th:block th:each="list,index : ${list}">
-			<th:block th:if="${index.index%5==0}"
+			<th:block th:if="${index.index%4==0}"
 				th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
-			<div class="col-md-15">
+			<div class="col-md-3">
 				<div class="card" style="width: 100%">
 					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
 						alt="Card image" style="width: 100%">
@@ -208,15 +196,15 @@
 					</div>
 				</div>
 			</div>
-			<th:block th:if="${index.index%5==4}" th:utext="'&lt;/div&gt;'" />
+			<th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
 
 		</th:block>
 
 		<!-- 여기까지 카드 하나 끝 -->
 
-		<th:block th:unless="${#lists.size(list)%5==4}"
+		<th:block th:unless="${#lists.size(list)%4==0}"
 			th:utext="'&lt;/div&gt;'" />
-
+<!-- 여기서 문제가 터질지 몰라 감안하세요 -->
 
 
 
