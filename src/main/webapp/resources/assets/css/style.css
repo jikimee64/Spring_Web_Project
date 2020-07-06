@@ -1015,12 +1015,12 @@ section {
 }
 
 #portfolio .portfolio-item figure .link-preview {
-  left: calc(50% - 38px);
-  top: calc(50% - 18px);
+  left: calc(40% - 38px);
+  top: calc(53% - 18px);
 }
 
 #portfolio .portfolio-item figure .link-details {
-  right: calc(50% - 38px);
+  right: calc(60% - 38px);
   top: calc(50% - 18px);
 }
 

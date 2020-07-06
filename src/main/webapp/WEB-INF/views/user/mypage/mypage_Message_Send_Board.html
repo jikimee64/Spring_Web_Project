@@ -1,174 +1,129 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>mypage_message_send_board</title>
-<link href="login.css" type="text/css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
-<style>
-body {
-	background-color: rgb(224, 224, 224);
-}
-</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	  <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+	<title>mypage_message_from_detail_board</title>
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+		body {
+			background-color: rgb(224, 224, 224);
+			font-family: 'Nanum Gothic', sans-serif;
+		}
+
+		._align_center {
+			text-align: center;
+		}
+
+		.btn-secondary {
+			border-color: rgb(224, 224, 224);
+		}
+	</style>
 </head>
 
 <body>
-	<!-- 보낸 쪽지함 -->
-	<div th:replace="/user/includes/header :: header"></div>
+	<!-- 받은 쪽지함 상세보기 -->
+	<div th:replace="/user/includes/header :: header"> </div>
 	<!--  윗부분 시작 //////////////////////////////////////// -->
-
+<main id="main"> 
+          <!-- ======= Breadcrumbs Section ======= -->
+          <section class="breadcrumbs" style="margin-top: 70px;">
+            <div class="container">
+      
+              <div class="d-flex justify-content-between align-items-center">
+               	<h2 style="color:#666666;"><b>@@님의 쪽지함</b></h2>
+              </div>
+      
+            </div>
+          </section><!-- Breadcrumbs Section -->
+     </main>
 	<div class="container"
-		style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 950px; width: 900px;">
+		style="margin-top: 25px; margin-bottom: 25px; padding:0px; background-color: white; height:800px; width:900px;">
 		<a href="/mypage/mypage_Message_From_Board.do">
 			<button type="button" class="btn btn-secondary"
-				style="height: 110px; position: relative; left: -74px; border-radius: 15px 0px 0px 15px; background-color: rgb(190, 190, 190); border-color: rgb(190, 190, 190);">
-				<span>받은<br> 쪽지함
-				</span>
+				style="height:110px; position: relative; left: -68px; border-radius: 15px 0px 0px 15px; background-color: #18d26e; ">
+				<b><span>받은<br>
+					쪽지함</span></b>
 			</button>
-		</a> <a href="/mypage/mypage_Message_Send_Board.do">
-			<button type="button" class="btn btn-secondary"
-				style="height: 110px; position: relative; left: -152px; bottom: -110px; border-radius: 15px 0px 0px 15px;">
-				<span>보낸<br> 쪽지함
-				</span>
+		</a>
+		<a href="/mypage/mypage_Message_Send_Board.do">
+			<button type="button" class="btn btn-secondary" style="height:110px;position: relative; left:-144px; bottom: -110px;border-radius: 15px 0px 0px 15px;
+		background-color: #18d26e;"> <b><span>보낸<br> 쪽지함</span></b>
 			</button>
-		</a> <br />
-		<div class="row" style="position: relative; top: -90px;">
-			<div class="col-md-2" style="padding: 0px 0px 0px 30px;">
-				<img src="/resources/images/img/message.jpg" alt=""
-					style="height: 45px;"> &nbsp; <span
-					style="font-size: x-large;"> <b>쪽지함</b>
-				</span>
+		</a>
+		<br />
+		<div class="row" style="position: relative; top:-90px;">
+			<div class="col-md-11" style="padding: 30px 30px 0px 30px; margin-left: 30px;">
+				<img src="../../../../resources/images/img/message_black.png" alt="" style="height: 45px;"> &nbsp;
+				<span style="font-size: x-large;"> <b>보낸 쪽지함</b> </span>
+				<hr style="border:solid 0.5px; margin-top:0px;">
 			</div>
-			<div class="col-md-4"></div>
-			<div class="col-md-6" style="text-align: right;">
-				<button type="button" class="btn btn-danger" style="width: 90px;">삭제</button>
-				&nbsp; &nbsp;
-
-
+			<div class="col-md-1">
 			</div>
 
 		</div>
 
-
-		<hr
-			style="border: solid 2px rgb(224, 224, 224); margin-top: 5px; margin-bottom: 2px; width: 96%; position: relative; top: -90px;" />
-
-
-
-
-		<div class="row"
-			style="margin: 0px 20px 0px 20px; position: relative; top: -90px;">
-			<div class="col-md-1"
-				style="place-self: flex-end; text-align: center;">
-				<input type="checkbox" id="_all_check" />
-			</div>
-			<div class="col-md-2" style="align-self: center; text-align: center;">
-				<span style="font-size: larger;"> <span
-					class="badge badge-light"
-					style="width: 98%; background-color: rgb(232, 232, 232);">받은
-						사람</span>
+		<div class="row" style="margin: 0px 20px 10px 20px;position: relative; top:-90px;  text-align: center;">
+			<div class="col-md-3" style="place-self:flex-end;">
+				<span style="font-size:medium">
+					받는 사람
 				</span>
+				
 			</div>
-			<div class="col-md-7" style="align-self: center; text-align: center;">
-				<span style="font-size: larger;"> <span
-					class="badge badge-light"
-					style="width: 98%; background-color: rgb(232, 232, 232);">내용</span>
+			<div class="col-md-5">
+				<span style="font-size:medium;">
+					내용
 				</span>
+		
 			</div>
-			<div class="col-md-2" style="align-self: center; text-align: center;">
-				<span style="font-size: larger;"> <span
-					class="badge badge-light"
-					style="width: 98%; background-color: rgb(232, 232, 232);">날짜</span>
+			<div class="col-md-3">
+				<span style="font-size:medium;">
+					보낸 시간
 				</span>
+			
 			</div>
 		</div>
-
-
-		<!-- 여기부터 데이터 시작~~~~~~~////////////////////// -->
-		<!-- 여기부터 데이터 시작~~~~~~~////////////////////// -->
-		<th:block th:each="list : ${message}">
-			<div class="row"
-				style="margin: 0px 20px 0px 20px; position: relative; top: -90px;">
+			<th:block th:each="list : ${message}">
+		<div class="row" style="position: relative; top:-90px;">
+			<div class="col-md-11" style="padding: 0px 30px 0px 30px; margin-left: 30px;">
 				<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
-				<div class="col-md-1"
-					style="place-self: center; text-align: center;">
-					<input type="checkbox" class="_input_check" />
-				</div>
-				<div class="col-md-2"
-					style="align-self: center; text-align: center;">
-					<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: black;"><span th:text="${list.senderid}"></span>
-					</a>
-				</div>
-				<div class="col-md-7" style="align-self: center;">
-					<a style="color: black;" th:href="@{/mypage/mypage_Message_Send_Detail_Board.do(m_seq=${list.m_seq})}">
-						<span th:text="${list.content}"></span>
-					</a>
-				</div>
-				<div class="col-md-2"
-					style="align-self: center; text-align: center;">
-					<span th:text="${list.senddate}"></span>
-				</div>
+				<hr style="border:solid 0.5px; margin-top:0px;">
+				
+				
 			</div>
-
-			<hr
-				style="border: solid 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom: 2px; width: 96%; position: relative; top: -90px;" />
-			<!-- 여기까지 데이터 한개 넣기 끝 ~~~~~~~////////////////////// -->
-		</th:block>
-
-
-
-		<!-- 이건 페이징 버튼 시작 -->
-
-		<div class="row" style="place-content: center;">
-			<ul class="pagination">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
 		</div>
-		<!-- 여기까지 페이징 버튼 끝 -->
+		<div class="row" style="margin: 0px 20px 10px 20px; position: relative; top:-90px; text-align: center;">
+			<div class="col-md-3">
+		
+				<span th:text="${message.senderid}">변수명확인필요</span>
+			</div>
+			<div class="col-md-5">
+				<span th:text="${message.content}">보낸내용</span>
+			</div>
+			<div class="col-md-3">
+				<span th:text="${message.senddate}">2020.07.06</span>
+			</div>
+		</div>
+		<div class="col-md-6" style="text-align: right;">
+			<!--  삭제할 쪽지번호 넘겨주기 -->
+			<!--  보낸사람 넘겨주기? -->
+			<a th:href="@{/mypage/mypage_Message_From_Send_Message.do(senderid=${message.senderid})}">
+				<button type="button" class="btn btn-danger">삭제</button>
+			</a>
+		</div>
 
+		<div th:text="${message.content}" class="row" style="margin: 20px 30px 0px 30px;position: relative; top:-90px;">
+		</div>
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
+	<div th:replace="/user/member/declation_Page_Modal :: declation_Page_Modal"> </div>
+	<div th:replace="/user/includes/footer :: footer"> </div>
 
-	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal"></div>
-	<div th:replace="/user/includes/footer :: footer"></div>
-
-	<script>
-		$(function() {
-			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
-			$('#_all_check').click(function() {
-
-				var chk = $(this).is(":checked");//.attr('checked');
-				if (chk)
-					$("._input_check").prop('checked', true);
-				else
-					$("._input_check").prop('checked', false);
-
-			});
-
-		});
-	</script>
 
 </body>
 
