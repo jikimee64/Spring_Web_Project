@@ -9,17 +9,10 @@
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"></script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-      crossorigin="anonymous"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-      crossorigin="anonymous"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   <script src="https://rawgit.com/ftlabs/fastclick/master/lib/fastclick.js"></script>
+      <div th:replace="/user/includes/header :: header"></div>
+      <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
+   
    <!-- xeicon -->
    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 </head>
@@ -329,7 +322,7 @@
 
       <div class="container" style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
          &nbsp;&nbsp;
-         <div style="text-align:center;">
+         <div style="text-align:-webkit-center;">
          <span style="text-align: center; font-size: xx-large;"><b>회원가입</b></span>
       </div>
          <hr style="width:17%;"/>
@@ -584,8 +577,10 @@
                <br />
                <div class="row" style="font-size: x-large; place-content: center;">
                   <div class="col-md-4">
-                     <button type="submit" class="login100-form-btn" style="width: 80%;border: 1.5px solid #18d26e;">
-                        <h4><i class="xi-border-color" aria-hidden="true"></i>&nbsp;<b>회원가입</b></h4>
+                     <button type="submit" class="login100-form-btn" style="width: 100%;border: 1.5px solid #18d26e;">
+                     	<div style="padding-top: 20px">
+                        	<h4><i class="xi-border-color" aria-hidden="true"></i>&nbsp;<b>회원가입</b></h4>
+                        </div>
                      </button>
                   </div>
                </div>
