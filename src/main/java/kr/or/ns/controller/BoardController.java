@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import kr.or.ns.page.PageMaker;
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardServiceImpl;
+import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Study;
 
@@ -48,13 +50,13 @@ public class BoardController {
 	public String studyListPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 		
-		PageMaker_Board pageMaker = new PageMaker_Board();
-		pageMaker.setCri_b(cri_b);
+		PageMaker_Board pageMakerb = new PageMaker_Board();
+		pageMakerb.setCri_b(cri_b);
 		
 		//서비스를 안가는ㄴㄴㄴ구먼........................
 		
 		System.out.println("서비스 가냐");
-		pageMaker.setTotalCount(service.getStudyBoardCount());
+		pageMakerb.setTotalCount(service.getStudyBoardCount());
 		
 		System.out.println("서비스 갔다오냐");
 		
@@ -65,8 +67,8 @@ public class BoardController {
 		List<Map<String,Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
 		model.addAttribute("list",list); //view까지 전달(forward)
-		model.addAttribute("pageMaker",pageMaker); 
-		System.out.println("미네미네미네미네미네미넴니ㅔ " + pageMaker.isNext());
+		model.addAttribute("pageMakerb",pageMakerb); 
+		System.out.println("pageMagerb오냐 " + pageMakerb.isNext());
 		
 		System.out.println(list.toString());
 		System.out.println("컨트롤러2");
