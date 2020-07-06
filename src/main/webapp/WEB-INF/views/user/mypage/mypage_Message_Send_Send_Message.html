@@ -6,22 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>mypage_message_send_send_massage</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
+<style>
+body {
+	background-color: rgb(230, 244, 232);
+}
+</style>
 </head>
 
 <body>
@@ -36,7 +27,7 @@
 
 				<div class="d-flex justify-content-between align-items-center">
 					<h2 style="color: #666666;">
-					 <b><span sec:authentication="principal.username"></span>님의 쪽지함</b>
+						<b><span sec:authentication="principal.username"></span>님의 쪽지함</b>
 					</h2>
 				</div>
 
@@ -60,48 +51,52 @@
 				</span></b>
 			</button>
 		</a> <br />
-		<div class="row" style="position: relative; top: -90px;">
-			<div class="col-md-11"
+			
+		<div class="row"
+			style="position: relative; top: -90px; margin-bottom: 15px;">
+			<div class="col-md-4"
 				style="padding: 30px 30px 0px 30px; margin-left: 30px;">
 				<img src="../../../../resources/images/img/message_black.png" alt=""
 					style="height: 45px;"> &nbsp; <span
-					style="font-size: x-large;"> <b>쪽지 보내기</b>
+					style="font-size: x-large;"> <b>쪽지보내기</b>
 				</span>
-				<hr style="border: solid 0.5px; margin-top: 0px;">
+				<!-- <hr style="border: solid 0.5px; margin-top: 0px;"> -->
 			</div>
-			<div></div>
-			<div class="col-md-1"></div>
-		</div>
+			<div class="col-md-7" style="text-align: right; padding-right: 28px; padding-top:8px;">
+				<button id="sendBtn" type="submit" class="btn btn-success"
+					style="width: 80px; margin-top: 30px; color:white; background-color: #18d26e;">보내기</button>
+			</div>
 
+		</div>
+		
 		<form action="sendMessage.do">
 			<div class="row form-group"
 				style="margin: 0px 20px 10px 20px; position: relative; top: -90px;">
 				<div class="col-md-2"
-					style="place-self: flex-end; text-align: center;">
-					<label for="sel1">받는사람</label>
+					style="place-self: flex-end; text-align: center; padding-left:30px; margin-bottom:8px;">
+					<span style="font-size: large;"> <b>받는 사람</b>
+				</span>
 				</div>
 				<th:block th:if="${senderid != null}">
-					<input type="text" name="m_to" id="m_to" th:value="${senderid}"
+					<input style="text-align:center; padding-left:0px; width:150px;" type="text" class="form-control" name="m_to" id="m_to" th:value="${senderid}"
 						readonly />
 				</th:block>
 				<th:block th:if="${senderid == null}">
 					<div class="col-md-10" style="align-self: center;">
-						<input type="form-g" name="m_to" id="m_to" />
+						<input style="padding-left:0px; width:150px;" class="form-control" type="form-g" name="m_to" id="m_to" />
 					</div>
 				</th:block>
-				<button type="submit" id="sendBtn" class="btn btn-secondary"
-					style="background-color: #18d26e; padding: 5px;">보내기</button>
 			</div>
 
 			<div class="row"
 				style="margin: 20px 30px 0px 30px; position: relative; top: -90px;">
 				<textarea class="form-control" id="msg" cols="30" rows="10"
-					style="width: 100%" placeholder="내용을 입력해주세요"></textarea>
+					style=" margin-left:32px; margin-right:32px; width: 100%" placeholder="내용을 입력해주세요"></textarea>
 			</div>
 		</form>
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->
-
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 
 

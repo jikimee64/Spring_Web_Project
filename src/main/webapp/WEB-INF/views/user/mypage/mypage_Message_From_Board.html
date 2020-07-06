@@ -5,39 +5,12 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div> -->
-
-
-<link href="../../../../resources/assets/img/favicon.png" rel="icon">
-<link href="../../../../resources/assets/img/apple-touch-icon.png"
-	rel="apple-touch-icon">
-<link
-	href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="../../../../resources/assets/vendor/icofont/icofont.min.css"
-	rel="stylesheet">
-<link
-	href="../../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
-<link
-	href="../../../../resources/assets/vendor/ionicons/css/ionicons.min.css"
-	rel="stylesheet">
-<link
-	href="../../../../resources/assets/vendor/animate.css/animate.min.css"
-	rel="stylesheet">
-<link href="../../../../resources/assets/vendor/venobox/venobox.css"
-	rel="stylesheet">
-<link
-	href="../../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css"
-	rel="stylesheet">
-<link href="../../../../resources/assets/vendor/aos/aos.css"
-	rel="stylesheet">
-
-<!-- Template Main CSS File -->
-<link href="../../../resources/assets/css/style.css" rel="stylesheet">
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 <title>mypage_message_from_detail_board</title>
 
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
@@ -46,6 +19,72 @@
 <style>
 body {
 	background-color: rgb(230, 244, 232);
+}
+
+.pager li>a, .pager li>span {
+	border: white;
+	background-color: #fff;
+}
+
+.pager li>a, .pager li>span {
+	float:left;
+	padding: 5px 14px;
+	border-radius: 15px;
+	border: white;
+	background-color: #fff;
+}
+
+.page-link {
+	color: #18d26e;
+}
+
+.page-link {
+	position: relative;
+	margin-left: -1px;
+	line-height: 1.25;
+}
+
+a {
+	text-decoration: none;
+}
+
+a {
+	transition: 0.5s;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a:-webkit-any-link {
+	cursor: pointer;
+}
+
+li {
+	text-align: -webkit-match-parent;
+}
+
+.pager {
+	padding-left: 0;
+	margin: 20px 0;
+	list-style: none;
+	text-align: center;
+}
+
+ul {
+	display: block;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+}
+
+.page-item.active .page-link {
+	background-color: #18d26e;
+	border-color: white;
+	color: white;
+	z-index: 3;
 }
 </style>
 
@@ -86,6 +125,8 @@ body {
 				</span></b>
 			</button>
 		</a> <br />
+
+
 		<div class="row"
 			style="position: relative; top: -90px; margin-bottom: 15px;">
 			<div class="col-md-4"
@@ -94,31 +135,22 @@ body {
 					style="height: 45px;"> &nbsp; <span
 					style="font-size: x-large;"> <b>받은 쪽지함</b>
 				</span>
-				<!-- <hr style="border: solid 0.5px; margin-top: 0px;"> -->
 			</div>
-			<div class="col-md-7" style="text-align:right; padding-right:28px;">
-				<!-- <div class="col-md-2"
-					style="width: 120px; text-align: right; margin-top: 30px; margin-left: 15px;"> -->
-					<a href="/mypage/mypage_Message_Send_Send_Message.do">
-						<button type="button" class="btn btn-primary"
-							style="width: 100px; margin-top: 30px;">쪽지 쓰기</button>
-					</a>
-				<!-- </div>
-				<div class="col-md-2"
-					style="width: 120px; text-align: center; margin-top: 30px;"> -->
-					<button type="button" class="btn btn-warning" style="width: 80px; margin-top: 30px;">삭제</button>
-				<!-- </div>
+			<div class="col-md-7"
+				style="text-align: right; padding-right: 28px; padding-top: 8px;">
+				<a href="/mypage/mypage_Message_Send_Send_Message.do">
+					<button type="button" class="btn btn-success"
+						style="width: 100px; margin-top: 30px; background-color:#18d26e;">쪽지 쓰기</button>
+				</a>
+				<button type="button" class="btn btn-warning"
+					style="width: 80px; color: white; margin-top: 30px;">삭제</button>
 
-				<div class="col-md-2"
-					style="width: 20px; margin-top: 30px; margin-left: 15px;"> -->
-					<a href="">
-						<button data-toggle="modal" data-target="#declationPageModal"
-							type="button" class="btn btn-danger" style="width: 80px; margin-top: 30px;">신고</button>
-					</a>
-			<!-- 	</div> -->
+				<button data-toggle="modal" data-target="#declationPageModal"
+					type="button" class="btn btn-danger"
+					style="width: 80px; margin-top: 30px;">신고</button>
+				</button>
 			</div>
 
-			<hr style="border: solid 0.5px; margin-top: 0px;">
 		</div>
 
 		<div class="row"
@@ -131,10 +163,10 @@ body {
 				<span style="font-size: medium"> 보낸 사람 </span>
 			</div>
 			<div class="col-md-6">
-				<span style="font-size: medium;"> 제목 </span>
+				<span style="font-size: medium;"> 내용 </span>
 			</div>
 			<div class="col-md-3">
-				<span style="font-size: medium;"> 시간 </span>
+				<span style="font-size: medium;"> 받은 시간 </span>
 			</div>
 		</div>
 
@@ -173,57 +205,20 @@ body {
 			</div>
 		</th:block>
 
-		<!-- 페이징  -->
-		<div class="d-flex justify-content-between">
-			<div class="" style="visibility: hidden;">
-				<button type="button" class="btn btn-primary">
-					<i class="fas fa-pencil-alt pr-1"></i>
-				</button>
-			</div>
-			<!-- 공간차지용 -->
-			<ul class="pagination" style="margin: 0 auto">
-				<!-- justify-content-end -->
-				<li class="page-item"><a href="" class="page-link"> <i
-						class="fas fa-arrow-left"></i>
-				</a></li>
-				<li class="page-item"><a href="" class="page-link">1</a></li>
-				<li class="page-item"><a href="" class="page-link">2</a></li>
-				<li class="page-item"><a href="" class="page-link">3</a></li>
-				<li class="page-item"><a href="" class="page-link"> <i
-						class="fas fa-arrow-right"></i>
-				</a></li>
+		<div class="row" style="place-content: center;">
+			<ul class="pager">
+				<li><a class="page-link" href="#">PREV</a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item active"><a class="page-link" href="#" >2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li><a class="page-link" href="#">NEXT</a></li>
 			</ul>
-			<div class="" style="visibility: hidden;">
-				<a href="/mypage/mypage_Message_Send_Send_Message.do">
-					<button type="hidden" class="btn btn-primary">쪽지 쓰기</button>
-				</a>
-			</div>
 		</div>
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
 
-	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
-
-	<script src="../../../../../resources/assets/js/main.js"></script>
-
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div
 		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
