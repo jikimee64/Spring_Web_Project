@@ -13,13 +13,15 @@ import kr.or.ns.vo.Criteria;
 
 //페이징 버튼 만들거임
 public class PageMaker {
-	private Criteria cri; //pageVO
+	private Criteria cri; //이미지게시판 pageVO
 	private int totalCount; //총 게시글수
 	private int startPage; //화면에 보여질 첫번째 페이지 번호,시작페이지 번호
 	private int endPage; //화면에 보여질 마지막 페이지 번호,끝페이지 번호
 	private boolean prev; //이전
 	private boolean next; //다음
 	private int displayPageNum = 5;  //5개씩 보여준다
+	
+	
 	
 	
 	//VO
@@ -29,7 +31,7 @@ public class PageMaker {
 	public void setCri(Criteria cri) {
 		this.cri = cri;
 	}
-	
+
 	
 	
 	//총 게시글 수
@@ -113,6 +115,14 @@ public class PageMaker {
 	public void setDisplayPageNum(int displayPageNum) {
 		this.displayPageNum = displayPageNum;
 	}
+
+	
+
+
+
+
+
+	
 	
 	
 }

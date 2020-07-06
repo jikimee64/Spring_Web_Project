@@ -105,6 +105,8 @@ public class MyPageController {
 		List<Message> mlist = mservice.getListMessage(principal.getName());
 		model.addAttribute("message", mlist);
 
+		System.out.println(mlist);
+		
 		System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Message_From_Board";
 	}
