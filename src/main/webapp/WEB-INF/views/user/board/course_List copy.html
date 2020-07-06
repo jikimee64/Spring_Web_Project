@@ -18,8 +18,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<link href="../../../../resources/assets/img/favicon.png" rel="icon">
 	<link href="../../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 	<link href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,49 +33,124 @@
 
 	<!-- Template Main CSS File -->
 	<link href="../../../../resources/assets/css/style.css" rel="stylesheet">
+	<style>
+		._category {
+			text-align: center;
+			align-self: center;
+		}
+
+		._category_button {
+			place-self: center;
+		}
+
+		._button_color {
+			background-color: #BCF1D3;
+			color: black;
+			border-color: darkseagreen;
+		}
+
+		._margin_0 {
+			margin: 0;
+		}
+
+		.verticalLine {
+			border-left: solid 0.5px #979696;
+
+		}
+
+		@media (min-width : 992px) {
+			.col-md-15 {
+				width: 20%;
+				float: left;
+			}
+		}
+
+		.pager li>a,
+		.pager li>span {
+			border: white;
+			background-color: #fff;
+		}
+
+		.pager li>a,
+		.pager li>span {
+			display: inline-block;
+			padding: 5px 14px;
+			border-radius: 15px;
+			border:white;
+			background-color: #fff;
+		}
+
+		.page-link {
+			color: #18d26e;
+		}
+
+		.page-link {
+			position: relative;
+			margin-left: -1px;
+			line-height: 1.25;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a {
+			transition: 0.5s;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		a:-webkit-any-link {
+			cursor: pointer;
+		}
+
+		li {
+			text-align: -webkit-match-parent;
+		}
+
+		.pager {
+			padding-left: 0;
+			margin: 20px 0;
+			list-style: none;
+			text-align: center;
+		}
+
+		ul {
+			display: block;
+			margin-block-start: 1em;
+			margin-block-end: 1em;
+			margin-inline-start: 0px;
+			margin-inline-end: 0px;
+			padding-inline-start: 40px;
+		}
+
+
+		body {
+			font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-size: 14px;
+			background-color: #fff;
+			background: #fff;
+			margin: 0;
+		}
+
+		.page-item.active .page-link {
+         background-color: #18d26e;
+         border-color: white;
+         color: white;
+         z-index: 3;
+      }
+	</style>
 
 
 </head>
 
-<style>
-	._category {
-		text-align: center;
-		align-self: center;
-	}
-
-	._category_button {
-		place-self: center;
-	}
-
-	._button_color {
-		background-color: #BCF1D3;
-		color: black;
-		border-color: darkseagreen;
-	}
-
-	._margin_0 {
-		margin: 0;
-	}
-
-	.verticalLine {
-  	border-left: solid 0.5px #979696;
- 
-	}
-
-	@media (min-width : 992px) {
-		.col-md-15 {
-			width: 20%;
-			float: left;
-		}
-	}
-	
-</style>
-
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
-	
-	
+
+
 	<main id="main">
 
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -90,15 +165,15 @@
 		</section><!-- Breadcrumbs Section -->
 
 	</main><!-- End #main -->
-	
-	
-	
+
+
+
 	<!--포트폴리오 section 으로 감싸줘야 css가 입혀짐-->
 	<section id="portfolio" class="section-bg">
 
 		<!-- course란 강좌라는 뜻이에염~ -->
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
-		<div class="container" >
+		<div class="container">
 			<div class="row">
 				<div class="row" style="width: 100%; margin-bottom: 0px; ">
 					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
@@ -138,7 +213,7 @@
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
 					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<div>
-							<span class="title _category_list  " >언어</span>
+							<span class="title _category_list  ">언어</span>
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
@@ -160,7 +235,7 @@
 							&nbsp;
 							<li data-filter=".filter-lan">React</li>
 						</ul>
-						<ul id="portfolio-flters">	
+						<ul id="portfolio-flters">
 							&nbsp;
 							<li data-filter=".filter-lan">JSP</li>
 							&nbsp;
@@ -337,56 +412,7 @@
 
 		<br />
 			<!--//////////////////////////////-->
-		<style>
-			.pager li>a, .pager li>span {
-				border: white;
-				background-color: #fff;
-			}
-			.pager li>a, .pager li>span {
-				display: inline-block;
-				padding: 5px 14px;
-				border-radius: 15px;
-			}
-			.page-link {
-				color:  #18d26e;
-			}
-			
-			.page-link {
-				position: relative;
-				margin-left: -1px;
-				line-height: 1.25;
-			}
-			a {
-				text-decoration: none;
-			}
-			
-			a {
-				transition: 0.5s;
-			}
-			
-			* {
-				box-sizing: border-box;
-			}
-			a:-webkit-any-link {
-				cursor: pointer;
-			}
-			li {
-				text-align: -webkit-match-parent;
-			}
-			.pager {
-				padding-left: 0;
-				margin: 20px 0;
-				list-style: none;
-			}
-			body {
-				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-   				font-size: 14px;
-				background-color: #fff;
-				background: #fff;
-				margin: 0;
-			}
-			
-		</style>
+
 		<div class="row" style="place-content: center;">
 			<ul class="pager">
 				<li><a class="page-link" href="#">PREV</a></li>
