@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-<title>mypage_myboard</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+	<title>mypage_myboard</title>
 
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-<style>
-.page-link {
-	color: #18d26e;
-}
+	<style>
+		.page-link {
+			color: #18d26e;
+		}
 
-.page-item.active .page-link {
-	background-color: #18d26e;
-	border-color: white;
-	color: white;
-	z-index: 3;
-}
+		.page-item.active .page-link {
+			background-color: #18d26e;
+			border-color: white;
+			color: white;
+			z-index: 3;
+		}
 
-.pager li>a, .pager li>span {
-	border: white;
-	background-color: #fff;
-}
-</style>
+		.pager li>a,
+		.pager li>span {
+			border: white;
+			background-color: #fff;
+		}
+	</style>
 </head>
 
 <body>
@@ -38,8 +36,7 @@
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs"
-			style="margin-top: 70px; padding-top: 0px;">
+		<section class="breadcrumbs" style="margin-top: 70px; padding-top: 0px;">
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
@@ -59,19 +56,16 @@
 		<div class="row">
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			<button type="button" class="btn btn-success"
-				style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
-				id="_board_button1">
+				style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;" id="_board_button1">
 				<b style="font-size: large;"> 게시글</b>
 			</button>
 			<button type="button" class="btn btn-success"
-				style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
-				id="_board_button2">
+				style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;" id="_board_button2">
 				<b style="font-size: large;"> &nbsp; 댓글 &nbsp; </b>
 			</button>
 		</div>
 
-		<hr
-			style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 96%;" />
+		<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 96%;" />
 		<!-- 글번호 -->
 
 		<div class="row" style="padding: 30px; padding-bottom: 10px;">
@@ -88,15 +82,15 @@
 		</div>
 		<div class="row" style="margin-left: 45px;">
 			<div class="col-md-8">
-				<a href=""><h3 style="margin-top: 0;">[강남] 쇼핑몰 프로젝트 같이 하실분들
+				<a href="">
+					<h3 style="margin-top: 0;">[강남] 쇼핑몰 프로젝트 같이 하실분들
 						모집합니다</h3> <span style="color: #888888"> html, css, js를 몇번 써보신분,
 						java의 MVC 패턴을 사용해보신 분 포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다 </span>
 			</div>
 			</a>
 			<div class="col-md-3" style="text-align: right;">
-				<img
-					src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg"
-					alt="" style="width: 180px; height: 180px;">
+				<img src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg" alt=""
+					style="width: 180px; height: 180px;">
 			</div>
 		</div>
 

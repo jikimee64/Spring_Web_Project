@@ -294,15 +294,13 @@
 <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
 
-
-
 				<!-- 다음버튼 생성여부 -->
 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }">
 
 					<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
 						<a
 						th:href="@{study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
-						<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+						<!--<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
 					</li>
 			</ul>
 
