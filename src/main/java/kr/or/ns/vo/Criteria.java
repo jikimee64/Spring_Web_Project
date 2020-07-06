@@ -22,7 +22,7 @@ public class Criteria {
 
 	//시작페이지 메서드 
 	public int getPageStart() {
-		System.out.println("getPageStart");
+	System.out.println("getPageStart");
 		return (this.page-1)*perPageNum;
 	}
 	
