@@ -927,7 +927,7 @@ section {
 /* Portfolio Section
 --------------------------------*/
 #portfolio {
-  padding: 60px 0;
+  padding: 65px 0;
 }
 
 #portfolio #portfolio-flters {
@@ -1670,5 +1670,5 @@ section {
   text-align:center;
 }
 ._category_list{
-  font-size: x-large;
+  font-size: medium;
 }

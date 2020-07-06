@@ -29,70 +29,182 @@
 </head>
 
 <style>
+.input--style-6, .textarea--style-6 {
+	font-family: Raleway-SemiBold;
+	font-size: 18px;
+	background: #f0f0f0;
+	outline: none;
+	/* background: transparent; */
+	line-height: 1.2;
+	display: block;
+	width: 100%;
+	height: 60px;
+	border: 1px solid #cccccc;
+	/* border-style: hidden; */
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #666;
+	font-size: 15px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	padding: 0 15px;
+}
+
+button:focus {
+	outline: none;
+}
+
+*:focus {
+	border: solid 1px #18d26e;
+}
+
+.focus-input100 {
+	display: block;
+	position: absolute;
+	border-radius: 3px;
+	border-style: hidden;
+	bottom: 0;
+	outline: none;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0px 0px 0px 0px;
+	color: #18d26e;
+}
+
+.input100:focus {
+	outline: none !important;
+	border: 1.5px solid #18d26e;
+	/* box-shadow: 0 0 10px #719ECE; */
+}
+
+.input--style-6::-webkit-input-placeholder, .textarea--style-6::-webkit-input-placeholder
+	{
+	/* WebKit, Blink, Edge */
+	color: #999;
+}
+
+.input--style-6:-moz-placeholder, .textarea--style-6:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #999;
+	opacity: 1;
+}
+
+.input--style-6::-moz-placeholder, .textarea--style-6::-moz-placeholder
+	{
+	/* Mozilla Firefox 19+ */
+	color: #999;
+	opacity: 1;
+}
+
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Internet Explorer 10-11 */
+	color: #999;
+}
+
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Microsoft Edge */
+	color: #999;
+}
+
+.input--style-6:focus, .textarea--style-6:focus {
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-webkit-transform: translateY(-3px);
+	-moz-transform: translateY(-3px);
+	-ms-transform: translateY(-3px);
+	-o-transform: translateY(-3px);
+	transform: translateY(-3px);
+	-webkit-transform: translateY(-3px);
+}
+
+._border_box_shadow2 {
+	background: #fff;
+	margin: auto;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 30px;
+	width: 610px;
+	height: 645px;
+}
 </style>
 
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 	<br />
-	<div id="app">
-		<div class="container" style="width: 27%;">
-			<h3 style="text-align: center;">
-				<b>아이디 찾기</b>
-			</h3>
-			<hr />
-			<br />
-			<form action="" class="needs-validation" novalidate>
-				<div class="form-group">
-					<label for="username">이름</label>
-					<div class="row" style="place-content: center;">
-						<input type="text" v-model="username" class="form-control"
-							id="username" placeholder="Enter username" name="username"
-							style="width: 95%;" required>
-					</div>
-				</div>
+	<div id="app" style="margin-top: 110px;">
+		<div class="container" style="height: 700px;">
+			<div class="_border_box_shadow2 wrap-login100">
 
-				<div class="form-group">
-					<label for="userid">이메일주소</label>
-					<div class="row" style="place-content: center;">
-						<input type="text" v-model="useremail" class="form-control"
-							id="userid" placeholder="Enter userid" name="uname"
-							style="width: 70%;" required> &nbsp;
-						<button v-on:click="emailCheck" type="submit"
-							class="btn btn-warning" style="width: 25%; font-size: small;">인증받기</button>
-						<div id="alert">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-					</div>
-				</div>
+				<h3 style="text-align: center;">
+					<b>아이디 찾기</b>
+				</h3>
+				<hr style="width: 80%; height: 2rem;" />
 
-				<div class="form-group">
-					<label for="userid"></label>
-					<div class="row" style="place-content: center;">
-						<input type="text" class="form-control" id="AuthInput"
-							placeholder="인증 번호 입력" name="uname" style="width: 70%;" required>
-						&nbsp;
-						<button type="button" class="btn btn-success"
-							style="width: 25%; font-size: small;" id="Authbtn">확인</button>
-							<div id="alert2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-					</div>
-				</div>
-				<br />
+				<div>
+					<form action="" class="needs-validation" novalidate>
+						<div class="form-group">
+							<label for="username"><b>이름</b></label> <input
+								class="input--style-6" type="text" v-model="username"
+								id="username" placeholder="Enter username" name="username"
+								required>
 
-			<div style="text-align: end;">
-				<a href="/member/login.do">
-				<button type="button" class="btn btn-warning" style="width:40%;height:55px;">로그인 하러가기</button>
-				</a>
+						</div>
+
+
+						<div class="form-group">
+
+							<label for="userid"><b>이메일주소</b></label>
+							<div class="row" style=" transform: translateX(15px);">
+								<input class="input--style-6" type="text" v-model="useremail"
+									id="userid" placeholder="Enter userid" name="uname"
+									style="width: 70%;" required>
+									&nbsp;
+								     <button v-on:click="emailCheck" type="submit"
+                     class="btn btn-warning" style="width: 24%; font-size: larger;">인증받기</button>
+
+
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="userid"></label>
+							<div class="row">
+								<input type="text" class="form-control" id="AuthInput"
+									placeholder="인증 번호 입력" name="uname"
+									style="width: 70%; margin-left: 11px;" required> &nbsp;
+								<button type="button" class="btn btn-success"
+									style="width: 25%; font-size: small;" id="Authbtn">확인</button>
+								<div id="alert2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+							</div>
+						</div>
+						<br /> <br /> <br /> <br /> <br />
+
+						<div style="text-align: end;">
+							<a href="/member/login.do">
+								<button type="button" class="btn btn-warning"
+									style="width: 40%; height: 55px;">로그인 하러가기</button>
+							</a>
+						</div>
+					</form>
+				</div>
+				<p></p>
+				<input type="hidden" value="" id="aa"> <input type="hidden"
+					value="" id="bb"> <br /> <br />
 			</div>
-		</form>
-
-			<p></p>
-					<input type="hidden" value="" id="aa">
-					<input type="hidden" value="" id="bb">
-
-			<br /> <br />
-
 		</div>
 	</div>
 	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<script>
 		// Disable form submissions if there are invalid fields
 		(function () {
@@ -126,7 +238,6 @@
             		if(this.username !== '' && this.useremail !== ''){ //username이랑 userid가 빈값이 아닐 때
             			axios.post('/ajax/emailCheck.do', 
             				{username: this.username, 
-            				useremail: this.useremail})
             			.then(res => { 
             				//데이터를 받아와서 히든태그에 넣어준다 
             				console.log(res.data.key);
@@ -175,7 +286,6 @@
                 });
         
     </script>
-
 </body>
 
 </html>
