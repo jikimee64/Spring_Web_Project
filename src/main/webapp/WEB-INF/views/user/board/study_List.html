@@ -288,24 +288,24 @@
 			
 			
 				<!-- 이전버튼 생성여부 -->
-				<li th:if="${pageMaker.prev} == true">
+				<li th:if="${pageMakerb.prev} == true">
 				<a
-					th:href="@{study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a>
+					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a>
 					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
 		
 				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-				<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
-					th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
-					<a class="page-link" th:href="@{study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}">1</a> 
+				<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
+					th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
+					<a class="page-link" th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}" th:text="${idx}">1</a> 
 <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
 
 				<!-- 다음버튼 생성여부 -->
 <!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
-					<li class="page-item" th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
-						<a th:href="@{study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link" th:text="Next">&raquo;</a>
+					<li class="page-item" th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+						<a th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Next">&raquo;</a>
 						<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
 					</li>
 			</ul>

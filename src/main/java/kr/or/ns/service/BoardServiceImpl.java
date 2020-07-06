@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ns.dao.BoardDao;
 import kr.or.ns.vo.Criteria;
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Study;
 
 /*
@@ -30,9 +31,9 @@ public class BoardServiceImpl implements BoardService {
 	private SqlSession sqlsession;
 
 	//페이징 스터디 글목록
-	public List<Map<String, Object>> getStudyBoardList(Criteria cri) {
+	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		List<Map<String,Object>> list = dao.getStudyBoardList(cri);
+		List<Map<String,Object>> list = dao.getStudyBoardList(cri_b);
 		
 		return list;
 	}
