@@ -50,11 +50,8 @@
 
 <style>
 ._category {
-	background-color: #f6b758;
 	text-align: center;
 	align-self: center;
-	padding: 30px;
-	height: 93px;
 }
 
 ._category_button {
@@ -70,6 +67,10 @@
 ._margin_0 {
 	margin: 0;
 }
+.verticalLine {
+  border-left: solid 0.5px #979696;
+ 
+}
 /* 	body{ */
 /* 	background-color:lightgray; */
 /* 	} */
@@ -79,6 +80,8 @@
 <body>
 	<div th:replace="user/includes/header :: header"></div>
 	
+
+	
 	<!--포트폴리오 section 으로 감싸줘야 css가 입혀짐-->
 	<section id="portfolio" class="section-bg">
 
@@ -86,11 +89,11 @@
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
 		<div class="container" style="margin-top: 25px; margin-bottom: 25px;">
 			<div class="row">
-				<div class="row" style="width: 100%; margin-bottom: 1px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
-						<span class="title _category_list">상태</span>
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-2 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+						<span class="title _category_list">모집 상태</span>
 					</div>
-					<div class="col-md-9 _category_button">
+					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters">
 							&nbsp;
 							<li data-filter=".filter-ingOrDone">모집중</li>
@@ -99,11 +102,11 @@
 						</ul>
 					</div>
 				</div>
-				<div class="row" style="width: 100%; margin-bottom: 1px; ">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+				<div class="row" style="width: 100%; margin-bottom: 0px; ">
+					<div class="col-md-2 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">난이도</span>
 					</div>
-					<div class="col-md-9 _category_button">
+					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters">
 							&nbsp;
 							<li data-filter=".filter-level">입문</li>
@@ -115,13 +118,13 @@
 					</div>
 				</div>
 
-				<div class="row" style="width: 100%; margin-bottom: 1px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-2 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<div>
 							<span class="title _category_list  " >언어</span>
 						</div>
 					</div>
-					<div class="col-md-9 _category_button">
+					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters">
 							&nbsp;
 							<li data-filter=".filter-lan">JAVA</li>
@@ -139,6 +142,8 @@
 							<li data-filter=".filter-lan">Vue.js</li>
 							&nbsp;
 							<li data-filter=".filter-lan">React</li>
+						</ul>
+						<ul id="portfolio-flters">	
 							&nbsp;
 							<li data-filter=".filter-lan">Jquery</li>
 							&nbsp;
@@ -150,11 +155,11 @@
 						</ul>
 					</div>
 				</div>
-				<div class="row" style="width: 100%; margin-bottom: 1px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-2 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">지역</span>
 					</div>
-					<div class="col-md-9 _category_button">
+					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters">
 							&nbsp;
 							<li data-filter=".filter-local">온라인</li>
@@ -165,11 +170,11 @@
 						</ul>
 					</div>
 				</div>
-				<div class="row" style="width: 100%; margin-bottom: 1px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-2 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">스터디 콘텐츠</span>
 					</div>
-					<div class="col-md-9 _category_button">
+					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters">
 							&nbsp;
 							<li data-filter=".filter-studyContent">온라인 강의</li>
