@@ -24,10 +24,30 @@
 	._textarea_readonly:read-only {
 		background-color: aquamarine;
 	}
+	.cover5 {
+	background-image:
+		url(../../../../resources/images/img/normalstudydetail.jpg);
+	background-position: center center;
+	background-size: 2000px;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+}
 </style>
 
 <body>
 	<div th:replace="/user/includes/header :: header"> </div>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
+<main id="main"> 
+          <!-- ======= Breadcrumbs Section ======= -->
+          <section class="breadcrumbs cover5" style="margin-top: 70px; height:300px; ">
+            <div class="container d-flex h-100">
+              <div class="row justify-content-center align-self-center">
+                  <h2 style="color:#fff;"><b>일반 스터디 상세보기 게시판</b></h2>
+              </div>
+            </div>
+          </section><!-- Breadcrumbs Section -->
+     </main>
 
 	<div class="container" style="margin-top: 25px;margin-bottom: 25px;">
 		<span class="badge badge-pill badge-primary">모집중</span>
@@ -158,6 +178,7 @@
 
 	</div>
 	<div th:replace="/user/includes/footer :: footer"> </div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div> 
 	<script>
 		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
 		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h

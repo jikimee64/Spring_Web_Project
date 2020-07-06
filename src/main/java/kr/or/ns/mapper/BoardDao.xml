@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 페이징 스터디 글목록 -->
 <!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
-	<select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria">
+	<select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board">
 		<![CDATA[
 			SELECT * FROM STUDY_BOARD
 			ORDER BY S_SEQ DESC

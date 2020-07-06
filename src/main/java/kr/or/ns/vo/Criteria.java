@@ -10,6 +10,7 @@ package kr.or.ns.vo;
 public class Criteria {
 	private int page;
 	private int perPageNum;
+//	private int pageStart; 이렇게 원래 써야 한다 이거 안써도 되지만 그건 직관적이 아니다 일종의 꼼수일뿐..
 	
 	
 	//생성자(최초로 게시판 목록에 들어왔을 때를 위한 기본세팅)
@@ -22,6 +23,7 @@ public class Criteria {
 
 	//시작페이지 메서드 
 	public int getPageStart() {
+	System.out.println("getPageStart");
 		return (this.page-1)*perPageNum;
 	}
 	

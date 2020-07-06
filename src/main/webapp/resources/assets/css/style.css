@@ -8,10 +8,13 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 body {
   background: #fff;
   color: #666666;
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 a {
@@ -31,7 +34,7 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-weight: 400;
   margin: 0 0 20px 0;
   padding: 0;
@@ -924,7 +927,7 @@ section {
 /* Portfolio Section
 --------------------------------*/
 #portfolio {
-  padding: 60px 0;
+  padding: 65px 0;
 }
 
 #portfolio #portfolio-flters {
@@ -1015,12 +1018,12 @@ section {
 }
 
 #portfolio .portfolio-item figure .link-preview {
-  left: calc(50% - 38px);
-  top: calc(50% - 18px);
+  left: calc(40% - 38px);
+  top: calc(53% - 18px);
 }
 
 #portfolio .portfolio-item figure .link-details {
-  right: calc(50% - 38px);
+  right: calc(60% - 38px);
   top: calc(50% - 18px);
 }
 
@@ -1667,5 +1670,5 @@ section {
   text-align:center;
 }
 ._category_list{
-  font-size: x-large;
+  font-size: medium;
 }

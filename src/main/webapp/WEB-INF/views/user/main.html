@@ -445,41 +445,19 @@
          </div>
       </section>
 
-
-
-
-      <!-- <section id="skills" style="padding-bottom:0px;">
-         <div class="container" data-aos="fade-up">
-            <header class="section-header">
-               <h3>딱! 맞는 강의를 소개해드립니다.</h3>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                  labore
-                  et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut
-                  aliquip ex ea commodo consequat.</p>
-            </header>
-
-            
-            
-
-         </div>
-      </section> -->
-      <!-- End About Us Section -->
-
-
-
-
       <section id="portfolio" class="section-bg">
          <div class="container aos-init aos-animate" data-aos="fade-up">
 
             <header class="section-header">
-               <h3 class="section-title">Our Portfolio</h3>
+               <h3 class="section-title">스터디 게시판</h3>
             </header>
 
             <br />
 
-            <div style="float: right ;">
-               <a href="#" title="More Details"><i class="ion ion-android-open"></i></a>
+            <div style="text-align:right">
+               <a href="/board/study_List.do" title="More Details">
+               		<i style="font-size:30px;" class="ion ion-android-open"></i>
+               </a>
             </div>
             <br />
 
@@ -628,21 +606,8 @@
 
       </div>
 
-
-      <div th:replace="/user/includes/footer :: footer"></div>
-
-      <script src="../../../resources/assets/vendor/jquery/jquery.min.js"></script>
-      <script src="../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-      <script src="../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-      <script src="../../../resources/assets/vendor/php-email-form/validate.js"></script>
-      <script src="../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-      <script src="../../../resources/assets/vendor/counterup/counterup.min.js"></script>
-      <script src="../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-      <script src="../../../resources/assets/vendor/venobox/venobox.min.js"></script>
-      <script src="../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-      <script src="../../../resources/assets/vendor/aos/aos.js"></script>
-
-      <script src="../../../resources/assets/js/main.js"></script>
+	<div th:replace="/user/includes/footer :: footer"> </div>
+	  <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 </body>
 
