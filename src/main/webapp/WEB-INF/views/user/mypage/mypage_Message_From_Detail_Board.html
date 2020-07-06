@@ -53,13 +53,15 @@
 			</div>
 			<div class="col-md-6" style="text-align: right; right:18px;">
 			<!--  삭제할 쪽지번호 넘겨주기 -->
+			<a th:href="@{/mypage/deleteMessageOneFrom.do(m_seq=${message.m_seq})}">
 				 <button type="button" class="btn btn-danger" style="width:90px;">삭제</button>
+			</a>
 				&nbsp; &nbsp;
-				<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
+				<!-- <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
 					<button type="button" class="btn btn-danger"
 						style="width:90px; background-color: tomato;">스팸신고</button>
 				</a>
-				&nbsp; &nbsp;
+				&nbsp; &nbsp; -->
 				<!--  보낸사람 넘겨주기? -->
 				<a th:href="@{/mypage/mypage_Message_From_Send_Message.do(senderid=${message.senderid})}">
 					<button type="button" class="btn btn-primary" style="width:90px;">답장</button>
@@ -102,7 +104,7 @@
 
 			</div>
 			<div class="col-md-10" style="align-self: center;">
-				<span th:text="${message.senddate}"> 20-05-20 [15:10]</span>
+				<span th:text="${message.senddate}"></span>
 			</div>
 		</div>
 

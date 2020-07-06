@@ -25,6 +25,6 @@ public interface MyPageService {
 	public int MyPageUserEdit(Users user, HttpServletRequest request);
 	
 	//회원탈퇴
-	public void userDelete(Users user, Principal principal);
+	public void userDelete(String user);
 
 }

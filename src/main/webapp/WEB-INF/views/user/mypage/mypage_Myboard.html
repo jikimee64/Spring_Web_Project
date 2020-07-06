@@ -5,7 +5,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>mypage_myboard</title>
-	<link href="login.css" type="text/css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -17,9 +16,31 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 		body {
-			background-color: rgb(224, 224, 224);
+			background-color: white;
+			font-family: 'Nanum Gothic', sans-serif;
+		}
+
+		.page-link {
+			color: #18d26e;
+		}
+
+		.page-item.active .page-link {
+			background-color: #18d26e;
+			border-color: white;
+			color: white;
+			z-index: 3;
+		}
+
+		.pager li>a,
+		.pager li>span {
+			border: white;
+			background-color: #fff;
 		}
 	</style>
 </head>
@@ -29,243 +50,66 @@
 	<div th:replace="/user/includes/header :: header"> </div>
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 
-	<div class="container" style="margin-top: 25px;margin-bottom: 25px; padding:0px; background-color: white; height:950px;">
+	<div class="container"
+		style="margin-top: 25px;margin-bottom: 25px; padding:0px; background-color: white; height:950px;">
 		<br />
+		<h1><b>내가 쓴 글 보기</b></h1>
 		<div class="row">
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			<button type="button" class="btn btn-success" style="background-color: rgb(19, 204, 97); border-radius: 15px 15px 0px 0px;
-				border-color: rgb(19, 204, 97);" id="_board_button1"> <b style="font-size: x-large;">
+			<button type="button" class="btn btn-success" style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;
+				" id="_board_button1"> <b style="font-size: large;">
 					게시글</b> </button>
-			<button type="button" class="btn btn-success" style="background-color:rgb(134, 240, 180); border-radius: 15px 15px 0px 0px;
-				border-color: rgb(134, 240, 180);" id="_board_button2"><b style="font-size: x-large;">
+			<button type="button" class="btn btn-success" style="background-color:#18d26e; border-radius: 15px 15px 0px 0px;
+			" id="_board_button2"><b style="font-size:large;">
 					&nbsp; 댓글 &nbsp; </b></button>
 		</div>
 
+		<hr style="border: solid 1px; margin-top: 0px; margin-bottom:5px; width:96%;" />
+		<!-- 글번호 -->
 
-		<hr style="border: solid 2px rgb(224, 224, 224); margin-top: 0px; margin-bottom:5px; width:96%;" />
-
-
-		<div class="row">
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-1" style="text-align-last:right; padding-right: 0px;">
-						<!-- 글번호 -->
-						12.
-					</div>
-					<div class="col-3">
-						<!-- 스터디 종류 -->
-						[일반 스터디]
-					</div>
-					<div class="col-2">
-						<!-- 날짜 -->
-						20-05-28
-					</div>
-					<div class="col-2">
-						<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
-						미네미네
-					</div>
-					<div class="col-2">
-						<button type="button" class="btn btn-success" style="height:30px; padding:0px 5px 0px 5px;">
-							<!-- 모집중인지 모집완료인지 -->
-							<span style="font-size: small;">모집중</span>
-						</button>
-					</div>
-					<div class="col-2"></div>
-
-				</div>
-
-				<br />
-				<div class="row" style="margin-left: 45px;">
-					<h3>[강남] 쇼핑몰 프로젝트 같이 하실분들 모집합니다</h3>
-				</div>
-
-				<p></p>
-				<div class="row" style="margin-left: 50px;">
-					<span style="color:#888888">
-						html, css, js를 몇번 써보신분, java의 MVC 패턴을 사용해보신 분
-						포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다
-					</span>
-				</div>
-			</div>
-			<div class="col-md-4" style="text-align: center;">
-				<img src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg" alt="" style="width:80%">
+		<div class="row" style="padding:30px;">
+			<div class="col-md-12">
+				<!-- 스터디 종류 -->
+				<span class="badge badge-pill badge-warning">일반스터디</span>
+				<!-- 날짜 -->
+				<span class="badge badge-pill badge-warning">날짜</span>
+				<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
+				<span class="badge badge-pill badge-warning">작성자</span>
+				<!-- 모집중인지 모집완료인지 -->
+				<span class="badge badge-pill badge-warning">모집상태</span>
 			</div>
 		</div>
-		<hr style="border: solid 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom:5px; width:96%;" />
-
-
-
-		<!-- 여기까지가 하나 완료 이후부터는 더미데이터라고 보면됨	 -->
-		<!-- 여기까지가 하나 완료 이후부터는 더미데이터라고 보면됨	 -->
-		<!-- 여기까지가 하나 완료 이후부터는 더미데이터라고 보면됨	 -->
-		<!-- 여기까지가 하나 완료 이후부터는 더미데이터라고 보면됨	 -->
-		<!-- 여기까지가 하나 완료 이후부터는 더미데이터라고 보면됨	 -->
-		<div class="row">
-			<div class="col-md-8">
-
-				<div class="row">
-					<div class="col-1" style="text-align-last:right; padding-right: 0px;">
-						<!-- 글번호 -->
-						12.
-					</div>
-					<div class="col-3">
-						<!-- 스터디 종류 -->
-						[일반 스터디]
-					</div>
-					<div class="col-2">
-						<!-- 날짜 -->
-						20-05-28
-					</div>
-					<div class="col-2">
-						<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
-						미네미네
-					</div>
-					<div class="col-2">
-						<button type="button" class="btn btn-success" style="height:30px; padding:0px 5px 0px 5px;">
-							<!-- 모집중인지 모집완료인지 -->
-							<span style="font-size: small;">모집중</span>
-						</button>
-					</div>
-					<div class="col-2"></div>
-
-				</div>
-
-				<br />
-				<div class="row" style="margin-left: 45px;">
-					<h3>[강남] 쇼핑몰 프로젝트 같이 하실분들 모집합니다</h3>
-				</div>
-
-				<p></p>
-				<div class="row" style="margin-left: 50px;">
-					<span style="color:#888888">
-						html, css, js를 몇번 써보신분, java의 MVC 패턴을 사용해보신 분
-						포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다
-					</span>
-				</div>
-			</div>
-			<div class="col-md-4" style="text-align: center;">
-				<img src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg" alt="" style="width:80%">
-			</div>
-			<hr style="border: solid 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom:5px; width:96%;" />
-		</div>
-
-
-		<!--  -->
-		<div class="row">
-			<div class="col-md-8">
-
-				<div class="row">
-					<div class="col-1" style="text-align-last:right; padding-right: 0px;">
-						<!-- 글번호 -->
-						12.
-					</div>
-					<div class="col-3">
-						<!-- 스터디 종류 -->
-						[일반 스터디]
-					</div>
-					<div class="col-2">
-						<!-- 날짜 -->
-						20-05-28
-					</div>
-					<div class="col-2">
-						<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
-						미네미네
-					</div>
-					<div class="col-2">
-						<button type="button" class="btn btn-success" style="height:30px; padding:0px 5px 0px 5px;">
-							<!-- 모집중인지 모집완료인지 -->
-							<span style="font-size: small;">모집중</span>
-						</button>
-					</div>
-					<div class="col-2"></div>
-
-				</div>
-
-				<br />
-				<div class="row" style="margin-left: 45px;">
-					<h3>[강남] 쇼핑몰 프로젝트 같이 하실분들 모집합니다</h3>
-				</div>
-
-				<p></p>
-				<div class="row" style="margin-left: 50px;">
-					<span style="color:#888888">
-						html, css, js를 몇번 써보신분, java의 MVC 패턴을 사용해보신 분
-						포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다
-					</span>
-				</div>
-			</div>
-			<div class="col-md-4" style="text-align: center;">
-				<img src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg" alt="" style="width:80%">
-			</div>
-			<hr style="border: solid 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom:5px; width:96%;" />
-		</div>
-
-		<!--  -->
-		<div class="row">
-			<div class="col-md-8">
-
-				<div class="row">
-					<div class="col-1" style="text-align-last:right; padding-right: 0px;">
-						<!-- 글번호 -->
-						12.
-					</div>
-					<div class="col-3">
-						<!-- 스터디 종류 -->
-						[일반 스터디]
-					</div>
-					<div class="col-2">
-						<!-- 날짜 -->
-						20-05-28
-					</div>
-					<div class="col-2">
-						<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
-						미네미네
-					</div>
-					<div class="col-2">
-						<button type="button" class="btn btn-success" style="height:30px; padding:0px 5px 0px 5px;">
-							<!-- 모집중인지 모집완료인지 -->
-							<span style="font-size: small;">모집중</span>
-						</button>
-					</div>
-					<div class="col-2"></div>
-
-				</div>
-
-				<br />
-				<div class="row" style="margin-left: 45px;">
-					<h3>[강남] 쇼핑몰 프로젝트 같이 하실분들 모집합니다</h3>
-				</div>
-
-				<p></p>
-				<div class="row" style="margin-left: 50px;">
-					<span style="color:#888888">
-						html, css, js를 몇번 써보신분, java의 MVC 패턴을 사용해보신 분
-						포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다
-					</span>
-				</div>
-			</div>
-			<div class="col-md-4" style="text-align: center;">
-				<img src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg" alt="" style="width:80%">
-			</div>
-			<hr style="border: solid 1px rgb(224, 224, 224); margin-top: 5px; margin-bottom:5px; width:96%;" />
-		</div>
-
-
-
-
 		<br />
-		<!-- 이건 페이징 버튼 시작 -->
+	</div>
+	</div>
+	<div class="row" style="margin-left: 45px;">
+		<h3 style="margin-top: 0;">[강남] 쇼핑몰 프로젝트 같이 하실분들 모집합니다</h3>
+	</div>
 
-		<div class="row" style="place-content: center;">
-			<ul class="pagination">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-		</div>
-		<!-- 여기까지 페이징 버튼 끝 -->
+	<p></p>
+	<div class="row" style="margin-left: 50px;">
+		<span style="color:#888888">
+			html, css, js를 몇번 써보신분, java의 MVC 패턴을 사용해보신 분
+			포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다
+		</span>
+	</div>
+	</div>
+	<div class="col-md-4" style="text-align: center;">
+		<img src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg" alt="" style="width:80%">
+	</div>
+	</div>
+	<!-- 이건 페이징 버튼 시작 -->
+
+	<div class="row" style="place-content: center;">
+		<ul class="pager">
+			<li><a class="page-link" href="#">PREV</a></li>
+			<li class="page-item"><a class="page-link" href="#">1</a></li>
+			<li class="page-item active"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li>
+			<li><a class="page-link" href="#">NEXT</a></li>
+		</ul>
+	</div>
+	<!-- 여기까지 페이징 버튼 끝 -->
 
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->

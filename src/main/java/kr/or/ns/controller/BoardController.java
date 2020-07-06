@@ -152,13 +152,32 @@ public class BoardController {
 		return "user/board/writing_Normal_Study";
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	//스터디 상세보기
 	@RequestMapping("writing_Course_Study_Detail.do")
-	public String writingCourseStudyDetailPage() {
+	public String writingCourseStudyDetailPage(String s_seq, Model model) {
 		System.out.println("강의게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
-		return "user/board/writing_Course_Study_Detail";
+		Study study = service.getStudy(s_seq);
+		model.addAttribute("study",study);
+		
+		return "user/board/writing_Course_Study_Detail";  //writing_Course_Study_Detail.html
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("writing_Normal_Study_Detail.do")
 	public String writingNormalStudyDetailPage() {
 		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");

@@ -1,110 +1,68 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-<style>
-li {
-	list-style-type: none;
-}
-</style>
-</head>
-
-<!-- 헤더 -->
 <div th:fragment="header">
-	<header>
-		<nav class="navbar navbar-expand-sm navbar-light"
-			style="background-color: rgba(18, 214, 103, 0.79);">
-			<!-- Brand -->
-			<div class="col-md-3"></div>
-			<div class="col-md-6" style="text-align: center;">
-				<a class="navbar-brand" href="/user/main.do">
-					<h1 style="font-family: inherit; font-size: xxx-large; margin: 0;">
-						<img src="img/logo.png" style="height: 100px;" alt=""> Road
-						Coding
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top header-transparent"
+		style="padding: 10px 10px;">
+		<div class="container-fluid">
+
+			<div class="row justify-content-center">
+				<div class="col-xl-9 d-flex align-items-center">
+					<h1 class="logo mr-auto">
+						<a href="/user/main.do">WeStudy</a>
 					</h1>
-				</a>
+					<!-- Uncomment below if you prefer to use an image logo -->
+					<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+
+					<nav class="nav-menu d-none d-lg-block">
+						<ul>
+							<li class="active"><a href="/user/main.do">Home</a></li>
+							<li><a href="/board/course_List.do">온라인 강의</a></li>
+							<li><a href="/board/study_List.do">스터디 모임</a></li>
+							<li
+								style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
+
+							<th:block sec:authorize="hasRole('ROLE_USER')">
+								<a href="" style="padding-left: 20px;"> <img
+									src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU"
+									alt="" style="height: 50px; border-radius: 50%;"></a>
+								<li class="drop-down" style="padding-left: 0px; padding-right:15px;"><a href=""></a>
+									<ul>
+										<li><a href="/mypage/mypage.do">마이페이지</a></li>
+										<li><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
+										<li><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
+										<li><a th:href="@{/logout}">로그아웃</a></li>
+									</ul>
+								</li>
+
+
+								<a href=""> <img src="/resources/images/img/message2.png"
+									style="width: 50px; height: 50px;"> <span class="dot">11</span>
+								</a>
+							</th:block>
+
+							<th:block sec:authorize="!hasRole('ROLE_USER')">
+								<li><a href="/member/login.do">로그인</a></li>
+								<li><a href="/member/join.do">회원가입</a></li>
+							</th:block>
+
+						
+
+						</ul>
+
+					</nav>
+					<!-- .nav-menu -->
+				</div>
 			</div>
 
-
-			<th:block sec:authorize="!hasRole('ROLE_USER')">
-				<div class="col-md-1">
-					<a href="/member/login.do" id="" class="btn btn-warning"
-						role="button" style="float: right;">LOGIN</a>
-				</div>
-			</th:block>
-
-
-			<th:block sec:authorize="!hasRole('ROLE_USER')">
-				<div class="col-md-1">
-					<a href="/member/join.do" id="" class="btn btn-danger"
-						role="button" style="float: right;">JOIN</a>
-				</div>
-			</th:block>
-
-
-			<th:block sec:authorize="hasRole('ROLE_USER')">
-				<div class="col-md-1">
-					<ul class="navbar-nav" style="place-content: center;">
-						<!-- Dropdown -->
-						<li class="nav-item dropdown"><a
-							class="nav-link dropdown-toggle" href="#" id="navbardrop"
-							data-toggle="dropdown"> <img
-								src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU"
-								alt="" style="height: 50px; border-radius: 50%;">
-						</a>
-							<div class="dropdown-menu" style="transform: translateX(-55px);">
-								<a class="dropdown-item" href="/mypage/mypage.do">마이페이지</a> <a
-									class="dropdown-item" href="/mypage/mypage_Myboard.do">내가 쓴
-									게시글</a> <a class="dropdown-item"
-									href="/mypage/mypage_Message_From_Board.do">쪽지함</a> <a
-									class="dropdown-item" th:href="@{/logout}">로그아웃</a>
-							</div></li>
-					</ul>
-				</div>
-			</th:block>
-			
-			<th:block sec:authorize="hasRole('ROLE_USER')">
-
-				 <span sec:authentication="principal.username"></span>님 반가워요!&& 
-			</th:block>
-
-			<th:block sec:authorize="hasRole('ROLE_USER')">
-				<div id="alertArea"></div>
-			</th:block>
-
-		</nav>
-
-
-		<nav class="navbar navbar-expand-sm bg-light navbar-light"
-			style="border-top: solid 5px #E5E5E5; border-bottom: solid 1px #E5E5E5;">
-			<!-- Brand -->
-			<div class="col-md-2"></div>
-
-			<div class="col-md-8">
-				<ul class="navbar-nav" style="place-content: center;">
-					<li class="nav-item"><a class="nav-link" href="/user/main.do">
-							<h5>HOME</h5>
-					</a></li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<li class="nav-item"><a class="nav-link"
-						href="/board/course_List.do">
-							<h5>
-								<b>온라인 강의</b>
-							</h5>
-					</a></li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<li class="nav-item"><a class="nav-link"
-						href="/board/study_List.do">
-							<h5>
-								<b>스터디 모임</b>
-							</h5>
-					</a></li>
-				</ul>
-			</div>
-			<div class="col-md-2"></div>
-		</nav>
+		</div>
 	</header>
-	
-	
-	<script type="text/javascript">
+	<!-- End Header -->
+
+
+<script type="text/javascript">
 		$(document).ready(function() {
 			connect();
 		})

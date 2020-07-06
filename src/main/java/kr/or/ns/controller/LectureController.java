@@ -36,9 +36,12 @@ public class LectureController {
 		System.out.println(cri.getPerPageNum());
 		List<Map<String,Object>> list = null;
 		list = service.getLectureList(cri);
-		model.addAttribute("list",list); //view까지 전달(forward)
+		model.addAttribute("list", list); //view까지 전달(forward)
 		model.addAttribute("pageMaker",pageMaker); 
 		
+		System.out.println("미네미네미네미네미네미넴니ㅔ " + pageMaker.isNext());
+		System.out.println(list.toString());
+		System.out.println("컨트롤러2");
 		
 		return "user/board/course_List"; //study_List.html
 	}

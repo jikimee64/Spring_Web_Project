@@ -106,23 +106,24 @@ body {
 		<th:block th:each="list : ${message}">
 			<div class="row"
 				style="margin: 0px 20px 0px 20px; position: relative; top: -90px;">
+				<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
 				<div class="col-md-1"
 					style="place-self: center; text-align: center;">
 					<input type="checkbox" class="_input_check" />
 				</div>
 				<div class="col-md-2"
 					style="align-self: center; text-align: center;">
-					<a href="" style="color: black;"> <span>하이하이</span>
+					<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color: black;"><span th:text="${list.senderid}"></span>
 					</a>
 				</div>
 				<div class="col-md-7" style="align-self: center;">
-					<a href="/mypage/mypage_Message_Send_Detail_Board.do"
-						style="color: black;"> <span> 안녕하세요 hi my name is ... </span>
+					<a style="color: black;" th:href="@{/mypage/mypage_Message_Send_Detail_Board.do(m_seq=${list.m_seq})}">
+						<span th:text="${list.content}"></span>
 					</a>
 				</div>
 				<div class="col-md-2"
 					style="align-self: center; text-align: center;">
-					<span> 20-05-20 </span>
+					<span th:text="${list.senddate}"></span>
 				</div>
 			</div>
 
@@ -150,7 +151,7 @@ body {
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
 
-
+	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 
 	<script>
