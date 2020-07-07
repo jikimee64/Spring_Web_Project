@@ -997,15 +997,15 @@ section {
   opacity: 0;
   line-height: 1;
   text-align: center;
-  width: 36px;
-  height: 36px;
+  width: 37px;
+  height: 37px;
   background: #fff;
-  border-radius: 50%;
-  transition: 0.2s linear;
+  border-radius: 15%;
+  transition: 0.3s linear;
 }
 
 #portfolio .portfolio-item figure .link-preview i, #portfolio .portfolio-item figure .link-details i {
-  padding-top: 6px;
+  padding-top: 8px;
   font-size: 22px;
   color: #333;
 }
@@ -1019,7 +1019,7 @@ section {
 }
 
 #portfolio .portfolio-item figure .link-preview {
-  left: calc(40% - 38px);
+  left: calc(50% - 38px);
   top: calc(53% - 18px);
 }
 
@@ -1030,12 +1030,12 @@ section {
 
 #portfolio .portfolio-item figure:hover .link-preview {
   opacity: 1;
-  left: calc(50% - 44px);
+  left: calc(52% - 44px);
 }
 
 #portfolio .portfolio-item figure:hover .link-details {
   opacity: 1;
-  right: calc(55% - 44px);
+  right: calc(58% - 44px);
 }
 
 #portfolio .portfolio-item .portfolio-info {

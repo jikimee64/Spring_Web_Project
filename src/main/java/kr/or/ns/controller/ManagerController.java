@@ -13,6 +13,13 @@ public class ManagerController {
 
 		return "manager/index"; 
 	}
+	
+	@RequestMapping("board/member_Detail.do")
+	public String memberDetailPage() {
+		System.out.println("sss");
+
+		return "manager/board/member_Detail"; 
+	}
 
 	@RequestMapping("board/member_Management.do")
 	public String memberManagementPage() {
