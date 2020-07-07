@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -9,401 +9,405 @@
 <link href="login.css" type="text/css" rel="stylesheet" />
 
 <link rel="stylesheet"
-   href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-   integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-   crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-   integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-   crossorigin="anonymous"></script>
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
 <script
-   src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-   crossorigin="anonymous"></script>
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
 <script
-   src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-   integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-   crossorigin="anonymous"></script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+	crossorigin="anonymous"></script>
 </head>
 
 <style>
 .cover4 {
-   background-image:
-      url(../../../../resources/images/img/boardsupportstatus.jpg);
-   background-position: center center;
-   background-size: 2000px;
-   background-repeat: no-repeat;
-   opacity: 0.7;
+	background-image:
+		url(../../../../resources/images/img/boardsupportstatus.jpg);
+	background-position: center center;
+	background-size: 2000px;
+	background-repeat: no-repeat;
+	opacity: 0.7;
 }
 
 ._border_box_shadow2 {
-   background: #fff;
-   margin: auto;
-   margin-top: 20px;
-   margin-bottom: 20px;
-   width: 1085px;
-   box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
-      rgba(0, 0, 0, 0.26);
-   border-radius: 3px;
-   padding: 30px;
-   box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
-      rgba(0, 0, 0, 0.26);
+	background: #fff;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 1085px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 30px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
 }
 
 body {
-   background: #F9FBFC !important;
+	background: #F9FBFC !important;
 }
 
 ._form_radio {
-   background: #fff;
-   width: 509px;
-   margin: auto;
-   padding: 12px 30px 30px 30px;
-   min-width: 320px;
-   max-width: 540px;
-   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 1px 0
-      rgba(0, 0, 0, 0.26);
-   border-radius: 3px;
+	background: #fff;
+	width: 509px;
+	margin: auto;
+	padding: 12px 30px 30px 30px;
+	min-width: 320px;
+	max-width: 540px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 1px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
 }
 
 group+group {
-   margin-top: 20px;
+	margin-top: 20px;
 }
 
 .inline-radio {
-   display: flex;
-   border-radius: 3px;
-   overflow: hidden;
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
 }
 
 ._div_radio {
-   position: relative;
-   flex: 1;
-   border: 1px solid #CCCCCC;
+	position: relative;
+	flex: 1;
+	border: 1px solid #CCCCCC;
 }
 
 ._input_radio {
-   width: 100%;
-   opacity: 0;
-   height: 100%;
+	width: 100%;
+	opacity: 0;
+	height: 100%;
 }
 
 ._radio_label {
-   position: absolute;
-   top: 0;
-   left: 0;
-   color: #b6b6b6;
-   width: 100%;
-   height: 100%;
-   background: #fff;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   pointer-events: none;
-   border-right: 1px solid #b6b6b6;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #b6b6b6;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	border-right: 1px solid #b6b6b6;
 }
 
 ._div_radio:last-child label {
-   border-right: 0;
+	border-right: 0;
 }
 
 ._input_radio:checked+label {
-   background: #00d463;
-   font-weight: 500;
-   color: #fff;
+	background: #00d463;
+	font-weight: 500;
+	color: #fff;
 }
 </style>
 
 <body>
 
-   <div th:replace="/user/includes/header :: header"></div>
-   <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+	<div th:replace="/user/includes/header :: header"></div>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
-   <!-- 배너 -->
-   <main id="main">
-      <!-- ======= Breadcrumbs Section ======= -->
-      <section class="breadcrumbs cover4"
-         style="margin-top: 0px; height: 300px; padding: 1000 0 100 0px;">
-         <div class="container d-flex h-100" style="padding: 200px 0;">
-            <div class="row justify-content-center align-self-center">
-               <h1 style="color: white; font-size: 50px;">
-                  <b>지원현황</b>
-               </h1>
-            </div>
-         </div>
+	<!-- 배너 -->
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs cover4"
+			style="margin-top: 0px; height: 300px; padding: 1000 0 100 0px;">
+			<div class="container d-flex h-100" style="padding: 200px 0;">
+				<div class="row justify-content-center align-self-center">
+					<h1 style="color: white; font-size: 50px;">
+						<b>지원현황</b>
+					</h1>
+				</div>
+			</div>
 
-      </section>
-      <!-- Breadcrumbs Section -->
-   </main>
+		</section>
+		<!-- Breadcrumbs Section -->
+	</main>
 
-   <div class="_border_box_shadow2">
-      <div class="container"
-         style="margin-top: 0px; background-color: white; height: 900px;">
+	<div class="_border_box_shadow2">
+		<div class="container"
+			style="margin-top: 0px; background-color: white; height: 1000px; background-image: url(https://data.ac-illust.com/data/thumbnails/71/7142b5aea476c1b2905728dda2f50525_t.jpeg);">
 
-         <!--    style="background-image: url(https://data.ac-illust.com/data/thumbnails/71/7142b5aea476c1b2905728dda2f50525_t.jpeg);" -->
-         <div>
-            <div class="row" style="height: 260px; margin-bottom: 10px;">
-               <div class="col"></div>
-               <div class="col">
-                  <div
-                     style="font-size: xx-large; text-align: center; margin-top: 10px; margin-bottom: 10px;">
-                     <span> <b>구슬구슬</b></span>
-                  </div>
-                  <div style="text-align: -webkit-center;">
-                     <img
-                        src="https://www.beffreport.com/news/photo/201904/58805_29372_2821.jpg"
-                        style="border-radius: 50%; height: 180px;" alt="">
-                  </div>
-                  <div style="text-align: center; margin-top: 10px;">
-                     <button type="button" class="btn btn-info btn-sm"
-                        style="line-height: normal;">쪽지보내기</button>
-                  </div>
-               </div>
-               <div class="col"></div>
-            </div>
+			<!-- 	style="background-image: url(https://data.ac-illust.com/data/thumbnails/71/7142b5aea476c1b2905728dda2f50525_t.jpeg);" -->
+			<div>
+				<div class="row" style="height: 260px; margin-bottom: 10px;">
+					<div class="col"></div>
+					<div class="col">
+						<div
+							style="font-size: xx-large; text-align: center; margin-top: 10px; margin-bottom: 10px;">
+							<span> <b>구슬구슬</b></span>
+						</div>
+						<div style="text-align: -webkit-center;">
+							<img
+								src="https://www.beffreport.com/news/photo/201904/58805_29372_2821.jpg"
+								style="border-radius: 50%; height: 180px;" alt="">
+						</div>
+						<div style="text-align: center; margin-top: 10px;">
+							<button type="button" class="btn btn-info btn-sm"
+								style="line-height: normal;">쪽지보내기</button>
+						</div>
+					</div>
+					<div class="col"></div>
+				</div>
 
-            <div class="row"
-               style="height: 350px; align-items: center; height: 300px; margin-top: 30px; margin-bottom: 30px;">
-               <div class="col-md-6" style="text-align: center; left: -15px;">
-                  <div class="_form_radio">
-                     <div style="text-align: center; margin-bottom: 15px;">
-                        <b>자기소개</b>
-                     </div>
-                     <div class="col-md-6" style="text-align: center;">
+				<div class="row"
+					style="height: 350px; align-items: center; height: 300px; margin-top: 30px; margin-bottom: 30px;">
+					<div class="col-md-6" style="text-align: center; left: -15px;">
+						<div class="_form_radio">
+							<div style="text-align: center; margin-bottom: 15px;">
+								<b>자기소개</b>
+							</div>
+							<div class="col-md-6" style="text-align: center;">
 
-                     <textarea name="" id="" cols="50" rows="14"
-                        style="height: 213px; resize: none;" readonly>안녕하세요 저는 자바를 16년째 해오고 있는 구구단 주부 9단 눈치 100단 태권도 2단 무단횡단 자진모리장단 로켓단 바위처럼단단 등 여러 경력을 보유하고있는 경력자 구슬구슬입니다
+							<textarea name="" id="" cols="50" rows="14"
+								style="height: 213px; resize: none;" readonly>안녕하세요 저는 자바를 16년째 해오고 있는 구구단 주부 9단 눈치 100단 태권도 2단 무단횡단 자진모리장단 로켓단 바위처럼단단 등 여러 경력을 보유하고있는 경력자 구슬구슬입니다
 현재 스타트업을 같이할 인재들을 모집하고있습니다
-            </textarea>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-6" style="text-align: center; left: -15px;">
+				</textarea>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6" style="text-align: center; left: -15px;">
 
-                  <form>
-                     <div class="_form_radio">
-                        <div style="text-align: center; margin-bottom: 15px;">
-                           <b>실력</b>
-                        </div>
-                        <group class="inline-radio"> <span
-                           style="font-size: larger; width: 140px;">Java</span>
-                        <div class="_div_radio">
-                           <input type="radio" name="Java" class="_input_radio" checked><label
-                              class="_radio_label">입문</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="Java" class="_input_radio"><label
-                              class="_radio_label">초급</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="Java" class="_input_radio"><label
-                              class="_radio_label">중급이상</label>
-                        </div>
-                        </group>
+						<form>
+							<div class="_form_radio">
+								<div style="text-align: center; margin-bottom: 15px;">
+									<b>실력</b>
+								</div>
+								<group class="inline-radio"> <span
+									style="font-size: larger; width: 140px;">Java</span>
+								<div class="_div_radio">
+									<input type="radio" name="Java" class="_input_radio" checked><label
+										class="_radio_label">입문</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="Java" class="_input_radio"><label
+										class="_radio_label">초급</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="Java" class="_input_radio"><label
+										class="_radio_label">중급이상</label>
+								</div>
+								</group>
 
-                        <group class="inline-radio"> <span
-                           style="font-size: larger; width: 140px;">Python</span>
-                        <div class="_div_radio">
-                           <input type="radio" name="Python" class="_input_radio" checked><label
-                              class="_radio_label">입문</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="Python" class="_input_radio"><label
-                              class="_radio_label">초급</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="Python" class="_input_radio"><label
-                              class="_radio_label">중급이상</label>
-                        </div>
-                        </group>
-                        <group class="inline-radio"> <span
-                           style="font-size: larger; width: 140px;">HTML/CSS</span>
-                        <div class="_div_radio">
-                           <input type="radio" name="HTML/CSS" class="_input_radio"
-                              checked><label class="_radio_label">입문</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="HTML/CSS" class="_input_radio"><label
-                              class="_radio_label">초급</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="HTML/CSS" class="_input_radio"><label
-                              class="_radio_label">중급이상</label>
-                        </div>
-                        </group>
-                        <group class="inline-radio"> <span
-                           style="font-size: larger; width: 140px;">Javascript</span>
-                        <div class="_div_radio">
-                           <input type="radio" name="Javascript" class="_input_radio"
-                              checked><label class="_radio_label">입문</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="Javascript" class="_input_radio"><label
-                              class="_radio_label">초급</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="Javascript" class="_input_radio"><label
-                              class="_radio_label">중급이상</label>
-                        </div>
-                        </group>
-                        <group class="inline-radio"> <span
-                           style="font-size: larger; width: 140px;">SQL</span>
-                        <div class="_div_radio">
-                           <input type="radio" name="SQL" class="_input_radio" checked><label
-                              class="_radio_label">입문</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="SQL" class="_input_radio"><label
-                              class="_radio_label">초급</label>
-                        </div>
-                        <div class="_div_radio">
-                           <input type="radio" name="SQL" class="_input_radio"><label
-                              class="_radio_label">중급이상</label>
-                        </div>
-                        </group>
-                     </div>
-                  </form>
-               </div>
-            </div>
+								<group class="inline-radio"> <span
+									style="font-size: larger; width: 140px;">Python</span>
+								<div class="_div_radio">
+									<input type="radio" name="Python" class="_input_radio" checked><label
+										class="_radio_label">입문</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="Python" class="_input_radio"><label
+										class="_radio_label">초급</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="Python" class="_input_radio"><label
+										class="_radio_label">중급이상</label>
+								</div>
+								</group>
+								<group class="inline-radio"> <span
+									style="font-size: larger; width: 140px;">HTML/CSS</span>
+								<div class="_div_radio">
+									<input type="radio" name="HTML/CSS" class="_input_radio"
+										checked><label class="_radio_label">입문</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="HTML/CSS" class="_input_radio"><label
+										class="_radio_label">초급</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="HTML/CSS" class="_input_radio"><label
+										class="_radio_label">중급이상</label>
+								</div>
+								</group>
+								<group class="inline-radio"> <span
+									style="font-size: larger; width: 140px;">Javascript</span>
+								<div class="_div_radio">
+									<input type="radio" name="Javascript" class="_input_radio"
+										checked><label class="_radio_label">입문</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="Javascript" class="_input_radio"><label
+										class="_radio_label">초급</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="Javascript" class="_input_radio"><label
+										class="_radio_label">중급이상</label>
+								</div>
+								</group>
+								<group class="inline-radio"> <span
+									style="font-size: larger; width: 140px;">SQL</span>
+								<div class="_div_radio">
+									<input type="radio" name="SQL" class="_input_radio" checked><label
+										class="_radio_label">입문</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="SQL" class="_input_radio"><label
+										class="_radio_label">초급</label>
+								</div>
+								<div class="_div_radio">
+									<input type="radio" name="SQL" class="_input_radio"><label
+										class="_radio_label">중급이상</label>
+								</div>
+								</group>
+							</div>
+						</form>
+					</div>
+				</div>
 
-         </div>
+			</div>
+			//$(#textarea).val(data.context)
+			<hr style="border: 1px solid gainsboro;" />
 
-         <div class="row">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-6"
-                     style="text-align: -webkit-center; padding-left: 0;">
-                     <div class="_form_radio">
-                        <span style="font-size: xx-large; padding-left: 50px;">모집완료</span>
-                        <hr style="margin-bottom: 0;" />
-                        <!-- 모집완료 첫번째 줄 (여기는 테이블 헤드부분) -->
-                        <div class="row"
-                           style="background-color: rgb(245, 244, 238); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">No.</div>
-                           <div class="col" style="align-self: center;">이름</div>
+			<div class="row">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6"
+							style="text-align: -webkit-center; padding-left: 0;">
+							<div class="_form_radio">
+								<span style="font-size: xx-large; padding-left: 50px;">모집완료</span>
+								<span class="badge badge-pill badge-danger"
+									style="font-size: large">2/6</span>
+								<hr style="margin-bottom: 0;" />
+								<!-- 모집완료 첫번째 줄 (여기는 테이블 헤드부분) -->
+								<div class="row"
+									style="background-color: rgb(245, 244, 238); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">No.</div>
+									<div class="col" style="align-self: center;">이름</div>
 
-                        </div>
-                        <hr style="margin: 0;" />
-                        <!-- 모집완료 첫번째 줄 끝 -->
-
-
-                        <!-- 모집완료 두번째 줄 (여기부터 회원넣기) -->
-                        <div class="row"
-                           style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">1</div>
-                           <div class="col" style="align-self: center;">슬기슬기</div>
-                        </div>
-                        <hr style="margin: 0;" />
-                        <!-- 모집완료 두번째 줄 끝 (이다음부터는 반복) -->
-
-                        <!-- 회원정보 반복 (더미데이터 시작(지우면됨)) -->
-
-                        <div class="row"
-                           style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">2</div>
-                           <div class="col" style="align-self: center;">우철추얼</div>
-
-                        </div>
-                        <hr style="margin: 0;" />
-                        <div class="row"
-                           style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">3</div>
-                           <div class="col" style="align-self: center;">정아정아</div>
-
-                        </div>
-                        <hr style="margin: 0;" />
-                        <!-- 회원정보 반복 끝 (더미데이터 끝) -->
-                     </div>
-                  </div>
+								</div>
+								<hr style="margin: 0;" />
+								<!-- 모집완료 첫번째 줄 끝 -->
 
 
+								<!-- 모집완료 두번째 줄 (여기부터 회원넣기) -->
+								<div class="row"
+									style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">1</div>
+									<div class="col" style="align-self: center;">슬기슬기</div>
+								</div>
+								<hr style="margin: 0;" />
+								<!-- 모집완료 두번째 줄 끝 (이다음부터는 반복) -->
+
+								<!-- 회원정보 반복 (더미데이터 시작(지우면됨)) -->
+
+								<div class="row"
+									style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">2</div>
+									<div class="col" style="align-self: center;">우철추얼</div>
+
+								</div>
+								<hr style="margin: 0;" />
+								<div class="row"
+									style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">3</div>
+									<div class="col" style="align-self: center;">정아정아</div>
+
+								</div>
+								<hr style="margin: 0;" />
+								<!-- 회원정보 반복 끝 (더미데이터 끝) -->
+							</div>
+						</div>
 
 
-                  <div class="col-md-6"
-                     style="text-align: -webkit-center; padding-left: 0;">
-                     <div class="_form_radio">
-                        <span style="font-size: xx-large; padding-left: 50px;">모집중</span>
-                        <hr style="margin-bottom: 0;" />
-                        <!-- 모집중 첫번째 줄 (여기는 테이블 헤드부분) -->
-                        <div class="row"
-                           style="background-color: rgb(213, 235, 217); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">No.</div>
-                           <div class="col" style="align-self: center;">이름</div>
-                           <div class="col" style="align-self: center;">참여여부?</div>
-                        </div>
-                        <hr style="margin: 0;" />
-                        <!-- 모집중 첫번째 줄 끝 -->
 
-                        <div class="row"
-                           style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">1</div>
-                           <div class="col" style="align-self: center;">미네미네우</div>
-                           <div class="col" style="align-self: center;">
-                              <div>
-                                 <button type="button" class="btn btn-success btn-sm"
-                                    style="line-height: normal;">
-                                    <span style="font-size: x-small;">승인</span>
-                                 </button>
-                                 <button type="button" class="btn btn-danger btn-sm"
-                                    style="line-height: normal;">
-                                    <span style="font-size: x-small;">거절</span>
-                                 </button>
-                              </div>
 
-                           </div>
+						<div class="col-md-6"
+							style="text-align: -webkit-center; padding-left: 0;">
+							<div class="_form_radio">
+								<span style="font-size: xx-large; padding-left: 50px;">모집중</span>
+								<hr style="margin-bottom: 0;" />
+								<!-- 모집중 첫번째 줄 (여기는 테이블 헤드부분) -->
+								<div class="row"
+									style="background-color: rgb(213, 235, 217); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">No.</div>
+									<div class="col" style="align-self: center;">이름</div>
+									<div class="col" style="align-self: center;">참여여부?</div>
+								</div>
+								<hr style="margin: 0;" />
+								<!-- 모집중 첫번째 줄 끝 -->
 
-                        </div>
-                        <hr style="margin: 0;" />
-                        <div class="row"
-                           style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">2</div>
-                           <div class="col" style="align-self: center;">미네미네철</div>
-                           <div class="col" style="align-self: center;">
-                              <div>
-                                 <button type="button" class="btn btn-success btn-sm"
-                                    style="line-height: normal;">
-                                    <span style="font-size: x-small;">승인</span>
-                                 </button>
-                                 <button type="button" class="btn btn-danger btn-sm"
-                                    style="line-height: normal;">
-                                    <span style="font-size: x-small;">거절</span>
-                                 </button>
-                              </div>
+								<div class="row"
+									style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">1</div>
+									<div class="col" style="align-self: center;">미네미네우</div>
+									<div class="col" style="align-self: center;">
+										<div>
+											<button type="button" class="btn btn-success btn-sm"
+												style="line-height: normal;">
+												<span style="font-size: x-small;">승인</span>
+											</button>
+											<button type="button" class="btn btn-danger btn-sm"
+												style="line-height: normal;">
+												<span style="font-size: x-small;">거절</span>
+											</button>
+										</div>
 
-                           </div>
+									</div>
 
-                        </div>
-                        <hr style="margin: 0;" />
-                                 <div class="row"
-                           style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
-                           <div class="col" style="align-self: center;">3</div>
-                           <div class="col" style="align-self: center;">미네미네</div>
-                           <div class="col" style="align-self: center;">
-                              <div>
-                                 <button type="button" class="btn btn-success btn-sm"
-                                    style="line-height: normal;">
-                                    <span style="font-size: x-small;">승인</span>
-                                 </button>
-                                 <button type="button" class="btn btn-danger btn-sm"
-                                    style="line-height: normal;">
-                                    <span style="font-size: x-small;">거절</span>
-                                 </button>
-                              </div>
+								</div>
+								<hr style="margin: 0;" />
+								<div class="row"
+									style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">2</div>
+									<div class="col" style="align-self: center;">미네미네철</div>
+									<div class="col" style="align-self: center;">
+										<div>
+											<button type="button" class="btn btn-success btn-sm"
+												style="line-height: normal;">
+												<span style="font-size: x-small;">승인</span>
+											</button>
+											<button type="button" class="btn btn-danger btn-sm"
+												style="line-height: normal;">
+												<span style="font-size: x-small;">거절</span>
+											</button>
+										</div>
 
-                           </div>
+									</div>
 
-                        </div>
-                        <hr style="margin: 0;" />
+								</div>
+								<hr style="margin: 0;" />
+											<div class="row"
+									style="background-color: rgb(255, 254, 247); text-align: center; height: 30px; width: 100%">
+									<div class="col" style="align-self: center;">3</div>
+									<div class="col" style="align-self: center;">미네미네</div>
+									<div class="col" style="align-self: center;">
+										<div>
+											<button type="button" class="btn btn-success btn-sm"
+												style="line-height: normal;">
+												<span style="font-size: x-small;">승인</span>
+											</button>
+											<button type="button" class="btn btn-danger btn-sm"
+												style="line-height: normal;">
+												<span style="font-size: x-small;">거절</span>
+											</button>
+										</div>
 
-                     </div>
-                  </div>
-               </div>
+									</div>
 
-            </div>
-         </div>
-      </div>
-   </div>
-   <div th:replace="/user/includes/footer :: footer"></div>
-   <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+								</div>
+								<hr style="margin: 0;" />
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 </body>
 
 
