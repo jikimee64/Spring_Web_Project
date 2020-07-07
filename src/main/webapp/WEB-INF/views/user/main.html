@@ -5,19 +5,9 @@
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <title>main</title>
-   <link href="../../../resources/assets/img/favicon.png" rel="icon">
-   <link href="../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-   <link href="../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-   <link href="../../../resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-   <link href="../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-   <link href="../../../resources/assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-   <link href="../../../resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-   <link href="../../../resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
-   <link href="../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-   <link href="../../../resources/assets/vendor/aos/aos.css" rel="stylesheet">
+   <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
    <!-- Template Main CSS File -->
-   <link href="../../../resources/assets/css/style.css" rel="stylesheet">
 
    <style>
       @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
@@ -211,9 +201,9 @@
                      </div>
                      <h2 class="title"><a href="#">IT관련 스터디 매칭 서비스</a></h2>
                      <p>
-                       IT관련 스터디를 찾고 계신가요?<br>
-                       더 이상 스터디 참가 및 스터디원 모집을 위해 이곳저곳 알아보실 필요가 없습니다.<br>
-                       위스터디에서 원하는 스터디를 찾아보세요! 
+                        IT관련 스터디를 찾고 계신가요?<br>
+                        더 이상 스터디 참가 및 스터디원 모집을 위해 이곳저곳 알아보실 필요가 없습니다.<br>
+                        위스터디에서 원하는 스터디를 찾아보세요!
                      </p>
                   </div>
                </div>
@@ -226,7 +216,7 @@
                      </div>
                      <h2 class="title"><a href="#">실시간 채팅?</a></h2>
                      <p>
-                     	
+
                      </p>
                   </div>
                </div>
@@ -434,14 +424,14 @@
 
             <header class="section-header">
                <h3 class="section-title">모집중인 스터디</h3>
-                   <p>여러분의 참여를 기다리는 중이에요. 관심있는 스터디를 선택해주세요!</p>
+               <p>여러분의 참여를 기다리는 중이에요. 관심있는 스터디를 선택해주세요!</p>
             </header>
 
             <br />
 
             <div style="text-align:right">
                <a href="/board/study_List.do" title="More Details">
-               		<i style="font-size:30px;" class="ion ion-android-open"></i>
+                  <i style="font-size:30px;" class="ion ion-android-open"></i>
                </a>
             </div>
             <br />
@@ -587,12 +577,10 @@
 
          </div>
       </section>
-
-
       </div>
 
-	<div th:replace="/user/includes/footer :: footer"> </div>
-	  <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+      <div th:replace="/user/includes/footer :: footer"> </div>
+      <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 </body>
 
