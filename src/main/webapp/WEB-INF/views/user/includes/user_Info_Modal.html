@@ -6,23 +6,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>다른유저 정보보기</title>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 </head>
 <style>
 	body {
 		align-items: center;
-		background: #a5b667;
 		display: flex;
 		font-family: 'Inconsolata', monospace;
 		height: 100%;
@@ -30,13 +18,130 @@
 		margin: 0;
 		position: absolute;
 		width: 100%;
+		background: #F9FBFC !important;
 	}
+
+	.cover4 {
+		background-image:
+			url(../../../../resources/images/img/boardsupportstatus.jpg);
+		background-position: center center;
+		background-size: 2000px;
+		background-repeat: no-repeat;
+		opacity: 0.7;
+	}
+
+	._border_box_shadow2 {
+		background: #fff;
+		margin: auto;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		width: 1085px;
+		box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		border-radius: 3px;
+		padding: 30px;
+		box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	}
+
+
+
+	._form_radio {
+		background: #fff;
+		width: 509px;
+		margin: auto;
+		padding: 12px 30px 30px 30px;
+		min-width: 320px;
+		max-width: 540px;
+		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 1px 0 rgba(0, 0, 0, 0.26);
+		border-radius: 3px;
+	}
+
+	group+group {
+		margin-top: 20px;
+	}
+
+	.inline-radio {
+		display: flex;
+		border-radius: 3px;
+		overflow: hidden;
+	}
+
+	._div_radio {
+		position: relative;
+		flex: 1;
+		border: 1px solid #CCCCCC;
+	}
+
+	._input_radio {
+		width: 100%;
+		opacity: 0;
+		height: 100%;
+	}
+
+	._radio_label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: #b6b6b6;
+		width: 100%;
+		height: 100%;
+		background: #fff;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+		border-right: 1px solid #b6b6b6;
+	}
+
+	._div_radio:last-child label {
+		border-right: 0;
+	}
+
+	._input_radio:checked+label {
+		background: #00d463;
+		font-weight: 500;
+		color: #fff;
+	}
+
+	#doing_study_row {
+		text-align: center;
+		height: 30px;
+		width: 100%;
+	}
+
+	#doing_study_col {
+		align-self: center;
+	}
+
+	#button_approval {
+		line-height: normal;
+		background-color: #00d463;
+		border-color: #00d463;
+
+	}
+	.table td, .table th {
+    padding: 3px;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+	text-align-last: center;
+}
+a{
+	color:black;
+}
+
+#header_info{
+	background-color: rgb(213, 235, 217);
+    text-align: center;
+    height: 40px;
+    width: 100%;
+}
+
 </style>
 
 <body>
 
 	<!--여기서부터 화면코드-->
 
+	<div th:replace="/user/includes/header :: header"></div>
 
 	<!-- Button trigger modal -->
 	<button type="button" class="btn btn-outline-dark" data-toggle="modal" data-target="#userInfoModal">
@@ -46,22 +151,22 @@
 
 	<div th:fragment="user_Info_Modal">
 		<!-- Modal -->
-		<div class="modal fade" id="userInfoModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal fade" id="userInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">회원 정보</h5>
+						<h5 class="modal-title" id="exampleModalCenterTitle"><b>@@님의 회원정보</b></h5>
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body" style="padding-right: 0px;">
 						<div class="container-fluid">
-							<div class="row">
-								<div class="col-lg-3" style="padding: 0;">
+							<div class="row" style="padding: 0px;">
+								<div class="col-md-3">
 									<div class="card-body" id="lef"
-										style="background-color: orange; height: 500px;text-align: center;">
+										style="background-color: rgb(241, 255, 235); height: 600px;text-align: center;">
 										<div style="transform: translateY(83px);">
 											<div>
 												<img src="https://www.beffreport.com/news/photo/201904/58805_29372_2821.jpg"
@@ -74,291 +179,164 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-lg-9" style="padding: 0;">
-									<div class="card-body" id="rig"
-										style="background-color: rgb(255, 255, 255); height: 500px;">
-										<div class="row">
-
-											<div class="col-lg-6" style="padding-right: 0;">
-
-
-												<textarea name="" id="" cols="30" rows="10"
-													style="max-height: 200px;min-height: 200px;"
-													readonly> 저는 이런것도 할줄 알아요</textarea>
-											</div>
-
-											<div class="col-lg-6" style="padding-left: 0;">
-
-												<div class="container" style="padding:0;">
-													<div class="row">
-														<div class="col-md-2">
-														</div>
-														<div class="col" style="text-align-last: center;">
-
-														</div>
-													</div>
-													<div class="row" style="font-size:small;">
-														<div class="col" style="text-align:center; padding:0;">
-															<b> 실력</b>
-														</div>
-														<div class="col" style="text-align:center; padding:0;">
-															입문
-														</div>
-														<div class="col" style="text-align:center; padding:0;">
-															초급
-														</div>
-														<div class="col" style="text-align:center; padding:0;">
-															중급
-														</div>
-													</div>
-
-													<hr
-														style="border: solid 2px rgb(224, 224, 224); margin-top: 10px; margin-bottom:2px; width:100%" />
-
-													<div class="row custom-radio"
-														style="font-size:small;text-align:center; ">
-														<div class="col" style="text-align:center; padding:0;">
-															<span>java</span>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadioja1" name="_Java" checked="">
-																<label class="custom-control-label"
-																	for="customRadioja1"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadioja2" name="_Java" checked="">
-																<label class="custom-control-label"
-																	for="customRadioja2"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadioja3" name="_Java" checked="">
-																<label class="custom-control-label"
-																	for="customRadioja3"></label>
-															</div>
-														</div>
-													</div>
-
-													<hr
-														style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom:2px; width:100%" />
-
-
-													<div class="row custom-radio"
-														style="font-size:small;text-align:center; ">
-														<div class="col" style="text-align:center; padding:0;">
-															<span>Python</span>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiop1" name="_python" checked="">
-																<label class="custom-control-label"
-																	for="customRadiop1"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiop2" name="_python" checked="">
-																<label class="custom-control-label"
-																	for="customRadiop2"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiop3" name="_python" checked="">
-																<label class="custom-control-label"
-																	for="customRadiop3"></label>
-															</div>
-														</div>
-													</div>
-													<hr
-														style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom:2px; width:100%" />
-
-													<div class="row custom-radio"
-														style="font-size:small;text-align:center; ">
-														<div class="col" style="text-align:center; padding:0;">
-															<span>HTML/CSS</span>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadioh1" name="html_css" checked="">
-																<label class="custom-control-label"
-																	for="customRadioh1"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadioh2" name="html_css" checked="">
-																<label class="custom-control-label"
-																	for="customRadioh2"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadioh3" name="html_css" checked="">
-																<label class="custom-control-label"
-																	for="customRadioh3"></label>
-															</div>
-														</div>
-													</div>
-													<hr
-														style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom:2px; width:100%" />
-													<div class="row custom-radio"
-														style="font-size:small;text-align:center; ">
-														<div class="col" style="text-align:center; padding:0;">
-															<span>javascript</span>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiojs1" name="_javascript" checked="">
-																<label class="custom-control-label"
-																	for="customRadiojs1"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiojs2" name="_javascript" checked="">
-																<label class="custom-control-label"
-																	for="customRadiojs2"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiojs3" name="_javascript" checked="">
-																<label class="custom-control-label"
-																	for="customRadiojs3"></label>
-															</div>
-														</div>
-													</div>
-													<hr
-														style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom:2px; width:100%" />
-													<div class="row custom-radio"
-														style="font-size:small;text-align:center; ">
-														<div class="col" style="text-align:center; padding:0;">
-															<span>SQL</span>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiosql1" name="_sql" checked="">
-																<label class="custom-control-label"
-																	for="customRadiosql1"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiosql2" name="_sql" checked="">
-																<label class="custom-control-label"
-																	for="customRadiosql2"></label>
-															</div>
-														</div>
-														<div class="col" style="padding:0;">
-															<div style="transform: translateX(15px);">
-																<input type="radio" class="custom-control-input"
-																	id="customRadiosql3" name="_sql" checked="">
-																<label class="custom-control-label"
-																	for="customRadiosql3"></label>
-															</div>
-														</div>
-													</div>
-													<hr
-														style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom:2px; width:100%" />
-												</div>
-
-											</div>
-											<hr />
-											<hr />
-											<div class="row">
-
-											</div>
+								<div class="col-md-9"
+									style="text-align: -webkit-center; padding-left: 0; margin-top: 20px;">
+									<div class="_form_radio" style="padding:0px;">
+										<div class="row" id="header_info"
+										>
+											<div class="col" style="align-self: center;"><b>자기소개</b></div>
 										</div>
-										<hr
-											style="border: inset 5px rgb(255, 206, 70); margin-top: 10px; margin-bottom:2px; width:100%" />
-
-
-										<!-- 이제 여기서 밑에꺼 작업 게시판 글목록 모달 사용자정보 화이팅 -->
-										<div class="row mt-2" style="width:100%">
-											<div class="col">
-												<b style="margin-left: 10px;font-size: medium;">작성 글 목록</b>
-											</div>
+										<p style="height: 200px; margin-bottom: 0px; padding:40px;">안녕하세요 저는 자바를 16년째
+											해오고 있는 구구단 주부 9단 눈치 100단
+											태권도 2단 무단횡단 자진모리장단 로켓단 바위처럼단단 등
+											여러 경력을 보유하고있는 경력자 구슬구슬입니다
+											현재 스타트업을 같이할 인재들을 모집하고있습니다</p>
+									</div>
+									<div class="col-md-12" style="text-align: -webkit-center; margin-top: 30px;">
+										<div class="_form_radio" style="padding:0px;">
+											<div class="row" id="header_info">
+											<div class="col" style="align-self: center;"><b>실력</b></div>
 										</div>
-										<div class="row mt-2" style="width:100%;margin-left: 10px; ">
-											<div class="col" style="padding:0;">
-												<table class="table table-hover table-bordered ">
-													<thead style="text-align: center;">
-														<tr class="bg-warning ">
-															<th>
-																글 번호
-															</th>
-															<th>
-																글 제목
-															</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td style="text-align: center;">
-																1578
-															</td>
-															<td>
-																입문자들 다 모여라~~~~~!!
-															</td>
-														</tr>
-														<tr>
-															<td style="text-align: center;">
-																1890
-															</td>
-															<td>
-																기초부터 시작하는 즐거운 코딩교실 ~
-															</td>
-														</tr>
-														<tr>
-															<td style="text-align: center;">
-																2222
-															</td>
-															<td>
-																예이예이예 ~
-															</td>
-														</tr>
-													</tbody>
-												</table>
-												<br />
+											<div style="padding:20px;">
+												<group class="inline-radio"> <span
+														style="font-size: larger; width: 100px;">Java</span>
+													<div class="_div_radio">
+														<input type="radio" name="Java" class="_input_radio"
+															checked onclick="return(false);"><label class="_radio_label">입문</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="Java" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">초급</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="Java" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">중급이상</label>
+													</div>
+												</group>
+
+												<group class="inline-radio"> <span
+														style="font-size: larger; width: 100px;">Python</span>
+													<div class="_div_radio">
+														<input type="radio" name="Python" class="_input_radio"
+															checked onclick="return(false);"><label class="_radio_label">입문</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="Python" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">초급</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="Python" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">중급이상</label>
+													</div>
+												</group>
+												<group class="inline-radio"> <span
+														style="font-size: larger; width: 100px;">HTML/CSS</span>
+													<div class="_div_radio">
+														<input type="radio" name="HTML/CSS" class="_input_radio"
+															checked onclick="return(false);"><label class="_radio_label">입문</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="HTML/CSS" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">초급</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="HTML/CSS" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">중급이상</label>
+													</div>
+												</group>
+												<group class="inline-radio"> <span
+														style="font-size: larger; width: 100px;">Javascript</span>
+													<div class="_div_radio">
+														<input type="radio" name="Javascript" class="_input_radio"
+															checked onclick="return(false);"><label class="_radio_label">입문</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="Javascript"
+															class="_input_radio" onclick="return(false);"><label class="_radio_label">초급</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="Javascript"
+															class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">중급이상</label>
+													</div>
+												</group>
+												<group class="inline-radio"> <span
+														style="font-size: larger; width: 100px;">SQL</span>
+													<div class="_div_radio">
+														<input type="radio" name="SQL" class="_input_radio"
+															checked onclick="return(false);"> <label class="_radio_label">입문</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="SQL" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">초급</label>
+													</div>
+													<div class="_div_radio">
+														<input type="radio" name="SQL" class="_input_radio" onclick="return(false);"><label
+															class="_radio_label">중급이상</label>
+													</div>
+												</group>
 											</div>
 										</div>
 									</div>
 								</div>
-
-
-
 							</div>
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+						<!-- 이제 여기서 밑에꺼 작업 게시판 글목록 모달 사용자정보 화이팅 -->
+						<div class="container">
+							<div class="row mt-2" style="padding:10px; padding-bottom: 0px;">
+								<div class="col-md-3">
+									<b style=" font-size: large;">작성 글 목록</b>
+								</div>
+							</div>
+							<div class="row mt-2" style="width:100%;">
+								<div class="col">
+									<table class="table table-hover table-bordered ">
+										<thead style="text-align: center;">
+											<tr style="background-color: rgb(213, 235, 217);">
+												<th>
+													글번호
+												</th>
+												<th>
+													글제목
+												</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													1578
+												</td>
+												<td>
+													<a href="">입문자들 다 모여라~~~~~!!</a>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													1890
+												</td>
+												<td>
+													<a href="">기초부터 시작하는 즐거운 코딩교실 ~</a>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													2222
+												</td>
+												<td>
+													<a href="">예이예이예 ~</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<br />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
-
 </body>
 
 </html>
