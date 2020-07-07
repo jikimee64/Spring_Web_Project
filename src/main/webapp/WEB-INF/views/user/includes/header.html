@@ -1,79 +1,82 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<div th:fragment="header">
-	<!-- ======= Header ======= -->
-	<header id="header" class="fixed-top header-transparent"
-		style="padding: 10px 10px;">
-		<div class="container-fluid">
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top header-transparent"
+	style="padding: 10px 10px;" th:fragment="header">
+	<div class="container-fluid">
 
-			<div class="row justify-content-center">
-				<div class="col-xl-9 d-flex align-items-center">
-					<h1 class="logo mr-auto">
-						<a href="/user/main.do">WeStudy</a>
-					</h1>
-					<!-- Uncomment below if you prefer to use an image logo -->
-					<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+		<div class="row justify-content-center">
+			<div class="col-xl-9 d-flex align-items-center">
+				<h1 class="logo mr-auto">
+					<a href="/user/main.do">WeStudy</a>
+				</h1>
+				<!-- Uncomment below if you prefer to use an image logo -->
+				<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
 
-					<nav class="nav-menu d-none d-lg-block">
-						<ul>
-							<li class="active"><a href="/user/main.do">Home</a></li>
-							<li><a href="/board/course_List.do">온라인 강의</a></li>
-							<li><a href="/board/study_List.do">스터디 모임</a></li>
-							<li
-								style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
+				<nav class="nav-menu d-none d-lg-block">
+					<ul>
+						<li class="active"><a href="/user/main.do">Home</a></li>
+						<li><a href="/board/course_List.do">온라인 강의</a></li>
+						<li><a href="/board/study_List.do">스터디 모임</a></li>
+						<li
+							style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
 
-							<th:block sec:authorize="hasRole('ROLE_USER')">
-								<a href="" style="padding-left: 20px;"> <img
-									src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU"
-									alt="" style="height: 50px; border-radius: 50%;"></a>
-								<li class="drop-down" style="padding-left: 0px; padding-right:15px;"><a href=""></a>
-									<ul>
+						<th:block sec:authorize="hasRole('ROLE_USER')">
+							<a href="/mypage/mypage.do" style="padding-left: 20px;"> <img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU"
+								alt="" style="height: 50px; border-radius: 50%;"></a>
+							<li class="drop-down"
+								style="padding-left: 0px; padding-right: 15px;"><a href=""></a>
+								<ul>
+									<th:block sec:authorize="hasRole('ROLE_USER')">
 										<li><a href="/mypage/mypage.do">마이페이지</a></li>
 										<li><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
 										<li><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
-										<li><a th:href="@{/logout}">로그아웃</a></li>
-									</ul>
-								</li>
+									</th:block>
+									<li><a th:href="@{/logout}">로그아웃</a></li>
+									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+										<li><a th:href="@{/manager/index.do}">관리자 페이지</a></li>
+									</th:block>
+								</ul></li>
 
 
-								<a href=""> <img src="/resources/images/img/message2.png"
-									style="width: 50px; height: 50px;"> <span class="dot">11</span>
-								</a>
-							</th:block>
+							<a href=""> <img src="/resources/images/img/message2.png"
+								style="width: 50px; height: 50px;"> <span class="dot">11</span>
+							</a>
+						</th:block>
 
-							<th:block sec:authorize="!hasRole('ROLE_USER')">
-								<li><a href="/member/login.do">로그인</a></li>
-								<li><a href="/member/join.do">회원가입</a></li>
-							</th:block>
+						<th:block sec:authorize="!hasRole('ROLE_USER')">
+							<li><a href="/member/login.do">로그인</a></li>
+							<li><a href="/member/join.do">회원가입</a></li>
+						</th:block>
 
-						
 
-						</ul>
 
-					</nav>
-					<!-- .nav-menu -->
-				</div>
+					</ul>
+
+				</nav>
+				<!-- .nav-menu -->
 			</div>
-
 		</div>
-	</header>
-	<!-- End Header -->
 
- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+	</div>
+</header>
+<!-- End Header -->
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
 			connect();
 		})
-		
+
 		var wsocket;
-		
+
 		function connect() {
-			wsocket = new WebSocket(
-					"ws://192.168.0.2:8001/messageSocket.do");
-			wsocket.onopen = onOpen; 
+			wsocket = new WebSocket("ws://192.168.0.2:8001/messageSocket.do");
+			wsocket.onopen = onOpen;
 			//서버와 클라이언트의 정상 연결 후 데이터 송수신이 가능할 시 호출
 			wsocket.onmessage = onMessage;
 			//서버에서 메시지를 받을 때 호출
@@ -83,32 +86,35 @@
 		function disconnect() {
 			wsocket.close();
 		}
-		
+
 		function onOpen(evt) {
 			console.log("여긴오냐222")
 			send();
 		}
-		
+
 		function onMessage(evt) {
 			console.log(evt);
 			//evt.data에 서버가 보낸 데이터가 들어가 있음
 			var data = evt.data;
 			appendMessage(data);
 		}
-		
+
 		function onClose(evt) {
 		}
-		
+
 		function send() {
 			console.log("여긴오냐")
 			wsocket.send("login");
 		}
-	
+
 		function appendMessage(msg) {
 			$("#alertArea").empty();
-			$("#alertArea").append(msg.substring(0,8) +"<a href='${pageContext.request.contextPath}/messageView.do'>"+ msg.substring(9,11) +"</a>");
+			$("#alertArea")
+					.append(
+							msg.substring(0, 8)
+									+ "<a href='${pageContext.request.contextPath}/messageView.do'>"
+									+ msg.substring(9, 11) + "</a>");
 		}
-		
 	</script>
 
 

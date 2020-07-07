@@ -128,9 +128,7 @@ public class MyPageController {
 	@RequestMapping("mypage_Message_From_Detail_Board.do")
 	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
 
-		System.out.println("편지 번호 : " + m_seq);
 		Message message = mservice.getMessage(m_seq);
-		System.out.println("우철이 : " + message);
 		model.addAttribute("message", message);
 
 		System.out.println("받은 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
@@ -197,5 +195,10 @@ public class MyPageController {
 		System.out.println("content : " + content);
 
 		return "user/mypage/mypage_Message_Send_Send_Message";
+	}
+	@RequestMapping("mypage_Mycomment.do")
+	public String mypageMycomment() {
+		System.out.println("내가 쓴 게시판으로 이동이동(연규가씀)");
+		return "user/mypage/mypage_Mycomment";
 	}
 }

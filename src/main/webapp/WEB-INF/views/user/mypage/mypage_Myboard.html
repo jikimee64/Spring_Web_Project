@@ -1,34 +1,89 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-	<title>mypage_myboard</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+<title>mypage_myboard</title>
 
 <!-- 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  -->
-	<style>
-		.page-link {
-			color: #18d26e;
-		}
+<style>
+.pager li>a, .pager li>span {
+	border: white;
+	background-color: #fff;
+}
 
-		.page-item.active .page-link {
-			background-color: #18d26e;
-			border-color: white;
-			color: white;
-			z-index: 3;
-		}
+.pager li>a, .pager li>span {
+	display: inline-block;
+	padding: 5px 14px;
+	border-radius: 5px;
+}
 
-		.pager li>a,
-		.pager li>span {
-			border: white;
-			background-color: #fff;
-		}
-	</style>
+.page-link {
+	color: #18d26e;
+}
+
+.page-link {
+	position: relative;
+	margin-left: -1px;
+	line-height: 1.25;
+}
+
+a {
+	text-decoration: none;
+}
+
+a {
+	transition: 0.5s;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a:-webkit-any-link {
+	cursor: pointer;
+}
+
+li {
+	text-align: -webkit-match-parent;
+}
+
+.pager {
+	padding-left: 0;
+	margin: 20px 0;
+	list-style: none;
+}
+
+._border_box_shadow2 {
+	background: #fff;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	background-color: rgb(230, 244, 232);
+}
+
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
+}
+</style>
 </head>
 
 <body>
@@ -37,7 +92,8 @@
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs" style="margin-top: 70px; padding-top: 0px;">
+		<section class="breadcrumbs"
+			style="margin-top: 70px; padding-top: 20px;">
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
@@ -51,90 +107,103 @@
 		<!-- Breadcrumbs Section -->
 
 	</main>
+
+
 	<div class="container"
 		style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 950px;">
-		<br /> <br>
-		<div class="row">
-			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-			<button type="button" class="btn btn-success"
-				style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;" id="_board_button1">
-				<b style="font-size: large;"> 게시글</b>
-			</button>
-			<button type="button" class="btn btn-success"
-				style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;" id="_board_button2">
-				<b style="font-size: large;"> &nbsp; 댓글 &nbsp; </b>
-			</button>
-		</div>
+		<div class="_border_box_shadow2">
+			<br /> <br>
+			<div class="row">
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<button type="button" class="btn btn-success"
+					style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
+					id="_board_button1">
+					<b style="font-size: large;"> 게시글</b>
+				</button>
+				<button type="button" class="btn btn-success"
+					style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
+					id="_board_button2">
+					<b style="font-size: large;"> &nbsp; 댓글 &nbsp; </b>
+				</button>
+			</div>
 
-		<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 96%;" />
-		<!-- 글번호 -->
+			<hr
+				style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 96%;" />
+			<!-- 글번호 -->
 
-		<div class="row" style="padding: 30px; padding-bottom: 10px;">
-			<div class="col-md-12">
-				<!-- 스터디 종류 -->
-				<span class="badge badge-pill badge-warning">일반스터디</span>
-				<!-- 날짜 -->
-				<span class="badge badge-pill badge-warning">날짜</span>
-				<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
-				<span class="badge badge-pill badge-warning">작성자</span>
-				<!-- 모집중인지 모집완료인지 -->
-				<span class="badge badge-pill badge-warning">모집상태</span>
+			<div class="row" style="padding: 30px; padding-bottom: 10px;">
+				<div class="col-md-12">
+					<!-- 스터디 종류 -->
+					<span class="badge badge-pill badge-warning">일반스터디</span>
+					<!-- 날짜 -->
+					<span class="badge badge-pill badge-warning">날짜</span>
+					<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
+					<span class="badge badge-pill badge-warning">작성자</span>
+					<!-- 모집중인지 모집완료인지 -->
+					<span class="badge badge-pill badge-warning">모집상태</span>
+				</div>
+			</div>
+			<div class="row" style="margin-left: 45px;">
+				<div class="col-md-8">
+					<a href="">
+						<h3 style="margin-top: 0;">[강남] 쇼핑몰 프로젝트 같이 하실분들 모집합니다</h3> <span
+						style="color: #888888"> html, css, js를 몇번 써보신분, java의 MVC
+							패턴을 사용해보신 분 포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다 </span>
+				</div>
+				</a>
+				<div class="col-md-3" style="text-align: right;">
+					<img
+						src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg"
+						alt="" style="width: 180px; height: 180px;">
+				</div>
+			</div>
+
+			<!-- 이건 페이징 버튼 시작 -->
+
+			<div class="row" style="place-content: center;">
+				<ul class="pager d-flex">
+					<li><a class="page-link" href="#">PREV</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item active"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li><a class="page-link" href="#">NEXT</a></li>
+				</ul>
 			</div>
 		</div>
-		<div class="row" style="margin-left: 45px;">
-			<div class="col-md-8">
-				<a href="">
-					<h3 style="margin-top: 0;">[강남] 쇼핑몰 프로젝트 같이 하실분들
-						모집합니다</h3> <span style="color: #888888"> html, css, js를 몇번 써보신분,
-						java의 MVC 패턴을 사용해보신 분 포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다 </span>
-			</div>
-			</a>
-			<div class="col-md-3" style="text-align: right;">
-				<img src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg" alt=""
-					style="width: 180px; height: 180px;">
-			</div>
-		</div>
-
-		<!-- 이건 페이징 버튼 시작 -->
-
-		<div class="row" style="place-content: center;">
-			<ul class="pager">
-				<li><a class="page-link" href="#">PREV</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li><a class="page-link" href="#">NEXT</a></li>
-			</ul>
-		</div>
-		<!-- 여기까지 페이징 버튼 끝 -->
-		<!--  윗부분 끝 //////////////////////////////////////// -->
 	</div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 
 	<script>
-		$(function () {
+		$(function() {
 			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
-			$('#_board_button1').click(function () {
-				$('#_board_button1').css('background-color', 'rgb(19, 204, 97)');
-				$('#_board_button1').css('border-color', 'rgb(19, 204, 97)');
+			$('#_board_button1').click(
+					function() {
+						$('#_board_button1').css('background-color',
+								'rgb(19, 204, 97)');
+						$('#_board_button1').css('border-color',
+								'rgb(19, 204, 97)');
 
-				$('#_board_button2').css('background-color', 'rgb(134, 240, 180)');
-				$('#_board_button2').css('border-color', 'rgb(134, 240, 180)');
-			});
+						$('#_board_button2').css('background-color',
+								'rgb(134, 240, 180)');
+						$('#_board_button2').css('border-color',
+								'rgb(134, 240, 180)');
+					});
 
-			$('#_board_button2').click(function () {
-				$('#_board_button1').css('background-color', 'rgb(134, 240, 180)');
-				$('#_board_button1').css('border-color', 'rgb(134, 240, 180)');
-				$('#_board_button2').css('background-color', 'rgb(19, 204, 97)');
-				$('#_board_button2').css('border-color', 'rgb(19, 204, 97)');
-			});
+			$('#_board_button2').click(
+					function() {
+						$('#_board_button1').css('background-color',
+								'rgb(134, 240, 180)');
+						$('#_board_button1').css('border-color',
+								'rgb(134, 240, 180)');
+						$('#_board_button2').css('background-color',
+								'rgb(19, 204, 97)');
+						$('#_board_button2').css('border-color',
+								'rgb(19, 204, 97)');
+					});
 		});
-
-
 	</script>
-
 </body>
 
 

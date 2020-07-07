@@ -6,6 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>find_id</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+<!-- 폰트어썸 아이콘 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -27,19 +33,30 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+   
+   
+   
+   
+   
+   
 </head>
 
 <style>
+
+button:focus {
+	outline: none !important;
+}
+
 .input--style-6, .textarea--style-6 {
 	font-family: Raleway-SemiBold;
 	font-size: 18px;
-	background: #f0f0f0;
+	background: aliceblue;
 	outline: none;
 	/* background: transparent; */
 	line-height: 1.2;
 	display: block;
 	width: 100%;
-	height: 60px;
+	height: 40px;
 	border: 1px solid #cccccc;
 	/* border-style: hidden; */
 	-webkit-border-radius: 3px;
@@ -133,18 +150,100 @@ button:focus {
 		rgba(0, 0, 0, 0.26);
 	border-radius: 3px;
 	padding: 30px;
-	width: 610px;
-	height: 645px;
+	width: 460px;
+	height: 535px;
 }
+
+
+
+
+/* 코드펜 버튼 */
+button,
+button::after {
+  -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+button {
+  background: none;
+  border: 3px solid #d4d4d4;
+  border-radius: 5px;
+  color: #d4d4d4;
+  display: block;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-left: 0px;
+  padding: 2em 6em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+button::before,
+button::after {
+  background: #d4d4d4;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+button:hover {
+  color: #18d26e;
+  border-color: #18d26e;
+}
+
+
+
+/* BUTTON 2 */
+.btn-2::after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+
+.btn-2:hover:after {
+  width: 100%;
+}
+
+
+.btn-2:focus{
+outline:none;
+}
+
+
+.btn-2 i {
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s,color 0s;
+}
+
+.btn-2:hover i {
+  -webkit-transform: translateX(6px);
+  -moz-transform: translateX(6px);
+  -ms-transform: translateX(6px);
+  -o-transform: translateX(6px);
+  transform: translateX(6px);
+}
+  
+
+
+
+
+
+/* 버튼 */
 .login100-form-btn {
-justify-content: center;
+	justify-content: center;
 	font-family: Raleway-Bold;
 	font-size: 16px;
 	line-height: 1.5;
 	color: #ffffff;
+	font-size: small;
 	text-transform: uppercase;
 	width: 100%;
-	height: 62px;
+	height: auto;
 	border-radius: 3px;
 	outline: 0px;
 	background: 0;
@@ -164,9 +263,14 @@ justify-content: center;
 }
 
 .login100-form-btn:hover {
-	background-color: white !important;
-	color:  #18d26e;
+	background-color: #14bf61 !important; 
+	color:  white;
 }
+
+
+
+
+
 </style>
 
 
@@ -176,6 +280,8 @@ justify-content: center;
 	<br />
 	<div id="app" style="margin-top: 110px;">
 		<div class="container" style="height: 700px;">
+		
+		
 			<div class="_border_box_shadow2 wrap-login100">
 
 				<h3 style="text-align: center;">
@@ -184,7 +290,7 @@ justify-content: center;
 				<hr style="width: 80%; height: 2rem;" />
 
 				<div>
-					<form action="" class="needs-validation" novalidate>
+<!-- 					<form action="" class="needs-validation" novalidate> -->
 						<div class="form-group">
 							<label for="username"><b>이름</b></label> <input
 								class="input--style-6" type="text" v-model="username"
@@ -200,10 +306,11 @@ justify-content: center;
 							<div class="row" style=" transform: translateX(15px);">
 								<input class="input--style-6" type="text" v-model="useremail"
 									id="userid" placeholder="Enter userid" name="uname"
-									style="width: 70%;" required>
+									style="width: 74%;" required>
 									&nbsp;
 								     <button v-on:click="emailCheck" type="submit"
-                     class="btn btn-warning" style="width: 24%; font-size: larger;">인증받기</button>
+                     				  class="login100-form-btn btn-outline-lignt" 
+                     				  style="width: 18%;padding: 6px 9px;background-color: #18d26e;">인증받기</button>
 
 
 							</div>
@@ -211,23 +318,31 @@ justify-content: center;
 						<div class="form-group">
 							<label for="userid"></label>
 							<div class="row">
-								<input type="text" class="form-control" id="AuthInput"
+								<input type="text" class="input--style-6" id="AuthInput"
 									placeholder="인증 번호 입력" name="uname"
-									style="width: 70%; margin-left: 11px;" required> &nbsp;
-								<button type="button" class="btn btn-success"
-									style="width: 25%; font-size: small;" id="Authbtn">확인</button>
+									style="width: 59%; margin-left: 16px;" required> &nbsp;
+									
+									
+								<button type="button" class="login100-form-btn btn-outline-lignt"
+									style="width: 14%;padding: 6px 9px;background-color: #18d26e; font-size: small;" id="Authbtn">확인</button>
 								<div id="alert2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 							</div>
 						</div>
-						<br /> <br /> <br /> <br /> <br />
+						<br /> <br /> <br />
+
+
 
 						<div style="text-align: end;">
-							<a href="/member/login.do">
-								<button type="button" class="btn btn-warning"
-									style="width: 40%; height: 55px;">로그인 하러가기</button>
+							<a href="/member/login.do" style="text-decoration: none;">
+								<button type="submit" class="btn-2" style="display: inline-flex; margin-top: -4px; padding: 10px 10px; border-radius: 5px;">
+								<span>로그인 하러가기
+									<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+								</span>
+								</button>
 							</a>
 						</div>
-					</form>
+						
+<!-- 					</form> -->
 				</div>
 				<p></p>
 				<input type="hidden" value="" id="aa"> <input type="hidden"

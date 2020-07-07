@@ -13,18 +13,25 @@ public class ManagerController {
 
 		return "manager/index"; 
 	}
+	
+	@RequestMapping("board/member_Detail.do")
+	public String memberDetailPage() {
+		System.out.println("sss");
 
-	@RequestMapping("includes/board/member_Management.do")
+		return "manager/board/member_Detail"; 
+	}
+
+	@RequestMapping("board/member_Management.do")
 	public String memberManagementPage() {
-		System.out.println("어드민 테이블페이지이동");
+		System.out.println("어드민 회원관리 테이블페이지이동");
 
-		return "manager/includes/board/member_Management"; 
+		return "manager/board/member_Management"; 
 	}
 	
-	@RequestMapping("includes/board/report_Management.do")
+	@RequestMapping("board/report_Management.do")
 	public String reportManagementPage() {
-		System.out.println("어드민 테이블페이지이동");
+		System.out.println("어드민 회원관리 테이블페이지이동");
 
-		return "manager/includes/board/report_Management"; 
+		return "manager/board/report_Management"; 
 	}
 }

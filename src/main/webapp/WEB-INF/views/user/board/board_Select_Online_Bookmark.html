@@ -11,11 +11,6 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
 <style>
 
 hover-css>div {
@@ -52,29 +47,69 @@ hover-css>div {
 	text-decoration:none;
 }
 
-.page-link {
-	color: #18d26e;
-}
-
-.page-item.active .page-link {
-	background-color: #18d26e;
-	border-color: white;
-	color: white;
-	z-index: 3;
-}
-
-.pager li>a, .pager li>span {
-	border: white;
-	background-color: #fff;
-}
 .cover2{
 			background-image: url(../../../../resources/images/img/bookmarkpage.jpg);
 			background-position:center center; 
-			background-size: 1555px;
+			background-size: 2300px;
 			background-repeat: no-repeat;
 			opacity: 0.7;
 		}
 </style>
+<style>
+			.pager li>a, .pager li>span {
+				border: white;
+				background-color: #fff;
+			}
+			.pager li>a, .pager li>span {
+				display: inline-block;
+				padding: 5px 14px;
+				border-radius: 5px;
+			}
+			.page-link{
+				color:  #18d26e !important; 
+			}
+			
+			.page-link {
+				position: relative;
+				margin-left: -1px;
+				line-height: 1.25;
+			}
+			a {
+				text-decoration: none;
+			}
+			
+			a {
+				transition: 0.5s;
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			a:-webkit-any-link {
+				cursor: pointer;
+			}
+			li {
+				text-align: -webkit-match-parent;
+			}
+			.pager {
+				padding-left: 0;
+				margin: 20px 0;
+				list-style: none;
+			}
+			body {
+				
+   				font-size: 14px;
+				background-color: #fff;
+				background: #fff;
+				margin: 0;
+			}
+			.page-item.active .page-link {
+				    z-index: 3;
+ 				    color: #fff !important; 
+				    background-color: #18d26e !important;
+				    border-color: #18d26e;
+				}
+		</style>
 
 
 </head>
@@ -82,18 +117,18 @@ hover-css>div {
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-	<main id="main"> 
-          <!-- ======= Breadcrumbs Section ======= -->
-          <section class="breadcrumbs cover2" style="margin-top: 70px; height:300px; ">
-            <div class="container d-flex h-100">
-              <div class="row justify-content-center align-self-center">
-                  <h2 style="color:#fff;"><b>스터디 게시판</b></h2>
-              </div>
-            </div>
-          </section><!-- Breadcrumbs Section -->
-     </main>
-	
-	
+
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs cover2" style="margin-top: 70px; height:300px; padding:1000 0 100 0px;">
+			<div class="container d-flex h-100" style="padding:200px 0;">
+				<div class="row justify-content-center align-self-center">
+					<h1 style="color:white; font-size: 50px;"><b>강의 선택하기</b></h1>
+				</div>
+			</div>
+		
+		</section><!-- Breadcrumbs Section -->
+	</main>
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
 		<section class="breadcrumbs" style="margin-top:0;">
@@ -319,7 +354,7 @@ hover-css>div {
 	<!-- End #main -->
 
 	<div class="row" style="place-content: center;">
-		<ul class="pager">
+		<ul class="pager d-flex">
 			<li><a class="page-link" href="#">PREV</a></li>
 			<li class="page-item"><a class="page-link" href="#">1</a></li>
 			<li class="page-item active"><a class="page-link" href="#">2</a></li>
