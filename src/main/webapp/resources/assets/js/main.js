@@ -227,6 +227,34 @@
     });
     aos_init();
   });
+  $('#portfolio-flters-ingOrDone li').on('click', function() {
+    $("#portfolio-flters-ingOrDone li").removeClass('filter-active');
+    $(this).addClass('filter-active');
+    
+    portfolioIsotope.isotope({
+      filter: $(this).data('filter')
+    });
+    aos_init();
+  });
+  $('#portfolio-flters-local li').on('click', function() {
+    $("#portfolio-flters-local li").removeClass('filter-active');
+    $(this).addClass('filter-active');
+    
+    portfolioIsotope.isotope({
+      filter: $(this).data('filter')
+    });
+    aos_init();
+  });
+  $('#portfolio-flters-studyContent li').on('click', function() {
+    $("#portfolio-flters-studyContent li").removeClass('filter-active');
+    $(this).addClass('filter-active');
+    
+    portfolioIsotope.isotope({
+      filter: $(this).data('filter')
+    });
+    aos_init();
+  });
+  /*
   $('#portfolio-flters-lan li').on('click', function() {
     $("#portfolio-flters-lan li").removeClass('filter-active');
     $(this).addClass('filter-active');
@@ -236,34 +264,21 @@
     });
     aos_init();
   });
-  $('#portfolio-flters-ingOrDone li').on('click', function() {
-    $("#portfolio-flters-ingOrDone li").removeClass('filter-active');
-    $(this).addClass('filter-active');
+  */
+  $('#portfolio-flters-lan li').on('click', function() {
+    //$("#portfolio-flters-lan li").removeClass('filter-active');
+    if($(this).hasClass('filter-active')){
+      $("#portfolio-flters-lan li").removeClass('filter-active');
+    }else{
+      $(this).addClass('filter-active');
 
+    }
     portfolioIsotope.isotope({
       filter: $(this).data('filter')
     });
     aos_init();
   });
-  $('#portfolio-flters-local li').on('click', function() {
-    $("#portfolio-flters-local li").removeClass('filter-active');
-    $(this).addClass('filter-active');
-
-    portfolioIsotope.isotope({
-      filter: $(this).data('filter')
-    });
-    aos_init();
-  });
-  $('#portfolio-flters-studyContent li').on('click', function() {
-    $("#portfolio-flters-studyContent li").removeClass('filter-active');
-    $(this).addClass('filter-active');
-
-    portfolioIsotope.isotope({
-      filter: $(this).data('filter')
-    });
-    aos_init();
-  });
-
+  
 
 
 
