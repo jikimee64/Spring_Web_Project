@@ -396,6 +396,21 @@ button:focus {
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
+	
+	<main id="main">
+
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs" style="margin-top: 70px;">
+			<div class="container">
+
+				<div class="d-flex justify-content-between align-items-center">
+					<h2> </h2>
+				</div>
+
+			</div>
+		</section><!-- Breadcrumbs Section -->
+
+	</main><!-- End #main -->
 
 	<div th:if="${param.error!=null}">
 		로그인 실패 <br />
