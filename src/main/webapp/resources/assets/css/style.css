@@ -950,6 +950,7 @@ section {
   background: #fff;
   margin-bottom: 5px;
   transition: all 0.3s ease-in-out;
+  
 }
 
 #portfolio #portfolio-flters li:hover, #portfolio #portfolio-flters li.filter-active {
@@ -1034,7 +1035,7 @@ section {
 
 #portfolio .portfolio-item figure:hover .link-details {
   opacity: 1;
-  right: calc(50% - 44px);
+  right: calc(55% - 44px);
 }
 
 #portfolio .portfolio-item .portfolio-info {

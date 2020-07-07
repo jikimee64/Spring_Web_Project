@@ -69,8 +69,101 @@
 		}
 	}
 	
-</style>
+	#portfolio #portfolio-flters-level li ,
+	#portfolio #portfolio-flters-site li ,
+	#portfolio #portfolio-flters-price li,
+	#portfolio #portfolio-flters-lan li {
+	cursor: pointer;
+	margin:  0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: #fff;
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
+	}
+	#portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active ,
+	#portfolio #portfolio-flters-site li:hover, #portfolio #portfolio-flters-site li.filter-active ,
+	#portfolio #portfolio-flters-price li:hover, #portfolio #portfolio-flters-price li.filter-active ,
+	#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active {
+	background: #18d26e;
+	color: #fff;
+	}	
 
+	#portfolio #portfolio-flters-level ,
+	#portfolio #portfolio-flters-site ,
+	#portfolio #portfolio-flters-price ,
+	#portfolio #portfolio-flters-lan{
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
+	}
+
+	#portfolio #portfolio-flters-lan li {
+	background: rgb(240, 238, 238);
+	}
+	
+
+</style>
+<style>
+			.pager li>a, .pager li>span {
+				border: white;
+				background-color: #fff;
+			}
+			.pager li>a, .pager li>span {
+				display: inline-block;
+				padding: 5px 14px;
+				border-radius: 5px;
+			}
+			.page-link {
+				color:  #18d26e;
+			}
+			
+			.page-link {
+				position: relative;
+				margin-left: -1px;
+				line-height: 1.25;
+			}
+			a {
+				text-decoration: none;
+			}
+			
+			a {
+				transition: 0.5s;
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			a:-webkit-any-link {
+				cursor: pointer;
+			}
+			li {
+				text-align: -webkit-match-parent;
+			}
+			.pager {
+				padding-left: 0;
+				margin: 20px 0;
+				list-style: none;
+			}
+			body {
+   				font-size: 14px;
+				background-color: #fff;
+				background: #fff;
+				margin: 0;
+			}
+			.page-item.active .page-link {
+				    z-index: 3;
+				    color: #fff;
+				    background-color: #18d26e;
+				    border-color: #18d26e;
+				}
+		</style>
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
@@ -104,7 +197,7 @@
 						<span class="title _category_list">난이도</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-level">
 							&nbsp;
 							<li data-filter=".filter-level">입문</li>
 							&nbsp;&nbsp;&nbsp;
@@ -119,7 +212,7 @@
 						<span class="title _category_list">가격</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-price">
 							&nbsp;
 							<li data-filter=".filter-price">무료</li>
 							&nbsp;
@@ -141,7 +234,7 @@
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-lan">
 							&nbsp;
 							<li data-filter=".filter-lan">JAVA</li>
 							&nbsp;
@@ -159,7 +252,7 @@
 							&nbsp;
 							<li data-filter=".filter-lan">React</li>
 						</ul>
-						<ul id="portfolio-flters">	
+						<ul id="portfolio-flters-lan">	
 							&nbsp;
 							<li data-filter=".filter-lan">JSP</li>
 							&nbsp;
@@ -176,7 +269,7 @@
 						<span class="title _category_list">사이트</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-site">
 							&nbsp;
 							<li data-filter=".filter-site">인프런</li>
 							&nbsp;
@@ -338,56 +431,7 @@
 
 		<br />
 			<!--//////////////////////////////-->
-		<style>
-			.pager li>a, .pager li>span {
-				border: white;
-				background-color: #fff;
-			}
-			.pager li>a, .pager li>span {
-				display: inline-block;
-				padding: 5px 14px;
-				border-radius: 15px;
-			}
-			.page-link {
-				color:  #18d26e;
-			}
-			
-			.page-link {
-				position: relative;
-				margin-left: -1px;
-				line-height: 1.25;
-			}
-			a {
-				text-decoration: none;
-			}
-			
-			a {
-				transition: 0.5s;
-			}
-			
-			* {
-				box-sizing: border-box;
-			}
-			a:-webkit-any-link {
-				cursor: pointer;
-			}
-			li {
-				text-align: -webkit-match-parent;
-			}
-			.pager {
-				padding-left: 0;
-				margin: 20px 0;
-				list-style: none;
-			}
-			body {
-				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-   				font-size: 14px;
-				background-color: #fff;
-				background: #fff;
-				margin: 0;
-			}
-			
-		</style>
+		
 		<div class="row" style="place-content: center;">
 			<ul class="pager">
 				<li><a class="page-link" href="#">PREV</a></li>

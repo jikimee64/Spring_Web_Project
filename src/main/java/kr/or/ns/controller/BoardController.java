@@ -200,4 +200,13 @@ public class BoardController {
 
 		return "user/board/writing_Normal_Study_Edit";
 	}
+	
+	
+	@RequestMapping("board_Support_Status.do")
+	public String boardSupportStatusPage() {
+		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
+
+		return "user/board/board_Support_Status";
+	}
+	
 }
