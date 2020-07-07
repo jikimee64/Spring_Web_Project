@@ -1,699 +1,731 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   <title>join</title>
- <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
- 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>join</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
 </head>
 
 <!-- 스타일 -->
 <style>
-   /*[ Input ]*/
-
+/*[ Input ]*/
 button:focus {
+	outline: none !important;
+}
 
-      outline: none !important;
-   }
-   .wrap-input100 {
-      position: relative;
-      width: 100%;
-      z-index: 1;
-   }
+.wrap-input100 {
+	position: relative;
+	width: 100%;
+	z-index: 1;
+}
 
-   input,
-   textarea {
-      outline: none;
-      margin: 0;
-      border: none;
-      -webkit-box-shadow: none;
-      -moz-box-shadow: none;
-      box-shadow: none;
-      width: 100%;
-      font-size: 14px;
-      font-family: inherit;
-   }
+input, textarea {
+	outline: none;
+	margin: 0;
+	border: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	width: 100%;
+	font-size: 14px;
+	font-family: inherit;
+}
 
-   textarea {
-      resize: none;
-   }
+textarea {
+	resize: none;
+}
 
-   .input-group {
-      position: relative;
-      margin: 0;
-   }
+.input-group {
+	position: relative;
+	margin: 0;
+}
 
+.input100 {
+	color: #686868;
+	background: #f0f0f0;
+}
 
+.input--style-6, .textarea--style-6 {
+	font-family: Raleway-SemiBold;
+	font-size: 18px;
+	background: transparent;
+	line-height: 1.2;
+	display: block;
+	width: 100%;
+	height: 39px;
+	border: 1px solid #cccccc;
+	/* border-style: hidden; */
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #666;
+	font-size: 15px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	padding: 0 15px;
+}
 
-   .input100 {
+.input--style-6::-webkit-input-placeholder, .textarea--style-6::-webkit-input-placeholder
+	{
+	/* WebKit, Blink, Edge */
+	color: #999;
+}
 
+.input--style-6:-moz-placeholder, .textarea--style-6:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #999;
+	opacity: 1;
+}
 
-      color: #686868;
+.input--style-6::-moz-placeholder, .textarea--style-6::-moz-placeholder
+	{
+	/* Mozilla Firefox 19+ */
+	color: #999;
+	opacity: 1;
+}
 
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Internet Explorer 10-11 */
+	color: #999;
+}
 
-      background: #f0f0f0;
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Microsoft Edge */
+	color: #999;
+}
 
+.input--style-6:focus, .textarea--style-6:focus {
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-webkit-transform: translateY(-3px);
+	-moz-transform: translateY(-3px);
+	-ms-transform: translateY(-3px);
+	-o-transform: translateY(-3px);
+	transform: translateY(-3px);
+}
 
+.textarea--style-6 {
+	line-height: 1.2;
+	min-height: 120px;
+	padding: 10px 20px;
+}
 
+.label--desc {
+	font-size: 13px;
+	color: #999;
+	margin-top: 10px;
+}
 
+@media ( max-width : 767px) {
+	.label--desc {
+		margin-top: 14px;
+	}
+}
 
-   }
+.input-file {
+	display: none;
+}
 
+.input-file+label {
+	font-size: 15px;
+	color: #fff;
+	color: white;
+	line-height: 40px;
+	background-color: #666666;
+	padding: 0 20px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	display: inline-block;
+	margin-right: 15px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	cursor: pointer;
+}
 
+.input-file:focus+label, .input-file+label:hover {
+	background: #1b1b1b;
+}
 
+.input-file__info {
+	font-size: 15px;
+	color: #666;
+}
 
-   .input--style-6,
-   .textarea--style-6 {
-      font-family: Raleway-SemiBold;
-      font-size: 18px;
-      background: transparent;
-      line-height: 1.2;
-      display: block;
-      width: 100%;
-      height: 39px;
-      border: 1px solid #cccccc;
-      /* border-style: hidden; */
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      color: #666;
-      font-size: 15px;
-      -webkit-transition: all 0.4s ease;
-      -o-transition: all 0.4s ease;
-      -moz-transition: all 0.4s ease;
-      transition: all 0.4s ease;
-      padding: 0 15px;
-   }
+@media ( max-width : 767px) {
+	.input-file__info {
+		display: block;
+		margin-top: 6px;
+	}
+}
 
-   .input--style-6::-webkit-input-placeholder,
-   .textarea--style-6::-webkit-input-placeholder {
-      /* WebKit, Blink, Edge */
-      color: #999;
-   }
+/* 버튼 */
+.login100-form-btn {
+	font-family: Raleway-Bold;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #18d26e;
+	outline: none;
+	text-transform: uppercase;
+	width: auto;
+	height: auto;
+	border-radius: 3px;
+	border: 0;
+	/*       outline: 0; */
+	background: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0px;
+	margin: 0px;
+	border-style: hidden;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
 
-   .input--style-6:-moz-placeholder,
-   .textarea--style-6:-moz-placeholder {
-      /* Mozilla Firefox 4 to 18 */
-      color: #999;
-      opacity: 1;
-   }
+.login100-form-btn:hover {
+	background: #18d26e;
+	color: white;
+}
 
-   .input--style-6::-moz-placeholder,
-   .textarea--style-6::-moz-placeholder {
-      /* Mozilla Firefox 19+ */
-      color: #999;
-      opacity: 1;
-   }
+._label_center {
+	align-self: center;
+}
 
-   .input--style-6:-ms-input-placeholder,
-   .textarea--style-6:-ms-input-placeholder {
-      /* Internet Explorer 10-11 */
-      color: #999;
-   }
+*:focus {
+	border: solid 1px #18d26e;
+}
 
-   .input--style-6:-ms-input-placeholder,
-   .textarea--style-6:-ms-input-placeholder {
-      /* Microsoft Edge */
-      color: #999;
-   }
+._border_box_shadow {
+	background: #fff;
+	margin: -35px;
+	margin-top: 72px;
+	padding: 10px 72px 72px 72px;
+	min-width: 700px;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+}
 
-   .input--style-6:focus,
-   .textarea--style-6:focus {
-      -webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-      -moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-      box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-      -webkit-transform: translateY(-3px);
-      -moz-transform: translateY(-3px);
-      -ms-transform: translateY(-3px);
-      -o-transform: translateY(-3px);
-      transform: translateY(-3px);
-   }
+/* 라디오버튼 */
+._form_radio {
+	background: #fff;
+	width: 509px;
+	margin: auto;
+	padding: 30px;
+	min-width: 320px;
+	max-width: 540px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+}
 
-   .textarea--style-6 {
-      line-height: 1.2;
-      min-height: 120px;
-      padding: 10px 20px;
-   }
+group+group {
+	margin-top: 20px;
+}
 
-   .label--desc {
-      font-size: 13px;
-      color: #999;
-      margin-top: 10px;
-   }
+.inline-radio {
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
+}
 
-   @media (max-width: 767px) {
-      .label--desc {
-         margin-top: 14px;
-      }
-   }
+._div_radio {
+	position: relative;
+	flex: 1;
+	border: 1px solid #CCCCCC;
+}
 
-   .input-file {
-      display: none;
-   }
+._input_radio {
+	width: 100%;
+	opacity: 0;
+	height: 100%;
+	cursor: pointer;
+}
 
-   .input-file+label {
-      font-size: 15px;
-      color: #fff;
-      color: white;
-      line-height: 40px;
-      background-color: #666666;
-      padding: 0 20px;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      display: inline-block;
-      margin-right: 15px;
-      -webkit-transition: all 0.4s ease;
-      -o-transition: all 0.4s ease;
-      -moz-transition: all 0.4s ease;
-      transition: all 0.4s ease;
-      cursor: pointer;
-   }
+._radio_label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #b6b6b6;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+	border-right: 1px solid #b6b6b6;
+}
 
-   .input-file:focus+label,
-   .input-file+label:hover {
-      background: #1b1b1b;
-   }
+._div_radio:last-child label {
+	border-right: 0;
+}
 
-   .input-file__info {
-      font-size: 15px;
-      color: #666;
-   }
+._input_radio:checked+label {
+	background: #00d463;
+	font-weight: 500;
+	color: #fff;
+}
 
-   @media (max-width: 767px) {
-      .input-file__info {
-         display: block;
-         margin-top: 6px;
-      }
-   }
-
-   /* 버튼 */
-   .login100-form-btn {
-      font-family: Raleway-Bold;
-      font-size: 16px;
-      line-height: 1.5;
-      color: #18d26e;
-      outline: none;
-      text-transform: uppercase;
-      width: auto;
-      height: auto;
-      border-radius: 3px;
-      border: 0;
-/*       outline: 0; */
-      background: 0;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0px;
-      margin: 0px;
-      border-style: hidden;
-
-      -webkit-transition: all 0.4s;
-      -o-transition: all 0.4s;
-      -moz-transition: all 0.4s;
-      transition: all 0.4s;
-   }
-
-   .login100-form-btn:hover {
-      background: #18d26e;
-      color: white;
-   }
-
-   ._label_center {
-      align-self: center;
-   }
-
-   *:focus {
-      border: solid 1px #18d26e;
-   }
-
-   
-
-   ._border_box_shadow {
-      background: #fff;
-      margin: -35px;
-      padding: 72px;
-      min-width: 700px;
-      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-      border-radius: 3px;
-   }
-
-   /* 라디오버튼 */
-   ._form_radio {
-      background: #fff;
-      width: 509px;
-      margin: auto;
-      padding: 30px;
-      min-width: 320px;
-      max-width: 540px;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0 rgba(0, 0, 0, 0.26);
-      border-radius: 3px;
-   }
-
-
-   group+group {
-      margin-top: 20px;
-   }
-
-   .inline-radio {
-      display: flex;
-      border-radius: 3px;
-      overflow: hidden;
-   }
-
-   ._div_radio {
-      position: relative;
-      flex: 1;
-      border: 1px solid #CCCCCC;
-   }
-
-   ._input_radio {
-      width: 100%;
-      opacity: 0;
-      height: 100%;
-   }
-
-   ._radio_label {
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: #b6b6b6;
-      width: 100%;
-      height: 100%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      border-right: 1px solid #b6b6b6;
-   }
-
-   ._div_radio:last-child label {
-      border-right: 0;
-   }
-
-   ._input_radio:checked+label {
-      background: #00d463;
-      font-weight: 500;
-      color: #fff;
-   }
+body {
+	background-color: #F9FBFC;
+}
 </style>
 
 
 
 
 <body>
-   <div th:replace="/user/includes/header :: header"></div>
-  
+	<div th:replace="/user/includes/header :: header"></div>
 
-   <form action="login.do" method="post" class="joinform" id="joinform" enctype="multipart/form-data" novalidate>
 
+	<form action="login.do" method="post" class="joinform" id="joinform"
+		enctype="multipart/form-data" novalidate>
 
-      <div class="container" style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
-         &nbsp;&nbsp;
-         <div style="text-align:center;">
-         <span style="text-align: center; font-size: xx-large;"><b>회원가입</b></span>
-      </div>
-         <hr style="width:17%;"/>
 
-         <br/>
-         &nbsp;&nbsp;
+		<div class="container"
+			style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
+			<div class="_border_box_shadow">
+				&nbsp;&nbsp;
+				<div style="text-align: center;">
+					<span style="text-align: center; font-size: xxx-large;"><b>회원가입</b></span>
+				</div>
+				<hr style="width: 80%;" />
 
-         <div class="_border_box_shadow">
+				<br /> &nbsp;&nbsp;
 
-            <div class="value">
-            
-            
-            <div class="row">
-                  <div class="col-2"></div>
-   
-                  <div class="col-8" style="text-align: center;">
-                     <img id="preview" src="/userboard/upload/member.png" alt="썸네일"
-                     style="margin-bottom: 15px; width: 150px; height: 150px;">
-                  </div>
-   
-                  <div class="col-2"></div>
-               </div> 
-            
-               <div class="row" style="place-content: center; padding-left: 100px">
-                  <div class="col-2" style="align-self: center; text-align: right;">
-                     <label class="label-input100" for="pwd" style="place-self:center">프로필 사진</label>
-                     <!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
-                  </div>
 
-                  <div class="col-8">
-                     <!-- <input type="file" class="form-control" name="file" id="file">  -->
-                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file" name="file">
-                        <label class="custom-file-label" for="customFile" style="color: #aaaaaa;">이미지파일을 첨부해주세요</label>
-                     </div>
-                  </div>
 
-                  <div class="col-2">
-<!--                      <img id="preview" src="/userboard/upload/member.png" alt="썸네일" -->
-<!--                         style="margin-bottom: 15px; width: 50px;"> -->
-                  </div>
+				<div class="value">
 
-               </div>
-            </div>
 
+					<div class="row">
+						<div class="col-2"></div>
 
+						<div class="col-8" style="text-align: center;">
+							<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
+								style="margin-bottom: 15px; width: 150px; height: 150px;">
+						</div>
 
-            &nbsp;&nbsp;
+						<div class="col-2"></div>
+					</div>
 
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2" style="align-self: center; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="place-self: center">프로필 사진</label>
+							<!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
+						</div>
 
-            <div class="value">
-               <div class="row" style="place-content: center; padding-left: 100px">
-                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
-                     <label class="label-input100" for="pwd" style="place-self:center">아이디</label>
-                  </div>
+						<div class="col-8">
+							<!-- <input type="file" class="form-control" name="file" id="file">  -->
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="file"
+									name="file"> <label class="custom-file-label"
+									for="customFile" style="color: #aaaaaa;">이미지파일을 첨부해주세요</label>
+							</div>
+						</div>
 
-                  <div class="col-7">
-                     <input type="text" class="input--style-6" id="user_id" placeholder="아이디를 입력해주세요." name="user_id"
-                        required />
+						<div class="col-2">
+							<!--                      <img id="preview" src="/userboard/upload/member.png" alt="썸네일" -->
+							<!--                         style="margin-bottom: 15px; width: 50px;"> -->
+						</div>
 
-                  </div>
+					</div>
+				</div>
 
-                  <div class="col-3" style="align-self: center; padding-left: 0px">
-                     <button class="login100-form-btn" id="IdCheck" style="border: 1px solid #18d26e; height: 39px; width:78px;transform: translateX(-13px);">중복체크</button>
-                     <div class="idcheck hide" style="transform: translateX(-533px);color: tomato;"></div>
-                  </div>
-               </div>
-            </div>
 
 
-            &nbsp;&nbsp;
+				&nbsp;&nbsp;
 
 
-            <div class="value">
-               <div class="row" style="place-content: center; padding-left: 100px">
-                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
-                     <label class="label-input100" for="pwd" style="align-self:center">비밀번호</label>
-                  </div>
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="place-self: center">아이디</label>
+						</div>
 
-                  <div class="col-8">
-                     <input type="password" class="input--style-6" id="user_pwd" placeholder="비밀번호를 입력해주세요."
-                        name="user_pwd" required> <span class="password hide"></span>
+						<div class="col-7">
+							<input type="text" class="input--style-6" id="user_id"
+								placeholder="아이디를 입력해주세요." name="user_id" required />
 
-                  </div>
+						</div>
 
-                  <div class="col-2"></div>
-               </div>
-            </div>
+						<div class="col-3" style="align-self: center; padding-left: 0px">
+							<button class="login100-form-btn" id="IdCheck"
+								style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
+							<div class="idcheck hide"
+								style="transform: translateX(-533px); color: tomato;"></div>
+						</div>
+					</div>
+				</div>
 
 
-            &nbsp;&nbsp;
+				&nbsp;&nbsp;
 
 
-            <div class="value">
-               <div class="row" style="place-content: center; padding-left: 100px">
-                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
-                     <label class="label-input100" for="pwd" style="align-self:center">비밀번호 확인</label>
-                  </div>
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">비밀번호</label>
+						</div>
 
-                  <div class="col-8">
-                     <input type="password" class="input--style-6" id="re-password" placeholder="비밀번호를 입력해주세요. "
-                        name="re-password" required>
-                     <div id="message"></div>
+						<div class="col-8">
+							<input type="password" class="input--style-6" id="user_pwd"
+								placeholder="비밀번호를 입력해주세요." name="user_pwd" required> <span
+								class="password hide"></span>
 
-                  </div>
+						</div>
 
-                  <div class="col-2"></div>
-               </div>
-            </div>
+						<div class="col-2"></div>
+					</div>
+				</div>
 
-            &nbsp;&nbsp;
 
-            <div class="value">
-               <div class="row" style="place-content: center; padding-left: 100px">
-                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
-                     <label class="label-input100" for="pwd" style="align-self:center">이름</label>
-                  </div>
+				&nbsp;&nbsp;
 
-                  <div class="col-8">
-                     <input type="text" class="input--style-6" id="user_name" placeholder="이름을 입력해주세요." name="user_name"
-                        required>
-                     <span class="name hide"></span>
 
-                  </div>
-
-                  <div class="col-2"></div>
-               </div>
-            </div>
-
-            &nbsp;&nbsp;
-
-
-            <div class="value">
-               <div class="row" style="place-content: center; padding-left: 100px">
-                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
-                     <label class="label-input100" for="pwd" style="align-self:center">닉네임</label>
-                  </div>
-
-                  <div class="col-8">
-                     <input type="text" class="input--style-6" id="nickname" placeholder="닉네임을 입력해주세요" name="nickname"
-                        required>
-
-                  </div>
-
-                  <div class="col-2"></div>
-
-               </div>
-            </div>
-
-            &nbsp;&nbsp;
-         
-
-            <div class="value">
-               <div class="row" style="place-content: center; padding-left: 100px">
-                  <div class="col-2 _label_center" style="align-self: center; padding-top: 10px; text-align: right;">
-                     <label class="label-input100" for="pwd" style="align-self:center">이메일 주소</label>
-                  </div>
-
-                  <div class="col-8">
-                     <input type="email" class="input--style-6" id="user_email" placeholder="이메일을 입력해주세요"
-                        name="user_email" required>
-
-                  </div>
-
-                  <div class="col-2"></div>
-
-               </div>
-            </div>
-
-               &nbsp;&nbsp;
-
-               <br /> <br /> <br />
-               <hr>
-
-
-
-               &nbsp;
-               <div class="row" style="text-align: center;">
-                  <div class="col-2"></div>
-                  <div class="col-8">
-                     <h3><b style="margin-left: 10px; font-size: larger;">내 실력 체크</b></h3>
-                  </div>
-                  <div class="col-2"></div>
-                  &nbsp;&nbsp;
-               </div>
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">비밀번호 확인</label>
+						</div>
 
+						<div class="col-8">
+							<input type="password" class="input--style-6" id="re-password"
+								placeholder="비밀번호를 입력해주세요. " name="re-password" required>
+							<div id="message"></div>
 
-               <form class="_form_radio">
-                  <div class="_form_radio">
-                     <group class="inline-radio">
-                        <span style="font-size: larger;width:140px;">Java</span>
-                        <div class="_div_radio"><input type="radio" name="Java" class="_input_radio" checked><label
-                              class="_radio_label">입문</label></div>
-                        <div class="_div_radio"><input type="radio" name="Java" class="_input_radio"><label
-                              class="_radio_label">초급</label></div>
-                        <div class="_div_radio"><input type="radio" name="Java" class="_input_radio"><label
-                              class="_radio_label">중급이상</label></div>
-                     </group>
+						</div>
 
-                     <group class="inline-radio">
-                        <span style="font-size: larger;width:140px;">Python</span>
-                        <div class="_div_radio"><input type="radio" name="Python" class="_input_radio" checked><label
-                              class="_radio_label">입문</label></div>
-                        <div class="_div_radio"><input type="radio" name="Python" class="_input_radio"><label
-                              class="_radio_label">초급</label></div>
-                        <div class="_div_radio"><input type="radio" name="Python" class="_input_radio"><label
-                              class="_radio_label">중급이상</label></div>
-                     </group>
-                     <group class="inline-radio">
+						<div class="col-2"></div>
+					</div>
+				</div>
 
-                        <span style="font-size: larger;width:140px;">HTML/CSS</span>
-                        <div class="_div_radio"><input type="radio" name="HTML/CSS" class="_input_radio" checked><label
-                              class="_radio_label">입문</label></div>
-                        <div class="_div_radio"><input type="radio" name="HTML/CSS" class="_input_radio"><label
-                              class="_radio_label">초급</label></div>
-                        <div class="_div_radio"><input type="radio" name="HTML/CSS" class="_input_radio"><label
-                              class="_radio_label">중급이상</label></div>
-                     </group>
-                     <group class="inline-radio">
-
-                        <span style="font-size: larger;width:140px;">Javascript</span>
-                        <div class="_div_radio"><input type="radio" name="Javascript" class="_input_radio"
-                              checked><label class="_radio_label">입문</label></div>
-                        <div class="_div_radio"><input type="radio" name="Javascript" class="_input_radio"><label
-                              class="_radio_label">초급</label></div>
-                        <div class="_div_radio"><input type="radio" name="Javascript" class="_input_radio"><label
-                              class="_radio_label">중급이상</label></div>
-                     </group>
-                     <group class="inline-radio">
-
-                        <span style="font-size: larger;width:140px;">SQL</span>
-                        <div class="_div_radio"><input type="radio" name="SQL" class="_input_radio" checked><label
-                              class="_radio_label">입문</label></div>
-                        <div class="_div_radio"><input type="radio" name="SQL" class="_input_radio"><label
-                              class="_radio_label">초급</label></div>
-                        <div class="_div_radio"><input type="radio" name="SQL" class="_input_radio"><label
-                              class="_radio_label">중급이상</label></div>
-                     </group>
-                  </div>
-               </form>
-
-
-               <br /> <br />
-               <hr>
-               &nbsp;&nbsp;
-
-
-               <div class="row">
-                  <div class="col-md-2"></div>
-                  <div class="col-md-8">
-
-                     <b style="font-size: larger;">
-                        <i class="xi-emoticon-cool-o" aria-hidden="true"></i>
-                        저는 이런것도 할줄 알아요~</b>
-                     <p></p>
-                     <textarea class="textarea--style-6" name="introduce" id="introduce" rows="5" required style="resize: none;"></textarea>
-
-                     &nbsp;&nbsp;
-                  </div>
-
-                  &nbsp;&nbsp;
-                  <div class="col-md-2"></div>
-               </div>
-
-               <br />
-               <div class="row" style="font-size: x-large; place-content: center;">
-                  <div class="col-md-4">
-                     <button type="submit" class="login100-form-btn" style="width: 100%;border: 1.5px solid #18d26e;">
-                     	<div style="padding-top: 20px">
-                        	<h4><i class="xi-border-color" aria-hidden="true"></i>&nbsp;<b>회원가입</b></h4>
-                        </div>
-                     </button>
-                  </div>
-               </div>
-
-
-
-
-
-
-
-
-            </div>
-         </div>
-   </form>
-   <br />
-   <br />
-   <br />
-   <br />
-   <br />
-
-
-
-   <div th:replace="/user/includes/footer :: footer"></div>
-   <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-
-   <!-- 데이터 전송 ajax -->
-   <script>
-      $(function () {
-         /* $("#btn_submit").click(function() { */
-         $(".joinform").submit(function (e) {
-            /*    var formData = $(".joinform").serialize() */
-            /* var file = $(#'joinform')[0].files[0]; */
-            var formData = new FormData(this);
-            console.log(formData)
-
-            console.log("데이터 : " + formData)
-            $.ajax({
-               url: "/member/join.do",
-               processData: false,
-               contentType: false,
-               cache: false,
-               type: 'POST',
-               data: formData,
-               success: function (data) {
-               },
-               error: function (e) {
-                  console.log("error:", e);
-               }
-            })
-         })
-      });
-
-
-      // 이건 라디오
-      if ('addEventListener' in document) {
-         document.addEventListener('DOMContentLoaded', function () {
-            FastClick.attach(document.body);
-         }, false);
-      }
-   </script>
-
-
-
-   <script>
-      //내용입력 이랑 입력 강제 
-      $(function () {
-         var toggle = false;
-         var user_pwd = false;
-         $('#joinform')
-            .submit(
-               function () {
-                  //alert("가입");
-                  if ($('#user_id').val() == "") { // 아이디 검사
-                     alert('ID를 입력해 주세요.');
-                     $('#user_id').focus();
-                     return false;
-                  } else if ($('#user_pwd').val() == "") { // 비밀번호 검사
-                     alert('비밀번호를 입력해 주세요.');
-                     $('#user_pwd').focus();
-                     return false;
-                  } else if ($('#re-password').val() == "") { // 비밀번호 검사
-                     alert('비밀번호 확인을 입력해 주세요.');
-                     $('#re-password').focus();
-                     return false;
-                  } else if ($('#user_name').val() == "") { // 이름 검사
-                     alert('이름을 입력해 주세요.');
-                     $('#user_name').focus();
-                     return false;
-                  } else if ($('#nickname').val() == "") { // 이메일 검사
-                     alert('닉네임을 입력해 주세요.');
-                     $('#nickname').focus();
-                     return false;
-                  } else if ($('#user_email').val() == "") { // 이메일 검사
-                     alert('이메일을 입력해 주세요.');
-                     $('#user_email').focus();
-                     return false;
-                  } else {
-                     return true;
-                  }
-
-               });
-      });
-   </script>
-
-   <!-- <script>
+				&nbsp;&nbsp;
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">이름</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" class="input--style-6" id="user_name"
+								placeholder="이름을 입력해주세요." name="user_name" required> <span
+								class="name hide"></span>
+
+						</div>
+
+						<div class="col-2"></div>
+					</div>
+				</div>
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">닉네임</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" class="input--style-6" id="nickname"
+								placeholder="닉네임을 입력해주세요" name="nickname" required>
+
+						</div>
+
+						<div class="col-2"></div>
+
+					</div>
+				</div>
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">이메일 주소</label>
+						</div>
+
+						<div class="col-8">
+							<input type="email" class="input--style-6" id="user_email"
+								placeholder="이메일을 입력해주세요" name="user_email" required>
+
+						</div>
+
+						<div class="col-2"></div>
+
+					</div>
+				</div>
+
+				&nbsp;&nbsp; <br /> <br /> <br />
+				<hr style="width: 80%;" />
+
+
+
+				&nbsp;
+				<div class="row" style="text-align: center;">
+					<div class="col-2"></div>
+					<div class="col-8">
+						<h3>
+							<b style="margin-left: 10px; font-size: larger;">내 실력 체크</b>
+						</h3>
+					</div>
+					<div class="col-2"></div>
+					&nbsp;&nbsp;
+				</div>
+
+
+				<form class="_form_radio">
+					<div class="_form_radio">
+						<group class="inline-radio"> <span
+							style="font-size: larger; width: 140px;">Java</span>
+						<div class="_div_radio">
+							<input type="radio" name="Java" class="_input_radio" checked><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Java" class="_input_radio"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Java" class="_input_radio"><label
+								class="_radio_label">중급이상</label>
+						</div>
+						</group>
+
+						<group class="inline-radio"> <span
+							style="font-size: larger; width: 140px;">Python</span>
+						<div class="_div_radio">
+							<input type="radio" name="Python" class="_input_radio" checked><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Python" class="_input_radio"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Python" class="_input_radio"><label
+								class="_radio_label">중급이상</label>
+						</div>
+						</group>
+						<group class="inline-radio"> <span
+							style="font-size: larger; width: 140px;">HTML/CSS</span>
+						<div class="_div_radio">
+							<input type="radio" name="HTML/CSS" class="_input_radio" checked><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="HTML/CSS" class="_input_radio"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="HTML/CSS" class="_input_radio"><label
+								class="_radio_label">중급이상</label>
+						</div>
+						</group>
+						<group class="inline-radio"> <span
+							style="font-size: larger; width: 140px;">Javascript</span>
+						<div class="_div_radio">
+							<input type="radio" name="Javascript" class="_input_radio"
+								checked><label class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Javascript" class="_input_radio"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Javascript" class="_input_radio"><label
+								class="_radio_label">중급이상</label>
+						</div>
+						</group>
+						<group class="inline-radio"> <span
+							style="font-size: larger; width: 140px;">SQL</span>
+						<div class="_div_radio">
+							<input type="radio" name="SQL" class="_input_radio" checked><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="SQL" class="_input_radio"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="SQL" class="_input_radio"><label
+								class="_radio_label">중급이상</label>
+						</div>
+						</group>
+					</div>
+				</form>
+
+
+				<br /> <br />
+				<hr style="width: 80%;" />
+				&nbsp;&nbsp;
+
+
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+
+						<b style="font-size: larger;"> <i class="xi-emoticon-cool-o"
+							aria-hidden="true"></i> 저는 이런것도 할줄 알아요~
+						</b>
+						<p></p>
+						<textarea class="textarea--style-6" name="introduce"
+							id="introduce" rows="5" required style="resize: none;"></textarea>
+
+						&nbsp;&nbsp;
+					</div>
+
+					&nbsp;&nbsp;
+					<div class="col-md-2"></div>
+				</div>
+
+				<br />
+				<div class="row" style="font-size: x-large; place-content: center;">
+					<div class="col-md-4">
+						<button type="submit" class="login100-form-btn"
+							style="width: 100%; border: 1.5px solid #18d26e;">
+							<div style="padding-top: 20px">
+								<h4>
+									<i class="xi-border-color" aria-hidden="true"></i>&nbsp;<b>회원가입</b>
+								</h4>
+							</div>
+						</button>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+			</div>
+		</div>
+	</form>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+
+
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+
+	<!-- 데이터 전송 ajax -->
+	<script>
+		$(function() {
+			/* $("#btn_submit").click(function() { */
+			$(".joinform").submit(function(e) {
+				/*    var formData = $(".joinform").serialize() */
+				/* var file = $(#'joinform')[0].files[0]; */
+				var formData = new FormData(this);
+				console.log(formData)
+
+				console.log("데이터 : " + formData)
+				$.ajax({
+					url : "/member/join.do",
+					processData : false,
+					contentType : false,
+					cache : false,
+					type : 'POST',
+					data : formData,
+					success : function(data) {
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				})
+			})
+		});
+
+		// 이건 라디오
+		if ('addEventListener' in document) {
+			document.addEventListener('DOMContentLoaded', function() {
+				FastClick.attach(document.body);
+			}, false);
+		}
+	</script>
+
+
+
+	<script>
+		//내용입력 이랑 입력 강제 
+		$(function() {
+			var toggle = false;
+			var user_pwd = false;
+			$('#joinform').submit(function() {
+				//alert("가입");
+				if ($('#user_id').val() == "") { // 아이디 검사
+					alert('ID를 입력해 주세요.');
+					$('#user_id').focus();
+					return false;
+				} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
+					alert('비밀번호를 입력해 주세요.');
+					$('#user_pwd').focus();
+					return false;
+				} else if ($('#re-password').val() == "") { // 비밀번호 검사
+					alert('비밀번호 확인을 입력해 주세요.');
+					$('#re-password').focus();
+					return false;
+				} else if ($('#user_name').val() == "") { // 이름 검사
+					alert('이름을 입력해 주세요.');
+					$('#user_name').focus();
+					return false;
+				} else if ($('#nickname').val() == "") { // 이메일 검사
+					alert('닉네임을 입력해 주세요.');
+					$('#nickname').focus();
+					return false;
+				} else if ($('#user_email').val() == "") { // 이메일 검사
+					alert('이메일을 입력해 주세요.');
+					$('#user_email').focus();
+					return false;
+				} else {
+					return true;
+				}
+
+			});
+		});
+	</script>
+
+	<!-- <script>
       //내용입력 이랑 입력 강제 
       $(function() {
          //유효성 검사
@@ -785,48 +817,48 @@ button:focus {
       });
    </script> -->
 
-   <script>
-      $(function () {
-         //아이디 중복체크
-         $('#IdCheck').on(
-            'click',
-            function (e) {
-               console.log("이리로오나");
-               e.preventDefault();
-               var value = $('#user_id').val();
-               $.ajax({
-                  url: "/ajax/idcheck.do",
-                  type: 'POST',
-                  data: {
-                     id: $('#user_id').val()
-                  },
-                  success: function (data) {
-                     //아이디 중복시 아이디 인풋값 제거
-                     console.log(data);
-                     if ($('#user_id').val() === '') {
-                        $('.idcheck').html("아이디를 입력해주세요.")
-                        toggle = false;
-                     } else if (data == 1) { //아이디 존재
-                        $('.idcheck').html("아이디가 존재합니다.")
-                        $('#user_id').val("");
-                        $('#user_id').focus();
-                        toggle = false;
-                     } else {
-                        $('.idcheck').html("사용하셔도 됩니다.")
-                        toggle = true;
-                     }
-                  },
-                  error: function (request, status, error) {
-                     console.log("code:" + request.status + "\n"
-                        + "error:" + error);
+	<script>
+		$(function() {
+			//아이디 중복체크
+			$('#IdCheck').on(
+					'click',
+					function(e) {
+						console.log("이리로오나");
+						e.preventDefault();
+						var value = $('#user_id').val();
+						$.ajax({
+							url : "/ajax/idcheck.do",
+							type : 'POST',
+							data : {
+								id : $('#user_id').val()
+							},
+							success : function(data) {
+								//아이디 중복시 아이디 인풋값 제거
+								console.log(data);
+								if ($('#user_id').val() === '') {
+									$('.idcheck').html("아이디를 입력해주세요.")
+									toggle = false;
+								} else if (data == 1) { //아이디 존재
+									$('.idcheck').html("아이디가 존재합니다.")
+									$('#user_id').val("");
+									$('#user_id').focus();
+									toggle = false;
+								} else {
+									$('.idcheck').html("사용하셔도 됩니다.")
+									toggle = true;
+								}
+							},
+							error : function(request, status, error) {
+								console.log("code:" + request.status + "\n"
+										+ "error:" + error);
 
-                  }
-               })
+							}
+						})
 
-            });
-      });
-   </script>
-   <!--    <script>
+					});
+		});
+	</script>
+	<!--    <script>
       if(typeof file=='undefined'){
          file = new File(["un"], "default",){
             type:"text/plain",
@@ -840,36 +872,36 @@ button:focus {
             }
       
    </script> -->
-   <script>
-      $(function () {
+	<script>
+		$(function() {
 
-         // Add the following code if you want the name of the file appear on select
-         $(".custom-file-input").on(
-            "change",
-            function () {
-               var fileName = $(this).val().split("\\").pop();
-               $(this).siblings(".custom-file-label").addClass(
-                  "selected").html(fileName);
-            });
+			// Add the following code if you want the name of the file appear on select
+			$(".custom-file-input").on(
+					"change",
+					function() {
+						var fileName = $(this).val().split("\\").pop();
+						$(this).siblings(".custom-file-label").addClass(
+								"selected").html(fileName);
+					});
 
-         //썸네일 시작
-         var file = document.querySelector('#file');
+			//썸네일 시작
+			var file = document.querySelector('#file');
 
-         file.onchange = function () {
-            var fileList = file.files;
+			file.onchange = function() {
+				var fileList = file.files;
 
-            // 읽기
-            var reader = new FileReader();
-            reader.readAsDataURL(fileList[0]);
+				// 읽기
+				var reader = new FileReader();
+				reader.readAsDataURL(fileList[0]);
 
-            //로드 한 후
-            reader.onload = function () {
-               document.querySelector('#preview').src = reader.result;
-            };
-         };
+				//로드 한 후
+				reader.onload = function() {
+					document.querySelector('#preview').src = reader.result;
+				};
+			};
 
-      });
-   </script>
+		});
+	</script>
 
 </body>
 
