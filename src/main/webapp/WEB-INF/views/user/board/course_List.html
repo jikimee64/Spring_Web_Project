@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -36,43 +37,41 @@
 </head>
 
 <style>
-	._category {
-		text-align: center;
-		align-self: center;
-	}
+._category {
+	text-align: center;
+	align-self: center;
+}
 
-	._category_button {
-		place-self: center;
-	}
+._category_button {
+	place-self: center;
+}
 
-	._button_color {
-		background-color: #BCF1D3;
-		color: black;
-		border-color: darkseagreen;
-	}
+._button_color {
+	background-color: #BCF1D3;
+	color: black;
+	border-color: darkseagreen;
+}
 
-	._margin_0 {
-		margin: 0;
-	}
+._margin_0 {
+	margin: 0;
+}
 
-	.verticalLine {
-  	border-left: solid 0.5px #979696;
- 
-	}
+.verticalLine {
+	border-left: solid 0.5px #979696;
+}
 
-	@media (min-width : 992px) {
-		.col-md-15 {
-			width: 20%;
-			float: left;
-		}
+@media ( min-width : 992px) {
+	.col-md-15 {
+		width: 20%;
+		float: left;
 	}
-	
-	#portfolio #portfolio-flters-level li ,
-	#portfolio #portfolio-flters-site li ,
-	#portfolio #portfolio-flters-price li,
-	#portfolio #portfolio-flters-lan li {
+}
+
+#portfolio #portfolio-flters-level li, #portfolio #portfolio-flters-site li,
+	#portfolio #portfolio-flters-price li, #portfolio #portfolio-flters-lan li
+	{
 	cursor: pointer;
-	margin:  0;
+	margin: 0;
 	display: inline-block;
 	padding: 10px 20px;
 	font-size: 12px;
@@ -83,30 +82,28 @@
 	background: #fff;
 	margin-bottom: 5px;
 	transition: all 0.3s ease-in-out;
-	}
-	#portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active ,
-	#portfolio #portfolio-flters-site li:hover, #portfolio #portfolio-flters-site li.filter-active ,
-	#portfolio #portfolio-flters-price li:hover, #portfolio #portfolio-flters-price li.filter-active ,
-	#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active {
+}
+
+#portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active,
+	#portfolio #portfolio-flters-site li:hover, #portfolio #portfolio-flters-site li.filter-active,
+	#portfolio #portfolio-flters-price li:hover, #portfolio #portfolio-flters-price li.filter-active,
+	#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active
+	{
 	background: #18d26e;
 	color: #fff;
-	}	
+}
 
-	#portfolio #portfolio-flters-level ,
-	#portfolio #portfolio-flters-site ,
-	#portfolio #portfolio-flters-price ,
-	#portfolio #portfolio-flters-lan{
+#portfolio #portfolio-flters-level, #portfolio #portfolio-flters-site,
+	#portfolio #portfolio-flters-price, #portfolio #portfolio-flters-lan {
 	padding: 0;
 	margin: 5px 0 0 0;
 	list-style: none;
 	text-align: left;
-	}
+}
 
-	#portfolio #portfolio-flters-lan li {
+#portfolio #portfolio-flters-lan li {
 	background: rgb(240, 238, 238);
-	}
-	
-
+}
 </style>
 <style>
 			.pager li>a, .pager li>span {
@@ -166,114 +163,105 @@
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
-	
-	
+
+
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
 		<section class="breadcrumbs" style="margin-top: 70px;">
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
-					<h2>찾고 싶은 <b style="color:#18d26e">키워드</b>를 선택해 주세요.</h2>
+					<h2>
+						찾고 싶은 <b style="color: #18d26e">키워드</b>를 선택해 주세요.
+					</h2>
 				</div>
 
 			</div>
-		</section><!-- Breadcrumbs Section -->
+		</section>
+		<!-- Breadcrumbs Section -->
 
-	</main><!-- End #main -->
-	
-	
-	
+	</main>
+	<!-- End #main -->
+
+
+
 	<!--포트폴리오 section 으로 감싸줘야 css가 입혀짐-->
-	<section id="portfolio" class="section-bg" style="margin-bottom: 60px; padding: 20px 0px 20px 0px;">
+	<section id="portfolio" class="section-bg"
+		style="margin-bottom: 60px; padding: 20px 0px 20px 0px;">
 
 		<!-- course란 강좌라는 뜻이에염~ -->
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
-		<div class="container" >
+		<div class="container">
 			<div class="row">
-				<div class="row" style="width: 100%; margin-bottom: 0px; ">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">난이도</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-level">
 							&nbsp;
-							<li data-filter=".filter-level">입문</li>
-							&nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">초급</li>
-							&nbsp;&nbsp;&nbsp;
+							<li data-filter=".filter-level">입문</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter=".filter-level">초급</li> &nbsp;&nbsp;&nbsp;
 							<li data-filter=".filter-level">중급 이상</li>
 						</ul>
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">가격</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-price">
 							&nbsp;
-							<li data-filter=".filter-price">무료</li>
-							&nbsp;
-							<li data-filter=".filter-price">3만원 이하</li>
-							&nbsp;
-							<li data-filter=".filter-price">3-5 만원</li>
-							&nbsp;
-							<li data-filter=".filter-price">5-10 만원</li>
-							&nbsp;
+							<li data-filter=".filter-price">무료</li> &nbsp;
+							<li data-filter=".filter-price">3만원 이하</li> &nbsp;
+							<li data-filter=".filter-price">3-5 만원</li> &nbsp;
+							<li data-filter=".filter-price">5-10 만원</li> &nbsp;
 							<li data-filter=".filter-price">10만원 이상</li>
 						</ul>
 					</div>
 				</div>
 
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<div>
-							<span class="title _category_list  " >언어</span>
+							<span class="title _category_list  ">언어</span>
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">JAVA</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Javascript</li>
-							&nbsp;
-							<li data-filter=".filter-lan">HTML/CSS</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Spring</li>
-							&nbsp;
-							<li data-filter=".filter-lan">DataBase</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Python</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Vue.js</li>
-							&nbsp;
+							<li data-filter=".filter-lan">JAVA</li> &nbsp;
+							<li data-filter=".filter-lan">Javascript</li> &nbsp;
+							<li data-filter=".filter-lan">HTML/CSS</li> &nbsp;
+							<li data-filter=".filter-lan">Spring</li> &nbsp;
+							<li data-filter=".filter-lan">DataBase</li> &nbsp;
+							<li data-filter=".filter-lan">Python</li> &nbsp;
+							<li data-filter=".filter-lan">Vue.js</li> &nbsp;
 							<li data-filter=".filter-lan">React</li>
 						</ul>
-						<ul id="portfolio-flters-lan">	
+						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">JSP</li>
-							&nbsp;
-							<li data-filter=".filter-lan">query</li>
-							&nbsp;
-							<li data-filter=".filter-lan">BootStrap</li>
-							&nbsp;
+							<li data-filter=".filter-lan">JSP</li> &nbsp;
+							<li data-filter=".filter-lan">query</li> &nbsp;
+							<li data-filter=".filter-lan">BootStrap</li> &nbsp;
 							<li data-filter=".filter-lan">JPA</li>
 						</ul>
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">사이트</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-site">
 							&nbsp;
-							<li data-filter=".filter-site">인프런</li>
-							&nbsp;
-							<li data-filter=".filter-site">구름EDU</li>
-							&nbsp;
+							<li data-filter=".filter-site">인프런</li> &nbsp;
+							<li data-filter=".filter-site">구름EDU</li> &nbsp;
 							<li data-filter=".filter-site">Udemy</li>
 						</ul>
 					</div>
@@ -283,14 +271,15 @@
 	</section>
 
 
-	
+
 
 
 	<!-- ddddddddd -->
 
 	<!-- 여기부터 강의 목록 -->
 	<!-- 	th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}" -->
-	<div class="container" style="margin-top: 50px; margin-bottom: 25px; padding: 0px 100px 100px 100px;">
+	<div class="container"
+		style="margin-top: 50px; margin-bottom: 25px; padding: 0px 100px 100px 100px;">
 
 
 
@@ -301,16 +290,19 @@
 				th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
 			<div class="col-md-3">
 				<div class="card" style="width: 100%">
-					<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
+					<img class="card-img-top"
+						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
 						alt="Card image" style="width: 100%">
 					<div class="card-body">
 						<h6 class="card-title _margin_0" th:text="${list.L_TITLE}">Do
 							it! Node.js 프로그래밍(개정판)</h6>
-						<p class="card-text _margin_0" style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+						<p class="card-text _margin_0"
+							style="color: gray; font-size: small;">이지스 퍼블리싱</p>
 						<a href="" class="stretched-link"></a> <img
 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height: 40px;"> <span>(6)</span> <span style="color: rgb(23, 92, 190);">
-							<b th:text="${list.P_SEQ}">₩44,000</b>
+							alt="" style="height: 40px;"> <span>(6)</span> <span
+							style="color: rgb(23, 92, 190);"> <b
+							th:text="${list.P_SEQ}">₩44,000</b>
 						</span>
 					</div>
 				</div>
@@ -323,7 +315,7 @@
 
 		<th:block th:unless="${#lists.size(list)%4==0}"
 			th:utext="'&lt;/div&gt;'" />
-<!-- 여기서 문제가 터질지 몰라 감안하세요 -->
+		<!-- 여기서 문제가 터질지 몰라 감안하세요 -->
 
 
 
@@ -424,13 +416,13 @@
 		<!-- 			</div> -->
 		<!-- 		</div> -->
 		<!-- 페이징 버튼 시작-->
-		
+
 		<!-- 페이징 버튼 끝 -->
 
 
 		<br />
-			<!--//////////////////////////////-->
-		
+		<!--//////////////////////////////-->
+
 		<div class="row" style="place-content: center;">
 			<ul class="pager d-flex"> 
 				<li><a class="page-link" href="#">PREV</a></li>
@@ -440,28 +432,27 @@
 				<li><a class="page-link" href="#">NEXT</a></li>
 			</ul>
 		</div>
-			<!--//////////////////////////////-->
+		<!--//////////////////////////////-->
 
 		<!-- 페이징 부트스트랩 버튼 생성하기  -->
 		<ul class="pager d-flex" style="place-content: center;">
 		
 			<!-- 이전버튼 생성여부-->
-			<li th:if="${pageMaker.prev} == true">
-				<a th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link">
-				Previous
-				</a>
+			<li th:if="${pageMaker.prev} == true"><a
+				th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
+				class="page-link"> Previous </a></li>
+
+
+			<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+			<li class="page-item"
+				th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
+				th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+				<a class="page-link"
+				th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
+				th:text="${idx}">1 </a>
 			</li>
 
 
-	<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-			<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
-						th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
-				<a class="page-link" th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
-						th:text="${idx}">1
-				</a>
-			</li>
-			
-			
 			<!-- 다음버튼 생성여부 -->
 			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}" >
 				<a
@@ -480,14 +471,22 @@
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<!-- Vendor JS Files -->
 	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
-	<script src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-	<script src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
-	<script src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-	<script src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
-	<script src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
-	<script src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
 
 	<!-- Template Main JS File -->
