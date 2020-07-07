@@ -12,23 +12,60 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  -->
 	<style>
-		.page-link {
-			color: #18d26e;
-		}
-
-		.page-item.active .page-link {
-			background-color: #18d26e;
-			border-color: white;
-			color: white;
-			z-index: 3;
-		}
-
-		.pager li>a,
-		.pager li>span {
-			border: white;
-			background-color: #fff;
-		}
-	</style>
+			.pager li>a, .pager li>span {
+				border: white;
+				background-color: #fff;
+			}
+			.pager li>a, .pager li>span {
+				display: inline-block;
+				padding: 5px 14px;
+				border-radius: 5px;
+			}
+			.page-link {
+				color:  #18d26e;
+			}
+			
+			.page-link {
+				position: relative;
+				margin-left: -1px;
+				line-height: 1.25;
+			}
+			a {
+				text-decoration: none;
+			}
+			
+			a {
+				transition: 0.5s;
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			a:-webkit-any-link {
+				cursor: pointer;
+			}
+			li {
+				text-align: -webkit-match-parent;
+			}
+			.pager {
+				padding-left: 0;
+				margin: 20px 0;
+				list-style: none;
+			}
+			body {
+				
+   				font-size: 14px;
+				background-color: #fff;
+				background: #fff;
+				margin: 0;
+			}
+			.page-item.active .page-link {
+				    z-index: 3;
+				    color: #fff;
+				    background-color: #18d26e;
+				    border-color: #18d26e;
+				}
+		</style>
 </head>
 
 <body>
@@ -98,7 +135,7 @@
 		<!-- 이건 페이징 버튼 시작 -->
 
 		<div class="row" style="place-content: center;">
-			<ul class="pager">
+			<ul class="pager d-flex">
 				<li><a class="page-link" href="#">PREV</a></li>
 				<li class="page-item"><a class="page-link" href="#">1</a></li>
 				<li class="page-item active"><a class="page-link" href="#">2</a></li>
