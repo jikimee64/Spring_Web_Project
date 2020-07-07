@@ -28,6 +28,10 @@
 	<security:intercept-url
 			pattern="/mypage/**.do" access="hasRole('ROLE_USER')" /> 
 			
+	<!-- 관리자페이지 -->
+	<security:intercept-url
+			pattern="/manager/**.do" access="hasRole('ROLE_ADMIN')" />
+			
 			<!-- 스터디모집하기 버튼  -->
 		<!-- <security:intercept-url
 			pattern="/board/*Detail.do" access="hasRole('ROLE_USER')" />
