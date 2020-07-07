@@ -65,6 +65,145 @@
 
 	}
 
+
+
+	#portfolio #portfolio-flters-lan li {
+	cursor: pointer;
+	margin:  0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: rgb(240, 238, 238);
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
+	}
+	#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active {
+	background: #18d26e;
+	color: #fff;
+	}	
+
+	#portfolio #portfolio-flters-lan {
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
+	}
+
+
+	#portfolio #portfolio-flters-level li {
+	cursor: pointer;
+	margin:  0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: #fff;
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
+	}
+	#portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active {
+	background: #18d26e;
+	color: #fff;
+	}	
+
+	#portfolio #portfolio-flters-level {
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
+	}
+
+
+
+	#portfolio #portfolio-flters-ingOrDone li {
+	cursor: pointer;
+	margin:  0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: #fff;
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
+	}
+	#portfolio #portfolio-flters-ingOrDone li:hover, #portfolio #portfolio-flters-ingOrDone li.filter-active {
+	background: #18d26e;
+	color: #fff;
+	}	
+
+	#portfolio #portfolio-flters-ingOrDone {
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
+	}
+
+
+
+	#portfolio #portfolio-flters-local li {
+	cursor: pointer;
+	margin:  0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: #fff;
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
+	}
+	#portfolio #portfolio-flters-local li:hover, #portfolio #portfolio-flters-local li.filter-active {
+	background: #18d26e;
+	color: #fff;
+	}	
+
+	#portfolio #portfolio-flters-local {
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
+	}
+
+
+
+	#portfolio #portfolio-flters-studyContent li {
+	cursor: pointer;
+	margin:  0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: #fff;
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
+	}
+	#portfolio #portfolio-flters-studyContent li:hover, #portfolio #portfolio-flters-studyContent li.filter-active {
+	background: #18d26e;
+	color: #fff;
+	}	
+
+	#portfolio #portfolio-flters-studyContent {
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
+	}
+
 </style>
 
 
@@ -98,7 +237,7 @@
 						<span class="title _category_list">모집 상태</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-ingOrDone">
 							&nbsp;
 							<li data-filter=".filter-ingOrDone">모집중</li>
 							&nbsp;
@@ -112,7 +251,7 @@
 						<span class="title _category_list">난이도</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-level">
 							&nbsp;
 							<li data-filter=".filter-level">입문</li>
 							&nbsp;&nbsp;&nbsp;
@@ -130,7 +269,7 @@
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-lan">
 							&nbsp;
 							<li data-filter=".filter-lan">JAVA</li>
 							&nbsp;
@@ -148,7 +287,7 @@
 							&nbsp;
 							<li data-filter=".filter-lan">React</li>
 						</ul>
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-lan">
 							&nbsp;
 							<li data-filter=".filter-lan">Jquery</li>
 							&nbsp;
@@ -165,7 +304,7 @@
 						<span class="title _category_list">지역</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-local">
 							&nbsp;
 							<li data-filter=".filter-local">온라인</li>
 							&nbsp;
@@ -180,7 +319,7 @@
 						<span class="title _category_list">스터디 콘텐츠</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-studyContent">
 							&nbsp;
 							<li data-filter=".filter-studyContent">온라인 강의</li>
 							&nbsp;
