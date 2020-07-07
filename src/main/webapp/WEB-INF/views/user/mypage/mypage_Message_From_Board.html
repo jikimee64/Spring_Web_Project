@@ -9,7 +9,7 @@
 
 <title>mypage_message_from_detail_board</title>
 
-  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -17,21 +17,15 @@
 	crossorigin="anonymous">
 
 <style>
-body {
-	background-color: rgb(230, 244, 232);
-}
-
 .pager li>a, .pager li>span {
 	border: white;
 	background-color: #fff;
 }
 
 .pager li>a, .pager li>span {
-	float:left;
+	display: inline-block;
 	padding: 5px 14px;
-	border-radius: 15px;
-	border: white;
-	background-color: #fff;
+	border-radius: 5px;
 }
 
 .page-link {
@@ -68,23 +62,19 @@ li {
 	padding-left: 0;
 	margin: 20px 0;
 	list-style: none;
-	text-align: center;
 }
 
-ul {
-	display: block;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 40px;
+body {
+	font-size: 14px;
+	background-color: rgb(230, 244, 232);
+	margin: 0;
 }
 
 .page-item.active .page-link {
-	background-color: #18d26e;
-	border-color: white;
-	color: white;
 	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
 }
 </style>
 
@@ -140,7 +130,8 @@ ul {
 				style="text-align: right; padding-right: 28px; padding-top: 8px;">
 				<a href="/mypage/mypage_Message_Send_Send_Message.do">
 					<button type="button" class="btn btn-success"
-						style="width: 100px; margin-top: 30px; background-color:#18d26e;">쪽지 쓰기</button>
+						style="width: 100px; margin-top: 30px; background-color: #18d26e;">쪽지
+						쓰기</button>
 				</a>
 				<button type="button" class="btn btn-warning"
 					style="width: 80px; color: white; margin-top: 30px;">삭제</button>
@@ -187,7 +178,7 @@ ul {
 				</div>
 				<div class="col-md-2"
 					style="place-self: center; text-align: center;">
-					<a href="" data-toggle="modal" data-target="#userInfoModal"> <span
+					<a href="#" data-toggle="modal" data-target="#userInfoModal"> <span
 						th:text="${list.senderid}"></span>
 					</a>
 				</div>
@@ -209,7 +200,7 @@ ul {
 			<ul class="pager d-flex">
 				<li><a class="page-link" href="#">PREV</a></li>
 				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active"><a class="page-link" href="#" >2</a></li>
+				<li class="page-item active"><a class="page-link" href="#">2</a></li>
 				<li class="page-item"><a class="page-link" href="#">3</a></li>
 				<li><a class="page-link" href="#">NEXT</a></li>
 			</ul>
@@ -220,11 +211,12 @@ ul {
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
+	</div>
 	<div
 		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
 	</div>
-	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
-	</div>
+
 
 	<script>
 		$(function() {
