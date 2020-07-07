@@ -121,9 +121,8 @@
 /* *:focus{
    outline: none;
 } */
-
-.form-group{
-margin-bottom: 0.5rem;
+.form-group {
+	margin-bottom: 0.5rem;
 }
 
 *:focus {
@@ -314,7 +313,7 @@ button:focus {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-/* 	width: calc((100% - 10px)/2); */
+	/* 	width: calc((100% - 10px)/2); */
 	width: 70%;
 	height: 42px;
 	border-radius: 3px;
@@ -386,14 +385,12 @@ button:focus {
 ._border_box_shadow2 {
 	background: #fff;
 	margin: auto;
-	margin-top: 133px;
 	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
 		rgba(0, 0, 0, 0.26);
 	border-radius: 3px;
-	padding:30px;
+	padding: 30px;
 	width: 460px;
 	height: 535px;
-	
 }
 </style>
 
@@ -410,41 +407,41 @@ button:focus {
 		<!-- </c:if> -->
 	</div>
 
-	<div class="limiter">
-		<div class="container-login100">
+	<div class="limiter" style="height:834px;">
+		<div class="container-login100" style="position:inherit;">
 
 			<!-- 로그인 작업시작 -->
-			<div class="_border_box_shadow2">
-			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30" style="margin-top: -11px;">
-				<h2 style="text-align: center;">
-					<b style="font-size: 26px">LOGIN</b>
-				</h2>
-				<hr style="width:80%; margin-bottom:11px;"/>
-				
-				<form th:action="@{/login}" method="post" class="needs-validation"
-					novalidate>
+			<div class="_border_box_shadow2" style="transform: translateY(-83px)">
+				<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30"
+					style="margin-top: -11px;">
+					<h2 style="text-align: center;">
+						<b style="font-size: 26px">LOGIN</b>
+					</h2>
+					<hr style="width: 80%; margin-bottom: 11px;" />
 
-					
-						<div class="form-group" style="text-align:-webkit-center;">
-							<label for="uname"><b style="margin-right: 260px">ID</b></label> 
-							
-							<input
-								class="input--style-6" type="text" id="user_id"
+					<form th:action="@{/login}" method="post" class="needs-validation"
+						novalidate>
+
+
+						<div class="form-group" style="text-align: -webkit-center;">
+							<label for="uname"><b style="margin-right: 260px">ID</b></label>
+
+							<input class="input--style-6" type="text" id="user_id"
 								placeholder="Enter userid" name="user_id" required>
 							<div class="valid-feedback">Valid.</div>
 							<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
-						
-						
-						<div class="form-group" style="text-align:-webkit-center;">
-							<label for="pwd"><b style="margin-right: 208px">Password</b></label> <input
-								class="input--style-6" type="password" id="user_pwd"
+
+
+						<div class="form-group" style="text-align: -webkit-center;">
+							<label for="pwd"><b style="margin-right: 208px">Password</b></label>
+							<input class="input--style-6" type="password" id="user_pwd"
 								placeholder="Enter password" name="user_pwd" required>
 							<div class="valid-feedback">Valid.</div>
 							<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
-						
-						
+
+
 						<!-- <div class="form-group form-check">
                <label class="form-check-label"> <input
                   class="form-check-input" type="checkbox" name="remember" required>
@@ -454,96 +451,111 @@ button:focus {
                      continue.</div>
                </label>
             </div> -->
-            
-            			<div style="text-align:-webkit-center;">
+
+						<div style="text-align: -webkit-center;">
 							<button type="submit" class="login100-form-btn"
-								style="border: 1.5px solid #18d26e; background-color:#18d26e; text-align:-webkit-center;">
+								style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;">
 								<b>Login</b>
 							</button>
 						</div>
-				</form>
+					</form>
 
 
-				<div style="text-align: center; font-size: small; margin-top: 10px;">
-					<a href="/member/find_Id.do"> <span class="_find">아이디 찾기</span>
-					</a> &nbsp;&nbsp;<b style="color: #c5c5c5;">|</b>&nbsp;&nbsp; <a
-						href="/member/find_Passward.do"> <span class="_find">비밀번호
-							찾기</span>
-					</a>
-				</div>
+					<div
+						style="text-align: center; font-size: small; margin-top: 10px;">
+						<a href="/member/find_Id.do"> <span class="_find">아이디
+								찾기</span>
+						</a> &nbsp;&nbsp;<b style="color: #c5c5c5;">|</b>&nbsp;&nbsp; <a
+							href="/member/find_Passward.do"> <span class="_find">비밀번호
+								찾기</span>
+						</a>
+					</div>
 
-				<br />
+					<br />
 
 					<div style="margin-bottom: 5px; text-align: -webkit-center;">
 
-					<button type="button" class="btn-face btn-light _other_login"
-						style="border: 1.5px solid #395795;">
-						<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
-						<i class="fa fa-facebook-square" aria-hidden="true"
-							style="margin: 0 23px 0 10px"></i> <span style="font-size: small;">페이스북 계정으로 로그인 하기</span>
-					</button>
+						<button type="button" class="btn-face btn-light _other_login"
+							style="border: 1.5px solid #395795;">
+							<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
+							<i class="fa fa-facebook-square" aria-hidden="true"
+								style="margin: 0 23px 0 10px"></i> <span
+								style="font-size: small;">페이스북 계정으로 로그인 하기</span>
+						</button>
+					</div>
+
+
+					<div style="margin-bottom: 5px; text-align: -webkit-center;">
+						<button type="button" class="btn-naver btn-light _other_login"
+							style="border: 1.5px solid #1CB863;">
+
+
+							<i class="xi-naver-square xi-x" aria-hidden="true"
+								style="margin: 0 19px 0 10px"></i>&nbsp; <span
+								style="font-size: small;">네이버 계정으로 로그인 하기</span>
+						</button>
+					</div>
+
+
+					<div style="margin-bottom: 5px; text-align: -webkit-center;">
+						<button type="button" class="btn-kakao btn-light _other_login"
+							style="border: 1.5px solid #FFC71C;">
+
+
+							<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
+							<i class="xi-kakaotalk xi-x" aria-hidden="true"
+								style="margin: 0 11px 0 10px"></i>&nbsp; <span
+								style="font-size: small;">카카오톡 계정으로 로그인 하기</span>
+						</button>
+					</div>
 				</div>
 
-
-				<div style="margin-bottom: 5px; text-align: -webkit-center;">
-					<button type="button" class="btn-naver btn-light _other_login"
-						style="border: 1.5px solid #1CB863;">
-
-
-						<i class="xi-naver-square xi-x" aria-hidden="true"
-							style="margin: 0 19px 0 10px"></i>&nbsp; <span style="font-size: small;">네이버 계정으로
-							로그인 하기</span>
-					</button>
-				</div>
-
-
-				<div style="margin-bottom: 5px; text-align: -webkit-center;">
-					<button type="button" class="btn-kakao btn-light _other_login"
-						style="border: 1.5px solid #FFC71C;">
-
-
-						<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
-						<i class="xi-kakaotalk xi-x" aria-hidden="true"
-							style="margin: 0 11px 0 10px"></i>&nbsp; <span style="font-size: small;">카카오톡 계정으로
-							로그인 하기</span>
-					</button>
-				</div>
 			</div>
 
 		</div>
-
 	</div>
 
 
-	<script>
-		// Disable form submissions if there are invalid fields
-		(function() {
-			'use strict';
-			window.addEventListener('load',
-					function() {
-						// Get the forms we want to add validation styles to
-						var forms = document
-								.getElementsByClassName('needs-validation');
-						// Loop over them and prevent submission
-						var validation = Array.prototype.filter.call(forms,
-								function(form) {
-									form.addEventListener('submit', function(
-											event) {
-										if (form.checkValidity() === false) {
-											event.preventDefault();
-											event.stopPropagation();
-										}
-										form.classList.add('was-validated');
-									}, false);
-								});
-					}, false);
-		})();
-	</script>
+		<script>
+			// Disable form submissions if there are invalid fields
+			(function() {
+				'use strict';
+				window
+						.addEventListener(
+								'load',
+								function() {
+									// Get the forms we want to add validation styles to
+									var forms = document
+											.getElementsByClassName('needs-validation');
+									// Loop over them and prevent submission
+									var validation = Array.prototype.filter
+											.call(
+													forms,
+													function(form) {
+														form
+																.addEventListener(
+																		'submit',
+																		function(
+																				event) {
+																			if (form
+																					.checkValidity() === false) {
+																				event
+																						.preventDefault();
+																				event
+																						.stopPropagation();
+																			}
+																			form.classList
+																					.add('was-validated');
+																		},
+																		false);
+													});
+								}, false);
+			})();
+		</script>
 
-	<div th:replace="/user/includes/footer :: footer"></div>
+		<div th:replace="/user/includes/footer :: footer"></div>
 
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-
+		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 </body>
 
 </html>
