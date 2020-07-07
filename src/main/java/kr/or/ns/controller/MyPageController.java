@@ -128,9 +128,7 @@ public class MyPageController {
 	@RequestMapping("mypage_Message_From_Detail_Board.do")
 	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
 
-		System.out.println("편지 번호 : " + m_seq);
 		Message message = mservice.getMessage(m_seq);
-		System.out.println("우철이 : " + message);
 		model.addAttribute("message", message);
 
 		System.out.println("받은 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");

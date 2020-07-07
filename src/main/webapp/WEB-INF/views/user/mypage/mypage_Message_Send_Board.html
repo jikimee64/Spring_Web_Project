@@ -9,21 +9,15 @@
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <title>mypage_message_from_detail_board</title>
 <style>
-body {
-	background-color: rgb(230, 244, 232);
-}
-
 .pager li>a, .pager li>span {
 	border: white;
 	background-color: #fff;
 }
 
 .pager li>a, .pager li>span {
-	float:left;
+	display: inline-block;
 	padding: 5px 14px;
-	border-radius: 15px;
-	border: white;
-	background-color: #fff;
+	border-radius: 5px;
 }
 
 .page-link {
@@ -60,23 +54,19 @@ li {
 	padding-left: 0;
 	margin: 20px 0;
 	list-style: none;
-	text-align: center;
 }
 
-ul {
-	display: block;
-	margin-block-start: 1em;
-	margin-block-end: 1em;
-	margin-inline-start: 0px;
-	margin-inline-end: 0px;
-	padding-inline-start: 40px;
+body {
+	font-size: 14px;
+	background-color: rgb(230, 244, 232);
+	margin: 0;
 }
 
 .page-item.active .page-link {
-	background-color: #18d26e;
-	border-color: white;
-	color: white;
 	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
 }
 </style>
 </head>
@@ -170,7 +160,7 @@ ul {
 				</div>
 				<div class="col-md-2"
 					style="place-self: center; text-align: center;">
-					<a href="" data-toggle="modal" data-target="#userInfoModal"> <span
+					<a href="#" data-toggle="modal" data-target="#userInfoModal"> <span
 						th:text="${list.receptionid}"></span>
 					</a>
 				</div>
@@ -191,7 +181,7 @@ ul {
 		<!--  윗부분 끝 //////////////////////////////////////// -->
 
 		<div class="row" style="place-content: center;">
-			<ul class="pager">
+			<ul class="pager d-flex">
 				<li><a class="page-link" href="#">PREV</a></li>
 				<li class="page-item"><a class="page-link" href="#">1</a></li>
 				<li class="page-item active"><a class="page-link" href="#">2</a></li>
@@ -200,6 +190,8 @@ ul {
 			</ul>
 		</div>
 	</div>
+	
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
 	</div>

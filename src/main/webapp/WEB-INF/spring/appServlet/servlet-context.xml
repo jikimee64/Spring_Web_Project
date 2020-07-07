@@ -33,6 +33,22 @@
 		base-package="kr.or.ns.util" />
 
 
+	<!-- <bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"> 
+		<property name="cache" value="false" /> <property name="prefix" value="/WEB-INF/views/" 
+		/> <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
+		/> <property name="suffix" value=".jsp" /> <property name="order" value="0" 
+		/> </bean> -->
+
+<!--  	<bean id="urlBasedViewResolver"
+		class="kr.or.ns.util.CustomViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" value="0" />
+	</bean>  -->
+
+
 	<!-- 뷰리조버1 -->
 	<bean id="templateResolver"
 		class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
@@ -41,6 +57,7 @@
 		<property name="templateMode" value="HTML" />
 		<property name="characterEncoding" value="UTF-8" />
 		<property name="cacheable" value="false" />
+		<property name="order" value="1" />
 	</bean>
 
 	<bean id="templateEngine"
@@ -63,13 +80,13 @@
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
 		<property name="templateEngine" ref="templateEngine" />
 		<property name="characterEncoding" value="UTF-8" />
-		<property name="order" value="1" />
+		<property name="order" value="2" />
 	</bean>
 
 	<!-- bean네임추가 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="2"></property>
+		<property name="order" value="3"></property>
 	</bean>
 
 	<!-- 파일 다운로드할 클래스 경로 설정 -->
@@ -82,7 +99,7 @@
 		<property name="cache" value="true" />
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".vm" />
-		<property name="order" value="3" />
+		<property name="order" value="4" />
 	</bean>
 
 
@@ -91,7 +108,7 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
-		<property name="order" value="4" />
+		<property name="order" value="5" />
 	</bean>
 
 	<!-- 트랜잭션에 관련된 bean 객체 생성하고 inject을 통해서 구동 -->

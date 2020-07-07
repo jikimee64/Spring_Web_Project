@@ -59,7 +59,104 @@
 
 	}
 
+
+	#portfolio #portfolio-flters-lan li ,
+	#portfolio #portfolio-flters-level li ,
+	#portfolio #portfolio-flters-ingOrDone li ,
+	#portfolio #portfolio-flters-local li ,
+	#portfolio #portfolio-flters-studyContent li {
+	cursor: pointer;
+	margin:  0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: #fff;
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
+	}
+	#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active ,
+	#portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active ,
+	#portfolio #portfolio-flters-ingOrDone li:hover, #portfolio #portfolio-flters-ingOrDone li.filter-active ,
+	#portfolio #portfolio-flters-local li:hover, #portfolio #portfolio-flters-local li.filter-active ,
+	#portfolio #portfolio-flters-studyContent li:hover, #portfolio #portfolio-flters-studyContent li.filter-active {
+	background: #18d26e;
+	color: #fff;
+	}	
+
+	#portfolio #portfolio-flters-lan ,
+	#portfolio #portfolio-flters-level ,
+	#portfolio #portfolio-flters-ingOrDone ,
+	#portfolio #portfolio-flters-local ,
+	#portfolio #portfolio-flters-studyContent {
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
+	}
+
+	#portfolio #portfolio-flters-lan li {
+	background: rgb(240, 238, 238);
+	}
 </style>
+<style>
+			.pager li>a, .pager li>span {
+				border: white;
+				background-color: #fff;
+			}
+			.pager li>a, .pager li>span {
+				display: inline-block;
+				padding: 5px 14px;
+				border-radius: 5px;
+			}
+			.page-link {
+				color:  #18d26e;
+			}
+			
+			.page-link {
+				position: relative;
+				margin-left: -1px;
+				line-height: 1.25;
+			}
+			a {
+				text-decoration: none;
+			}
+			
+			a {
+				transition: 0.5s;
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			a:-webkit-any-link {
+				cursor: pointer;
+			}
+			li {
+				text-align: -webkit-match-parent;
+			}
+			.pager {
+				padding-left: 0;
+				margin: 20px 0;
+				list-style: none;
+			}
+			body {
+				
+   				font-size: 14px;
+				background-color: #fff;
+				background: #fff;
+				margin: 0;
+			}
+			.page-item.active .page-link {
+				    z-index: 3;
+				    color: #fff;
+				    background-color: #18d26e;
+				    border-color: #18d26e;
+				}
+		</style>
 
 
 <body>
@@ -92,7 +189,7 @@
 						<span class="title _category_list">모집 상태</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-ingOrDone">
 							&nbsp;
 							<li data-filter=".filter-ingOrDone">모집중</li>
 							&nbsp;
@@ -106,7 +203,7 @@
 						<span class="title _category_list">난이도</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-level">
 							&nbsp;
 							<li data-filter=".filter-level">입문</li>
 							&nbsp;&nbsp;&nbsp;
@@ -124,7 +221,7 @@
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-lan">
 							&nbsp;
 							<li data-filter=".filter-lan">JAVA</li>
 							&nbsp;
@@ -142,7 +239,7 @@
 							&nbsp;
 							<li data-filter=".filter-lan">React</li>
 						</ul>
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-lan">
 							&nbsp;
 							<li data-filter=".filter-lan">Jquery</li>
 							&nbsp;
@@ -159,7 +256,7 @@
 						<span class="title _category_list">지역</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-local">
 							&nbsp;
 							<li data-filter=".filter-local">온라인</li>
 							&nbsp;
@@ -174,7 +271,7 @@
 						<span class="title _category_list">스터디 콘텐츠</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters">
+						<ul id="portfolio-flters-studyContent">
 							&nbsp;
 							<li data-filter=".filter-studyContent">온라인 강의</li>
 							&nbsp;
@@ -278,13 +375,13 @@
 <!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
 
 			<!-- 페이징 부트스트랩 버튼 생성하기  -->
-			<ul class="pagination" style="place-content: center;">
+			<ul class="pager d-flex" style="place-content: center;">
 			
 			
 				<!-- 이전버튼 생성여부 -->
 				<li th:if="${pageMakerb.prev} == true">
 				<a
-					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a>
+					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a></li>
 					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
@@ -298,7 +395,7 @@
 
 				<!-- 다음버튼 생성여부 -->
 <!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
-					<li class="page-item" th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+					<li  th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
 						<a th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Next">&raquo;</a>
 						<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
 					</li>
