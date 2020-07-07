@@ -7,12 +7,10 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>McDonalds Admin</title>
+<title>WeStudy Admin</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="apple-touch-icon" href="apple-icon.png">
-<link rel="shortcut icon" href="favicon.ico">
 
 <div th:replace="/manager/includes/head :: head"></div>
 
@@ -36,38 +34,56 @@
 			<div class="col-sm-4">
 				<div class="page-header float-left">
 					<div class="page-title">
-						<h1>메인</h1>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-8">
-				<div class="page-header float-right">
-					<div class="page-title">
-						<ol class="breadcrumb text-right">
-							<li class="active">메인</li>
-						</ol>
+						<h1>메인페이지 입니다.</h1>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="content mt-3">
+
+			<div class="col-lg-3 col-md-6">
+
+				<div class="card">
+
+					<div class="card-body">
+						<p style="align-self: center;">
+							<b>우리 사이트의 총 회원 수</b>
+						</p>
+						<img src="/resources/admin_assets/images/member.png"
+							style="width: 50px;">
+
+						<div id="chart2" class="stat-digit"></div>
+					</div>
+				</div>
+			</div>
+
 			<div class="col-lg-3 col-md-6">
 				<div class="card">
+
 					<div class="card-body">
-						<div class="stat-widget-one">
-							<div class="stat-icon dib"
-								style="margin-left: 13px; margin-top: 7px;">
-								<img style="margin-left: 10px;" width="60px;" height="60px;"
-									src="${pageContext.request.contextPath}/admincss/images/won.png"
-									alt=""> &nbsp;
-								<!-- <i class="ti-money text-success border-success"></i> -->
-							</div>
-							<div class="stat-content dib">
-								<div class="stat-text">월 매출 평균</div>
-								<div id="chart1" class="stat-digit" style="height: 35.5px"></div>
-							</div>
-						</div>
+						<p style="align-self: center; margin-left: 5px;">
+							<b>가장많이 스터디가 개설된 지역</b>
+						</p>
+						<img src="/resources/admin_assets/images/map.png"
+							style="width: 50px;">
+
+						<div id="chart2" class="stat-digit"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-3 col-md-6">
+				<div class="card">
+
+					<div class="card-body">
+						<p style="align-self: center; margin-left: 5px;">
+							<b>가장 많이 선택받은 언어</b>
+						</p>
+						<img src="/resources/admin_assets/images/language.png"
+							style="width: 50px;">
+
+						<div id="chart3" class="stat-digit"></div>
 					</div>
 				</div>
 			</div>
@@ -75,378 +91,118 @@
 			<div class="col-lg-3 col-md-6">
 				<div class="card">
 					<div class="card-body">
-						<div class="stat-widget-one">
-							<div class="stat-icon dib">
-								<img style="margin-top: 9px; margin-left: 15px;" width="60px;"
-									height="60px;"
-									src="${pageContext.request.contextPath}/admincss/images/won.png"
-									alt=""> &nbsp;
-							</div>
-							<div class="stat-content dib">
-								<div class="stat-text">일 매출 평균</div>
-								<div id="chart2" class="stat-digit"></div>
-							</div>
-						</div>
+						<p style="align-self: center; margin-left: 5px;">
+							<b>가장 많이 북마크된 강의</b>
+						</p>
+						<img src="/resources/admin_assets/images/bookmark.png"
+							style="width: 50px;"><b style="margin-left: 20px;">따라하는
+							노드JS.</b>
 					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="stat-widget-one">
-							<div class="stat-icon dib">
-								<!-- <i class="ti-hand-point-up text-warning border-warning"></i> -->
-								<img style="margin-left: 15px;" width="80px;" height="70px;"
-									src="${pageContext.request.contextPath}/admincss/images/cart.svg"
-									alt=""> &nbsp;
-							</div>
-							<div class="stat-content dib">
-
-								<div class="stat-text">최다주문 회원</div>
-								<div id="chart3" class="stat-digit"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-3 col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="stat-widget-one">
-							<div class="stat-icon dib">
-								<!-- 		<i class="ti-user text-primary border-primary"></i> -->
-								<img style="margin-left: 15px;" width="70px;" height="70px;"
-									src="${pageContext.request.contextPath}/admincss/images/member.svg"
-									alt=""> &nbsp;
-							</div>
-							<div class="stat-content dib">
-								<div class="stat-text">총 회원</div>
-								<div id="chart4" class="stat-digit"></div>
-							</div>
-						</div>
-					</div>
+					<div id="chart4" class="stat-digit"></div>
 				</div>
 			</div>
 
 			<!-- 차트 시작 -->
-			<div class="col-xl-6">
+			<div class="col-xl-12">
 				<div class="card">
-					<div class="card-body">
-						<div class="row"></div>
+					<div class="card-body" style="height: 700px;">
 						<div class="chart-wrapper mt-4">
-							<canvas id="chart" height="267"></canvas>
-						</div>
-
-					</div>
-				</div>
-			</div>
-
-			<!-- 각 매장별 매니저(1행 4열) -->
-			<div class="col-xl-3 col-lg-6">
-				<div class="card">
-					<div class="card-body">
-						<div class="mx-auto d-flex">
-							<img class="rounded-circle mx-auto d-block"
-								src="${pageContext.request.contextPath}/admincss/images/kim.jpg"
-								alt="Card image cap" style="height: 50px;">
-							<div class="mx-auto d-block">
-								<h5 class="text-sm-center mt-2 mb-1">김우철</h5>
-								<div class="location text-sm-center">
-									<i class="fa fa-map-marker"></i> 선릉점 점장, 070-7017-4081
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<div class="mx-auto d-flex">
-							<img class="rounded-circle mx-auto d-block"
-								src="${pageContext.request.contextPath}/admincss/images/lee.jpg"
-								alt="Card image cap" style="height: 50px;">
-							<div class="mx-auto d-block">
-								<h5 class="text-sm-center mt-2 mb-1">이정아</h5>
-								<div class="location text-sm-center">
-									<i class="fa fa-map-marker"></i> 강남삼성DT점 점장, 070-7209-0677
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<div class="mx-auto d-flex">
-							<img class="rounded-circle mx-auto d-block"
-								src="${pageContext.request.contextPath}/admincss/images/admin.jpg"
-								alt="Card image cap" style="height: 50px;">
-							<div class="mx-auto d-block">
-								<h5 class="text-sm-center mt-2 mb-1">장민봉</h5>
-								<div class="location text-sm-center">
-									<i class="fa fa-map-marker"></i> 강남구청점 점장, 070-7017-4547
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<div class="mx-auto d-flex">
-							<img class="rounded-circle mx-auto d-block"
-								src="${pageContext.request.contextPath}/admincss/images/jeon.jpg"
-								alt="Card image cap" style="height: 50px;">
-							<div class="mx-auto d-block">
-								<h5 class="text-sm-center mt-2 mb-1">전연규</h5>
-								<div class="location text-sm-center">
-									<i class="fa fa-map-marker"></i> 코엑스점 점장, 070-7209-0565
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<div class="mx-auto d-flex">
-							<img class="rounded-circle mx-auto d-block"
-								src="${pageContext.request.contextPath}/admincss/images/gu.jpg"
-								alt="Card image cap" style="height: 50px;">
-							<div class="mx-auto d-block">
-								<h5 class="text-sm-center mt-2 mb-1">구슬기</h5>
-								<div class="location text-sm-center">
-									<i class="fa fa-map-marker"></i> 삼성역점 점장, 070-7017-6471
-								</div>
-							</div>
+							<canvas id="myChart"></canvas>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<!-- 각 메뉴 Best / Worst -->
-			<div class="col-xl-3 col-lg-6">
-				<aside class="profile-nav alt" style="margin-bottom: 10px;">
-					<section class="card">
-						<div class="card-header user-header alt bg-light">각 메뉴 Best
-							상품</div>
-
-						<ul class="list-group list-group-flush">
-
-							<li class="list-group-item"><span id="burgerBest"></span> <span
-								class="badge badge-primary pull-right">버거</span></li>
-							<li class="list-group-item"><span id="macMorningBest"></span>
-								<span class="badge badge-danger pull-right">맥모닝</span></li>
-							<li class="list-group-item"><span id="sideBest"></span> <span
-								class="badge badge-success pull-right">사이드</span></li>
-							<li class="list-group-item"><span id="desertBest"></span> <span
-								class="badge badge-info pull-right r-activity">디저트</span></li>
-							<li class="list-group-item"><span id="macCaffeeBest"></span>
-								<span class="badge badge-secondary pull-right r-activity">맥커피</span>
-							</li>
-							<li class="list-group-item"><span id="beverageBest"></span>
-								<span class="badge badge-light pull-right r-activity">음료</span>
-							</li>
-
-						</ul>
-
-					</section>
-				</aside>
-
-				<!-- 디저트 판매량 랭킹 Top4 -->
-				<aside class="profile-nav alt">
-					<section class="card">
-						<div class="card-header user-header alt bg-light">각 메뉴 Worst
-							상품</div>
-
-
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item"><span id="burgerWorst"></span> <span
-								class="badge badge-primary pull-right">버거</span></li>
-							<li class="list-group-item"><span id="macMorningWorst"></span>
-								<span class="badge badge-danger pull-right">맥모닝</span></li>
-							<li class="list-group-item"><span id="sideWorst"></span> <span
-								class="badge badge-success pull-right">사이드</span></li>
-							<li class="list-group-item"><span id="desertWorst"></span> <span
-								class="badge badge-info pull-right r-activity">디저트</span></li>
-							<li class="list-group-item"><span id="macCaffeeWorst"></span>
-								<span class="badge badge-secondary pull-right r-activity">맥커피</span>
-							</li>
-							<li class="list-group-item"><span id="beverageWorst"></span>
-								<span class="badge badge-light pull-right r-activity">음료</span>
-							</li>
-
-						</ul>
-
-					</section>
-				</aside>
-			</div>
-
 		</div>
-		<!-- .content -->
 	</div>
+	<!-- .content -->
 	<!-- /#right-panel -->
 
 	<!-- Right Panel -->
 
 	<div th:replace="/manager/includes/script :: script"></div>
 
-	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+	<!-- 차트JS -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 	<script>
-		$(function() {
-			$.ajax({
-				type : "post",
-				url : "MainChart.ajax",
-				dataType : "json", //POINT
-				success : function(data) {
-					/*인덱스 
-					0 : 삼성역
-					1 : 강남구청
-					2 : 코엑스
-					3: 선릉 
-					4 : 강남삼성DT
-					 */
-					/* Math.random() * 90000 */
-					var barChartData = {
-						labels : [ "5월 26일" ],
-						// type: 'bar',
-						datasets : [ {
-							label : "선릉점",
-							backgroundColor : 'rgba(244,99,132,0.2)',
-							data : [ data[3].order_count ]
-						}, {
-							label : "강남삼성DT점",
-							backgroundColor : 'rgba(54,162,235,0.2)',
-							data : [ data[4].order_count ]
-						}, {
-							label : "강남구청점",
-							backgroundColor : 'rgba(255,206,86,0.2)',
-							data : [ data[1].order_count ]
-						}, {
-							label : "코엑스점",
-							backgroundColor : 'rgba(75,192,192,0.2)',
-							data : [ data[2].order_count ]
-						}, {
-							label : "삼성역점",
-							backgroundColor : 'rgba(153,102,255,0.2)',
-							data : [ data[0].order_count ]
-						} ]
-					};
-
-					var ctx = $('#chart').get(0).getContext("2d");
-					window.theChart = new Chart(ctx, {
-						type : 'bar',
-						data : barChartData,
-						options : {
-							title : {
-								display : true,
-								text : "매장별 당일 주문건수",
-								position : 'top',
-								fontSize : 20,
-								lineHeight : 1.2,
-								padding : 0,
-							},
-							legend : {
-								labels : {
-									fontSize : 13,
+		// 우선 컨텍스트를 가져옵니다. 
+		var ctx = document.getElementById("myChart").getContext('2d');
+		/*
+		- Chart를 생성하면서, 
+		- ctx를 첫번째 argument로 넘겨주고, 
+		- 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+		 */
+		var myChart = new Chart(ctx,
+				{
+					type : 'bar',
+					data : {
+						labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월",
+								"10월", "11월", "12월" ],
+						datasets : [
+								{
+									label : '모집중',
+									data : [ 12, 19, 103, 5, 2, 3, 5, 7, 11, 12,
+											55, 23 ],
+									backgroundColor : [
+											'rgba(255, 99, 132, 0.2)',
+											'rgba(54, 162, 235, 0.2)',
+											'rgba(255, 206, 86, 0.2)',
+											'rgba(75, 192, 192, 0.2)',
+											'rgba(153, 102, 255, 0.2)',
+											'rgba(255, 159, 64, 0.2)',
+											'rgba(255, 99, 132, 0.2)',
+											'rgba(54, 162, 235, 0.2)',
+											'rgba(255, 206, 86, 0.2)',
+											'rgba(75, 192, 192, 0.2)',
+											'rgba(153, 102, 255, 0.2)',
+											'rgba(255, 159, 64, 0.2)', ],
+									borderColor : [ 'rgba(255,99,132,1)',
+											'rgba(54, 162, 235, 1)',
+											'rgba(255, 206, 86, 1)',
+											'rgba(75, 192, 192, 1)',
+											'rgba(153, 102, 255, 1)',
+											'rgba(255, 159, 64, 1)' ],
 								},
-							},
-							scales : {
-								xAxes : [ {
-									ticks : {
-										fontColor : 'rgba(12, 13, 13, 1)',
-										fontSize : 13
-									},
-									barPercentage : 0.9,
-									categoryPercentage : 0.9,
-								} ],
-								yAxes : [ {
-									ticks : {
-										min : 0,
-										max : 10,
-										stepSize : 2
-									},
-								} ],
-							}
+								{
+									label : '모집완료',
+									data : [ 1, 2, 3, 44, 5, 6, 7, 8, 9, 10, 11,
+											12 ],
+									backgroundColor : [
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(153, 102, 255, 0.2)',
+										'rgba(255, 159, 64, 0.2)',
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(153, 102, 255, 0.2)',
+										'rgba(255, 159, 64, 0.2)',],
+									borderColor : [ 'rgba(255,99,132,1)',
+											'rgba(54, 162, 235, 1)',
+											'rgba(255, 206, 86, 1)',
+											'rgba(75, 192, 192, 1)',
+											'rgba(153, 102, 255, 1)',
+											'rgba(255, 159, 64, 1)' ],
+								} ]
 
+					},
+					options : {
+						title:{
+							display: true,
+							text: '월별 스터디 현황'
+						},
+						maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true
+								}
+							} ]
 						}
-					});
-
-				},
-				error : function(request, status, error) {
-					console.log("code:" + request.status + "\n" + "message:"
-							+ request.responseText + "\n" + "error:" + error);
-				}
-
-			});
-
-			//월 매출 평균, 일 매출 평균(26일), 최다주문 회원, 총 회원수
-			$.ajax({
-				url : "MainSingleFour.ajax",
-				type : 'POST',
-				cache : false,
-				dataType : 'json',
-				success : function(data) {
-					$('#chart1').text(data[0].monthAvg.toLocaleString());
-					$('#chart2').text(data[0].dayAvg.toLocaleString());
-					$('#chart3').text(data[0].merberTopOrder);
-					$('#chart4').text(data[0].memberTotal);
-
-				},
-				error : function(request, status, error) {
-					console.log("code:" + request.status + "\n" + "error:"
-							+ error);
-
-				}
-			})
-
-			//메뉴별 best 상품(4개)
-			$.ajax({
-				url : "MainBest.ajax",
-				type : 'POST',
-				cache : false,
-				dataType : 'json',
-				success : function(data) {
-
-					$('#burgerBest').text(data[0].burgerBest);
-					$('#macMorningBest').text(data[0].macMorningBest);
-					$('#sideBest').text(data[0].sideBest);
-					$('#desertBest').text(data[0].desertBest);
-					$('#macCaffeeBest').text(data[0].macCaffeeBest);
-					$('#beverageBest').text(data[0].beverageBest);
-
-				},
-				error : function(request, status, error) {
-					console.log("code:" + request.status + "\n" + "error:"
-							+ error);
-
-				}
-			})
-
-			//메뉴별 worst 상품(4개)
-			$.ajax({
-				url : "MainWorst.ajax",
-				type : 'POST',
-				cache : false,
-				dataType : 'json',
-				success : function(data) {
-
-					$('#burgerWorst').text(data[0].burgerWorst);
-					$('#macMorningWorst').text(data[0].macMorningWorst);
-					$('#sideWorst').text(data[0].sideWorst);
-					$('#desertWorst').text(data[0].desertWorst);
-					$('#macCaffeeWorst').text(data[0].macCaffeeWorst);
-					$('#beverageWorst').text(data[0].beverageWorst);
-
-				},
-				error : function(request, status, error) {
-					console.log("code:" + request.status + "\n" + "error:"
-							+ error);
-
-				}
-			})
-
-		});
+					}
+				});
 	</script>
 
 </body>
