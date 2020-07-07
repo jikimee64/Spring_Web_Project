@@ -18,8 +18,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<link href="../../../../resources/assets/img/favicon.png" rel="icon">
 	<link href="../../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 	<link href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -152,7 +150,7 @@
 				list-style: none;
 			}
 			body {
-				font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+				
    				font-size: 14px;
 				background-color: #fff;
 				background: #fff;
@@ -434,7 +432,7 @@
 			<!--//////////////////////////////-->
 		
 		<div class="row" style="place-content: center;">
-			<ul class="pager">
+			<ul class="pager d-flex"> 
 				<li><a class="page-link" href="#">PREV</a></li>
 				<li class="page-item"><a class="page-link" href="#">1</a></li>
 				<li class="page-item active"><a class="page-link" href="#">2</a></li>
@@ -445,7 +443,7 @@
 			<!--//////////////////////////////-->
 
 		<!-- 페이징 부트스트랩 버튼 생성하기  -->
-		<ul class="pagination" style="place-content: center;">
+		<ul class="pager d-flex" style="place-content: center;">
 		
 			<!-- 이전버튼 생성여부-->
 			<li th:if="${pageMaker.prev} == true">
@@ -465,7 +463,7 @@
 			
 			
 			<!-- 다음버튼 생성여부 -->
-			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}" class="page-item">
+			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}" >
 				<a
 				th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link">
 				Next</a>
