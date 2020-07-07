@@ -19,11 +19,16 @@
 <link rel="stylesheet" type="text/css"
 	href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
 <!-- dataTable end  -->
+<style>
+#myTable td {
+	padding-top: 16px;
+}
+</style>
 </head>
 
 <body>
 	<!-- Left Panel -->
-		<div th:replace="/manager/includes/nav_side :: nav_side"></div>
+	<div th:replace="/manager/includes/nav_side :: nav_side"></div>
 	<!-- Left Panel -->
 
 	<!-- Right Panel -->
@@ -75,7 +80,8 @@
 										<c:forEach var="list" items="${mList}">
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
-												<td align="center"><a href="MemberDetail.m?m_id=${list.m_id}">${list.m_id}</a></td>
+												<td align="center"><a
+													href="MemberDetail.m?m_id=${list.m_id}">${list.m_id}</a></td>
 												<td align="center">${list.name}</td>
 												<td align="center">${list.email}</td>
 												<!-- <td align="center">${list.phone}</td> -->
@@ -96,7 +102,7 @@
 	<!-- /#right-panel -->
 
 
-	<jsp:include page="./common/script.jsp"></jsp:include>
+	<div th:replace="/manager/includes/script :: script"></div>
 
 	<!-- dataTaBle start -->
 	<script
@@ -113,12 +119,35 @@
 		src="../../../../resources/admin_assets/assets/dataTable/js/report.js"></script>
 	<!-- dataTaBle end -->
 
+	<div
+		th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
+	</div>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	<script>
-        $(function () {
+		$(function() {
+			$('#stop').click(function(){
+				swal({
+					  title: "Are you sure?",
+					  text: "Once deleted, you will not be able to recover this imaginary file!",
+					  icon: "warning",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					.then((willDelete) => {
+					  if (willDelete) {
+					    swal("Poof! Your imaginary file has been deleted!", {
+					      icon: "success",
+					    });
+					  } else {
+					    swal("Your imaginary file is safe!");
+					  }
+					});
+			})
+		});
+	</script>
 
-        });
-
-    </script>
 
 </body>
 

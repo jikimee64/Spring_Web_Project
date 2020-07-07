@@ -19,6 +19,12 @@
 <link rel="stylesheet" type="text/css"
 	href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
 <!-- dataTable end  -->
+
+<style>
+#myTable td {
+	padding-top: 16px;
+}
+</style>
 </head>
 
 <body>
@@ -65,10 +71,10 @@
 									<thead>
 										<tr class="text-center">
 											<th class="text-center" style="width: 50px;">아이디</th>
-											<th style="width: 30px;">이름</th>
 											<th style="width: 30px;">이메일</th>
 											<th style="width: 30px;">닉네임</th>
 											<th style="width: 30px;">신고횟수</th>
+											<th style="width: 30px;">정지버튼</th>
 										</tr>
 									</thead>
 
@@ -81,7 +87,12 @@
 												<td align="center">${list.name}</td>
 												<td align="center">${list.email}</td>
 												<td align="center">${list.email}</td>
-												<td align="center">${list.phone}</td>
+												<td align="center" class="button" style="padding-top: 10px;">
+													<a href="#" id="stop">
+														<button type="button" class="btn btn-danger btn-sm"
+															style="color: white;">정지</button>
+												</a>
+												</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -92,7 +103,6 @@
 					</div>
 				</div>
 			</div>
-
 		</div>
 		<!-- .content -->
 	</div>
@@ -116,12 +126,32 @@
 		src="../../../../resources/admin_assets/assets/dataTable/js/member.js"></script>
 	<!-- dataTaBle end -->
 
-	<div th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
+	<div
+		th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
 	</div>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<script>
 		$(function() {
-
+			$('#stop').click(function(){
+				swal({
+					  title: "Are you sure?",
+					  text: "Once deleted, you will not be able to recover this imaginary file!",
+					  icon: "warning",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					.then((willDelete) => {
+					  if (willDelete) {
+					    swal("Poof! Your imaginary file has been deleted!", {
+					      icon: "success",
+					    });
+					  } else {
+					    swal("Your imaginary file is safe!");
+					  }
+					});
+			})
 		});
 	</script>
 
