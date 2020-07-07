@@ -196,4 +196,9 @@ public class MyPageController {
 
 		return "user/mypage/mypage_Message_Send_Send_Message";
 	}
+	@RequestMapping("mypage_Mycomment.do")
+	public String mypageMycomment() {
+		System.out.println("내가 쓴 게시판으로 이동이동(연규가씀)");
+		return "user/mypage/mypage_Mycomment";
+	}
 }
