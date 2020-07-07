@@ -22,7 +22,6 @@
 
 <style>
 /*[ Input ]*/
-
 button:focus {
 	outline: none !important;
 }
@@ -179,8 +178,8 @@ textarea {
 		margin-top: 6px;
 	}
 }
-http://localhost:8001/manager/index.do
-/* 버튼 */
+
+http: //localhost: 8001/manager/index.do /* 버튼 */ 
 .login100-form-btn {
 	font-family: Raleway-Bold;
 	font-size: 16px;
@@ -222,7 +221,6 @@ http://localhost:8001/manager/index.do
 /* *:focus {
 	border: solid 1px #18d26e;
 } */
-
 ._border_box_shadow {
 	background: #fff;
 	margin: -35px;
@@ -532,7 +530,9 @@ group+group {
 
 										<div class="row">
 											<textarea class="textarea--style-6" name="introduce"
-												id="introduce" rows="5" required style="background-color:#F5F5F5; margin:0 20px; resize: none;"readonly></textarea>
+												id="introduce" rows="5" required
+												style="background-color: #F5F5F5; margin: 0 20px; resize: none;"
+												readonly></textarea>
 										</div>
 
 
@@ -543,10 +543,7 @@ group+group {
 								<!-- CARD-BODY END -->
 
 								<div class="card-footer">
-									<a href="MemberUpdatePage.m?m_id=${memberDTO.m_id}"
-										type="button" class="btn btn-primary btn-sm"> <i
-										class="fa fa-dot-circle-o"></i> 수정
-									</a> <a href="MemberDelete.m?m_id=${memberDTO.m_id}" type="button"
+									<a href="MemberDelete.m?m_id=${memberDTO.m_id}" type="button"
 										class="btn btn-danger btn-sm"> <i
 										class="fa fa-dot-circle-o"></i> 삭제
 									</a>

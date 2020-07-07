@@ -31,15 +31,25 @@
 							<li class="drop-down"
 								style="padding-left: 0px; padding-right: 15px;"><a href=""></a>
 								<ul>
-									<th:block sec:authorize="hasRole('ROLE_USER')">
+								
+									<!-- <span sec:authentication="principal.username"></span> -->
+								
+									<th:block sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
+										<li style="margin-left:21px;">
+											<b><span sec:authentication="principal.username"></span>님</b>
+										</li>
 										<li><a href="/mypage/mypage.do">마이페이지</a></li>
 										<li><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
 										<li><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
-									<li><a th:href="@{/logout}">로그아웃</a></li>
+								
 									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+										<li style="margin-left:21px;">
+											<b><span sec:authentication="principal.username"></span>님</b>
+										</li>
 										<li><a th:href="@{/manager/index.do}">관리자 페이지</a></li>
 									</th:block>
+										<li><a th:href="@{/logout}">로그아웃</a></li>
 								</ul></li>
 
 
