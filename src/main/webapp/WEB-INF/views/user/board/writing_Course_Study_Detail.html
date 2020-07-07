@@ -46,6 +46,7 @@
 
 <body>
 	<div th:replace="/user/includes/header :: header"> </div>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -55,7 +56,7 @@
 					<h1 style="color:white; font-size: 50px;"><b>상세보기</b></h1>
 				</div>
 			</div>
-		
+
 		</section><!-- Breadcrumbs Section -->
 	</main>
 
@@ -87,48 +88,49 @@
 				</a>
 			</div> -->
 
-		</div>
 
-		<hr style="border-color: rgb(224, 224, 224); width:100%;  margin-top:10px; ">
-	</div>
-	<!-- 타임리프 -->
-	<div class="container" style="margin-bottom: 25px;">
-		<!-- 	<th:block th:each="study : ${study}"> -->
-		<div class="row">
-			<div class="col-md-9">
-				<div class="row">
-					<div class="col-md-7">
-					</div>
-						<!-- 							<h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
+			<hr style="border-color: rgb(224, 224, 224); width:100%;  margin-top:10px; ">
+		</div>
+		<!-- 타임리프 -->
+		<div class="container" style="margin-bottom: 25px; margin-top:20px;">
+			<!-- 	<th:block th:each="study : ${study}"> -->
+			<div class="row">
+				<div class="col-md-9">
+					<div class="row">
+						<div class="col-md-7"></div>
+
+							<!-- 							<h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
+						
 					</div>
 					<div class="row">
 						<div class="col-md-8"></div>
-					<div class="col-md-4" style="width:100%">
-						<div class="row" style="margin-left:30px; margin-top:-20px;">
-							<div class="form-group" style="margin:0">
-								<a href="">
-									<i class="fa fa-folder-open" aria-hidden="true"></i>   첨부파일1.jpg
-								</a>
+						<div class="col-md-4" style="width:100%">
+							<div class="row" style="margin-left:30px; margin-top:-20px;">
+								<div class="form-group" style="margin:0">
+									<a href="">
+										<i class="fa fa-folder-open" aria-hidden="true"></i> 첨부파일1.jpg
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 				<div class="row">
 					<div class="col-md-8"></div>
 					<div class="col-md-4" style="width:100%">
-						<div class="row" style="margin-left:30px;">
+						<div class="row" style="margin-left:30px; margin-top:5px;">
 							<div class="form-group" style="margin:0">
 								<a href="">
-									<i class="fa fa-folder-open" aria-hidden="true"></i>   첨부파일2.png
+									<i class="fa fa-folder-open" aria-hidden="true"></i>
+									첨부파일2.png
 								</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			<br>
+				<br />
 				<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
 				<textarea name="" id="" cols="30" rows="10" class="form-control _textarea_readonly" readonly
-					style="background-color:#F5F5F5; margin-top:-15px;">내용 데이터
+					style="background-color:#F5F5F5">내용 데이터
 					</textarea>
 
 
@@ -139,6 +141,9 @@
 							style="background-color:#18d26e; color:white; border-color:#18d26e;">수정</button>
 					</a>
 					<button type="button" class="btn btn-danger">삭제</button>
+					<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
+						<img src="../../../../resources/images/img/siren.png" style="width:30px; height:30px;">
+					</a>
 				</div>
 
 
@@ -152,7 +157,8 @@
 						<div class="row">
 							<div class="col-md-11" style="padding:0px;"></div>
 							<div class="col-md-1" style="position: relative; padding:0px;">
-								<button class="btn btn-warning" id="commentWrite" name="commentWrite" style="padding:7px;">
+								<button class="btn btn-warning" id="commentWrite" name="commentWrite"
+									style="padding:7px;">
 									등록
 								</button>
 							</div>
@@ -191,7 +197,6 @@
 		</div>
 		<!-- 		</th:block> -->
 	</div>
-
 	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>

@@ -4,7 +4,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>writing_course_study_detail</title>
+	<title>writing_nomal_study_detail</title>
 	<link href="../../../../resources/assets/img/favicon.png" rel="icon">
 	<link href="../../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 	<link href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -55,7 +55,7 @@
 					<h1 style="color:white; font-size: 50px;"><b>상세보기</b></h1>
 				</div>
 			</div>
-		
+
 		</section><!-- Breadcrumbs Section -->
 	</main>
 
@@ -81,141 +81,137 @@
 				</div>
 			</div>
 
-			<!-- <div class="col-md-1" style="align-self: flex-end;">
-				<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
-					<button type="button" class="btn btn-danger">신고</button>
-				</a>
-			</div> -->
-
+			<hr style="border-color: rgb(224, 224, 224); width:100%;  margin-top:10px; ">
 		</div>
-
-		<hr style="border-color: rgb(224, 224, 224); width:100%;  margin-top:10px; ">
-	</div>
-	<!-- 타임리프 -->
-	<div class="container" style="margin-bottom: 25px;">
-		<!-- 	<th:block th:each="study : ${study}"> -->
-		<div class="row">
-			<div class="col-md-9">
-				<div class="row">
-					<div class="col-md-7">
-					</div>
+		<!-- 타임리프 -->
+		<div class="container" style="margin-bottom: 25px; margin-top:20px;">
+			<!-- 	<th:block th:each="study : ${study}"> -->
+			<div class="row">
+				<div class="col-md-9">
+					<div class="row">
+						<div class="col-md-7">
+						</div>
 						<!-- 							<h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
 					</div>
 					<div class="row">
 						<div class="col-md-8"></div>
-					<div class="col-md-4" style="width:100%">
-						<div class="row" style="margin-left:30px; margin-top:-20px;">
-							<div class="form-group" style="margin:0">
-								<a href="">
-									<i class="fa fa-folder-open" aria-hidden="true"></i>   첨부파일1.jpg
-								</a>
+						<div class="col-md-4" style="width:100%">
+							<div class="row" style="margin-left:30px; margin-top:-20px;">
+								<div class="form-group" style="margin:0">
+									<a href="">
+										<i class="fa fa-folder-open" aria-hidden="true"></i> 첨부파일1.jpg
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-8"></div>
-					<div class="col-md-4" style="width:100%">
-						<div class="row" style="margin-left:30px;">
-							<div class="form-group" style="margin:0">
-								<a href="">
-									<i class="fa fa-folder-open" aria-hidden="true"></i>   첨부파일2.png
-								</a>
+					<div class="row">
+						<div class="col-md-8"></div>
+						<div class="col-md-4" style="width:100%">
+							<div class="row" style="margin-left:30px;">
+								<div class="form-group" style="margin:0">
+									<a href="">
+										<i class="fa fa-folder-open" aria-hidden="true"></i> 첨부파일2.png
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			<br>
-				<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
-				<textarea name="" id="" cols="30" rows="10" class="form-control _textarea_readonly" readonly
-					style="background-color:#F5F5F5; margin-top:-15px;">내용 데이터
+					<br>
+					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
+					<textarea name="" id="" cols="30" rows="10" class="form-control _textarea_readonly" readonly
+						style="background-color:#F5F5F5; margin-top:-15px;">내용 데이터
 					</textarea>
 
+					<br />
+					<div style="text-align: end;">
 
-				<br />
-				<div style="text-align: end;">
-					<a href="/board/writing_Course_Study_Edit.do">
-						<button type="button" class="btn btn-warning"
-							style="background-color:#18d26e; color:white; border-color:#18d26e;">수정</button>
-					</a>
-					<button type="button" class="btn btn-danger">삭제</button>
+						<a href="/board/writing_Course_Study_Edit.do">
+							<button type="button" class="btn btn-warning"
+								style="background-color:#18d26e; color:white; border-color:#18d26e;">수정</button>
+						</a>
+						<button type="button" class="btn btn-danger">삭제</button>
+						<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
+							<img src="../../../../resources/images/img/siren.png" style="width:30px; height:30px;">
+						</a>
+					</div>
+
+
+					<div class="card my-4">
+						<p class="card-header" style="padding: 0px 20px 0px 20px"><b>댓글</b></p>
+						<div class="card-body" style="padding:10px;">
+							<!-- <form> -->
+							<div class="form-group">
+								<textarea class="form-control" rows="2" id="comment" name="comment"></textarea>
+							</div>
+							<div class="row">
+								<div class="col-md-11" style="padding:0px;"></div>
+								<div class="col-md-1" style="position: relative; padding:0px;">
+									<button class="btn btn-warning" id="commentWrite" name="commentWrite"
+										style="padding:7px;">
+										등록
+									</button>
+								</div>
+							</div>
+							<!-- </form> -->
+						</div>
+					</div>
+
 				</div>
 
-
-				<div class="card my-4">
-					<p class="card-header" style="padding: 0px 20px 0px 20px"><b>댓글</b></p>
-					<div class="card-body" style="padding:10px;">
-						<!-- <form> -->
-						<div class="form-group">
-							<textarea class="form-control" rows="2" id="comment" name="comment"></textarea>
-						</div>
-						<div class="row">
-							<div class="col-md-11" style="padding:0px;"></div>
-							<div class="col-md-1" style="position: relative; padding:0px;">
-								<button class="btn btn-warning" id="commentWrite" name="commentWrite" style="padding:7px;">
-									등록
-								</button>
+				<div class="col-md-3">
+					<div style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
+						<div class="card" style="width:100%">
+							<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
+					" alt="Card image" style="width:100%">
+							<div class="card-body">
+								<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+								<p class="card-text _margin_0" style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+								<a href="/board/writing_Course_Study_Detail.do" class="stretched-link"></a> <img
+									src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+									alt="" style="height: 30px;"> <span>(6)</span>
+								<b>₩44,000</b>
 							</div>
 						</div>
-						<!-- </form> -->
-					</div>
-				</div>
-
-			</div>
-
-			<div class="col-md-3">
-				<div style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
-					<div class="card" style="width:100%">
-						<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-					" alt="Card image" style="width:100%">
-						<div class="card-body">
-							<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-							<p class="card-text _margin_0" style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-							<a href="/board/writing_Course_Study_Detail.do" class="stretched-link"></a> <img
-								src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-								alt="" style="height: 30px;"> <span>(6)</span>
-							<b>₩44,000</b>
+						<div style="text-align: center; margin:10px 0px 10px 0px;">
+							<button type="submit" class="btn btn-success"
+								style="width:80%; background-color:#18d26e; color:white; border-color:#18d26e;">지원하기</button>
+							<!-- 이거는 사용자 권한 -->
+						</div>
+						<div style="text-align: center; margin:10px 0px 10px 0px;">
+							<button type="button" class="btn btn-warning" style="width:80%;">목록으로</button>
 						</div>
 					</div>
-					<div style="text-align: center; margin:10px 0px 10px 0px;">
-						<button type="submit" class="btn btn-success"
-							style="width:80%; background-color:#18d26e; color:white; border-color:#18d26e;">지원하기</button>
-						<!-- 이거는 사용자 권한 -->
-					</div>
-					<div style="text-align: center; margin:10px 0px 10px 0px;">
-						<button type="button" class="btn btn-warning" style="width:80%;">목록으로</button>
-					</div>
+
 				</div>
-
 			</div>
+			<!-- 		</th:block> -->
 		</div>
-		<!-- 		</th:block> -->
-	</div>
 
-	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
-	<script src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-	<script src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
-	<script src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-	<script src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
-	<script src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
-	<script src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
+		<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
+		<script src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
+		<script src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+		<script src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
+		<script src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+		<script src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
+		<script src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
 
-	<script src="../../../../resources/assets/js/main.js"></script>
+		<script src="../../../../resources/assets/js/main.js"></script>
 
-	<div th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal"> </div>
-	<div th:replace="/user/includes/footer :: footer"> </div>
-	<script>
-		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
-		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
-		// Add the following code if you want the name of the file appear on select
-		$(".custom-file-input").on("change", function () {
-			var fileName = $(this).val().split("\\").pop();
-			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-		});
-	</script>
+		<div th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal"> </div>
+		<div th:replace="/user/includes/footer :: footer"> </div>
+		<script>
+			//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
+			//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
+			// Add the following code if you want the name of the file appear on select
+			$(".custom-file-input").on("change", function () {
+				var fileName = $(this).val().split("\\").pop();
+				$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+			});
+		</script>
 </body>
 
 
