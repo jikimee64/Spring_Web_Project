@@ -25,11 +25,9 @@
 	padding-top: 16px;
 }
 
-td:focus{
-outline:none;
+td:focus {
+	outline: none;
 }
-
-
 </style>
 </head>
 
@@ -89,7 +87,8 @@ outline:none;
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
 												<td align="center"><a
-													th:href="@{/manager/board/member_Detail.do}">${list.m_id}</a></td>
+													th:href="@{/manager/board/member_Detail.do}">${list.m_id}</a>
+												</td>
 												<td align="center">${list.name}</td>
 												<td align="center">${list.email}</td>
 												<td align="center">${list.email}</td>
@@ -135,8 +134,6 @@ outline:none;
 	<div
 		th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
 	</div>
-
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<script>
 		$(function() {
