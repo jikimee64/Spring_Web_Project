@@ -12,6 +12,7 @@
 
 $(document).ready(function () {
 
+
     var table = $('#myTable').DataTable({
         /*ajax: {
             'url':'MOCK_DATA.json', 
@@ -70,7 +71,7 @@ $(document).ready(function () {
 			action: function (e, dt, node, config)
 			{
 				  //This will send the page to the location specified
-				  window.location.href = '*.do';
+				  window.location.href = '#';
 			}
 		}
 		]
@@ -79,7 +80,9 @@ $(document).ready(function () {
     /* Column별 검색기능 추가 */
     $('#myTable_filter').prepend('<select id="select"></select>');
     $('#myTable > thead > tr').children().each(function (indexInArray, valueOfElement) { 
-    	$('#select').append('<option class=visibility:hidden;>'+valueOfElement.innerHTML+'</option>');
+        if(valueOfElement.innerHTML != '정지버튼'){
+        	$('#select').append('<option class=visibility:hidden;>'+valueOfElement.innerHTML+'</option>');
+        }
     });
     
     
@@ -87,6 +90,10 @@ $(document).ready(function () {
         var colIndex = document.querySelector('#select').selectedIndex;
         table.column(colIndex).search(this.value).draw();
     });
+    
+	
+	$(".message").attr("data-toggle", "modal");
+	$(".message").attr("data-target", "#messagePageModal");
 
 
 });
