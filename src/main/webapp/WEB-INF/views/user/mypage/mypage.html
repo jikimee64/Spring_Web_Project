@@ -32,61 +32,7 @@ body{
 }
 
 </style>
-<style>
-			.pager li>a, .pager li>span {
-				border: white;
-				background-color: #fff;
-			}
-			.pager li>a, .pager li>span {
-				display: inline-block;
-				padding: 5px 14px;
-				border-radius: 5px;
-			}
-			.page-link {
-				color:  #18d26e;
-			}
-			
-			.page-link {
-				position: relative;
-				margin-left: -1px;
-				line-height: 1.25;
-			}
-			a {
-				text-decoration: none;
-			}
-			
-			a {
-				transition: 0.5s;
-			}
-			
-			* {
-				box-sizing: border-box;
-			}
-			a:-webkit-any-link {
-				cursor: pointer;
-			}
-			li {
-				text-align: -webkit-match-parent;
-			}
-			.pager {
-				padding-left: 0;
-				margin: 20px 0;
-				list-style: none;
-			}
-			body {
-				
-   				font-size: 14px;
-				background-color: #fff;
-				background: #fff;
-				margin: 0;
-			}
-			.page-item.active .page-link {
-				    z-index: 3;
-				    color: #fff;
-				    background-color: #18d26e;
-				    border-color: #18d26e;
-				}
-		</style>
+
 <body>
 	<!-- 마이페이지 -->
 	<div th:replace="/user/includes/header :: header"></div>
@@ -199,20 +145,7 @@ body{
 						&nbsp;
 						  <br/>
                
-               <!-- 페이징 하는 코드 -->
-                  <div class="row">
-                     <div class="col-md-5">
-                     </div>
-                     <div class="col-md-7">
-                     <ul class="pager d-flex">
-                        <li><a class="page-link" href="#">PREV</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li><a class="page-link" href="#">NEXT</a></li>
-                     </ul>
-                     </div>
-                  </div>  
+               
 					</div>
 					<div class="col-md-3" style="text-align: right;">
 						<img
@@ -262,28 +195,12 @@ body{
 						</span>
 						  <br/>
                
-               <!-- 페이징 하는 코드 -->
-               <div class="row">
-                     <div class="col-md-2">
-                     </div>
-                     <div class="col-md-6">
-                     <ul class="pager d-flex">
-                        <li><a class="page-link" href="#">PREV</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li><a class="page-link" href="#">NEXT</a></li>
-                     </ul>
-                     </div>
-                     <div class="col-md-4">
-                     </div>
-                  </div>
 						
 					</div>
 					<div class="col-md-1"></div>
 					<div class="col-md-1">
 						<button type="button" class="btn btn-danger"
-							style="background-color: rgb(231, 76, 60); padding: 7px 0px; ">삭제</button>
+							style="background-color: rgb(231, 76, 60); width:70px;padding: 7px 0px; ">삭제</button>
 					</div>
 				</div>
 
