@@ -31,13 +31,13 @@
 		.filebox label {
 			display: inline-block;
 			padding: .5em .75em;
-			color: #fff;
+			color: black;
 			font-size: inherit;
 			line-height: normal;
 			vertical-align: middle;
-			background-color: #5cb85c;
+			background-color: #ffc107;
 			cursor: pointer;
-			border: 1px solid #4cae4c;
+			border: 1px solid #ffc107;
 			;
 			border-bottom-color: #e2e2e2;
 			border-radius: .25em;
@@ -69,16 +69,18 @@
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 	
-	<main id="main"> 
-          <!-- ======= Breadcrumbs Section ======= -->
-          <section class="breadcrumbs cover" style="margin-top: 70px; height:300px; ">
-            <div class="container d-flex h-100">
-              <div class="row justify-content-center align-self-center">
-                  <h2 style="color:#fff;"><b>스터디 게시판</b></h2>
-              </div>
-            </div>
-          </section><!-- Breadcrumbs Section -->
-     </main>
+
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs cover" style="margin-top: 70px; height:300px; padding:1000 0 100 0px;">
+			<div class="container d-flex h-100" style="padding:200px 0;">
+				<div class="row justify-content-center align-self-center">
+					<h1 style="color:white; font-size: 50px; "><b>모집하기</b></h1>
+				</div>
+			</div>
+		
+		</section><!-- Breadcrumbs Section -->
+	</main>
 	
 	<div class="container" style="margin-bottom: 25px; margin-top:40px;">
 		<!-- <h2>스터디 모집 글 작성하ss기(일반)</h2> -->
@@ -199,7 +201,7 @@
 						나중에 썸머노트로 바꿔야할듯 -->
 					</div>
 					<div style="text-align: center;">
-						<button type="submit" class="btn btn-primary" style="width: 15%;">작성</button>
+						<button type="submit" class="btn btn-primary" style="width: 15%; background-color: #18d26e; border-color:#18d26e;">작성</button>
 					</div>
 				</form>
 			</div>

@@ -1034,7 +1034,7 @@ section {
 
 #portfolio .portfolio-item figure:hover .link-details {
   opacity: 1;
-  right: calc(50% - 44px);
+  right: calc(55% - 44px);
 }
 
 #portfolio .portfolio-item .portfolio-info {

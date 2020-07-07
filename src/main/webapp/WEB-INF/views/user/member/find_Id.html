@@ -167,6 +167,72 @@ justify-content: center;
 	background-color: white !important;
 	color:  #18d26e;
 }
+
+
+
+
+/* 동그란버튼 */
+.container-login100-form-btn {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wrap-login100-form-btn {
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.login100-form-bgbtn {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 300%;
+  background: #e8519e;
+  background: -webkit-linear-gradient(top, #e8519e, #c77ff2, #e8519e, #c77ff2);
+  background: -o-linear-gradient(top, #e8519e, #c77ff2, #e8519e, #c77ff2);
+  background: -moz-linear-gradient(top, #e8519e, #c77ff2, #e8519e, #c77ff2);
+  background: linear-gradient(top, #e8519e, #c77ff2, #e8519e, #c77ff2);
+  bottom: -100%;
+  left: 0;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.login100-form-btn {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  min-width: 244px;
+  height: 50px;
+
+  font-family: Poppins-Medium;
+  font-size: 16px;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.wrap-login100-form-btn:hover .login100-form-bgbtn {
+  bottom: 0;
+}
+
 </style>
 
 
@@ -211,11 +277,11 @@ justify-content: center;
 						<div class="form-group">
 							<label for="userid"></label>
 							<div class="row">
-								<input type="text" class="form-control" id="AuthInput"
+								<input type="text" class="input--style-6" id="AuthInput"
 									placeholder="인증 번호 입력" name="uname"
-									style="width: 70%; margin-left: 11px;" required> &nbsp;
+									style="width: 50%; margin-left: 11px;" required> &nbsp;
 								<button type="button" class="btn btn-success"
-									style="width: 25%; font-size: small;" id="Authbtn">확인</button>
+									style="width: 20%;font-size: larger;" id="Authbtn">확인</button>
 								<div id="alert2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 							</div>
 						</div>
@@ -223,8 +289,8 @@ justify-content: center;
 
 						<div style="text-align: end;">
 							<a href="/member/login.do">
-								<button type="button" class="btn btn-warning"
-									style="width: 40%; height: 55px;">로그인 하러가기</button>
+<!-- 								<button type="button" class="login100-form-btn" -->
+								<button class="login100-form-btn">로그인 하러가기</button>
 							</a>
 						</div>
 					</form>
