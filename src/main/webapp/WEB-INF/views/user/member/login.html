@@ -120,6 +120,11 @@
 /* *:focus{
    outline: none;
 } */
+
+.form-group{
+margin-bottom: 0.5rem;
+}
+
 *:focus {
 	border: solid 1px #18d26e;
 }
@@ -204,8 +209,8 @@ justify-content: center;
 	line-height: 1.5;
 	color: #ffffff;
 	text-transform: uppercase;
-	width: 100%;
-	height: 62px;
+	width: 70%;
+	height: 42px;
 	border-radius: 3px;
 	outline: 0px;
 	background: 0;
@@ -241,7 +246,7 @@ button:focus {
 	line-height: 1.2;
 	display: block;
 	width: 70%;
-	height: 50px;
+	height: 42px;
 	border: 1px solid #cccccc;
 	/* border-style: hidden; */
 	-webkit-border-radius: 3px;
@@ -310,8 +315,9 @@ button:focus {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	width: calc((100% - 10px)/2);
-	height: 40px;
+/* 	width: calc((100% - 10px)/2); */
+	width: 70%;
+	height: 42px;
 	border-radius: 3px;
 	border: 1px solid #e6e6e6;
 	background-color: #fff;
@@ -323,6 +329,8 @@ button:focus {
 
 .btn-face {
 	color: #3b5998;
+	width: 70%;
+	height: 42px;
 }
 
 .btn-face i {
@@ -408,30 +416,36 @@ button:focus {
 
 			<!-- 로그인 작업시작 -->
 			<div class="_border_box_shadow2">
-			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30" style="margin-top: -11px;">
 				<h2 style="text-align: center;">
-					<b>LOGIN</b>
+					<b style="font-size: 26px">LOGIN</b>
 				</h2>
-				<hr style="width:80%; margin-bottom:3rem;"/>
+				<hr style="width:80%; margin-bottom:11px;"/>
 				
 				<form th:action="@{/login}" method="post" class="needs-validation"
 					novalidate>
 
 					
-						<div class="form-group">
-							<label for="uname"><b>ID</b></label> <input
+						<div class="form-group" style="text-align:-webkit-center;">
+							<label for="uname"><b style="margin-right: 260px">ID</b></label> 
+							
+							<input
 								class="input--style-6" type="text" id="user_id"
 								placeholder="Enter userid" name="user_id" required>
 							<div class="valid-feedback">Valid.</div>
 							<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
-						<div class="form-group">
-							<label for="pwd"><b>Password</b></label> <input
+						
+						
+						<div class="form-group" style="text-align:-webkit-center;">
+							<label for="pwd"><b style="margin-right: 208px">Password</b></label> <input
 								class="input--style-6" type="password" id="user_pwd"
 								placeholder="Enter password" name="user_pwd" required>
 							<div class="valid-feedback">Valid.</div>
 							<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
+						
+						
 						<!-- <div class="form-group form-check">
                <label class="form-check-label"> <input
                   class="form-check-input" type="checkbox" name="remember" required>
@@ -441,15 +455,17 @@ button:focus {
                      continue.</div>
                </label>
             </div> -->
-						<button type="submit" class="login100-form-btn"
-							style="border: 1.5px solid #18d26e; background-color:#18d26e; ">
-							<b>Login</b>
-						</button>
+            
+            			<div style="text-align:-webkit-center;">
+							<button type="submit" class="login100-form-btn"
+								style="border: 1.5px solid #18d26e; background-color:#18d26e; text-align:-webkit-center;">
+								<b>Login</b>
+							</button>
+						</div>
 				</form>
 
-				<p></p>
 
-				<div style="text-align: end; font-size: small;">
+				<div style="text-align: center; font-size: small; margin-top: 10px;">
 					<a href="/member/find_Id.do"> <span class="_find">아이디 찾기</span>
 					</a> &nbsp;&nbsp;<b style="color: #c5c5c5;">|</b>&nbsp;&nbsp; <a
 						href="/member/find_Passward.do"> <span class="_find">비밀번호
@@ -457,26 +473,26 @@ button:focus {
 					</a>
 				</div>
 
-				<br /> <br /> <br /> <br />
+				<br />
 
 				<div style="margin-bottom: 5px; text-align: -webkit-center;">
 
 					<button type="button" class="btn-face btn-light _other_login"
-						style="border: 1.5px solid #395795; width: 97%;">
+						style="border: 1.5px solid #395795;">
 						<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
 						<i class="fa fa-facebook-square" aria-hidden="true"
-							style="margin: 0 129px 0 10px"></i> <span>페이스북 계정으로 로그인 하기</span>
+							style="margin: 0 23px 0 10px"></i> <span style="font-size: small;">페이스북 계정으로 로그인 하기</span>
 					</button>
 				</div>
 
 
 				<div style="margin-bottom: 5px; text-align: -webkit-center;">
 					<button type="button" class="btn-naver btn-light _other_login"
-						style="border: 1.5px solid #1CB863; width: 97%;">
+						style="border: 1.5px solid #1CB863;">
 
 
 						<i class="xi-naver-square xi-x" aria-hidden="true"
-							style="margin: 0 127px 0 10px"></i>&nbsp; <span>네이버 계정으로
+							style="margin: 0 19px 0 10px"></i>&nbsp; <span style="font-size: small;">네이버 계정으로
 							로그인 하기</span>
 					</button>
 				</div>
@@ -484,12 +500,12 @@ button:focus {
 
 				<div style="margin-bottom: 5px; text-align: -webkit-center;">
 					<button type="button" class="btn-kakao btn-light _other_login"
-						style="border: 1.5px solid #FFC71C; width: 97%;">
+						style="border: 1.5px solid #FFC71C;">
 
 
 						<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
 						<i class="xi-kakaotalk xi-x" aria-hidden="true"
-							style="margin: 0 120px 0 10px"></i>&nbsp; <span>카카오톡 계정으로
+							style="margin: 0 11px 0 10px"></i>&nbsp; <span style="font-size: small;">카카오톡 계정으로
 							로그인 하기</span>
 					</button>
 				</div>
