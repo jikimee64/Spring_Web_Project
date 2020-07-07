@@ -25,7 +25,7 @@ h5 {
 	width:1242px;
 }
 body{
-	background-color:rgb(230, 244, 232);
+	background-color:rgb(230, 244, 232) !important;
 }
 ._message_hover:hover{
       box-shadow: 0 0 6px rgba(35, 173, 255, 1) !important;
@@ -197,6 +197,22 @@ body{
 						<p>노드 20일짜리 과정 20일동안 같이 해보실분 찾아요~ 20일동안 같이 해보실분 찾아요~ 노드 20일짜리
 							과정 ...</p>
 						&nbsp;
+						  <br/>
+               
+               <!-- 페이징 하는 코드 -->
+                  <div class="row">
+                     <div class="col-md-5">
+                     </div>
+                     <div class="col-md-7">
+                     <ul class="pager d-flex">
+                        <li><a class="page-link" href="#">PREV</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li><a class="page-link" href="#">NEXT</a></li>
+                     </ul>
+                     </div>
+                  </div>  
 					</div>
 					<div class="col-md-3" style="text-align: right;">
 						<img
@@ -219,7 +235,7 @@ body{
 					style="font-size: 30px; margin-left: 5px;">북마크</b>
 
 				<hr
-					style="border: solid 1px; margin-top: 0px; margin-bottom: 10px max-width: 1200px;" />
+					style="border: solid 1px; margin-top: 0px; margin-bottom: 10px; max-width: 1200px;" />
 
 				<!-- 여기부터 데이터 하나 넣기 시작 -->
 				<div class="row" style="padding: 40px 30px;">
@@ -244,11 +260,30 @@ body{
 						<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
 						&nbsp; <span> <b>44,000원</b>
 						</span>
+						  <br/>
+               
+               <!-- 페이징 하는 코드 -->
+               <div class="row">
+                     <div class="col-md-2">
+                     </div>
+                     <div class="col-md-6">
+                     <ul class="pager d-flex">
+                        <li><a class="page-link" href="#">PREV</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li><a class="page-link" href="#">NEXT</a></li>
+                     </ul>
+                     </div>
+                     <div class="col-md-4">
+                     </div>
+                  </div>
+						
 					</div>
 					<div class="col-md-1"></div>
 					<div class="col-md-1">
 						<button type="button" class="btn btn-danger"
-							style="background-color: rgb(231, 76, 60); padding: 7px; 0px; ">삭제</button>
+							style="background-color: rgb(231, 76, 60); padding: 7px 0px; ">삭제</button>
 					</div>
 				</div>
 

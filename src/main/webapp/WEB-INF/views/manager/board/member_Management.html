@@ -83,7 +83,7 @@
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
 												<td align="center"><a
-													href="MemberDetail.m?m_id=${list.m_id}">${list.m_id}</a></td>
+													th:href="@{/manager/board/member_Detail.do}">${list.m_id}</a></td>
 												<td align="center">${list.name}</td>
 												<td align="center">${list.email}</td>
 												<td align="center">${list.email}</td>
@@ -136,19 +136,20 @@
 		$(function() {
 			$('#stop').click(function(){
 				swal({
-					  title: "Are you sure?",
-					  text: "Once deleted, you will not be able to recover this imaginary file!",
+					  title: "OO계정을 진짜 정지하시겠습니까??",
+					  text: "정지하는 순간 사이트 로그인 영구정지...",
 					  icon: "warning",
 					  buttons: true,
 					  dangerMode: true,
 					})
 					.then((willDelete) => {
+						console.log('확인버튼누르면 요기...');
 					  if (willDelete) {
-					    swal("Poof! Your imaginary file has been deleted!", {
+					    swal("성공적으로 정지완료!!", {
 					      icon: "success",
 					    });
 					  } else {
-					    swal("Your imaginary file is safe!");
+					    swal("취소잼");
 					  }
 					});
 			})
