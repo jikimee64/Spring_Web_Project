@@ -6,7 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>find_pwd</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
+<!-- 폰트어썸 아이콘 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
 <link rel="stylesheet"
    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -34,13 +39,13 @@
 .input--style-6, .textarea--style-6 {
 	font-family: Raleway-SemiBold;
 	font-size: 18px;
-	background: #f0f0f0;
+	background: aliceblue;
 	outline: none;
 	/* background: transparent; */
 	line-height: 1.2;
 	display: block;
 	width: 100%;
-	height: 60px;
+	height: 40px;
 	border: 1px solid #cccccc;
 	/* border-style: hidden; */
 	-webkit-border-radius: 3px;
@@ -129,16 +134,137 @@ button:focus {
 		rgba(0, 0, 0, 0.26);
 	border-radius: 3px;
 	padding: 30px;
-	width:610px;
-	height:570px;
+	width:460px;
+	height:535px;
 }
+
+/* 코드펜 버튼 */
+button,
+button::after {
+  -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+button {
+  background: none;
+  border: 3px solid #d4d4d4;
+  border-radius: 5px;
+  color: #d4d4d4;
+  display: block;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-left: 0px;
+  padding: 2em 6em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+button::before,
+button::after {
+  background: #d4d4d4;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+button:hover {
+  color: #18d26e;
+  border-color: #18d26e;
+}
+
+
+
+
+
+/* BUTTON 2 */
+
+.btn-2{
+display: inline-flex; 
+margin-top: 80px; 
+border-radius: 5px;
+
+}
+
+
+.btn-2::after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+
+.btn-2:hover:after {
+  width: 100%;
+}
+
+
+.btn-2:focus{
+outline:none;
+}
+
+
+.btn-2 i {
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s,color 0s;
+}
+
+.btn-2:hover i {
+  -webkit-transform: translateX(10px);
+  -moz-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  -o-transform: translateX(10px);
+  transform: translateX(10px);
+}
+  
+
+.btn
+
+
+
+/* 버튼 */
+.login100-form-btn {
+	justify-content: center;
+	font-family: Raleway-Bold;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #ffffff;
+	text-transform: uppercase;
+	width: 100%;
+	height: auto;
+	border-radius: 3px;
+	outline: 0px;
+	background: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	border-style: hidden;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+	background-color: #14bf61 !important; 
+	color:  white;
+}
+
 </style>
 
 
 
 <body>
    <div th:replace="/user/includes/header :: header"></div>
-<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
    <div id="app" style="margin-top:132px;">
    
       <div class="container"
@@ -160,39 +286,42 @@ button:focus {
 
          <div class="form-group">
             <label for="userid"><b>이메일주소</b></label>
-            <div class="row" style="place-content: center;">
+            <div class="row">
                <input type="text" v-model="user.userEmail" class="input--style-6"
                   id="userEmail" placeholder="Enter user email" name="uEmail"
-                  style="width: 65%;" required> &nbsp;
-               <button v-on:click="pwCheck" class="btn btn-outline-success"
-                  style="width: 30%; font-size: small;" id="Authbtn">임시비밀번호
+                  style="width: 64%; margin:0 4px 0 8px;" required> &nbsp;
+                  
+                  
+               <button v-on:click="pwCheck" class="login100-form-btn btn-outline-lignt" 
+                  style="width: 30%; padding: 6px 9px; background-color: #18d26e; color:white; border:0px; font-size: small" id="Authbtn">임시비밀번호
                   발급</button>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                <div id="alert"></div>
             </div>
+            
+         <br /> <br /> <br />
+            
+            	<div style="text-align: end;">
+					<a href="/member/login.do" style="text-decoration: none;">
+						<button type="submit" class="btn-2" style="padding: 10px 10px; margin-top: 97px;">
+							<span style="font-size: 16px;">로그인 하러가기
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</a>
+				</div>
+            
          </div>
          <!--       </form> -->
 
-
-         <br />
-          <br />
-           <br />
-            <br />
-             <br />
-             <br />
-
-         <div style="text-align: end;">
-            <a href="/member/login.do">
-               <button type="submit" class="btn btn-outline-secondary"
-                  style="width: 30%; height: 55px;">로그인 하러가기</button>
-            </a>
-         </div>
-
          <p></p>
-
-
-         <br /> <br />
-
-
 
       </div>
       </div>
