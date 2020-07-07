@@ -16,77 +16,24 @@ h5 {
 ._border_box_shadow2 {
 	background: #fff;
 	margin: auto;
-	margin-top:25px;
-		margin-bottom:25px;
+	margin-top: 25px;
+	margin-bottom: 25px;
 	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
 		rgba(0, 0, 0, 0.26);
 	border-radius: 3px;
 	padding: 30px;
-	width:1242px;
-}
-body{
-	background-color:rgb(230, 244, 232) !important;
-}
-._message_hover:hover{
-      box-shadow: 0 0 6px rgba(35, 173, 255, 1) !important;
+	width: 1242px;
 }
 
+body {
+	background-color: rgb(230, 244, 232) !important;
+}
+
+._message_hover:hover {
+	box-shadow: 0 0 6px rgba(35, 173, 255, 1) !important;
+}
 </style>
-<style>
-			.pager li>a, .pager li>span {
-				border: white;
-				background-color: #fff;
-			}
-			.pager li>a, .pager li>span {
-				display: inline-block;
-				padding: 5px 14px;
-				border-radius: 5px;
-			}
-			.page-link {
-				color:  #18d26e;
-			}
-			
-			.page-link {
-				position: relative;
-				margin-left: -1px;
-				line-height: 1.25;
-			}
-			a {
-				text-decoration: none;
-			}
-			
-			a {
-				transition: 0.5s;
-			}
-			
-			* {
-				box-sizing: border-box;
-			}
-			a:-webkit-any-link {
-				cursor: pointer;
-			}
-			li {
-				text-align: -webkit-match-parent;
-			}
-			.pager {
-				padding-left: 0;
-				margin: 20px 0;
-				list-style: none;
-			}
-			body {
-				
-   				font-size: 14px;
-				background-color: #fff;
-				background: #fff;
-				margin: 0;
-			}
-			.page-item.active .page-link {
-				    z-index: 3;
-				    color: #fff;
-				    background-color: #18d26e;
-				    border-color: #18d26e;
-				}
-		</style>
+
 <body>
 	<!-- 마이페이지 -->
 	<div th:replace="/user/includes/header :: header"></div>
@@ -122,12 +69,12 @@ body{
 				</div>
 				<div class="col-md-4 pl-0" style="align-self: center;">
 					<b style="font-size: larger; margin-left: 20px;">미네미네</b> <a
-					class="_message_hover"
-						th:href="@{/mypage/MyPageUserDetail.do}"> <img
+						class="_message_hover" th:href="@{/mypage/MyPageUserDetail.do}">
+						<img
 						src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
-						class="mb-1 _message_hover" alt="" style="height: 27px;"></a> <a
-						th:href="@{/mypage/mypage_Message_From_Board.do}" class="_message_hover"> <img
-						class="_message_hover"
+						class="mb-1 _message_hover" alt="" style="height: 27px;">
+					</a> <a th:href="@{/mypage/mypage_Message_From_Board.do}"
+						class="_message_hover"> <img class="_message_hover"
 						src="../../../../resources/images/img/message_black.png"
 						style="width: 30px; margin-bottom: 5px;" alt=""></a>
 					<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 5px" />
@@ -192,27 +139,15 @@ body{
 					</div>
 					<div class="col-md-8">
 						<span class="badge badge-pill badge-warning">모집인원 4/6</span> <span
-							class="ml-3 badge badge-pill badge-danger">20/05/05</span>
+							class="ml-3 badge badge-pill badge-danger">20/05/05</span> 
+							<a href=""><img src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
+							class="mb-1 _message_hover" alt="" style="height: 27px; margin-left:5px; margin-top:2px;"></a>
 						<h4 style="font-weight: bold;">따라하며 배우는 노드 같이 스터디 하실분~~?</h4>
 						<p>노드 20일짜리 과정 20일동안 같이 해보실분 찾아요~ 20일동안 같이 해보실분 찾아요~ 노드 20일짜리
 							과정 ...</p>
-						&nbsp;
-						  <br/>
-               
-               <!-- 페이징 하는 코드 -->
-                  <div class="row">
-                     <div class="col-md-5">
-                     </div>
-                     <div class="col-md-7">
-                     <ul class="pager d-flex">
-                        <li><a class="page-link" href="#">PREV</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li><a class="page-link" href="#">NEXT</a></li>
-                     </ul>
-                     </div>
-                  </div>  
+						&nbsp; <br />
+
+
 					</div>
 					<div class="col-md-3" style="text-align: right;">
 						<img
@@ -220,8 +155,8 @@ body{
 							alt="" style="height: 140px; width: 140px;">
 					</div>
 				</div>
-				
-				
+
+
 			</div>
 			<br />
 			<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
@@ -259,43 +194,26 @@ body{
 							alt="" style="height: 40px;">
 						<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
 						&nbsp; <span> <b>44,000원</b>
-						</span>
-						  <br/>
-               
-               <!-- 페이징 하는 코드 -->
-               <div class="row">
-                     <div class="col-md-2">
-                     </div>
-                     <div class="col-md-6">
-                     <ul class="pager d-flex">
-                        <li><a class="page-link" href="#">PREV</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li><a class="page-link" href="#">NEXT</a></li>
-                     </ul>
-                     </div>
-                     <div class="col-md-4">
-                     </div>
-                  </div>
-						
+						</span> <br />
+
+
 					</div>
 					<div class="col-md-1"></div>
 					<div class="col-md-1">
 						<button type="button" class="btn btn-danger"
-							style="background-color: rgb(231, 76, 60); padding: 7px 0px; ">삭제</button>
+							style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;">삭제</button>
 					</div>
 				</div>
 
 				<!-- 이건 더미데이터 끝 -->
 			</div>
 		</div>
-</div>
-		<!-- 여기까지 마지막 부분 끝/// 북마크 -->
+	</div>
+	<!-- 여기까지 마지막 부분 끝/// 북마크 -->
 
-		<div th:replace="/user/includes/footer :: footer"></div>
-		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-		<script>
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<script>
 			$(function() {
 				// 참여중 스터디 버튼 클릭시 색깔 바꾸기
 				$('#_study_button1').click(

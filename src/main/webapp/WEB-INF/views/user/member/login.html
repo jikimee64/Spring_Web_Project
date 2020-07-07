@@ -396,7 +396,23 @@ button:focus {
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
+	
+	<main id="main">
 
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs" style="margin-top: 70px;">
+			<div class="container">
+
+				<div class="d-flex justify-content-between align-items-center">
+					<h2> </h2>
+				</div>
+
+			</div>
+		</section><!-- Breadcrumbs Section -->
+
+	</main><!-- End #main -->
+
+	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
 	<div th:if="${param.error!=null}">
 		로그인 실패 <br />
 		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
@@ -419,7 +435,7 @@ button:focus {
 					</h2>
 					<hr style="width: 80%; margin-bottom: 11px;" />
 
-					<form th:action="@{/login}" method="post" class="needs-validation"
+					<form th:action="@{/login}" method="post" class=""
 						novalidate>
 
 

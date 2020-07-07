@@ -1030,7 +1030,7 @@ section {
 
 #portfolio .portfolio-item figure:hover .link-preview {
   opacity: 1;
-  left: calc(52% - 44px);
+  left: calc(54% - 44px);
 }
 
 #portfolio .portfolio-item figure:hover .link-details {

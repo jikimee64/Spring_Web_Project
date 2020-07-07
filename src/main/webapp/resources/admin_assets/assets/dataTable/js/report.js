@@ -12,6 +12,7 @@
 
 $(document).ready(function () {
 
+
     var table = $('#myTable').DataTable({
         /*ajax: {
             'url':'MOCK_DATA.json', 
@@ -41,18 +42,34 @@ $(document).ready(function () {
         dom : 'Blfrtip',
         buttons:[{
 			extend:'csvHtml5',
-			text: 'Export CSV',
+			text: 'excel',
 			footer: true,
 			bom: true,
-			className: 'exportCSV'
+			className: 'excel',
+			action: function (e, dt, node, config)
+			{
+				//This will send the page to the location specified
+				window.location.href = '*.do';
+			}
 		},
+		{extend:'csvHtml5',
+			text: 'pdf',
+			footer: true,
+			bom: true,
+			className: 'pdf',
+			action: function (e, dt, node, config)
+			{
+				  //This will send the page to the location specified
+				  window.location.href = '*.do';
+			}
+		}
 		]
     });
 
     /* Column별 검색기능 추가 */
     $('#myTable_filter').prepend('<select id="select"></select>');
     $('#myTable > thead > tr').children().each(function (indexInArray, valueOfElement) { 
-    	$('#select').append('<option class=visibility:hidden;>'+valueOfElement.innerHTML+'</option>');
+        $('#select').append('<option class=visibility:hidden;>'+valueOfElement.innerHTML+'</option>');
     });
     
     
@@ -60,6 +77,10 @@ $(document).ready(function () {
         var colIndex = document.querySelector('#select').selectedIndex;
         table.column(colIndex).search(this.value).draw();
     });
+    
+	
+	$(".message").attr("data-toggle", "modal");
+	$(".message").attr("data-target", "#messagePageModal");
 
 
 });
