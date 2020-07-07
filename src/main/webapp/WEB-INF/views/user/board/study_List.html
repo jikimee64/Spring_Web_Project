@@ -108,6 +108,61 @@
 	background: rgb(240, 238, 238);
 	}
 </style>
+<style>
+			.pager li>a, .pager li>span {
+				border: white;
+				background-color: #fff;
+			}
+			.pager li>a, .pager li>span {
+				display: inline-block;
+				padding: 5px 14px;
+				border-radius: 5px;
+			}
+			.page-link {
+				color:  #18d26e;
+			}
+			
+			.page-link {
+				position: relative;
+				margin-left: -1px;
+				line-height: 1.25;
+			}
+			a {
+				text-decoration: none;
+			}
+			
+			a {
+				transition: 0.5s;
+			}
+			
+			* {
+				box-sizing: border-box;
+			}
+			a:-webkit-any-link {
+				cursor: pointer;
+			}
+			li {
+				text-align: -webkit-match-parent;
+			}
+			.pager {
+				padding-left: 0;
+				margin: 20px 0;
+				list-style: none;
+			}
+			body {
+				
+   				font-size: 14px;
+				background-color: #fff;
+				background: #fff;
+				margin: 0;
+			}
+			.page-item.active .page-link {
+				    z-index: 3;
+				    color: #fff;
+				    background-color: #18d26e;
+				    border-color: #18d26e;
+				}
+		</style>
 
 
 <body>
@@ -326,13 +381,13 @@
 <!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
 
 			<!-- 페이징 부트스트랩 버튼 생성하기  -->
-			<ul class="pagination" style="place-content: center;">
+			<ul class="pager d-flex" style="place-content: center;">
 			
 			
 				<!-- 이전버튼 생성여부 -->
 				<li th:if="${pageMakerb.prev} == true">
 				<a
-					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a>
+					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a></li>
 					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
@@ -346,7 +401,7 @@
 
 				<!-- 다음버튼 생성여부 -->
 <!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
-					<li class="page-item" th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+					<li  th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
 						<a th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Next">&raquo;</a>
 						<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
 					</li>
