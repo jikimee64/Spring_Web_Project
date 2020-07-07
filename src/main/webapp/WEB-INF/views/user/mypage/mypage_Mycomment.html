@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>mypage_mycomment</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -26,6 +27,11 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+
+
+
 <style>
 .page-link {
 	color: #18d26e;
@@ -46,9 +52,8 @@
 </head>
 
 <body>
-
 	<!-- 내가 쓴 댓글 페이지 -->
-	<div th:replace="/user/includes/header :: header"></div>
+	<div th:replace="user/includes/header :: header"></div>
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 	<div style="background-image: url(resources/assets/img/top-image.jpg);"></div>
 	<div class="container"
@@ -140,7 +145,7 @@
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
 
-	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="user/includes/footer :: footer"></div>
 
 
 	<script>
