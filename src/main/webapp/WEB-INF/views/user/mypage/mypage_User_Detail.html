@@ -230,63 +230,68 @@ textarea {
 }
 
 /* 라디오버튼 */
+/* 라디오버튼 */
 ._form_radio {
-	background: #fff;
-	width: 509px;
-	margin: auto;
-	padding: 30px;
-	min-width: 320px;
-	max-width: 540px;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
-		rgba(0, 0, 0, 0.26);
-	border-radius: 3px;
+   background: #fff;
+   /*    width: 509px; */
+   margin: auto;
+   padding: 30px;
+   min-width: 320px;
+   max-width: 540px;
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+      rgba(0, 0, 0, 0.26);
+   border-radius: 3px;
 }
 
 group+group {
-	margin-top: 20px;
+   margin-top: 20px;
 }
 
 .inline-radio {
-	display: flex;
-	border-radius: 3px;
-	overflow: hidden;
+   display: flex;
+   border-radius: 3px;
+   overflow: hidden;
 }
 
 ._div_radio {
-	position: relative;
-	flex: 1;
-	border: 1px solid #CCCCCC;
+   position: relative;
+   flex: 1;
+   border-radius: 3px;
+
 }
 
 ._input_radio {
-	width: 100%;
-	opacity: 0;
-	height: 100%;
+   width: 100%;
+   opacity: 0;
+   height: 100%;
+   cursor: pointer;
 }
 
 ._radio_label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	color: #b6b6b6;
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
-	border-right: 1px solid #b6b6b6;
+   position: absolute;
+   top: 0;
+   left: 0;
+   color: #272C33;
+   width: 100%;
+   height: 100%;
+   background: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   pointer-events: none;
+
+
 }
 
 ._div_radio:last-child label {
-	border-right: 0;
+   border-right: 0;
 }
 
 ._input_radio:checked+label {
-	background: #00d463;
-	font-weight: 500;
-	color: #fff;
+   background: #00d463;
+   font-weight: 500;
+   color: #fff;
+   border-radius: 5px;
 }
 
 body {
