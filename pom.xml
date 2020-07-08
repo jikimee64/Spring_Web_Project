@@ -60,7 +60,6 @@
 			<version>2.9.1</version>
 		</dependency>
 
-
 		<!-- 소셜 로그인 -->
 		<!-- 네이버 -->
 		<dependency>
