@@ -2,10 +2,10 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>writing_normal_study</title>
+<title>writing_course_study</title>
 
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
@@ -64,7 +64,7 @@
 		url(../../../../resources/images/img/study_board_cover.jpg);
 	background-position: center center;
 	background-repeat: no-repeat;
-	 opacity: 0.7; 
+	opacity: 0.7;
 }
 </style>
 
@@ -79,108 +79,116 @@
 	background-repeat: no-repeat;
 	opacity: 0.7;
 }
+
+#row > .col-1{
+	margin-right:50px;
+} 
 </style>
 
 <body>
 
 	<div th:replace="/user/includes/header :: header"></div>
-	
+
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs cover3" style="margin-top: 70px; height:300px; padding:1000 0 100 0px;">
-			<div class="container d-flex h-100" style="padding:200px 0;">
+		<section class="breadcrumbs cover3"
+			style="margin-top: 70px; height: 300px; padding: 1000 0 100 0px;">
+			<div class="container d-flex h-100" style="padding: 200px 0;">
 				<div class="row justify-content-center align-self-center">
-					<h1 style="color:white; font-size: 50px;"><b>모집하기</b></h1>
+					<h1 style="color: white; font-size: 50px;">
+						<b>모집하기</b>
+					</h1>
 				</div>
 			</div>
-		
-		</section><!-- Breadcrumbs Section -->
-	</main>
-	<div class="container" style="margin-bottom: 25px; margin-top:40px;">
-		<!-- <h2>스터디 모집 글 작성하ss기(일반)</h2> -->
-		<!-- <br /> -->
-		<form class="form-inline mr-3" id="category">
-			<div class="row">
-				<div class="col-2">
-					<select name="" class="selectpicker mb-3" data-style="btn-light" style="width: 10%;"
-						data-live-search="true" data-width="120px">
-						<option selected>언어</option>
-						<option value="Java">Java</option>
-						<option value="Javascript">Javascript</option>
-						<option value="HTML/CSS">HTML/CSS</option>
-						<option value="Spring">Spring</option>
-						<option value="Python">Python</option>
-						<option value="Vue.js">Vue.js</option>
-						<option value="React">React</option>
-						<option value="JQuery">JQuery</option>
-						<option value="JSP">JSP</option>
-						<option value="Bootstrap">Bootstrap</option>
-						<option value="JPA">JPA</option>
-					</select>
-				</div>
-				<div class="col-2">
-					<select name="" class="selectpicker mb-3" data-style="btn-light" style="width: 10%;"
-						data-live-search="true" data-width="120px">
-						<option selected>모집인원</option>
-						<option value="1">1명</option>
-						<option value="2">2명</option>
-						<option value="3">3명</option>
-						<option value="4">4명</option>
-						<option value="5">5명</option>
-						<option value="6">6명</option>
-						<option value="7">7명</option>
-						<option value="8">8명</option>
-						<option value="9">9명</option>
-						<option value="10">10명</option>
-					</select>
-				</div>
 
-				<div class="col-2">
-					<select  name="" class="selectpicker mb-3" data-style="btn-light" style="width: 10%;"
-						data-live-search="true" data-width="120px">
-						<option selected>지역</option>
-						<option value="충청북도">충북</option>
-						<option value="충청남도">충남</option>
-						<option value="경기도">경기도</option>
-						<option value="전라북도">전북</option>
-						<option value="전라남도">전남</option>
-						<option value="경상남도">경남</option>
-						<option value="경상북도">경북</option>
-						<option value="강원도">강원도</option>
-						<option value="세종특별시">세종시</option>
-						<option value="서울특별시">서울시</option>
-						<option value="인천광역시">인천시</option>
-					</select>
-				</div>
-				<div class="col-2">
-					<select name="" class="selectpicker mb-3" data-style="btn-light" style="width: 10%;"
-						data-live-search="true" data-width="120px">
-						<option selected>난이도</option>
-						<option value="_introduction">입문</option>
-						<option value="_beginner">초급</option>
-						<option value="_middleclass">중급이상</option>
-					</select>
-				</div>
-				<div class="col-2">
-					<input style="margin-bottom: 15px;" type="text" class="form-control" name="selectend" id="date-time"
-						placeholder="모집마감일">
-				</div>
-				<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
+		</section>
+		<!-- Breadcrumbs Section -->
+	</main>
+	<form class="" id="category">
+		<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
+			<!-- <h2>스터디 모집 글 작성하ss기(일반)</h2> -->
+			<!-- <br /> -->
+				<div class="row" id="row">
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="언어" selected>언어</option>
+							<option value="Java">Java</option>
+							<option value="Javascript">Javascript</option>
+							<option value="HTML/CSS">HTML/CSS</option>
+							<option value="Spring">Spring</option>
+							<option value="Python">Python</option>
+							<option value="Vue.js">Vue.js</option>
+							<option value="React">React</option>
+							<option value="JQuery">JQuery</option>
+							<option value="JSP">JSP</option>
+							<option value="Bootstrap">Bootstrap</option>
+							<option value="JPA">JPA</option>
+						</select>
+					</div>
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="모집인원" selected>모집인원</option>
+							<option value="1">1명</option>
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
+							<option value="5">5명</option>
+							<option value="6">6명</option>
+							<option value="7">7명</option>
+							<option value="8">8명</option>
+							<option value="9">9명</option>
+							<option value="10">10명</option>
+						</select>
+					</div>
+
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="지역" selected>지역</option>
+							<option value="온라인">온라인</option>
+							<option value="충청북도">충북</option>
+							<option value="충청남도">충남</option>
+							<option value="경기도">경기도</option>
+							<option value="전라북도">전북</option>
+							<option value="전라남도">전남</option>
+							<option value="경상남도">경남</option>
+							<option value="경상북도">경북</option>
+							<option value="강원도">강원도</option>
+							<option value="세종특별시">세종시</option>
+							<option value="서울특별시">서울시</option>
+							<option value="인천광역시">인천시</option>
+							<option value="제주특별시">제주시</option>
+						</select>
+					</div>
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="난이도" selected>난이도</option>
+							<option value="_introduction">입문</option>
+							<option value="_beginner">초급</option>
+							<option value="_middleclass">중급이상</option>
+						</select>
+					</div>
+					<div class="col-3">
+						<input style="margin-bottom: 15px; width:164px;" type="text"
+							class="form-control" name="selectend" id="date-time"
+							placeholder="모집마감일">
+					</div>
+					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
 				<option selected>모집마감일</option>
 				<option value="_calendar">달력</option>
 			</select> -->
 			</div>
-		</form>
-	</div>
-
-	<hr style="border-color: rgb(224, 224, 224); width: 95%">
+		</div>
+		<hr style="border-color: rgb(224, 224, 224); width: 95%">
 
 
-	<div class="container" style="margin-bottom: 25px;">
-		<div class="row">
-			<div class="col-md-9">
-				<form action="">
+		<div class="container" style="margin-bottom: 25px;">
+			<div class="row">
+				<div class="col-md-9">
 					<div class="row">
 						<div class="col-md-12">
 							<br />
@@ -218,95 +226,100 @@
 					<div style="text-align: center;">
 						<button type="submit" class="btn btn-primary" style="width: 15%;">작성</button>
 					</div>
-				</form>
-			</div>
+				</div>
 
-			<div class="col-md-3" style="margin-top:24px;">
-				<!-- 	<div
+				<div class="col-md-3" style="margin-top: 24px;">
+					<!-- 	<div
 					style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
 					디폴트이미지 3개 중 하나 출력하거나 아니면 이미지 선택 (이건아직 안함) -->
-				<div class="form-group" style="margin: 0">
-				<span>북마크에서 선택한 강의 이미지 뿌려줘야함</span>
-					<img id="preview" src="/studyboard/upload/default.png" alt="썸네일"
-						style="margin-bottom: 15px; width: 280px; height:200px;">
-					<!-- <div class="custom-file mb-3" style="width:280px;">
+					<div class="form-group" style="margin: 0">
+						<span>북마크에서 선택한 강의 이미지 뿌려줘야함</span> <img id="preview"
+							src="/studyboard/upload/default.png" alt="썸네일"
+							style="margin-bottom: 15px; width: 280px; height: 200px;">
+						<!-- <div class="custom-file mb-3" style="width:280px;">
 											<input type="file" class="custom-file-input" name="files[0]" id="Thum">
 											<label class="custom-file-label" for="customFile">썸네일</label>
 										</div> -->
-				</div>
-
-				<div class="form-group" style="margin: 0">
-					<div class="custom-file mb-3" style="width:280px;">
-						<input type="file" class="custom-file-input" id="customFile" name="files[0]">
-						<label class="custom-file-label" for="customFile">Choose file1</label>
 					</div>
-				</div>
 
-				<div class="form-group" style="margin: 0">
-					<div class="custom-file mb-3" style="width:280px;">
-						<input type="file" class="custom-file-input" id="customFile" name="files[1]">
-						<label class="custom-file-label" for="customFile">Choose file2</label>
+					<div class="form-group" style="margin: 0">
+						<div class="custom-file mb-3" style="width: 280px;">
+							<input type="file" class="custom-file-input" id="customFile"
+								name="files[0]"> <label class="custom-file-label"
+								for="customFile">Choose file1</label>
+						</div>
 					</div>
-				</div>
 
-				<!-- <label
+					<div class="form-group" style="margin: 0">
+						<div class="custom-file mb-3" style="width: 280px;">
+							<input type="file" class="custom-file-input" id="customFile"
+								name="files[1]"> <label class="custom-file-label"
+								for="customFile">Choose file2</label>
+						</div>
+					</div>
+
+					<!-- <label
 					class="custom-file-label" for="inputGroupFile01"
 					style="text-align: left">Choose file</label> -->
 
 
-				<!-- <img class="card-img-top"
+					<!-- <img class="card-img-top"
 						src="https://file3.instiz.net/data/cached_img/upload/2020/02/08/14/bd5841404e045a4781679d91d2a427d8.gif
 					"
 						alt="Card image" style="width: 100%"> <br /> <br />
 					<div style="text-align: center;">
 						<button type="button" class="btn btn-success">이미지 첨부</button>
 					</div> -->
+				</div>
 			</div>
 		</div>
-	</div>
-	</div>
-	
+	</form>
 	<div th:replace="/user/includes/footer :: footer"></div>
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div> 
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
-	<script src="../../../../resources/assets/vendor/summernote/summernote-lite.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/summernote/summernote-lite.js"></script>
 
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-datetimepicker/2.7.1/js/bootstrap-material-datetimepicker.min.js"></script>
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/ja.js"></script>
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="../../../../resources/assets/vendor/selectbox/js/bootstrap-select.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/selectbox/js/bootstrap-select.min.js"></script>
 
 	<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-	<script src="../../../../resources/assets/vendor/selectbox/js/i18n/defaults-ko_KR.min.js"></script>
+	<script
+		src="../../../../resources/assets/vendor/selectbox/js/i18n/defaults-ko_KR.min.js"></script>
 
 	<script>
 		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
 		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
 		// Add the following code if you want the name of the file appear on select
 		$(".custom-file-input").on(
-			"change",
-			function () {
-				var fileName = $(this).val().split("\\").pop();
-				$(this).siblings(".custom-file-label").addClass("selected")
-					.html(fileName);
-			});
+				"change",
+				function() {
+					var fileName = $(this).val().split("\\").pop();
+					$(this).siblings(".custom-file-label").addClass("selected")
+							.html(fileName);
+				});
 	</script>
 
 
 	<script>
-		$(document).ready(function () {
+		$(document).ready(function() {
 			$('#summernote').summernote({
-				tabsize: 2,
-				height: 500,
-				focus: false,
-				minHeight: null,
-				maxHeight: null,
-				placeholder: '글 내용을 입력해주세요'
+				tabsize : 2,
+				height : 500,
+				focus : false,
+				minHeight : null,
+				maxHeight : null,
+				placeholder : '글 내용을 입력해주세요'
 			});
-			$("p").each(function () {
+			$("p").each(function() {
 				if (!$(this).text().trim().length) {
 					$(this).remove();
 				}
@@ -316,9 +329,9 @@
 
 	<!-- mysql이랑 맞출것  -->
 	<script>
-		$(function () {
+		$(function() {
 			$('#date-time').bootstrapMaterialDatePicker({
-				format: 'YYYY-MM-DD HH:mm'
+				format : 'YYYY-MM-DD HH:mm'
 			});
 		});
 	</script>
@@ -328,7 +341,7 @@
 		//썸네일 시작
 		var file = document.querySelector('#ex_file');
 
-		file.onchange = function () {
+		file.onchange = function() {
 			var fileList = file.files;
 
 			// 읽기
@@ -336,14 +349,13 @@
 			reader.readAsDataURL(fileList[0]);
 
 			//로드 한 후
-			reader.onload = function () {
+			reader.onload = function() {
 				console.log('잘되니?')
 				document.querySelector('#preview').src = reader.result;
 				console.log('잘되니222?')
 				console.log('잘되니222?')
 			};
 		};
-
 	</script>
 
 </body>

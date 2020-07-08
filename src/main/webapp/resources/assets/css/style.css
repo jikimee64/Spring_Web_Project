@@ -184,7 +184,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   transition: 0.3s;
   font-size: 17px;
-  font-family: "Montserrat", sans-serif;
+   font-family: 'Nanum Gothic', sans-serif;
   text-transform: uppercase;
   font-weight: 600;
 }

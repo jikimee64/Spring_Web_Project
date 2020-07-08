@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>writing_normal_study</title>
@@ -67,6 +67,11 @@
 	background-repeat: no-repeat;
 	opacity: 0.7;
 }
+
+#row > .col-1{
+	margin-right:50px;
+} 
+
 </style>
 </head>
 
@@ -95,78 +100,79 @@
 		<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 			<!-- <h2>스터디 모집 글 작성하ss기(일반)</h2> -->
 			<!-- <br /> -->
+				<div class="row" id="row">
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="언어" selected>언어</option>
+							<option value="Java">Java</option>
+							<option value="Javascript">Javascript</option>
+							<option value="HTML/CSS">HTML/CSS</option>
+							<option value="Spring">Spring</option>
+							<option value="Python">Python</option>
+							<option value="Vue.js">Vue.js</option>
+							<option value="React">React</option>
+							<option value="JQuery">JQuery</option>
+							<option value="JSP">JSP</option>
+							<option value="Bootstrap">Bootstrap</option>
+							<option value="JPA">JPA</option>
+						</select>
+					</div>
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="모집인원" selected>모집인원</option>
+							<option value="1">1명</option>
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
+							<option value="5">5명</option>
+							<option value="6">6명</option>
+							<option value="7">7명</option>
+							<option value="8">8명</option>
+							<option value="9">9명</option>
+							<option value="10">10명</option>
+						</select>
+					</div>
 
-			<div class="row">
-				<div class="col-2">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
-						style="width: 10%;" data-live-search="true" data-width="120px">
-						<option selected>언어</option>
-						<option value="Java">Java</option>
-						<option value="Javascript">Javascript</option>
-						<option value="HTML/CSS">HTML/CSS</option>
-						<option value="Spring">Spring</option>
-						<option value="Python">Python</option>
-						<option value="Vue.js">Vue.js</option>
-						<option value="React">React</option>
-						<option value="JQuery">JQuery</option>
-						<option value="JSP">JSP</option>
-						<option value="Bootstrap">Bootstrap</option>
-						<option value="JPA">JPA</option>
-					</select>
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="지역" selected>지역</option>
+							<option value="온라인">온라인</option>
+							<option value="충청북도">충북</option>
+							<option value="충청남도">충남</option>
+							<option value="경기도">경기도</option>
+							<option value="전라북도">전북</option>
+							<option value="전라남도">전남</option>
+							<option value="경상남도">경남</option>
+							<option value="경상북도">경북</option>
+							<option value="강원도">강원도</option>
+							<option value="세종특별시">세종시</option>
+							<option value="서울특별시">서울시</option>
+							<option value="인천광역시">인천시</option>
+							<option value="제주특별시">제주시</option>
+						</select>
+					</div>
+					<div class="col-1">
+						<select name="" class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
+							<option value="난이도" selected>난이도</option>
+							<option value="_introduction">입문</option>
+							<option value="_beginner">초급</option>
+							<option value="_middleclass">중급이상</option>
+						</select>
+					</div>
+					<div class="col-3">
+						<input style="margin-bottom: 15px; width:164px;" type="text"
+							class="form-control" name="selectend" id="date-time"
+							placeholder="모집마감일">
+					</div>
+					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
+				<option selected>모집마감일</option>
+				<option value="_calendar">달력</option>
+			</select> -->
 				</div>
-				<div class="col-2">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
-						style="width: 10%;" data-live-search="true" data-width="120px">
-						<option selected>모집인원</option>
-						<option value="1">1명</option>
-						<option value="2">2명</option>
-						<option value="3">3명</option>
-						<option value="4">4명</option>
-						<option value="5">5명</option>
-						<option value="6">6명</option>
-						<option value="7">7명</option>
-						<option value="8">8명</option>
-						<option value="9">9명</option>
-						<option value="10">10명</option>
-					</select>
-				</div>
-
-				<div class="col-2">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
-						style="width: 10%;" data-live-search="true" data-width="120px">
-						<option selected>지역</option>
-						<option value="충청북도">충북</option>
-						<option value="충청남도">충남</option>
-						<option value="경기도">경기도</option>
-						<option value="전라북도">전북</option>
-						<option value="전라남도">전남</option>
-						<option value="경상남도">경남</option>
-						<option value="경상북도">경북</option>
-						<option value="강원도">강원도</option>
-						<option value="세종특별시">세종시</option>
-						<option value="서울특별시">서울시</option>
-						<option value="인천광역시">인천시</option>
-					</select>
-				</div>
-				<div class="col-2">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
-						style="width: 10%;" data-live-search="true" data-width="120px">
-						<option selected>난이도</option>
-						<option value="_introduction">입문</option>
-						<option value="_beginner">초급</option>
-						<option value="_middleclass">중급이상</option>
-					</select>
-				</div>
-				<div class="col-2">
-					<input style="margin-bottom: 15px;" type="text"
-						class="form-control" name="selectend" id="date-time"
-						placeholder="모집마감일">
-				</div>
-				<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
-            <option selected>모집마감일</option>
-            <option value="_calendar">달력</option>
-         </select> -->
-			</div>
 		</div>
 
 		<hr style="border-color: rgb(224, 224, 224); width: 95%">
