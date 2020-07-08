@@ -136,15 +136,19 @@
       var top = $(this).offset().top,
         bottom = top + $(this).outerHeight();
 
-      if (cur_pos >= top && cur_pos <= bottom) {
-        if (cur_pos <= bottom) {
-          main_nav.find('li').removeClass('active');
-        }
-        main_nav.find('a[href="#' + $(this).attr('id') + '"]').parent('li').addClass('active');
-      }
-      if (cur_pos < 300) {
-        $(".nav-menu ul:first li:first").addClass('active');
-      }
+      
+      //이거쓰면 엑티브 스크롤 내리면 사라짐      ~
+//      if (cur_pos >= top && cur_pos <= bottom) {
+//        if (cur_pos <= bottom) {
+//          main_nav.find('li').removeClass('active');
+//        }
+//        main_nav.find('a[href="#' + $(this).attr('id') + '"]').parent('li').addClass('active');
+//        console.log('파하');
+//      }
+//      if (cur_pos < 300) {
+//        $(".nav-menu ul:first li:first").addClass('active');
+//        console.log('abcd');
+//      }
     });
   });
 

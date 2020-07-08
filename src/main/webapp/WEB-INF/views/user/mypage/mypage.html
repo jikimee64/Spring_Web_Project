@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
@@ -73,7 +73,7 @@ body {
 						<img
 						src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
 						class="mb-1 _message_hover" alt="" style="height: 27px;">
-					</a> <a th:href="@{/mypage/mypage_Message_From_Board.do}"
+					</a> <a th:href="@{/message/mypage_Message_From_Board.do}"
 						class="_message_hover"> <img class="_message_hover"
 						src="../../../../resources/images/img/message_black.png"
 						style="width: 30px; margin-bottom: 5px;" alt=""></a>
@@ -86,12 +86,15 @@ body {
 					</div>
 					<div class="row">
 						<div class="col-md-2" style="text-align: center;">
-							<h5 style="color: cornflowerblue">22</h5>
-
+							<a href="/mypage/mypage_Myboard.do">
+								<h5 style="color: cornflowerblue" class="_message_hover">22</h5>
+							</a>
 							<b>게시글</b>
 						</div>
 						<div class="col-md-2" style="text-align: center;">
-							<h5 style="color: cornflowerblue">33</h5>
+							<a href="/mypage/mypage_Myboard.do">
+								<h5 style="color: cornflowerblue" class="_message_hover">33</h5>
+							</a>
 							<b>댓글</b>
 						</div>
 						<div class="col-md-2" style="text-align: center;">
@@ -165,8 +168,9 @@ body {
 		<!-- 여기부터 마지막 부분 시작/// 북마크 -->
 		<div class="container" style="padding-top: 15px;">
 			<div style="padding: 40px 30px;">
-				<img src="../../../../resources/images/img/bookmark.png" alt=""
-					style="height: 40px; margin-bottom: 10px;"> <b
+				<!-- <img src="../../../../resources/images/img/bookmark.png" alt=""
+					style="height: 40px; margin-bottom: 10px;">  -->
+					<i class="ion ion-heart" style="width:50px; height:50px;"></i><b
 					style="font-size: 30px; margin-left: 5px;">북마크</b>
 
 				<hr

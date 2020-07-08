@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>McDonalds Admin</title>
+<title>회원정보 상세보기</title>
 <meta name="description" content="Sufee Admin - HTML5 Admin Template">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -22,6 +22,10 @@
 
 <style>
 /*[ Input ]*/
+body {
+	background-color: rgb(230, 244, 232) !important;
+}
+
 button:focus {
 	outline: none !important;
 }
@@ -179,7 +183,7 @@ textarea {
 	}
 }
 
-http: //localhost: 8001/manager/index.do /* 버튼 */ 
+/* 버튼 */
 .login100-form-btn {
 	font-family: Raleway-Bold;
 	font-size: 16px;
@@ -218,24 +222,30 @@ http: //localhost: 8001/manager/index.do /* 버튼 */
 	align-self: center;
 }
 
-/* *:focus {
+*:focus {
 	border: solid 1px #18d26e;
-} */
+} 
+a:focus{
+	border:none;
+}
+
 ._border_box_shadow {
 	background: #fff;
-	margin: -35px;
-	margin-top: 72px;
-	padding: 10px 72px 72px 72px;
-	min-width: 700px;
-	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
 		rgba(0, 0, 0, 0.26);
 	border-radius: 3px;
+	padding: 0px 0px 40px 0px;
+	width: 100%;
+	height: 100%;
 }
 
 /* 라디오버튼 */
 ._form_radio {
 	background: #fff;
-	/* 	width: 509px; */
+	/*    width: 509px; */
 	margin: auto;
 	padding: 30px;
 	min-width: 320px;
@@ -258,7 +268,7 @@ group+group {
 ._div_radio {
 	position: relative;
 	flex: 1;
-	border: 1px solid #CCCCCC;
+	border-radius: 3px;
 }
 
 ._input_radio {
@@ -272,7 +282,7 @@ group+group {
 	position: absolute;
 	top: 0;
 	left: 0;
-	color: #b6b6b6;
+	color: #272C33;
 	width: 100%;
 	height: 100%;
 	background: #fff;
@@ -280,7 +290,6 @@ group+group {
 	align-items: center;
 	justify-content: center;
 	pointer-events: none;
-	border-right: 1px solid #b6b6b6;
 }
 
 ._div_radio:last-child label {
@@ -291,8 +300,11 @@ group+group {
 	background: #00d463;
 	font-weight: 500;
 	color: #fff;
+	border-radius: 5px;
 }
+
 </style>
+
 </head>
 
 <body>
@@ -309,272 +321,262 @@ group+group {
 		<div th:replace="/manager/includes/nav_top :: nav_top"></div>
 		<!-- Header-->
 
-		<div class="breadcrumbs">
-			<div class="col-sm-4">
-				<div class="page-header float-left">
-					<div class="page-title">
-						<h1>회원상세</h1>
-					</div>
+
+		<div class="container"
+			style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
+			<div class="_border_box_shadow">
+				&nbsp;&nbsp;
+				<div style="text-align: center;">
+					<span style="text-align: center; font-size: xx-large;"><b>아이디님의
+							회원정보</b></span>
 				</div>
-			</div>
-			<div class="col-sm-8">
-				<div class="page-header float-right">
-					<div class="page-title">
-						<ol class="breadcrumb text-right">
-							<li class="active">회원상세</li>
-						</ol>
-					</div>
-				</div>
-			</div>
-		</div>
+				<hr style="width: 80%;" />
 
-		<div class="content mt-3">
-			<div class="main-panel">
-				<div class="content-wrapper">
-					<div class="row ">
-
-						<div class="col-4"></div>
-
-						<div class="col-4">
-							<div class="card">
-								<!-- <div class="card-header">
-                                     <strong>OO</strong> 정보
-                                </div> -->
-								<div class="card-body card-block">
-									<form method="post" class="form-horizontal">
-
-										<div class="row">
-											<div class="col-2"></div>
-
-											<div class="col-8" style="text-align: center;">
-												<img id="preview" src="/userboard/upload/member.png"
-													alt="썸네일"
-													style="margin-bottom: 15px; width: 150px; height: 150px;">
-											</div>
-
-											<div class="col-2"></div>
-										</div>
+				<br /> &nbsp;&nbsp;
 
 
 
-										<div class="row form-group">
-											<div
-												class="col col-md-3 d-flex justify-content-center align-items-center ">
-												<label for="m_id" class=" form-control-label">아이디</label>
-											</div>
-											<div class="col-12 col-md-9">
-												<input type="text" id="m_id" name="m_id" value=""
-													disabled="" placeholder="Text" class="form-control">
-											</div>
-										</div>
-										<div class="row form-group">
-											<div
-												class="col col-md-3 d-flex justify-content-center align-items-center ">
-												<label for="password" class=" form-control-label">비밀번호</label>
-											</div>
-											<div class="col-12 col-md-9">
-												<input type="text" id="password" name="password" value=""
-													disabled="" class="form-control">
-											</div>
-										</div>
-										<div class="row form-group">
-											<div
-												class="col col-md-3 d-flex justify-content-center align-items-center ">
-												<label for="name" class=" form-control-label">이름</label>
-											</div>
-											<div class="col-12 col-md-9">
-												<input type="text" id="name" name="name" value=""
-													disabled="" class="form-control">
-											</div>
-										</div>
-										<div class="row form-group">
-											<div
-												class="col col-md-3 d-flex justify-content-center align-items-center ">
-												<label for="email" class=" form-control-label">이메일</label>
-											</div>
-											<div class="col-12 col-md-9">
-												<input type="email" id="email" name="email" value=""
-													disabled="" class="form-control">
-											</div>
-										</div>
-										<div class="row form-group">
-											<div
-												class="col col-md-3 d-flex justify-content-center align-items-center ">
-												<label for="post_code" class=" form-control-label">닉네임</label>
-											</div>
-											<div class="col-12 col-md-9">
-												<input type="text" id="post_code" name="post_code" value=""
-													disabled="" class="form-control">
-											</div>
-										</div>
-
-										<div class="row form-group">
-											<div
-												class="col col-md-3 d-flex justify-content-center align-items-center ">
-												<label for="address" class=" form-control-label">신고횟수</label>
-											</div>
-											<div class="col-12 col-md-9">
-												<input type="text" id="address_detail" name="address_detail"
-													value="" disabled="" class="form-control">
-											</div>
-										</div>
-
-										<br />
-
-										<div class="row" style="text-align: center;">
-											<div class="col-2"></div>
-											<div class="col-8">
-												<h3>
-													<b style="margin-left: 10px; font-size: larger;">내 실력
-														체크</b>
-												</h3>
-											</div>
-											<div class="col-2"></div>
-											&nbsp;&nbsp;
-										</div>
-
-										<!-- <form class="_form_radio"> -->
-										<div class="_form_radio">
-											<group class="inline-radio"> <span
-												style="font-size: larger; width: 140px;">Java</span>
-											<div class="_div_radio">
-												<input type="radio" name="Java" class="_input_radio" checked><label
-													class="_radio_label">입문</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="Java" class="_input_radio"><label
-													class="_radio_label">초급</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="Java" class="_input_radio"><label
-													class="_radio_label">중급이상</label>
-											</div>
-											</group>
-
-											<group class="inline-radio"> <span
-												style="font-size: larger; width: 140px;">Python</span>
-											<div class="_div_radio">
-												<input type="radio" name="Python" class="_input_radio"
-													checked><label class="_radio_label">입문</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="Python" class="_input_radio"><label
-													class="_radio_label">초급</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="Python" class="_input_radio"><label
-													class="_radio_label">중급이상</label>
-											</div>
-											</group>
-											<group class="inline-radio"> <span
-												style="font-size: larger; width: 140px;">HTML/CSS</span>
-											<div class="_div_radio">
-												<input type="radio" name="HTML/CSS" class="_input_radio"
-													checked><label class="_radio_label">입문</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="HTML/CSS" class="_input_radio"><label
-													class="_radio_label">초급</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="HTML/CSS" class="_input_radio"><label
-													class="_radio_label">중급이상</label>
-											</div>
-											</group>
-											<group class="inline-radio"> <span
-												style="font-size: larger; width: 140px;">Javascript</span>
-											<div class="_div_radio">
-												<input type="radio" name="Javascript" class="_input_radio"
-													checked><label class="_radio_label">입문</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="Javascript" class="_input_radio"><label
-													class="_radio_label">초급</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="Javascript" class="_input_radio"><label
-													class="_radio_label">중급이상</label>
-											</div>
-											</group>
-											<group class="inline-radio"> <span
-												style="font-size: larger; width: 140px;">SQL</span>
-											<div class="_div_radio">
-												<input type="radio" name="SQL" class="_input_radio" checked><label
-													class="_radio_label">입문</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="SQL" class="_input_radio"><label
-													class="_radio_label">초급</label>
-											</div>
-											<div class="_div_radio">
-												<input type="radio" name="SQL" class="_input_radio"><label
-													class="_radio_label">중급이상</label>
-											</div>
-											</group>
-										</div>
-										<!-- </form> -->
+				<div class="value">
 
 
-										<br /> <br />
+					<div class="row">
+						<div class="col-2"></div>
 
-										<div class="row" style="text-align: center;">
-											<div class="col-2"></div>
-											<div class="col-8">
-												<h3>
-													<b style="margin-left: 10px; font-size: larger;">소개글</b>
-												</h3>
-											</div>
-											<div class="col-2"></div>
-											&nbsp;&nbsp;
-										</div>
-
-										<div class="row">
-											<textarea class="textarea--style-6" name="introduce"
-												id="introduce" rows="5" required
-												style="background-color: #F5F5F5; margin: 0 20px; resize: none;"
-												readonly></textarea>
-										</div>
-
-
-
-
-									</form>
-								</div>
-								<!-- CARD-BODY END -->
-
-								<div class="card-footer">
-									<a href="MemberDelete.m?m_id=${memberDTO.m_id}" type="button"
-										class="btn btn-danger btn-sm"> <i
-										class="fa fa-dot-circle-o"></i> 삭제
-									</a>
-								</div>
-							</div>
+						<div class="col-8" style="text-align: center;">
+							<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
+								style="margin-bottom: 15px; width: 150px; height: 150px;">
 						</div>
 
-						<div class="col-4"></div>
+						<div class="col-2"></div>
+					</div>
+				</div>
 
+
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100"
+								style="place-self: center" readonly>아이디</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" class="input--style-6" id="user_id"
+								placeholder="아이디를 입력해주세요." name="user_id" value="" readonly />
+
+						</div>
+
+						<div class="col-2"></div>
+					</div>
+				</div>
+				&nbsp;&nbsp;
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center" readonly>이름</label>
+						</div>
+						<div class="col-8">
+							<input type="text" class="input--style-6" id="user_name"
+								placeholder="이름을 입력해주세요." name="user_name" readonly> 
+						</div>
+						<div class="col-2"></div>
+					</div>
+				</div>
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center" >닉네임</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" class="input--style-6" id="nickname"
+								placeholder="닉네임을 입력해주세요" name="nickname" readonly>
+
+						</div>
+
+						<div class="col-2"></div>
 
 					</div>
 				</div>
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center" readonly>이메일 주소</label>
+						</div>
+
+						<div class="col-8">
+							<input type="email" class="input--style-6" id="user_email"
+								placeholder="이메일을 입력해주세요" name="user_email" readonly>
+
+						</div>
+
+						<div class="col-2"></div>
+
+					</div>
+				</div>
+
+				&nbsp;&nbsp; <br /> <br /> <br />
+				<hr style="width: 80%;" />
+
+				&nbsp;
+				<div class="row" style="text-align: center;">
+					<div class="col-2"></div>
+					<div class="col-8">
+						<h3>
+							<b style="margin-left: 10px; font-size: larger;">@@님의 실력</b>
+						</h3>
+					</div>
+					<div class="col-2"></div>
+					&nbsp;&nbsp;
+				</div>
+
+
+				<div class="_form_radio">
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Java</span>
+					<div class="_div_radio">
+						<input type="radio" name="Java" class="_input_radio" checked
+							onclick="return(false);"><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Java" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Java" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Python</span>
+					<div class="_div_radio">
+						<input type="radio" name="Python" class="_input_radio" checked
+							onclick="return(false);"><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Python" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Python" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">HTML/CSS</span>
+					<div class="_div_radio">
+						<input type="radio" name="HTML/CSS" class="_input_radio" checked
+							onclick="return(false);"><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="HTML/CSS" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="HTML/CSS" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Javascript</span>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" class="_input_radio" checked
+							onclick="return(false);"><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">SQL</span>
+					<div class="_div_radio">
+						<input type="radio" name="SQL" class="_input_radio" checked
+							onclick="return(false);"><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="SQL" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="SQL" class="_input_radio"
+							onclick="return(false);"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+				</div>
+
+
+
+				<br /> <br />
+				<hr style="width: 80%;" />
+				&nbsp;&nbsp;
+
+
+				<div class="row">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+
+						<b style="font-size: larger;"> <i class="xi-emoticon-cool-o"
+							aria-hidden="true"></i> 저는 이런것도 할줄 알아요~
+						</b>
+						<p></p>
+						<textarea class="textarea--style-6" name="introduce"
+							id="introduce" rows="5" required style="resize: none;" readonly></textarea>
+					</div>
+				</div>
+				<br />
+						<div class="row">
+						<div class="col-md-5"></div>
+									<a href="MemberDelete.m?m_id=${memberDTO.m_id}" type="button"
+										class="btn btn-danger btn" style="border-radius: 3px; background-color:#00d463; border-color:#00d463; margin-left:20px;"> <i
+										class="fa fa-dot-circle-o"></i> 확인
+									</a>
+						<div class="col-md-5"></div>
+								</div>
 			</div>
-
-
-
+		
 		</div>
+
+		<!-- CARD-BODY END -->
+
+
+
 		<!-- .content -->
-	</div>
-	<!-- /#right-panel -->
+
+		<!-- /#right-panel -->
 
 
-	<div th:replace="/manager/includes/script :: script"></div>
-	<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script> -->
+		<div th:replace="/manager/includes/script :: script"></div>
+		<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script> -->
 
-	<script>
+		<script>
 		$(function() {
 
 		});
 	</script>
-
 </body>
 
 </html>

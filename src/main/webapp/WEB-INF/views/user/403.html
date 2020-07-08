@@ -396,7 +396,7 @@ button:focus {
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
-	
+
 	<main id="main">
 
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -404,13 +404,15 @@ button:focus {
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
-					<h2> </h2>
+					<h2></h2>
 				</div>
 
 			</div>
-		</section><!-- Breadcrumbs Section -->
+		</section>
+		<!-- Breadcrumbs Section -->
 
-	</main><!-- End #main -->
+	</main>
+	<!-- End #main -->
 
 	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
 	<div th:if="${param.error!=null}">
@@ -423,107 +425,39 @@ button:focus {
 		<!-- </c:if> -->
 	</div>
 
-	<div class="limiter" style="height:834px;">
-		<div class="container-login100" style="position:inherit;">
+	<div class="limiter" style="height: 834px;">
+		<div class="container-login100" style="position: inherit;">
 
 			<!-- 로그인 작업시작 -->
 			<div class="_border_box_shadow2" style="transform: translateY(-83px)">
 				<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30"
 					style="margin-top: -11px;">
 					<h2 style="text-align: center;">
-						<b style="font-size: 26px">LOGIN</b>
+						<b style="font-size: 26px">403</b>
 					</h2>
 					<hr style="width: 80%; margin-bottom: 11px;" />
 
-					<form th:action="@{/login}" method="post" class=""
-						novalidate>
-
+					<form style="margin-top:140px;" th:action="@{/login}" method="post" class="" novalidate>
 
 						<div class="form-group" style="text-align: -webkit-center;">
-							<label for="uname"><b style="margin-right: 260px">ID</b></label>
+							<label for="uname"><b style="">접근권한이 없습니다.</b></label> <label
+								for="uname"><b style="">담당자에게 문의하여 주시기 바랍니다.</b></label>
 
-							<input class="input--style-6" type="text" id="user_id"
-								placeholder="Enter userid" name="user_id" required>
-							<div class="valid-feedback">Valid.</div>
-							<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
 
-
-						<div class="form-group" style="text-align: -webkit-center;">
-							<label for="pwd"><b style="margin-right: 208px">Password</b></label>
-							<input class="input--style-6" type="password" id="user_pwd"
-								placeholder="Enter password" name="user_pwd" required>
-							<div class="valid-feedback">Valid.</div>
-							<div class="invalid-feedback">Please fill out this field.</div>
-						</div>
-
-
-						<!-- <div class="form-group form-check">
-               <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" name="remember" required>
-                  I agree on blabla.
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Check this checkbox to
-                     continue.</div>
-               </label>
-            </div> -->
 
 						<div style="text-align: -webkit-center;">
-							<button type="submit" class="login100-form-btn"
-								style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;">
-								<b>Login</b>
-							</button>
+							<a href="../user/main.do">
+								<button type="button" class="login100-form-btn"
+									style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;">
+									<b>메인으로 돌아가기</b>
+								</button>
+							</a>
 						</div>
 					</form>
 
-
-					<div
-						style="text-align: center; font-size: small; margin-top: 10px;">
-						<a href="/member/find_Id.do"> <span class="_find">아이디
-								찾기</span>
-						</a> &nbsp;&nbsp;<b style="color: #c5c5c5;">|</b>&nbsp;&nbsp; <a
-							href="/member/find_Passward.do"> <span class="_find">비밀번호
-								찾기</span>
-						</a>
-					</div>
-
 					<br />
 
-					<div style="margin-bottom: 5px; text-align: -webkit-center;">
-
-						<button type="button" class="btn-face btn-light _other_login"
-							style="border: 1.5px solid #395795;">
-							<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
-							<i class="fa fa-facebook-square" aria-hidden="true"
-								style="margin: 0 23px 0 10px"></i> <span
-								style="font-size: small;">페이스북 계정으로 로그인 하기</span>
-						</button>
-					</div>
-
-
-					<div style="margin-bottom: 5px; text-align: -webkit-center;">
-						<button type="button" class="btn-naver btn-light _other_login"
-							style="border: 1.5px solid #1CB863;">
-
-
-							<i class="xi-naver-square xi-x" aria-hidden="true"
-								style="margin: 0 19px 0 10px"></i>&nbsp; <span
-								style="font-size: small;">네이버 계정으로 로그인 하기</span>
-						</button>
-					</div>
-
-
-					<div style="margin-bottom: 5px; text-align: -webkit-center;">
-						<button type="button" class="btn-kakao btn-light _other_login"
-							style="border: 1.5px solid #FFC71C;">
-
-
-							<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
-							<i class="xi-kakaotalk xi-x" aria-hidden="true"
-								style="margin: 0 11px 0 10px"></i>&nbsp; <span
-								style="font-size: small;">카카오톡 계정으로 로그인 하기</span>
-						</button>
-					</div>
 				</div>
 
 			</div>
@@ -531,47 +465,9 @@ button:focus {
 		</div>
 	</div>
 
+	<div th:replace="/user/includes/footer :: footer"></div>
 
-		<script>
-			// Disable form submissions if there are invalid fields
-			(function() {
-				'use strict';
-				window
-						.addEventListener(
-								'load',
-								function() {
-									// Get the forms we want to add validation styles to
-									var forms = document
-											.getElementsByClassName('needs-validation');
-									// Loop over them and prevent submission
-									var validation = Array.prototype.filter
-											.call(
-													forms,
-													function(form) {
-														form
-																.addEventListener(
-																		'submit',
-																		function(
-																				event) {
-																			if (form
-																					.checkValidity() === false) {
-																				event
-																						.preventDefault();
-																				event
-																						.stopPropagation();
-																			}
-																			form.classList
-																					.add('was-validated');
-																		},
-																		false);
-													});
-								}, false);
-			})();
-		</script>
-
-		<div th:replace="/user/includes/footer :: footer"></div>
-
-		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 </body>
 
 </html>
