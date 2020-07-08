@@ -122,16 +122,18 @@
 #portfolio #portfolio-flters-lan li {
 	background: rgb(240, 238, 238);
 }
+._card_hover_effect{
+	margin-bottom:10px !important;
+}
 
 ._card_hover_effect:hover {
+	margin-bottom:5px !important;
 	text-decoration: none !important;
-	padding:8px !important;
+	padding: 8px !important;
 	border-radius: 10px;
 	border: 2px solid #02db63;
 }
-._card_hover_effect:hover ._heart_ico{
-	background-color:red !important;
-}
+
 
 .pager li>a, .pager li>span {
 	border: white;
@@ -194,6 +196,151 @@ body {
 	border-color: #18d26e;
 }
 
+/* 하트 체크박스 스타일 시작 */
+input[type=checkbox] {
+	clear: both;
+	display: none;
+}
+
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"]+label {
+	position: absolute;
+	z-index: 100;
+	overflow: hidden;
+	height: 60px;
+	width: 50px;
+	display: block;
+	text-align: center;
+	line-height: 60px;
+	cursor: pointer;
+	border-radius: 50%;
+	transform:translate3d(-10px, -7px, 10px);
+}
+
+input[type="checkbox"]+label svg {
+	-webkit-transition: all 100ms ease-in-out;
+	transition: all 100ms ease-in-out;
+}
+
+input[type="checkbox"]+label:before {
+	content: '';
+	z-index: -1;
+	position: absolute;
+	background: #E8336D;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	top: 0;
+	left: 0;
+	transform: scale(0);
+	-webkit-transform: scale(0);
+}
+
+input[type="checkbox"]+label:after {
+	content: '';
+	z-index: -1;
+	position: absolute;
+	background: white;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	top: 0;
+	left: 0;
+	transform: scale(0);
+	-webkit-transform: scale(0);
+}
+/* 호버는 연규가넣음  */
+input[type="checkbox"]:hover+label svg {
+	-webkit-transition: all 400ms ease-in-out;
+	transition: all 400ms ease-in-out;
+	fill: rgb(255, 188, 188);
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+}
+/* 호버는 연규가 넣음 끝 */
+input[type="checkbox"]:checked+label svg {
+	-webkit-transition: all 400ms ease-in-out;
+	transition: all 400ms ease-in-out;
+	fill: rgb(220, 72, 127);
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
+}
+
+
+
+input[type="checkbox"]:checked+label:after {
+	-webkit-animation: heart-keyframes 0.3s 0.2s forwards;
+	-moz-animation: heart-keyframes 0.3s 0.2s forwards;
+	animation: heart-keyframes 0.3s 0.2s forwards;
+}
+
+input[type="checkbox"]:checked+label:before {
+	-webkit-animation: heart-keyframes 0.5s 0s forwards;
+	-moz-animation: heart-keyframes 0.5s 0s forwards;
+	animation: heart-keyframes 0.5s 0s forwards;
+}
+
+label svg {
+	display: inline-flex;
+	vertical-align: middle;
+	width: 25px;
+	fill: #ddd;
+}
+
+@
+-webkit-keyframes heart-keyframes { 75% {
+	-webkit-transform: scale(1.025);
+	transform: scale(1.025);
+	-moz-transform: scale(1.025);
+}
+
+}
+@
+-webkit-keyframes heart-keyframes { 100% {
+	background: transparent;
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+	-moz-transform: scale(1.03);
+}
+
+}
+@
+-moz-keyframes heart-keyframes { 75% {
+	-webkit-transform: scale(1.025);
+	transform: scale(1.025);
+	-moz-transform: scale(1.025);
+}
+
+}
+@
+-moz-keyframes heart-keyframes { 100% {
+	background: transparent;
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+	-moz-transform: scale(1.03);
+}
+
+}
+@
+keyframes heart-keyframes { 75% {
+	-webkit-transform: scale(1.025);
+	transform: scale(1.025);
+	-moz-transform: scale(1.025);
+}
+
+}
+@
+keyframes heart-keyframes { 100% {
+	background: transparent;
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+	-moz-transform: scale(1.03);
+}
+}
+/* 하트 체크박스 끝 */
 </style>
 
 <body>
@@ -305,8 +452,15 @@ body {
 		</div>
 	</section>
 
-
-
+	<!-- 이건 하트인데 뿌릴때 아이디랑 라벨 맞춰서 번호를 입혀줘야겟음 시작-->
+	<input type="checkbox" id="12" />
+	<label for="12" style="background-color: white;"> <svg
+			xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 51.02">
+							    <path
+				d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+							</svg>
+	</label>
+	<!-- 이건 하트인데 뿌릴때 아이디랑 라벨 맞춰서 번호를 입혀줘야겟음 끝-->
 
 
 	<!-- ddddddddd -->
@@ -329,6 +483,7 @@ body {
 					<img class="card-img-top"
 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
 						alt="Card image" style="width: 100%">
+
 					<div class="card-body">
 						<h6 class="card-title _margin_0" th:text="${list.L_TITLE}">Do
 							it! Node.js 프로그래밍(개정판)</h6>
@@ -336,14 +491,27 @@ body {
 							style="color: gray; font-size: small;">이지스 퍼블리싱</p>
 						<a href="" class="stretched-link"></a> <img
 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-							alt="" style="height: 40px;"> <span>(6)</span> <span
-							style="color: rgb(23, 92, 190);"> <b
-							th:text="${list.P_SEQ}">₩44,000</b>
-						</span>
-						<a href="">
-							<img class="_heart_svg" src="/resources/images/img/heart.ico" alt=""  style="border-radius: 50%; height:50px;"/>
-						</a>
-					
+							alt="" style="height: 40px;"> <span>(6)</span>
+						<div class="row">
+
+							<div class="col-9">
+								<span style="color: rgb(23, 92, 190);"> <b
+									th:text="${list.P_SEQ}">₩44,000</b>
+								</span>
+							</div>
+							<div class="col-3">
+								<!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
+								<input type="checkbox" id="heart" /> <label for="heart">
+									<svg xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 56.69 51.02">
+							    <path
+											d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+							</svg>
+								</label>
+							</div>
+						</div>
+						<!-- 하트 체크박스 끝 -->
+
 					</div>
 				</div>
 			</div>
@@ -531,6 +699,20 @@ body {
 	<!-- Template Main JS File -->
 	<script src="../../../../resources/assets/js/main.js"></script>
 
+	<script>
+	$(function(){
+		
+		/* 이거는 하트 클릭시 alert창 띄우는건데 지금은 $('heart')로 되어있는데 이건  this버튼으로 해야댐(해당영역에 있는거 클릭으로 바꿔야댐) */
+		  $('#heart').click(function(){
+			  if($('#heart').is(":checked")){
+				    alert('this가 북마크 리스트에 추가되었습니당');
+			  }else{
+				  alert('this가 북마크 리스트에서 삭제되었습니당 으악');
+			  }
+		
+		  });
+		});
+	</script>
 </body>
 
 
