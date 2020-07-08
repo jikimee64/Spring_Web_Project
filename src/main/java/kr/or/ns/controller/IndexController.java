@@ -13,5 +13,11 @@ public class IndexController {
 		return "user/index"; 
 	}
 	
+	@RequestMapping("/403.do")
+	public String error403() {
+		System.out.println("권한 설정");
+	    return "user/403"; //view 주소
+	}
+	
 	
 }
