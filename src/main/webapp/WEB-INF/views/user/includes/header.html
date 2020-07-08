@@ -1,3 +1,9 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header id="header" class="fixed-top header-transparent"
+	style="padding: 10px 10px;" th:fragment="header">
+
 <style>
 .nav-menu .drop-down ul {
 	display: block;
@@ -33,12 +39,8 @@
 	color: #18d26e;
 }
 </style>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top header-transparent"
-	style="padding: 10px 10px;" th:fragment="header">
 
 	<div class="container-fluid">
 
@@ -53,9 +55,9 @@
 
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
-						<li><a href="/user/main.do">Home</a></li>
-						<li><a href="/board/course_List.do">온라인 강의</a></li>
-						<li><a href="/board/study_List.do">스터디 모임</a></li>
+						<li class="_pageactive"><a href="/user/main.do">Home</a></li>
+						<li class="_pageactive"><a href="/board/course_List.do">온라인 강의</a></li>
+						<li class="_pageactive"><a href="/board/study_List.do">스터디 모임</a></li>
 						<li
 							style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
 
@@ -73,17 +75,17 @@
 										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
 										<li style="margin-left: 21px;"><b><span
 												sec:authentication="principal.username"></span>님 환영합니다</b></li>
-										<li><a href="/mypage/mypage.do">마이페이지</a></li>
-										<li><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
-										<li><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
+										<li class="_pageactive"><a href="/mypage/mypage.do">마이페이지</a></li>
+										<li class="_pageactive"><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
+										<li class="_pageactive"><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
 
 									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-										<li style="margin-left: 21px;"><b><span
+										<li class="_pageactive" style="margin-left: 21px;"><b><span
 												sec:authentication="principal.username"></span>님 환영합니다</b></li>
-										<li><a th:href="@{/manager/index.do}" style="padding-bottom:0px;">관리자 페이지</a></li>
+										<li class="_pageactive"><a th:href="@{/manager/index.do}" style="padding-bottom:0px;">관리자 페이지</a></li>
 									</th:block>
-									<li><a th:href="@{/logout}">로그아웃</a></li>
+									<li class="_pageactive"><a th:href="@{/logout}">로그아웃</a></li>
 								</ul>
 							</li>
 
@@ -160,7 +162,7 @@
 		}
 	
 		$(document).ready(function() {
-			  $('li.active').removeClass('active');
+			  $('._pageactive.active').removeClass('active');
 			  $('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
 			  console.log('페이지 전환 찍히나여?');
 			 
