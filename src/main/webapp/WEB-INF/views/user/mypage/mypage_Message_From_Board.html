@@ -124,13 +124,13 @@ body {
    <div class="container"
       style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 800px; width: 900px;">
       <div class="_border_box_shadow2">
-         <a href="/mypage/mypage_Message_From_Board.do">
+         <a href="/message/mypage_Message_From_Board.do">
             <button type="button" class="btn btn-secondary"
                style="height: 110px; position: relative; left: -71px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;">
                <b><span>받은<br> 쪽지함
                </span></b>
             </button>
-         </a> <a href="/mypage/mypage_Message_Send_Board.do">
+         </a> <a href="/message/mypage_Message_Send_Board.do">
             <button type="button" class="btn btn-secondary"
                style="height: 110px; position: relative; left: -146px; bottom: -110px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;">
                <b><span>보낸<br> 쪽지함
@@ -150,7 +150,7 @@ body {
             </div>
             <div class="col-md-7"
                style="text-align: right; padding-right: 28px; padding-top: 8px;">
-               <a href="/mypage/mypage_Message_Send_Send_Message.do">
+               <a href="/message/mypage_Message_Send_Send_Message.do">
                   <button type="button" class="btn btn-success"
                      style="width: 100px; margin-top: 30px; background-color: #18d26e;">쪽지
                      쓰기</button>
@@ -200,7 +200,7 @@ body {
                <div class="col-md-6"
                   style="place-self: center; text-align: center;">
                   <a style="color: black;"
-                     th:href="@{/mypage/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
+                     th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
                      <span th:text="${list.content}"></span>
                   </a>
                </div>
