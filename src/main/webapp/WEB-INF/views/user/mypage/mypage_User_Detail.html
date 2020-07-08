@@ -2,7 +2,7 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>mypage_User_Detail</title>
@@ -230,63 +230,68 @@ textarea {
 }
 
 /* 라디오버튼 */
+/* 라디오버튼 */
 ._form_radio {
-	background: #fff;
-	width: 509px;
-	margin: auto;
-	padding: 30px;
-	min-width: 320px;
-	max-width: 540px;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
-		rgba(0, 0, 0, 0.26);
-	border-radius: 3px;
+   background: #fff;
+   /*    width: 509px; */
+   margin: auto;
+   padding: 30px;
+   min-width: 320px;
+   max-width: 540px;
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+      rgba(0, 0, 0, 0.26);
+   border-radius: 3px;
 }
 
 group+group {
-	margin-top: 20px;
+   margin-top: 20px;
 }
 
 .inline-radio {
-	display: flex;
-	border-radius: 3px;
-	overflow: hidden;
+   display: flex;
+   border-radius: 3px;
+   overflow: hidden;
 }
 
 ._div_radio {
-	position: relative;
-	flex: 1;
-	border: 1px solid #CCCCCC;
+   position: relative;
+   flex: 1;
+   border-radius: 3px;
+
 }
 
 ._input_radio {
-	width: 100%;
-	opacity: 0;
-	height: 100%;
+   width: 100%;
+   opacity: 0;
+   height: 100%;
+   cursor: pointer;
 }
 
 ._radio_label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	color: #b6b6b6;
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
-	border-right: 1px solid #b6b6b6;
+   position: absolute;
+   top: 0;
+   left: 0;
+   color: #272C33;
+   width: 100%;
+   height: 100%;
+   background: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   pointer-events: none;
+
+
 }
 
 ._div_radio:last-child label {
-	border-right: 0;
+   border-right: 0;
 }
 
 ._input_radio:checked+label {
-	background: #00d463;
-	font-weight: 500;
-	color: #fff;
+   background: #00d463;
+   font-weight: 500;
+   color: #fff;
+   border-radius: 5px;
 }
 
 body {
@@ -341,7 +346,7 @@ body {
 
 				<div class="value">
 					<div class="row" style="place-content: center; padding-left: 100px">
-						<div class="col-2 _label_center"
+						<div class="col-md-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
 							<label class="label-input100" for="pwd"
 								style="place-self: center">아이디</label>
@@ -535,8 +540,7 @@ body {
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 
-						<b style="font-size: larger;"> <i class="xi-emoticon-cool-o"
-							aria-hidden="true"></i> 저는 이런것도 할줄 알아요~
+						<b style="font-size: larger;"> 저는 이런것도 할줄 알아요~
 						</b>
 						<p></p>
 						<textarea class="textarea--style-6" name="introduce"
@@ -549,7 +553,7 @@ body {
 						<a th:href="@{/mypage/MyPageUserEdit.do}">
 							<button type="button" class="btn btn-outline-success"
 								style="border: 1px solid #18d26e;">
-								<i class="xi-border-color" aria-hidden="true"></i>수정하러 가기
+								<i class="xi-border-color" aria-hidden="true"></i>수정하러가기
 							</button>
 						</a>
 					</div>
