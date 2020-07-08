@@ -1,44 +1,37 @@
 <style>
-
 .nav-menu .drop-down ul {
-    display: block;
-    position: absolute;
-    left: 14px;
-    z-index: 99;
-    padding: 10px 0;
-    background: #fff;
-    box-shadow: 0px 0px 15px rgba(127, 137, 161, 0.25);
-    transition: 0.3s;
-   
+	display: block;
+	position: absolute;
+	left: 14px;
+	z-index: 99;
+	padding: 10px 0;
+	background: #fff;
+	box-shadow: 0px 0px 15px rgba(127, 137, 161, 0.25);
+	transition: 0.3s;
 }
 
-.nav-menu .drop-down:hover > ul {
-  opacity: 1;
-  top: 100%;
-  visibility: visible;
-
+.nav-menu .drop-down:hover>ul {
+	opacity: 1;
+	top: 100%;
+	visibility: visible;
 }
 
 .nav-menu .drop-down li {
-  min-width: 180px;
-  position: relative;
-  
+	min-width: 180px;
+	position: relative;
 }
 
 .nav-menu .drop-down ul a {
-  padding: 10px 20px;
-  font-size: 13px;
-  text-transform: none;
-  color: #333333;
+	padding: 10px 20px;
+	font-size: 13px;
+	text-transform: none;
+	color: #333333;
 }
 
-.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
-  color: #18d26e;
-}	
-
-
-
-
+.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active>a,
+	.nav-menu .drop-down ul li:hover>a {
+	color: #18d26e;
+}
 </style>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -46,7 +39,7 @@
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top header-transparent"
 	style="padding: 10px 10px;" th:fragment="header">
-	
+
 	<div class="container-fluid">
 
 		<div class="row justify-content-center">
@@ -72,27 +65,27 @@
 								alt="" style="height: 50px; border-radius: 50%;"></a>
 							<li class="drop-down"
 								style="padding-left: 0px; padding-right: 15px;"><a href=""></a>
-								
-								<ul style=" border-top-left-radius: 10px;border-top-right-radius: 10px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+
+								<ul
+									style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
 									<!-- <span sec:authentication="principal.username"></span> -->
-									<th:block sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
-										<li style="margin-left:21px;">
-											<b><span sec:authentication="principal.username"></span>님 환영합니다</b>
-										</li>
-										<br/>
+									<th:block
+										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
+										<li style="margin-left: 21px;"><b><span
+												sec:authentication="principal.username"></span>님 환영합니다</b></li>
 										<li><a href="/mypage/mypage.do">마이페이지</a></li>
 										<li><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
 										<li><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
-								
+
 									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-										<li style="margin-left:21px;">
-											<b><span sec:authentication="principal.username"></span>님 환영합니다</b>
-										</li>
-										<li ><a th:href="@{/manager/index.do}" style="padding-bottom:0px;">관리자 페이지</a></li>
-<!-- 									</th:block> -->
-										<li><a th:href="@{/logout}">로그아웃</a></li>
-								</ul></li>
+										<li style="margin-left: 21px;"><b><span
+												sec:authentication="principal.username"></span>님 환영합니다</b></li>
+										<li><a th:href="@{/manager/index.do}">관리자 페이지</a></li>
+									</th:block>
+									<li><a th:href="@{/logout}">로그아웃</a></li>
+								</ul>
+							</li>
 
 
 							<a href=""> <img src="/resources/images/img/message2.png"
@@ -116,8 +109,8 @@
 
 	</div>
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
 		$(document).ready(function() {
 			connect();
 		})
@@ -176,4 +169,3 @@
 	</script>
 </header>
 <!-- End Header -->
-
