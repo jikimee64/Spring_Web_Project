@@ -639,6 +639,7 @@ keyframes heart-keyframes { 100% {
 
 	<script>
 	$(function(){
+			
 		
 		/* 이거는 하트 클릭시 alert창 띄우는건데 지금은 $('heart')로 되어있는데 이건  this버튼으로 해야댐(해당영역에 있는거 클릭으로 바꿔야댐) */
 		  $('._bookMark').click(function(evt){
@@ -651,15 +652,12 @@ keyframes heart-keyframes { 100% {
 				  alert(lectureTitle + ' 북마크에서 삭제됨');
 				  console.log($(this).is(":checked"));
 			  }
-		
-			 
 		  });
 		
-		
-		
-		
+			
 		
 		});
+	
 	</script>
 </body>
 
