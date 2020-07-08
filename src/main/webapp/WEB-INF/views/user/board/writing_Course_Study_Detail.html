@@ -251,8 +251,8 @@ keyframes heart-keyframes { 100% {
 						<div class="col-md-4" style="width: 100%">
 							<div class="row" style="margin-left: 30px; margin-top: -20px;">
 								<div class="form-group" style="margin: 0">
-									<a href=""> <i class="fa fa-folder-open" aria-hidden="true"></i>
-										첨부파일1.jpg
+									<a href=""  style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
+											첨부파일1.png
 									</a>
 								</div>
 							</div>
@@ -263,8 +263,8 @@ keyframes heart-keyframes { 100% {
 						<div class="col-md-4" style="width: 100%">
 							<div class="row" style="margin-left: 30px; margin-top: 5px;">
 								<div class="form-group" style="margin: 0">
-									<a href=""> <i class="fa fa-folder-open" aria-hidden="true"></i>
-										첨부파일2.png
+								<a href=""  style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
+											첨부파일2.png
 									</a>
 								</div>
 							</div>
@@ -433,12 +433,14 @@ keyframes heart-keyframes { 100% {
 					})
 					.then((willDelete) => {
 					  if (willDelete) {
-					    swal("지원이 완료되었습니다.(처리상태 db에서 변경)", {
+					    swal({
+					   	  title: "지원이 완료되었습니다.",
 					      icon: "success",
-					      confirmButtonColor: "#DD6B55"
 					    });
 					  } else {
-					    swal("지원이 취소가되었습니다..");
+					    swal({
+					    	title: "지원이 취소되었습니다."
+					    });
 					  }
 					});
 			})
