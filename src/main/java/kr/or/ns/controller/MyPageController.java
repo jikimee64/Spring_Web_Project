@@ -58,6 +58,7 @@ public class MyPageController {
 	// 유저정보 수정페이지로 이동
 	@RequestMapping(value = "MyPageUserEdit.do")
 	public String mypageUserEdit(Model model, Principal principal) {
+		System.out.println("여길 타는건가");
 		Users user = service.getUsers(principal.getName());
 		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
@@ -78,7 +79,7 @@ public class MyPageController {
 		service.MyPageUserEdit(user, request);
 
 		System.out.println("컨트롤러2");
-		return "user/mypage/mypage?seq=" + user.getUser_id();
+		return "user/mypage/mypage.html";
 
 	}
 
