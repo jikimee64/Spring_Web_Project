@@ -2,7 +2,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>mypage_User_Detail</title>
@@ -232,66 +233,63 @@ textarea {
 /* 라디오버튼 */
 /* 라디오버튼 */
 ._form_radio {
-   background: #fff;
-   /*    width: 509px; */
-   margin: auto;
-   padding: 30px;
-   min-width: 320px;
-   max-width: 540px;
-   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
-      rgba(0, 0, 0, 0.26);
-   border-radius: 3px;
+	background: #fff;
+	/*    width: 509px; */
+	margin: auto;
+	padding: 30px;
+	min-width: 320px;
+	max-width: 540px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
 }
 
 group+group {
-   margin-top: 20px;
+	margin-top: 20px;
 }
 
 .inline-radio {
-   display: flex;
-   border-radius: 3px;
-   overflow: hidden;
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
 }
 
 ._div_radio {
-   position: relative;
-   flex: 1;
-   border-radius: 3px;
-
+	position: relative;
+	flex: 1;
+	border-radius: 3px;
 }
 
 ._input_radio {
-   width: 100%;
-   opacity: 0;
-   height: 100%;
-   cursor: pointer;
+	width: 100%;
+	opacity: 0;
+	height: 100%;
+	cursor: pointer;
 }
 
 ._radio_label {
-   position: absolute;
-   top: 0;
-   left: 0;
-   color: #272C33;
-   width: 100%;
-   height: 100%;
-   background: #fff;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   pointer-events: none;
-
-
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #272C33;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
 }
 
 ._div_radio:last-child label {
-   border-right: 0;
+	border-right: 0;
 }
 
 ._input_radio:checked+label {
-   background: #00d463;
-   font-weight: 500;
-   color: #fff;
-   border-radius: 5px;
+	background: #00d463;
+	font-weight: 500;
+	color: #fff;
+	border-radius: 5px;
 }
 
 body {
@@ -315,10 +313,13 @@ body {
 			<div class="_border_box_shadow">
 				&nbsp;&nbsp;
 				<div style="text-align: center;">
-			<span th:text="${member.user_id} +'님의 회원정보'" style="text-align: center; font-weight: bold; font-size: xx-large;">
-					</span>
+					<span sec:authentication="principal.username"
+						style="text-align: center; font-weight: bold; font-size: xx-large;">
+					</span> <span
+						style="text-align: center; font-weight: bold; font-size: xx-large;">님의
+						회원정보</span>
 				</div>
-		
+
 				<hr style="width: 80%;" />
 
 				<br /> &nbsp;&nbsp;
@@ -354,9 +355,10 @@ body {
 						</div>
 
 						<div class="col-8">
-						
+
 							<input type="text" class="input--style-6" id="user_id"
-								placeholder="아이디를 입력해주세요."name="user_id"  th:value="${member.user_id}"  readonly />
+								placeholder="아이디를 입력해주세요." name="user_id"
+								th:value="${member.user_id}" readonly />
 
 						</div>
 
@@ -374,12 +376,13 @@ body {
 						<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
 							<label class="label-input100" for="pwd"
-								style="align-self: center" >이름</label>
+								style="align-self: center">이름</label>
 						</div>
 
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="user_name"
-								placeholder="이름을 입력해주세요." name="user_name" th:value="${member.user_id}" readonly > <span
+								placeholder="이름을 입력해주세요." name="user_name"
+								th:value="${member.user_id}" readonly> <span
 								class="name hide"></span>
 
 						</div>
@@ -401,7 +404,8 @@ body {
 
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="nickname"
-								placeholder="닉네임을 입력해주세요" name="nickname" th:value="${member.nickname}" readonly>
+								placeholder="닉네임을 입력해주세요" name="nickname"
+								th:value="${member.nickname}" readonly>
 
 						</div>
 
@@ -423,7 +427,8 @@ body {
 
 						<div class="col-8">
 							<input type="email" class="input--style-6" id="user_email"
-								placeholder="이메일을 입력해주세요" name="user_email"  th:value="${member.user_email}" readonly>
+								placeholder="이메일을 입력해주세요" name="user_email"
+								th:value="${member.user_email}" readonly>
 
 						</div>
 
@@ -450,87 +455,116 @@ body {
 				</div>
 
 
-		
-					<div class="_form_radio">
-						<group class="inline-radio"> <span
-							style="font-size: larger; width: 140px;">Java</span>
-						<div class="_div_radio">
-							<input type="radio" name="java" value="입문" class="_input_radio"
-								onclick="return(false);" th:attr="checked=${skill[0].skill_level == '입문' ? 'true' : 'false'}"><label class="_radio_label"  >입문</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="java"  value="초급" class="_input_radio"
-								onclick="return(false);" th:attr="checked=${skill[0].skill_level == '초급' ? 'true' : 'false'}"><label class="_radio_label">초급</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="java"  value="중급이상" class="_input_radio"
-							onclick="return(false);" th:attr="checked=${skill[0].skill_level == '중급이상' ? 'true' : 'false'}"><label class="_radio_label">중급이상</label>
-						</div>
-						</group>
 
-						<group class="inline-radio"> <span
-							style="font-size: larger; width: 140px;">Python</span>
-						<div class="_div_radio">
-							<input type="radio" name="Python" value="입문" class="_input_radio"
-								onclick="return(false);" th:attr="checked=${skill[1].skill_level == '입문' ? 'true' : 'false'}"><label class="_radio_label">입문</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="Python" value="초급"  class="_input_radio"
-								onclick="return(false);" th:attr="checked=${skill[1].skill_level == '초급' ? 'true' : 'false'}"><label class="_radio_label">초급</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="Python" value="중급이상" class="_input_radio"
-								onclick="return(false);"  th:attr="checked=${skill[1].skill_level == '중급이상' ? 'true' : 'false'}"><label class="_radio_label">중급이상</label>
-						</div>
-						</group>
-						<group class="inline-radio"> <span
-							style="font-size: larger; width: 140px;">HTML/CSS</span>
-						<div class="_div_radio">
-							<input type="radio" name="HTML/CSS" value="입문" class="_input_radio" checked
-								onclick="return(false);" th:attr="checked=${skill[2].skill_level == '입문' ? 'true' : 'false'}"><label class="_radio_label">입문</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="HTML/CSS" value="초급" class="_input_radio"
-								onclick="return(false);"  th:attr="checked=${skill[2].skill_level == '초급' ? 'true' : 'false'}"><label class="_radio_label">초급</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="HTML/CSS" value="중급이상" class="_input_radio"
-								onclick="return(false);"  th:attr="checked=${skill[2].skill_level == '중급이상' ? 'true' : 'false'}"><label class="_radio_label">중급이상</label>
-						</div>
-						</group>
-						<group class="inline-radio"> <span
-							style="font-size: larger; width: 140px;">Javascript</span>
-						<div class="_div_radio">
-							<input type="radio" name="Javascript" value="입문" class="_input_radio"
-								checked onclick="return(false);"  th:attr="checked=${skill[3].skill_level == '입문' ? 'true' : 'false'}"><label
-								class="_radio_label">입문</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="Javascript" value="초급" class="_input_radio"
-								onclick="return(false);"  th:attr="checked=${skill[3].skill_level == '초급' ? 'true' : 'false'}"><label class="_radio_label">초급</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="Javascript" value="중급이상" class="_input_radio"
-								onclick="return(false);"  th:attr="checked=${skill[3].skill_level == '중급이상' ? 'true' : 'false'}"><label class="_radio_label">중급이상</label>
-						</div>
-						</group>
-						<group class="inline-radio"> <span
-							style="font-size: larger; width: 140px;">SQL</span>
-						<div class="_div_radio">
-							<input type="radio" name="SQL" value="입문" class="_input_radio" checked
-								onclick="return(false);" th:attr="checked=${skill[4].skill_level == '입문' ? 'true' : 'false'}"><label class="_radio_label">입문</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="SQL" value="초급" class="_input_radio"
-								onclick="return(false);"  th:attr="checked=${skill[4].skill_level == '초급' ? 'true' : 'false'}"><label class="_radio_label">초급</label>
-						</div>
-						<div class="_div_radio">
-							<input type="radio" name="SQL" value="중급이상" class="_input_radio"
-								onclick="return(false);"  th:attr="checked=${skill[4].skill_level == '중급이상' ? 'true' : 'false'}"><label class="_radio_label">중급이상</label>
-						</div>
-						</group>
+				<div class="_form_radio">
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Java</span>
+					<div class="_div_radio">
+						<input type="radio" name="java" value="입문" class="_input_radio"
+							onclick="return(false);"
+							th:attr="checked=${skill[0].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
 					</div>
-		
+					<div class="_div_radio">
+						<input type="radio" name="java" value="초급" class="_input_radio"
+							onclick="return(false);"
+							th:attr="checked=${skill[0].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="java" value="중급이상" class="_input_radio"
+							onclick="return(false);"
+							th:attr="checked=${skill[0].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
+					</div>
+					</group>
+
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Python</span>
+					<div class="_div_radio">
+						<input type="radio" name="Python" value="입문" class="_input_radio"
+							onclick="return(false);"
+							th:attr="checked=${skill[1].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Python" value="초급" class="_input_radio"
+							onclick="return(false);"
+							th:attr="checked=${skill[1].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Python" value="중급이상"
+							class="_input_radio" onclick="return(false);"
+							th:attr="checked=${skill[1].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">HTML/CSS</span>
+					<div class="_div_radio">
+						<input type="radio" name="HTML/CSS" value="입문"
+							class="_input_radio" checked onclick="return(false);"
+							th:attr="checked=${skill[2].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="HTML/CSS" value="초급"
+							class="_input_radio" onclick="return(false);"
+							th:attr="checked=${skill[2].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="HTML/CSS" value="중급이상"
+							class="_input_radio" onclick="return(false);"
+							th:attr="checked=${skill[2].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Javascript</span>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" value="입문"
+							class="_input_radio" checked onclick="return(false);"
+							th:attr="checked=${skill[3].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" value="초급"
+							class="_input_radio" onclick="return(false);"
+							th:attr="checked=${skill[3].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" value="중급이상"
+							class="_input_radio" onclick="return(false);"
+							th:attr="checked=${skill[3].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">SQL</span>
+					<div class="_div_radio">
+						<input type="radio" name="SQL" value="입문" class="_input_radio"
+							checked onclick="return(false);"
+							th:attr="checked=${skill[4].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="SQL" value="초급" class="_input_radio"
+							onclick="return(false);"
+							th:attr="checked=${skill[4].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="SQL" value="중급이상" class="_input_radio"
+							onclick="return(false);"
+							th:attr="checked=${skill[4].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
+					</div>
+					</group>
+				</div>
+
 
 
 				<br /> <br />
@@ -542,16 +576,16 @@ body {
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 
-						<b style="font-size: larger;"> 저는 이런것도 할줄 알아요~
-						</b>
+						<b style="font-size: larger;"> 저는 이런것도 할줄 알아요~ </b>
 						<p></p>
 						<textarea class="textarea--style-6" name="introduce"
-							id="introduce" rows="5" th:field="*{member.introduce}" readonly style="resize: none;"></textarea>
+							id="introduce" rows="5" th:field="*{member.introduce}" readonly
+							style="resize: none;"></textarea>
 					</div>
 				</div>
 				<br />
 				<div class="row" style="place-content: center;">
-			
+
 					<div class="col-md-7" style="text-align-last: center;">
 						<a th:href="@{/mypage/MyPageUserEdit.do}">
 							<button type="button" class="btn btn-outline-success"
@@ -559,12 +593,16 @@ body {
 								<i class="xi-border-color" aria-hidden="true"></i>수정하러가기
 							</button>
 						</a>
-					
-						<a th:href="@{/mypage/userDelete.do}"><button type="button" class="btn btn-outline-danger" style="border: 1px solid;">회원탈퇴</button></a>
-				
-						
+
+						<!-- <a th:href="@{/mypage/userDelete.do}">  -->
+						<a id="out">
+							<button type="button" class="btn btn-outline-danger"
+								style="border: 1px solid;">회원탈퇴</button>
+						</a>
+
+
 					</div>
-			
+
 				</div>
 			</div>
 		</div>
@@ -823,7 +861,30 @@ body {
 				};
 			};
 
+
+			
 		});
+	</script>
+
+	<script>
+	$(function() {
+	$('#out').click(function(){
+		swal({
+			  title: "회원 탈퇴를 정말 하시겠습니까?",
+			  text: "여기는 없에거나 적거나~",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				  location.href="/mypage/userDelete.do"
+			  } 
+			
+			});
+	})
+	});
+	
 	</script>
 
 </body>

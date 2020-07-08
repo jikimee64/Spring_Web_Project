@@ -67,6 +67,9 @@ public class BoardController {
 		List<Map<String,Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
 		model.addAttribute("list",list); //view까지 전달(forward)
+		System.out.println("출력해라!!" + list);
+		System.out.println("리스트 크기 : " + list.size());
+		
 		model.addAttribute("pageMakerb",pageMakerb); 
 		System.out.println("pageMagerb오냐 " + pageMakerb.isNext());
 		
@@ -150,7 +153,9 @@ public class BoardController {
 	@RequestMapping("writing_Normal_Study.do")
 	public String writingNormalStudyPage() {
 		System.out.println("셀렉트하는 페이지에서 일반전용 글쓰기 페이지로 이동이동(연규가씀)");
-
+		
+		
+		
 		return "user/board/writing_Normal_Study";
 	}
 
@@ -163,11 +168,16 @@ public class BoardController {
 	
 	//스터디 상세보기
 	@RequestMapping("writing_Course_Study_Detail.do")
-	public String writingCourseStudyDetailPage(String s_seq, Model model) {
+	public String writingCourseStudyDetailPage(String s_seq, String page, String perPageNum, Model model) {
 		System.out.println("강의게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
-		Study study = service.getStudy(s_seq);
+		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study",study);
+		model.addAttribute("page",page);
+		model.addAttribute("perPageNum",perPageNum);
+		
+		System.out.println(page);
+		System.out.println(perPageNum);
 		
 		return "user/board/writing_Course_Study_Detail";  //writing_Course_Study_Detail.html
 	}
@@ -175,13 +185,20 @@ public class BoardController {
 	
 	
 	
-	
-	
-	
-	
-	
 	@RequestMapping("writing_Normal_Study_Detail.do")
-	public String writingNormalStudyDetailPage() {
+	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model) {
+		
+		Map<String, Object> study = service.getStudy(s_seq);
+		model.addAttribute("study",study);
+		model.addAttribute("page",page);
+		model.addAttribute("perPageNum",perPageNum);
+		
+		
+		int count = service.getReplyCnt(s_seq);
+		model.addAttribute("count",count);
+		
+		System.out.println("목록 -> 일반 : " + study);
+		
 		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
 		return "user/board/writing_Normal_Study_Detail";
@@ -199,6 +216,28 @@ public class BoardController {
 		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 
 		return "user/board/writing_Normal_Study_Edit";
+	}
+	
+	@RequestMapping("writing_Normal_Study_Delete.do")
+	public String writingNormalStudyDelete(Criteria_Board cri_b, Model model, String s_seq) throws ClassNotFoundException, SQLException {
+System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
+		
+		PageMaker_Board pageMakerb = new PageMaker_Board();
+		pageMakerb.setCri_b(cri_b);
+		
+		pageMakerb.setTotalCount(service.getStudyBoardCount());
+		
+		
+		//DAO받아오기 + 매퍼를 통한 인터페이스 연결
+		List<Map<String,Object>> list = null;
+		list = service.getStudyBoardList(cri_b);
+		model.addAttribute("list",list); //view까지 전달(forward)
+		model.addAttribute("pageMakerb",pageMakerb); 
+		
+		//게시글 삭제
+		int result = service.delete(s_seq);
+		
+		return "user/board/study_List";
 	}
 	
 	

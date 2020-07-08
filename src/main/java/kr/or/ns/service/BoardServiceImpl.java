@@ -65,11 +65,31 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	//스터디 글 상세보기
-	public Study getStudy(String s_seq) {
+	public Map<String, Object> getStudy(String s_seq) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		Study study = dao.getStudy(s_seq);
+		Map<String, Object> study = dao.getStudy(s_seq);
 		
 		return study;
+	}
+	
+	//스터디 글 삭제
+	public int delete(String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		
+		
+		System.out.println("아오 :ㅣ " + s_seq);
+		int count = dao.delete(s_seq);
+		return count;
+		
+	}
+	
+	
+	//댓글 개수
+	public int getReplyCnt(String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int count = dao.getReplyCnt(s_seq);
+		
+		return count;
 	}
 
 	

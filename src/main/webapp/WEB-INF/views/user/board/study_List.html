@@ -141,6 +141,7 @@
 	<div th:replace="user/includes/header :: header"></div>
 
 
+
 	<main id="main">
 
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -273,10 +274,18 @@
 		<!-- 타임리프 반복시작 -->
 		<div th:each="list : ${list}">
 			<div class="row">
-				<div class="col-md-3">
+			
+			<th:block th:switch="${list.CONTENT_KIND}">
+				<div th:case="일반" class="col-md-3">
 					<div class="card" style="width: 100%">
-						<img class="card-img-top" src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg
-					" alt="Card image" style="width: 100%;">
+						<img class="card-img-top" th:src="${list.IMAGE}"
+					alt="Card image" style="width: 100%;">
+					</div>
+				</div>
+				<div th:case="온라인강의" class="col-md-3">
+					 <div class="card" style="width: 100%">
+						<img class="card-img-top" th:src="${list.IMAGE}"
+					alt="Card image" style="width: 100%;">
 						<div class="card-body">
 							<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
 							<p class="card-text _margin_0" style="color: gray; font-size: small;">이지스 퍼블리싱</p>
@@ -285,8 +294,11 @@
 								alt="" style="height: 30px;"> <span>(6)</span>
 								<b>₩44,000</b>
 						</div>
-					</div>
+					</div> 
 				</div>
+			</th:block>
+				
+				
 				<div class="col-md-9" style="padding:30px;">
 					<div class="row" style="margin-top: 10px;">
 						<!-- <div class="col-md-2">
@@ -295,34 +307,41 @@
 								미네미네
 							</b>
 						</div> -->
-						<div class="col-md-3" style="padding-right: 0px;">
+						<div class="col-md-1" style="padding-right: 0px;">
 							<a href="" data-toggle="modal" data-target="#exampleModalCenter">
 								<b th:text="${list.USER_ID}" style="color:black;">
 									작성자 : <!-- 여기에 닉네임 --> 미네미네
 								</b>
 							</a>
 						</div>
-						<div class="col-md-6" style="padding: 0px;">
+						<div class="col-md-5" style="padding: 0px; text-align:center;">
 							<!-- 여기에 뱃지 -->
-							<span class="badge badge-pill badge-primary" th:text="${list.STATUS}">모집중</span> <span
-								class="badge badge-pill badge-info" th:text="${list.LEVEL}">난이도</span>
-							<span class="badge badge-pill badge-secondary" th:text="${list.LAN_SEQ}">Spring</span> <span
-								class="badge badge-pill badge-success" th:text="${list.PEOPLE}">4명</span>
-							<span class="badge badge-pill badge-warning" th:text="${list.LOC_SEQ}">온라인</span>
+							<span class="badge badge-pill badge-primary" th:text="${list.STATUS}"></span> <span
+								class="badge badge-pill badge-info" th:text="${list.LEVEL}"></span>
+							<span class="badge badge-pill badge-secondary" th:text="${list.CATE_LANGUAGE}"></span> <span
+								class="badge badge-pill badge-success" th:text="|${list.PEOPLE}명|"></span>
+							<span class="badge badge-pill badge-warning" th:text="${list.LOC}"></span>
+							<span class="badge badge-pill badge-light" th:text="${list.CONTENT_KIND}"></span>
 						</div>
+						 <div class="col-md-3" style="text-align: center;">
+							<b th:text="|등록일 : ${list.WRITE_DATE}|"></b>
+						</div>  
 						<div class="col-md-3" style="text-align: center;">
-							<!-- 여기에 시간 -->
-							<b>20-06-25 17:20</b>
+							<b th:text="|마감일 : ${list.DEADLINE}|"></b>
 						</div>
 					</div>
 
 					<div class="row" style="margin-top: 30px;">
 <!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
 <!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
-						
-						<a th:href="@{/board/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ})}">
-							<h2 th:text="${list.TITLE}">스터디 같이 하실분 모집합니다</h2>
-						</a>
+						<th:block th:switch="${list.CONTENT_KIND}">
+							<a th:case="일반" th:href="@{/board/writing_Normal_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
+								<h2 th:text="${list.TITLE}"></h2>
+							</a>
+							<a th:case="온라인강의" th:href="@{/board/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
+								<h2 th:text="${list.TITLE}"></h2>
+							</a>
+						</th:block>
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 					</div>
 					<div class="row" style="margin: 0px 5px 0px 2px;" th:text="${list.CONTENT}"><p>고행을 하였으며
