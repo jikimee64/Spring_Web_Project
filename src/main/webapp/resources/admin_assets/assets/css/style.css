@@ -8061,7 +8061,7 @@ header .form-inline .search-form.close {
 	min-width: 90px;
 	text-align:center;
 	border-radius: 5px;
-
+	box-shadow: 0px 0px 15px rgba(127, 137, 161, 0.25);
 	
 }
 
