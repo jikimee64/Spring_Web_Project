@@ -1,3 +1,4 @@
+
 <style>
 
 .nav-menu .drop-down ul {
@@ -38,13 +39,17 @@
 
 
 </style>
+
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<!-- ======= Header ======= -->
 <header id="header" class="fixed-top header-transparent"
 	style="padding: 10px 10px;" th:fragment="header">
-	
+
+
+
+<!-- ======= Header ======= -->
+
 	<div class="container-fluid">
 
 		<div class="row justify-content-center">
@@ -58,9 +63,9 @@
 
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
-						<li><a href="/user/main.do">Home</a></li>
-						<li><a href="/board/course_List.do">온라인 강의</a></li>
-						<li><a href="/board/study_List.do">스터디 모임</a></li>
+						<li class="_pageactive"><a href="/user/main.do">Home</a></li>
+						<li class="_pageactive"><a href="/board/course_List.do">온라인 강의</a></li>
+						<li class="_pageactive"><a href="/board/study_List.do">스터디 모임</a></li>
 						<li
 							style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
 
@@ -70,30 +75,30 @@
 								alt="" style="height: 50px; border-radius: 50%;"></a>
 							<li class="drop-down"
 								style="padding-left: 0px; padding-right: 15px;"><a href=""></a>
-								
-								<ul style=" border-top-left-radius: 10px;border-top-right-radius: 10px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+
+								<ul
+									style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
 									<!-- <span sec:authentication="principal.username"></span> -->
-									<th:block sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
-										<li style="margin-left:21px;">
-											<b><span sec:authentication="principal.username"></span>님 환영합니다</b>
-										</li>
-										<br/>
-										<li><a href="/mypage/mypage.do">마이페이지</a></li>
-										<li><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
-										<li><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
+									<th:block
+										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
+										<li style="margin-left: 21px;"><b><span
+												sec:authentication="principal.username"></span>님 환영합니다</b></li>
+										<li class="_pageactive"><a href="/mypage/mypage.do">마이페이지</a></li>
+										<li class="_pageactive"><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
+										<li class="_pageactive"><a href="/mypage/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
-								
+
 									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-										<li style="margin-left:21px;">
-											<b><span sec:authentication="principal.username"></span>님 환영합니다</b>
-										</li>
-										<li ><a th:href="@{/manager/index.do}" style="padding-bottom:0px;">관리자 페이지</a></li>
-<!-- 									</th:block> -->
-										<li><a th:href="@{/logout}">로그아웃</a></li>
-								</ul></li>
+										<li class="_pageactive" style="margin-left: 21px;"><b><span
+												sec:authentication="principal.username"></span>님 환영합니다</b></li>
+										<li class="_pageactive"><a th:href="@{/manager/index.do}" style="padding-bottom:0px;">관리자 페이지</a></li>
+									</th:block>
+									<li class="_pageactive"><a th:href="@{/logout}">로그아웃</a></li>
+								</ul>
+							</li>
 
 
-							<a href=""> <img src="/resources/images/img/message2.png"
+							<a href="/mypage/mypage_Message_From_Board.do"> <img src="/resources/images/img/message2.png"
 								style="width: 50px; height: 50px;"> <span class="dot">11</span>
 							</a>
 						</th:block>
@@ -114,8 +119,8 @@
 
 	</div>
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
 		$(document).ready(function() {
 			connect();
 		})
@@ -165,7 +170,7 @@
 		}
 	
 		$(document).ready(function() {
-			  $('li.active').removeClass('active');
+			  $('._pageactive.active').removeClass('active');
 			  $('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
 			  console.log('페이지 전환 찍히나여?');
 			 
@@ -174,4 +179,3 @@
 	</script>
 </header>
 <!-- End Header -->
-

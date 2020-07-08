@@ -6,6 +6,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>course_list</title>
+
+
+
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 
@@ -154,6 +157,7 @@ body {
 }
 
 /* 하트 체크박스 스타일 시작 */
+
 input[type=checkbox] {
 	clear: both;
 	display: none;
@@ -297,6 +301,12 @@ keyframes heart-keyframes { 100% {
 	-moz-transform: scale(1.03);
 }
 }
+      .page-item.active .page-link {
+                z-index: 3;
+                color: #fff;
+                background-color: #18d26e;
+                border-color: #18d26e;
+            }
 /* 하트 체크박스 끝 */
 </style>
 
@@ -409,15 +419,6 @@ keyframes heart-keyframes { 100% {
 		</div>
 	</section>
 
-	<!-- 이건 하트인데 뿌릴때 아이디랑 라벨 맞춰서 번호를 입혀줘야겟음 시작-->
-	<input type="checkbox" id="12" />
-	<label for="12" style="background-color: white;"> <svg
-			xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 51.02">
-							    <path
-				d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
-							</svg>
-	</label>
-	<!-- 이건 하트인데 뿌릴때 아이디랑 라벨 맞춰서 번호를 입혀줘야겟음 끝-->
 
 
 	<!-- ddddddddd -->
@@ -458,7 +459,8 @@ keyframes heart-keyframes { 100% {
 							</div>
 							<div class="col-3">
 								<!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
-								<input type="checkbox" id="heart" /> <label for="heart">
+								<input type="checkbox" class="_bookMark"th:id="${list.L_SEQ}" /> <label th:for="${list.L_SEQ}">
+<!-- 								<input type="checkbox" id="heart" /> <label for="heart"> -->
 									<svg xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 56.69 51.02">
 							    <path
@@ -637,17 +639,25 @@ keyframes heart-keyframes { 100% {
 
 	<script>
 	$(function(){
+			
 		
 		/* 이거는 하트 클릭시 alert창 띄우는건데 지금은 $('heart')로 되어있는데 이건  this버튼으로 해야댐(해당영역에 있는거 클릭으로 바꿔야댐) */
-		  $('#heart').click(function(){
-			  if($('#heart').is(":checked")){
-				    alert('this가 북마크 리스트에 추가되었습니당');
+		  $('._bookMark').click(function(evt){
+			  var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
+			  
+			  if($(this).is(":checked")){
+				    alert(lectureTitle + ' 북마크에 추가됨');
+				    console.log($(this).is(":checked"));
 			  }else{
-				  alert('this가 북마크 리스트에서 삭제되었습니당 으악');
+				  alert(lectureTitle + ' 북마크에서 삭제됨');
+				  console.log($(this).is(":checked"));
 			  }
-		
 		  });
+		
+			
+		
 		});
+	
 	</script>
 </body>
 
