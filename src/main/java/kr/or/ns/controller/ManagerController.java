@@ -15,8 +15,9 @@ import kr.or.ns.vo.Users;
 @RequestMapping("/manager/")
 public class ManagerController {
 	
-	@Autowired
-	private ManagerServiceImpl service;
+	/*
+	 * @Autowired private ManagerService service;
+	 */
 	
 	
 	@RequestMapping("index.do")
@@ -55,7 +56,8 @@ public class ManagerController {
 		memberList = service.getMemberList();  //회원목록 
 		
 		model.addAttribute("memberList",memberList); //view까지 전달
-        WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList); //cordova는 대체 무엇인고
+		/* WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList); */
+        //cordova는 대체 무엇인고
         
         return "manager/board/member_Management"; 
 	}
