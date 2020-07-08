@@ -8046,19 +8046,23 @@ header .form-inline .search-form.close {
 }
 
 .user-area .user-menu {
-	background: #fff;
-	border: none;
+	background: #F1F2F7;
+	border:none;
 	font-family: 'Open Sans';
 	left: inherit !important;
 	right: 0;
 	top: 55px !important;
 	margin: 0;
-	max-width: 150px;
+	max-width: 90px;
 	padding: 5px 10px;
 	position: absolute;
 	width: 100%;
 	z-index: 999;
-	min-width: 150px;
+	min-width: 90px;
+	text-align:center;
+	border-radius: 5px;
+
+	
 }
 
 .user-area .user-menu .nav-link {
@@ -8067,6 +8071,8 @@ header .form-inline .search-form.close {
 	font-size: 14px;
 	line-height: 22px;
 	padding: 5px 0;
+	border-radius:5;
+	
 }
 
 .user-area .user-avatar {
