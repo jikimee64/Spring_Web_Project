@@ -5,20 +5,9 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>writing_course_study_detail</title>
-	<link href="../../../../resources/assets/img/favicon.png" rel="icon">
-	<link href="../../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-	<link href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/aos/aos.css" rel="stylesheet">
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 	<!-- Template Main CSS File -->
-	<link href="../../../../resources/assets/css/style.css" rel="stylesheet">
-
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
 		integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
@@ -135,12 +124,12 @@
 
 
 				<br />
-				<div style="text-align: end;">
+				<div style="text-align: end; ">
 					<a href="/board/writing_Course_Study_Edit.do">
 						<button type="button" class="btn btn-warning"
-							style="background-color:#18d26e; color:white; border-color:#18d26e;">수정</button>
+							style="background-color:#18d26e; color:white; border-color:#18d26e;height: 30px; padding-top:4px;">수정</button>
 					</a>
-					<button type="button" class="btn btn-danger">삭제</button>
+					<button type="button" class="btn btn-danger" style="height: 30px; padding-top:4px;">삭제</button>
 					<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
 						<img src="../../../../resources/images/img/siren.png" style="width:30px; height:30px;">
 					</a>
@@ -158,7 +147,7 @@
 							<div class="col-md-11" style="padding:0px;"></div>
 							<div class="col-md-1" style="position: relative; padding:0px;">
 								<button class="btn btn-warning" id="commentWrite" name="commentWrite"
-									style="padding:7px;">
+									style="padding:7px; height: 30px;  padding-top:4px;">
 									등록
 								</button>
 							</div>
@@ -185,11 +174,11 @@
 					</div>
 					<div style="text-align: center; margin:10px 0px 10px 0px;">
 						<button type="submit" class="btn btn-success"
-							style="width:80%; background-color:#18d26e; color:white; border-color:#18d26e;">지원하기</button>
+							style="width:100%; background-color:#18d26e; color:white; border-color:#18d26e;">지원하기</button>
 						<!-- 이거는 사용자 권한 -->
 					</div>
 					<div style="text-align: center; margin:10px 0px 10px 0px;">
-						<button type="button" class="btn btn-warning" style="width:80%;">목록으로</button>
+						<button type="button" class="btn btn-warning" style="width:100%;">목록으로</button>
 					</div>
 				</div>
 
@@ -197,21 +186,10 @@
 		</div>
 		<!-- 		</th:block> -->
 	</div>
-	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
-	<script src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-	<script src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
-	<script src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-	<script src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
-	<script src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
-	<script src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
-
-	<script src="../../../../resources/assets/js/main.js"></script>
 
 	<div th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal"> </div>
 	<div th:replace="/user/includes/footer :: footer"> </div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<script>
 		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
 		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h

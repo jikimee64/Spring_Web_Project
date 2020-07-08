@@ -1,11 +1,11 @@
 /* CUSTOM STYLE */
 
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
 
 body,
 select,
 input {
-    font-family: 'Jeju Gothic', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 .wrap {

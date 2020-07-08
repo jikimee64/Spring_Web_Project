@@ -22,7 +22,6 @@
 
 <style>
 /*[ Input ]*/
-
 button:focus {
 	outline: none !important;
 }
@@ -179,10 +178,8 @@ textarea {
 		margin-top: 6px;
 	}
 }
-http://localhost:8001/manager/index.do
-/* 버튼 */
+/* http: //localhost: 8001/manager/index.do 버튼 */ 
 .login100-form-btn {
-	font-family: Raleway-Bold;
 	font-size: 16px;
 	line-height: 1.5;
 	color: #18d26e;
@@ -222,7 +219,6 @@ http://localhost:8001/manager/index.do
 /* *:focus {
 	border: solid 1px #18d26e;
 } */
-
 ._border_box_shadow {
 	background: #fff;
 	margin: -35px;
@@ -260,7 +256,8 @@ group+group {
 ._div_radio {
 	position: relative;
 	flex: 1;
-	border: 1px solid #CCCCCC;
+	border-radius: 3px;
+
 }
 
 ._input_radio {
@@ -274,7 +271,7 @@ group+group {
 	position: absolute;
 	top: 0;
 	left: 0;
-	color: #b6b6b6;
+	color: #272C33;
 	width: 100%;
 	height: 100%;
 	background: #fff;
@@ -282,7 +279,8 @@ group+group {
 	align-items: center;
 	justify-content: center;
 	pointer-events: none;
-	border-right: 1px solid #b6b6b6;
+
+
 }
 
 ._div_radio:last-child label {
@@ -293,7 +291,10 @@ group+group {
 	background: #00d463;
 	font-weight: 500;
 	color: #fff;
+	border-radius: 5px;
 }
+
+
 </style>
 </head>
 
@@ -427,7 +428,7 @@ group+group {
 											<div class="col-2"></div>
 											<div class="col-8">
 												<h3>
-													<b style="margin-left: 10px; font-size: larger;">내 실력
+													<b style="margin-left: 10px; font-size: x-large;">내 실력
 														체크</b>
 												</h3>
 											</div>
@@ -523,7 +524,7 @@ group+group {
 											<div class="col-2"></div>
 											<div class="col-8">
 												<h3>
-													<b style="margin-left: 10px; font-size: larger;">소개글</b>
+													<b style="margin-left: 10px; font-size: x-large;">소개글</b>
 												</h3>
 											</div>
 											<div class="col-2"></div>
@@ -532,7 +533,9 @@ group+group {
 
 										<div class="row">
 											<textarea class="textarea--style-6" name="introduce"
-												id="introduce" rows="5" required style="background-color:#F5F5F5; margin:0 20px; resize: none;"readonly></textarea>
+												id="introduce" rows="5" required
+												style="background-color: #F5F5F5; margin: 0 20px; resize: none;"
+												readonly></textarea>
 										</div>
 
 
@@ -542,11 +545,8 @@ group+group {
 								</div>
 								<!-- CARD-BODY END -->
 
-								<div class="card-footer">
-									<a href="MemberUpdatePage.m?m_id=${memberDTO.m_id}"
-										type="button" class="btn btn-primary btn-sm"> <i
-										class="fa fa-dot-circle-o"></i> 수정
-									</a> <a href="MemberDelete.m?m_id=${memberDTO.m_id}" type="button"
+								<div class="card-footer"style="text-align: end;">
+									<a href="MemberDelete.m?m_id=${memberDTO.m_id}" type="button"
 										class="btn btn-danger btn-sm"> <i
 										class="fa fa-dot-circle-o"></i> 삭제
 									</a>

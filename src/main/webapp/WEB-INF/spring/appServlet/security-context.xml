@@ -11,6 +11,9 @@
   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<security:http>
+	
+		<security:access-denied-handler  error-page="/403.do"/>
+	
 		<security:csrf disabled="true" />
 		<!-- default-target-url : 로그인이 성공한 경우 호출할 주소  -->
 		<security:form-login
@@ -23,16 +26,24 @@
 		<!-- 비로그인 막는 페이지..   -->
 	<!-- 스터디 게시판 게시글 등록  -->
  	<security:intercept-url
-			pattern="/board/board_Select.do" access="hasRole('ROLE_USER')" />  
+			pattern="/board/**.do" access="hasRole('ROLE_USER')" />  
 	<!-- 마이페이지 -->
 	<security:intercept-url
 			pattern="/mypage/**.do" access="hasRole('ROLE_USER')" /> 
+			
+	<!-- 관리자페이지 -->
+	<security:intercept-url
+			pattern="/manager/**.do" access="hasRole('ROLE_ADMIN')" />
 			
 			<!-- 스터디모집하기 버튼  -->
 		<!-- <security:intercept-url
 			pattern="/board/*Detail.do" access="hasRole('ROLE_USER')" />
 		<security:intercept-url pattern="/admin/**"
 			access="hasRole('ROLE_ADMIN')" /> -->
+			
+			
+			
+	
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>

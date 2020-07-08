@@ -4,34 +4,9 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>course_list</title>
-	<link href="login.css" type="text/css" rel="stylesheet" />
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
-	<link href="../../../../resources/assets/img/favicon.png" rel="icon">
-	<link href="../../../../resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-	<link href="../../../../resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-	<link href="../../../../resources/assets/vendor/aos/aos.css" rel="stylesheet">
-
-	<!-- Template Main CSS File -->
-	<link href="../../../../resources/assets/css/style.css" rel="stylesheet">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>course_list</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 
 </head>
@@ -104,62 +79,79 @@
 #portfolio #portfolio-flters-lan li {
 	background: rgb(240, 238, 238);
 }
+
+._card_hover_effect:hover {
+	text-decoration: none !important;
+	padding:8px !important;
+	border-radius: 10px;
+	border: 2px solid #02db63;
+}
+._card_hover_effect:hover ._heart_ico{
+	background-color:red !important;
+}
+
+.pager li>a, .pager li>span {
+	border: white;
+	background-color: #fff;
+}
+
+.pager li>a, .pager li>span {
+	display: inline-block;
+	padding: 5px 14px;
+	border-radius: 5px;
+}
+
+.page-link {
+	color: #18d26e;
+}
+
+.page-link {
+	position: relative;
+	margin-left: -1px;
+	line-height: 1.25;
+}
+
+a {
+	text-decoration: none;
+}
+
+a {
+	transition: 0.5s;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a:-webkit-any-link {
+	cursor: pointer;
+}
+
+li {
+	text-align: -webkit-match-parent;
+}
+
+.pager {
+	padding-left: 0;
+	margin: 20px 0;
+	list-style: none;
+}
+
+body {
+	font-size: 14px;
+	background-color: #fff;
+	background: #fff;
+	margin: 0;
+}
+
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
+}
+
 </style>
-<style>
-			.pager li>a, .pager li>span {
-				border: white;
-				background-color: #fff;
-			}
-			.pager li>a, .pager li>span {
-				display: inline-block;
-				padding: 5px 14px;
-				border-radius: 5px;
-			}
-			.page-link {
-				color:  #18d26e;
-			}
-			
-			.page-link {
-				position: relative;
-				margin-left: -1px;
-				line-height: 1.25;
-			}
-			a {
-				text-decoration: none;
-			}
-			
-			a {
-				transition: 0.5s;
-			}
-			
-			* {
-				box-sizing: border-box;
-			}
-			a:-webkit-any-link {
-				cursor: pointer;
-			}
-			li {
-				text-align: -webkit-match-parent;
-			}
-			.pager {
-				padding-left: 0;
-				margin: 20px 0;
-				list-style: none;
-			}
-			body {
-				
-   				font-size: 14px;
-				background-color: #fff;
-				background: #fff;
-				margin: 0;
-			}
-			.page-item.active .page-link {
-				    z-index: 3;
-				    color: #fff;
-				    background-color: #18d26e;
-				    border-color: #18d26e;
-				}
-		</style>
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
@@ -228,7 +220,7 @@
 					<div class="col-md-3 _category box aos-init aos-animate"
 						data-aos="fade-up" data-aos-delay="300">
 						<div>
-							<span class="title _category_list  ">언어</span>
+							<span class="title _category_list">언어</span>
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
@@ -289,7 +281,8 @@
 			<th:block th:if="${index.index%4==0}"
 				th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
 			<div class="col-md-3">
-				<div class="card" style="width: 100%">
+				<div class="card _card_hover_effect"
+					style="width: 100%; padding: 4px; margin: 10px;">
 					<img class="card-img-top"
 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
 						alt="Card image" style="width: 100%">
@@ -304,6 +297,10 @@
 							style="color: rgb(23, 92, 190);"> <b
 							th:text="${list.P_SEQ}">₩44,000</b>
 						</span>
+						<a href="">
+							<img class="_heart_svg" src="/resources/images/img/heart.ico" alt=""  style="border-radius: 50%; height:50px;"/>
+						</a>
+					
 					</div>
 				</div>
 			</div>
@@ -436,7 +433,7 @@
 
 		<!-- 페이징 부트스트랩 버튼 생성하기  -->
 		<ul class="pager d-flex" style="place-content: center;">
-		
+
 			<!-- 이전버튼 생성여부-->
 			<li th:if="${pageMaker.prev} == true"><a
 				th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
@@ -454,11 +451,10 @@
 
 
 			<!-- 다음버튼 생성여부 -->
-			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}" >
+			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
 				<a
-				th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}" class="page-link">
-				Next</a>
-				<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+				th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}"
+				class="page-link"> Next</a> <!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
 			</li>
 
 
@@ -469,28 +465,7 @@
 
 
 	<div th:replace="/user/includes/footer :: footer"></div>
-	<!-- Vendor JS Files -->
-	<script src="../../../../resources/assets/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/php-email-form/validate.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/counterup/counterup.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/venobox/venobox.min.js"></script>
-	<script
-		src="../../../../resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<script src="../../../../resources/assets/vendor/aos/aos.js"></script>
-
-	<!-- Template Main JS File -->
-	<script src="../../../../resources/assets/js/main.js"></script>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 </body>
 

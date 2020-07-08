@@ -21,7 +21,11 @@
 <!-- dataTable end  -->
 <style>
 #myTable td {
-	padding-top: 16px;
+	padding-top: 14px;
+}
+
+td:focus {
+	outline: none;
 }
 </style>
 </head>
@@ -69,9 +73,12 @@
 									style="width: 100%;">
 									<thead>
 										<tr class="text-center">
-											<th class="text-center" style="width: 50px;">내용</th>
-											<th style="width: 30px;">작성자</th>
-											<th style="width: 30px;">신고사유</th>
+											<th class="text-center" style="width: 50px;">신고번호</th>
+											<th style="width: 30px;">게시판유형</th>
+											<th style="width: 30px;">게시글번호</th>
+											<th style="width: 30px;">신고자</th>
+											<th style="width: 30px;">피신고자</th>
+											<th style="width: 30px;">처리상태</th>
 											<!-- <th style="width: 30px;">핸드폰</th> -->
 										</tr>
 									</thead>
@@ -80,9 +87,12 @@
 										<c:forEach var="list" items="${mList}">
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
-												<td align="center"><a
-													href="MemberDetail.m?m_id=${list.m_id}">${list.m_id}</a></td>
+												<td align="center"><a data-toggle="modal"
+													data-target="#declationPageModal" href="#">${list.m_id}</a></td>
 												<td align="center">${list.name}</td>
+												<td align="center">${list.email}</td>
+												<td align="center">${list.email}</td>
+												<td align="center">${list.email}</td>
 												<td align="center">${list.email}</td>
 												<!-- <td align="center">${list.phone}</td> -->
 											</tr>
@@ -120,30 +130,47 @@
 	<!-- dataTaBle end -->
 
 	<div
-		th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
+		th:replace="/manager/includes/declation_Page_Modal :: declation_Page_Modal">
 	</div>
 
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 	<script>
 		$(function() {
-			$('#stop').click(function(){
+			$('#declare').click(function(){
 				swal({
-					  title: "Are you sure?",
-					  text: "Once deleted, you will not be able to recover this imaginary file!",
+					  title: "신고를 처리하시겠습니까?",
+					  text: "",
 					  icon: "warning",
 					  buttons: true,
 					  dangerMode: true,
 					})
 					.then((willDelete) => {
 					  if (willDelete) {
-					    swal("Poof! Your imaginary file has been deleted!", {
+					    swal("처리가 완료되었습니다(처리상태 db에서 변경)", {
 					      icon: "success",
 					    });
 					  } else {
-					    swal("Your imaginary file is safe!");
+					    swal("처리가 취소되었습니다.");
 					  }
 					});
+			})
+			
+			$('#message').click(function(){
+				swal({
+					  title: "쪽지제목",
+					  text: "쪽지내용",
+					  buttons: true,
+					  dangerMode: true,
+					})
+					/* .then((willDelete) => {
+					  if (willDelete) {
+					    swal("처리가 완료되었습니다(처리상태 db에서 변경)", {
+					      icon: "success",
+					    });
+					  } else {
+					    swal("처리가 취소되었습니다.");
+					  }
+					}); */
 			})
 		});
 	</script>
