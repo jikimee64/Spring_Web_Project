@@ -18,7 +18,7 @@
 
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
-						<li class="active"><a href="/user/main.do">Home</a></li>
+						<li><a href="/user/main.do">Home</a></li>
 						<li><a href="/board/course_List.do">온라인 강의</a></li>
 						<li><a href="/board/study_List.do">스터디 모임</a></li>
 						<li
@@ -73,10 +73,7 @@
 		</div>
 
 	</div>
-</header>
-<!-- End Header -->
-
-<script
+	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 		$(document).ready(function() {
@@ -126,6 +123,15 @@
 									+ "<a href='${pageContext.request.contextPath}/messageView.do'>"
 									+ msg.substring(9, 11) + "</a>");
 		}
+	
+		$(document).ready(function() {
+			  $('li.active').removeClass('active');
+			  $('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
+			  console.log('페이지 전환 찍히나여?');
+			 
+			  console.log('스크롤 없애기 전환 찍히나여?');
+			});
 	</script>
+</header>
+<!-- End Header -->
 
-</div>
