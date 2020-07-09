@@ -3,6 +3,7 @@ package kr.or.ns.controller;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,12 +41,18 @@ public class MyPageController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	
-	//마이페이지 첫화면 가져오기(일단 지금은 북마크)
+	//마이페이지 뿌려줄 데이터 가져오기(일단 지금은 북마크)
 	@RequestMapping(value= "mypage.do")
 	public String myPage(Model model, Principal principal) {
 		String users = principal.getName();
-		System.out.println(users);
-		return "user/mypage/mypage.html";
+		System.out.println("유저정보" + users);
+		
+		List<Map<String,Object>> list = null;
+		list = service.myPagelist(users);
+		model.addAttribute("list", list);
+		System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + list);
+		
+		return "user/mypage/mypage";
 		
 	}
 

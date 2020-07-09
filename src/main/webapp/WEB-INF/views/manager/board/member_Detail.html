@@ -520,7 +520,7 @@ group+group {
 						<input type="radio" name="html_css" value="중급이상"
 							class="_input_radio"
 							 onclick="return(false);"
-							th:attr="checked=${skill[2].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							th:attr="checked                                                                                                                    =${skill[2].skill_level == '중급이상' ? 'true' : 'false'}"><label
 							class="_radio_label">중급이상</label>
 					</div>
 					</group>
@@ -595,8 +595,8 @@ group+group {
 				<div class="row" style="place-content: center;">
 					<div class="col" style="text-align-last:end;">
 <!-- 					th:href="@{/manager/board/member_Detail.do(user_id=${memberList.USER_ID})} -->
-						<a th:href="@{/manager/board/memberDel.do(user_id=${member.user_id})}" type="button"
-							class="btn btn-danger btn"
+						<a href="#" type="button"
+							class="btn btn-danger btn _delete"
 							style="border-radius: 3px; background-color: red; border-color: red;">
 							<i class="fa fa-dot-circle-o"></i> 삭제
 						</a>
@@ -607,6 +607,7 @@ group+group {
 							style="border-radius: 3px; background-color: #00d463; border-color: #00d463;">
 							<i class="fa fa-dot-circle-o"></i> 목록으로
 						</a>
+						
 					</div>
 				</div>
 
@@ -625,9 +626,35 @@ group+group {
 			<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script> -->
 
 			<script>
-				$(function() {
-
-				});
+			$(function() {
+				
+				
+				
+				$('._delete').click(function(){
+					var userId = $('#user_id').val();
+					swal({
+						  title: userId+"계정을 진짜 삭제하시겠습니까??",
+						  text: "OK버튼 클릭시 삭제 회원삭제...",
+						  icon: "warning",
+						  buttons: true,
+						  dangerMode: true,
+						})
+						.then((willDelete) => {
+							console.log('확인버튼누르면 요기...');
+						  if (willDelete) {
+						    swal("성공적으로 정지완료!!", {
+						      icon: "success",
+						    });
+						    $('.swal-button--confirm').click(function(){
+						    	location.href="/manager/board/memberDel.do?user_id="+userId
+						    });
+						    
+						  } else {
+						    swal("취소잼");
+						  }
+						});
+				})
+			});
 			</script>
 </body>
 
