@@ -405,6 +405,22 @@
 	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div>
 	<div th:replace="user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	
+	<script>
+	
+	$(function(){
+		
+	/* 페이지 0 뜨는거 없애기 시작 */
+
+	var _page_button0 = $('.page-item').children().last().text();
+	
+	if(_page_button0 == 0){
+		$('.page-item').children().last().remove();
+	}
+	/*  페이지 0 뜨는거 없애기 끝 */
+	
+	});
+	</script>
 </body>
 
 

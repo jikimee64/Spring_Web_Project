@@ -641,7 +641,16 @@ keyframes heart-keyframes { 100% {
 	$(function(){
 			
 		
-		/* 이거는 하트 클릭시 alert창 띄우는건데 지금은 $('heart')로 되어있는데 이건  this버튼으로 해야댐(해당영역에 있는거 클릭으로 바꿔야댐) */
+		/* 페이지 0 뜨는거 없애기 시작 */
+		var _page_button0 = $('.page-item').children().last().text();
+		
+		if(_page_button0 == 0){
+			$('.page-item').children().last().remove();
+		}
+		/*  페이지 0 뜨는거 없애기 끝 */
+	
+		
+		/* 이거는 하트 클릭시 alert창 띄우는거*/
 		  $('._bookMark').click(function(evt){
 			  var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
 			  
@@ -653,7 +662,8 @@ keyframes heart-keyframes { 100% {
 				  console.log($(this).is(":checked"));
 			  }
 		  });
-		
+		/* 하트 클릭시  alert창 띄우기 끝 */
+			
 			
 		
 		});
