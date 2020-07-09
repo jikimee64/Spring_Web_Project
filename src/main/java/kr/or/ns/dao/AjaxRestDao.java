@@ -22,4 +22,7 @@ public interface AjaxRestDao {
 	//중복체크
 	public int idcheck(String user_id);
 	
+	
+	//스터디 그룹 인서트
+	public int insertStudyGroup(String user_id);
 }

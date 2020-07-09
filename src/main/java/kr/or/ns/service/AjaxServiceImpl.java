@@ -156,4 +156,21 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println(result+"결과 찍어보기  dao 에서 가져온 반환값 ");
 		return result;
 	}
+	
+	//스터디 지원하기 인서트
+	@Override
+	public int applyNomalStudy(String user_id) {
+		System.out.println("지원하기: " + user_id);
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		
+		/*
+		 * HashMap<String, String> map = new HashMap();
+		 * 
+		 * map.put("user_id", user_id);
+		 */
+		
+		int result = 0;
+		result = dao.insertStudyGroup(user_id);
+		return result;
+	}
 }

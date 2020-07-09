@@ -15,5 +15,6 @@ public interface AjaxService {
 
 	public int searchId(String user_id, String user_email);
 	public int idcheck(String user_id) throws ClassNotFoundException;
-
+	
+	public int applyNomalStudy(String user_id);
 }

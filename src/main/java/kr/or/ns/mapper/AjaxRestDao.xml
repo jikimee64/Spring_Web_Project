@@ -31,4 +31,9 @@
 		select count(*) from users
 		where user_id = #{user_id} and user_email = #{user_email}
 	</select>
+	
+	<!-- 스터디 그룹 인서트 -->
+	<insert id="insertStudyGroup">
+	insert into study_group(stu_seq,user_id) values(#{stu_seq}, #{user_id})
+	</insert>
 </mapper>
