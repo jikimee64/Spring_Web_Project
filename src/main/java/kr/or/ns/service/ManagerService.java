@@ -1,5 +1,9 @@
 package kr.or.ns.service;
 
-public interface ManagerService {
+import java.util.List;
 
+import kr.or.ns.vo.Users;
+
+public interface ManagerService {
+	public List<Users> getMemberList();
 }
