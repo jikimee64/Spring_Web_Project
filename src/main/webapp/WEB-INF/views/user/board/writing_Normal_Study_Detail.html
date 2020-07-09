@@ -516,10 +516,26 @@ keyframes heart-keyframes { 100% {
 						type : 'POST',
 						data : JSON.stringify(obj),
 						success : function(data) {
-							console.log(data);
-						}
-				}) 
-			  } else {
+							console.log("이게뭐라고?" + data);
+							if(data == 0){
+								swal({
+									title: "이미 지원한 스터디입니다.",
+									  icon: "warning",
+									  buttons: true
+									})
+							}else {
+							swal({title:"지원이 완료되었습니다.",
+								icon: "info"})
+	
+			  }
+						},
+						error: function(request, status, error){
+							console.log("code:" + request.status + "\n"
+									+ "error:" + error);
+
+					  }
+				   });
+						}else {
 			    swal({
 			    	title: "지원이 취소되었습니다."
 			    });

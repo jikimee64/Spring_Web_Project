@@ -111,18 +111,21 @@ public class AjaxRestController {
 		return userid;
 
 	}
-	//일반스터디 글 등록하기
+	
+	//일반스터디 
 	@RequestMapping(value = "nomalstudy.do", method = RequestMethod.POST)
-	public String applyNomalStudy(@RequestBody HashMap<String, Object>params, Principal principal) {
+	public int applyNomalStudy(@RequestBody HashMap<String, Object>params, Principal principal) {
 		String userid = principal.getName();
 		String s_seq = (String)params.get("s_seq");
+	
 		System.out.println("잘오나욤!!");
 		System.out.println("아이디 : " + userid);
 		System.out.println("글번호 : " + s_seq);
 		int result = service.applyNomalStudy(s_seq, userid);
 		System.out.println("잘됐나 확인" + result);
 		
-		return "redirect:/index.do";
+		
+		return result;
 	}
 
 
