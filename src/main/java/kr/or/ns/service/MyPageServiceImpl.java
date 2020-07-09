@@ -33,7 +33,9 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public Users getUsers(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		System.out.println("서비스 : " + userid);
 		Users user = dao.getUsers(userid);
+		System.out.println("서비스2 : " + user);
 		return user;
 	}
 

@@ -255,12 +255,16 @@ keyframes heart-keyframes { 100% {
 						<!-- 							<h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
 
 					</div>
+					
+					
 					<div class="row">
 						<div class="col-md-8"></div>
 						<div class="col-md-4" style="width: 100%;">
 							<div class="row" style="margin-left: 30px; margin-top: -20px;">
-								<th:block th:if=" ${study.FILESRC != null}">
-									<div class="form-group" style="margin: 0">
+								<th:block th:switch="${study.FILESRC}">
+									<div th:case="defaultfile" class="form-group" style="margin: 0">
+									</div>
+									<div th:case="${study.FILESRC}" class="form-group" style="margin: 0">
 										<a href="" style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
 											<span th:text="${study.FILESRC}"></span>
 										</a>
@@ -269,13 +273,17 @@ keyframes heart-keyframes { 100% {
 							</div>
 						</div>
 					</div>
+					
+					
 					<div class="row">
 						<div class="col-md-8"></div>
 						<div class="col-md-4" style="width: 100%">
 							<div class="row" style="margin-left: 30px; margin-top: 5px;">
-								<th:block th:if=" ${study.FILESRC2 != null}">
-									<div class="form-group" style="margin: 0">
-										<a href=""  style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
+								<th:block th:switch="${study.FILESRC2}">
+									<div th:case="defaultfile2" class="form-group" style="margin: 0">
+									</div>
+									<div th:case="${study.FILESRC2}" class="form-group" style="margin: 0">
+										<a href="" style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
 											<span th:text="${study.FILESRC2}"></span>
 										</a>
 									</div>

@@ -299,7 +299,6 @@ body {
 
 
 
-
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
@@ -313,13 +312,10 @@ body {
 			<div class="_border_box_shadow">
 				&nbsp;&nbsp;
 				<div style="text-align: center;">
-					<span sec:authentication="principal.username"
-						style="text-align: center; font-weight: bold; font-size: xx-large;">
-					</span> <span
-						style="text-align: center; font-weight: bold; font-size: xx-large;">님의
-						회원정보</span>
+			<span th:text="${member.user_id} +'님의 회원정보'" style="text-align: center; font-weight: bold; font-size: xx-large;">
+					</span>
 				</div>
-
+		
 				<hr style="width: 80%;" />
 
 				<br /> &nbsp;&nbsp;
@@ -355,10 +351,9 @@ body {
 						</div>
 
 						<div class="col-8">
-
+						
 							<input type="text" class="input--style-6" id="user_id"
-								placeholder="아이디를 입력해주세요." name="user_id"
-								th:value="${member.user_id}" readonly />
+								placeholder="아이디를 입력해주세요."name="user_id"  th:value="${member.user_id}"  readonly />
 
 						</div>
 
@@ -376,13 +371,12 @@ body {
 						<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
 							<label class="label-input100" for="pwd"
-								style="align-self: center">이름</label>
+								style="align-self: center" >이름</label>
 						</div>
 
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="user_name"
-								placeholder="이름을 입력해주세요." name="user_name"
-								th:value="${member.user_id}" readonly> <span
+								placeholder="이름을 입력해주세요." name="user_name" th:value="${member.user_id}" readonly > <span
 								class="name hide"></span>
 
 						</div>
@@ -404,8 +398,7 @@ body {
 
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="nickname"
-								placeholder="닉네임을 입력해주세요" name="nickname"
-								th:value="${member.nickname}" readonly>
+								placeholder="닉네임을 입력해주세요" name="nickname" th:value="${member.nickname}" readonly>
 
 						</div>
 
@@ -427,8 +420,7 @@ body {
 
 						<div class="col-8">
 							<input type="email" class="input--style-6" id="user_email"
-								placeholder="이메일을 입력해주세요" name="user_email"
-								th:value="${member.user_email}" readonly>
+								placeholder="이메일을 입력해주세요" name="user_email"  th:value="${member.user_email}" readonly>
 
 						</div>
 

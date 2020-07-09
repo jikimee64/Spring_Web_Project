@@ -68,7 +68,7 @@ public class ManagerController {
 		System.out.println("회원 목록을 excel로 뽑아요");
 		
 		List<Users> memberList = null;
-		memberList = service.getMemberList();  //회원목록 
+		//memberList = service.getMemberList();  //회원목록 
 		
 		model.addAttribute("memberList",memberList); //view까지 전달
 		/* WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList); */
