@@ -45,6 +45,14 @@ public class ManagerController {
 		return "manager/board/member_Detail";
 
 	}
+//	회원정보 상세에서 삭제버튼클릭시 삭제하기
+	@RequestMapping("board/memberDel.do")
+	public String memberDel(String user_id) {
+		System.out.println("삭제 컨트롤러 찍히나요?");
+		return service.memberDel(user_id);
+	}
+	
+	
 
 	// 회원관리 목록
 	@RequestMapping("board/member_Management.do")

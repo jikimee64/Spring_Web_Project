@@ -13,4 +13,6 @@ public interface ManagerDao {
 
 	public List<HashMap<String, String>> getSkill(String user_id);
 
+	public int memberDelete(String user_id);
+
 }
