@@ -52,6 +52,7 @@ public class MyPageController {
 		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
 		model.addAttribute("skill", list);
+		System.out.println(user);
 		return "user/mypage/mypage_User_Detail.html";
 	}
 
