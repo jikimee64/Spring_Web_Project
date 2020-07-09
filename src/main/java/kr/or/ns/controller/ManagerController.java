@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.or.ns.export.WriteListToExcelFile;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.vo.Users;
 
@@ -45,6 +46,14 @@ public class ManagerController {
 		return "manager/board/member_Detail";
 
 	}
+//	회원정보 상세에서 삭제버튼클릭시 삭제하기
+	@RequestMapping("board/memberDel.do")
+	public String memberDel(String user_id) {
+		System.out.println("삭제 컨트롤러 찍히나요?");
+		return service.memberDel(user_id);
+	}
+	
+	
 
 	// 회원관리 목록
 	@RequestMapping("board/member_Management.do")
@@ -62,20 +71,25 @@ public class ManagerController {
 		return "manager/board/member_Management";
 	}
 
-	// 회원관리 목록 엑셀뽑기
-	public String excelMemberView(Model model) {
+	
+	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
+	public String excelMemberView(Model model) throws Exception {
 		System.out.println("회원 목록을 excel로 뽑아요");
 
 		List<Users> memberList = null;
-		// memberList = service.getMemberList(); //회원목록
+		// memberList = service.getMemberList(); //회원목록가져와서 memberList에 넣음
 
 		model.addAttribute("memberList", memberList); // view까지 전달
 		/* WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList); */
 		// cordova는 대체 무엇인고
 
+		
+		WriteListToExcelFile.writeMemberListToFile("memberList.xls", memberList);
 		return "manager/board/member_Management";
 	}
 
+	
+	//----------------------------------------------------------------------------
 	@RequestMapping("board/report_Management.do")
 	public String reportManagementPage() {
 		System.out.println("어드민 회원관리 테이블페이지이동");

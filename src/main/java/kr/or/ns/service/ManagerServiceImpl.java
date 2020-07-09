@@ -44,4 +44,15 @@ public class ManagerServiceImpl implements ManagerService {
 		return list;
 	}
 
+	
+	@Override
+	public String memberDel(String user_id) {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		dao.memberDelete(user_id);
+		System.out.println("삭제 될까요?");
+		return "redirect:member_Management.do";
+	}
+
+
+
 }

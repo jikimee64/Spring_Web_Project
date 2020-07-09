@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- List<Users> getMemberList(); -->
 	<select id="getMemberList" resultType="hashmap">
 		SELECT * FROM USERS
-		ORDER BY user_id asc;
+		ORDER BY user_id asc
 	</select>
 
 
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- public Users getUsers(String user_id); -->
 
 	<select id="getUsers" resultType="kr.or.ns.vo.Users">
-		select * from users where user_id=#{user_id};
+		select * from users where user_id=#{user_id}
 	</select>
 
 
@@ -31,8 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getSkill" resultType="hashmap">
 		select skill_name, skill_level
-		from skill where user_id=#{user_id};
+		from skill where user_id=#{user_id}
 	</select>
+	
+	
+			<delete id="memberDelete">
+	      		DELETE from users WHERE user_id=#{user_id}
+	      </delete>
 
 
 </mapper>
