@@ -4,7 +4,7 @@
 
 <!-- 회원정보 가져오기 -->
 	<select id="getUsers" resultType="kr.or.ns.vo.Users">
-		select * from users where user_id=#{userid};
+		select * from users where user_id=#{USER_ID};
 	</select>
 	
 	<select id="getSkill" resultType="hashmap">

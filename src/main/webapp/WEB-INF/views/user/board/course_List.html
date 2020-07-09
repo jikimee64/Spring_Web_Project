@@ -653,7 +653,6 @@ keyframes heart-keyframes { 100% {
 		/* 이거는 하트 클릭시 alert창 띄우는거*/
 		  $('._bookMark').click(function(evt){
 			  var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
-			  
 			  if($(this).is(":checked")){
 				    alert(lectureTitle + ' 북마크에 추가됨');
 				    console.log($(this).is(":checked"));
