@@ -596,7 +596,7 @@ group+group {
 					<div class="col" style="text-align-last:end;">
 <!-- 					th:href="@{/manager/board/member_Detail.do(user_id=${memberList.USER_ID})} -->
 						<a th:href="@{/manager/board/memberDel.do(user_id=${member.user_id})}" type="button"
-							class="btn btn-danger btn"
+							class="btn btn-danger btn _delete"
 							style="border-radius: 3px; background-color: red; border-color: red;">
 							<i class="fa fa-dot-circle-o"></i> 삭제
 						</a>
@@ -606,6 +606,12 @@ group+group {
 							class="btn btn-danger btn"
 							style="border-radius: 3px; background-color: #00d463; border-color: #00d463;">
 							<i class="fa fa-dot-circle-o"></i> 목록으로
+						</a>
+						
+						<a href="#" type="button" 
+							class="btn btn-danger btn _delete"
+							style="border-radius: 3px; background-color: #00d463; border-color: #00d463;">
+							<i class="fa fa-dot-circle-o"></i> 목록으로222
 						</a>
 					</div>
 				</div>
@@ -625,9 +631,30 @@ group+group {
 			<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script> -->
 
 			<script>
-				$(function() {
-
-				});
+			$(function() {
+				$('._delete').click(function(){
+					swal({
+						  title: "OO계정을 진짜 정지하시겠습니까??",
+						  text: "정지하는 순간 사이트 로그인 영구정지...",
+						  icon: "warning",
+						  buttons: true,
+						  dangerMode: true,
+						})
+						.then((willDelete) => {
+							console.log('확인버튼누르면 요기...');
+							console.log($(this));
+							
+							
+						  if (willDelete) {
+						    swal("성공적으로 정지완료!!", {
+						      icon: "success",
+						    });
+						  } else {
+						    swal("취소잼");
+						  }
+						});
+				})
+			});
 			</script>
 </body>
 
