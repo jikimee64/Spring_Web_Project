@@ -10,4 +10,5 @@ import lombok.ToString;
 public class BookMark {
 	private String user_id;
 	private int l_seq;
+	private int bookmark_check;
 }

@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<![endif]-->
 <link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
 <head>
@@ -19,191 +19,191 @@
 <body>
 
 
-	<div th:replace="/manager/includes/nav_side :: nav_side"></div>
-	<!-- 이거하면 깨짐...  -->
+   <div th:replace="/manager/includes/nav_side :: nav_side"></div>
+   <!-- 이거하면 깨짐...  -->
 
 
-	<!-- Right Panel -->
+   <!-- Right Panel -->
 
-	<div id="right-panel" class="right-panel">
+   <div id="right-panel" class="right-panel">
 
-		<div th:replace="/manager/includes/nav_top :: nav_top"></div>
+      <div th:replace="/manager/includes/nav_top :: nav_top"></div>
 
 
-		<div class="breadcrumbs">
-			<div class="col-sm-4">
-				<div class="page-header float-left">
-					<div class="page-title">
-						<h1>메인페이지 입니다.</h1>
-					</div>
-				</div>
-			</div>
-		</div>
+      <div class="breadcrumbs">
+         <div class="col-sm-4">
+            <div class="page-header float-left">
+               <div class="page-title">
+                  <h1>메인페이지 입니다.</h1>
+               </div>
+            </div>
+         </div>
+      </div>
 
-		<div class="content mt-3">
+      <div class="content mt-3">
 
-			<div class="col-lg-3 col-md-6">
+         <div class="col-lg-3 col-md-6">
 
-				<div class="card">
+            <div class="card">
 
-					<div class="card-body">
-						<p style="align-self: center;">
-							<b>우리 사이트의 총 회원 수</b>
-						</p>
-						<img src="/resources/admin_assets/images/member.png"
-							style="width: 50px;">
+               <div class="card-body">
+                  <p style="align-self: center;">
+                     <b>우리 사이트의 총 회원 수</b>
+                  </p>
+                  <img src="/resources/admin_assets/images/member.png"
+                     style="width: 50px;">
 
-						<div id="chart2" class="stat-digit"></div>
-					</div>
-				</div>
-			</div>
+                  <div id="chart2" class="stat-digit"></div>
+               </div>
+            </div>
+         </div>
 
-			<div class="col-lg-3 col-md-6">
-				<div class="card">
+         <div class="col-lg-3 col-md-6">
+            <div class="card">
 
-					<div class="card-body">
-						<p style="align-self: center; margin-left: 5px;">
-							<b>스터디 최다 개설 지역</b>
-						</p>
-						<img src="/resources/admin_assets/images/map.png"
-							style="width: 50px;">
+               <div class="card-body">
+                  <p style="align-self: center; margin-left: 5px;">
+                     <b>스터디 최다 개설 지역</b>
+                  </p>
+                  <img src="/resources/admin_assets/images/map.png"
+                     style="width: 50px;">
 
-						<div id="chart2" class="stat-digit"></div>
-					</div>
-				</div>
-			</div>
+                  <div id="chart2" class="stat-digit"></div>
+               </div>
+            </div>
+         </div>
 
-			<div class="col-lg-3 col-md-6">
-				<div class="card">
+         <div class="col-lg-3 col-md-6">
+            <div class="card">
 
-					<div class="card-body">
-						<p style="align-self: center; margin-left: 5px;">
-							<b>가장 많이 선택받은 언어</b>
-						</p>
-						<img src="/resources/admin_assets/images/language.png"
-							style="width: 50px;">
+               <div class="card-body">
+                  <p style="align-self: center; margin-left: 5px;">
+                     <b>가장 많이 선택받은 언어</b>
+                  </p>
+                  <img src="/resources/admin_assets/images/language.png"
+                     style="width: 50px;">
 
-						<div id="chart3" class="stat-digit"></div>
-					</div>
-				</div>
-			</div>
+                  <div id="chart3" class="stat-digit"></div>
+               </div>
+            </div>
+         </div>
 
-			<div class="col-lg-3 col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<p style="align-self: center; margin-left: 5px;">
-							<b>가장 많이 북마크된 강의</b>
-						</p>
-						<img src="/resources/admin_assets/images/bookmark.png"
-							style="width: 50px;"><b style="margin-left: 20px;">따라하는
-							노드JS.</b>
-					</div>
-					<div id="chart4" class="stat-digit"></div>
-				</div>
-			</div>
+         <div class="col-lg-3 col-md-6">
+            <div class="card">
+               <div class="card-body">
+                  <p style="align-self: center; margin-left: 5px;">
+                     <b>가장 많이 북마크된 강의</b>
+                  </p>
+                  <img src="/resources/admin_assets/images/bookmark.png"
+                     style="width: 50px;"><b style="margin-left: 20px;">따라하는
+                     노드JS.</b>
+               </div>
+               <div id="chart4" class="stat-digit"></div>
+            </div>
+         </div>
 
-			<!-- 차트 시작 -->
-			<div class="col-xl-12">
-				<div class="card">
-					<div class="card-body" style="height: 700px;">
-						<div class="chart-wrapper mt-4">
-							<canvas id="myChart"></canvas>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- .content -->
-	<!-- /#right-panel -->
+         <!-- 차트 시작 -->
+         <div class="col-xl-12">
+            <div class="card">
+               <div class="card-body" style="height: 700px;">
+                  <div class="chart-wrapper mt-4">
+                     <canvas id="myChart"></canvas>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- .content -->
+   <!-- /#right-panel -->
 
-	<!-- Right Panel -->
+   <!-- Right Panel -->
 
-	<div th:replace="/manager/includes/script :: script"></div>
+   <div th:replace="/manager/includes/script :: script"></div>
 
-	<!-- 차트JS -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script>
-		// 우선 컨텍스트를 가져옵니다. 
-		var ctx = document.getElementById("myChart").getContext('2d');
-		/*
-		- Chart를 생성하면서, 
-		- ctx를 첫번째 argument로 넘겨주고, 
-		- 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
-		 */
-		var myChart = new Chart(ctx,
-				{
-					type : 'bar',
-					data : {
-						labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월",
-								"10월", "11월", "12월" ],
-						datasets : [
-								{
-									label : '모집중',
-									data : [ 12, 19, 103, 5, 2, 3, 5, 7, 11, 12,
-											55, 23 ],
-									backgroundColor : [
-											'rgba(255, 99, 132, 0.2)',
-											'rgba(54, 162, 235, 0.2)',
-											'rgba(255, 206, 86, 0.2)',
-											'rgba(75, 192, 192, 0.2)',
-											'rgba(153, 102, 255, 0.2)',
-											'rgba(255, 159, 64, 0.2)',
-											'rgba(255, 99, 132, 0.2)',
-											'rgba(54, 162, 235, 0.2)',
-											'rgba(255, 206, 86, 0.2)',
-											'rgba(75, 192, 192, 0.2)',
-											'rgba(153, 102, 255, 0.2)',
-											'rgba(255, 159, 64, 0.2)', ],
-									borderColor : [ 'rgba(255,99,132,1)',
-											'rgba(54, 162, 235, 1)',
-											'rgba(255, 206, 86, 1)',
-											'rgba(75, 192, 192, 1)',
-											'rgba(153, 102, 255, 1)',
-											'rgba(255, 159, 64, 1)' ],
-								},
-								{
-									label : '모집완료',
-									data : [ 1, 2, 3, 44, 5, 6, 7, 8, 9, 10, 11,
-											12 ],
-									backgroundColor : [
-										'rgba(255, 99, 132, 0.2)',
-										'rgba(54, 162, 235, 0.2)',
-										'rgba(255, 206, 86, 0.2)',
-										'rgba(75, 192, 192, 0.2)',
-										'rgba(153, 102, 255, 0.2)',
-										'rgba(255, 159, 64, 0.2)',
-										'rgba(255, 99, 132, 0.2)',
-										'rgba(54, 162, 235, 0.2)',
-										'rgba(255, 206, 86, 0.2)',
-										'rgba(75, 192, 192, 0.2)',
-										'rgba(153, 102, 255, 0.2)',
-										'rgba(255, 159, 64, 0.2)',],
-									borderColor : [ 'rgba(255,99,132,1)',
-											'rgba(54, 162, 235, 1)',
-											'rgba(255, 206, 86, 1)',
-											'rgba(75, 192, 192, 1)',
-											'rgba(153, 102, 255, 1)',
-											'rgba(255, 159, 64, 1)' ],
-								} ]
+   <!-- 차트JS -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+   <script>
+      // 우선 컨텍스트를 가져옵니다. 
+      var ctx = document.getElementById("myChart").getContext('2d');
+      /*
+      - Chart를 생성하면서, 
+      - ctx를 첫번째 argument로 넘겨주고, 
+      - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
+       */
+      var myChart = new Chart(ctx,
+            {
+               type : 'bar',
+               data : {
+                  labels : [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월",
+                        "10월", "11월", "12월" ],
+                  datasets : [
+                        {
+                           label : '모집중',
+                           data : [ 12, 19, 103, 5, 2, 3, 5, 7, 11, 12,
+                                 55, 23 ],
+                           backgroundColor : [
+                                 'rgba(255, 99, 132, 0.2)',
+                                 'rgba(54, 162, 235, 0.2)',
+                                 'rgba(255, 206, 86, 0.2)',
+                                 'rgba(75, 192, 192, 0.2)',
+                                 'rgba(153, 102, 255, 0.2)',
+                                 'rgba(255, 159, 64, 0.2)',
+                                 'rgba(255, 99, 132, 0.2)',
+                                 'rgba(54, 162, 235, 0.2)',
+                                 'rgba(255, 206, 86, 0.2)',
+                                 'rgba(75, 192, 192, 0.2)',
+                                 'rgba(153, 102, 255, 0.2)',
+                                 'rgba(255, 159, 64, 0.2)', ],
+                           borderColor : [ 'rgba(255,99,132,1)',
+                                 'rgba(54, 162, 235, 1)',
+                                 'rgba(255, 206, 86, 1)',
+                                 'rgba(75, 192, 192, 1)',
+                                 'rgba(153, 102, 255, 1)',
+                                 'rgba(255, 159, 64, 1)' ],
+                        },
+                        {
+                           label : '모집완료',
+                           data : [ 1, 2, 3, 44, 5, 6, 7, 8, 9, 10, 11,
+                                 12 ],
+                           backgroundColor : [
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(75, 192, 192, 0.2)',
+                              'rgba(153, 102, 255, 0.2)',
+                              'rgba(255, 159, 64, 0.2)',
+                              'rgba(255, 99, 132, 0.2)',
+                              'rgba(54, 162, 235, 0.2)',
+                              'rgba(255, 206, 86, 0.2)',
+                              'rgba(75, 192, 192, 0.2)',
+                              'rgba(153, 102, 255, 0.2)',
+                              'rgba(255, 159, 64, 0.2)',],
+                           borderColor : [ 'rgba(255,99,132,1)',
+                                 'rgba(54, 162, 235, 1)',
+                                 'rgba(255, 206, 86, 1)',
+                                 'rgba(75, 192, 192, 1)',
+                                 'rgba(153, 102, 255, 1)',
+                                 'rgba(255, 159, 64, 1)' ],
+                        } ]
 
-					},
-					options : {
-						title:{
-							display: true,
-							text: '월별 스터디 현황'
-						},
-						maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true
-								}
-							} ]
-						}
-					}
-				});
-	</script>
+               },
+               options : {
+                  title:{
+                     display: true,
+                     text: '월별 스터디 현황'
+                  },
+                  maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+                  scales : {
+                     yAxes : [ {
+                        ticks : {
+                           beginAtZero : true
+                        }
+                     } ]
+                  }
+               }
+            });
+   </script>
 
 </body>
 

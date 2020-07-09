@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -224,9 +225,10 @@ textarea {
 
 *:focus {
 	border: solid 1px #18d26e;
-} 
-a:focus{
-	border:none;
+}
+
+a:focus {
+	border: none;
 }
 
 ._border_box_shadow {
@@ -302,7 +304,6 @@ group+group {
 	color: #fff;
 	border-radius: 5px;
 }
-
 </style>
 
 </head>
@@ -327,8 +328,8 @@ group+group {
 			<div class="_border_box_shadow">
 				&nbsp;&nbsp;
 				<div style="text-align: center;">
-					<span style="text-align: center; font-size: xx-large;"><b>아이디님의
-							회원정보</b></span>
+					<span style="text-align: center; font-size: xx-large;"><b
+						th:text="|${member.user_id}님의 회원정보|">아이디님의 회원정보</b></span>
 				</div>
 				<hr style="width: 80%;" />
 
@@ -343,7 +344,8 @@ group+group {
 						<div class="col-2"></div>
 
 						<div class="col-8" style="text-align: center;">
-							<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
+							<img id="preview"
+								th:src="'/userboard/upload/' + ${member.profile_img}" alt="썸네일"
 								style="margin-bottom: 15px; width: 150px; height: 150px;">
 						</div>
 
@@ -360,13 +362,13 @@ group+group {
 					<div class="row" style="place-content: center; padding-left: 100px">
 						<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100"
-								style="place-self: center" readonly>아이디</label>
+							<label class="label-input100" style="place-self: center" readonly>아이디</label>
 						</div>
 
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="user_id"
-								placeholder="아이디를 입력해주세요." name="user_id" value="" readonly />
+								placeholder="아이디를 입력해주세요." name="user_id"
+								th:value="${member.user_id}" readonly />
 
 						</div>
 
@@ -383,7 +385,8 @@ group+group {
 						</div>
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="user_name"
-								placeholder="이름을 입력해주세요." name="user_name" readonly> 
+								placeholder="이름을 입력해주세요." name="user_name"
+								th:value="${member.user_name}" readonly>
 						</div>
 						<div class="col-2"></div>
 					</div>
@@ -397,12 +400,13 @@ group+group {
 						<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
 							<label class="label-input100" for="pwd"
-								style="align-self: center" >닉네임</label>
+								style="align-self: center">닉네임</label>
 						</div>
 
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="nickname"
-								placeholder="닉네임을 입력해주세요" name="nickname" readonly>
+								placeholder="닉네임을 입력해주세요" name="nickname"
+								th:value="${member.nickname}" readonly>
 
 						</div>
 
@@ -424,7 +428,8 @@ group+group {
 
 						<div class="col-8">
 							<input type="email" class="input--style-6" id="user_email"
-								placeholder="이메일을 입력해주세요" name="user_email" readonly>
+								placeholder="이메일을 입력해주세요" name="user_email"
+								th:value="${member.user_email}" readonly>
 
 						</div>
 
@@ -441,7 +446,8 @@ group+group {
 					<div class="col-2"></div>
 					<div class="col-8">
 						<h3>
-							<b style="margin-left: 10px; font-size: larger;">@@님의 실력</b>
+							<b style="margin-left: 10px; font-size: larger;"
+								th:text="|${member.user_id} 님의실력|">@@님의 실력</b>
 						</h3>
 					</div>
 					<div class="col-2"></div>
@@ -453,77 +459,114 @@ group+group {
 					<group class="inline-radio"> <span
 						style="font-size: larger; width: 140px;">Java</span>
 					<div class="_div_radio">
-						<input type="radio" name="Java" class="_input_radio" checked
-							onclick="return(false);"><label class="_radio_label">입문</label>
+						<input type="radio" name="java" value="입문" class="_input_radio"
+						 onclick="return(false);"
+							th:attr="checked=${skill[0].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="Java" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">초급</label>
+						<input type="radio" name="java" value="초급" class="_input_radio"
+						 onclick="return(false);"
+							th:attr="checked=${skill[0].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="Java" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">중급이상</label>
+						<input type="radio" name="java" value="중급이상" class="_input_radio"
+						 onclick="return(false);"
+							th:attr="checked=${skill[0].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
 					</div>
 					</group>
 
 					<group class="inline-radio"> <span
 						style="font-size: larger; width: 140px;">Python</span>
 					<div class="_div_radio">
-						<input type="radio" name="Python" class="_input_radio" checked
-							onclick="return(false);"><label class="_radio_label">입문</label>
+						<input type="radio" name="Python" value="입문" class="_input_radio"
+						 onclick="return(false);"
+							th:attr="checked=${skill[1].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="Python" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">초급</label>
+						<input type="radio" name="Python" value="초급" class="_input_radio"
+						 onclick="return(false);"
+							th:attr="checked=${skill[1].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="Python" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">중급이상</label>
+						<input type="radio" name="Python" value="중급이상"
+							class="_input_radio"
+							 onclick="return(false);"
+							th:attr="checked=${skill[1].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
 					</div>
 					</group>
 					<group class="inline-radio"> <span
 						style="font-size: larger; width: 140px;">HTML/CSS</span>
 					<div class="_div_radio">
-						<input type="radio" name="HTML/CSS" class="_input_radio" checked
-							onclick="return(false);"><label class="_radio_label">입문</label>
+						<input type="radio" name="html_css" value="입문"
+							class="_input_radio" 
+							 onclick="return(false);"
+							th:attr="checked=${skill[2].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="HTML/CSS" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">초급</label>
+						<input type="radio" name="html_css" value="초급"
+							class="_input_radio"
+							 onclick="return(false);"
+							th:attr="checked=${skill[2].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="HTML/CSS" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">중급이상</label>
+						<input type="radio" name="html_css" value="중급이상"
+							class="_input_radio"
+							 onclick="return(false);"
+							th:attr="checked=${skill[2].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
 					</div>
 					</group>
 					<group class="inline-radio"> <span
 						style="font-size: larger; width: 140px;">Javascript</span>
 					<div class="_div_radio">
-						<input type="radio" name="Javascript" class="_input_radio" checked
-							onclick="return(false);"><label class="_radio_label">입문</label>
+						<input type="radio" name="Javascript" value="입문"
+							class="_input_radio" 
+							 onclick="return(false);"
+							th:attr="checked=${skill[3].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="Javascript" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">초급</label>
+						<input type="radio" name="Javascript" value="초급"
+							class="_input_radio"
+							 onclick="return(false);"
+							th:attr="checked=${skill[3].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="Javascript" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">중급이상</label>
+						<input type="radio" name="Javascript" value="중급이상"
+							class="_input_radio"
+							 onclick="return(false);"
+							th:attr="checked=${skill[3].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
 					</div>
 					</group>
 					<group class="inline-radio"> <span
 						style="font-size: larger; width: 140px;">SQL</span>
 					<div class="_div_radio">
-						<input type="radio" name="SQL" class="_input_radio" checked
-							onclick="return(false);"><label class="_radio_label">입문</label>
+						<input type="radio" name="sql" value="입문" class="_input_radio"
+							 onclick="return(false);"
+							th:attr="checked=${skill[4].skill_level == '입문' ? 'true' : 'false'}"><label
+							class="_radio_label">입문</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="SQL" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">초급</label>
+						<input type="radio" name="sql" value="초급" class="_input_radio"
+						 onclick="return(false);"
+							th:attr="checked=${skill[4].skill_level == '초급' ? 'true' : 'false'}"><label
+							class="_radio_label">초급</label>
 					</div>
 					<div class="_div_radio">
-						<input type="radio" name="SQL" class="_input_radio"
-							onclick="return(false);"><label class="_radio_label">중급이상</label>
+						<input type="radio" name="sql" value="중급이상" class="_input_radio"
+						 onclick="return(false);"
+							th:attr="checked=${skill[4].skill_level == '중급이상' ? 'true' : 'false'}"><label
+							class="_radio_label">중급이상</label>
 					</div>
 					</group>
 				</div>
@@ -544,39 +587,48 @@ group+group {
 						</b>
 						<p></p>
 						<textarea class="textarea--style-6" name="introduce"
-							id="introduce" rows="5" required style="resize: none;" readonly></textarea>
+							th:text="${member.introduce}" id="introduce" rows="5" required
+							style="resize: none;" readonly> </textarea>
 					</div>
 				</div>
 				<br />
-						<div class="row">
-						<div class="col-md-5"></div>
-									<a href="MemberDelete.m?m_id=${memberDTO.m_id}" type="button"
-										class="btn btn-danger btn" style="border-radius: 3px; background-color:#00d463; border-color:#00d463; margin-left:20px;"> <i
-										class="fa fa-dot-circle-o"></i> 확인
-									</a>
-						<div class="col-md-5"></div>
-								</div>
+				<div class="row" style="place-content: center;">
+					<div class="col" style="text-align-last:end;">
+<!-- 					th:href="@{/manager/board/member_Detail.do(user_id=${memberList.USER_ID})} -->
+						<a th:href="@{/manager/board/memberDel.do(user_id=${member.user_id})}" type="button"
+							class="btn btn-danger btn"
+							style="border-radius: 3px; background-color: red; border-color: red;">
+							<i class="fa fa-dot-circle-o"></i> 삭제
+						</a>
+					</div>
+					<div class="col">
+						<a href="#" type="button" onclick="history.go(-1); return false;"
+							class="btn btn-danger btn"
+							style="border-radius: 3px; background-color: #00d463; border-color: #00d463;">
+							<i class="fa fa-dot-circle-o"></i> 목록으로
+						</a>
+					</div>
+				</div>
+
 			</div>
-		
-		</div>
 
-		<!-- CARD-BODY END -->
+			<!-- CARD-BODY END -->
 
 
 
-		<!-- .content -->
+			<!-- .content -->
 
-		<!-- /#right-panel -->
+			<!-- /#right-panel -->
 
 
-		<div th:replace="/manager/includes/script :: script"></div>
-		<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script> -->
+			<div th:replace="/manager/includes/script :: script"></div>
+			<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script> -->
 
-		<script>
-		$(function() {
+			<script>
+				$(function() {
 
-		});
-	</script>
+				});
+			</script>
 </body>
 
 </html>
