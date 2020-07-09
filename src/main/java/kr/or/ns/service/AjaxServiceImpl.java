@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,8 @@ public class AjaxServiceImpl implements AjaxService {
 	@Autowired
 	private Mailer mailer;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	/////////////////////////////////////////////////////////////////// 이름과 이메일 받아서 존재하는 회원인지 확인
 	@Override
 	public int emailCheck(String user_name, String user_email) {
@@ -108,7 +111,7 @@ public class AjaxServiceImpl implements AjaxService {
 		
 					String key = new Tempkey().getKey(10, false);
 					String temp_pw = key;
-					vo.setUser_pwd(temp_pw);
+					vo.setUser_pwd(this.bCryptPasswordEncoder.encode(temp_pw));
 					dao.updatePw(vo);
 					
 					try {

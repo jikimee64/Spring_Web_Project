@@ -27,7 +27,13 @@ public interface BoardDao {
 	public int getStudyBoardCount();
 
 	//스터디 글 상세보기
-	public Study getStudy(String s_seq);
+	public Map<String, Object> getStudy(String s_seq);
+	
+	//스터디 글 삭제
+	public int delete(String s_seq);
+	
+	//댓글 개수
+	public int getReplyCnt(String s_seq);
 	
 
 

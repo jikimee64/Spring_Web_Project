@@ -15,7 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
 	<select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board">
 		<![CDATA[
-			SELECT * FROM STUDY_BOARD
+			SELECT *
+			FROM STUDY_BOARD
+			left outer join language_category
+			on study_board.lan_seq = language_category.lan_seq
+			left outer join location
+			on study_board.loc_seq = location.loc_seq
+			left outer join study_content_category
+			on study_board.c_seq = study_content_category.c_seq
 			ORDER BY S_SEQ DESC
 			LIMIT #{pageStart}, #{perPageNum}
 		]]>
@@ -24,11 +31,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 스터디 글 상세보기 -->
-	<select id="getStudy" resultType="kr.or.ns.vo.Study">
-		SELECT * 
-		FROM STUDY_BOARD 
-		WHERE S_SEQ=#{S_SEQ}
+	<select id="getStudy" resultType="hashmap">
+		select *
+		from study_board
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+		left outer join comment
+		on study_board.s_seq = comment.s_seq 
+		WHERE study_board.S_SEQ=#{S_SEQ}
 	</select>
+	
+	<!-- 댓글 개수  -->
+	<select id="getReplyCnt" resultType="Integer">
+		select count(*) 
+		from comment
+		WHERE s_seq=#{S_SEQ}
+	</select>
+	
+	<delete id="delete">
+		  DELETE from study_board WHERE S_SEQ=#{S_SEQ}
+	</delete>
+	
+	
 	
 	
 	
