@@ -40,6 +40,15 @@
 		where user_id = #{user_id} and l_seq = #{l_seq}
 	</update>
 	
+	
+	
+	<!-- 북마크의 체크유무번호 확인 -->
+	<select id="heartnum" parameterType="kr.or.ns.vo.BookMark" resultType="int">
+		select bookmark_check from BookMark
+		where user_id = #{user_id} and l_seq = #{l_seq}
+	</select>
+	
+	
 
 	<!-- <delete id="deleteLecture"> DELETE NOTICES WHERE SEQ=#{seq} </delete> 
 		<update id="updateLecture" parameterType="vo.Lecture"> UPDATE NOTICES SET 

@@ -49,19 +49,27 @@ public class LectureServiceImpl implements LectureService{
 			int result =  dao.heartcheck(bk);
 			System.out.println( "---------------------   result 찍어보기 -----------------------");
 			System.out.println(result);
-			
+			System.out.println( "---------------------------------------------------------------");
 			 if(result == 0 ) {
 				 //없으면 insert
 				 System.out.println("넣으러 왔어요"); 
 				 bk.setBookmark_check(1);
 				 dao.heartinsert(bk); 
 			 }else { 
-				 //있으면 update
-				 System.out.println("update 갑니다."); 
-				 bk.setBookmark_check(0);
-				 dao.heartupdate(bk);
-				
-				 
+					 //있으면 update
+					 System.out.println("update 갑니다."); 
+					 
+					 if(dao.heartnum(bk) == 0 ) {
+						 //1 넣으러 왔어요
+						 System.out.println("1 넣으러 왔어요");
+						 bk.setBookmark_check(1);
+						 dao.heartupdate(bk);
+					 }else {
+						 //0 넣으러 왔어요
+						 System.out.println("0 넣으러 왔어요");
+						 bk.setBookmark_check(0);
+						 dao.heartupdate(bk);
+					 }
 			 }
 			 
 		} catch (Exception e) {

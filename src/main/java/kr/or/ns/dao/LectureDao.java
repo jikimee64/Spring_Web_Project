@@ -22,4 +22,7 @@ public interface LectureDao {
 	
 	//북마크 체크유무 컬럼 업데이트
 	public void heartupdate(BookMark bk);
+	
+	//북마크 체크컬럼 0 or 1 가져오기 
+	public int heartnum(BookMark bk);
 }
