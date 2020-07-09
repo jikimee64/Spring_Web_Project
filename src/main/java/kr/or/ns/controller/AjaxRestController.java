@@ -22,6 +22,8 @@ public class AjaxRestController {
 	@Autowired
 	private AjaxService service;
 	
+	
+	
 	//아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
 	@RequestMapping(value = "emailCheck.do", method=RequestMethod.POST)
 	public HashMap<String, String> emailCheck(@RequestBody HashMap<String, Object> params) {
