@@ -159,8 +159,9 @@ public class AjaxServiceImpl implements AjaxService {
 	
 	//스터디 지원하기 인서트
 	@Override
-	public int applyNomalStudy(String user_id) {
+	public int applyNomalStudy(String s_seq, String user_id) {
 		System.out.println("지원하기: " + user_id);
+		System.out.println("번호: " + s_seq);
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		
 		/*
@@ -170,7 +171,10 @@ public class AjaxServiceImpl implements AjaxService {
 		 */
 		
 		int result = 0;
-		result = dao.insertStudyGroup(user_id);
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("s_seq", s_seq);
+		map.put("user_id", user_id);
+		result = dao.insertStudyGroup(map);
 		return result;
 	}
 }

@@ -24,5 +24,5 @@ public interface AjaxRestDao {
 	
 	
 	//스터디 그룹 인서트
-	public int insertStudyGroup(String user_id);
+	public int insertStudyGroup(HashMap<String, String> map);
 }
