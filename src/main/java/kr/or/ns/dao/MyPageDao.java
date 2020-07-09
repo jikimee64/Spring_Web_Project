@@ -3,6 +3,7 @@ package kr.or.ns.dao;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ns.vo.Users;
 
@@ -22,6 +23,9 @@ public interface MyPageDao {
 
 	//회원탈퇴
 	public void userDelete(String userid);
+	
+	//마이페이지(북마크 가져오기)
+	public List<Map<String, Object>> getBookMark(String userid);
 	
 
 }

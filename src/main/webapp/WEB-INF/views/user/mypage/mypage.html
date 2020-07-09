@@ -175,15 +175,16 @@ body {
 
 				<hr
 					style="border: solid 1px; margin-top: 0px; margin-bottom: 10px; max-width: 1200px;" />
-
+		
 				<!-- 여기부터 데이터 하나 넣기 시작 -->
+					<!-- 타임리프 for문 -->
+					<div th:each = "list: ${list}">
 				<div class="row" style="padding: 40px 30px;">
 					<div class="col-md-1" style="text-align: center;">
 						<!-- 스터디 글 번호 -->
-						<p style="font-size: xx-large; font-weight: bold;">1</p>
+						<p style="font-size: xx-large; font-weight: bold;" th:text = "${list.L_SEQ}"></p>
 					</div>
 					<div class="col-md-2" style="text-align: center;">
-
 						<img
 							src="https://cdn.inflearn.com/public/courses/325053/course_cover/b5fb69d7-2957-4023-82f1-76f3ff0b8860/nodeReactchatbot.png"
 							alt="" style="height: 140px; width: 140px;">
@@ -191,13 +192,12 @@ body {
 					<div class="col-md-7"
 						style="padding-left: 50px; padding-top: 10px;">
 						<a href="">
-							<h4 style="font-weight: bold; color: black;">따라하며 배우는 노드,
-								리액트시리즈-챗봇 사이트 만들기</h4>
+							<h4 style="font-weight: bold; color: black;" th:text = "${list.L_TITLE}"></h4>
 						</a> <br /> <br /> <img
 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
 							alt="" style="height: 40px;">
 						<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
-						&nbsp; <span> <b>44,000원</b>
+						&nbsp; <span>  <b th:text="${list.cate_price}"></b> 
 						</span> <br />
 
 
