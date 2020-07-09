@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
@@ -21,7 +22,7 @@ import kr.or.ns.dao.MyPageDao;
 import kr.or.ns.vo.BookMark;
 import kr.or.ns.vo.Users;
 
-@Repository
+@Service
 public class MyPageServiceImpl implements MyPageService {
 
 	private SqlSession sqlsession;

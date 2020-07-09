@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker;
-import kr.or.ns.service.BoardServiceImpl;
-import kr.or.ns.service.LectureServiceImpl;
+import kr.or.ns.service.BoardService;
+import kr.or.ns.service.LectureService;
+import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Study;
 
@@ -29,10 +30,13 @@ import kr.or.ns.vo.Study;
 public class LectureController {
 
 	@Autowired
-	private LectureServiceImpl service;
+	private LectureService service;
 
 	@Autowired
-	private BoardServiceImpl service2;
+	private BoardService service2;
+	
+	@Autowired
+	private MyPageService service3;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("course_List.do")
@@ -59,10 +63,20 @@ public class LectureController {
 		return "user/board/course_List"; // study_List.html
 	}
 
+	
 	@RequestMapping("board_Select_Online_Bookmark.do")
-	public String boardSelectOnlinePage() {
+	public String boardSelectOnlinePage(Model model, Principal principal) {
 		System.out.println("온라인강의 선택페이지(북마크)로 이동이동(연규가씀)");
-
+		
+		//북마크 테이블에서 사용자 아이디와 일치하는 데이터 가져오기 
+		String users = principal.getName();
+		System.out.println("유저정보" + users);
+		
+		List<Map<String,Object>> list = null;
+		list = service3.myPagelist(users);
+		model.addAttribute("list", list);
+		System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + list);
+		
 		return "user/board/board_Select_Online_Bookmark";
 	}
 

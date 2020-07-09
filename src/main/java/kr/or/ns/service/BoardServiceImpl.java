@@ -105,9 +105,7 @@ public class BoardServiceImpl implements BoardService {
 		study.setFilesrc2(filenames.get(2));
 		System.out.println("1: " + study.getFilesrc2());
 		try {
-			System.out.println("넘기는 study : " + study.toString() );
 			int result = dao.studyReg(study);
-			System.out.println("삽입 결과 : " + result);
 		}catch(Exception e) {
 			System.out.println("삽입 에러");
 			e.getMessage();

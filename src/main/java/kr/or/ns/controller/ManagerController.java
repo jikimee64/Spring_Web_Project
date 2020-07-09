@@ -73,6 +73,7 @@ public class ManagerController {
 
 	
 	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
+	@RequestMapping("board/excelView.do")
 	public String excelMemberView(Model model) throws Exception {
 		System.out.println("회원 목록을 excel로 뽑아요");
 
@@ -84,7 +85,7 @@ public class ManagerController {
 		// cordova는 대체 무엇인고
 
 		
-		WriteListToExcelFile.writeMemberListToFile("memberList.xls", memberList);
+		WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList);
 		return "manager/board/member_Management";
 	}
 
