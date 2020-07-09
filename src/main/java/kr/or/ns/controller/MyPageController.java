@@ -39,9 +39,14 @@ public class MyPageController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@RequestMapping("mypage.do")
-	public String myPagePage() {
-		return "user/mypage/mypage";
+	
+	//마이페이지 첫화면 가져오기(일단 지금은 북마크)
+	@RequestMapping(value= "mypage.do")
+	public String myPage(Model model, Principal principal) {
+		String users = principal.getName();
+		System.out.println(users);
+		return "user/mypage/mypage.html";
+		
 	}
 
 	// 유저 상세정보 뿌리기
@@ -101,5 +106,8 @@ public class MyPageController {
 		return "user/mypage/mypage_Myboard";
 	}
 
+	
+
+	
 	
 }

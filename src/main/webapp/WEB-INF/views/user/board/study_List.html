@@ -276,7 +276,7 @@
 			<div class="row">
 			
 			<th:block th:switch="${list.CONTENT_KIND}">
-				<div th:case="일반" class="col-md-3">
+				<div th:case="일반" class="col-md-3 align-self-center">
 					<div class="card" style="width: 100%">
 						<img class="card-img-top" th:src="${list.IMAGE}"
 					alt="Card image" style="width: 100%;">
@@ -338,7 +338,7 @@
 							<a th:case="일반" th:href="@{/board/writing_Normal_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
 								<h2 th:text="${list.TITLE}"></h2>
 							</a>
-							<a th:case="온라인강의" th:href="@{/board/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
+							<a th:case="온라인강의" th:href="@{/lecture/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
 								<h2 th:text="${list.TITLE}"></h2>
 							</a>
 						</th:block>

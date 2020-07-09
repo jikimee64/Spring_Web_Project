@@ -1,5 +1,6 @@
 package kr.or.ns.service;
 
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ public interface BoardService {
 	public int getStudyBoardCount() throws ClassNotFoundException, SQLException;
 	
 	//스터디 모집 글 작성하기
-	public int studyReg(Study study, HttpServletRequest request);
+	public int studyReg(Study study, HttpServletRequest request, Principal principal);
 	
 	//스터디 글 상세보기
 	public Map<String, Object> getStudy(String s_seq);

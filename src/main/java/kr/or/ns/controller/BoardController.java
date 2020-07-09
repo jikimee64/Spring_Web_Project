@@ -1,6 +1,8 @@
 package kr.or.ns.controller;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker;
@@ -21,6 +25,7 @@ import kr.or.ns.service.BoardServiceImpl;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Study;
+import kr.or.ns.vo.Users;
 
 
 
@@ -60,9 +65,6 @@ public class BoardController {
 		
 		System.out.println("서비스 갔다오냐");
 		
-		
-		
-		
 		//DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String,Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
@@ -81,7 +83,28 @@ public class BoardController {
 	
 	
 	
-	
+	@RequestMapping(value = "register.do", method = RequestMethod.POST)
+	public String boardRegister(Study study, HttpServletRequest request, Principal principal) {
+		
+		System.out.println("넘어온 데이터 " + study.toString());
+		
+		try {
+			//서비스가서 DB에 등록
+			service.studyReg(study, request, principal);
+		} catch (Exception e) {
+			System.out.println("컨트롤러 에러");
+			System.out.println(e.getMessage());
+
+		}
+		 return "redirect:/board/study_List.do"; // /index.htm
+		
+		/*
+		 * return "redirect:/index.do"; // /index.htm
+		 */		// 주의사항
+		// 요청 주소 ...아래처럼 ..
+		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
+		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
+	}
 	
 	
 	
@@ -92,7 +115,7 @@ public class BoardController {
 		return "user/board/board_Select";
 	}
 
-	
+
 
 	@RequestMapping("writing_Normal_Study.do")
 	public String writingNormalStudyPage() {
@@ -103,32 +126,7 @@ public class BoardController {
 		return "user/board/writing_Normal_Study";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	//스터디 상세보기
-	@RequestMapping("writing_Course_Study_Detail.do")
-	public String writingCourseStudyDetailPage(String s_seq, String page, String perPageNum, Model model) {
-		System.out.println("강의게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
-		Map<String, Object> study = service.getStudy(s_seq);
-		model.addAttribute("study",study);
-		model.addAttribute("page",page);
-		model.addAttribute("perPageNum",perPageNum);
-		
-		System.out.println(page);
-		System.out.println(perPageNum);
-		
-		return "user/board/writing_Course_Study_Detail";  //writing_Course_Study_Detail.html
-	}
-
-	
-	
-	
 	@RequestMapping("writing_Normal_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model) {
 		
@@ -148,7 +146,6 @@ public class BoardController {
 		return "user/board/writing_Normal_Study_Detail";
 	}
 
-	
 
 	@RequestMapping("writing_Normal_Study_Edit.do")
 	public String writingNormalStudyEditPage() {

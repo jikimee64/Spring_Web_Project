@@ -83,7 +83,8 @@
 										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
 										<li style="margin-left: 21px;"><b><span
 												sec:authentication="principal.username"></span>님 환영합니다</b></li>
-										<li class="_pageactive"><a href="/mypage/mypage.do">마이페이지</a></li>
+					
+										<li class="_pageactive"><a th:href="@{/mypage/mypage.do}">마이페이지</a></li>
 										<li class="_pageactive"><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
 										<li class="_pageactive"><a href="/message/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
