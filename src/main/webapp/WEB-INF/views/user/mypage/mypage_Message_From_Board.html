@@ -197,13 +197,34 @@ body {
                      th:text="${list.senderid}"></span>
                   </a>
                </div>
-               <div class="col-md-6"
+               
+               <!-- opendate가 null이 아닐경우 색깔 회색?  -->
+				<div th:if="${list.opendate} != null" class="col-md-6"
+					style="place-self: center; text-align: center;">
+					<a style="color: #00b894;"
+						th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
+						<span th:text="${list.content}"></span>
+					</a>
+				</div>
+				
+				<div th:if="${list.opendate} == null" class="col-md-6"
+					style="place-self: center; text-align: center;">
+					<a style="color: #636e72;"
+						th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
+						<span th:text="${list.content}"></span>
+					</a>
+				</div>
+
+					<!--                <div class="col-md-6"
                   style="place-self: center; text-align: center;">
                   <a style="color: black;"
                      th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
                      <span th:text="${list.content}"></span>
                   </a>
-               </div>
+               </div> -->
+               
+               
+               
                <div class="col-md-3"
                   style="place-self: center; text-align: center;">
                   <span th:text="${list.senddate}"></span>
@@ -252,6 +273,15 @@ body {
                $("._input_check").prop('checked', false);
 
          });
+
+      });
+   </script>
+   
+   <!-- 신고ajax -->
+     <script>
+      $(function() {
+    	  
+    	  console.log($('#comment').val())
 
       });
    </script>

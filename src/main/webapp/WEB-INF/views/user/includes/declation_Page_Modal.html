@@ -23,7 +23,7 @@
 		<div class="modal fade" id="declationPageModal" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
-			<form>
+			<form action="/message/declare.do" method="post" class="registerform" id="registerform">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -73,8 +73,10 @@
 								<div class="row" style="text-align:center; margin: 0 auto;">
 									<div class="col-4" style="padding: 0px;"></div>
 									<div class="col-4" style="padding: 0px; margin-left:8px; text-align:left;">
-										<button type="button" class="btn btn-outline-danger"
-											data-dismiss="modal">신고하기</button>
+									<!-- 	<button type="submit" class="btn btn-outline-danger"
+											data-dismiss="modal">신고하기</button> -->
+									<button type="submit" class="btn btn-outline-danger"
+											>신고하기</button>
 									</div>
 									<div class="col-4" style="padding: 0px;"></div>
 								</div>
