@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker;
+import kr.or.ns.service.BoardServiceImpl;
 import kr.or.ns.service.LectureServiceImpl;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Study;
@@ -29,6 +30,9 @@ public class LectureController {
 
 	@Autowired
 	private LectureServiceImpl service;
+
+	@Autowired
+	private BoardServiceImpl service2;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("course_List.do")
@@ -127,10 +131,28 @@ public class LectureController {
 		System.out.println(user_id);
 		System.out.println(l_seq);
 		try {
-			 service.heartinsert(user_id, l_seq); 
+			service.heartinsert(user_id, l_seq);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+
+	}
+
+	// 스터디 상세보기(하나 다시만들어줘라!!)
+	// BoardServiceImpl의 getStudy똑같이 만등러줘라!!
+	@RequestMapping("writing_Course_Study_Detail.do")
+	public String writingCourseStudyDetailPage(String s_seq, String page, String perPageNum, Model model) {
+		System.out.println("강의게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+
+		Map<String, Object> study = service2.getStudy(s_seq);
+		model.addAttribute("study", study);
+		model.addAttribute("page", page);
+		model.addAttribute("perPageNum", perPageNum);
+
+		System.out.println(page);
+		System.out.println(perPageNum);
+
+		return "user/board/writing_Course_Study_Detail"; // writing_Course_Study_Detail.html
 
 	}
 

@@ -29,10 +29,10 @@ public class Study {
 	private String filesrc2;
 	private String status;
 	private int readnum;
-	private String selectlan;
-	private String selectpeo;
-	private String selectloc;
-	private String selectlev;
+	//private int selectlan;
+	//private int selectpeo;
+	//private int selectloc;
+	//private String selectlev;
 	private String selectend;
 	private List<CommonsMultipartFile> files;
 	
