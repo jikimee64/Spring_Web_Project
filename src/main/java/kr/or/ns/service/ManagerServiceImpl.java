@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kr.or.ns.dao.ManagerDao;
 import kr.or.ns.vo.Users;
-
+@Service
 public class ManagerServiceImpl implements ManagerService {
 	
 	@Autowired
