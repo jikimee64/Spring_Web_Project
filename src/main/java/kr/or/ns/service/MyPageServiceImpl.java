@@ -7,6 +7,7 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.dao.MyPageDao;
+import kr.or.ns.vo.BookMark;
 import kr.or.ns.vo.Users;
 
 @Repository
@@ -29,6 +31,16 @@ public class MyPageServiceImpl implements MyPageService {
 		this.sqlsession = sqlsession;
 	}
 
+	//마이페이지
+	public List<Map<String, Object>> myPagelist(String userid) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		List<Map<String, Object>> myPagelist = dao.getBookMark(userid);
+		System.out.println("마이페이지 서비스 잘 오는가" + myPagelist);
+		
+		return myPagelist;
+	}
+	
+	
 	// 회원 가져오기
 	@Override
 	public Users getUsers(String userid) {
@@ -141,4 +153,8 @@ public class MyPageServiceImpl implements MyPageService {
 		System.out.println("탈퇴오는거겠지");
 	}
 
+
+
+	
+	
 }
