@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,52 +31,53 @@ td:focus {
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: #bbbdc2;
-    color: white !important;
-    border-radius: 5px;
-    height: 30px;
-    vertical-align: middle;
-    padding-top: 3px;
-	border:none;
-	
-}
-.excel {
-    margin-right: 5px;
-    text-align: center;
-    border: 1px solid white;
-    transition: all 0.15s;
-    background-color: #00694a;
-    padding: 5px 3px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80px;
-}
-.pdf {
-    margin-right: 5px;
-    text-align: center;
-    border: 1px solid white;
-    transition: all 0.15s;
-    background-color: #ff3c00;
-    padding: 5px 3px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80px;
-}
-.message {
-    margin-right: 5px;
-    text-align: center;
-    border: 1px solid white;
-    transition: all 0.15s;
-    background-color: #f0cf65;
-    padding: 5px 3px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80px;
+	background: #bbbdc2;
+	color: white !important;
+	border-radius: 5px;
+	height: 30px;
+	vertical-align: middle;
+	padding-top: 3px;
+	border: none;
 }
 
+.excel {
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #00694a;
+	padding: 5px 3px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 80px;
+}
+
+.pdf {
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #ff3c00;
+	padding: 5px 3px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 80px;
+}
+
+.message {
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #f0cf65;
+	padding: 5px 3px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 80px;
+}
 </style>
 </head>
 
@@ -122,23 +124,24 @@ td:focus {
 									</thead>
 
 									<tbody>
-										<c:forEach var="list" items="${mList}">
+										<th:block th:each="memberList : ${memberList}">
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
+<!-- 													<a th:href="@{noticeDetail.htm(seq=${n.seq})}"> -->
 												<td align="center"><a
-													th:href="@{/manager/board/member_Detail.do}">${list.m_id}</a>
+													th:href="@{/manager/board/member_Detail.do(user_id=${memberList.USER_ID})}" th:text="${memberList.USER_ID}">123${memberList.USER_ID}</a>
 												</td>
-												<td align="center">${list.name}</td>
-												<td align="center">${list.email}</td>
-												<td align="center">${list.email}</td>
+												<td align="center" th:text="${memberList.USER_EMAIL}">${memberList.USER_EMAIL}</td>
+												<td align="center" th:text="${memberList.NICKNAME}">${memberList.NICKNAME}</td>
+												<td align="center" th:text="${memberList.BLAME_COUNT}">${memberList.BLAME_COUNT}</td>
 												<td align="center" class="button" style="padding-top: 10px;">
 													<a href="#" id="stop">
 														<button type="button" class="btn btn-danger btn-sm"
-															style="color: white; border-radius:5px;">정지</button>
+															style="color: white; border-radius: 5px;">정지</button>
 												</a>
 												</td>
 											</tr>
-										</c:forEach>
+										</th:block>
 									</tbody>
 
 								</table>

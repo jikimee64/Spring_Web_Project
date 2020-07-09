@@ -6,24 +6,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="kr.or.ns.dao.ManagerDao">
 
 	<!-- 총 스터디게시글 수 -->
-<!-- 	<select id="getMemberCount" resultType="Integer"> -->
-<!-- 		SELECT COUNT(*) FROM 멤버보드_BOARD  -->
-<!-- 	</select> -->
+	<!-- <select id="getMemberCount" resultType="Integer"> -->
+	<!-- SELECT COUNT(*) FROM 멤버보드_BOARD -->
+	<!-- </select> -->
 
 
 
-<!-- List<Users> getMemberList();  -->
-<select id="getMemberList" resultType="hashmap">
-	   <![CDATA[
-			SELECT * FROM LECTURE_BOARD
-			ORDER BY L_SEQ DESC
-			LIMIT #{pageStart}, #{perPageNum}     
-		]]>
-
+	<!-- List<Users> getMemberList(); -->
+	<select id="getMemberList" resultType="hashmap">
+		SELECT * FROM USERS
+		ORDER BY user_id asc;
 	</select>
-	
-	
-	
-	
+
+
+
+	<!-- public Users getUsers(String user_id); -->
+
+	<select id="getUsers" resultType="kr.or.ns.vo.Users">
+		select * from users where user_id=#{user_id};
+	</select>
+
+
+	<!-- public List<HashMap<String, String>> getSkill(String user_id); -->
+
+	<select id="getSkill" resultType="hashmap">
+		select skill_name, skill_level
+		from skill where user_id=#{user_id};
+	</select>
+
 
 </mapper>
