@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.or.ns.dao.ManagerDao">
+
+	<!-- 총 스터디게시글 수 -->
+<!-- 	<select id="getMemberCount" resultType="Integer"> -->
+<!-- 		SELECT COUNT(*) FROM 멤버보드_BOARD  -->
+<!-- 	</select> -->
+
+
+
+<!-- List<Users> getMemberList();  -->
+<select id="getMemberList" resultType="hashmap">
+	   <![CDATA[
+			SELECT * FROM LECTURE_BOARD
+			ORDER BY L_SEQ DESC
+			LIMIT #{pageStart}, #{perPageNum}     
+		]]>
+
+	</select>
+	
+	
+	
+	
+
+</mapper>
