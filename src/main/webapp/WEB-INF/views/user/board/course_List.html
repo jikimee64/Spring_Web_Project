@@ -653,13 +653,34 @@ keyframes heart-keyframes { 100% {
 		/* 이거는 하트 클릭시 alert창 띄우는거*/
 		  $('._bookMark').click(function(evt){
 			  var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
-			  if($(this).is(":checked")){
-				    alert(lectureTitle + ' 북마크에 추가됨');
+			  var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
+			  
+			  console.warn(L_seq);
+			  /* if($(this).is(":checked")){
+				    alert(lectureTitle + ' 북마크에 추가됨' +L_seq);
+
 				    console.log($(this).is(":checked"));
 			  }else{
 				  alert(lectureTitle + ' 북마크에서 삭제됨');
 				  console.log($(this).is(":checked"));
-			  }
+			  } */
+			  
+			  var obj = {"l_seq" : L_seq};
+			  
+			  
+			  $.ajax({
+					url : "/lecture/heart.do",
+					type : 'POST',
+				    contentType:"application/json",
+					data : JSON.stringify(obj),
+					success : function(data) {
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				})
+			  
+			  
 		  });
 		/* 하트 클릭시  alert창 띄우기 끝 */
 			

@@ -12,4 +12,5 @@ public interface LectureService {
 	
 	public List<Map<String, Object>> getLectureList(Criteria cri);
 	
+	public void heartinsert(String user_id, String l_seq);
 }

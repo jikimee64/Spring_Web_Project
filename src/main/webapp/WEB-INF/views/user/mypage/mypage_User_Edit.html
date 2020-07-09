@@ -335,7 +335,7 @@ group+group {
 						<div class="col-2"></div>
 
 						<div class="col-8" style="text-align: center;">
-							<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
+					<img id="preview" th:src="'/userboard/upload/' + ${member.profile_img}" alt="썸네일"
 								style="margin-bottom: 15px; width: 150px; height: 150px;">
 
 						</div>
@@ -502,6 +502,8 @@ group+group {
 							<input type="email" class="input--style-6" id="user_email"
 								placeholder="이메일을 입력해주세요" name="user_email"
 								th:value="${member.user_email}">
+								<span
+								class="email hide"></span>
 
 						</div>
 
@@ -724,7 +726,7 @@ group+group {
             	  return false;
              }
              else if (regFlag[0] === false || regFlag[1] === false
-						|| regFlag[2] === false || regFlag[3]) {
+						|| regFlag[2] === false) {
 					alert('모든 값을 조건에 맞게 입력해주세요.')
 					return false;
 				
@@ -746,7 +748,7 @@ group+group {
 					// 2. 값이 올바르게 입력되면 "GOOD"을 프린트한다.
 					// 3. 값이 올바르지 않으면 "글자나 영어를 2~5개까지 입력하셔야 합니다."라는 경고창이 뜬다.
 
-					var regFlag = [false, false, false, false];
+					var regFlag = [false, false, false];
 					
 					let check_num = /[0-9]/; // 숫자
 					let check_eng = /[a-zA-Z]/; // 문자
@@ -817,24 +819,6 @@ group+group {
 					}
 
 					passwordInput.addEventListener("blur", passwordCheck);
-					/*
-		 			let nicknameInput = document.querySelector("#nickname");
-					let	nicknameResult = document.querySelector(".nickname");
-					let nickname_check =  /\s/g;
-				    
-					function nicknameCheck(){
-					if(nicknameInput.match(nickname_check)) {
-						nicknameResult.innerHTML = "닉네임을 입력해주세요.";
-						regFlag[3] = false;
-						}else{
-							nicknameResult.innerHTML = "사용 가능한 닉네임 입니다.";
-							  regFlag[3] = true;
-						}
-					}
-					
-				
-					
-					nicknameInput.addEventListener("blur", nicknameCheck); */
 		
 					
 					

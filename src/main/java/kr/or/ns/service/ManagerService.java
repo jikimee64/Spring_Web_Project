@@ -7,7 +7,7 @@ import kr.or.ns.vo.Users;
 
 public interface ManagerService {
 	
-	//유저 리스트 뿌리기
+	//회원정보 목록가져오기
 	public List<Users> getMemberList();
 	
 	//유저  상세보기 정보 가져오기(실력 제외)

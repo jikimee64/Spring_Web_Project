@@ -92,63 +92,7 @@ public class BoardController {
 		return "user/board/board_Select";
 	}
 
-	@RequestMapping("board_Select_Online_Bookmark.do")
-	public String boardSelectOnlinePage() {
-		System.out.println("온라인강의 선택페이지(북마크)로 이동이동(연규가씀)");
-
-		return "user/board/board_Select_Online_Bookmark";
-	}
-
-	@RequestMapping(value = "writing_Course_Study.do", method = RequestMethod.GET)
-	public String writingCourseStudyPage() {
-		System.out.println("온라인saas강의 선택페이지(북마크)에서 다음페이지인 강의전용 글쓰기페이지로 이동이동(연규가씀)");
-
-		return "user/board/writing_Course_Study";
-	}
-
-	@RequestMapping(value = "writing_Course_Study.do", method = RequestMethod.POST)
-	public String writingCourseStudyPage(Study study, HttpServletRequest request) {
-
-		List<CommonsMultipartFile> files = study.getFiles();
-		List<String> filenames = new ArrayList<String>(); // 파일명관리
-		System.out.println("?? " + files);
-		
-		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
-			for (CommonsMultipartFile multifile : files) {
-				String filename = multifile.getOriginalFilename();
-				System.out.println("파일업로드 : " + filename);
-				String path = request.getServletContext().getRealPath("/studyboard/upload");
-
-				String fpath = path + "\\" + filename;
-
-				if (!filename.equals("")) { // 실 파일 업로드
-					try {
-						FileOutputStream fs = new FileOutputStream(fpath);
-						fs.write(multifile.getBytes());
-						fs.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				filenames.add(filename); // 파일명을 별도 관리 (DB insert)
-				System.out.println("fs" + filename);
-			}
-
-		}
-		
-//		  System.out.println("제목 : " + study.getTitle());
-//		  System.out.println("내용 : " + study.getContent());
-//		  System.out.println("언어" + study.getSelectlan());
-//		  System.out.println("모집인원" + study.getSelectPeo());
-//		  System.out.println("지역선택" + study.getSelectloc());
-//		  System.out.println("난이도" + study.getSelectlev());
-//		  System.out.println("모집마감일" + study.getSelectend());
-		
-		  service.studyReg(study, request);
-		
-
-		return "user/board/writing_Course_Study";
-	}
+	
 
 	@RequestMapping("writing_Normal_Study.do")
 	public String writingNormalStudyPage() {
@@ -204,12 +148,7 @@ public class BoardController {
 		return "user/board/writing_Normal_Study_Detail";
 	}
 
-	@RequestMapping("writing_Course_Study_Edit.do")
-	public String writingCourseStudyEditPage() {
-		System.out.println("강의게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
-
-		return "user/board/writing_Course_Study_Edit";
-	}
+	
 
 	@RequestMapping("writing_Normal_Study_Edit.do")
 	public String writingNormalStudyEditPage() {
