@@ -33,6 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select skill_name, skill_level
 		from skill where user_id=#{user_id}
 	</select>
+	
+	
+			<delete id="memberDelete">
+	      		DELETE from users WHERE user_id=#{user_id}
+	      </delete>
 
 
 </mapper>
