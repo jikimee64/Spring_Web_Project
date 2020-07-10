@@ -10,40 +10,8 @@ package kr.or.ns.vo;
 public class Criteria_Select {
 	private int page;
 	private int perPageNum;
-	private int pageStart; //이렇게 원래 써야 한다 이거 안써도 되지만 그건 직관적이 아니다 일종의 꼼수일뿐..
+	//private int pageStart; //이렇게 원래 써야 한다 이거 안써도 되지만 그건 직관적이 아니다 일종의 꼼수일뿐..
 	
-	private String user_id;
-//	private String l_title;
-	
-	public String l_title;
-	
-	public String getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
-	}
-
-	public String getL_title() {
-		return l_title;
-	}
-	
-	public void setL_title(String l_title) {
-		this.l_title = l_title;
-	}
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-
 
 	//생성자(최초로 게시판 목록에 들어왔을 때를 위한 기본세팅)
 	public Criteria_Select() {
@@ -60,13 +28,11 @@ public class Criteria_Select {
 	}
 	
 	
-	
-	public void setPageStart(int pageStart) {
-		this.pageStart = pageStart;
-	}
-
-
-	
+//	/*
+//	 * public void setPageStart(int pageStart) { this.pageStart = pageStart; }
+//	 * 
+//	 * 
+//	 */
 	
 	
 	

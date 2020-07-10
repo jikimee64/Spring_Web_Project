@@ -119,6 +119,12 @@ public class PageMaker_Select {
 	public void setDisplayPageNum(int displayPageNum) {
 		this.displayPageNum = displayPageNum;
 	}
+	@Override
+	public String toString() {
+		return "PageMaker_Select [cri_s=" + cri_s + ", totalCount=" + totalCount + ", startPage=" + startPage
+				+ ", endPage=" + endPage + ", prev=" + prev + ", next=" + next + ", displayPageNum=" + displayPageNum
+				+ "]";
+	}
 
 	
 

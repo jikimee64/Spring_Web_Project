@@ -43,7 +43,7 @@ public interface LectureDao {
 //	public List<Map<String, Object>> getBookmarkList(Criteria_Select cri_s, String userid);
 //	public List<HashMap<?,?>> getBookmarkList(Criteria_Select cri_s, List<Map<String, Object>> mypageBookmarkList);
 
-	public List<HashMap<String, Object>> getBookmarkList(Criteria_Select cri_s, String userid);
+	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
 
 //	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s, String userid);
 

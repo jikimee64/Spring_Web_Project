@@ -74,24 +74,29 @@ public class LectureController {
 		System.out.println("온라인강의 선택페이지(북마크)로 이동이동(연규가씀)");
 		
 		//북마크 테이블에서 사용자 아이디와 일치하는 데이터 가져오기 
-		String users = principal.getName();
-		System.out.println("현재 유저정보:" + users);
+		String user_id = principal.getName();
 		
 		//페이징
 		PageMaker_Select pageMakers = new PageMaker_Select();
 		pageMakers.setCri_s(cri_s);
-		pageMakers.setTotalCount(service.getBookmarkCount(users));
+		pageMakers.setTotalCount(service.getBookmarkCount(user_id));
 		
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
 		//마이페이지에서 북마크 들고오기
-		List<Map<String,Object>> mypageBookmarkList = null;
-		mypageBookmarkList = service3.myPagelist(users);
+//		List<Map<String,Object>> mypageBookmarkList = null;
+//		mypageBookmarkList = service3.myPagelist(users);
 //		model.addAttribute("mypageBookmarkList", mypageBookmarkList);
 //		System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + mypageBookmarkList);
 		
 		//페이징 들고오기
 		List<HashMap<String, Object>> bookMarkList = null;
-		bookMarkList = service.getBookmarkList(cri_s,users);
+		
+		HashMap<String, Object> map = new HashMap();		
+		map.put("user_id", user_id);
+		map.put("cri_s", cri_s);
+		
+		bookMarkList = service.getBookmarkList(map);
+		System.out.println("우철이 천재 : " + bookMarkList);
 //		bookMarkList = service.getBookmarkList(cri_s,users);
 		model.addAttribute("bookMarkList", bookMarkList); // view까지 전달(forward)
 		model.addAttribute("pageMakers", pageMakers);

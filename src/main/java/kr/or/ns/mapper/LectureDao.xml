@@ -92,19 +92,12 @@
 			on lecture_board.p_seq = price_category.p_seq
 			left outer join bookmark
 			on lecture_board.l_seq = bookmark.l_seq
-			where bookmark.user_id = #{0.userid}  
+			where bookmark.user_id = #{user_id}  
 			order by bookmark.l_seq desc
-            limit #{1.pageStart}, #{1.perPageNum} 
+            limit #{pageStart}, #{perPageNum} 
 		]]>
 
 	</select> 
-	
-	
-	
-	
-	
-	
-	
 	
 	
 
