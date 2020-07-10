@@ -3,9 +3,10 @@
 <mapper namespace="kr.or.ns.dao.MessageDao">
 
 	<!-- public int getmsgcount(String userid); -->
+	<!-- 읽지 않은것만 표시  -->
 	<select id="getmsgcount" resultType="int">
 		select count(*) from message
-		where opendate is not null and receptionid = #{user_id}
+		where opendate is null and receptionid = #{user_id}
 	</select>
 
 	<!-- public int insertMessage(Message message) -->
@@ -40,5 +41,9 @@
 	<delete id="deleteMessageOne">
 		delete from message where m_seq = #{m_seq}
 	</delete>
+	
+	<update id="updateMessage">
+ 		update message set opendate=now() where m_seq = #{m_seq}
+ 	</update>
 
 </mapper>

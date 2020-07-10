@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,8 @@ public class AjaxServiceImpl implements AjaxService {
 	@Autowired
 	private Mailer mailer;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	/////////////////////////////////////////////////////////////////// 이름과 이메일 받아서 존재하는 회원인지 확인
 	@Override
 	public int emailCheck(String user_name, String user_email) {
@@ -108,7 +111,7 @@ public class AjaxServiceImpl implements AjaxService {
 		
 					String key = new Tempkey().getKey(10, false);
 					String temp_pw = key;
-					vo.setUser_pwd(temp_pw);
+					vo.setUser_pwd(this.bCryptPasswordEncoder.encode(temp_pw));
 					dao.updatePw(vo);
 					
 					try {
@@ -151,6 +154,22 @@ public class AjaxServiceImpl implements AjaxService {
 		result = dao.checkEmail(map);
 		
 		System.out.println(result+"결과 찍어보기  dao 에서 가져온 반환값 ");
+		return result;
+	}
+	
+	//스터디 지원하기 인서트
+	@Override
+	public int applyNomalStudy(String s_seq, String user_id) {
+		System.out.println("지원하기: " + user_id);
+		System.out.println("번호: " + s_seq);
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+	
+		int result = 0;
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("s_seq", s_seq);
+		map.put("user_id", user_id);
+		result = dao.insertStudyGroup(map);
 		return result;
 	}
 }

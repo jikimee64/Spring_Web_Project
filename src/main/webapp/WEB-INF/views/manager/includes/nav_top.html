@@ -1,0 +1,51 @@
+
+<style>
+a, button {
+	text-decoration: none;
+	outline: none !important;
+	-webkit-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+
+.dropdown-menu {
+	border-radius: 0;
+	-webkit-transform: none !important;
+	-ms-transform: none !important;
+	transform: none !important;
+
+}
+<!--.user-area .user-menu   이게 전체 박스 style.css 가서 검색-->
+</style>
+<header id="header" class="header" th:fragment="nav_top">
+   <div class="header-menu">
+      <div class="col-sm-7">
+         <a id="menuToggle" class="menutoggle pull-left"><i
+            class="fa fa fa-tasks"></i></a>
+      </div>
+      <div class="col-sm-5">
+         <div class="user-area dropdown float-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"> <img
+               class="user-avatar rounded-circle"
+               src="../../../../resources/admin_assets/images/admin.svg"
+               alt="User Avatar">
+            </a>
+
+		            <div class="user-menu dropdown-menu">
+		               <!-- <a class="nav-link" href="logout.ump"><i
+		                  class="fa fa-power-off"></i> Logout</a> -->
+		                   <a class="nav-link"
+		                  href="../../user/main.do"><i class="fa fa-power-off"></i>&nbsp;<b>나가기</b></a>
+		            </div>
+         </div>
+
+         <div class="language-select dropdown" id="language-select">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown"
+               id="language" aria-haspopup="true" aria-expanded="true"> <i
+               class="flag-icon flag-icon-kr"></i>
+            </a>
+         </div>
+
+      </div>
+   </div>
+</header>

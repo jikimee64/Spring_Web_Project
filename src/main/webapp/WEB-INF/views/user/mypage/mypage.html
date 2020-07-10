@@ -1,205 +1,285 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>mypage</title>
-	<link href="login.css" type="text/css" rel="stylesheet" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
-	<style>
-	@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-	body {
-			background-color: white;
-			font-family: 'Nanum Gothic', sans-serif;
-		}
-		
-	</style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+<title>mypage</title>
 </head>
+<style>
+h5 {
+	color: #18d26e;
+}
+
+._border_box_shadow2 {
+	background: #fff;
+	margin: auto;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 30px;
+	width: 1242px;
+}
+
+body {
+	background-color: rgb(230, 244, 232) !important;
+}
+
+._message_hover:hover {
+	box-shadow: 0 0 6px rgba(35, 173, 255, 1) !important;
+}
+
+.container::-webkit-scrollbar-thumb {
+	background-color:
+}
+
+.svg {
+	fill: #E8336D;
+	width: 30px;
+}
+</style>
 
 <body>
 	<!-- 마이페이지 -->
-	<div th:replace="/user/includes/header :: header"> </div>
+	<div th:replace="/user/includes/header :: header"></div>
 
 	<!--  윗부분 시작 //////////////////////////////////////// -->
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs" style="margin-top: 70px;">
+			<div class="container">
 
-	<div class="container" style="margin-top: 25px; padding:0px; background-color: white;">
-		<div class="row" style="height:200px;">
-			<div class="col-md-3" style="align-self: center; text-align: center;left:15px;">
-				<p><img src="https://www.beffreport.com/news/photo/201904/58805_29372_2821.jpg" alt=""
-						style="height:130px; border-radius: 50%;"></p>
-			</div>
-			<div class="col-md-4 pl-0" style="align-self: center;">
-				<b style=" font-size: larger; margin-left: 20px;">미네미네</b>
-				<a th:href="@{/mypage/MyPageUserDetail.do}">
-					<img src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
-						class="mb-1" alt="" style="height: 27px;"></a>
+				<div class="d-flex justify-content-between align-items-center">
+					<h2 style="color: #666666;">
+						<b>마이페이지</b>
+					</h2>
+				</div>
 
-				<a th:href="@{/mypage/mypage_Message_From_Board.do}">
-					<img src="../../../../resources/images/img/message.png" style="width:30px; margin-bottom: 5px;"
-						alt=""></a>
-				<hr style="border: solid 1px; margin-top: 0px; margin-bottom:5px" />
-				<p style="margin-left: 20px;"> 안녕하세요 자바를 배우려고 가입했습니다.</p>
 			</div>
-			<div class="col-md-5">
-				<div class="row" style="height: 10px; margin-bottom: 50px;">
-					<div class="col-md-8">
+		</section>
+		<!-- Breadcrumbs Section -->
+
+	</main>
+	<div class="_border_box_shadow2">
+		<div class="container"
+			style="margin-top: 25px; padding: 0px; background-color: white;">
+			<div class="row" style="height: 200px;">
+				<div class="col-md-3"
+					style="align-self: center; text-align: center; left: 15px;">
+					<p>
+						<img
+							src="https://www.beffreport.com/news/photo/201904/58805_29372_2821.jpg"
+							alt="" style="height: 130px; border-radius: 50%;">
+					</p>
+				</div>
+				<div class="col-md-4 pl-0" style="align-self: center;">
+					<b style="font-size: larger; margin-left: 20px;">미네미네</b> <a
+						class="_message_hover" th:href="@{/mypage/MyPageUserDetail.do}">
+						<img
+						src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
+						class="mb-1 _message_hover" alt="" style="height: 27px;">
+					</a> <a th:href="@{/message/mypage_Message_From_Board.do}"
+						class="_message_hover"> <img class="_message_hover"
+						src="../../../../resources/images/img/message_black.png"
+						style="width: 30px; margin-bottom: 5px;" alt=""></a>
+					<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 5px" />
+					<p style="margin-left: 20px;">안녕하세요 자바를 배우려고 가입했습니다.</p>
+				</div>
+				<div class="col-md-5">
+					<div class="row" style="height: 10px; margin-bottom: 50px;">
+						<div class="col-md-8"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2" style="text-align: center;">
+							<a href="/mypage/mypage_Myboard.do">
+								<h5 style="color: cornflowerblue" class="_message_hover">22</h5>
+							</a> <b>게시글</b>
+						</div>
+						<div class="col-md-2" style="text-align: center;">
+							<a href="/mypage/mypage_Myboard.do">
+								<h5 style="color: cornflowerblue" class="_message_hover">33</h5>
+							</a> <b>댓글</b>
+						</div>
+						<div class="col-md-2" style="text-align: center;">
+							<h5 style="color: cornflowerblue">11</h5>
+							<b>북마크</b>
+						</div>
+						<div class="col-md-2" style="text-align: center;">
+							<h5 style="color: cornflowerblue">31</h5>
+							<b>진행중<br />스터디
+							</b>
+						</div>
+						<div class="col-md-2" style="text-align: center;">
+							<h5 style="color: cornflowerblue">11</h5>
+							<b>모집중<br />스터디
+							</b>
+						</div>
+
 					</div>
 				</div>
+			</div>
+		</div>
+		<!--  윗부분 끝 //////////////////////////////////////// -->
+		<!--  중간부분 시작  //////////////////////////////////////// -->
+		<div class="container" style="height: 300px; padding-top: 15px;">
+			<div style="padding: 40px 30px;">
 				<div class="row">
-					<div class="col-md-2" style="
-					text-align: center;
-				">
-						<h5 style="color:cornflowerblue"><a href="">11</a></h5>
-						<b>게시글</b>
+					&nbsp; &nbsp; &nbsp;
+					<button type="button" class="btn btn-success"
+						style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
+						id="_study_button1">
+						<b>참여중 스터디</b>
+					</button>
+					<button type="button" class="btn btn-success"
+						style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
+						id="_study_button2">
+						<b>모집중 스터디</b>
+					</button>
+				</div>
+				<hr style="border: solid 1px; margin-top: 0px; max-width: 1200px;" />
+				<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
+				<div class="row p-4">
+					<div class="col-md-1" style="text-align: center;">
+						<!-- 스터디 글 번호 -->
+						<p style="font-size: xx-large; font-weight: bold;">1</p>
 					</div>
-					<div class="col-md-2" style="
-					text-align: center;
-				">
-						<h5 style="color:cornflowerblue"><a href="">31</a></h5>
-						<b>댓글</b>
-					</div>
-					<div class="col-md-2" style="
-					text-align: center;
-				">
-						<h5 style="color:cornflowerblue"><a href="">31</a></h5>
-						<b>북마크</b>
-					</div>
-					<div class="col-md-2" style="
-					text-align: center;
-				">
-						<h5 style="color:cornflowerblue"><a href="">31</a></h5>
-						<b>진행중<br />스터디</b>
-					</div>
-					<div class="col-md-2" style="
-					text-align: center;
-				">
-						<h5 style="color:cornflowerblue"><a href="">31</a></h5>
-						<b>모집중<br />스터디</b>
-					</div>
+					<div class="col-md-8">
+						<span class="badge badge-pill badge-warning">모집인원 4/6</span> <span
+							class="ml-3 badge badge-pill badge-danger">20/05/05</span> <a
+							href=""><img
+							src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
+							class="mb-1 _message_hover" alt=""
+							style="height: 27px; margin-left: 5px; margin-top: 2px;"></a>
+						<h4 style="font-weight: bold;">따라하며 배우는 노드 같이 스터디 하실분~~?</h4>
+						<p>노드 20일짜리 과정 20일동안 같이 해보실분 찾아요~ 20일동안 같이 해보실분 찾아요~ 노드 20일짜리
+							과정 ...</p>
+						&nbsp; <br />
 
+
+					</div>
+					<div class="col-md-3" style="text-align: right;">
+						<img
+							src="https://cdn.inflearn.com/wp-content/uploads/jjn_es62.jpg"
+							alt="" style="height: 140px; width: 140px;">
+					</div>
 				</div>
+
+
 			</div>
+			<br />
+			<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
 		</div>
-	</div>
-	<!--  윗부분 끝 //////////////////////////////////////// -->
-	<!--  중간부분 시작  //////////////////////////////////////// -->
-	<div class="container" style="height: 300px; padding-top: 15px;">
-		<div style="padding: 40px 30px;">
-			<div class="row">
-				&nbsp; &nbsp; &nbsp;
-				<button type="button" class="btn btn-success" style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;
-					" id="_study_button1"> <b>참여중
-						스터디</b> </button>
-				<button type="button" class="btn btn-success" style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;
-				" id="_study_button2"><b>모집중
-						스터디</b></button>
-			</div>
-			<hr style="border:solid 1px; margin-top: 0px; max-width: 1200px;" />
-			<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
-			<div class="row p-4">
-				<div class="col-md-1" style="text-align: center;">
-					<!-- 스터디 글 번호 -->
-					<p style="font-size: xx-large; font-weight: bold;">1</p>
-				</div>
-				<div class="col-md-8">
-					<span class="badge badge-pill badge-warning">모집인원 4/6</span>
-					<span class="ml-3 badge badge-pill badge-danger">20/05/05</span>
-					<h4 style="font-weight: bold;">따라하며 배우는 노드 같이 스터디 하실분~~?</h4>
-					<p>노드 20일짜리 과정 20일동안 같이 해보실분 찾아요~
-						20일동안 같이 해보실분 찾아요~ 노드 20일짜리 과정 ...</p>
-					&nbsp;
-				</div>
-				<div class="col-md-3" style="text-align: right;">
-					<img src="https://cdn.inflearn.com/wp-content/uploads/jjn_es62.jpg" alt="" style="height:140px; width: 140px;">
-				</div>
-			</div>
-			<!-- 여기까지가 하나 그리고 밑에는 더미데이터 -->
-		</div>
-		<br />
-		<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
-	</div>
-	<!--  중간부분 끝  //////////////////////////////////////// -->
-	<!-- 여기부터 마지막 부분 시작/// 북마크 -->
-	<div class="container" style="height: 300px; padding-top: 15px;">
-		<div style= "padding: 40px 30px;">
-			<img src="../../../../resources/images/img/bookmark.png" alt="" style="height:50px; margin-bottom:10px;">
-			<b style="font-size:30px; margin-left: 5px;">북마크</b>
+		<!--  중간부분 끝  //////////////////////////////////////// -->
+		<!-- 여기부터 마지막 부분 시작/// 북마크 -->
+		<div class="container"
+			style="padding-top: 15px; ">
+			<div style="margin-bottom: 20px;">
 	
-		<hr style="border: solid 1px; margin-top: 0px; margin-bottom:10px  max-width: 1200px;" />
+					<!-- <img src="../../../../resources/images/img/bookmark.png" alt=""
+					style="height: 40px; margin-bottom: 10px;">  -->
+			
+				<div class="row" style="margin-left:40px;">					
+				<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 51.02">
+					<path d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+					</svg>
+				
+							&nbsp;&nbsp;
+						<b style="font-size: 30px;">북마크</b>
+					</div>
+					<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 10px; max-width: 1000px;" />
+					<div style="overflow-y: auto; overlow-x: hidden; width: 100%; height: 200px;">
+					<div th:each="list: ${list}">
+				
 
-		<!-- 여기부터 데이터 하나 넣기 시작 -->
-		<div class="row" style="padding: 40px 30px;">
-			<div class="col-md-1" style="text-align: center;">
-				<!-- 스터디 글 번호 -->
-				<p style=" font-size: xx-large; font-weight: bold;">1</p>
-			</div>
-			<div class="col-md-2" style="text-align: center;">
+					<!-- 여기부터 데이터 하나 넣기 시작 -->
+					<!-- 타임리프 for문 -->
 
-				<img src="https://cdn.inflearn.com/public/courses/325053/course_cover/b5fb69d7-2957-4023-82f1-76f3ff0b8860/nodeReactchatbot.png"
-					alt="" style="height: 140px; width:140px;">
+					<div class="row" style="padding: 40px 30px;">
+						<div class="col-md-1" style="text-align: center;">
+							<!-- 스터디 글 번호 -->
+							<p style="font-size: xx-large; font-weight: bold;"
+								th:text="${list.L_SEQ}"></p>
+						</div>
+						<div class="col-md-2" style="text-align: center;">
+							<img
+								src="https://cdn.inflearn.com/public/courses/325053/course_cover/b5fb69d7-2957-4023-82f1-76f3ff0b8860/nodeReactchatbot.png"
+								alt="" style="height: 140px; width: 140px;">
+						</div>
+						<div class="col-md-7"
+							style="padding-left: 50px; padding-right:0px; padding-top: 10px;">
+						
+								<h4 style="font-weight: bold; color: black;"
+									th:text="${list.L_TITLE}"></h4>
+								<br /> <br /> <img
+								src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+								alt="" style="height: 40px;">
+							<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
+							&nbsp; <span> <b th:text="${list.cate_price}"></b>
+							</span> <br />
+
+						</div>
+						<div class="col-md-1" style="padding-right:0px;">
+							<button type="button" class="btn btn-danger"
+								style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;"><b>삭제</b></button>
+						</div>
+					</div>
+
+					<!-- 이건 더미데이터 끝 -->
+								<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 10px; max-width: 1000px;" />
+				</div>
+				</div>
 			</div>
-			<div class="col-md-7" style="padding-left: 50px; padding-top:10px;">
-				<a href=""><h4 style="font-weight: bold;"> 따라하며 배우는 노드, 리액트시리즈-챗봇 사이트 만들기</h4></a>
-				<br />
-				<br />
-				<img src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-					alt="" style="height: 40px;">
-				<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
-				&nbsp;
-				<span> <b>44,000원</b> </span>
-			</div>
-			<div class="col-md-1"></div>
-			<div class="col-md-1">
-				<button type="button" class="btn btn-danger" style="background-color: rgb(231, 76, 60); padding: 7px; 0px; ">삭제</button>
-			</div>
+
 		</div>
-		<!-- 이건 더미데이터 끝 -->
+		<!-- 여기까지 마지막 부분 끝/// 북마크 -->
 	</div>
-	</div>
-
-	<!-- 여기까지 마지막 부분 끝/// 북마크 -->
-
-	<div th:replace="/user/includes/footer :: footer"> </div>
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<script>
-
-		$(function () {
+		$(function() {
 			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
-			$('#_study_button1').click(function () {
-				$('#_study_button1').css('background-color', 'rgb(19, 204, 97)');
-				$('#_study_button1').css('border-color', 'rgb(19, 204, 97)');
+			$('#_study_button1').click(
+					function() {
+						$('#_study_button1').css('background-color',
+								'rgb(19, 204, 97)');
+						$('#_study_button1').css('border-color',
+								'rgb(19, 204, 97)');
 
-				$('#_study_button2').css('background-color', 'rgb(134, 240, 180)');
-				$('#_study_button2').css('border-color', 'rgb(134, 240, 180)');
+						$('#_study_button2').css('background-color',
+								'rgb(134, 240, 180)');
+						$('#_study_button2').css('border-color',
+								'rgb(134, 240, 180)');
 
-				$('#_study_button3').css('background-color', 'rgb(134, 240, 180)');
-				$('#_study_button3').css('border-color', 'rgb(134, 240, 180)');
-			});
+						$('#_study_button3').css('background-color',
+								'rgb(134, 240, 180)');
+						$('#_study_button3').css('border-color',
+								'rgb(134, 240, 180)');
+					});
 
-			$('#_study_button2').click(function () {
-				$('#_study_button1').css('background-color', 'rgb(134, 240, 180)');
-				$('#_study_button1').css('border-color', 'rgb(134, 240, 180)');
+			$('#_study_button2').click(
+					function() {
+						$('#_study_button1').css('background-color',
+								'rgb(134, 240, 180)');
+						$('#_study_button1').css('border-color',
+								'rgb(134, 240, 180)');
 
-				$('#_study_button2').css('background-color', 'rgb(19, 204, 97)');
-				$('#_study_button2').css('border-color', 'rgb(19, 204, 97)');
+						$('#_study_button2').css('background-color',
+								'rgb(19, 204, 97)');
+						$('#_study_button2').css('border-color',
+								'rgb(19, 204, 97)');
 
-				$('#_study_button3').css('background-color', 'rgb(134, 240, 180)');
-				$('#_study_button3').css('border-color', 'rgb(134, 240, 180)');
-			});
-
+						$('#_study_button3').css('background-color',
+								'rgb(134, 240, 180)');
+						$('#_study_button3').css('border-color',
+								'rgb(134, 240, 180)');
+					});
 
 		});
-
 	</script>
 </body>
 

@@ -136,15 +136,19 @@
       var top = $(this).offset().top,
         bottom = top + $(this).outerHeight();
 
-      if (cur_pos >= top && cur_pos <= bottom) {
-        if (cur_pos <= bottom) {
-          main_nav.find('li').removeClass('active');
-        }
-        main_nav.find('a[href="#' + $(this).attr('id') + '"]').parent('li').addClass('active');
-      }
-      if (cur_pos < 300) {
-        $(".nav-menu ul:first li:first").addClass('active');
-      }
+      
+      //이거쓰면 엑티브 스크롤 내리면 사라짐      ~
+//      if (cur_pos >= top && cur_pos <= bottom) {
+//        if (cur_pos <= bottom) {
+//          main_nav.find('li').removeClass('active');
+//        }
+//        main_nav.find('a[href="#' + $(this).attr('id') + '"]').parent('li').addClass('active');
+//        console.log('파하');
+//      }
+//      if (cur_pos < 300) {
+//        $(".nav-menu ul:first li:first").addClass('active');
+//        console.log('abcd');
+//      }
     });
   });
 
@@ -183,6 +187,10 @@
     layoutMode: 'fitRows'
   });
 
+
+
+
+  //기존 코드 
   $('#portfolio-flters li').on('click', function() {
     $("#portfolio-flters li").removeClass('filter-active');
     $(this).addClass('filter-active');
@@ -192,6 +200,121 @@
     });
     aos_init();
   });
+
+
+  //#portfolio-flters 에 filter-active 클래스 추가 및 제거(course_List.html)    
+  //site,level,price,lan        ingOrDone,local,studyContent
+  $('#portfolio-flters-site li').on('click', function() {
+      if($(this).hasClass('filter-active')){
+        $(this).removeClass('filter-active');
+      }else{
+        $("#portfolio-flters-site li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+      }
+
+      portfolioIsotope.isotope({
+        filter: $(this).data('filter')
+      });
+      aos_init();
+  });
+  $('#portfolio-flters-level li').on('click', function() {
+      if($(this).hasClass('filter-active')){
+        $(this).removeClass('filter-active');
+      }else{
+        $("#portfolio-flters-level li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+      }
+      
+      portfolioIsotope.isotope({
+        filter: $(this).data('filter')
+      });
+      aos_init();
+  });
+  $('#portfolio-flters-price li').on('click', function() {
+      if($(this).hasClass('filter-active')){
+        $(this).removeClass('filter-active');
+      }else{
+        $("#portfolio-flters-price li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+      }
+
+      portfolioIsotope.isotope({ 
+        filter: $(this).data('filter')
+      });
+      aos_init();
+  });
+  $('#portfolio-flters-ingOrDone li').on('click', function() {
+      if($(this).hasClass('filter-active')){
+        $(this).removeClass('filter-active');
+      }else{
+        $("#portfolio-flters-ingOrDone li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+      }
+      
+      portfolioIsotope.isotope({
+        filter: $(this).data('filter')
+      });
+      aos_init();
+  });
+  $('#portfolio-flters-local li').on('click', function() {
+      if($(this).hasClass('filter-active')){
+        $(this).removeClass('filter-active');
+      }else{
+        $("#portfolio-flters-local li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+      }
+
+      portfolioIsotope.isotope({
+        filter: $(this).data('filter')
+      });
+      aos_init();
+  });
+  $('#portfolio-flters-studyContent li').on('click', function() {
+      if($(this).hasClass('filter-active')){
+        $(this).removeClass('filter-active');
+      }else{
+        $("#portfolio-flters-studyContent li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+      }
+      
+      portfolioIsotope.isotope({
+        filter: $(this).data('filter')
+      });
+      aos_init();
+  });
+  /*
+  $('#portfolio-flters-lan li').on('click', function() {
+    $("#portfolio-flters-lan li").removeClass('filter-active');
+    $(this).addClass('filter-active');
+
+    portfolioIsotope.isotope({
+      filter: $(this).data('filter')
+    });
+    aos_init();
+  });
+  */
+  $('#portfolio-flters-lan li').on('click', function() {
+   
+      $(this).toggleClass('filter-active');
+    
+      portfolioIsotope.isotope({
+        filter: $(this).data('filter')
+      });
+      aos_init();
+  });
+  
+
+
+
+
+
+
+
+
+
+
+
+
 
   // Initiate venobox (lightbox feature used in portofilo)
   $(document).ready(function() {

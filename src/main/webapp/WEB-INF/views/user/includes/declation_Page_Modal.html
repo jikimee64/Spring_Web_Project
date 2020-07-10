@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>신고페이지</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+
+	<!--여기서부터 화면코드-->
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-outline-warning"
+		data-toggle="modal" data-target="#declationPageModal">신고합니다</button>
+	<div th:fragment="declation_Page_Modal">
+		<!-- Modal -->
+		<div class="modal fade" id="declationPageModal" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+
+			<form action="" method="post" class="blameform" name="blameform" id="blameform">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<img src="../../../../resources/images/img/siren.png"
+								style="width: 30px; height: 30px;">
+							<h5 class="modal-title" id="exampleModalCenterTitle"
+								style="padding-left: 10px;">신고하기</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body container"
+							style="padding: 30px; padding-bottom: 0px;">
+							<div class="row">
+								<div class="col-md-2">제목 :</div>
+								<div class="col-md-9" style="padding-left: 0px;">
+									<input type="text" name="blame_title" class="form-control form-control-sm">
+								</div>
+							</div>
+							<br />
+							<!-- <div class="row">
+								<div class="col-md-2" style="padding-right: 0px;">작성자 :</div>
+								<div class="col-md-9" style="padding-left: 0px;">
+									<input type="text" class="form-control form-control-sm">
+								</div>
+							</div> -->
+							<hr>
+						</div>
+						<div class="modal-body container"
+							style="padding: 30px; padding-top: 0px;">
+							<h5>
+								<b>[사유]</b>
+							</h5>
+							<div style="padding-left: 30px;">
+								<input type="radio" id="1" name="blame" value="1"> 
+								<label for="1">게시판 성격과 맞지 않는 게시글</label><br>
+								<input type="radio" id="2" name="blame" value="2"> <label for="2">부적절한
+									홍보 게시글</label><br> <input type="radio" id="3" name="blame"
+									value="3"> <label for="3">욕설 및 비방</label><br> <input
+									type="radio" id="4" name="blame" value="4"> <label
+									for="4">기타</label>
+								<div class="form-group">
+									<textarea class="form-control" rows="3" id="comment"
+										name="comment" placeholder="추가 내용을 입력해주세요"></textarea>
+								</div>
+								<div class="row" style="text-align:center; margin: 0 auto;">
+									<div class="col-4" style="padding: 0px;"></div>
+									<div class="col-4" style="padding: 0px; margin-left:8px; text-align:left;">
+										<input type="submit" id="blame-btn" class="btn btn-outline-danger"
+											data-dismiss="modal" value="신고하기">
+
+									</div>
+									<div class="col-4" style="padding: 0px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+			</form>
+		</div>
+	</div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div> 
+	<!-- 	<script>
+	$(function() {
+		$(".blameform").submit(function(e) {
+			var formData = new FormData(this);
+			console.log(formData)
+
+			console.log("데이터 : " + formData)
+			$.ajax({
+				url : "/ajax/blameinsert.do",
+				processData : false,
+				contentType : false,
+				cache : false,
+				type : 'POST',
+				data : formData,
+				success : function(data) {
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		})
+	});
+	
+	</script>
+ -->
+ 
+ 
+
+ 
+</body>
+
+</html>

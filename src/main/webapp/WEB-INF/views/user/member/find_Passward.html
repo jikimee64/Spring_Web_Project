@@ -2,11 +2,16 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>find_pwd</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
+<!-- 폰트어썸 아이콘 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
 <link rel="stylesheet"
    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -31,6 +36,228 @@
 </head>
 
 <style>
+.input--style-6, .textarea--style-6 {
+	font-family: Raleway-SemiBold;
+	font-size: 18px;
+	background: aliceblue;
+	outline: none;
+	/* background: transparent; */
+	line-height: 1.2;
+	display: block;
+	width: 100%;
+	height: 40px;
+	border: 1px solid #cccccc;
+	/* border-style: hidden; */
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #666;
+	font-size: 15px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	padding: 0 15px;
+}
+
+button:focus {
+	outline: none;
+}
+*:focus {
+	border: solid 1px #18d26e;
+}
+.focus-input100 {
+	display: block;
+	position: absolute;
+	border-radius: 3px;
+	border-style: hidden;
+	bottom: 0;
+	outline: none;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	box-shadow: 0px 0px 0px 0px;
+	color: #18d26e;
+}
+.input100:focus {
+	outline: none !important;
+	border: 1.5px solid #18d26e;
+	/* box-shadow: 0 0 10px #719ECE; */
+}
+
+.input--style-6::-webkit-input-placeholder, .textarea--style-6::-webkit-input-placeholder
+	{
+	/* WebKit, Blink, Edge */
+	color: #999;
+}
+
+.input--style-6:-moz-placeholder, .textarea--style-6:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #999;
+	opacity: 1;
+}
+
+.input--style-6::-moz-placeholder, .textarea--style-6::-moz-placeholder
+	{
+	/* Mozilla Firefox 19+ */
+	color: #999;
+	opacity: 1;
+}
+
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Internet Explorer 10-11 */
+	color: #999;
+}
+
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Microsoft Edge */
+	color: #999;
+}
+
+.input--style-6:focus, .textarea--style-6:focus {
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-webkit-transform: translateY(-3px);
+	-moz-transform: translateY(-3px);
+	-ms-transform: translateY(-3px);
+	-o-transform: translateY(-3px);
+	transform: translateY(-3px);
+}
+._border_box_shadow3 {
+	background: #fff;
+	margin: auto;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 30px;
+	width:460px;
+	height:535px;
+}
+
+/* 코드펜 버튼 */
+button,
+button::after {
+  -webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+button {
+  background: none;
+  border: 3px solid #d4d4d4;
+  border-radius: 5px;
+  color: #d4d4d4;
+  display: block;
+  font-size: 1.6em;
+  font-weight: bold;
+  margin-left: 0px;
+  padding: 2em 6em;
+  position: relative;
+  text-transform: uppercase;
+}
+
+button::before,
+button::after {
+  background: #d4d4d4;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+button:hover {
+  color: #18d26e;
+  border-color: #18d26e;
+}
+
+
+
+
+
+/* BUTTON 2 */
+
+.btn-2{
+display: inline-flex; 
+margin-top: 80px; 
+border-radius: 5px;
+
+}
+
+
+.btn-2::after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+
+.btn-2:hover:after {
+  width: 100%;
+}
+
+
+.btn-2:focus{
+outline:none;
+}
+
+
+.btn-2 i {
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s,color 0s;
+}
+
+.btn-2:hover i {
+  -webkit-transform: translateX(6px);
+  -moz-transform: translateX(6px);
+  -ms-transform: translateX(6px);
+  -o-transform: translateX(6px);
+  transform: translateX(6px);
+}
+  
+
+.btn
+
+
+
+/* 버튼 */
+.login100-form-btn {
+	justify-content: center;
+	font-family: Raleway-Bold;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #ffffff;
+	text-transform: uppercase;
+	width: 100%;
+	height: auto;
+	border-radius: 3px;
+	outline: 0px;
+	background: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	border-style: hidden;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+	background-color: #14bf61 !important; 
+	color:  white;
+}
+
 </style>
 
 
@@ -38,59 +265,69 @@
 <body>
    <div th:replace="/user/includes/header :: header"></div>
 
-   <div id="app">
+   <div id="app" style="margin-top:132px;">
+   
       <div class="container"
-         style="width: 27%; margin-top: 25px; margin-bottom: 25px;">
+         style=" margin-top: 135px; margin-bottom: 166px;">
+         <div class="_border_box_shadow3">
          <h3 style="text-align: center;">
             <b>비밀번호 찾기</b>
          </h3>
-         <hr />
-         <br />
+         <hr style="width: 80%; height:2rem;"/>
          <!-- <form action="" class="needs-validation" novalidate> -->
          <div class="form-group">
-            <label for="username">ID</label>
+            <label for="username"><b>ID</b></label>
             <div class="row" style="place-content: center;">
-               <input type="text" v-model="user.userId" class="form-control"
+               <input type="text" v-model="user.userId" class="input--style-6"
                   id="userId" placeholder="Enter user Id" name="userId"
                   style="width: 95%;" required>
             </div>
          </div>
 
          <div class="form-group">
-            <label for="userid">이메일주소</label>
-            <div class="row" style="place-content: center;">
-               <input type="text" v-model="user.userEmail" class="form-control"
+            <label for="userid"><b>이메일주소</b></label>
+            <div class="row">
+               <input type="text" v-model="user.userEmail" class="input--style-6"
                   id="userEmail" placeholder="Enter user email" name="uEmail"
-                  style="width: 65%;" required> &nbsp;
-               <button v-on:click="pwCheck" class="btn btn-success"
-                  style="width: 30%; font-size: small;" id="Authbtn">임시비밀번호
+                  style="width: 64%; margin:0 4px 0 8px;" required> &nbsp;
+                  
+                  
+               <button v-on:click="pwCheck" class="login100-form-btn btn-outline-lignt" 
+                  style="width: 30%; padding: 6px 9px; background-color: #18d26e; color:white; border:0px; font-size: small" id="Authbtn">임시비밀번호
                   발급</button>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                <div id="alert"></div>
             </div>
+            
+         <br /> <br /> <br />
+            
+            	<div style="text-align: end;">
+					<a href="/member/login.do" style="text-decoration: none;">
+						<button type="submit" class="btn-2" style="padding: 10px 10px; margin-top: 97px;">
+							<span style="font-size: 16px;">로그인 하러가기
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</a>
+				</div>
+            
          </div>
          <!--       </form> -->
 
-
-         <br />
-
-         <div style="text-align: end;">
-            <a href="/member/login.do">
-               <button type="submit" class="btn btn-warning"
-                  style="width: 40%; height: 55px;">로그인 하러가기</button>
-            </a>
-         </div>
-
          <p></p>
 
-
-         <br /> <br />
-
-
-
+      </div>
       </div>
    </div>
    <div th:replace="/user/includes/footer :: footer"></div>
-
+ <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
    <script>
    new Vue({
         el: '#app',

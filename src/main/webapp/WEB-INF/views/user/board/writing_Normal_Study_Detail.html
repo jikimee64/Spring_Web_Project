@@ -1,172 +1,558 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>writing_normal_study_detail</title>
-	<link href="login.css" type="text/css" rel="stylesheet" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>writing_normal_study_detail</title>
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-		crossorigin="anonymous"></script>
+<!-- Template Main CSS File -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <style>
-	._textarea_readonly:read-only {
+
+/* ._textarea_readonly:read-only {
 		background-color: aquamarine;
-	}
+	} */
+.cover4 {
+	background-image:
+		url(../../../../resources/images/img/coursewritepage.jpg);
+	background-position: center center;
+	background-size: 2000px;
+	background-repeat: no-repeat;
+	opacity: 0.7;
+}
+
+/* 하트 체크박스 스타일 시작 */
+input[type=checkbox] {
+   clear: both;
+   display: none;
+}
+
+input[type="checkbox"] {
+   display: none;
+}
+
+input[type="checkbox"]+label {
+   position: absolute;
+   z-index: 100;
+   overflow: hidden;
+   height: 60px;
+   width: 50px;
+   display: block;
+   text-align: center;
+   line-height: 60px;
+   cursor: pointer;
+   border-radius: 50%;
+   transform:translate3d(-10px, -7px, 10px);
+}
+
+input[type="checkbox"]+label svg {
+   -webkit-transition: all 100ms ease-in-out;
+   transition: all 100ms ease-in-out;
+}
+
+input[type="checkbox"]+label:before {
+   content: '';
+   z-index: -1;
+   position: absolute;
+   background: #E8336D;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   top: 0;
+   left: 0;
+   transform: scale(0);
+   -webkit-transform: scale(0);
+}
+
+input[type="checkbox"]+label:after {
+   content: '';
+   z-index: -1;
+   position: absolute;
+   background: white;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   top: 0;
+   left: 0;
+   transform: scale(0);
+   -webkit-transform: scale(0);
+}
+/* 호버는 연규가넣음  */
+input[type="checkbox"]:hover+label svg {
+   -webkit-transition: all 400ms ease-in-out;
+   transition: all 400ms ease-in-out;
+   fill: rgb(255, 188, 188);
+   transform: scale(1.3);
+   -webkit-transform: scale(1.3);
+}
+/* 호버는 연규가 넣음 끝 */
+input[type="checkbox"]:checked+label svg {
+   -webkit-transition: all 400ms ease-in-out;
+   transition: all 400ms ease-in-out;
+   fill: rgb(220, 72, 127);
+   transform: scale(1.3);
+   -webkit-transform: scale(1.3);
+}
+
+
+
+input[type="checkbox"]:checked+label:after {
+   -webkit-animation: heart-keyframes 0.3s 0.2s forwards;
+   -moz-animation: heart-keyframes 0.3s 0.2s forwards;
+   animation: heart-keyframes 0.3s 0.2s forwards;
+}
+
+input[type="checkbox"]:checked+label:before {
+   -webkit-animation: heart-keyframes 0.5s 0s forwards;
+   -moz-animation: heart-keyframes 0.5s 0s forwards;
+   animation: heart-keyframes 0.5s 0s forwards;
+}
+
+label svg {
+   display: inline-flex;
+   vertical-align: middle;
+   width: 25px;
+   fill: #ddd;
+}
+
+@
+-webkit-keyframes heart-keyframes { 75% {
+   -webkit-transform: scale(1.025);
+   transform: scale(1.025);
+   -moz-transform: scale(1.025);
+}
+
+}
+@
+-webkit-keyframes heart-keyframes { 100% {
+   background: transparent;
+   -webkit-transform: scale(1.03);
+   transform: scale(1.03);
+   -moz-transform: scale(1.03);
+}
+
+}
+@
+-moz-keyframes heart-keyframes { 75% {
+   -webkit-transform: scale(1.025);
+   transform: scale(1.025);
+   -moz-transform: scale(1.025);
+}
+
+}
+@
+-moz-keyframes heart-keyframes { 100% {
+   background: transparent;
+   -webkit-transform: scale(1.03);
+   transform: scale(1.03);
+   -moz-transform: scale(1.03);
+}
+
+}
+@
+keyframes heart-keyframes { 75% {
+   -webkit-transform: scale(1.025);
+   transform: scale(1.025);
+   -moz-transform: scale(1.025);
+}
+
+}
+@
+keyframes heart-keyframes { 100% {
+   background: transparent;
+   -webkit-transform: scale(1.03);
+   transform: scale(1.03);
+   -moz-transform: scale(1.03);
+}
+}
+/* 하트 체크박스 끝 */
+
 </style>
 
 <body>
-	<div th:replace="/user/includes/header :: header"> </div>
 
-	<div class="container" style="margin-top: 25px;margin-bottom: 25px;">
-		<span class="badge badge-pill badge-primary">모집중</span>
-		<span class="badge badge-pill badge-secondary">Spring</span>
-		<span class="badge badge-pill badge-success">4명</span>
-		<span class="badge badge-pill badge-warning">온라인</span>
-		<span class="badge badge-pill badge-info">온라인강의</span>
+	
+	
+	<input id="s_seq" type="hidden" th:value="${study.S_SEQ}"/>
+	<input id="page" type="hidden" th:value="${page}"/>
+	<input id="perPageNum" type="hidden" th:value="${perPageNum}"/>
+
+	<div th:replace="/user/includes/header :: header"></div>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs cover4"
+			style="margin-top: 70px; height: 300px; padding: 1000 0 100 0px;">
+			<div class="container d-flex h-100" style="padding: 200px 0;">
+				<div class="row justify-content-center align-self-center">
+					<h1 style="color: white; font-size: 50px;">
+						<b>상세보기</b>
+					</h1>
+				</div>
+			</div>
+
+		</section>
+		<!-- Breadcrumbs Section -->
+	</main>
+	
+<!-- <form action="study_List.do" method="post" class="nomalstudy" id="nomalstudy"
+		enctype="multipart/form-data" novalidate> -->
+	<div class="container" style="margin-top: 90px; margin-bottom: 25px;">
+		<span class="badge badge-pill badge-primary" th:text="${study.STATUS}"></span> <span
+								class="badge badge-pill badge-info" th:text="${study.LEVEL}"></span>
+							<span class="badge badge-pill badge-secondary" th:text="${study.CATE_LANGUAGE}"></span> <span
+								class="badge badge-pill badge-success" th:text="|${study.PEOPLE}명|"></span>
+							<span class="badge badge-pill badge-warning" th:text="${study.LOC}"></span>
+							<span class="badge badge-pill badge-light" th:text="${study.CONTENT_KIND}"></span>
 		<div class="row">
-			<div class="col-md-7">
-
-				<span style="font-size: x-large;">스터디 모집 글 상세보기(일반)</span>
-
+			<div class="col-md-6">
+				<span style="font-size: x-large;"><b th:text="${study.TITLE}"></b></span>
 			</div>
-			<div class="col-md-2" style="align-self: flex-end;">
-				<b> 작성자: </b> <span>슬기슬기</span>
+			<div class="col-md-6 d-flex justify-content-between"
+				style="text-align: right;">
+				<div>
+					<b> 작성자: </b> <span th:text="${study.USER_ID}"></span>
+				</div>
+				<div>
+					<b> 등록일: </b> <span th:text="${study.WRITE_DATE}"></span>
+				</div>
+				<div>
+					<b> 마감일: </b> <span th:text="${study.DEADLINE}"></span>
+				</div>
+				<div>
+					<b> 조회수: </b> <span th:text="${study.READNUM}"></span>
+				</div>
 			</div>
-			<div class="col-md-2" style="align-self: flex-end;">
-				<b> 조회수: </b> <span style="margin-right: 50px;">2341</span>
 
-			</div>
-			<div class="col-md-1" style="align-self: flex-end;">
+			<!-- <div class="col-md-1" style="align-self: flex-end;">
+				<a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
+					<button type="button" class="btn btn-danger">신고</button>
+				</a>
+			</div> -->
 
-				<button type="button" class="btn btn-danger">신고</button>
-			</div>
 
+			<hr
+				style="border-color: rgb(224, 224, 224); width: 100%; margin-top: 10px;">
 		</div>
-	</div>
-	<hr style="border-color: rgb(224, 224, 224); width:95%">
-
-
-	<div class="container" style="margin-bottom: 25px;">
-		<div class="row">
-			<div class="col-md-9">
-				<form action="">
+		<!-- 타임리프 -->
+		<div class="container" style="margin-bottom: 25px; margin-top: 20px;">
+			<!-- 	<th:block th:each="study : ${study}"> -->
+			<div class="row">
+				<div class="col-md-9">
 					<div class="row">
-						<div class="col-md-9">
-							<br />
+						<div class="col-md-7"></div>
 
-							<h2>스터디 하실분?? 난 슬기라고해~</h2>
+						<!-- 							<h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
 
-						</div>
-
-						<div class="col-md-3" style="width:100%">
-							<div class="row">
-								<div class="form-group" style="margin:0">
-									<div class="custom-file mb-3">
-										<input type="file" class="custom-file-input" id="customFile" name="filename">
-										<label class="custom-file-label" for="customFile">이건다운로드</label>
+					</div>
+					
+					
+					<div class="row">
+						<div class="col-md-8"></div>
+						<div class="col-md-4" style="width: 100%;">
+							<div class="row" style="margin-left: 30px; margin-top: -20px;">
+								<th:block th:switch="${study.FILESRC}">
+									<div th:case="defaultfile" class="form-group" style="margin: 0">
 									</div>
-								</div>
-
-								<div class="form-group" style="margin:0">
-									<div class="custom-file mb-3">
-										<input type="file" class="custom-file-input" id="customFile" name="filename">
-										<label class="custom-file-label" for="customFile">로 바꿔야됨</label>
+									<div th:case="${study.FILESRC}" class="form-group" style="margin: 0">
+										<a href="" style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
+											<span th:text="${study.FILESRC}"></span>
+										</a>
 									</div>
-								</div>
+								</th:block>
 							</div>
 						</div>
 					</div>
+					
+					
+					<div class="row">
+						<div class="col-md-8"></div>
+						<div class="col-md-4" style="width: 100%">
+							<div class="row" style="margin-left: 30px; margin-top: 5px;">
+								<th:block th:switch="${study.FILESRC2}">
+									<div th:case="defaultfile2" class="form-group" style="margin: 0">
+									</div>
+									<div th:case="${study.FILESRC2}" class="form-group" style="margin: 0">
+										<a href="" style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
+											<span th:text="${study.FILESRC2}"></span>
+										</a>
+									</div>
+								</th:block>
+							</div>
+						</div>
+					</div>
+					<br />
 					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
-					<textarea name="" id="" cols="30" rows="10" class="form-control _textarea_readonly"
-						placeholder="글 내용을 입력해주세요" readonly>
-동해물과백두산이마르고마르고마르고마르고마르고마르고
+					<textarea th:text="${study.CONTENT}" name="" id="" cols="30" rows="10"
+						class="form-control _textarea_readonly" readonly
+						style="background-color: #F5F5F5">
 					</textarea>
-					<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
-						나중에 썸머노트로 바꿔야할듯 -->
-
-
-					<!-- 여기부터는 댓글 -->
-					<div style="transform:translate(10px, 10px)">
-						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
-							alt="" style="width:50px;">
-						<textarea name="" id="" cols="30" rows="1"
-							style="transform:translate(10px, 10px)"> 슬기: 저 참가요~</textarea>
-					</div>
-					<div style="transform:translate(70px, 10px)">
-						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
-							alt="" style="width:50px;">
-						<textarea name="" id="" cols="30" rows="1"
-							style="transform:translate(10px, 10px)"> 미네미네: 네~ 오세용~</textarea>
-					</div>
-					<div style="transform:translate(70px, 10px)">
-						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
-							alt="" style="width:50px;">
-						<textarea name="" id="" cols="30" rows="1"
-							style="transform:translate(10px, 10px)"> 우철: 안녕안녕</textarea>
-					</div>
-					<div style="transform:translate(70px, 10px)">
-						<img src="https://lh3.googleusercontent.com/proxy/OV0sLz1wJg2sekOMTAkv3s1A70tqO2_mwtv_SSghOxZYzAFe4Q-s8Hsf9ocmQQatSDWLiDooYjdX8kUzMLus3y0pSD8fv2KN4q1IlYBV6AW0345RFe_pHaCd5toOZpRf2zUcPeV-JO9hqpk4zAYsaOk"
-							alt="" style="width:50px;">
-						<textarea name="" id="" cols="30" rows="1"
-							style="transform:translate(10px, 10px)"> 정아: 안뇽안뇽</textarea>
-					</div>
-					<!-- 여기까지가 댓글 -->
 
 
 					<br />
-					<div style="text-align: end;">
-						<a href="/board/writing_Normal_Study_Edit.do">
-						<button type="button" class="btn btn-warning" style="width:15%;">수정</button>
+
+
+					<div class="row">
+						<div class="col-4" style="text-align: start;">
+						
+							<!-- <a href="#" style="margin-right: 5px;"> <img
+								style="margin-right: 5px;"
+								src="../../../../resources/images/img/board_like.svg"> 
+								
+							</a> <strong>좋아요&nbsp; </strong> <strong id="replyTotal"
+								style="margin-right: 10px;">1</strong> -->
+								
+								
+							 <input type="checkbox" id="heartheart33333" />
+ 							   <label for="heartheart33333" style="transform:translateY(-16px);"> <svg 
+							         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 51.02">
+							    <path
+							            d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+							                     </svg>
+							   </label>	
+							   <span style="margin-left:50px;"> 
+								   <strong>좋아요&nbsp; </strong> 
+								   <strong th:text="${study.LIKE_CNT}" id="replyTotal"
+									style="margin-right: 10px;">1</strong>
+								</span>
+							            
+							
+								
+							<span style="margin-right:5px; margin-left: 10px;"> <img 
+								style="margin-right: 5px;"
+								src="../../../../resources/images/img/comment-dots-regular.svg">
+							</span> <strong>댓글&nbsp; </strong> <strong id="replyTotal"
+								th:text="${count}" style="margin-right: 10px;"></strong>
+
+						</div>
+						
+						<!-- <span id="userid" sec:authentication="principal.username"></span> -->
+						
+						<div class="col-4"></div>
+						<div class="col-4" style="text-align: end;">
+							<th:block th:switch="${sessionid}"> <!-- 로그인한 아이디가 글쓴이와 같다면..  -->
+								<span th:case="${study.USER_ID}">
+									<a th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ})}">
+										<button type="button" class="btn btn-warning"
+											style="background-color: #18d26e; color: white; border-color: #18d26e;height: 30px; padding-top:3px;">수정</button>
+									</a>
+									<button id="delete" type="button" class="btn btn-danger" style="height: 30px; padding-top:3px;">삭제</button>
+								</span>
+							</th:block>
+								
+							<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+								<button id="delete" type="button" class="btn btn-danger" style="height: 30px; padding-top:3px;">삭제</button>
+							</th:block> 
+							
+							<a href="" data-toggle="modal" data-target="#declationPageModal"
+								style="color: black;"> <img
+								src="../../../../resources/images/img/siren.png"
+								style="width: 30px; height: 30px;">
+							</a>
+						</div>
+					</div>
+
+
+					<!-- <div style="text-align: end;">
+						<a href="/board/writing_Course_Study_Edit.do">
+							<button type="button" class="btn btn-warning"
+								style="background-color: #18d26e; color: white; border-color: #18d26e;">수정</button>
 						</a>
-						<button type="button" class="btn btn-primary" style="width:15%;">삭제</button>
-					</div>
-				</form>
-			</div>
+						<button type="button" class="btn btn-danger">삭제</button>
+						<a href="" data-toggle="modal" data-target="#declationPageModal"
+							style="color: black;"> <img
+							src="../../../../resources/images/img/siren.png"
+							style="width: 30px; height: 30px;">
+						</a>
+					</div> -->
 
-			<div class="col-md-3">
-				<div style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
-					<img class="card-img-top" src="https://file3.instiz.net/data/cached_img/upload/2020/02/08/14/bd5841404e045a4781679d91d2a427d8.gif
-					" alt="Card image" style="width:100%">
-					<div style="text-align: center; margin:10px 0px 10px 0px;">
-						<button type="submit" class="btn btn-warning" style="width:80%;">모집완료</button>
-						<!-- 이거는 방장 권한 -->
+
+					<div class="card my-4">
+						<p class="card-header" style="padding: 0px 20px 0px 20px">
+							<b>댓글</b>
+						</p>
+						<div class="card-body" style="padding: 10px;">
+							<!-- <form> -->
+							<div class="form-group">
+								<textarea class="form-control" rows="2" id="comment"
+									name="comment"></textarea>
+							</div>
+							<div class="row">
+								<div class="col-md-11" style="padding: 0px;"></div>
+								<div class="col-md-1" style="position: relative; padding: 0px;">
+									<button class="btn btn-warning" id="commentWrite"
+										name="commentWrite" style="padding:7px; height: 30px;  padding-top:4px; color:white;">등록</button>
+								</div>
+							</div>
+							<!-- </form> -->
+						</div>
 					</div>
 
-					<div style="text-align: center; margin:10px 0px 10px 0px;">
-						<button type="submit" class="btn btn-success" style="width:80%;">지원하기</button>
-						<!-- 이거는 사용자 권한 -->
-					</div>
-					<div style="text-align: center; margin:10px 0px 10px 0px;">
-						<button type="button" class="btn btn-info" style="width:80%;">목록으로</button>
-					</div>
 				</div>
 
+				<div class="col-md-3">
+					<div
+						style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
+						<div class="card" style="width: 100%">
+							<img class="card-img-top"
+								th:src="'/studyboard/upload/' + ${study.IMAGE}"
+								alt="Card image" style="width: 100%">
+						</div>
+						<div style="text-align: center; margin: 10px 0px 10px 0px;">
+						<button id="apply" type="submit" class="btn btn-success"
+								style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
+							<!-- 이거는 사용자 권한 -->
+						</div>
+						<div style="text-align: center; margin: 10px 0px 10px 0px;">
+							<a th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
+								<button type="button" class="btn btn-warning" style="width:100%;">목록으로</button>
+							</a>
+						</div>
+					</div>
+				</div>
 			</div>
+			<!-- 		</th:block> -->
 		</div>
-
 	</div>
-	<div th:replace="/user/includes/footer :: footer"> </div>
+<!-- </form> -->
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div
+		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
+	</div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<!-- alert창 꾸미기 -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
-		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
-		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
-		// Add the following code if you want the name of the file appear on select
-		$(".custom-file-input").on("change", function () {
-			var fileName = $(this).val().split("\\").pop();
-			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		$(function() {
+			//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
+			//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
+			// Add the following code if you want the name of the file appear on select
+			$(".custom-file-input").on(
+					"change",
+					function() {
+						var fileName = $(this).val().split("\\").pop();
+						$(this).siblings(".custom-file-label").addClass(
+								"selected").html(fileName);
+					});
+			
+			$('#delete').click(function(){
+				swal({
+					  title: "정말 삭제하시겠습니까?",
+					  text: "",
+					  icon: "warning",
+					  buttons: true,
+					  /* dangerMode: true, */
+					})
+					.then((willDelete) => {
+					  if (willDelete) {
+					    var s_seq = $('#s_seq').val();
+					    var page = $('#page').val();
+					    var perPageNum = $('#perPageNum').val();
+					    
+					    location.href="writing_Normal_Study_Delete.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
+					  } else {
+					    swal({
+					    	title: "삭제가 취소되었습니다."
+					    });
+					  }
+					});
+			})
 		});
 	</script>
+	
+	
+	<script>
+
+	$(function() {
+	$('#apply').click(function(){
+		 let s_seq =  $('#s_seq').val();
+		 let obj = {"s_seq" : s_seq}; 
+		swal({
+			  title: "스터디를 지원하시겠습니까?",
+			  text: "",
+			  icon: "info",
+			  buttons: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				   $.ajax({
+						url : "/ajax/nomalstudy.do",
+						processData : false,
+						contentType: "application/json",
+						cache : false,
+						type : 'POST',
+					
+						data : JSON.stringify(obj),
+						success : function(data) {
+							console.log("이게뭐라고?" + data);
+							if(data == 0){
+								swal({
+									title: "이미 지원한 스터디입니다.",
+									  icon: "warning",
+									  buttons: true
+									})
+							}else {
+							swal({title:"지원이 완료되었습니다.",
+								icon: "success"})
+	
+			  }
+						},
+						error: function(request, status, error){
+							console.log("code:" + request.status + "\n"
+									+ "error:" + error);
+
+					  }
+				   });
+						}else {
+			    swal({
+			    	title: "지원이 취소되었습니다."
+			    });
+			  }
+			});
+	})
+	 }); 
+	
+	</script>
+	
+	
+	 <script>
+ $(function() {
+		$("#blame-btn").click(function(e) {
+			var formData = document.getElementById('blameform');
+			console.log(formData)
+
+			console.log("데이터 : " + formData)
+			$.ajax({
+				url : '/ajax/blameinsert.do',
+				DataType: "application/json",
+				processData: false,
+				type : 'POST',
+				data : formData,
+				success : function(data) {
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		})
+	});
+ 
+ </script>
+	
 </body>
 
 

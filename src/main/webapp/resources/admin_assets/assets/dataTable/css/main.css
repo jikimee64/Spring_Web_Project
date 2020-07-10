@@ -1,0 +1,131 @@
+/* CUSTOM STYLE */
+
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+
+body,
+select,
+input {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+.wrap {
+    width: 80%;
+    margin: 50px auto;
+}
+
+/* 검색창, 페이지당 select 등 input 관련 */
+.dataTables_wrapper .dataTables_filter input,
+select[name=myTable_length] {
+    padding: 0.3em; 
+}
+
+#select {
+    padding: 0.5em;
+    margin-right: 0.5em; 
+}
+
+/* page button */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #337ab7;
+    color: white !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background: linear-gradient(to bottom, #585858 0%, #111 100%);
+    color: white !important;
+}
+
+.dataTables_length{
+	margin-top:6px;
+}
+table.dataTable tbody tr {
+    transition-duration: .28s;
+    transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+    transition-property: background-color;
+}
+
+table.dataTable.display tbody tr.odd>.sorting_1,
+table.dataTable.order-column.stripe tbody tr.odd>.sorting_1,
+table.dataTable.display tbody tr.even>.sorting_1,
+table.dataTable.order-column.stripe tbody tr.even>.sorting_1,
+table.dataTable.hover tbody tr:hover,
+table.dataTable.display tbody tr:hover {
+     /* background: #E1F5FE;  */
+      background-color: transparent !important;  
+     /* 백그라운드 제거 */
+}
+
+/* EXCEL 버튼 */
+.excel{
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #00695C;
+	padding: 5px 3px;
+	color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width:80px;
+}
+
+
+.pdf{
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #0000ff;
+	padding: 5px 3px;
+	color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width:80px;
+}
+
+.message{
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #fdcb6e;
+	padding: 5px 3px;
+	color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    width:80px;
+}
+
+
+.pdf:hover{
+	background-color: transparent;
+	border: 1px solid gray;
+	color: black;
+}
+
+.excel:hover{
+	background-color: transparent;
+	border: 1px solid gray;
+	color: black;
+}
+
+.message:hover{
+	background-color: transparent;
+	border: 1px solid gray;
+	color: black;
+}
+
+@media screen and (max-width: 640px) {
+
+        /* 검색창, 페이지당 select 등 input 관련 */
+    .dataTables_wrapper .dataTables_filter input,
+    select[name=myTable_length] {
+        padding: 0.2em;
+        width: 30%;
+    }
+
+    #select {
+        padding: 0.2em;
+        margin-right: 0.5em;
+    }
+}

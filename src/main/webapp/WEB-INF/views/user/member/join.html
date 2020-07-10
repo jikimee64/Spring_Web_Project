@@ -2,254 +2,643 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>join</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-	crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
+<!-- 스타일 -->
+<style>
+/*[ Input ]*/
+button:focus {
+	outline: none !important;
+}
+
+.wrap-input100 {
+	position: relative;
+	width: 100%;
+	z-index: 1;
+}
+
+input, textarea {
+	outline: none;
+	margin: 0;
+	border: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	width: 100%;
+	font-size: 14px;
+	font-family: inherit;
+}
+
+textarea {
+	resize: none;
+}
+
+.input-group {
+	position: relative;
+	margin: 0;
+}
+
+.input100 {
+	color: #686868;
+	background: #f0f0f0;
+}
+
+.input--style-6, .textarea--style-6 {
+	font-family: Raleway-SemiBold;
+	font-size: 18px;
+	background: transparent;
+	line-height: 1.2;
+	display: block;
+	width: 100%;
+	height: 39px;
+	border: 1px solid #cccccc;
+	/* border-style: hidden; */
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: #666;
+	font-size: 15px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	padding: 0 15px;
+}
+
+.input--style-6::-webkit-input-placeholder, .textarea--style-6::-webkit-input-placeholder
+	{
+	/* WebKit, Blink, Edge */
+	color: #999;
+}
+
+.input--style-6:-moz-placeholder, .textarea--style-6:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
+	color: #999;
+	opacity: 1;
+}
+
+.input--style-6::-moz-placeholder, .textarea--style-6::-moz-placeholder
+	{
+	/* Mozilla Firefox 19+ */
+	color: #999;
+	opacity: 1;
+}
+
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Internet Explorer 10-11 */
+	color: #999;
+}
+
+.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
+	{
+	/* Microsoft Edge */
+	color: #999;
+}
+
+.input--style-6:focus, .textarea--style-6:focus {
+	-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+	-webkit-transform: translateY(-3px);
+	-moz-transform: translateY(-3px);
+	-ms-transform: translateY(-3px);
+	-o-transform: translateY(-3px);
+	transform: translateY(-3px);
+}
+
+.textarea--style-6 {
+	line-height: 1.2;
+	min-height: 120px;
+	padding: 10px 20px;
+}
+
+.label--desc {
+	font-size: 13px;
+	color: #999;
+	margin-top: 10px;
+}
+
+@media ( max-width : 767px) {
+	.label--desc {
+		margin-top: 14px;
+	}
+}
+
+.input-file {
+	display: none;
+}
+
+.input-file+label {
+	font-size: 15px;
+	color: #fff;
+	color: white;
+	line-height: 40px;
+	background-color: #666666;
+	padding: 0 20px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	display: inline-block;
+	margin-right: 15px;
+	-webkit-transition: all 0.4s ease;
+	-o-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	cursor: pointer;
+}
+
+.input-file:focus+label, .input-file+label:hover {
+	background: #1b1b1b;
+}
+
+.input-file__info {
+	font-size: 15px;
+	color: #666;
+}
+
+@media ( max-width : 767px) {
+	.input-file__info {
+		display: block;
+		margin-top: 6px;
+	}
+}
+
+/* 버튼 */
+.login100-form-btn {
+	font-family: Raleway-Bold;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #18d26e;
+	outline: none;
+	text-transform: uppercase;
+	width: auto;
+	height: auto;
+	border-radius: 3px;
+	border: 0;
+	/*       outline: 0; */
+	background: 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0px;
+	margin: 0px;
+	border-style: hidden;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+	background: #18d26e;
+	color: white;
+}
+
+._label_center {
+	align-self: center;
+}
+
+*:focus {
+	border: solid 1px #18d26e;
+}
+
+._border_box_shadow {
+	background: #fff;
+	margin: -35px;
+	margin-top: 72px;
+	padding: 10px 72px 72px 72px;
+	min-width: 700px;
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+}
+
+/* 라디오버튼 */
+._form_radio {
+	background: #fff;
+	/* 	width: 509px; */
+	margin: auto;
+	padding: 30px;
+	min-width: 320px;
+	max-width: 540px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+}
+
+group+group {
+	margin-top: 20px;
+}
+
+.inline-radio {
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+._div_radio {
+	position: relative;
+	flex: 1;
+	border-radius: 3px;
+}
+
+._input_radio {
+	width: 100%;
+	opacity: 0;
+	height: 100%;
+	cursor: pointer;
+}
+
+._radio_label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #272C33;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+}
+
+._div_radio:last-child label {
+	border-right: 0;
+}
+
+._input_radio:checked+label {
+	background: #00d463;
+	font-weight: 500;
+	color: #fff;
+	border-radius: 5px;
+}
+
+body {
+	background-color: #F9FBFC;
+}
+</style>
+
+
+
+
 <body>
+	<div th:replace="/user/includes/header :: header"></div>
+
 
 	<form action="login.do" method="post" class="joinform" id="joinform"
 		enctype="multipart/form-data" novalidate>
+
+
 		<div class="container"
-			style="margin-top: 30px; margin-top: 25px; margin-bottom: 25px;">
-			<h2>회원가입</h2>
-			<br />
+			style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
+			<div class="_border_box_shadow">
+				&nbsp;&nbsp;
+				<div style="text-align: center;">
+					<span style="text-align: center; font-size: xxx-large;"><b>회원가입</b></span>
+				</div>
+				<hr style="width: 80%;" />
 
-			<div class="form-group">
-
-				<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
-					style="margin-bottom: 15px; width: 50px;"> <input type="file"
-					class="form-control" name="file" id="file"> <label
-					class="custom-file-label" for="inputGroupFile01"
-					style="text-align: left">Choose file</label>
+				<br /> &nbsp;&nbsp;
 
 
-			</div>
 
-			<div class="form-group">
-				<label for="pwd">아이디</label>
-				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="user_id"
-						placeholder="아이디를 입력해주세요." name="user_id" style="width: 60%;"
-						required>
-					<button class="btn btn-warning" id="IdCheck">중복체크</button>
-					<span class="idcheck hide"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="pwd">비밀번호</label>
-				<div class="row" style="place-content: center;">
-					<input type="password" class="form-control" id="user_pwd"
-						placeholder="비밀번호를 입력해주세요." name="user_pwd" style="width: 60%;"
-						required> <span class="password hide"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="pwd">비밀번호 확인</label>
-				<div class="row" style="place-content: center;">
-					<input type="password" class="form-control" id="re-password"
-						placeholder="비밀번호를 입력해주세요. " name="re-password"
-						style="width: 60%;" required>
-					<div id="message"></div>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="pwd">이름</label>
-				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="user_name"
-						placeholder="이름을 입력해주세요." name="user_name" style="width: 60%;"
-						required><span class="name hide"></span>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="pwd">닉네임</label>
-				<div class="row" style="place-content: center;">
-					<input type="text" class="form-control" id="nickname"
-						placeholder="닉네임을 입력해주세요" name="nickname" style="width: 60%;"
-						required>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="pwd" class="ml-5">이메일 주소</label>
-				<div class="row" style="place-content: center;">
-					<input type="email" class="form-control" id="user_email"
-						style="width: 60%;" placeholder="이메일을 입력해주세요" name="user_email"
-						required>
+				<div class="value">
+
+
+					<div class="row">
+						<div class="col-2"></div>
+
+						<div class="col-8" style="text-align: center;">
+							<img id="preview" src="/userboard/upload/member.png" alt="썸네일"
+								style="margin-bottom: 15px; width: 150px; height: 150px;">
+
+						</div>
+
+						<div class="col-2"></div>
+					</div>
+
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2" style="align-self: center; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="place-self: center">프로필 사진</label>
+							<!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
+						</div>
+
+						<div class="col-8">
+							<!-- <input type="file" class="form-control" name="file" id="file">  -->
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" id="file"
+									name="file"> <label class="custom-file-label"
+									for="customFile" style="color: #aaaaaa;">이미지파일을 첨부해주세요</label>
+							</div>
+						</div>
+
+						<div class="col-2">
+							<!--                      <img id="preview" src="/userboard/upload/member.png" alt="썸네일" -->
+							<!--                         style="margin-bottom: 15px; width: 50px;"> -->
+						</div>
+
+					</div>
 				</div>
 
-				<br /> <br /> <br />
 
-				<div class="row">
-					<div class="col-md-2"></div>
-					<div class="col">
-						<b style="margin-left: 10px; font-size: larger;">내 실력 체크</b>
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="place-self: center">아이디</label>
+						</div>
+
+						<div class="col-7">
+							<input type="text" class="input--style-6" id="user_id"
+								placeholder="아이디를 입력해주세요." name="user_id" required />
+
+						</div>
+
+						<div class="col-3" style="align-self: center; padding-left: 0px">
+							<button class="login100-form-btn" id="IdCheck"
+								style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
+							<div class="idcheck hide"
+								style="transform: translateX(-533px); width: 500px; color: tomato;"></div>
+						</div>
 					</div>
 				</div>
-				<br />
 
 
-				<div class="row" style="font-size: x-large;">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align: center">
-						<b> 실력</b>
-					</div>
-					<div class="col-md-2" style="text-align: center">입문</div>
-					<div class="col-md-2" style="text-align: center">초급</div>
-					<div class="col-md-2" style="text-align: center">중급이상</div>
-					<div class="col-md-2"></div>
-				</div>
-				<!-- <form action="login.do" method="post" id="joinform" class="needs-validation joinform" enctype="multipart/form-data">  -->
-				<hr
-					style="border: solid 2px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 2px; width: 68%" />
-				<div class="row" style="font-size: x-large;">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align: center" name="skill_name"
-						value="skill_name" id="java">
-						자바 <input type="hidden" name="skill_name" value="java">
-					</div>
-					<div class="col-md-2" style="text-align: center">
-
-						<input type="radio" name="java" value="입문" checked="" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="java" value="초급" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="java" value="중급이상" />
-
-					</div>
-					<div class="col-md-2" style="text-align: center"></div>
-				</div>
-				<hr
-					style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
-				<div class="row" style="font-size: x-large;">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align: center">
-						파이썬 <input type="hidden" name="skill_name" value="python">
-					</div>
-					<div class="col-md-2" style="text-align: center">
-
-						<input type="radio" name="python" value="입문" checked="" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="python" value="초급" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="python" value="중급이상" />
-
-					</div>
-					<div class="col-md-2" style="text-align: center"></div>
-				</div>
-				<hr
-					style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
-				<div class="row" style="font-size: x-large;">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align: center">
-						HTML/CSS <input type="hidden" name="skill_name" value="HTML/CSS">
-					</div>
-					<div class="col-md-2" style="text-align: center">
-
-						<input type="radio" name="html_css" value="입문" checked="" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="html_css" value="초급" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="html_css" value="중급이상" />
-
-					</div>
-					<div class="col-md-2" style="text-align: center"></div>
-				</div>
-				<hr
-					style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
+				&nbsp;&nbsp;
 
 
-				<div class="row" style="font-size: x-large;">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align: center">
-						javascript <input type="hidden" name="skill_name"
-							value="javascript">
-					</div>
-					<div class="col-md-2" style="text-align: center">
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">비밀번호</label>
+						</div>
 
-						<input type="radio" name="javascript" value="입문" checked="" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="javascript" value="초급" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="javascript" value="중급이상" />
+						<div class="col-8">
+							<input type="password" class="input--style-6" id="user_pwd"
+								placeholder="비밀번호를 입력해주세요." name="user_pwd" required> <span
+								class="password hide"></span>
 
+						</div>
+
+						<div class="col-2"></div>
 					</div>
-					<div class="col-md-2" style="text-align: center"></div>
 				</div>
 
-				<hr
-					style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
 
-				<div class="row" style="font-size: x-large;">
-					<div class="col-md-2"></div>
-					<div class="col-md-2" style="text-align: center">
-						SQL <input type="hidden" name="skill_name" value="SQL">
-					</div>
-					<div class="col-md-2" style="text-align: center">
+				&nbsp;&nbsp;
 
-						<input type="radio" name="sql" value="입문" checked="" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="sql" value="초급" />
-					</div>
-					<div class="col-md-2" style="text-align: center">
-						<input type="radio" name="sql" value="중급이상" />
 
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">비밀번호 확인</label>
+						</div>
+
+						<div class="col-8">
+							<input type="password" class="input--style-6" id="re-password"
+								placeholder="비밀번호를 입력해주세요. " name="re-password" required>
+							<div id="message" name="message"></div>
+
+						</div>
+
+						<div class="col-2"></div>
 					</div>
-					<div class="col-md-2" style="text-align: center"></div>
 				</div>
-				<hr
-					style="border: solid 1px rgb(224, 224, 224); margin-top: 2px; margin-bottom: 2px; width: 68%" />
+
+				&nbsp;&nbsp;
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">이름</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" class="input--style-6" id="user_name"
+								placeholder="이름을 입력해주세요." name="user_name" required> <span
+								class="name hide"></span>
+
+						</div>
+
+						<div class="col-2"></div>
+					</div>
+				</div>
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">닉네임</label>
+						</div>
+
+						<div class="col-8">
+							<input type="text" class="input--style-6" id="nickname"
+								placeholder="닉네임을 입력해주세요" name="nickname" required> <span
+								class="nickname hide"></span>
+
+						</div>
+
+						<div class="col-2"></div>
+
+					</div>
+				</div>
+
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" for="pwd"
+								style="align-self: center">이메일 주소</label>
+						</div>
+
+						<div class="col-8">
+							<input type="email" class="input--style-6" id="user_email"
+								placeholder="이메일을 입력해주세요" name="user_email" required> <span
+								class="email hide"></span>
+
+						</div>
+
+						<div class="col-2"></div>
+
+					</div>
+				</div>
+
+				&nbsp;&nbsp; <br /> <br /> <br />
+				<hr style="width: 80%;" />
+
+
+
+				&nbsp;
+				<div class="row" style="text-align: center;">
+					<div class="col-2"></div>
+					<div class="col-8">
+						<h3>
+							<b style="margin-left: 10px; font-size: larger;">내 실력 체크</b>
+						</h3>
+					</div>
+					<div class="col-2"></div>
+					&nbsp;&nbsp;
+				</div>
+
+
+
+				<div class="_form_radio">
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Java</span>
+					<div class="_div_radio">
+						<input type="radio" name="java" value="입문" class="_input_radio"
+							checked><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="java" value="초급" class="_input_radio"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="java" value="중급이상" class="_input_radio"><label
+							class="_radio_label">중급이상</label>
+					</div>
+					</group>
+
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Python</span>
+					<div class="_div_radio">
+						<input type="radio" name="Python" value="입문" class="_input_radio"
+							checked><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Python" value="초급" class="_input_radio"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Python" value="중급이상"
+							class="_input_radio"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">HTML/CSS</span>
+					<div class="_div_radio">
+						<input type="radio" name="html_css" value="입문"
+							class="_input_radio" checked><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="html_css" value="초급"
+							class="_input_radio"><label class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="html_css" value="중급이상"
+							class="_input_radio"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">Javascript</span>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" value="입문"
+							class="_input_radio" checked><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" value="초급"
+							class="_input_radio"><label class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="Javascript" value="중급이상"
+							class="_input_radio"><label class="_radio_label">중급이상</label>
+					</div>
+					</group>
+					<group class="inline-radio"> <span
+						style="font-size: larger; width: 140px;">SQL</span>
+					<div class="_div_radio">
+						<input type="radio" name="sql" value="입문" class="_input_radio"
+							checked><label class="_radio_label">입문</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="sql" value="초급" class="_input_radio"><label
+							class="_radio_label">초급</label>
+					</div>
+					<div class="_div_radio">
+						<input type="radio" name="sql" value="중급이상" class="_input_radio"><label
+							class="_radio_label">중급이상</label>
+					</div>
+					</group>
+				</div>
+
 
 
 				<br /> <br />
+				<hr style="width: 80%;" />
+				&nbsp;&nbsp;
+
 
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
-						<b style="font-size: larger;">저는 이런것도 할줄 알아요~</b>
+
+						<b style="font-size: larger;"> <i class="xi-emoticon-cool-o"
+							aria-hidden="true"></i> 저는 이런것도 할줄 알아요~
+						</b>
 						<p></p>
-						<textarea name="introduce" id="introduce" rows="5" required></textarea>
+						<textarea class="textarea--style-6" name="introduce"
+							id="introduce" rows="5" required style="resize: none;"></textarea>
+
+						&nbsp;&nbsp;
 					</div>
+
+					&nbsp;&nbsp;
 					<div class="col-md-2"></div>
 				</div>
 
 				<br />
 				<div class="row" style="font-size: x-large; place-content: center;">
 					<div class="col-md-4">
-						<button type="submit" class="btn btn-primary" style="width: 80%;">
-							<h4>회원가입</h4>
+						<button type="submit" class="login100-form-btn"
+							style="width: 100%; border: 1.5px solid #18d26e;">
+							<div style="padding-top: 20px">
+								<h4>
+									<i class="xi-border-color" aria-hidden="true"></i>&nbsp;<b>회원가입</b>
+								</h4>
+							</div>
 						</button>
 					</div>
 				</div>
+
+
+
+
+
+
+
+
 			</div>
 		</div>
 	</form>
@@ -258,14 +647,18 @@
 	<br />
 	<br />
 	<br />
+
+
+
 	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 	<!-- 데이터 전송 ajax -->
 	<script>
 		$(function() {
 			/* $("#btn_submit").click(function() { */
 			$(".joinform").submit(function(e) {
-				/* 	var formData = $(".joinform").serialize() */
+				/*    var formData = $(".joinform").serialize() */
 				/* var file = $(#'joinform')[0].files[0]; */
 				var formData = new FormData(this);
 				console.log(formData)
@@ -286,6 +679,7 @@
 				})
 			})
 		});
+
 	</script>
 
 
@@ -293,109 +687,102 @@
 	<script>
 		//내용입력 이랑 입력 강제 
 		$(function() {
+
 			var toggle = false;
-			var user_pwd = false;
-			$('#joinform')
-					.submit(
-							function() {
-								//alert("가입");
-								if ($('#user_id').val() == "") { // 아이디 검사
-									alert('ID를 입력해 주세요.');
-									$('#user_id').focus();
-									return false;
-								} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
-									alert('비밀번호를 입력해 주세요.');
-									$('#user_pwd').focus();
-									return false;
-								} else if ($('#re-password').val() == "") { // 비밀번호 검사
-									alert('비밀번호 확인을 입력해 주세요.');
-									$('#re-password').focus();
-									return false;
-								} else if ($('#user_name').val() == "") { // 이름 검사
-									alert('이름을 입력해 주세요.');
-									$('#user_name').focus();
-									return false;
-								} else if ($('#nickname').val() == "") { // 이메일 검사
-									alert('닉네임을 입력해 주세요.');
-									$('#nickname').focus();
-									return false;
-								} else if ($('#user_email').val() == "") { // 이메일 검사
-									alert('이메일을 입력해 주세요.');
-									$('#user_email').focus();
-									return false;
-								} else {
-									return true;
-								}
+			var pwCheck = false;
+			var regFlag = [ false, false, false, false ];
 
-							});
-		});
-		</script>
-
-	<!-- <script>
-		//내용입력 이랑 입력 강제 
-		$(function() {
 			//유효성 검사
 			// 목표 : 이름은 2글자 이상 10글자 이하로 정한다
 			// 숫자나 특수문자가 입력되면 안된다.
+
 			// 1. input창에 값을 받아서 확인한다.
 			// 2. 값이 올바르게 입력되면 "GOOD"을 프린트한다.
 			// 3. 값이 올바르지 않으면 "글자나 영어를 2~5개까지 입력하셔야 합니다."라는 경고창이 뜬다.
-			var regFlag = [ false, false, false, false ];
+
+		
+			let idInput = document.querySelector("#user_id");
+			let idResult = document.querySelector(".idcheck");
+			
+			function IdCheck() {
+				if (idInput.value.length > 1 && idInput.value.length <= 12) {
+					idResult.innerHTML = '유효성 조건에 만족하셨습니다. 중복체크를 해주세요.'
+					regFlag[3] = true;
+				
+				} else {
+					idResult.innerHTML = "아이디는 2글자 이상, 12글자 이하로 해주세요.";
+					regFlag[3] = false;
+				}
+			}
+			idInput.addEventListener("blur", IdCheck);
+
 			let check_num = /[0-9]/; // 숫자
 			let check_eng = /[a-zA-Z]/; // 문자
 			let check_spc = /[~!@#$%^&*()_+|<>?:{}]/; // 특수문자
 			let check_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
+
 			let nameInput = document.querySelector("#user_name");
 			let nameResult = document.querySelector(".name");
+
 			function nameCheck() {
 				if (nameInput.value.length > 1 && nameInput.value.length < 10) {
 					if (check_kor.test(nameInput.value)
 							&& !check_num.test(nameInput.value)
 							&& !check_eng.test(nameInput.value)
 							&& !check_spc.test(nameInput.value)) {
-						nameResult.innerHTML = "GOOD";
+						nameResult.innerHTML = "사용 가능한 이름 입니다.";
 						regFlag[0] = true;
 					} else {
-						nameResult.innerHTML = "한글만 입력이 가능합니다.(2~10개)";
+						nameResult.innerHTML = "한글만 입력이 가능합니다.(2~10자)";
 						regFlag[0] = false;
 					}
 				} else if (nameInput.value.length === 0) {
-					nameResult.innerHTML = "이름을 입력해주세요.(2~10개)";
+					nameResult.innerHTML = "이름을 입력해주세요.(2~10자)";
 					regFlag[0] = false;
 				} else {
-					nameResult.innerHTML = "한글만 입력이 가능합니다.(2~10개)";
+					nameResult.innerHTML = "한글만 입력이 가능합니다.(2~10자)";
 					regFlag[0] = false;
 				}
 			}
+
 			nameInput.addEventListener("blur", nameCheck);
+
 			// 목표 : 이메일문법확인하기
-			let emailInput = document.querySelector("#email");
+
+			let emailInput = document.querySelector("#user_email");
 			let emailResult = document.querySelector(".email");
 			let reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+
 			function emailCheck() {
 				if (reg_email.test(emailInput.value)) {
-					emailResult.innerHTML = "GOOD";
+					emailResult.innerHTML = "사용 가능한 이메일 입니다.";
 					regFlag[1] = true;
 				} else {
-					emailResult.innerHTML = "이메일을 입력하세요.";
+					emailResult.innerHTML = "형식에 맞지 않는 이메일 주소입니다.";
 					regFlag[1] = false;
 				}
 			}
+
 			emailInput.addEventListener("blur", emailCheck);
+
 			// 목표 : 비밀번호를 입력하세요.
+
 			let passwordInput = document.querySelector("#user_pwd");
 			let passwordResult = document.querySelector(".password");
 			let reg_password = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-			function passwordCkeck() {
+
+			function passwordCheck() {
 				if (reg_password.test(passwordInput.value)) {
-					passwordResult.innerHTML = "GOOD";
+					passwordResult.innerHTML = "사용 가능한 비밀번호 입니다.";
 					regFlag[2] = true;
 				} else {
 					passwordResult.innerHTML = "비밀번호는 8자 이상이어야 하며, 숫자/소문자/특수문자를 모두 포함해야 합니다.";
 					regFlag[2] = false;
 				}
 			}
-			passwordInput.addEventListener("blur", passwordCkeck)
+
+			passwordInput.addEventListener("blur", passwordCheck);
+
 			$('#re-password').keyup(function() {
 				if ($('#user_pwd').val() != $('#re-password').val()) {
 					$('#message').text('암호가 일치하지 않습니다');
@@ -405,37 +792,64 @@
 					pwCheck = true;
 				}
 			});
-		});
-	</script> -->
 
-	<script>
-		$(function() {
-			//아이디 중복체크
-			$('#IdCheck').on(
-					'click',
+			$('#IdCheck').click(
 					function(e) {
-						console.log("이리로오나");
 						e.preventDefault();
 						var value = $('#user_id').val();
 						$.ajax({
 							url : "/ajax/idcheck.do",
 							type : 'POST',
+							dataType : 'json',
 							data : {
 								id : $('#user_id').val()
 							},
 							success : function(data) {
 								//아이디 중복시 아이디 인풋값 제거
-								console.log(data);
+
 								if ($('#user_id').val() === '') {
-									$('.idcheck').html("아이디를 입력해주세요.")
+									
+									swal({
+										  title: "아이디를 입력해주세요",
+										  icon: "info",
+										  buttons: true
+										})
+									
+									//$('.idcheck').html("아이디를 입력해주세요.")
 									toggle = false;
 								} else if (data == 1) { //아이디 존재
-									$('.idcheck').html("아이디가 존재합니다.")
+									
+									swal({
+										title: "동일한 아이디가 존재합니다.",
+										  icon: "info",
+										  buttons: true
+										})
+									
+									//$('.idcheck').html("동일한 아이디가 존재합니다.")
 									$('#user_id').val("");
 									$('#user_id').focus();
 									toggle = false;
 								} else {
-									$('.idcheck').html("사용하셔도 됩니다.")
+									if(regFlag[3] === false){
+										swal({
+											  title: "유효성 검사부터 해주세요.",
+											  
+											  icon: "info",
+											  buttons: true
+											  
+											})
+									}else{
+										swal({
+											  title: "사용하셔도 됩니다.",
+											  
+											  icon: "success",
+											  buttons: true
+											  
+											})
+									}
+									
+										
+									//$('.idcheck').html("사용하셔도 됩니다.")
 									toggle = true;
 								}
 							},
@@ -447,51 +861,85 @@
 						})
 
 					});
+			
+			
+			$('#joinform').submit(
+					function() {
+						//alert("가입");
+						if ($('#user_id').val() == "") { // 아이디 검사
+							alert('ID를 입력해 주세요.');
+							$('#user_id').focus();
+							return false;
+						} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
+							alert('비밀번호를 입력해 주세요.');
+							$('#user_pwd').focus();
+							return false;
+						} else if ($('#re-password').val() == "") { // 비밀번호 검사
+							alert('비밀번호 확인을 입력해 주세요.');
+							$('#re-password').focus();
+							return false;
+						} else if ($('#user_name').val() == "") { // 이름 검사
+							alert('이름을 입력해 주세요.');
+							$('#user_name').focus();
+							return false;
+						} else if ($('#user_email').val() == "") { // 이메일 체크
+							alert('이메일 주소를 입력해 주세요.');
+							$('#user_email').focus();
+							return false;
+						} else if ($('#nickname').val() == "") {
+							alert('닉네임을 입력해 주세요.');
+							$('#nickname').focus();
+							return false;
+						} else if (regFlag[0] === false || regFlag[1] === false
+								|| regFlag[2] === false || regFlag[3] ===false) {
+							alert('모든 값을 조건에 맞게 입력해주세요.')
+							return false;
+						} else if (toggle === false) {
+							alert('아이디 중복체크를 해주세요.')
+							return false;
+						} else if (pwCheck === false) {
+							alert('입력하신 비밀번호가 일치하지 않습니다.')
+							return false;
+						} else {
+							return true;
+						}
+
+					});
+
 		});
 	</script>
-	<!-- 	<script>
-		if(typeof file=='undefined'){
-			file = new File(["un"], "default",){
-				type:"text/plain",
-			});
-		}
-		if(Users.getFile().getOriginalFilename().equals("default")){
-			profilePicturePath = "/userboard/upload/member.png";}
-		else	{
-			profilePicturePath = fileuploadService.restore(Users.getFile());
-		}
-				}
-		
-	</script> -->
+
+
+
 	<script>
-	$(function() {
+		$(function() {
 
-		// Add the following code if you want the name of the file appear on select
-		$(".custom-file-input").on(
-				"change",
-				function() {
-					var fileName = $(this).val().split("\\").pop();
-					$(this).siblings(".custom-file-label").addClass(
-							"selected").html(fileName);
-				});
+			// Add the following code if you want the name of the file appear on select
+			$(".custom-file-input").on(
+					"change",
+					function() {
+						var fileName = $(this).val().split("\\").pop();
+						$(this).siblings(".custom-file-label").addClass(
+								"selected").html(fileName);
+					});
 
-		//썸네일 시작
-		var file = document.querySelector('#file');
+			//썸네일 시작
+			var file = document.querySelector('#file');
 
-		file.onchange = function() {
-			var fileList = file.files;
+			file.onchange = function() {
+				var fileList = file.files;
 
-			// 읽기
-			var reader = new FileReader();
-			reader.readAsDataURL(fileList[0]);
+				// 읽기
+				var reader = new FileReader();
+				reader.readAsDataURL(fileList[0]);
 
-			//로드 한 후
-			reader.onload = function() {
-				document.querySelector('#preview').src = reader.result;
+				//로드 한 후
+				reader.onload = function() {
+					document.querySelector('#preview').src = reader.result;
+				};
 			};
-		};
-		
-	});
+
+		});
 	</script>
 
 </body>

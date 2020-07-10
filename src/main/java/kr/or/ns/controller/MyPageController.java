@@ -3,6 +3,7 @@ package kr.or.ns.controller;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,9 +40,20 @@ public class MyPageController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@RequestMapping("mypage.do")
-	public String myPagePage() {
+	
+	//마이페이지 뿌려줄 데이터 가져오기(일단 지금은 북마크)
+	@RequestMapping(value= "mypage.do")
+	public String myPage(Model model, Principal principal) {
+		String users = principal.getName();
+		System.out.println("유저정보" + users);
+		
+		List<Map<String,Object>> list = null;
+		list = service.myPagelist(users);
+		model.addAttribute("list", list);
+		System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + list);
+		
 		return "user/mypage/mypage";
+		
 	}
 
 	// 유저 상세정보 뿌리기
@@ -52,12 +64,14 @@ public class MyPageController {
 		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
 		model.addAttribute("skill", list);
+		System.out.println(user);
 		return "user/mypage/mypage_User_Detail.html";
 	}
 
 	// 유저정보 수정페이지로 이동
 	@RequestMapping(value = "MyPageUserEdit.do")
 	public String mypageUserEdit(Model model, Principal principal) {
+		System.out.println("여길 타는건가");
 		Users user = service.getUsers(principal.getName());
 		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
@@ -78,7 +92,7 @@ public class MyPageController {
 		service.MyPageUserEdit(user, request);
 
 		System.out.println("컨트롤러2");
-		return "user/mypage/mypage?seq=" + user.getUser_id();
+		return "user/mypage/mypage.html";
 
 	}
 
@@ -99,99 +113,8 @@ public class MyPageController {
 		return "user/mypage/mypage_Myboard";
 	}
 
-	@RequestMapping("mypage_Message_From_Board.do")
-	public String myMessageFromBoardPage(Principal principal, Model model) {
-		// 받은 쪽지 뿌려주기
-		List<Message> mlist = mservice.getListMessage(principal.getName());
-		model.addAttribute("message", mlist);
+	
 
-		System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
-		return "user/mypage/mypage_Message_From_Board";
-	}
-
-	@RequestMapping("mypage_Message_Send_Board.do")
-	public String mypageMessageSendBoardPage(Principal principal, Model model) {
-		// 보낸 쪽지함
-		List<Message> mlist = mservice.sendListMessage(principal.getName());
-		model.addAttribute("message", mlist);
-		System.out.println("보낸 목록 : " + mlist);
-
-		System.out.println("보낸 쪽지함으로 이동이동(연규가씀)");
-		return "user/mypage/mypage_Message_Send_Board";
-	}
-
-	// 받은편지함 -> 상세보기
-	@RequestMapping("mypage_Message_From_Detail_Board.do")
-	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
-
-		System.out.println("편지 번호 : " + m_seq);
-		Message message = mservice.getMessage(m_seq);
-		System.out.println("우철이 : " + message);
-		model.addAttribute("message", message);
-
-		System.out.println("받은 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
-		return "user/mypage/mypage_Message_From_Detail_Board";
-	}
-
-	@RequestMapping("mypage_Message_Send_Detail_Board.do")
-	public String mypageMessageSendDetailBoardPage(String m_seq, Model model) {
-
-		Message message = mservice.getMessage(m_seq);
-		model.addAttribute("message", message);
-
-		System.out.println("보낸 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
-		return "user/mypage/mypage_Message_Send_Detail_Board";
-	}
-
-	@RequestMapping("mypage_Message_From_Send_Message.do")
-	public String mypageMessageFromSendMessagePage(String senderid, Model model) {
-		// 상세 편지 -> 답장
-
-		model.addAttribute("senderid", senderid);
-
-		System.out.println("받은쪽지함 상세보기에서 답장 클릭 시 답장하는 페이지로 이동이동(연규가씀)");
-		// return "user/mypage/mypage_Message_From_Send_Message";
-		return "user/mypage/mypage_Message_Send_Send_Message";
-	}
-
-	@RequestMapping("mypage_Message_Send_Send_Message.do")
-	public String mypageMessageSendSendMessagePage() {
-		// 받은편지함 -> 쪽지보내기
-
-		System.out.println("받은쪽지함 상세보기에서 답장 클릭 시 답장하는 페이지로 이동이동(연규가씀)");
-		return "user/mypage/mypage_Message_Send_Send_Message";
-	}
-
-	// (받은편지함)상세페이지서 쪽지 삭제
-	@RequestMapping(value = "deleteMessageOneFrom.do", method = RequestMethod.GET)
-	public String deleteMessageOne(String m_seq) {
-
-		System.out.println("쪽지 번호 : " + m_seq);
-
-		int result = mservice.deleteMessageOne(m_seq);
-
-		return "redirect:mypage_Message_From_Board.do";
-	}
-
-	// (보낸편지함)상세페이지서 쪽지 삭제
-	@RequestMapping(value = "deleteMessageOneSend.do", method = RequestMethod.GET)
-	public String deleteMessageOneSend(String m_seq) {
-
-		System.out.println("쪽지 번호 : " + m_seq);
-
-		int result = mservice.deleteMessageOne(m_seq);
-
-		return "redirect:mypage_Message_Send_Board.do";
-	}
-
-	// 쪽지 보내기
-	@RequestMapping(value = "sendMessage.do", method = RequestMethod.POST)
-	public String sendMessage(@RequestParam(value = "title", required = false) String title,
-			@RequestParam(value = "content", required = false) String content) {
-
-		System.out.println("title : " + title);
-		System.out.println("content : " + content);
-
-		return "user/mypage/mypage_Message_Send_Send_Message";
-	}
+	
+	
 }

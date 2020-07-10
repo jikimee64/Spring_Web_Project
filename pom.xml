@@ -60,7 +60,6 @@
 			<version>2.9.1</version>
 		</dependency>
 
-
 		<!-- 소셜 로그인 -->
 		<!-- 네이버 -->
 		<dependency>
@@ -270,16 +269,20 @@
 
 		<!-- ▲이렇게하면 문제가 다른 버전으로 바꿀 때 20개면 다 바꾸어줘야함 그래서 프로퍼티가 있는것이다 프로퍼티만 바꿔주면 된다~ -->
 		<!-- Spring Mybatis 사용 -->
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.1.1</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.2.2</version>
 		</dependency>
+
 
 		<!-- AspectJ -->
 		<dependency>

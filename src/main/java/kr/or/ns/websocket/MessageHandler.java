@@ -86,7 +86,7 @@ public class MessageHandler extends TextWebSocketHandler {
 			// 사용자 아이디값이 소켓 접속시 users에 넣은 아이디값이 존재하는지 비교
 			if (users.containsKey(userid)) {
 				// TextMessage객체를 생성해서 클라이언트에 전송할 텍스트 생성
-				TextMessage msg = new TextMessage("수신된 쪽지 : " + result + "건");
+				TextMessage msg = new TextMessage("" + result + "");
 				users.get(userid).sendMessage(msg);
 				// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
 

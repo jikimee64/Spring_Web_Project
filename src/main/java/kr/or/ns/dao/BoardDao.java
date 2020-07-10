@@ -1,9 +1,13 @@
 package kr.or.ns.dao;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.ns.vo.Criteria;
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Study;
 
 
@@ -20,13 +24,22 @@ study_List 목록뿌리기 작업
 public interface BoardDao {
 	
 	//페이징 스터디 글목록
-	public List<Map<String, Object>> getStudyBoardList(Criteria cri);
+	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
 
 	//총 스터디게시글 수
 	public int getStudyBoardCount();
+	
+	//스터디 글 등록
+	public int studyReg(Study study);
 
 	//스터디 글 상세보기
-	public Study getStudy(String s_seq);
+	public Map<String, Object> getStudy(String s_seq);
+	
+	//스터디 글 삭제
+	public int delete(String s_seq);
+	
+	//댓글 개수
+	public int getReplyCnt(String s_seq);
 	
 
 
