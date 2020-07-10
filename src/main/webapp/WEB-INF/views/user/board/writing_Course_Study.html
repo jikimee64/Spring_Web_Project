@@ -174,7 +174,7 @@
 					</div>
 					<div class="col-3">
 						<input style="margin-bottom: 15px; width:164px;" type="text"
-							class="form-control" name="selectend" id="date-time"
+							class="form-control _deadline" name="selectend" id="date-time"
 							placeholder="모집마감일">
 					</div>
 					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
@@ -184,8 +184,7 @@
 			</div>
 		</div>
 		<hr style="border-color: rgb(224, 224, 224); width: 95%">
-
-
+		
 		<div class="container" style="margin-bottom: 25px;">
 			<div class="row">
 				<div class="col-md-9">
@@ -308,7 +307,6 @@
 				});
 	</script>
 
-
 	<script>
 		$(document).ready(function() {
 			$('#summernote').summernote({
@@ -358,8 +356,37 @@
 		};
 	</script>
 
-</body>
+<script>
+	$(function() {
+		console.log('이건 내꺼33333333333333');
+// 		console.log($('.selectpicker'));
+// 		console.log($('.selectpicker').eq(1));
+		console.log($('.selectpicker option:selected').eq(0));
+		var selectBox1 = $('.selectpicker option:selected').eq(0).val();
+		var selectBox2 = $('.selectpicker option:selected').eq(1).val();
+		var selectBox3 = $('.selectpicker option:selected').eq(2).val();
+		var selectBox4 = $('.selectpicker option:selected').eq(3).val();
+		var selectBox5 = $('._deadline').val();
+		
 
+$('.submit').click(function(evt){
+	
+	evt.preventDefault();
+	////////////////////////////////////////
+	var selectBox6 = $('.selectpicker option:selected').eq(0).val();
+	if(selectBox6 == "Java"){
+		console.log('qweqwe');
+	}
+});
+	
+					
+// 		console.log($('.filter-option-inner-inner'[0]));
+// 		console.log($('.filter-option-inner-asdfasdfasdfinner'));
+		console.log('이건 내꺼44444444444444444');
+	});
+	</script>
+
+</body>
 
 
 </html>
