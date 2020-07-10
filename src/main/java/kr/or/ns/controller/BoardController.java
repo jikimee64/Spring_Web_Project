@@ -69,6 +69,9 @@ public class BoardController {
 		System.out.println("리스트 크기 : " + list.size());
 
 		model.addAttribute("pageMakerb", pageMakerb);
+		
+		System.out.println("우철우철 : " + pageMakerb.toString());
+		
 		System.out.println("pageMagerb오냐 " + pageMakerb.isNext());
 
 		System.out.println(list.toString());
@@ -93,8 +96,8 @@ public class BoardController {
 		}
 		System.out.println("리턴 전...");
 
-		return "user/board/study_List";
-		// return "redirect:/index.do";
+		//return "user/board/study_List";
+		 return "redirect:/board/study_List.do";
 		// /index.htm
 		// return "redirect:index.do"; // /index.htm
 		// return "redirect:study_List.do"; // /index.htm
