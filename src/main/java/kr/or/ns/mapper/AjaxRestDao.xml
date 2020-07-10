@@ -31,4 +31,9 @@
 		select count(*) from users
 		where user_id = #{user_id} and user_email = #{user_email}
 	</select>
+	
+	<!-- 스터디 그룹 인서트 -->
+	<insert id="insertStudyGroup" parameterType="hashMap">
+insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s_seq}, #{user_id}, '승인완료', '회원')
+	</insert>
 </mapper>

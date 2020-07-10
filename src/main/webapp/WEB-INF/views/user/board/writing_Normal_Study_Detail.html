@@ -15,6 +15,9 @@
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
 	crossorigin="anonymous">
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <style>
@@ -206,7 +209,8 @@ keyframes heart-keyframes { 100% {
 		<!-- Breadcrumbs Section -->
 	</main>
 	
-
+<!-- <form action="study_List.do" method="post" class="nomalstudy" id="nomalstudy"
+		enctype="multipart/form-data" novalidate> -->
 	<div class="container" style="margin-top: 90px; margin-bottom: 25px;">
 		<span class="badge badge-pill badge-primary" th:text="${study.STATUS}"></span> <span
 								class="badge badge-pill badge-info" th:text="${study.LEVEL}"></span>
@@ -409,7 +413,7 @@ keyframes heart-keyframes { 100% {
 								alt="Card image" style="width: 100%">
 						</div>
 						<div style="text-align: center; margin: 10px 0px 10px 0px;">
-							<button id="apply" type="submit" class="btn btn-success"
+						<button id="apply" type="submit" class="btn btn-success"
 								style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
 							<!-- 이거는 사용자 권한 -->
 						</div>
@@ -419,13 +423,12 @@ keyframes heart-keyframes { 100% {
 							</a>
 						</div>
 					</div>
-
 				</div>
 			</div>
 			<!-- 		</th:block> -->
 		</div>
 	</div>
-
+<!-- </form> -->
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div
 		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
@@ -445,28 +448,6 @@ keyframes heart-keyframes { 100% {
 						$(this).siblings(".custom-file-label").addClass(
 								"selected").html(fileName);
 					});
-		
-			$('#apply').click(function(){
-				swal({
-					  title: "스터디를 지원하시겠습니까?",
-					  text: "",
-					  icon: "success",
-					  buttons: true,
-					  /* dangerMode: true, */
-					})
-					.then((willDelete) => {
-					  if (willDelete) {
-					    swal({
-					   	  title: "지원이 완료되었습니다.",
-					      icon: "success",
-					    });
-					  } else {
-					    swal({
-					    	title: "지원이 취소되었습니다."
-					    });
-					  }
-					});
-			})
 			
 			$('#delete').click(function(){
 				swal({
@@ -492,6 +473,86 @@ keyframes heart-keyframes { 100% {
 			})
 		});
 	</script>
+	
+	
+	<script>
+
+	$(function() {
+	$('#apply').click(function(){
+		 let s_seq =  $('#s_seq').val();
+		 let obj = {"s_seq" : s_seq}; 
+		swal({
+			  title: "스터디를 지원하시겠습니까?",
+			  text: "",
+			  icon: "info",
+			  buttons: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				   $.ajax({
+						url : "/ajax/nomalstudy.do",
+						processData : false,
+						contentType: "application/json",
+						cache : false,
+						type : 'POST',
+					
+						data : JSON.stringify(obj),
+						success : function(data) {
+							console.log("이게뭐라고?" + data);
+							if(data == 0){
+								swal({
+									title: "이미 지원한 스터디입니다.",
+									  icon: "warning",
+									  buttons: true
+									})
+							}else {
+							swal({title:"지원이 완료되었습니다.",
+								icon: "success"})
+	
+			  }
+						},
+						error: function(request, status, error){
+							console.log("code:" + request.status + "\n"
+									+ "error:" + error);
+
+					  }
+				   });
+						}else {
+			    swal({
+			    	title: "지원이 취소되었습니다."
+			    });
+			  }
+			});
+	})
+	 }); 
+	
+	</script>
+	
+	
+	 <script>
+ $(function() {
+		$("#blame-btn").click(function(e) {
+			var formData = document.getElementById('blameform');
+			console.log(formData)
+
+			console.log("데이터 : " + formData)
+			$.ajax({
+				url : '/ajax/blameinsert.do',
+				DataType: "application/json",
+				processData: false,
+				type : 'POST',
+				data : formData,
+				success : function(data) {
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		})
+	});
+ 
+ </script>
+	
 </body>
 
 
