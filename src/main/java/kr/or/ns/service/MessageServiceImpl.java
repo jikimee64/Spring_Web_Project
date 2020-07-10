@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ns.dao.MessageDao;
 import kr.or.ns.vo.Message;
@@ -54,6 +55,7 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	// 편지 상세보기
+	@Transactional
 	@Override
 	public Message getMessage(String m_seq) {
 
@@ -62,6 +64,8 @@ public class MessageServiceImpl implements MessageService {
 		try {
 			System.out.println("아이디 : " + m_seq);
 			message = dao.getMessage(m_seq);
+			dao.updateMessage(m_seq);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

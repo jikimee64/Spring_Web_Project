@@ -1,43 +1,38 @@
 
 <style>
-
 .nav-menu .drop-down ul {
-    display: block;
-    position: absolute;
-    left: 14px;
-    z-index: 99;
-    padding: 10px 0;
-    background: #fff;
-    box-shadow: 0px 0px 15px rgba(127, 137, 161, 0.25);
-    transition: 0.3s;
-   
+	display: block;
+	position: absolute;
+	left: 14px;
+	z-index: 99;
+	padding: 10px 0;
+	background: #fff;
+	box-shadow: 0px 0px 15px rgba(127, 137, 161, 0.25);
+	transition: 0.3s;
 }
 
-.nav-menu .drop-down:hover > ul {
-  opacity: 1;
-  top: 100%;
-  visibility: visible;
-
+.nav-menu .drop-down:hover>ul {
+	opacity: 1;
+	top: 100%;
+	visibility: visible;
 }
 
 .nav-menu .drop-down li {
-  min-width: 180px;
-  position: relative;
-  
+	min-width: 180px;
+	position: relative;
 }
 
 .nav-menu .drop-down ul a {
-  padding: 10px 20px;
-  font-size: 13px;
-  text-transform: none;
-  color: #333333;
+	padding: 10px 20px;
+	font-size: 13px;
+	text-transform: none;
+	color: #333333;
 }
 
-.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
-  color: #18d26e;
-}	
-
-
+.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active>a,
+	.nav-menu .drop-down ul li:hover>a {
+	color: #18d26e;
+}
 </style>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -48,7 +43,7 @@
 
 
 
-<!-- ======= Header ======= -->
+	<!-- ======= Header ======= -->
 
 	<div class="container-fluid">
 
@@ -64,8 +59,10 @@
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
 						<li class="_pageactive"><a href="/user/main.do">Home</a></li>
-						<li class="_pageactive"><a href="/lecture/course_List.do">온라인 강의</a></li>
-						<li class="_pageactive"><a href="/board/study_List.do">스터디 모임</a></li>
+						<li class="_pageactive"><a href="/lecture/course_List.do">온라인
+								강의</a></li>
+						<li class="_pageactive"><a href="/board/study_List.do">스터디
+								모임</a></li>
 						<li
 							style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
 
@@ -83,24 +80,27 @@
 										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
 										<li style="margin-left: 21px;"><b><span
 												sec:authentication="principal.username"></span>님 환영합니다</b></li>
-					
+
 										<li class="_pageactive"><a th:href="@{/mypage/mypage.do}">마이페이지</a></li>
-										<li class="_pageactive"><a href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
-										<li class="_pageactive"><a href="/message/mypage_Message_From_Board.do">쪽지함</a></li>
+										<li class="_pageactive"><a
+											href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
+										<li class="_pageactive"><a
+											href="/message/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
 
 									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 										<li class="_pageactive" style="margin-left: 21px;"><b><span
 												sec:authentication="principal.username"></span>님 환영합니다</b></li>
-										<li class="_pageactive"><a th:href="@{/manager/index.do}" style="padding-bottom:0px;">관리자 페이지</a></li>
+										<li class="_pageactive"><a th:href="@{/manager/index.do}"
+											style="padding-bottom: 0px;">관리자 페이지</a></li>
 									</th:block>
 									<li class="_pageactive"><a th:href="@{/logout}">로그아웃</a></li>
-								</ul>
-							</li>
+								</ul></li>
 
 
-							<a href="/message/mypage_Message_From_Board.do"> <img src="/resources/images/img/message2.png"
-								style="width: 50px; height: 50px;"> <span class="dot">11</span>
+							<a href="/message/mypage_Message_From_Board.do"> <img
+								src="/resources/images/img/message2.png"
+								style="width: 50px; height: 50px;"> <span class="dot"></span>
 							</a>
 						</th:block>
 
@@ -129,7 +129,11 @@
 		var wsocket;
 
 		function connect() {
-			wsocket = new WebSocket("ws://192.168.0.2:8001/messageSocket.do");
+		/* 	wsocket = new WebSocket("ws://localhost:8001/messageSocket.do"); */
+			
+			//location.host : ip+port 
+			wsocket = new WebSocket("ws://" + location.host + "/messageSocket.do");
+		
 			wsocket.onopen = onOpen;
 			//서버와 클라이언트의 정상 연결 후 데이터 송수신이 가능할 시 호출
 			wsocket.onmessage = onMessage;
@@ -162,14 +166,18 @@
 		}
 
 		function appendMessage(msg) {
-			$("#alertArea").empty();
+			console.log(msg)
+			$(".dot").text(msg);
+			/* $("#alertArea").empty();
 			$("#alertArea")
 					.append(
 							msg.substring(0, 8)
 									+ "<a href='${pageContext.request.contextPath}/messageView.do'>"
-									+ msg.substring(9, 11) + "</a>");
+									+ msg.substring(9, 11) + "</a>"); */
 		}
-	
+	</script>
+		
+	<script>
 		$(document).ready(function() {
 			  $('._pageactive.active').removeClass('active');
 			  $('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
@@ -178,5 +186,6 @@
 			  console.log('스크롤 없애기 전환 찍히나여?');
 			});
 	</script>
+
 </header>
 <!-- End Header -->
