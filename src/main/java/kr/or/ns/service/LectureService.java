@@ -24,6 +24,7 @@ public interface LectureService {
 	//북마크 목록
 	//public List<Map<String, Object>> getBookmarkList(Criteria_Select cri_s);
 
+//	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s,List<Map<String,Object>> mypageBookmarkList);
 	public List<HashMap<String, Object>> getBookmarkList(Criteria_Select cri_s, String userid);
 	
 	//북마크 목록 페이징 시도

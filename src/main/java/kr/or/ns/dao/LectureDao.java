@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.or.ns.vo.BookMark;
 import kr.or.ns.vo.Criteria;
@@ -34,11 +35,15 @@ public interface LectureDao {
 	public int getBookmarkCount(String userid);
 
 	//가져온 북마크 목록
-	public List<HashMap<String, Object>> getBookmarkList(@Param(Criteria_Select cri_s), String userid);
+	
+//	public List<HashMap<String, Object>> getBookmarkList(@Param("cri_s")Criteria_Select cri_s,@Param("mypageBookmarkList")List<Map<String,Object>> mypageBookmarkList);
+//	public List<HashMap<String, Object>> getBookmarkList(@Param("cri_s")Criteria_Select cri_s,@Param("userid")String userid);
 	
 	//페이징 시도----------------------------------------------------------------
 //	public List<Map<String, Object>> getBookmarkList(Criteria_Select cri_s, String userid);
-//	public List<HashMap<?,?>> getBookmarkList(Map<String, Object> cri_s, Map<String, Object> userid);
+//	public List<HashMap<?,?>> getBookmarkList(Criteria_Select cri_s, List<Map<String, Object>> mypageBookmarkList);
+
+	public List<HashMap<String, Object>> getBookmarkList(Criteria_Select cri_s, String userid);
 
 //	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s, String userid);
 

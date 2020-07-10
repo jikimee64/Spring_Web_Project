@@ -86,12 +86,13 @@ public class LectureController {
 		//마이페이지에서 북마크 들고오기
 		List<Map<String,Object>> mypageBookmarkList = null;
 		mypageBookmarkList = service3.myPagelist(users);
-		model.addAttribute("mypageBookmarkList", mypageBookmarkList);
-		System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + mypageBookmarkList);
+//		model.addAttribute("mypageBookmarkList", mypageBookmarkList);
+//		System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + mypageBookmarkList);
 		
 		//페이징 들고오기
 		List<HashMap<String, Object>> bookMarkList = null;
 		bookMarkList = service.getBookmarkList(cri_s,users);
+//		bookMarkList = service.getBookmarkList(cri_s,users);
 		model.addAttribute("bookMarkList", bookMarkList); // view까지 전달(forward)
 		model.addAttribute("pageMakers", pageMakers);
 
