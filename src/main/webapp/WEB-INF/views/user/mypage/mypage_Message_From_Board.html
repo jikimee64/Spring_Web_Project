@@ -201,7 +201,7 @@ body {
                <!-- opendate가 null이 아닐경우 색깔 회색?  -->
 				<div th:if="${list.opendate} != null" class="col-md-6"
 					style="place-self: center; text-align: center;">
-					<a style="color: #00b894;"
+					<a style="color: #636e72;"
 						th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
 						<span th:text="${list.content}"></span>
 					</a>
@@ -209,7 +209,7 @@ body {
 				
 				<div th:if="${list.opendate} == null" class="col-md-6"
 					style="place-self: center; text-align: center;">
-					<a style="color: #636e72;"
+					<a style="color: #00b894;"  
 						th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
 						<span th:text="${list.content}"></span>
 					</a>

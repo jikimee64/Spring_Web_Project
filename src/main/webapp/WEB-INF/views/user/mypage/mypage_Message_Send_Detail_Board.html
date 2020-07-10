@@ -85,8 +85,9 @@ body {
 				</div>
 				<div class="col-md-7"
 					style="text-align: right; padding-right: 28px; padding-top: 8px;">
-					<button type="button" class="btn btn-warning"
-						style="width: 80px; margin-top: 30px; color: white;">삭제</button>
+					<!-- swal로 구현  -->
+						<button id="delete" type="button" class="btn btn-warning"
+							style="width: 80px; margin-top: 30px; color: white;">삭제</button>
 				</div>
 
 			</div>
@@ -128,5 +129,28 @@ body {
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
+	
+		<script>
+	$(function() {
+	
+	var m_seq = $('#m_seq').val();
+		
+	$('#delete').click(function(){
+		swal({
+			  title: "쪽지를 삭제 하시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				  location.href="/message/deleteMessageOneFrom.do?m_seq="+m_seq
+			  } 
+			
+			});
+		})
+	});
+	
+	</script>
 </body>
 </html>

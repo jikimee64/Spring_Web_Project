@@ -59,6 +59,7 @@ public class MessageController {
 		return "user/mypage/mypage_Message_From_Detail_Board";
 	}
 
+	//보낸편지함 -> 상세보기
 	@RequestMapping("mypage_Message_Send_Detail_Board.do")
 	public String mypageMessageSendDetailBoardPage(String m_seq, Model model) {
 
