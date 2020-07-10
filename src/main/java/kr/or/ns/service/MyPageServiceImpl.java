@@ -31,8 +31,12 @@ public class MyPageServiceImpl implements MyPageService {
 	public void setSqlsession(SqlSession sqlsession) {
 		this.sqlsession = sqlsession;
 	}
+	
+	
+	
+	
 
-	//마이페이지
+	//마이페이지(북마크)
 	public List<Map<String, Object>> myPagelist(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<Map<String, Object>> myPagelist = dao.getBookMark(userid);

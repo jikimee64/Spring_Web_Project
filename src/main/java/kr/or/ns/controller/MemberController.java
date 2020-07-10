@@ -3,6 +3,7 @@ package kr.or.ns.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -53,6 +54,7 @@ public class MemberController {
 			System.out.println(e.getMessage());
 
 		}
+		
 		return "redirect:/index.do"; // /index.htm
 		// 주의사항
 		// 요청 주소 ...아래처럼 ..

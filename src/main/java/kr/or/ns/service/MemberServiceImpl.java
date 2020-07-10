@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +105,7 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("회원강비 결과 : "  +result);
 			result2 = dao.insertskill(mo);
 			System.out.println("정상적인 처리 일 때 출력되는 부분 insert 정상, update 정상");
+	
 		} catch (Exception e) {
 			System.out.println("둘 중에 하나라도 문제가 생기면 예외가 떨어지는 부분" + e.getMessage());
 			throw e; // 예외를 다시 돌려줌. 그리고 이 예외가 발생하는 시점에 transactionManager가 감시를 하다가 rollback 처리를 한다.
