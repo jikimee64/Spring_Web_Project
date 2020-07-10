@@ -26,6 +26,6 @@ public interface AjaxRestDao {
 	//스터디 그룹 인서트
 	public int insertStudyGroup(HashMap<String, String> map);
 	
-	//신고 인서트
+	//신고하기(게시판)
 	public int insertBlame(HashMap<String,Object> map);
 }

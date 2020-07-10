@@ -174,15 +174,17 @@ public class AjaxServiceImpl implements AjaxService {
 		return result;
 	}
 
-
+	//신고하기
 	@Override
 	public int blameInsert(HashMap<String, Object> params, String current_userid) {
-		 int s_seq = (int) params.get("s_seq"); //글번호
-			int btc_seq = (int)params.get("type"); //신고유형
-			int bpc_seq = (int)params.get("place");
-			String writer = (String)params.get("target");
-			String title = (String)params.get("bl_title");
-			String comment = (String)params.get("comment");
+
+		String s_seq = (String)params.get("s_seq"); //글번호
+		 String btc_seq = (String)params.get("type"); //신고유형
+		 String bpc_seq = (String)params.get("place"); //신고장소(게시판이므로 1 디폴트)
+		 String writer = (String)params.get("target"); //신고당하는 사람(글작성자,해당 게시글)
+		 String title = (String)params.get("bl_title"); //신고제목
+		 String comment = (String)params.get("comment"); //신고내용
+			System.out.println(s_seq);
 		
 			
 			HashMap map = new HashMap();
@@ -196,7 +198,6 @@ public class AjaxServiceImpl implements AjaxService {
 			
 			AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 			int result = dao.insertBlame(map);
-			
 	
 		return result;
 	}

@@ -43,7 +43,7 @@
 							<div class="row">
 								<div class="col-md-2">제목 :</div>
 								<div class="col-md-9" style="padding-left: 0px;">
-									<input type="text" name="bl_title" value="bl_title"
+									<input type="text" name="bl_title"
 										class="form-control form-control-sm">
 								</div>
 							</div>
@@ -78,7 +78,7 @@
 									<div class="col-4" style="padding: 0px;"></div>
 									<div class="col-4"
 										style="padding: 0px; margin-left: 8px; text-align: left;">
-										<button type="submit" id="blame-btn"
+										<button type="submit" id="blame-btn" 
 											class="btn btn-outline-danger" value="신고하기">신고하기</button>
 									</div>
 									<div class="col-4" style="padding: 0px;"></div>
@@ -91,39 +91,6 @@
 		</div>
 	</div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-
-	<!-- 
-<script>
- $(function() {
-	 $(".blameform").submit(function(e) {
-	 	 e.preventDefault();
-		 var formData = new FormData(this);
-		 console.log(formData)
-		 
-		var a = $('#bl_title').val()
-		console.log(a);
-		var b = $('#comment').val()
-		console.log(b);
-		 
-
-		console.log("데이터 : " + formData)
-		$.ajax({
-			url : '/ajax/blameinsert.do',
-			contentType:"application/json",
-			processData: false,
-			type : 'POST',
-			data : JSON.stringify(formData),
-			success : function(data) {
-				console.log(data);
-			},
-			error : function(e) {
-				console.log("error:", e);
-			}
-		})
-	})
- });
- </script>
-  -->
 
 
 </body>

@@ -126,17 +126,16 @@ public class AjaxRestController {
 		return result; //0 또는 1 리턴
 	}
 	
-	//신고하기
+	//신고하기(게시판)
 		@RequestMapping(value = "blameinsert.do", method = RequestMethod.POST)
 		public int blameInsert(@RequestBody HashMap<String, Object>params, Principal principal) {
 			
 			System.out.println("신고하기 컨트롤러");
-			String current_userid = principal.getName();
-			int result = service.blameInsert(params, current_userid);
-			
+			String current_userid = principal.getName(); //현재 로그인한 사용자
+			int result = service.blameInsert(params, current_userid); //모달 내용과 로그인유저 정보 전달
+			System.out.println("인서트 성공" + result);
 			return result;
+			
 		}
-
-
 
 }

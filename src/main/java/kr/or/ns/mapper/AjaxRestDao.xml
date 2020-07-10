@@ -36,4 +36,10 @@
 	<insert id="insertStudyGroup" parameterType="hashMap">
 insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s_seq}, #{user_id}, '승인완료', '회원')
 	</insert>
+	
+	<!-- 신고 접수 -->
+	<insert id="insertBlame" parameterType="hashMap">
+		insert into blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
+		values (#{btc_seq}, 1, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now())
+	</insert>
 </mapper>

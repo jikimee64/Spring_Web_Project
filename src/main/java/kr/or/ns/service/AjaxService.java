@@ -29,7 +29,7 @@ public interface AjaxService {
 	//스터디 게시판 일반 지원하기
 	public int applyNomalStudy(String user_id, String s_seq);
 
-
+	//신고하기(게시판)
 	public int blameInsert(HashMap<String, Object> params, String current_userid);
 
 	
