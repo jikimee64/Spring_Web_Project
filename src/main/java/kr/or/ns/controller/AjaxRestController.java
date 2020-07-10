@@ -1,25 +1,18 @@
 package kr.or.ns.controller;
 
-import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.vo.Blame;
-import kr.or.ns.vo.Users;
 
 @RestController //controller + responsebody
 @RequestMapping("/ajax/")
@@ -135,10 +128,13 @@ public class AjaxRestController {
 	
 	//신고하기
 		@RequestMapping(value = "blameinsert.do", method = RequestMethod.POST)
-		public int blameInsert(@RequestBody HashMap<String, Object>params, Principal principal, Blame blame) {
-			System.out.println("신고하기 컨트롤러");
+		public int blameInsert(@RequestBody HashMap<String, Object>params, Principal principal) {
 			
-			return 0;
+			System.out.println("신고하기 컨트롤러");
+			String current_userid = principal.getName();
+			int result = service.blameInsert(params, current_userid);
+			
+			return result;
 		}
 
 

@@ -1,5 +1,7 @@
 package kr.or.ns.service;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -27,5 +29,9 @@ public interface AjaxService {
 	//스터디 게시판 일반 지원하기
 	public int applyNomalStudy(String user_id, String s_seq);
 
-	/*	public int blameInsert(Blame blame,  );*/
+
+	public int blameInsert(HashMap<String, Object> params, String current_userid);
+
+	
+	
 }

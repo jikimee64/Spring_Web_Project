@@ -225,7 +225,7 @@ keyframes heart-keyframes { 100% {
 			<div class="col-md-6 d-flex justify-content-between"
 				style="text-align: right;">
 				<div>
-					<b> 작성자: </b> <span th:text="${study.USER_ID}"></span>
+					<b> 작성자: </b> <span id="user_id" th:text="${study.USER_ID}"></span>
 				</div>
 				<div>
 					<b> 등록일: </b> <span th:text="${study.WRITE_DATE}"></span>
@@ -430,10 +430,11 @@ keyframes heart-keyframes { 100% {
 	</div>
 <!-- </form> -->
 	<div th:replace="/user/includes/footer :: footer"></div>
+	
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div
 		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
 	</div>
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<!-- alert창 꾸미기 -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
@@ -531,14 +532,48 @@ keyframes heart-keyframes { 100% {
 	
 	 <script>
  $(function() {
-		$("#blame-btn").click(function(e) {
+	 
+	  $(".blameform").submit(function(e) {
+		 	 e.preventDefault();
+			 var formData = new FormData(this);
+			
+			console.log("데이터2 : " + formData.get("bl_title"))
+			console.log("데이터2 : " + formData.get("blame"))
+			console.log("데이터3 : " + formData.get("comment"))
+			
+			let data = {
+				"s_seq":$('#s_seq').val(), //신고당하는 글번호
+				"type":formData.get("blame"), //신고유형
+				"place":"1", //신고장소(게시판)	
+				"target": $('#user_id').text(), //신고당하는 사람
+				"bl_title":formData.get("bl_title"),  //신고제목
+				"comment":formData.get("comment") //신고내용
+			} 
+
+			$.ajax({
+				url : '/ajax/blameinsert.do',
+				processData : false,
+				contentType:"application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+					console.log(data);
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		}) 
+	 
+		/* $("#blame-btn").click(function(e) {
 			var formData = document.getElementById('blameform');
 			console.log(formData)
 
 			console.log("데이터 : " + formData)
 			$.ajax({
 				url : '/ajax/blameinsert.do',
-				contentType: false,
+				contentType:"application/json",
 				processData: false,
 				type : 'POST',
 				data : JSON.stringify(formData),
@@ -549,7 +584,7 @@ keyframes heart-keyframes { 100% {
 					console.log("error:", e);
 				}
 			})
-		})
+		}) */
 	});
  
  </script>
