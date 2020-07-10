@@ -1,11 +1,10 @@
 package kr.or.ns.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,29 +13,25 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import kr.or.ns.page.PageMaker;
+
+
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardServiceImpl;
-import kr.or.ns.vo.Criteria;
+
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Study;
-import kr.or.ns.vo.Users;
+
 
 /*
 클래스명 : BoardController
 버전 정보 v.1.1
 마지막 업데이트 날짜 : 2020 - 07 - 02
 작업자 : 박민혜
-
 study_List 목록뿌리기 작업
-
 */
 
 @Controller
@@ -69,6 +64,9 @@ public class BoardController {
 		System.out.println("리스트 크기 : " + list.size());
 
 		model.addAttribute("pageMakerb", pageMakerb);
+		
+		System.out.println("우철우철 : " + pageMakerb.toString());
+		
 		System.out.println("pageMagerb오냐 " + pageMakerb.isNext());
 
 		System.out.println(list.toString());
@@ -93,8 +91,8 @@ public class BoardController {
 		}
 		System.out.println("리턴 전...");
 
-		return "user/board/study_List";
-		// return "redirect:/index.do";
+		//return "user/board/study_List";
+		 return "redirect:/board/study_List.do";
 		// /index.htm
 		// return "redirect:index.do"; // /index.htm
 		// return "redirect:study_List.do"; // /index.htm

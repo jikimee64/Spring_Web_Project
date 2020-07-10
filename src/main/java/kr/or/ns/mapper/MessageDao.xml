@@ -12,20 +12,18 @@
 	<!-- public int insertMessage(Message message) -->
 	<insert id="insertMessage" parameterType="kr.or.ns.vo.Message">
 		insert into
-		message(receptionid, senderid, rs_code, content, opendate, senddate)
+		message(receptionid, senderid, content, senddate)
 		values(
 		#{receptionid},
 		#{senderid},
-		#{rs_code},
 		#{content},
-		now(),
 		now()
 		)
 	</insert>
 
 	<select id="getListMessage" parameterType="String"
 		resultType="kr.or.ns.vo.Message">
-		select * from message where receptionid = #{userid}
+		select * from message where receptionid = #{userid} ORDER BY m_seq desc
 	</select>
 
 	<select id="getMessage" parameterType="String"
@@ -35,7 +33,7 @@
 
 	<select id="sendListMessage" parameterType="String"
 		resultType="kr.or.ns.vo.Message">
-		select * from message where senderid = #{userid}
+		select * from message where senderid = #{userid} ORDER BY m_seq desc
 	</select>
 	
 	<delete id="deleteMessageOne">

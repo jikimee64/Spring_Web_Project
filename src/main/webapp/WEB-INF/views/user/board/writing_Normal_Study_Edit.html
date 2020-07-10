@@ -79,7 +79,8 @@
 
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-
+	
+	
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -102,7 +103,32 @@
 			<!-- <br /> -->
 				<div class="row" id="row">
 					<div class="col-1">
-						<select name="" class="selectpicker mb-3" data-style="btn-light"
+					
+					
+					
+					<input type="hidden" class="LOC_SEQ" th:id="${study.LOC_SEQ}">
+					<input type="hidden" class="LAN_SEQ" th:id="${study.LAN_SEQ}">
+					<input type="hidden" class="S_SEQ" th:id="${study.S_SEQ}">
+					<input type="hidden" class="LIKE_CNT" th:id="${study.LIKE_CNT}">
+					<input type="hidden" class="PEOPLE" th:id="${study.PEOPLE}">
+					<input type="hidden" class="LOC" th:id="${study.LOC}">
+					<input type="hidden" class="READNUM" th:id="${study.READNUM}">
+					<input type="hidden" class="CONTENT_KIND" th:id="${study.CONTENT_KIND}">
+					<input type="hidden" class="USER_ID" th:id="${study.USER_ID}">
+					<input type="hidden" class="LEVEL" th:id="${study.LEVEL}">
+					<input type="hidden" class="CATE_LANGUAGE" th:id="${study.CATE_LANGUAGE}">
+					<input type="hidden" class="DEADLINE" th:id="${study.DEADLINE}">
+					<input type="hidden" class="STATUS" th:id="${study.STATUS}">
+					<input type="hidden" class="IMAGE" th:id="${study.IMAGE}">
+					<input type="hidden" class="WRITE_DATE" th:id="${study.WRITE_DATE}">
+					<input type="hidden" class="FILESRC" th:id="${study.FILESRC}">
+					<input type="hidden" class="FILESRC2" th:id="${study.FILESRC2}">
+					<input type="hidden" class="TITLE" th:id="${study.TITLE}">
+					<input type="hidden" class="CONTENT" th:id="${study.CONTENT}">
+					
+					
+					
+						<select name="" class="selectpicker mb-3" data-style="btn-light" id="lan"
 							style="width: 10%;" data-live-search="true" data-width="120px">
 							<option value="언어" selected>언어</option>
 							<option value="Java">Java</option>
@@ -119,7 +145,7 @@
 						</select>
 					</div>
 					<div class="col-1">
-						<select name="" class="selectpicker mb-3" data-style="btn-light"
+						<select name="" class="selectpicker mb-3" data-style="btn-light"  id="people"
 							style="width: 10%;" data-live-search="true" data-width="120px">
 							<option value="모집인원" selected>모집인원</option>
 							<option value="1">1명</option>
@@ -136,7 +162,7 @@
 					</div>
 
 					<div class="col-1">
-						<select name="" class="selectpicker mb-3" data-style="btn-light"
+						<select name="" class="selectpicker mb-3" data-style="btn-light" id="loc"
 							style="width: 10%;" data-live-search="true" data-width="120px">
 							<option value="지역" selected>지역</option>
 							<option value="온라인">온라인</option>
@@ -155,18 +181,18 @@
 						</select>
 					</div>
 					<div class="col-1">
-						<select name="" class="selectpicker mb-3" data-style="btn-light"
+						<select name="" class="selectpicker mb-3" data-style="btn-light" id="level"
 							style="width: 10%;" data-live-search="true" data-width="120px">
 							<option value="난이도" selected>난이도</option>
-							<option value="_introduction">입문</option>
-							<option value="_beginner">초급</option>
-							<option value="_middleclass">중급이상</option>
+							<option value="입문">입문</option>
+							<option value="초급">초급</option>
+							<option value="중급이상">중급이상</option>
 						</select>
 					</div>
 					<div class="col-3">
 						<input style="margin-bottom: 15px; width:164px;" type="text"
-							class="form-control" name="selectend" id="date-time"
-							placeholder="모집마감일">
+							class="form-control" name="selectend" id="date-time" th:value="${study.DEADLINE}"
+							placeholder="모집마감일" >
 					</div>
 					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
 				<option selected>모집마감일</option>
@@ -186,7 +212,7 @@
 								<br />
 								<div class="form-group">
 									<input type="text" class="form-control" id="usr"
-										name="username" placeholder="글 제목을 입력해주세요">
+										name="username" placeholder="글 제목을 입력해주세요" th:value="${study.TITLE}">
 								</div>
 							</div>
 
@@ -209,7 +235,7 @@
                   </div> -->
 						</div>
 						<div class="form-group">
-							<textarea id="summernote" name="n_content"></textarea>
+							<textarea id="summernote" name="n_content" class="contentt"></textarea>
 							<!-- <textarea name="" id="" cols="30" rows="10" class="form-control"
                      placeholder="글 내용을 입력해주세요"></textarea> -->
 							<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
@@ -226,12 +252,12 @@
                style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
                디폴트이미지 3개 중 하나 출력하거나 아니면 이미지 선택 (이건아직 안함) -->
 					<div class="form-group" style="margin: 0">
-						<img id="preview" src="/studyboard/upload/default.png" alt="썸네일"
+						<img id="preview" src="/studyboard/upload/호랭이.jpg" alt="썸네일"
 							style="margin-bottom: 15px; width: 280px; height: 200px;">
 						<div class="filebox"
-							style="text-align: center; margin-left: 22px;">
+							style="text-align: center; margin-left: 22px; ">
 							<label for="ex_file">썸네일 업로드</label> <input name="files[0]"
-								type="file" id="ex_file">
+								type="file" id="ex_file" style="width:100%;">
 						</div>
 						<!-- <div class="custom-file mb-3" style="width:280px;">
                                  <input type="file" class="custom-file-input" name="files[0]" id="Thum">
@@ -242,7 +268,7 @@
 					<div class="form-group" style="margin: 0">
 						<div class="custom-file mb-3" style="width: 280px;">
 							<input type="file" class="custom-file-input" id="customFile"
-								name="files[1]"> <label class="custom-file-label"
+								name="files[1]" > <label class="custom-file-label" id="pname"
 								for="customFile">Choose file1</label>
 						</div>
 					</div>
@@ -250,7 +276,7 @@
 					<div class="form-group" style="margin: 0">
 						<div class="custom-file mb-3" style="width: 280px;">
 							<input type="file" class="custom-file-input" id="customFile"
-								name="files[2]"> <label class="custom-file-label"
+								name="files[2]"> <label class="custom-file-label" id="pname2"
 								for="customFile">Choose file2</label>
 						</div>
 					</div>
@@ -308,21 +334,75 @@
 
 	<script>
 		$(document).ready(function() {
+			
+			//글내용 
 			$('#summernote').summernote({
 				tabsize : 2,
 				height : 500,
 				focus : false,
 				minHeight : null,
 				maxHeight : null,
-				placeholder : '글 내용을 입력해주세요'
+				placeholder : $('.CONTENT').attr('id')
 			});
 			$("p").each(function() {
 				if (!$(this).text().trim().length) {
 					$(this).remove();
 				}
 			});
+			
+			//파일명			
+			$('#pname').html($('.FILESRC').attr('id'));
+			$('#pname2').html($('.FILESRC2').attr('id'));
+			
+			
+			//select 태그 옵션에 selected 주기////////////////////////////////
+			
+			//언어선택
+			var cateLan = $('.CATE_LANGUAGE').attr('id');
+			$('select[id="lan"]').val(cateLan);
+			
+			//모집인원
+			var catepeo = $('.PEOPLE').attr('id');
+			$('select[id="people"]').val(catepeo);
+			
+			//지역
+			var cateloc = $('.LOC').attr('id');
+			$('select[id="loc"]').val(cateloc);
+			
+			//level
+			var catelev = $('.LEVEL').attr('id');
+			$('select[id="level"]').val(catelev);
+			
+			
+					/* var lanList = $('#lan').children();
+					console.log(lanList);
+			
+			
+					//배열 출력
+					var vallist = new Array;
+					for(var i=0 ; i<lanList.length ; i++){ 
+					    vallist[i] = lanList[i].value;
+						console.log(lanList[i].value);
+					}
+					
+					var isExist = false;
+					for(var i = 0 ; i<vallist.length ; i++){
+					    if(vallist[i] === cateLan ){
+					        isExist = true;
+					        console.log(vallist[i])
+					    }
+					} */
+	
+			
+			
+			
+			
 		});
 	</script>
+
+
+
+
 
 	<!-- mysql이랑 맞출것  -->
 	<script>
