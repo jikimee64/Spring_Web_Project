@@ -12,13 +12,11 @@
 	<!-- public int insertMessage(Message message) -->
 	<insert id="insertMessage" parameterType="kr.or.ns.vo.Message">
 		insert into
-		message(receptionid, senderid, rs_code, content, opendate, senddate)
+		message(receptionid, senderid, content, senddate)
 		values(
 		#{receptionid},
 		#{senderid},
-		#{rs_code},
 		#{content},
-		now(),
 		now()
 		)
 	</insert>

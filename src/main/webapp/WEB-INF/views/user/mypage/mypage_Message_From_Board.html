@@ -273,25 +273,35 @@ body {
                $("._input_check").prop('checked', false);
 
          });
-         
-         
-         
-         
-         
-         
-         
 
       });
    </script>
    
    <!-- 신고ajax -->
-     <script>
-      $(function() {
-    	  
-    	  console.log($('#comment').val())
+ <script>
+ $(function() {
+      $("#blame-btn").click(function(e) {
+         var formData = document.getElementById('blameform');
+         console.log(formData)
 
-      });
-   </script>
+         console.log("데이터 : " + formData)
+         $.ajax({
+            url : '/ajax/blameinsert.do',
+            contentType:"application/json",
+            processData: false,
+            type : 'POST',
+            data : JSON.stringify(formData),
+            success : function(data) {
+               console.log(data);
+            },
+            error : function(e) {
+               console.log("error:", e);
+            }
+         })
+      })
+   });
+ 
+ </script>
 </body>
 
 

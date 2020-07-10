@@ -133,10 +133,7 @@ public class MessageController {
 	// 쪽지 신고(테스트)
 	@RequestMapping(value = "declare.do", method = RequestMethod.POST)
 	public String declareTsssest() {
-		
 		System.out.println("하이욤sdssaddsa");
-
-
 		return "";
 	}
 	

@@ -94,10 +94,16 @@ public class MessageHandler extends TextWebSocketHandler {
 			}
 		} else { // 쪽지 보냈을때 탐(message.jsp에서 데이터 전송받음)
 			System.out.println("여긴타냐??");
+			System.out.println(message.getPayload());
+			
 			
 			String receptionid = message.getPayload().split(",")[0];
 			String content = message.getPayload().split(",")[1];
-
+			
+			System.out.println("수신인 : " + receptionid);
+			System.out.println("내용 : " + content);
+			
+			
 			Message savemsg = new Message();
 			savemsg.setReceptionid(receptionid);//수신인
 			savemsg.setSenderid(userid); //발신인
