@@ -42,4 +42,9 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 		insert into blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
 		values (#{btc_seq}, 1, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now())
 	</insert>
+	
+	<insert id="insertBlame_message" parameterType="hashMap">
+		insert into blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
+		values (#{btc_seq}, 2, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now())
+	</insert>
 </mapper>

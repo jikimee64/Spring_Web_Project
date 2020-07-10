@@ -180,7 +180,7 @@ public class AjaxServiceImpl implements AjaxService {
 
 		String s_seq = (String)params.get("s_seq"); //글번호
 		 String btc_seq = (String)params.get("type"); //신고유형
-		 String bpc_seq = (String)params.get("place"); //신고장소(게시판이므로 1 디폴트)
+		 String bpc_seq = (String)params.get("place"); //신고장소(게시판이면 1, 쪽지면 2 디폴트)
 		 String writer = (String)params.get("target"); //신고당하는 사람(글작성자,해당 게시글)
 		 String title = (String)params.get("bl_title"); //신고제목
 		 String comment = (String)params.get("comment"); //신고내용
@@ -197,8 +197,15 @@ public class AjaxServiceImpl implements AjaxService {
 			map.put("bl_content", comment);
 			
 			AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-			int result = dao.insertBlame(map);
-	
+			
+			int result = 0;
+			
+			if(bpc_seq == "1") {
+				 result = dao.insertBlame(map);
+			}else {
+				 result = dao.insertBlame_Message(map);	
+			}		
+			
 		return result;
 	}
 }
