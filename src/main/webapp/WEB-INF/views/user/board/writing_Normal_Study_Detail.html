@@ -15,6 +15,9 @@
 	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
 	crossorigin="anonymous">
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <style>
@@ -445,28 +448,6 @@ keyframes heart-keyframes { 100% {
 						$(this).siblings(".custom-file-label").addClass(
 								"selected").html(fileName);
 					});
-		
-		/* 	$('#apply').click(function(){
-				swal({
-					  title: "스터디를 지원하시겠습니까?",
-					  text: "",
-					  icon: "success",
-					  buttons: true,
-					  /* dangerMode: true, 
-					})
-					.then((willDelete) => {
-					  if (willDelete) {
-					    swal({
-					   	  title: "지원이 완료되었습니다.",
-					      icon: "success",
-					    });
-					  } else {
-					    swal({
-					    	title: "지원이 취소되었습니다."
-					    });
-					  }
-					});
-			}) */
 			
 			$('#delete').click(function(){
 				swal({
@@ -503,7 +484,7 @@ keyframes heart-keyframes { 100% {
 		swal({
 			  title: "스터디를 지원하시겠습니까?",
 			  text: "",
-			  icon: "success",
+			  icon: "info",
 			  buttons: true,
 			})
 			.then((willDelete) => {
@@ -514,37 +495,64 @@ keyframes heart-keyframes { 100% {
 						contentType: "application/json",
 						cache : false,
 						type : 'POST',
+					
 						data : JSON.stringify(obj),
 						success : function(data) {
-							console.log(data);
-						}
-				}) 
-			  } else {
+							console.log("이게뭐라고?" + data);
+							if(data == 0){
+								swal({
+									title: "이미 지원한 스터디입니다.",
+									  icon: "warning",
+									  buttons: true
+									})
+							}else {
+							swal({title:"지원이 완료되었습니다.",
+								icon: "success"})
+	
+			  }
+						},
+						error: function(request, status, error){
+							console.log("code:" + request.status + "\n"
+									+ "error:" + error);
+
+					  }
+				   });
+						}else {
 			    swal({
 			    	title: "지원이 취소되었습니다."
 			    });
 			  }
 			});
 	})
-	
-	
-		/* $("#btn_submit").click(function() { */
-/* 		$(".apply").submit(function(e) { */
-			/*    var formData = $(".joinform").serialize() */
-			/* var file = $(#'joinform')[0].files[0]; */
-			/* var formData = new FormData(this);
-			console.log(formData)
-
-			console.log("데이터 : " + formData)
-			
-				error : function(e) {
-					console.log("error:", e);
-				}
-			}) 
-		})*/
 	 }); 
 	
 	</script>
+	
+	
+	 <script>
+ $(function() {
+		$("#blame-btn").click(function(e) {
+			var formData = document.getElementById('blameform');
+			console.log(formData)
+
+			console.log("데이터 : " + formData)
+			$.ajax({
+				url : '/ajax/blameinsert.do',
+				DataType: "application/json",
+				processData: false,
+				type : 'POST',
+				data : formData,
+				success : function(data) {
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		})
+	});
+ 
+ </script>
+	
 </body>
 
 

@@ -23,7 +23,8 @@
 		<div class="modal fade" id="declationPageModal" tabindex="-1"
 			role="dialog" aria-labelledby="exampleModalCenterTitle"
 			aria-hidden="true">
-			<form>
+
+			<form action="" method="post" class="blameform" name="blameform" id="blameform">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -41,7 +42,7 @@
 							<div class="row">
 								<div class="col-md-2">제목 :</div>
 								<div class="col-md-9" style="padding-left: 0px;">
-									<input type="text" class="form-control form-control-sm">
+									<input type="text" name="blame_title" class="form-control form-control-sm">
 								</div>
 							</div>
 							<br />
@@ -59,9 +60,9 @@
 								<b>[사유]</b>
 							</h5>
 							<div style="padding-left: 30px;">
-								<input type="radio" id="1" name="blame" value="1"> <label
-									for="1">게시판 성격과 맞지 않는 게시글</label><br> <input type="radio"
-									id="2" name="blame" value="2"> <label for="2">부적절한
+								<input type="radio" id="1" name="blame" value="1"> 
+								<label for="1">게시판 성격과 맞지 않는 게시글</label><br>
+								<input type="radio" id="2" name="blame" value="2"> <label for="2">부적절한
 									홍보 게시글</label><br> <input type="radio" id="3" name="blame"
 									value="3"> <label for="3">욕설 및 비방</label><br> <input
 									type="radio" id="4" name="blame" value="4"> <label
@@ -73,8 +74,9 @@
 								<div class="row" style="text-align:center; margin: 0 auto;">
 									<div class="col-4" style="padding: 0px;"></div>
 									<div class="col-4" style="padding: 0px; margin-left:8px; text-align:left;">
-										<button type="button" class="btn btn-outline-danger"
-											data-dismiss="modal">신고하기</button>
+										<input type="submit" id="blame-btn" class="btn btn-outline-danger"
+											data-dismiss="modal" value="신고하기">
+
 									</div>
 									<div class="col-4" style="padding: 0px;"></div>
 								</div>
@@ -85,6 +87,35 @@
 		</div>
 	</div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div> 
+	<!-- 	<script>
+	$(function() {
+		$(".blameform").submit(function(e) {
+			var formData = new FormData(this);
+			console.log(formData)
+
+			console.log("데이터 : " + formData)
+			$.ajax({
+				url : "/ajax/blameinsert.do",
+				processData : false,
+				contentType : false,
+				cache : false,
+				type : 'POST',
+				data : formData,
+				success : function(data) {
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		})
+	});
+	
+	</script>
+ -->
+ 
+ 
+
+ 
 </body>
 
 </html>

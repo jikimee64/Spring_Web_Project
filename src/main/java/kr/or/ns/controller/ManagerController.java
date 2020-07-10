@@ -2,7 +2,6 @@ package kr.or.ns.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.or.ns.export.WriteListToExcelFile;
 import kr.or.ns.service.ManagerServiceImpl;
+import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -92,8 +92,13 @@ public class ManagerController {
 	
 	//----------------------------------------------------------------------------
 	@RequestMapping("board/report_Management.do")
-	public String reportManagementPage() {
+	public String reportManagementPage(Model model,String bl_seq,String btc_seq) {
 		System.out.println("어드민 회원관리 테이블페이지이동");
+
+
+		List<Blame> blameList = null;
+		blameList = service.getBlameList(bl_seq); // 블레임리스트
+		model.addAttribute("blameList", blameList); // view까지 전달
 
 		return "manager/board/report_Management";
 	}

@@ -163,14 +163,9 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("지원하기: " + user_id);
 		System.out.println("번호: " + s_seq);
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-		
-		/*
-		 * HashMap<String, String> map = new HashMap();
-		 * 
-		 * map.put("user_id", user_id);
-		 */
-		
+	
 		int result = 0;
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("s_seq", s_seq);
 		map.put("user_id", user_id);

@@ -680,12 +680,6 @@ body {
 			})
 		});
 
-		// 이건 라디오
-		/* 		if ('addEventListener' in document) {
-		 document.addEventListener('DOMContentLoaded', function() {
-		 FastClick.attach(document.body);
-		 }, false);
-		 } */
 	</script>
 
 
@@ -696,49 +690,7 @@ body {
 
 			var toggle = false;
 			var pwCheck = false;
-
-			$('#joinform').submit(
-					function() {
-						//alert("가입");
-						if ($('#user_id').val() == "") { // 아이디 검사
-							alert('ID를 입력해 주세요.');
-							$('#user_id').focus();
-							return false;
-						} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
-							alert('비밀번호를 입력해 주세요.');
-							$('#user_pwd').focus();
-							return false;
-						} else if ($('#re-password').val() == "") { // 비밀번호 검사
-							alert('비밀번호 확인을 입력해 주세요.');
-							$('#re-password').focus();
-							return false;
-						} else if ($('#user_name').val() == "") { // 이름 검사
-							alert('이름을 입력해 주세요.');
-							$('#user_name').focus();
-							return false;
-						} else if ($('#user_email').val() == "") { // 이메일 체크
-							alert('이메일 주소를 입력해 주세요.');
-							$('#user_email').focus();
-							return false;
-						} else if ($('#nickname').val() == "") {
-							alert('닉네임을 입력해 주세요.');
-							$('#nickname').focus();
-							return false;
-						} else if (regFlag[0] === false || regFlag[1] === false
-								|| regFlag[2] === false || regFlag[3] ===false) {
-							alert('모든 값을 조건에 맞게 입력해주세요.')
-							return false;
-						} else if (toggle === false) {
-							alert('아이디 중복체크를 해주세요.')
-							return false;
-						} else if (pwCheck === false) {
-							alert('입력하신 비밀번호가 일치하지 않습니다.')
-							return false;
-						} else {
-							return true;
-						}
-
-					});
+			var regFlag = [ false, false, false, false ];
 
 			//유효성 검사
 			// 목표 : 이름은 2글자 이상 10글자 이하로 정한다
@@ -748,13 +700,15 @@ body {
 			// 2. 값이 올바르게 입력되면 "GOOD"을 프린트한다.
 			// 3. 값이 올바르지 않으면 "글자나 영어를 2~5개까지 입력하셔야 합니다."라는 경고창이 뜬다.
 
-			var regFlag = [ false, false, false, false ];
+		
 			let idInput = document.querySelector("#user_id");
 			let idResult = document.querySelector(".idcheck");
+			
 			function IdCheck() {
 				if (idInput.value.length > 1 && idInput.value.length <= 12) {
 					idResult.innerHTML = '유효성 조건에 만족하셨습니다. 중복체크를 해주세요.'
 					regFlag[3] = true;
+				
 				} else {
 					idResult.innerHTML = "아이디는 2글자 이상, 12글자 이하로 해주세요.";
 					regFlag[3] = false;
@@ -905,6 +859,50 @@ body {
 
 							}
 						})
+
+					});
+			
+			
+			$('#joinform').submit(
+					function() {
+						//alert("가입");
+						if ($('#user_id').val() == "") { // 아이디 검사
+							alert('ID를 입력해 주세요.');
+							$('#user_id').focus();
+							return false;
+						} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
+							alert('비밀번호를 입력해 주세요.');
+							$('#user_pwd').focus();
+							return false;
+						} else if ($('#re-password').val() == "") { // 비밀번호 검사
+							alert('비밀번호 확인을 입력해 주세요.');
+							$('#re-password').focus();
+							return false;
+						} else if ($('#user_name').val() == "") { // 이름 검사
+							alert('이름을 입력해 주세요.');
+							$('#user_name').focus();
+							return false;
+						} else if ($('#user_email').val() == "") { // 이메일 체크
+							alert('이메일 주소를 입력해 주세요.');
+							$('#user_email').focus();
+							return false;
+						} else if ($('#nickname').val() == "") {
+							alert('닉네임을 입력해 주세요.');
+							$('#nickname').focus();
+							return false;
+						} else if (regFlag[0] === false || regFlag[1] === false
+								|| regFlag[2] === false || regFlag[3] ===false) {
+							alert('모든 값을 조건에 맞게 입력해주세요.')
+							return false;
+						} else if (toggle === false) {
+							alert('아이디 중복체크를 해주세요.')
+							return false;
+						} else if (pwCheck === false) {
+							alert('입력하신 비밀번호가 일치하지 않습니다.')
+							return false;
+						} else {
+							return true;
+						}
 
 					});
 

@@ -103,9 +103,11 @@ public class MessageController {
 	@RequestMapping(value = "deleteMessageOneSend.do", method = RequestMethod.GET)
 	public String deleteMessageOneSend(String m_seq) {
 
-		System.out.println("쪽지 번호 : " + m_seq);
+		System.out.println("쪽지 번호asdasd : " + m_seq);
 
 		int result = mservice.deleteMessageOne(m_seq);
+		
+		System.out.println("삭제결과asdsad : " + result);
 
 		return "redirect:mypage_Message_Send_Board.do";
 	}
@@ -124,6 +126,18 @@ public class MessageController {
 	public String mypageMycomment() {
 		System.out.println("내가 쓴 게시판으로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Mycomment";
+	}
+	
+	
+	
+	// 쪽지 신고(테스트)
+	@RequestMapping(value = "declare.do", method = RequestMethod.POST)
+	public String declareTsssest() {
+		
+		System.out.println("하이욤sdssaddsa");
+
+
+		return "";
 	}
 	
 }

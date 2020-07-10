@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.ns.dao.ManagerDao;
-import kr.or.ns.dao.MyPageDao;
+import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
 @Service
 public class ManagerServiceImpl implements ManagerService {
@@ -52,6 +52,21 @@ public class ManagerServiceImpl implements ManagerService {
 		System.out.println("삭제 될까요?");
 		return "redirect:member_Management.do";
 	}
+
+
+
+	@Override
+	public List<Blame> getBlameList(String bl_seq) {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		List<Blame> blame = dao.getBlameList(bl_seq);
+		return blame;
+	}
+
+
+
+
+
+	
 
 
 

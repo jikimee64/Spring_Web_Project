@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ns.service.AjaxService;
+import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
 
 @RestController //controller + responsebody
@@ -111,19 +112,34 @@ public class AjaxRestController {
 		return userid;
 
 	}
-	//일반스터디 글 등록하기
+	
+	//일반스터디 지원하기
 	@RequestMapping(value = "nomalstudy.do", method = RequestMethod.POST)
-	public String applyNomalStudy(@RequestBody HashMap<String, Object>params, Principal principal) {
+	public int applyNomalStudy(@RequestBody HashMap<String, Object>params, Principal principal) {
+		
+		//아이디와 강의 글번호 받기
 		String userid = principal.getName();
 		String s_seq = (String)params.get("s_seq");
+		
+		//확인용
 		System.out.println("잘오나욤!!");
 		System.out.println("아이디 : " + userid);
 		System.out.println("글번호 : " + s_seq);
+		
+		//인서트 결과 0,1로 표시
 		int result = service.applyNomalStudy(s_seq, userid);
 		System.out.println("잘됐나 확인" + result);
 		
-		return "redirect:/index.do";
+		return result; //0 또는 1 리턴
 	}
+	
+	//신고하기
+		@RequestMapping(value = "blameinsert.do", method = RequestMethod.POST)
+		public int blameInsert(@RequestBody HashMap<String, Object>params, Principal principal, Blame blame) {
+			System.out.println("신고하기 컨트롤러");
+			
+			return 0;
+		}
 
 
 
