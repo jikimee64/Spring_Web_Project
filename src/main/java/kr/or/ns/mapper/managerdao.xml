@@ -12,32 +12,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 
-	<!-- List<Users> getMemberList(); -->
+	<!-- 회원리스트 가져오기 -->
 	<select id="getMemberList" resultType="hashmap">
 		SELECT * FROM USERS
-		ORDER BY user_id asc
+		ORDER
+		BY user_id asc
 	</select>
 
 
 
-	<!-- public Users getUsers(String user_id); -->
-
+	<!-- 회원 상세정보가져오기 -->
 	<select id="getUsers" resultType="kr.or.ns.vo.Users">
-		select * from users where user_id=#{user_id}
+		select * from users where
+		user_id=#{user_id}
 	</select>
 
 
-	<!-- public List<HashMap<String, String>> getSkill(String user_id); -->
-
+	<!-- 회원상세보기할때 회원 실력 가져오기 -->
 	<select id="getSkill" resultType="hashmap">
 		select skill_name, skill_level
 		from skill where user_id=#{user_id}
 	</select>
-	
-	
-			<delete id="memberDelete">
-	      		DELETE from users WHERE user_id=#{user_id}
-	      </delete>
 
+	<!-- 멤버 삭제하기 -->
+	<delete id="memberDelete">
+		DELETE from users WHERE user_id=#{user_id}
+	</delete>
+
+
+	<!-- public List<Blame> getBlameList(String bl_seq); -->
+	<!-- 신고게시판 목록 뿌려주기 -->
+	<select id="getBlameList" resultType="hashmap">
+<!-- 		SELECT * FROM blame_board -->
+<!-- 		ORDER -->
+<!-- 		BY BL_SEQ asc -->
+		select b.*,t.type
+		from blame_board b
+		join blame_type_category t
+		on b.BTC_SEQ = t.BTC_SEQ;
+	</select>
 
 </mapper>

@@ -26,6 +26,6 @@ public interface AjaxService {
 	public int idcheck(String user_id) throws ClassNotFoundException;
 	//스터디 게시판 일반 지원하기
 	public int applyNomalStudy(String user_id, String s_seq);
-	
-//	public int blameInsert(Blame blame,  );
+
+	/*	public int blameInsert(Blame blame,  );*/
 }

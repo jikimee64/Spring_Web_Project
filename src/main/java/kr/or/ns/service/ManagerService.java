@@ -3,6 +3,7 @@ package kr.or.ns.service;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
 
 public interface ManagerService {
@@ -18,4 +19,8 @@ public interface ManagerService {
 	
 	//유저 삭제하기
 	public String memberDel(String user_id);
+	
+	//신고게시판 목록가져오기
+	public List<Blame> getBlameList(String bl_seq);
+	
 }

@@ -541,7 +541,7 @@ keyframes heart-keyframes { 100% {
 				contentType: false,
 				processData: false,
 				type : 'POST',
-				data : formData,
+				data : JSON.stringify(formData),
 				success : function(data) {
 					console.log(data);
 				},
