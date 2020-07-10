@@ -31,9 +31,7 @@ import kr.or.ns.vo.Study;
 버전 정보 v.1.1
 마지막 업데이트 날짜 : 2020 - 07 - 02
 작업자 : 박민혜
-
 study_List 목록뿌리기 작업
-
 */
 
 @Controller

@@ -27,31 +27,31 @@ public class MessageHandler extends TextWebSocketHandler {
 	private void log(String msg) {
 		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String date = simple.format(new Date());
-		System.out.println(date + " : " + msg);
+		//System.out.println(date + " : " + msg);
 	}
 
 	// 연결
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
-		System.out.println("정상연결");
+		//System.out.println("정상연결");
 
-		System.out.println(session);
-		System.out.println(session.getPrincipal());
+		//System.out.println(session);
+		//System.out.println(session.getPrincipal());
 		// 인증하지 않았으면(로그인 안했으면..) null 발생 -> 멈춤
-		System.out.println(session.getPrincipal().getName());
+		//System.out.println(session.getPrincipal().getName());
 
 		// session : 브라우저가 WebSocket을 접속했을 때의 커넥션 정보(id, uri)
-		System.out.println(session);
-		System.out.println(session.getPrincipal());
+		//System.out.println(session);
+		//System.out.println(session.getPrincipal());
 		// 인증하지 않았으면(로그인 안했으면..) null 발생 -> 멈춤
-		System.out.println(session.getPrincipal().getName());
+		//System.out.println(session.getPrincipal().getName());
 
-		log(session.getPrincipal().getName() + " 접속");
-		log(session.toString());
+		//log(session.getPrincipal().getName() + " 접속");
+		//log(session.toString());
 		users.put(session.getPrincipal().getName(), session); // userid 와 session 저장
 		// 새로 접속(새로 고침)할때마다 세션의 id값이 증가(16진수)
-		System.out.println("users 데이터 : " + users);
+		//System.out.println("users 데이터 : " + users);
 
 	}
 
@@ -62,7 +62,7 @@ public class MessageHandler extends TextWebSocketHandler {
 		if (session.getPrincipal() != null) {
 			if (users.containsKey(session.getPrincipal().getName())) {
 				users.remove(session.getPrincipal().getName()); // 연결해제된 id 삭제
-				log(session.getPrincipal().getName() + " 해제");
+				//log(session.getPrincipal().getName() + " 해제");
 			}
 		}
 
@@ -72,12 +72,12 @@ public class MessageHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 
-		System.out.println("하이욤 : " + message.getPayload());
+		//System.out.println("하이욤 : " + message.getPayload());
 		String userid = session.getPrincipal().getName();
 		// 사용자가 보낸 텍스트 데이터 추출 후 분기 처리
 		if (message.getPayload().equals("login") || message.getPayload().equals("view")) {
 
-			System.out.println("아나!! : " + userid);
+			//System.out.println("아나!! : " + userid);
 
 			int result = service.getmsgcount(userid);
 
@@ -90,14 +90,12 @@ public class MessageHandler extends TextWebSocketHandler {
 				users.get(userid).sendMessage(msg);
 				// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
 
-				log(userid + " / " + message.getPayload() + " / " + msg.getPayload());
+				//log(userid + " / " + message.getPayload() + " / " + msg.getPayload());
 			}
 		} else { // 쪽지 보냈을때 탐(message.jsp에서 데이터 전송받음)
-			System.out.println("여긴타냐??");
-			
 			String receptionid = message.getPayload().split(",")[0];
 			String content = message.getPayload().split(",")[1];
-
+			
 			Message savemsg = new Message();
 			savemsg.setReceptionid(receptionid);//수신인
 			savemsg.setSenderid(userid); //발신인
@@ -106,10 +104,7 @@ public class MessageHandler extends TextWebSocketHandler {
 					
 					/*(message.getPayload().split(",")[0], message.getPayload().split(",")[1],
 					message.getPayload().split(",")[2]);*/
-			System.out.println("dㅎㅎㅎㅎㅎㅎㅎ");
-			System.out.println(service);
 			int result2 = service.insertMessage(savemsg);
-			System.out.println("삽입ㅂ 결과 ' " + result2);
 			
 			// ★★★쪽지 테이블에 보낸 쪽지 데이터 삽입
 
@@ -117,12 +112,12 @@ public class MessageHandler extends TextWebSocketHandler {
 			// 수신인이 받은 문자 개수 추출
 
 			if (users.containsKey(receptionid)) {
-				TextMessage msg = new TextMessage("수신된 쪽지 : " + result + "건");
+				TextMessage msg = new TextMessage("" + result + "");
 				users.get(receptionid).sendMessage(msg);
 
 				// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
 
-				log(receptionid + " / " + message.getPayload() + " / " + msg.getPayload());
+				//log(receptionid + " / " + message.getPayload() + " / " + msg.getPayload());
 			}
 
 

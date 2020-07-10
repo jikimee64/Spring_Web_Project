@@ -130,7 +130,12 @@ body {
 		$(document).ready(function() {
 			connect();
 			$('#sendBtn').click(function() {
-				console.log("하이욤")
+				swal({
+					  title: "정상적으로 쪽지를 보냈습니다.",
+					  icon: "info",
+					  buttons: true,
+					 /*  dangerMode: true, */
+					})
 				send();
 				//form태그 이동..
 			});

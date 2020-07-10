@@ -59,6 +59,7 @@ public class MessageController {
 		return "user/mypage/mypage_Message_From_Detail_Board";
 	}
 
+	//보낸편지함 -> 상세보기
 	@RequestMapping("mypage_Message_Send_Detail_Board.do")
 	public String mypageMessageSendDetailBoardPage(String m_seq, Model model) {
 
@@ -133,10 +134,7 @@ public class MessageController {
 	// 쪽지 신고(테스트)
 	@RequestMapping(value = "declare.do", method = RequestMethod.POST)
 	public String declareTsssest() {
-		
 		System.out.println("하이욤sdssaddsa");
-
-
 		return "";
 	}
 	
