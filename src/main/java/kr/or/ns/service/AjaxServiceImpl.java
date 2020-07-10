@@ -23,6 +23,7 @@ import kr.or.ns.util.Mail;
 import kr.or.ns.util.MailHandler;
 import kr.or.ns.util.Mailer;
 import kr.or.ns.util.Tempkey;
+import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
 import sun.print.resources.serviceui;
 
@@ -170,6 +171,33 @@ public class AjaxServiceImpl implements AjaxService {
 		map.put("s_seq", s_seq);
 		map.put("user_id", user_id);
 		result = dao.insertStudyGroup(map);
+		return result;
+	}
+
+
+	@Override
+	public int blameInsert(HashMap<String, Object> params, String current_userid) {
+		 int s_seq = (int) params.get("s_seq"); //글번호
+			int btc_seq = (int)params.get("type"); //신고유형
+			int bpc_seq = (int)params.get("place");
+			String writer = (String)params.get("target");
+			String title = (String)params.get("bl_title");
+			String comment = (String)params.get("comment");
+		
+			
+			HashMap map = new HashMap();
+			map.put("current_userid", current_userid);
+			map.put("board_seq", s_seq);
+			map.put("btc_seq",	btc_seq);
+			map.put("bpc_seq", bpc_seq);
+			map.put("bl_target_id",writer);
+			map.put("bl_title", title);
+			map.put("bl_content", comment);
+			
+			AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+			int result = dao.insertBlame(map);
+			
+	
 		return result;
 	}
 }
