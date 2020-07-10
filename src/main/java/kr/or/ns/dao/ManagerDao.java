@@ -3,6 +3,7 @@ package kr.or.ns.dao;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
 
 public interface ManagerDao {
@@ -14,5 +15,8 @@ public interface ManagerDao {
 	public List<HashMap<String, String>> getSkill(String user_id);
 
 	public int memberDelete(String user_id);
+
+	public List<Blame> getBlameList(String bl_seq);
+
 
 }

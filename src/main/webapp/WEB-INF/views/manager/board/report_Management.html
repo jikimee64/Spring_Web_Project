@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,50 +30,52 @@ td:focus {
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    background: #bbbdc2;
-    color: white !important;
-    border-radius: 5px;
-    height: 30px;
-    vertical-align: middle;
-    padding-top: 3px;
-	border:none;
-	
+	background: #bbbdc2;
+	color: white !important;
+	border-radius: 5px;
+	height: 30px;
+	vertical-align: middle;
+	padding-top: 3px;
+	border: none;
 }
+
 .excel {
-    margin-right: 5px;
-    text-align: center;
-    border: 1px solid white;
-    transition: all 0.15s;
-    background-color: #00694a;
-    padding: 5px 3px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80px;
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #00694a;
+	padding: 5px 3px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 80px;
 }
+
 .pdf {
-    margin-right: 5px;
-    text-align: center;
-    border: 1px solid white;
-    transition: all 0.15s;
-    background-color: #ff3c00;
-    padding: 5px 3px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80px;
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #ff3c00;
+	padding: 5px 3px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 80px;
 }
+
 .message {
-    margin-right: 5px;
-    text-align: center;
-    border: 1px solid white;
-    transition: all 0.15s;
-    background-color: #f0cf65;
-    padding: 5px 3px;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 80px;
+	margin-right: 5px;
+	text-align: center;
+	border: 1px solid white;
+	transition: all 0.15s;
+	background-color: #f0cf65;
+	padding: 5px 3px;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 80px;
 }
 </style>
 </head>
@@ -122,19 +125,20 @@ td:focus {
 									</thead>
 
 									<tbody>
-										<c:forEach var="list" items="${mList}">
-											<tr onmouseover="this.style.backgroundColor='#cecece'"
-												onmouseout="this.style.backgroundColor='white'">
-												<td align="center"><a data-toggle="modal"
-													data-target="#declationPageModal" href="#">${list.m_id}</a></td>
-												<td align="center">${list.name}</td>
-												<td align="center">${list.email}</td>
-												<td align="center">${list.email}</td>
-												<td align="center">${list.email}</td>
-												<td align="center">${list.email}</td>
-												<!-- <td align="center">${list.phone}</td> -->
-											</tr>
-										</c:forEach>
+											<th:block th:each="blameList : ${blameList}">
+												<tr onmouseover="this.style.backgroundColor='#cecece'"
+													onmouseout="this.style.backgroundColor='white'">
+													<td align="center"><a data-toggle="modal"
+														data-target="#declationPageModal" href="#"
+														th:text="${blameList.BL_SEQ}">${list.m_id}</a></td>
+													<td align="center" th:text="${blameList.type}">bpc_seq</td>
+													<td align="center" th:text="${blameList.BOARD_SEQ}">board_seq</td>
+													<td align="center" th:text="${blameList.BL_ID}">bl_id</td>
+													<td align="center" th:text="${blameList.BL_TARGET_ID}">bl_target_id</td>
+													<td align="center" th:text="${blameList.BL_STATUS}">bl_status</td>
+													<!-- <td align="center">${list.phone}</td> -->
+												</tr>
+											</th:block>
 									</tbody>
 
 								</table>
