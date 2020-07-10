@@ -178,7 +178,7 @@ input[type="checkbox"]+label {
 	line-height: 60px;
 	cursor: pointer;
 	border-radius: 50%;
-	transform:translate3d(-10px, -7px, 10px);
+	transform:translate3d(-3px, -7px, 10px);
 }
 
 input[type="checkbox"]+label svg {
@@ -426,7 +426,7 @@ keyframes heart-keyframes { 100% {
 	<!-- 여기부터 강의 목록 -->
 	<!-- 	th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}" -->
 	<div class="container"
-		style="margin-top: 50px; margin-bottom: 25px; padding: 0px 100px 100px 100px;">
+		style="margin-top: 50px; margin-bottom: 25px; padding-bottom: 100px;">
 
 
 
@@ -443,7 +443,7 @@ keyframes heart-keyframes { 100% {
 						alt="Card image" style="width: 100%">
 
 					<div class="card-body">
-						<h6 class="card-title _margin_0" th:text="${list.L_TITLE}">Do
+						<h6 class="card-title _margin_0 _course_title" th:text="${list.L_TITLE}">Do
 							it! Node.js 프로그래밍(개정판)</h6>
 						<p class="card-text _margin_0"
 							style="color: gray; font-size: small;">이지스 퍼블리싱</p>
@@ -639,7 +639,32 @@ keyframes heart-keyframes { 100% {
 
 	<script>
 	$(function(){
+		/* 강의 글자수 자르기  시작*/	
+			console.log('sdfsdf');
+			var courseTitleTag = $('._course_title');
 			
+			var courseTitleName = "";
+		
+			$.each(courseTitleTag, function(index,item){
+				
+				courseTitleName = courseTitleTag[index].innerText;
+				
+				
+				/* if문 그냥 대충 짜름 나중에 재수정 필요 */
+				if(courseTitleName.length > 17){
+					courseTitleName = courseTitleName.substring(0,17)+"...";
+				}
+				if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
+					courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
+				}
+				if(courseTitleName.length < 8){
+					courseTitleName = courseTitleName+"\n\n";
+				}
+				courseTitleTag[index].innerText = courseTitleName;
+			})
+		
+		/* 강의 글자수 자르기  끝*/	
+		
 		
 		/* 페이지 0 뜨는거 없애기 시작 */
 		var _page_button0 = $('.page-item').children().last().text();
