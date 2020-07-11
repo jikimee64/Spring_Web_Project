@@ -179,17 +179,17 @@ public class AjaxServiceImpl implements AjaxService {
 	@Override
 	public int blameInsert(HashMap<String, Object> params, String current_userid) {
 
-		String s_seq = (String) params.get("s_seq"); // 글번호
+		String m_seq = (String) params.get("m_seq"); // 글번호
 		String btc_seq = (String) params.get("type"); // 신고유형
 		String bpc_seq = (String) params.get("place"); // 신고장소(게시판이면 1, 쪽지면 2 디폴트)
 		String writer = (String) params.get("target"); // 신고당하는 사람(글작성자,해당 게시글)
 		String title = (String) params.get("bl_title"); // 신고제목
 		String comment = (String) params.get("comment"); // 신고내용
-		System.out.println(s_seq);
+		System.out.println(m_seq);
 
 		HashMap map = new HashMap();
 		map.put("current_userid", current_userid);
-		map.put("board_seq", s_seq);
+		map.put("board_seq", m_seq);
 		map.put("btc_seq", btc_seq);
 		map.put("bpc_seq", bpc_seq);
 		map.put("bl_target_id", writer);
