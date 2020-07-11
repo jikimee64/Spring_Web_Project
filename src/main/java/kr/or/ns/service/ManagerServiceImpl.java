@@ -4,8 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.scribejava.core.model.Response;
 
 import kr.or.ns.dao.ManagerDao;
 import kr.or.ns.vo.Blame;
@@ -17,16 +27,33 @@ public class ManagerServiceImpl implements ManagerService {
 	private SqlSession sqlsession;
 	
 	
-	//회원목록 가져오기 select All
-	public List<Users> getMemberList() {
-		
-		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		List<Users> list = dao.getMemberList();
-		
-		
-	return list;
-	}
+//	//회원목록 가져오기 select All
+//	public List<Users> getMemberList() {
+//		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+//		List<Users> list = dao.getMemberList();
+//		
+//		
+//	return list;
+//	}
 
+	
+	
+	
+	
+	//회원목록 가져오기 select All
+		public List<Users> getMemberList() {
+			ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+			List<Users> list = dao.getMemberList();
+			
+		return list;
+		}
+
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public Users getUsers(String user_id) {

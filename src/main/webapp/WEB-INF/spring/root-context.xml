@@ -95,6 +95,7 @@
 	</bean>
 
 
+
 	<!-- 구글gmail -->
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -112,4 +113,13 @@
 			</props>
 		</property>
 	</bean>
+	
+	
+	
+	
+	
+	<!-- POI -->
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+    <bean id="excelDownloadView" class="kr.or.ns.util.ExcelDownloadView"/>
+    
 </beans>

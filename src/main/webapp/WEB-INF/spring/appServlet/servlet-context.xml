@@ -131,6 +131,7 @@
 
 	<!-- google Class Bean설정 추가 -->
 	<!-- 클라이언트ID와 보안비밀 세팅 -->
+	
 	<!-- <bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory"> 
 		<constructor-arg value="721060596854-347klibg22no5e7lr18vql8q1c7qqnu1.apps.googleusercontent.com" 
 		/> <constructor-arg value="aR7f4R2w0jhittBeXyyP24tM" /> </bean> -->
