@@ -177,17 +177,6 @@ body {
                data-aos="fade-up" data-aos-delay="200"
                style="position: relative; height: 3240px;">
 
-
-
-
-
-
-
-
-
-
-
-
                <!-- 타임리프? -->
                <th:block th:each="bookMarkList,index : ${bookMarkList}">
 <!--                   <th:block th:if="${index.index%3==0}" -->
@@ -197,10 +186,11 @@ body {
                      style="position: absolute; left: 0px; top: 0px;">
                      <div class="portfolio-wrap">
                         <figure>
+                        
                            <img src="../../../../resources/assets/img/portfolio/app1.jpg"
                               class="img-fluid" alt="">
                            <!-- 강의번호 넘기기  -->
-                           <a href="/lecture/writing_Course_Study.do?"
+                           <a th:href="@{/lecture/writing_Course_Study.do(l_seq=${bookMarkList.L_SEQ})}"
                               data-lightbox="portfolio" data-title="App 1"
                               class="link-details"><i class="ion ion-heart"></i></a>
                         </figure>
@@ -218,197 +208,7 @@ body {
 
                </th:block>
 
-               <!-- 여기까지 카드 하나 끝 -->
-
-<!--                <th:block th:unless="${#lists.size(bookMarkList)%3==0}" -->
-<!--                   th:utext="'&lt;/div&gt;'" /> -->
-                  
-                  
-               <!-- 여기서 문제가 터질지 몰라 감안하세요 -->
-
-
-
-
-
-
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-web" -->
-               <!--                   style="position: absolute; left: 0px; top: 360px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">Web 3</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>Web</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-app" -->
-               <!--                   style="position: absolute; left: 0px; top: 720px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">App 2</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>App</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-card" -->
-               <!--                   style="position: absolute; left: 0px; top: 1080px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">Card 2</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>Card</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-web" -->
-               <!--                   style="position: absolute; left: 0px; top: 1440px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">Web 2</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>Web</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-app" -->
-               <!--                   style="position: absolute; left: 0px; top: 1800px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">App 3</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>App</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-card" -->
-               <!--                   style="position: absolute; left: 0px; top: 2160px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">Card 1</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>Card</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-card" -->
-               <!--                   style="position: absolute; left: 0px; top: 2520px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">Card 3</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>Card</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-               <!--                <div class="col-lg-4 col-md-6 portfolio-item filter-web" -->
-               <!--                   style="position: absolute; left: 0px; top: 2880px;"> -->
-               <!--                   <div class="portfolio-wrap"> -->
-               <!--                      <figure> -->
-               <!--                         <img src="../../../../resources/assets/img/portfolio/app1.jpg" -->
-               <!--                            class="img-fluid" alt=""> -->
-               <!--                         강의번호 넘기기  -->
-               <!--                         <a href="#" data-lightbox="portfolio" data-title="App 1" -->
-               <!--                            class="link-details"><i class="ion ion-heart"></i></a> -->
-               <!--                      </figure> -->
-
-               <!--                      <div class="portfolio-info"> -->
-               <!--                         <h4> -->
-               <!--                            <a href="portfolio-details.html">Web 1</a> -->
-               <!--                         </h4> -->
-               <!--                         <p>Web</p> -->
-               <!--                      </div> -->
-               <!--                   </div> -->
-               <!--                </div> -->
-
-
-
-
                <br />
-
-
-
-            
-
-
-
-
-
-
-
-
-
 
             </div>
 

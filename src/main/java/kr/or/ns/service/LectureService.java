@@ -15,6 +15,9 @@ public interface LectureService {
 	//온라인 게시글 페이징 목록
 	public List<Map<String, Object>> getLectureList(Criteria cri);
 	
+	//온라인 게시글 상세(1개)
+	public HashMap<String, Object> getLecture(String l_seq);
+	
 	//온라인 게시글 좋아요
 	public void heartinsert(String user_id, String l_seq);
 
@@ -23,5 +26,6 @@ public interface LectureService {
 
 	//북마크 목록 페이징 
 	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
+	
 	
 }

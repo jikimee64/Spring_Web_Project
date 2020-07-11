@@ -58,10 +58,9 @@ public class LectureController {
 		list = service.getLectureList(cri);
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("pageMaker", pageMaker);
+		System.out.println("우철이는 : " + list);
 
-		System.out.println("미네미네미네미네미네미넴니ㅔ " + pageMaker.isNext());
 		System.out.println(list.toString());
-		System.out.println("컨트롤러2");
 
 		return "user/board/course_List"; // study_List.html
 	}
@@ -104,9 +103,6 @@ public class LectureController {
 			System.out.println("다음버튼이 있니?: " + pageMakers.isNext());
 			System.out.println(bookMarkList.toString());
 			System.out.println("북마크 컨트롤러 끝~");
-
-			
-			
 			
 			return "user/board/board_Select_Online_Bookmark";
 		}
@@ -160,33 +156,12 @@ public class LectureController {
 //		RETURN "USER/BOARD/BOARD_SELECT_ONLINE_BOOKMARK";
 //	}
 	//---------------------------------------------------------
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	//북마크선택페이지에서 -> 강의전용글쓰기 페이지
 	@RequestMapping(value = "writing_Course_Study.do", method = RequestMethod.GET)
-	public String writingCourseStudyPage() {
-		System.out.println("온라인saas강의 선택페이지(북마크)에서 다음페이지인 강의전용 글쓰기페이지로 이동이동(연규가씀)");
-
+	public String writingCourseStudyPage(String l_seq) {
+		System.out.println("l_seq : " + l_seq);
+		service.getLecture(l_seq);
 		return "user/board/writing_Course_Study";
 	}
 

@@ -121,7 +121,7 @@
 					<select name="people" class="selectpicker mb-3"
 						data-style="btn-light" style="width: 10%;" data-live-search="true"
 						data-width="120px">
-						<option value="0" selected>모집인원</option>
+						<option value="모집인원" selected>모집인원</option>
 						<option value="1">1명</option>
 						<option value="2">2명</option>
 						<option value="3">3명</option>
@@ -202,7 +202,7 @@
 
 				<div class="col-md-3" style="margin-top: 24px;">
 					<div class="form-group" style="margin: 0">
-						<img id="preview" src="/studyboard/upload/default.png" alt="썸네일"
+						<img id="preview" src="/studyboard/upload/study_board_default.jpg" alt="썸네일"
 							style="margin-bottom: 15px; width: 280px; height: 200px;">
 						<div class="filebox"
 							style="text-align: center; margin-left: 22px;">
@@ -266,10 +266,6 @@
 							.html(fileName);
 				});
 	</script>
-
-	
-
-
 
 	<script>
 		$(document).ready(function() {
@@ -348,16 +344,13 @@
 
 	<script>
 		$(function() {
-
-			
 			$('._submit').click(function(evt) {
-
 						evt.preventDefault();
-
 						var selectBox1 = $('.selectpicker option:selected').eq(
 								0).val();
 						var selectBox2 = $('.selectpicker option:selected').eq(
 								1).val();
+						console.log(selectBox2)
 						var selectBox3 = $('.selectpicker option:selected').eq(
 								2).val();
 						var selectBox4 = $('.selectpicker option:selected').eq(
@@ -367,7 +360,6 @@
 						//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
 
 						var selectAlert = "";
-
 						if (selectBox1 == "언어" || selectBox2 == "모집인원"
 								|| selectBox3 == "지역" || selectBox4 == "난이도"
 								|| selectBox5 == "") {
@@ -392,10 +384,7 @@
 										selectAlert.length);
 							}
 							swal(selectAlert+"를 선택해주세요","", "error");
-
-
 						} else {
-
 							if (selectBox6 == "") {
 								swal("글 제목을 입력해주세요","", "error");
 							} else {
@@ -407,7 +396,6 @@
 						}
 
 					});
-			console.log('이건 내꺼44444444444444444');
 		});
 	</script>
 

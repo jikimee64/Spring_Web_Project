@@ -30,11 +30,16 @@ public class LectureServiceImpl implements LectureService{
 	//게시글 목록
 	public List<Map<String, Object>> getLectureList(Criteria cri) {
 		LectureDao dao = sqlsession.getMapper(LectureDao.class);
-		
 		List<Map<String, Object>> list = dao.getLectureList(cri);
-		
-		
 		return list;
+	}
+	
+	public HashMap<String, Object> getLecture(String l_seq){
+		LectureDao dao = sqlsession.getMapper(LectureDao.class);
+		System.out.println("아나!!");
+		HashMap<String, Object> map = dao.getLecture(l_seq);
+		System.out.println("하나만떠라제발 : " + map);
+		return map;
 	}
 	
 	//사용자가 선택한 북마크 테이블에 넣기
@@ -100,13 +105,9 @@ public class LectureServiceImpl implements LectureService{
 		
 		Criteria_Select cri_s = (Criteria_Select) map.get("cri_s");
 		
-		System.out.println("아와오아ㅗㅇ");
 		System.out.println(cri_s.getPage());
 		System.out.println(cri_s.getPageStart());
 		System.out.println(cri_s.getPerPageNum());
-		System.out.println("크크ㅡㅇ");
-		System.out.println("서비스다!!" + map.get("cri_s"));
-		System.out.println("서비스다!!" + map.get("user_id"));
 		
 		
 		map.put("pageStart",cri_s.getPageStart());

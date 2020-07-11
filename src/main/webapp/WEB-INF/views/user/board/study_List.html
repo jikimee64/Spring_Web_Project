@@ -336,14 +336,19 @@
 					<div class="row" style="margin-top: 30px;">
 <!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
 <!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
-						<th:block th:switch="${list.CONTENT_KIND}">
+
+						<a th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
+							<h2 th:text="${list.TITLE}"></h2>
+						</a>
+
+						<!-- <th:block th:switch="${list.CONTENT_KIND}">
 							<a th:case="일반" th:href="@{/board/writing_Normal_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
 								<h2 th:text="${list.TITLE}"></h2>
 							</a>
 							<a th:case="온라인강의" th:href="@{/lecture/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
 								<h2 th:text="${list.TITLE}"></h2>
 							</a>
-						</th:block>
+						</th:block> -->
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 					</div>
 					<div class="row" style="margin: 0px 5px 0px 2px;" th:text="${list.CONTENT}"><p>고행을 하였으며

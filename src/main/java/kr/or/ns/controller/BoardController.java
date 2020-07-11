@@ -49,26 +49,13 @@ public class BoardController {
 
 		// 서비스를 안가는ㄴㄴㄴ구먼........................
 
-		System.out.println("서비스 가냐");
 		pageMakerb.setTotalCount(service.getStudyBoardCount());
-
-		System.out.println("서비스 갔다오냐");
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
 		model.addAttribute("list", list); // view까지 전달(forward)
-		System.out.println("출력해라!!" + list);
-		System.out.println("리스트 크기 : " + list.size());
-
 		model.addAttribute("pageMakerb", pageMakerb);
-		
-		System.out.println("우철우철 : " + pageMakerb.toString());
-		
-		System.out.println("pageMagerb오냐 " + pageMakerb.isNext());
-
-		System.out.println(list.toString());
-		System.out.println("컨트롤러2");
 
 		return "user/board/study_List"; // study_List.html
 	}
@@ -117,7 +104,8 @@ public class BoardController {
 		return "user/board/writing_Normal_Study";
 	}
 
-	@RequestMapping("writing_Normal_Study_Detail.do")
+	
+	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model, Principal principal) {
 
 		Map<String, Object> study = service.getStudy(s_seq);
@@ -133,8 +121,9 @@ public class BoardController {
 
 		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
-		return "user/board/writing_Normal_Study_Detail";
+		return "user/board/writing_Common_Study_Detail";
 	}
+
 
 	//글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")

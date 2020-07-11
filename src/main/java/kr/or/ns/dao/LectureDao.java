@@ -37,4 +37,5 @@ public interface LectureDao {
 	//가져온 북마크 목록 페이징
 	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
 
+	public HashMap<String, Object> getLecture(String l_seq);
 }

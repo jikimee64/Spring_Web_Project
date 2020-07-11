@@ -16,7 +16,21 @@
 			ORDER BY L_SEQ DESC
 			LIMIT #{pageStart}, #{perPageNum}     
 		]]>
-
+	</select>
+	
+	<!-- 강의 상세 내용-->
+	<select id="getLecture" resultType="hashmap">
+	   <![CDATA[
+			select *
+			from lecture_board
+			left outer join price_category
+			on lecture_board.p_seq = price_category.p_seq
+			left outer join site_category
+			on lecture_board.site_seq = site_category.site_seq
+			left outer join language_category
+			on lecture_board.lan_seq = language_category.lan_seq
+			where l_seq = #{l_seq}
+		]]>
 	</select>
 	
 	
@@ -60,7 +74,8 @@
 			on lecture_board.p_seq = price_category.p_seq
 			left outer join bookmark
 			on lecture_board.l_seq = bookmark.l_seq
-			where bookmark.user_id = #{user_id}  
+			where bookmark.user_id = #{user_id} and
+			bookmark_check = 1
 		]]>
 	</select>
 
@@ -76,7 +91,8 @@
 			on lecture_board.p_seq = price_category.p_seq
 			left outer join bookmark
 			on lecture_board.l_seq = bookmark.l_seq
-			where bookmark.user_id = #{user_id}  
+			where bookmark.user_id = #{user_id} and
+			bookmark_check = 1
 			order by bookmark.l_seq desc
             limit #{pageStart}, #{perPageNum} 
 		]]>
