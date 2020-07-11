@@ -834,19 +834,20 @@ body {
 									if(regFlag[3] === false){
 										swal({
 											  title: "유효성 검사부터 해주세요.",
-											  
 											  icon: "info",
 											  buttons: true
 											  
 											})
+										toggle = false;
 									}else{
+										
 										swal({
 											  title: "사용하셔도 됩니다.",
-											  
 											  icon: "success",
 											  buttons: true
 											  
 											})
+											toggle = true;
 									}
 									
 										

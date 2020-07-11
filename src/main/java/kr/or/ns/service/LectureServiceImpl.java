@@ -1,5 +1,6 @@
 package kr.or.ns.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import kr.or.ns.dao.LectureDao;
 import kr.or.ns.vo.BookMark;
 import kr.or.ns.vo.Criteria;
+import kr.or.ns.vo.Criteria_Select;
 
 @Service
 public class LectureServiceImpl implements LectureService{
@@ -79,4 +81,49 @@ public class LectureServiceImpl implements LectureService{
 		
 	}
 
+	
+	//가져온 북마크 수
+	@Override
+	public int getBookmarkCount(String userid) {
+		LectureDao dao = sqlsession.getMapper(LectureDao.class);
+		int count = dao.getBookmarkCount(userid);
+		
+		return count;
+	}
+
+	//가져온 북마크 목록
+//	@Override
+//	public List<Map<String, Object>> getBookmarkList(Criteria_Select cri_s) {
+//		LectureDao dao = sqlsession.getMapper(LectureDao.class);
+//		List<Map<String, Object>> list = dao.getBookmarkList(cri_s);
+//		
+//		return list;
+//	}
+
+	
+	
+	
+	//가져온 북마크 목록 페이징 시도
+	@Override
+	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map) {
+		LectureDao dao = sqlsession.getMapper(LectureDao.class);
+		
+		
+		Criteria_Select cri_s = (Criteria_Select) map.get("cri_s");
+		System.out.println("아와오아ㅗㅇ");
+		System.out.println(cri_s.getPage());
+		System.out.println(cri_s.getPageStart());
+		System.out.println(cri_s.getPerPageNum());
+		System.out.println("크크ㅡㅇ");
+		System.out.println("서비스다!!" + map.get("cri_s"));
+		System.out.println("서비스다!!" + map.get("user_id"));
+		map.put("pageStart",cri_s.getPageStart());
+		map.put("perPageNum",cri_s.getPerPageNum());
+		
+		List<HashMap<String, Object>> list = dao.getBookmarkList(map);
+		return list;
+	}
+
+
+	
 }
