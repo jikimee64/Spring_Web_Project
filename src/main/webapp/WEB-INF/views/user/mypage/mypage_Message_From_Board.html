@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
@@ -12,88 +13,88 @@
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
 <link rel="stylesheet"
-   href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-   integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-   crossorigin="anonymous">
+	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+	crossorigin="anonymous">
 
 <style>
 .pager li>a, .pager li>span {
-   border: white;
-   background-color: #fff;
+	border: white;
+	background-color: #fff;
 }
 
 .pager li>a, .pager li>span {
-   display: inline-block;
-   padding: 5px 14px;
-   border-radius: 5px;
+	display: inline-block;
+	padding: 5px 14px;
+	border-radius: 5px;
 }
 
 .page-link {
-   color: #18d26e;
+	color: #18d26e;
 }
 
 .page-link {
-   position: relative;
-   margin-left: -1px;
-   line-height: 1.25;
+	position: relative;
+	margin-left: -1px;
+	line-height: 1.25;
 }
 
 a {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 a {
-   transition: 0.5s;
+	transition: 0.5s;
 }
 
 * {
-   box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 a:-webkit-any-link {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 li {
-   text-align: -webkit-match-parent;
+	text-align: -webkit-match-parent;
 }
 
 .pager {
-   padding-left: 0;
-   margin: 20px 0;
-   list-style: none;
+	padding-left: 0;
+	margin: 20px 0;
+	list-style: none;
 }
 
 body {
-   font-size: 14px;
-   background-color: rgb(230, 244, 232);
-   margin: 0;
+	font-size: 14px;
+	background-color: rgb(230, 244, 232);
+	margin: 0;
 }
 
 .page-item.active .page-link {
-   z-index: 3;
-   color: #fff;
-   background-color: #18d26e;
-   border-color: #18d26e;
+	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
 }
 
 ._border_box_shadow2 {
-   background: #fff;
-   margin: auto;
-   margin-top: 10px;
-   margin-bottom: 10px;
-   box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
-      rgba(0, 0, 0, 0.26);
-   border-radius: 3px;
-   padding: 0px;
-   width: 100%;
-   height: 100%;
+	background: #fff;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
 }
 
 ._box_shadow_row {
-   box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.16), 1px 1px 0px 0
-      rgba(0, 0, 0, 0.26);
-   background-color: whitesmoke;
+	box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.16), 1px 1px 0px 0
+		rgba(0, 0, 0, 0.26);
+	background-color: whitesmoke;
 }
 </style>
 
@@ -101,119 +102,122 @@ body {
 </head>
 
 <body>
-   <!-- 받은 쪽지함 상세보기 -->
-   <div th:replace="/user/includes/header :: header"></div>
-   <!--  윗부분 시작 //////////////////////////////////////// -->
-   <main id="main">
-      <!-- ======= Breadcrumbs Section ======= -->
-      <section class="breadcrumbs" style="margin-top: 70px;">
-         <div class="container">
+	<!-- 받은 쪽지함 상세보기 -->
+	<div th:replace="/user/includes/header :: header"></div>
+	<!--  윗부분 시작 //////////////////////////////////////// -->
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs" style="margin-top: 70px;">
+			<div class="container">
 
-            <div class="d-flex justify-content-between align-items-center">
-               <h2 style="color: #666666;">
-                  <b><span sec:authentication="principal.username"></span>&nbsp;&nbsp;님의 쪽지함</b>
-               </h2>
-            </div>
-
-         </div>
-      </section>
-      <!-- Breadcrumbs Section -->
-   </main>
-
-
-   <div class="container"
-      style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 800px; width: 900px;">
-      <div class="_border_box_shadow2">
-         <a href="/message/mypage_Message_From_Board.do">
-            <button type="button" class="btn btn-secondary" id="from"
-               style="height: 110px; position: relative; left: -71px; border-radius: 15px 0px 0px 15px; background-color: #18d26e; border:none;">
-               <b><span>받은<br> 쪽지함
-               </span></b>
-            </button>
-         </a> <a href="/message/mypage_Message_Send_Board.do">
-            <button type="button" class="btn btn-secondary" id="send"
-               style="height: 110px; position: relative; left: -144px; bottom: -110px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;border:none;">
-               <b><span>보낸<br> 쪽지함
-               </span></b>
-            </button>
-         </a> <br />
-
-
-         <div class="row"
-            style="position: relative; top: -90px; margin-bottom: 15px;">
-            <div class="col-md-4"
-               style="padding: 30px 30px 0px 30px; margin-left: 30px;">
-               <img src="../../../../resources/images/img/message_black.png"
-                  alt="" style="height: 45px;"> &nbsp; <span
-                  style="font-size: x-large;"> <b>받은 쪽지함</b>
-               </span>
-            </div>
-            <div class="col-md-7"
-               style="text-align: right; padding-right: 28px; padding-top: 8px;">
-               <a href="/message/mypage_Message_Send_Send_Message.do">
-                  <button type="button" class="btn btn-success"
-                     style="width: 100px; margin-top: 30px; background-color: #18d26e; border:none;">쪽지
-                     쓰기</button>
-               </a>
-               <button type="button" class="btn btn-warning"
-                  style="width: 80px; color: white; margin-top: 30px;">삭제</button>
-
-               <button data-toggle="modal" data-target="#declationPageModal"
-                  type="button" class="btn btn-danger"
-                  style="width: 80px; margin-top: 30px;">신고</button>
-               </button>
-            </div>
-
-         </div>
-
-         <div class="row _box_shadow_row"
-            style="margin: 0px 20px 10px 20px; position: relative; top: -90px; text-align: center;">
-            <div class="col-md-1"
-               style="place-self: flex-end; text-align: center;">
-               <input type="checkbox" id="_all_check" />
-            </div>
-            <div class="col-md-2" style="place-self: flex-end;">
-               <span style="font-size: medium"> 보낸 사람 </span>
-            </div>
-            <div class="col-md-6">
-               <span style="font-size: medium;"> 내용 </span>
-            </div>
-            <div class="col-md-3">
-               <span style="font-size: medium;"> 받은 시간 </span>
-            </div> 
-         </div>
-
-
-         <th:block th:each="list : ${message}">
-            <div class="row"
-               style="margin: 0px 20px 10px 20px; position: relative; top: -93px; text-align: center;">
-               <div class="col-md-1"
-                  style="place-self: center; text-align: center;">
-                  <input type="checkbox" class="_input_check" />
-               </div>
-               <div class="col-md-2"
-                  style="place-self: center; text-align: center;">
-                  <a href="" data-toggle="modal" data-target="#userInfoModal"> <span
-                     th:text="${list.senderid}"></span>
-                  </a>
-               </div>
-               
-               <!-- opendate가 null이 아닐경우 색깔 회색?  -->
-				<div th:if="${list.opendate} != null" class="col-md-6"
-					style="place-self: center; text-align: center;">
-					<a style="color: #636e72;"
-						th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
-						<span th:text="${list.content}"></span>
-					</a>
+				<div class="d-flex justify-content-between align-items-center">
+					<h2 style="color: #666666;">
+						<b><span sec:authentication="principal.username"></span>&nbsp;&nbsp;님의
+							쪽지함</b>
+					</h2>
 				</div>
-				
-				<div th:if="${list.opendate} == null" class="col-md-6"
-					style="place-self: center; text-align: center;">
-					<a style="color: #00b894;"  
-						th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
-						<span th:text="${list.content}"></span>
-					</a>
+
+			</div>
+		</section>
+		<!-- Breadcrumbs Section -->
+	</main>
+
+
+	<div class="container"
+		style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 800px; width: 900px;">
+		<div class="_border_box_shadow2">
+			<a href="/message/mypage_Message_From_Board.do">
+				<button type="button" class="btn btn-secondary" id="from"
+					style="height: 110px; position: relative; left: -71px; border-radius: 15px 0px 0px 15px; background-color: #18d26e; border: none;">
+					<b><span>받은<br> 쪽지함
+					</span></b>
+				</button>
+			</a> <a href="/message/mypage_Message_Send_Board.do">
+				<button type="button" class="btn btn-secondary" id="send"
+					style="height: 110px; position: relative; left: -144px; bottom: -110px; border-radius: 15px 0px 0px 15px; background-color: #18d26e; border: none;">
+					<b><span>보낸<br> 쪽지함
+					</span></b>
+				</button>
+			</a> <br />
+
+
+			<div class="row"
+				style="position: relative; top: -90px; margin-bottom: 15px;">
+				<div class="col-md-4"
+					style="padding: 30px 30px 0px 30px; margin-left: 30px;">
+					<img src="../../../../resources/images/img/message_black.png"
+						alt="" style="height: 45px;"> &nbsp; <span
+						style="font-size: x-large;"> <b>받은 쪽지함</b>
+					</span>
 				</div>
+				<div class="col-md-7"
+					style="text-align: right; padding-right: 28px; padding-top: 8px;">
+					<a href="/message/mypage_Message_Send_Send_Message.do">
+						<button type="button" class="btn btn-success"
+							style="width: 100px; margin-top: 30px; background-color: #18d26e; border: none;">쪽지
+							쓰기</button>
+					</a>
+					<button type="button" class="btn btn-warning" id="deletemessage"
+						name="deletemessage"
+						style="width: 80px; color: white; margin-top: 30px;">삭제</button>
+
+					<button data-toggle="modal" data-target="#declationPageModal"
+						type="button" class="btn btn-danger"
+						style="width: 80px; margin-top: 30px;">신고</button>
+					</button>
+				</div>
+
+			</div>
+
+			<div class="row _box_shadow_row"
+				style="margin: 0px 20px 10px 20px; position: relative; top: -90px; text-align: center;">
+				<div class="col-md-1"
+					style="place-self: flex-end; text-align: center;">
+					<input type="checkbox" id="_all_check" />
+				</div>
+				<div class="col-md-2" style="place-self: flex-end;">
+					<span style="font-size: medium"> 보낸 사람 </span>
+				</div>
+				<div class="col-md-6">
+					<span style="font-size: medium;"> 내용 </span>
+				</div>
+				<div class="col-md-3">
+					<span style="font-size: medium;"> 받은 시간 </span>
+				</div>
+			</div>
+
+
+			<th:block th:each="list : ${message}">
+				<div class="row"
+					style="margin: 0px 20px 10px 20px; position: relative; top: -93px; text-align: center;">
+						
+					<div class="col-md-1"
+						style="place-self: center; text-align: center;">
+						<input type="checkbox" class="_input_check" name="_input_check" />
+					</div>
+					<div class="col-md-2"
+						style="place-self: center; text-align: center;">
+						<a href="" data-toggle="modal" data-target="#userInfoModal"> <span
+							th:text="${list.senderid}"></span>
+						</a>
+					</div>
+
+					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
+					<div th:if="${list.opendate} != null" class="col-md-6"
+						style="place-self: center; text-align: center;">
+						<a style="color: #636e72;"
+							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
+							<span th:text="${list.content}"></span>
+						</a>
+					</div>
+
+					<div th:if="${list.opendate} == null" class="col-md-6"
+						style="place-self: center; text-align: center;">
+						<a style="color: #00b894;"
+							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
+							<span th:text="${list.content}"></span>
+						</a>
+					</div>
 
 					<!--                <div class="col-md-6"
                   style="place-self: center; text-align: center;">
@@ -222,46 +226,48 @@ body {
                      <span th:text="${list.content}"></span>
                   </a>
                </div> -->
-               
-               
-               
-               <div class="col-md-3"
-                  style="place-self: center; text-align: center;">
-                  <span th:text="${list.senddate}"></span>
-               </div>
-            </div>
-            <div class="row" style="position: relative; top: -90px;padding: 0px 30px 0px 30px; ">
-                  <input type="hidden" id="m_seq" th:value="${list.m_seq}" />
-                  
-                  	<hr style="color: #dfe4ea; border: solid 0.5px; margin-top: 0px; width:97%">
-                  
-            </div>
-            
-         </th:block>
-
-         <div class="row" style="place-content: center;">
-            <ul class="pager d-flex">
-               <li><a class="page-link" href="#">PREV</a></li>
-               <li class="page-item"><a class="page-link" href="#">1</a></li>
-               <li class="page-item active"><a class="page-link" href="#">2</a></li>
-               <li class="page-item"><a class="page-link" href="#">3</a></li>
-               <li><a class="page-link" href="#">NEXT</a></li>
-            </ul>
-         </div>
-      </div>
-   </div>
-   <!--  윗부분 끝 //////////////////////////////////////// -->
 
 
-   <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-   <div th:replace="/user/includes/footer :: footer"></div>
-   <div
-      th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
-   </div>
-   <div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
-   </div>
 
-   <script>
+					<div class="col-md-3"
+						style="place-self: center; text-align: center;">
+						<span th:text="${list.senddate}"></span>
+					</div>
+				</div>
+				<div class="row"
+					style="position: relative; top: -90px; padding: 0px 30px 0px 30px;">
+					<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
+
+					<hr
+						style="color: #dfe4ea; border: solid 0.5px; margin-top: 0px; width: 97%">
+
+				</div>
+
+			</th:block>
+
+			<div class="row" style="place-content: center;">
+				<ul class="pager d-flex">
+					<li><a class="page-link" href="#">PREV</a></li>
+					<li class="page-item"><a class="page-link" href="#">1</a></li>
+					<li class="page-item active"><a class="page-link" href="#">2</a></li>
+					<li class="page-item"><a class="page-link" href="#">3</a></li>
+					<li><a class="page-link" href="#">NEXT</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--  윗부분 끝 //////////////////////////////////////// -->
+
+
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div
+		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
+	</div>
+	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
+	</div>
+
+	<script>
       $(function() {
          // 참여중 스터디 버튼 클릭시 색깔 바꾸기
          $('#_all_check').click(function() {
@@ -275,12 +281,47 @@ body {
          });
 
       });
+      
+     
    </script>
-   
-   <!-- 신고ajax -->
-	 <script>
+
+	<!-- 신고ajax -->
+<script>
  $(function() {
-	 
+	 $('#deletemessage').click(function() {
+	 		//체크된 체크박스의 개수 구하기
+	 		 console.log("length: " + $("input:checkbox[name=_input_check]:checked").length);
+	 		
+	 		let idList = "";
+	 		let nameList = ""; 
+	 		
+	 		//체크된 체크박스를 가져온다.
+	 		var checkbox = $("input:checkbox[name=_input_check]:checked");
+	 		console.log("체크박스" + checkbox);
+	 		
+	 		//체크된 체크박스의 값을 반복해서 불러오기
+	 		checkbox.each(function(i){
+	 			let check = checkbox.parent().parent().eq(i);
+	 			let check2 = check.children();
+	 			
+	 			let sender = check2.eq(0).text();
+	 			let content = check2.eq(1).text();
+	 			let time = check2.eq(2).text();
+	 			
+	 			senderlist += sender + "/";
+	 			contentlist += content + "/";
+	 			timelist += time + "/";
+	 			
+	 		});
+	 		
+	 		senderlist = namelist.substring(0,senderlist.length-1);
+	 		contentlist = contentlist.substring(0,idlist.length-1);
+	 });
+	});
+	 </script>
+
+	<script>
+	 $(function() {
 	  $(".blameform").submit(function(e) {
 		 	 e.preventDefault();
 			 var formData = new FormData(this);
@@ -315,12 +356,11 @@ body {
 		}) 
 	 
 	});
+	 </script>
 
- 
- </script>
- 
- <!-- 신고하기버튼 클릭 후 모달 닫기  -->
-  <script>	
+
+	<!-- 신고하기버튼 클릭 후 모달 닫기  -->
+	<script>	
  $("#blame-btn").click(function(e) {
 	  	$('#declationPageModal').modal('hide');
 	  	
