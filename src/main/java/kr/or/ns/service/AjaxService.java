@@ -31,6 +31,9 @@ public interface AjaxService {
 
 	//신고하기(게시판)
 	public int blameInsert(HashMap<String, Object> params, String current_userid);
+	
+	//선택된 쪽지 삭제하기
+	public int deleteMessage(HashMap<String, Object> params);
 
 	
 	
