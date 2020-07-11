@@ -577,7 +577,17 @@ keyframes heart-keyframes { 100% {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					console.log(data);
+					if(data == 0){
+						swal({
+							title: "이미 신고한 쪽지입니다.",
+							  icon: "warning",
+							  buttons: true
+							})
+					}else {
+					swal({title:"신고 접수가 완료되었습니다.",
+						icon: "success"})
+
+	  }
 				},
 				error : function(e) {
 					console.log("error:", e);

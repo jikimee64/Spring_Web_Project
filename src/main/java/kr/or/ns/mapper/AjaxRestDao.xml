@@ -37,16 +37,19 @@
 insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s_seq}, #{user_id}, '승인완료', '회원')
 	</insert>
 	
-	<!-- 신고 접수 -->
+	
 	<insert id="insertBlame" parameterType="hashMap">
 		insert into blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
-		values (#{btc_seq}, 1, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now())
+		select #{btc_seq}, 1, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
+		where not exists(select * from blame_board where bpc_seq=#{bpc_seq} and board_seq=#{board_seq})
 	</insert>
-	<!-- 신고 접수(쪽지) -->
+	
 	<insert id="insertBlame_Message" parameterType="hashMap">
 		insert into blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
-		values (#{btc_seq}, 2, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now())
-	</insert>
+		select #{btc_seq}, 2, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
+		where not exists(select * from blame_board where bpc_seq=#{bpc_seq} and board_seq=#{board_seq})
+	</insert> 
+	
 	
 	<!-- 선택된 쪽지만 삭제하기  -->
 	<delete id= "delete_Message" parameterType= "hashMap">
