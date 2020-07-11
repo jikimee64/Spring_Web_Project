@@ -303,23 +303,21 @@ body {
 	 			let check2 = check.children();
 	 			
 	 			let sender = check2.eq(1).text().trim();
-	 			console.log("sender:" + sender);
+	 			console.log("sender:" + sender); //발신자
 	 			
 				let content = check2.eq(2).text().trim();
-	 			console.log("content:" + content);
+	 			console.log("content:" + content); //내용
 	 			
 	 			let time = check2.eq(3).text().trim();
-	 			console.log("time:" + time);
+	 			console.log("time:" + time); //시간
 	 			
 	 		 	let m_seq = $('#m_seq').val().trim();
 	 		 	console.log("m_seq:"+ m_seq)
+	 		
 	 			
-	 			let m_seq = check2.eq(4).text();
-	 			console.log("m_seq" + m_seq);
-	 			
-	 			senderlist += sender + "/";
-	 			contentlist += content + "/";
-	 			timelist += time + "/";
+	 			//senderlist += sender + "/";
+	 			//contentlist += content + "/";
+	 			//timelist += time + "/";
 	 			
 	 		});
 	 		
