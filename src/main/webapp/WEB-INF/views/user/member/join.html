@@ -656,38 +656,77 @@ body {
 	<!-- 데이터 전송 ajax -->
 	<script>
 		$(function() {
-			/* $("#btn_submit").click(function() { */
-			$(".joinform").submit(function(e) {
-				/*    var formData = $(".joinform").serialize() */
-				/* var file = $(#'joinform')[0].files[0]; */
-				var formData = new FormData(this);
-				console.log(formData)
-
-				console.log("데이터 : " + formData.get("user_id"))
-				
-				$.ajax({
-					url : "/member/join.do",
-					processData : false,
-					contentType : false,
-					cache : false,
-					type : 'POST',
-					data : formData,
-					success : function(data) {
-					},
-					error : function(e) {
-						console.log("error:", e);
+			var flag = false; 
+			
+			$('#joinform').submit(
+					function() {
+						//alert("가입");
+						if ($('#user_id').val() == "") { // 아이디 검사
+							alert('ID를 입력해 주세요.');
+							$('#user_id').focus();
+							return false;
+						} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
+							alert('비밀번호를 입력해 주세요.');
+							$('#user_pwd').focus();
+							return false;
+						} else if ($('#re-password').val() == "") { // 비밀번호 검사
+							alert('비밀번호 확인을 입력해 주세요.');
+							$('#re-password').focus();
+							return false;
+						} else if ($('#user_name').val() == "") { // 이름 검사
+							alert('이름을 입력해 주세요.');
+							$('#user_name').focus();
+							return false;
+						} else if ($('#user_email').val() == "") { // 이메일 체크
+							alert('이메일 주소를 입력해 주세요.');
+							$('#user_email').focus();
+							return false;
+						} else if ($('#nickname').val() == "") {
+							alert('닉네임을 입력해 주세요.');
+							$('#nickname').focus();
+							return false;
+						} else if (regFlag[0] === false || regFlag[1] === false
+								|| regFlag[2] === false || regFlag[3] ===false) {
+							alert('모든 값을 조건에 맞게 입력해주세요.')
+							return false;
+						} else if (toggle === false) {
+							alert('아이디 중복체크를 해주세요.')
+							return false;
+						} else if (pwCheck === false) {
+							alert('입력하신 비밀번호가 일치하지 않습니다.')
+							return false;
+						} else {
+							flag = true;
+							console.log("깃발이다 : " + flag)
+						}
+		
+						if(flag === true){
+							/*    var formData = $(".joinform").serialize() */
+							/* var file = $(#'joinform')[0].files[0]; */
+							var formData = new FormData(this);
+							console.log(formData)
+			
+							console.log("데이터 : " + formData.get("user_id"))
+							
+							$.ajax({
+								url : "/member/join.do",
+								processData : false,
+								contentType : false,
+								cache : false,
+								type : 'POST',
+								data : formData,
+								success : function(data) {
+								},
+								error : function(e) {
+									console.log("error:", e);
+								}
+							})
 					}
-				})
-			})
-		});
+						
+			});
 
-	</script>
-
-
-
-	<script>
+	
 		//내용입력 이랑 입력 강제 
-		$(function() {
 
 			var toggle = false;
 			var pwCheck = false;
@@ -863,54 +902,57 @@ body {
 						})
 
 					});
-			
-			
-			$('#joinform').submit(
-					function() {
-						//alert("가입");
-						if ($('#user_id').val() == "") { // 아이디 검사
-							alert('ID를 입력해 주세요.');
-							$('#user_id').focus();
-							return false;
-						} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
-							alert('비밀번호를 입력해 주세요.');
-							$('#user_pwd').focus();
-							return false;
-						} else if ($('#re-password').val() == "") { // 비밀번호 검사
-							alert('비밀번호 확인을 입력해 주세요.');
-							$('#re-password').focus();
-							return false;
-						} else if ($('#user_name').val() == "") { // 이름 검사
-							alert('이름을 입력해 주세요.');
-							$('#user_name').focus();
-							return false;
-						} else if ($('#user_email').val() == "") { // 이메일 체크
-							alert('이메일 주소를 입력해 주세요.');
-							$('#user_email').focus();
-							return false;
-						} else if ($('#nickname').val() == "") {
-							alert('닉네임을 입력해 주세요.');
-							$('#nickname').focus();
-							return false;
-						} else if (regFlag[0] === false || regFlag[1] === false
-								|| regFlag[2] === false || regFlag[3] ===false) {
-							alert('모든 값을 조건에 맞게 입력해주세요.')
-							return false;
-						} else if (toggle === false) {
-							alert('아이디 중복체크를 해주세요.')
-							return false;
-						} else if (pwCheck === false) {
-							alert('입력하신 비밀번호가 일치하지 않습니다.')
-							return false;
-						} else {
-							return true;
-						}
-
-					});
-
 		});
+		
 	</script>
 
+	<script>
+	$(function() {
+		
+		/* $('#joinform').submit(
+				function() {
+					//alert("가입");
+					if ($('#user_id').val() == "") { // 아이디 검사
+						alert('ID를 입력해 주세요.');
+						$('#user_id').focus();
+						return false;
+					} else if ($('#user_pwd').val() == "") { // 비밀번호 검사
+						alert('비밀번호를 입력해 주세요.');
+						$('#user_pwd').focus();
+						return false;
+					} else if ($('#re-password').val() == "") { // 비밀번호 검사
+						alert('비밀번호 확인을 입력해 주세요.');
+						$('#re-password').focus();
+						return false;
+					} else if ($('#user_name').val() == "") { // 이름 검사
+						alert('이름을 입력해 주세요.');
+						$('#user_name').focus();
+						return false;
+					} else if ($('#user_email').val() == "") { // 이메일 체크
+						alert('이메일 주소를 입력해 주세요.');
+						$('#user_email').focus();
+						return false;
+					} else if ($('#nickname').val() == "") {
+						alert('닉네임을 입력해 주세요.');
+						$('#nickname').focus();
+						return false;
+					} else if (regFlag[0] === false || regFlag[1] === false
+							|| regFlag[2] === false || regFlag[3] ===false) {
+						alert('모든 값을 조건에 맞게 입력해주세요.')
+						return false;
+					} else if (toggle === false) {
+						alert('아이디 중복체크를 해주세요.')
+						return false;
+					} else if (pwCheck === false) {
+						alert('입력하신 비밀번호가 일치하지 않습니다.')
+						return false;
+					} else {
+						return true;
+					}
+	
+				}); */
+	});
+	</script>
 
 
 	<script>
