@@ -6,10 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -18,7 +20,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.or.ns.export.WriteListToExcelFile;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
@@ -84,19 +85,11 @@ public class ManagerController {
 	
 	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
 	@RequestMapping("board/excelDown.do")
-	public String excelDown(Model model, HttpServletResponse response) throws Exception {
+	public void excelDown(HttpServletResponse response) throws Exception {
 		System.out.println("회원 목록을 excel로 뽑아요");
 
 		List<Users> memberList = null;
 		memberList = service.getMemberList(); //회원목록가져와서 memberList에 넣음
-		
-		model.addAttribute("memberList", memberList); // view까지 전달
-		/* WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList); */
-		// cordova는 대체 무엇인고
-		
-//		WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList);
-		
-		
 		
 		
 		//회원목록 엑셀
@@ -117,11 +110,14 @@ public class ManagerController {
 		headStyle.setBorderRight(BorderStyle.THIN);
 		
 		//배경색 노랑
-		headStyle.setFillForegroundColor(HSSFColorPredefined.YELLOW.getIndex());
-		headStyle.setFillPatternType(FillPatternType.SOLID_FOREGROUND);
+	    headStyle.setFillForegroundColor(HSSFColorPredefined.YELLOW.getIndex());
+	    headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+
 		
 		//데이터는 가운데 정렬합니다.
-		headStyle.setAlignment(HorizontalAlignment.CEDTER);
+	    headStyle.setAlignment(HorizontalAlignment.CENTER);
+
 		
 		//데이터용 경계 스타일 테두리만 지정
 		CellStyle bodyStyle = wb.createCellStyle();
@@ -176,15 +172,6 @@ public class ManagerController {
 		//엑셀출력
 		wb.write(response.getOutputStream());
 		wb.close();
-		
-		
-		
-		
-		
-		
-		
-	
-		return "manager/board/member_Management";
 	}
 
 	

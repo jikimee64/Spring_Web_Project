@@ -49,7 +49,7 @@ $(document).ready(function () {
 			action: function (e, dt, node, config)
 			{
 				//This will send the page to the location specified
-				location.href = 'excelView.do';
+				location.href = 'excelDown.do';
 			}
 		},
 		{extend:'csvHtml5',

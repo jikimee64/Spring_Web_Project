@@ -48,12 +48,6 @@ public class ManagerServiceImpl implements ManagerService {
 		return list;
 		}
 
-	
-	
-	
-	
-	
-	
 
 	@Override
 	public Users getUsers(String user_id) {
