@@ -159,12 +159,8 @@ body {
 					</a>
 					<button type="button" class="btn btn-warning" id="deletemessage"
 						name="deletemessage"
-						style="width: 80px; color: white; margin-top: 30px;">삭제</button>
+						style="width: 100px; color: white; margin-top: 30px;">삭제 하기</button>
 
-					<button data-toggle="modal" data-target="#declationPageModal"
-						type="button" class="btn btn-danger"
-						style="width: 80px; margin-top: 30px;">신고</button>
-					</button>
 				</div>
 
 			</div>
@@ -190,8 +186,7 @@ body {
 			<th:block th:each="list : ${message}">
 				<!-- th(부모태그) -->
 				<div class="row" id="parent"
-					style="margin: 0px 20px 10px 20px; position: relative; top: -93px; text-align: center;">
-
+					style="margin: 0px 20px 0px 20px; position: relative; top: -93px; text-align: center;">
 					<!-- td(체크박스) -->
 					<div class="col-md-1"
 						style="place-self: center; text-align: center;">
@@ -240,7 +235,7 @@ body {
 					<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
 
 					<hr
-						style="color: #dfe4ea; border: solid 0.5px; margin-top: 0px; width: 97%">
+						style="color: #dfe4ea; border: solid 0.5px; margin-bottom: 0px; margin-top: 0px; width: 97%">
 				</div>
 
 			</th:block>
@@ -338,68 +333,7 @@ body {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					$.each(data, function(index, item){
-						console.log("data:" +  data);
-						console.log("우철");
-						console.log(item);
-						console.log(index);
-						console.log("우철2");
-						console.log(data[0].m_seq);
-						
-						
-			/* const template =
-				`<th:block th:each=`"list : ${message}"`>
-	
-				<div class="row" id="parent"
-					style="margin: 0px 20px 10px 20px; position: relative; top: -93px; text-align: center;">
-
-					<div class="col-md-1"
-						style="place-self: center; text-align: center;">
-						<input type="checkbox" class="_input_check" name="_input_check" />
-					</div>
-
-					<div class="col-md-2"
-						style="place-self: center; text-align: center;">
-						<a href="" data-toggle="modal" data-target="#userInfoModal"> <span
-							th:text="${list.senderid}"></span>
-						</a>
-					</div>
-
-					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
-					<!-- td3(내용) -->
-					<div th:if="${list.opendate} != null" class="col-md-6"
-						style="place-self: center; text-align: center;">
-						<a style="color: #636e72;"
-							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
-							<span th:text="${list.content}"></span>
-						</a>
-					</div>
-					<!-- td3(내용) -->
-					<div th:if="${list.opendate} == null" class="col-md-6"
-						style="place-self: center; text-align: center;">
-						<a style="color: #00b894;"
-							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
-							<span th:text="${list.content}"></span>
-						</a>
-					</div>
-
-
-					<!-- td4(받은시간) -->
-					<div class="col-md-3"
-						style="place-self: center; text-align: center;">
-						<span th:text="${list.senddate}"></span>
-					</div>
-
-					<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
-				
-					<hr
-						style="color: #dfe4ea; border: solid 0.5px; margin-top: 0px; width: 97%">
-				</div>
-
-			</th:block>`; */
-			//$('#parrent').append(template);
-
-			});
+					check2.remove();
 				},
 				error : function(e) {
 					console.log("error:", e);
@@ -411,7 +345,7 @@ body {
 		});
 	</script>
 
-	<!-- 신고할때 하기 <script>
+<script>
 		$(function() {
 			$(".blameform").submit(function(e) {
 				e.preventDefault();
@@ -448,16 +382,10 @@ body {
 			})
 
 		});
-	</script> -->
-
-
-	<!-- 신고하기버튼 클릭 후 모달 닫기  -->
-	<script>
-		$("#blame-btn").click(function(e) {
-			$('#declationPageModal').modal('hide');
-
-		});
 	</script>
+
+
+
 </body>
 
 

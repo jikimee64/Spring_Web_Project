@@ -598,33 +598,24 @@ keyframes heart-keyframes { 100% {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					console.log(data);
+					if(data == 0){
+						swal({
+							title: "이미 신고한 쪽지입니다.",
+							  icon: "warning",
+							  buttons: true
+							})
+					}else {
+					swal({title:"신고 접수가 완료되었습니다.",
+						icon: "success"})
+
+	  }
 				},
 				error : function(e) {
 					console.log("error:", e);
 				}
 			})
 		}) 
-	 
-		/* $("#blame-btn").click(function(e) {
-			var formData = document.getElementById('blameform');
-			console.log(formData)
-
-			console.log("데이터 : " + formData)
-			$.ajax({
-				url : '/ajax/blameinsert.do',
-				contentType:"application/json",
-				processData: false,
-				type : 'POST',
-				data : JSON.stringify(formData),
-				success : function(data) {
-					console.log(data);
-				},
-				error : function(e) {
-					console.log("error:", e);
-				}
-			})
-		}) */
+		
 	});
 
  
@@ -633,6 +624,7 @@ keyframes heart-keyframes { 100% {
  <!-- 신고하기버튼 클릭 후 모달 닫기  -->
   <script>	
  $("#blame-btn").click(function(e) {
+	 
 	  	$('#declationPageModal').modal('hide');
 	  	
  });

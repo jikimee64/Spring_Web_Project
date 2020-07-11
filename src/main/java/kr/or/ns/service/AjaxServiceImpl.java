@@ -178,32 +178,46 @@ public class AjaxServiceImpl implements AjaxService {
 	// 신고하기
 	@Override
 	public int blameInsert(HashMap<String, Object> params, String current_userid) {
-
-		String s_seq = (String) params.get("s_seq"); // 글번호
+		String s_seq = (String) params.get("s_seq"); //글번호(게시판)
+		String m_seq = (String) params.get("m_seq"); // 글번호(쪽지)
 		String btc_seq = (String) params.get("type"); // 신고유형
 		String bpc_seq = (String) params.get("place"); // 신고장소(게시판이면 1, 쪽지면 2 디폴트)
+		System.out.println("bpc_seq " + bpc_seq);
+		
 		String writer = (String) params.get("target"); // 신고당하는 사람(글작성자,해당 게시글)
 		String title = (String) params.get("bl_title"); // 신고제목
 		String comment = (String) params.get("comment"); // 신고내용
-		System.out.println(s_seq);
 
-		HashMap map = new HashMap();
-		map.put("current_userid", current_userid);
-		map.put("board_seq", s_seq);
-		map.put("btc_seq", btc_seq);
-		map.put("bpc_seq", bpc_seq);
-		map.put("bl_target_id", writer);
-		map.put("bl_title", title);
-		map.put("bl_content", comment);
-
+		HashMap map_board = new HashMap(); //게시판용 map
+		map_board.put("board_seq", s_seq);//글번호(글번호)
+		System.out.println("나는 게시판이다 : "+ s_seq);
+		map_board.put("current_userid", current_userid); //신고자
+		map_board.put("btc_seq", btc_seq); //신고유형
+		map_board.put("bpc_seq", bpc_seq); //신고장소
+		map_board.put("bl_target_id", writer); //신고당하는사람
+		map_board.put("bl_title", title); //신고제목
+		map_board.put("bl_content", comment); //신고내용
+		
+		HashMap map_message = new HashMap(); //쪽지용 map
+		map_message.put("board_seq", m_seq); //글번호(게시판)
+		System.out.println("나는 쪽지다이다 : "+ m_seq);
+		map_message.put("current_userid", current_userid); //신고자
+		map_message.put("btc_seq", btc_seq); //신고유형
+		map_message.put("bpc_seq", bpc_seq); //신고장소
+		map_message.put("bl_target_id", writer); //신고당하는사람
+		map_message.put("bl_title", title); //신고제목
+		map_message.put("bl_content", comment); //신고내용
+		
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 
 		int result = 0;
 
-		if (bpc_seq == "1") {
-			result = dao.insertBlame(map);
+		if (bpc_seq .equals("1")) {
+			//게시판
+			result = dao.insertBlame(map_board);
 		} else {
-			result = dao.insertBlame_Message(map);
+			//쪽지
+			result = dao.insertBlame_Message(map_message);
 		}
 
 		return result;
