@@ -412,16 +412,35 @@ keyframes heart-keyframes { 100% {
 								th:src="'/studyboard/upload/' + ${study.IMAGE}"
 								alt="Card image" style="width: 100%">
 						</div>
-						<div style="text-align: center; margin: 10px 0px 10px 0px;">
-						<button id="apply" type="submit" class="btn btn-success"
-								style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
-							<!-- 이거는 사용자 권한 -->
-						</div>
-						<div style="text-align: center; margin: 10px 0px 10px 0px;">
+						<th:block th:switch="${sessionid}">
+							<div th:case="${study.USER_ID}" style="text-align: center; margin: 10px 0px 10px 0px;">
+								<a th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
+									<button type="button" class="btn btn-warning" style="width:100%;">목록으로</button>
+								</a>
+							</div>
+							<div th:case="*" style="text-align: center; margin: 10px 0px 10px 0px;">
+								<button id="apply" type="submit" class="btn btn-success"
+										style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
+									<!-- 이거는 사용자 권한 -->
+								<div style="text-align: center; margin: 10px 0px 10px 0px;">
+									<a th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
+										<button type="button" class="btn btn-warning" style="width:100%;">목록으로</button>
+									</a>
+								</div>
+							</div>
+						</th:block>
+						<!-- <th:block th:switch="${sessionid}">
+							<div th:case="${study.USER_ID}" style="text-align: center; margin: 10px 0px 10px 0px;">
+							<button id="apply" type="submit" class="btn btn-success"
+									style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
+								이거는 사용자 권한
+							</div>
+						</th:block> -->
+						<!-- <div style="text-align: center; margin: 10px 0px 10px 0px;">
 							<a th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
 								<button type="button" class="btn btn-warning" style="width:100%;">목록으로</button>
 							</a>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
