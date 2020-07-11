@@ -29,7 +29,7 @@ public class MessageController {
 		List<Message> mlist = mservice.getListMessage(principal.getName());
 		model.addAttribute("message", mlist);
 
-		System.out.println(mlist);
+		System.out.println("이게 받은쪽지인가 : " + mlist);
 		
 		System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Message_From_Board";

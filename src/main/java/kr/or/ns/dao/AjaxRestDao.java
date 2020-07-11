@@ -19,15 +19,16 @@ public interface AjaxRestDao {
 	
 	//받아온 아이디, 이메일로 존재하는 이메일 인지 확인
 	public int checkEmail(HashMap<String, String> map);
-	//중복체크
-	public int idcheck(String user_id);
 	
+	//중복체크
+	public int idcheck(String user_id);	
 	
 	//스터디 그룹 인서트
 	public int insertStudyGroup(HashMap<String, String> map);
 	
 	//신고하기(게시판)
 	public int insertBlame(HashMap<String,Object> map);
+	
 	//신고하기(쪽지)
 	public int insertBlame_Message(HashMap<String,Object> map);
 }
