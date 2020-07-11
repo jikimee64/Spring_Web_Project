@@ -96,6 +96,10 @@ body {
 					<!-- swal로 구현  -->
 					<button id="delete" type="button" class="btn btn-warning"
 						style="width: 80px; margin-top: 30px; color: white;">삭제</button>
+						
+							<button data-toggle="modal" data-target="#declationPageModal"
+						type="button" class="btn btn-danger"
+						style="width: 80px; margin-top: 30px;">신고</button>
 				</div>
 
 			</div>
@@ -197,26 +201,7 @@ body {
 				}
 			})
 		}) 
-	 
-		/* $("#blame-btn").click(function(e) {
-			var formData = document.getElementById('blameform');
-			console.log(formData)
 
-			console.log("데이터 : " + formData)
-			$.ajax({
-				url : '/ajax/blameinsert.do',
-				contentType:"application/json",
-				processData: false,
-				type : 'POST',
-				data : JSON.stringify(formData),
-				success : function(data) {
-					console.log(data);
-				},
-				error : function(e) {
-					console.log("error:", e);
-				}
-			})
-		}) */
 	});
 
  
