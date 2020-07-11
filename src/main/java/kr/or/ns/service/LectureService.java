@@ -21,12 +21,7 @@ public interface LectureService {
 	//스터디모집-온라인강의 스터디 개설시 북마크 총 갯수
 	public int getBookmarkCount(String userid);
 
-	//북마크 목록
-	//public List<Map<String, Object>> getBookmarkList(Criteria_Select cri_s);
-
-//	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s,List<Map<String,Object>> mypageBookmarkList);
+	//북마크 목록 페이징 
 	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
 	
-	//북마크 목록 페이징 시도
-//	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s, String userid);
 }
