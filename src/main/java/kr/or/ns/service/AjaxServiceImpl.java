@@ -34,13 +34,15 @@ public class AjaxServiceImpl implements AjaxService {
 
 	@Inject
 	private JavaMailSender mailSender;
-	
+
 	@Autowired
 	private Mailer mailer;
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	/////////////////////////////////////////////////////////////////// 이름과 이메일 받아서 존재하는 회원인지 확인
+
+	/////////////////////////////////////////////////////////////////// 이름과 이메일 받아서
+	/////////////////////////////////////////////////////////////////// 존재하는 회원인지 확인
 	@Override
 	public int emailCheck(String user_name, String user_email) {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
@@ -48,19 +50,20 @@ public class AjaxServiceImpl implements AjaxService {
 		HashMap<String, String> map = new HashMap<String, String>();
 		System.out.println(user_name);
 		System.out.println(user_email);
-		
+
 		map.put("user_name", user_name);
 		map.put("user_email", user_email);
 		result = dao.emailCheck(map);
 		return result;
 	}
 
-	//////////////////////////////////////////////////////////////////// (암호키)이메일 전송하는 서비스
+	//////////////////////////////////////////////////////////////////// (암호키)이메일
+	//////////////////////////////////////////////////////////////////// 전송하는 서비스
 	@Override
 	public String emailSend(String user_email) {
 		String key = new Tempkey().getKey(6, false);
 		System.out.println("#############################        이메일 전송서비스 왔습니다");
-		
+
 		try {
 			System.out.println("트라이 구문 타러왔어요");
 			Mail mail = new Mail();
@@ -68,9 +71,9 @@ public class AjaxServiceImpl implements AjaxService {
 			mail.setMailTo(user_email);
 			mail.setMailSubject("[이메일 인증번호 --노상코딩단]");
 			mail.setTemplateName("forID.vm");
-		 mailer.sendMail(mail,key);
+			mailer.sendMail(mail, key);
 			System.out.println("트라이 구문 타고갑니다");
-			
+
 		} catch (Exception e) {
 			System.out.println("오류 나셨어요");
 			System.out.println(e.getMessage());
@@ -83,25 +86,24 @@ public class AjaxServiceImpl implements AjaxService {
 	@Override
 	public String findId(String user_name, String user_email) {
 		System.out.println("아이디 찾으러 왔다 ");
-		System.out.println(user_name + user_email+"user_name + user_email");
+		System.out.println(user_name + user_email + "user_name + user_email");
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-		
+
 		HashMap<String, String> map = new HashMap();
-		
+
 		map.put("user_name", user_name);
 		map.put("user_email", user_email);
-		
+
 		Users vo = dao.searchId(map);
 		String id = vo.getUser_id();
-		System.out.println("********************"+ id +"********************");
+		System.out.println("********************" + id + "********************");
 		return id;
 	}
-	
-	
+
 //////////////////////////////////////////////////////////////////////임시비밀번호 발급해주는 로직 
 	@Override
 	public void makeNewPw(String userid, String useremail) {
-		//입력받은 id, email 있는지 확인
+		// 입력받은 id, email 있는지 확인
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		Users vo = new Users();
 		vo.setUser_id(userid);
@@ -109,64 +111,63 @@ public class AjaxServiceImpl implements AjaxService {
 		HashMap<String, String> map = new HashMap();
 		map.put("user_id", userid);
 		map.put("user_email", useremail);
-		
-					String key = new Tempkey().getKey(10, false);
-					String temp_pw = key;
-					vo.setUser_pwd(this.bCryptPasswordEncoder.encode(temp_pw));
-					dao.updatePw(vo);
-					
-					try {
-						Mail mail = new Mail();
-						mail.setMailFrom("nosangcoding@gmail.com");
-						mail.setMailTo(vo.getUser_email());
-						mail.setMailSubject("[임시비밀번호 발급 --노상코딩단]");
-						mail.setTemplateName("forPWD.vm");
-						
-						mailer.sendMail(mail,key);
-						
-					} catch (Exception e) {
-						System.out.println(e.getMessage());
-					}
-				}
-	
+
+		String key = new Tempkey().getKey(10, false);
+		String temp_pw = key;
+		vo.setUser_pwd(this.bCryptPasswordEncoder.encode(temp_pw));
+		dao.updatePw(vo);
+
+		try {
+			Mail mail = new Mail();
+			mail.setMailFrom("nosangcoding@gmail.com");
+			mail.setMailTo(vo.getUser_email());
+			mail.setMailSubject("[임시비밀번호 발급 --노상코딩단]");
+			mail.setTemplateName("forPWD.vm");
+
+			mailer.sendMail(mail, key);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
 //////////////////////////////////////////////////////////////////////ID 중복체크 해주는 로직
 	public int idcheck(String user_id) throws ClassNotFoundException {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-		int result = dao.idcheck(user_id);	
+		int result = dao.idcheck(user_id);
 		System.out.println("result:" + result);
-		
+
 		return result;
 	}
 
-	
 //////////////////////////////////////////////////////////////////////받아온 아이디, 이메일로 id 확인	
 	@Override
 	public int searchId(String user_id, String user_email) {
-		
+
 		System.out.println("  아이디로 아이디 찾으러 왔다 ");
-		System.out.println(user_id + user_email+"user_name + user_email");
+		System.out.println(user_id + user_email + "user_name + user_email");
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-		
+
 		HashMap<String, String> map = new HashMap();
-		
+
 		map.put("user_id", user_id);
 		map.put("user_email", user_email);
 		int result = 0;
 		result = dao.checkEmail(map);
-		
-		System.out.println(result+"결과 찍어보기  dao 에서 가져온 반환값 ");
+
+		System.out.println(result + "결과 찍어보기  dao 에서 가져온 반환값 ");
 		return result;
 	}
-	
-	//스터디 지원하기 인서트
+
+	// 스터디 지원하기 인서트
 	@Override
 	public int applyNomalStudy(String s_seq, String user_id) {
 		System.out.println("지원하기: " + user_id);
 		System.out.println("번호: " + s_seq);
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-	
+
 		int result = 0;
-		
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("s_seq", s_seq);
 		map.put("user_id", user_id);
@@ -174,38 +175,53 @@ public class AjaxServiceImpl implements AjaxService {
 		return result;
 	}
 
-	//신고하기
+	// 신고하기
 	@Override
 	public int blameInsert(HashMap<String, Object> params, String current_userid) {
 
-		String s_seq = (String)params.get("s_seq"); //글번호
-		 String btc_seq = (String)params.get("type"); //신고유형
-		 String bpc_seq = (String)params.get("place"); //신고장소(게시판이면 1, 쪽지면 2 디폴트)
-		 String writer = (String)params.get("target"); //신고당하는 사람(글작성자,해당 게시글)
-		 String title = (String)params.get("bl_title"); //신고제목
-		 String comment = (String)params.get("comment"); //신고내용
-			System.out.println(s_seq);
-		
-			
-			HashMap map = new HashMap();
-			map.put("current_userid", current_userid);
-			map.put("board_seq", s_seq);
-			map.put("btc_seq",	btc_seq);
-			map.put("bpc_seq", bpc_seq);
-			map.put("bl_target_id",writer);
-			map.put("bl_title", title);
-			map.put("bl_content", comment);
-			
-			AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-			
-			int result = 0;
-			
-			if(bpc_seq == "1") {
-				 result = dao.insertBlame(map);
-			}else {
-				 result = dao.insertBlame_Message(map);	
-			}		
-			
+		String s_seq = (String) params.get("s_seq"); // 글번호
+		String btc_seq = (String) params.get("type"); // 신고유형
+		String bpc_seq = (String) params.get("place"); // 신고장소(게시판이면 1, 쪽지면 2 디폴트)
+		String writer = (String) params.get("target"); // 신고당하는 사람(글작성자,해당 게시글)
+		String title = (String) params.get("bl_title"); // 신고제목
+		String comment = (String) params.get("comment"); // 신고내용
+		System.out.println(s_seq);
+
+		HashMap map = new HashMap();
+		map.put("current_userid", current_userid);
+		map.put("board_seq", s_seq);
+		map.put("btc_seq", btc_seq);
+		map.put("bpc_seq", bpc_seq);
+		map.put("bl_target_id", writer);
+		map.put("bl_title", title);
+		map.put("bl_content", comment);
+
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+
+		int result = 0;
+
+		if (bpc_seq == "1") {
+			result = dao.insertBlame(map);
+		} else {
+			result = dao.insertBlame_Message(map);
+		}
+
+		return result;
+	}
+
+	@Override
+	public int deleteMessage(HashMap<String, Object> params) {
+
+		String m_seq = (String) params.get("m_seq"); // 글번호
+
+		HashMap map = new HashMap();
+		map.put("m_seq", m_seq);
+
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+
+		int result = 0;
+		result = dao.delete_Message(map);
+
 		return result;
 	}
 }

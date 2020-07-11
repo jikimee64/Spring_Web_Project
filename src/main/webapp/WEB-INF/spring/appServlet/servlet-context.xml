@@ -33,6 +33,8 @@
 		base-package="kr.or.ns.util" />
 	<context:component-scan
 		base-package="kr.or.ns.interceptor" />	
+	<context:component-scan
+		base-package="kr.or.ns.export" />
 
 
 	<!-- <bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"> 
