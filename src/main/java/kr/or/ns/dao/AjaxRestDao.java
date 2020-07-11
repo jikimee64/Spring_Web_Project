@@ -31,4 +31,7 @@ public interface AjaxRestDao {
 	
 	//신고하기(쪽지)
 	public int insertBlame_Message(HashMap<String,Object> map);
+	
+	//선택된 쪽지 삭제하기
+	public int delete_Message(HashMap<String,Object> map);
 }

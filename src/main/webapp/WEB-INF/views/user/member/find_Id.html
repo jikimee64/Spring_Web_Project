@@ -292,7 +292,7 @@ outline:none;
 <!-- 					<form action="" class="needs-validation" novalidate> -->
 						<div class="form-group">
 							<label for="username"><b>이름</b></label> <input
-								class="input--style-6" type="text" v-model="username"
+								class="input--style-6" type="text" v-model="user.username"
 								id="username" placeholder="Enter username" name="username"
 								required>
 
@@ -303,7 +303,7 @@ outline:none;
 
 							<label for="userid"><b>이메일주소</b></label>
 							<div class="row" style=" transform: translateX(15px);">
-								<input class="input--style-6" type="text" v-model="useremail"
+								<input class="input--style-6" type="text" v-model="user.useremail"
 									id="userid" placeholder="Enter userid" name="uname"
 									style="width: 74%;" required>
 									&nbsp;
@@ -375,36 +375,35 @@ outline:none;
 	<script>
         new Vue({
             el: '#app',
-            data: {
-            	username: '',
-            	useremail: ''
-            },
-            methods: {
-            	emailCheck(){
-            		if(this.username !== '' && this.useremail !== ''){ //username이랑 userid가 빈값이 아닐 때
-            			axios.post('/ajax/emailCheck.do', 
-            				{username: this.username, 
-            				useremail: this.useremail})
-            			.then(res => { 
-            				//데이터를 받아와서 히든태그에 넣어준다 
-            				console.log(res.data.key);
-            				console.log(res.data.id);
-            				 $('#aa').val(res.data.key);
-                             $('#bb').val(res.data.id);
-                             console.log($('#aa').val()); 
-                             console.log($('#bb').val()); 
-            				
-            				if(res.data.key === "null"){
-            					alert('일치하는 데이터가 없습니다.이름과 이메일 주소를 확인해주세요. ');
-            					console.log("키값이 널입니다.")
-            				}else{
-            					alert('인증번호를 발급했습니다 ');
-            					console.log("키값이 널이아닙니다.")
-            				}
-            			})
-            		}else{
-                        alert(" 아이디와 이메일을 입력바랍니다  ");
-                    }
+            data: () => ({
+                user:{
+                	username: '',
+                	useremail: ''
+                },
+             }),
+            methods: {  //수정하는 중 //값을 못 보내는게 문제임
+            	async emailCheck(){
+            		try{
+	            		if(this.username !== '' && this.useremail !== ''){ //username이랑 userid가 빈값이 아닐 때
+	            			 const res = await axios.post('/ajax/emailCheck.do', this.user);
+	            				if(res.data === 1){
+	            					alert('인증번호를 발급했습니다 ');
+	            					 const res = await axios.post('/ajax/makeAuthKey.do', this.user);
+	            					 $('#aa').val(res.data.key);
+		                             $('#bb').val(res.data.id);
+	            					
+	            				}else{
+
+	            					alert('일치하는 데이터가 없습니다.이름과 이메일 주소를 확인해주세요. ');
+	            				}
+	            			
+	            		}else{
+	                        alert(" 아이디와 이메일을 입력바랍니다  ");
+	                    }
+            		}catch(error){
+            			console.warn("오류났어 슬기야");
+                        console.error(error);
+                     }
             	}
             } //methods
         })
@@ -414,9 +413,6 @@ outline:none;
          	var uu = $('#AuthInput').val();
         	var aa = $('#aa').val(); //인증번호
         	var bb = $('#bb').val(); //id
-        	console.log("확인버튼 누름+++ uu ::::"+uu);
-        	console.log("확인버튼 누름"+aa);
-        	console.log("확인버튼 누름"+bb);
                     
                     if($.trim(uu) != aa){
                     	$('#alert2').html('인증번호를 다시 입력해주세요 ')

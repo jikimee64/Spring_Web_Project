@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.ns.service.AjaxService;
+import kr.or.ns.service.MessageService;
 import kr.or.ns.vo.Blame;
+import kr.or.ns.vo.Message;
 
 @RestController //controller + responsebody
 @RequestMapping("/ajax/")
@@ -20,25 +22,39 @@ public class AjaxRestController {
 
 	@Autowired
 	private AjaxService service;
+	
+	@Autowired
+	private MessageService mservice;
 
 	// 아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
 	@RequestMapping(value = "emailCheck.do", method = RequestMethod.POST)
-	public HashMap<String, String> emailCheck(@RequestBody HashMap<String, Object> params) {
-		// 해쉬맵 생성
-		HashMap<String, String> map = new HashMap<String, String>();
+	public int emailCheck(@RequestBody HashMap<String, Object> params) {
+		
 
 		// 정보넣어주기
 		String username = (String) params.get("username");
 		String useremail = (String) params.get("useremail");
-
+		System.out.println("-----------가져온 정보 찍어보기----------------");
+		System.out.println("username" + username);
+		System.out.println("useremail" + useremail);
+		System.out.println("-----------------------------------------------");
 		// 결과값 확인
 		int flag = service.emailCheck(username, useremail);
-		System.out.println("우철 : " + flag);
-		System.out.println(username);
-		System.out.println(useremail);
+	
+		
 
-		// 결과에 따른 안내
-		if (flag == 1) {
+		return flag;
+
+	}
+	
+	// 인증키 발급 하는 함수
+		@RequestMapping(value = "makeAuthKey.do", method = RequestMethod.POST)
+		public HashMap<String, String> makeAuthKey(@RequestBody HashMap<String, Object> params) {
+			System.out.println("----------------------------------------------------------컨트롤러-시작-------");
+			// 해쉬맵 생성
+			HashMap<String, String> map = new HashMap<String, String>();
+			String username = (String) params.get("username");
+			String useremail = (String) params.get("useremail");
 			// 이메일 보내기
 			System.out.println("여기탔습니다");
 			String key = service.emailSend(useremail);
@@ -48,16 +64,11 @@ public class AjaxRestController {
 			String id = service.findId(username, useremail);
 			System.out.println("여기는 컨트롤러" + id + "여기는 컨트롤러");
 			map.put("id", id);
-
-		} else {
-			System.out.println("존재하지 않는 계쩡이라고 안내해야함");
-			map.put("key", "null");
+			
+			return map;
 		}
-		/* map.put("keyId", list); */
-
-		return map;
-
-	}
+	
+	
 
 	// 임시비밀번호를 만들기 전에 이메일과 아이디값 확인하는 함수
 	@RequestMapping(value = "pwCheck.do", method = RequestMethod.POST)
@@ -137,5 +148,33 @@ public class AjaxRestController {
 			return result;
 			
 		}
+		
+	//쪽지함 선택된 쪽지 삭제
+		@RequestMapping(value = "deleteMessage.do", method = RequestMethod.POST)
+		public List<Message> deleteMessage(@RequestBody HashMap<String, Object> params, Principal principal) {
+			System.out.println("쪽지삭제 컨트롤러");
+			System.out.println(params);
+			int result = service.deleteMessage(params);
+			List<Message> list = null;
+			String userid = principal.getName(); 
+			try {
+				System.out.println("아이디 : " + userid);
+				list = mservice.getListMessage(userid);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			System.out.println("쪽지 삭제 성공");
+			System.out.println("ㅇ철이다 : " + list);
+			
+			return list;
+			
+		}
+		
+		
+		
+		
+		
+		
 
 }

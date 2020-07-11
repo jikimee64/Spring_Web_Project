@@ -31,7 +31,8 @@
 		base-package="kr.or.ns.websocket" />
 	<context:component-scan
 		base-package="kr.or.ns.util" />
-		
+	<context:component-scan
+		base-package="kr.or.ns.interceptor" />	
 	<context:component-scan
 		base-package="kr.or.ns.export" />
 
