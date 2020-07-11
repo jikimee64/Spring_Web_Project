@@ -20,10 +20,15 @@
 			username-parameter="user_id"
 			password-parameter="user_pwd"
 			default-target-url="/user/main.do" login-page="/member/login.do"
+			authentication-success-handler-ref="loginSuccessHandler"
 			authentication-failure-url="/member/login.do?error" /> <!-- 이건 로그인을 실패할 때 error를 붙이면 에러페이지로 스프링이 자동으로 넘겨줌 -->
 		<security:logout logout-success-url="/user/main.do" />
 		
 		<!-- 비로그인 막는 페이지..   -->
+	<!-- 온라인 게시판 게시글 등록  -->
+ 	<security:intercept-url
+			pattern="/lecture/**.do" access="hasRole('ROLE_USER')" />  
+			
 	<!-- 스터디 게시판 게시글 등록  -->
  	<security:intercept-url
 			pattern="/board/**.do" access="hasRole('ROLE_USER')" />  
@@ -62,5 +67,11 @@
 		</security:authentication-provider>
 
 	</security:authentication-manager>
+
+	<bean id="loginSuccessHandler" class="kr.or.ns.interceptor.LoginSuccessHandler">
+	    <!-- <property name="loginEmail" value="user_email"/> -->
+	    <property name="defaultUrl" value="/user/main.do"/> 
+	</bean>
+	
 
 </beans>

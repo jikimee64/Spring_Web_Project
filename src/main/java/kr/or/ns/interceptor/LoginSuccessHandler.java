@@ -40,15 +40,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     @Autowired
     private SqlSession sqlsession;
     
-	private String loginEmail;
 	private String defaultUrl;
 	
-	public String getLoginEmail() {
-		return loginEmail;
-	}
-	public void setLoginEmail(String loginEmail) {
-		this.loginEmail = loginEmail;
-	}
 	public String getDefaultUrl() {
 		return defaultUrl;
 	}
@@ -87,6 +80,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     
     //세션 저장
     protected void sessionAdd(HttpServletRequest request , Authentication authentication) {
+    	
+    	//true일시 세션이 있으면 기존꺼 사용 아니면 세션을새로 만듬
         HttpSession session = request.getSession(true);
         Users currentUser = null;
         System.out.println("sqlsession : "+ sqlsession);
@@ -94,8 +89,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
       try {	
         	System.out.println("authentication.getName() : "+authentication.getName());
         	MyPageDao userdao = sqlsession.getMapper(MyPageDao.class);
-        	System.out.println(userdao);
-        currentUser = userdao.getUsers(authentication.getName());
+        	currentUser = userdao.getUsers(authentication.getName());
+        	System.out.println("우철 : " + currentUser);
+        
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
