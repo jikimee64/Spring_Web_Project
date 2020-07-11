@@ -1,8 +1,9 @@
 package kr.or.ns.controller;
 
+import java.io.FileOutputStream;
 import java.security.Principal;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,8 +15,7 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardServiceImpl;
@@ -60,7 +60,7 @@ public class BoardController {
 		return "user/board/study_List"; // study_List.html
 	}
 
-	// 스터디 글 등록
+	//일반컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
 	public String boardRegister(Study study, HttpServletRequest request, Principal principal) {
 
@@ -68,6 +68,7 @@ public class BoardController {
 
 		try {
 			// 서비스가서 DB에 등록
+			System.out.println("서비스는 잘가냐 ?");
 			service.studyReg(study, request, principal);
 		} catch (Exception e) {
 			System.out.println("컨트롤러 에러");
@@ -88,6 +89,30 @@ public class BoardController {
 		// 요청 주소 ...아래처럼 ..
 		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
 		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
+	}
+	
+	
+	
+	//온라인컨텐츠(스터디 게시판 글 등록)
+	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
+	public String registerOnline(Study study, Principal principal, HttpServletRequest request) {
+
+		System.out.println("온라인입니다 고갱님^^");
+		System.out.println("넘어온 데이터 " + study.toString());
+
+		try {
+			// 서비스가서 DB에 등록
+			System.out.println("서비스는 잘가냐 ?");
+			service.studyOnlineReg(study, request, principal);
+		} catch (Exception e) {
+			System.out.println("컨트롤러 에러");
+			System.out.println(e.getMessage());
+
+		}
+		System.out.println("리턴 전...");
+
+		//return "user/board/study_List";
+		 return "redirect:/board/study_List.do";
 	}
 
 	@RequestMapping("board_Select.do")

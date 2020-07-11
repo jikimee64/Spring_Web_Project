@@ -5,8 +5,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>writing_course_study</title>
-
+<title>writing_normal_study</title>
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 <!-- Latest compiled and minified CSS -->
@@ -25,24 +24,25 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+
 <style>
 /* body {
-			margin-top: 200px;
-		} */
+         margin-top: 200px;
+      } */
 
 /* #category select {
-			margin-right: 10px;
-		} */
+         margin-right: 10px;
+      } */
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
-	color: #fff;
+	color: black;
 	font-size: inherit;
 	line-height: normal;
 	vertical-align: middle;
-	background-color: #5cb85c;
+	background-color: #ffc107;
 	cursor: pointer;
-	border: 1px solid #4cae4c;;
+	border: 1px solid #ffc107;;
 	border-bottom-color: #e2e2e2;
 	border-radius: .25em;
 }
@@ -66,38 +66,30 @@
 	background-repeat: no-repeat;
 	opacity: 0.7;
 }
-</style>
-
-</head>
-
-<style>
-.cover3 {
-	background-image:
-		url(../../../../resources/images/img/coursewritepage.jpg);
-	background-position: center center;
-	background-size: 2000px;
-	background-repeat: no-repeat;
-	opacity: 0.7;
-}
 
 #row>.col-1 {
 	margin-right: 50px;
 }
 </style>
+</head>
 
 <body>
 
 	<div th:replace="/user/includes/header :: header"></div>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+	
+	<input type="hidden" id="l_image" th:value="${lecture.L_IMAGE}" />
+	
 
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs cover3"
+		<section class="breadcrumbs cover"
 			style="margin-top: 70px; height: 300px; padding: 1000 0 100 0px;">
 			<div class="container d-flex h-100" style="padding: 200px 0;">
 				<div class="row justify-content-center align-self-center">
 					<h1 style="color: white; font-size: 50px;">
-						<b>모집하기</b>
+						<b>모집하기(온라인)</b>
 					</h1>
 				</div>
 			</div>
@@ -105,31 +97,34 @@
 		</section>
 		<!-- Breadcrumbs Section -->
 	</main>
-	<form class="" id="category">
+	
+	<form action="/board/study_List.do" class="registerform"
+		id="registerform" enctype="multipart/form-data">
 		<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
-			<!-- <h2>스터디 모집 글 작성하ss기(일반)</h2> -->
+			<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
 			<!-- <br /> -->
 			<div class="row" id="row">
 				<div class="col-1">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
+					<select name="lan_seq" class="selectpicker mb-3" data-style="btn-light"
 						style="width: 10%;" data-live-search="true" data-width="120px">
 						<option value="언어" selected>언어</option>
-						<option value="Java">Java</option>
-						<option value="Javascript">Javascript</option>
-						<option value="HTML/CSS">HTML/CSS</option>
-						<option value="Spring">Spring</option>
-						<option value="Python">Python</option>
-						<option value="Vue.js">Vue.js</option>
-						<option value="React">React</option>
-						<option value="JQuery">JQuery</option>
-						<option value="JSP">JSP</option>
-						<option value="Bootstrap">Bootstrap</option>
-						<option value="JPA">JPA</option>
+						<option value="1">Java</option>
+						<option value="2">Javascript</option>
+						<option value="3">HTML/CSS</option>
+						<option value="4">Spring</option>
+						<option value="5">Python</option>
+						<option value="6">Vue.js</option>
+						<option value="7">React</option>
+						<option value="8">JQuery</option>
+						<option value="9">JSP</option>
+						<option value="10">Bootstrap</option>
+						<option value="11">JPA</option>
 					</select>
 				</div>
 				<div class="col-1">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
-						style="width: 10%;" data-live-search="true" data-width="120px">
+					<select name="people" class="selectpicker mb-3"
+						data-style="btn-light" style="width: 10%;" data-live-search="true"
+						data-width="120px">
 						<option value="모집인원" selected>모집인원</option>
 						<option value="1">1명</option>
 						<option value="2">2명</option>
@@ -145,31 +140,32 @@
 				</div>
 
 				<div class="col-1">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
+					<select name="loc_seq" class="selectpicker mb-3" data-style="btn-light"
 						style="width: 10%;" data-live-search="true" data-width="120px">
 						<option value="지역" selected>지역</option>
-						<option value="온라인">온라인</option>
-						<option value="충청북도">충북</option>
-						<option value="충청남도">충남</option>
-						<option value="경기도">경기도</option>
-						<option value="전라북도">전북</option>
-						<option value="전라남도">전남</option>
-						<option value="경상남도">경남</option>
-						<option value="경상북도">경북</option>
-						<option value="강원도">강원도</option>
-						<option value="세종특별시">세종시</option>
-						<option value="서울특별시">서울시</option>
-						<option value="인천광역시">인천시</option>
-						<option value="제주특별시">제주시</option>
+						<option value="1">온라인</option>
+						<option value="2">충북</option>
+						<option value="3">충남</option>
+						<option value="4">경기도</option>
+						<option value="5">전북</option>
+						<option value="6">전남</option>
+						<option value="7">경남</option>
+						<option value="8">경북</option>
+						<option value="9">강원도</option>
+						<option value="10">세종시</option>
+						<option value="11">서울시</option>
+						<option value="12">인천시</option>
+						<option value="13">제주시</option>
 					</select>
 				</div>
 				<div class="col-1">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
-						style="width: 10%;" data-live-search="true" data-width="120px">
+					<select name="level" class="selectpicker mb-3 _select_box4"
+						data-style="btn-light" style="width: 10%;" data-live-search="true"
+						data-width="120px">
 						<option value="난이도" selected>난이도</option>
-						<option value="_introduction">입문</option>
-						<option value="_beginner">초급</option>
-						<option value="_middleclass">중급이상</option>
+						<option value="입문">입문</option>
+						<option value="초급">초급</option>
+						<option value="중급이상">중급이상</option>
 					</select>
 				</div>
 				<div class="col-3">
@@ -183,6 +179,7 @@
 			</select> -->
 			</div>
 		</div>
+
 		<hr style="border-color: rgb(224, 224, 224); width: 95%">
 
 		<div class="container" style="margin-bottom: 25px;">
@@ -192,54 +189,38 @@
 						<div class="col-md-12">
 							<br />
 							<div class="form-group">
-								<input type="text" class="form-control" id="usr" name="username"
+								<input type="text" class="form-control" id="usr" name="title"
 									placeholder="글 제목을 입력해주세요">
 							</div>
 						</div>
-
-						<!-- <div class="col-md-5" style="width: 100%; padding-left: 40px;">
-							<div class="row" style="margin: 0 auto;">
-								<div class="form-group" style="margin: 0">
-									<div class="custom-file mb-3">
-										<input type="file" class="custom-file-input" id="customFile" name="files[0]">
-										<label class="custom-file-label" for="customFile">Choose file</label>
-									</div>
-								</div>
-
-								<div class="form-group" style="margin: 0">
-									<div class="custom-file mb-3">
-										<input type="file" class="custom-file-input" id="customFile" name="files[1]">
-										<label class="custom-file-label" for="customFile">Choose file</label>
-									</div>
-								</div>
-							</div>
-						</div> -->
 					</div>
 					<div class="form-group">
-						<textarea id="summernote" name="n_content"></textarea>
-						<!-- <textarea name="" id="" cols="30" rows="10" class="form-control"
-							placeholder="글 내용을 입력해주세요"></textarea> -->
-						<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
-						나중에 썸머노트로 바꿔야할듯 -->
+						<textarea id="summernote" name="content"></textarea>
 					</div>
 					<div style="text-align: center;">
 						<button type="submit" class="btn btn-primary _submit"
-							style="width: 15%;">작성</button>
+							style="width: 15%; background-color: #18d26e; border-color: #18d26e;">작성</button>
 					</div>
 				</div>
 
 				<div class="col-md-3" style="margin-top: 24px;">
-					<!-- 	<div
-					style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
-					디폴트이미지 3개 중 하나 출력하거나 아니면 이미지 선택 (이건아직 안함) -->
 					<div class="form-group" style="margin: 0">
-						<span>북마크에서 선택한 강의 이미지 뿌려줘야함</span> <img id="preview"
-							src="/studyboard/upload/default.png" alt="썸네일"
-							style="margin-bottom: 15px; width: 280px; height: 200px;">
-						<!-- <div class="custom-file mb-3" style="width:280px;">
-											<input type="file" class="custom-file-input" name="files[0]" id="Thum">
-											<label class="custom-file-label" for="customFile">썸네일</label>
-										</div> -->
+						<div class="card"
+							style="width: 100%; margin-bottom: 15px; margin-left: 12px;">
+							<img class="card-img-top" th:src="${lecture.L_IMAGE}"
+								alt="Card image" style="width: 100%;">
+							<div class="card-body">
+								<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+								<p class="card-text _margin_0"
+									style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+								<a href="#"
+									class="stretched-link"></a>
+								<!-- 별 다섯개 이미지  -->
+								<img
+									src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+									alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+							</div>
+						</div>
 					</div>
 
 					<div class="form-group" style="margin: 0">
@@ -257,19 +238,6 @@
 								for="customFile">Choose file2</label>
 						</div>
 					</div>
-
-					<!-- <label
-					class="custom-file-label" for="inputGroupFile01"
-					style="text-align: left">Choose file</label> -->
-
-
-					<!-- <img class="card-img-top"
-						src="https://file3.instiz.net/data/cached_img/upload/2020/02/08/14/bd5841404e045a4781679d91d2a427d8.gif
-					"
-						alt="Card image" style="width: 100%"> <br /> <br />
-					<div style="text-align: center;">
-						<button type="button" class="btn btn-success">이미지 첨부</button>
-					</div> -->
 				</div>
 			</div>
 		</div>
@@ -294,10 +262,12 @@
 	<!-- (Optional) Latest compiled and minified JavaScript translation files -->
 	<script
 		src="../../../../resources/assets/vendor/selectbox/js/i18n/defaults-ko_KR.min.js"></script>
-	<!-- sweet alert -->
+
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	
 	<script>
-		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
+		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온aaaaaaaaa거
 		//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
 		// Add the following code if you want the name of the file appear on select
 		$(".custom-file-input").on(
@@ -338,37 +308,39 @@
 
 
 	<script>
-		//썸네일 시작
-		var file = document.querySelector('#ex_file');
+		$(function() {
+			$("#registerform").submit(function(e) {
+				var formData = new FormData(this);
+				console.log(formData)
+				formData.append('image', $('#l_image').val());
 
-		file.onchange = function() {
-			var fileList = file.files;
-
-			// 읽기
-			var reader = new FileReader();
-			reader.readAsDataURL(fileList[0]);
-
-			//로드 한 후
-			reader.onload = function() {
-				console.log('잘되니?')
-				document.querySelector('#preview').src = reader.result;
-				console.log('잘되니222?')
-				console.log('잘되니222?')
-			};
-		};
+				console.log("데이터 : " + formData)
+				$.ajax({
+					url : "/board/registerOnline.do",
+					processData : false,
+					contentType : false,
+					cache : false,
+					type : 'POST',
+					data : formData,
+					success : function(data) {
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				})
+			})
+		});
 	</script>
 
 	<script>
 		$(function() {
-
 			$('._submit').click(function(evt) {
-
 						evt.preventDefault();
-
 						var selectBox1 = $('.selectpicker option:selected').eq(
 								0).val();
 						var selectBox2 = $('.selectpicker option:selected').eq(
 								1).val();
+						console.log(selectBox2)
 						var selectBox3 = $('.selectpicker option:selected').eq(
 								2).val();
 						var selectBox4 = $('.selectpicker option:selected').eq(
@@ -378,7 +350,6 @@
 						//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
 
 						var selectAlert = "";
-
 						if (selectBox1 == "언어" || selectBox2 == "모집인원"
 								|| selectBox3 == "지역" || selectBox4 == "난이도"
 								|| selectBox5 == "") {
@@ -403,26 +374,23 @@
 										selectAlert.length);
 							}
 							swal(selectAlert+"를 선택해주세요","", "error");
-
-
 						} else {
-
 							if (selectBox6 == "") {
 								swal("글 제목을 입력해주세요","", "error");
 							} else {
-								swal("작성이 완료되었습니다", "", "success");			
+								//swal("작성이 완료되었습니다", "", "success");			
 								$('._submit').unbind();
-								$(this).click();
+								$(this).click(); 
 							}
 
 						}
 
 					});
-			console.log('이건 내꺼44444444444444444');
 		});
 	</script>
 
 </body>
+
 
 
 </html>
