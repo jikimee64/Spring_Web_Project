@@ -22,7 +22,7 @@ public class ManagerServiceImpl implements ManagerService {
 		
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		List<Users> list = dao.getMemberList();
-		
+		System.out.println("우철 : " + list);
 		
 	return list;
 	}
