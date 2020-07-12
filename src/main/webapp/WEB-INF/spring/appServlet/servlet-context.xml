@@ -93,7 +93,7 @@
 		<property name="order" value="0"></property>
 	</bean>
 	
-	<bean id="excelView" class="kr.or.ns.export.WriteListToExcelFile"/>
+	<bean id="FileDownload" class="kr.or.ns.util.FileDownload"/>
 	
 	
 

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ns.export.WriteListToExcelFile;
 import kr.or.ns.service.ManagerServiceImpl;
@@ -82,17 +83,16 @@ public class ManagerController {
 	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
 	@RequestMapping("board/excelView.do")
 //	public String excelMemberView(Model model) throws Exception {
-		public String excelMemberView(HttpServletRequest request) throws Exception {
-		System.out.println("회원 목록을 excel로 뽑아요");
-
+		public ModelAndView excelMemberView(HttpServletRequest request) throws Exception {
 		List<Users> memberList = null;
 		memberList = service.getMemberPoiList(); //회원목록가져와서 memberList에 넣음
-		System.out.println("잘뽑히냐임마!! : " + memberList);
-//		model.addAttribute("memberList", memberList); // view까지 전달
 		
+		//배포경로에 엑셀을 만들어서 다운하는 
 		WriteListToExcelFile.writeMemberListToFile("회원관리_목록.xls", memberList,request);
+		
+		
 //		return "manager/board/member_Management";
-		return "excelView";
+		return new ModelAndView("fileDownloadView", "downloadFile","");
 	}
 
 	

@@ -185,7 +185,6 @@ public class AjaxRestController {
 		return result;
 
 	}
-	
 
 
 }
