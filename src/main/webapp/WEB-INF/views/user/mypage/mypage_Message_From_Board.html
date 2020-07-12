@@ -391,16 +391,25 @@ body {
 
 	<script>
     function InfoModal(idx){
-        let id = $('.InfoModal'+idx).children().text();
+   
+		 let id = $('.InfoModal'+idx).children().text();
+		//formData.append("user_id" , this.id);
+        
         console.log("아이디 : " + id); 
-    /*     
+		// let obj = {"user_id" : id}; 
+        
+		  let data = {
+				"user_id" : id
+		 } 
+		 
         $.ajax({
 			url : '/ajax/userInfoModal.do',
 			processData : false,
 			contentType : "application/json",
 			cache : false,
 			type : 'POST',
-			data : 
+			 data : JSON.stringify(data),
+		/* 	data : data, */
 			success : function(data) {
 				console.log(data);
 			},
@@ -409,7 +418,7 @@ body {
 			}
 
 		}); 
-         */
+         
      }
 									
 			

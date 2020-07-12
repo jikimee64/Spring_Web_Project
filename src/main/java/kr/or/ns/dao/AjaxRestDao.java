@@ -1,6 +1,7 @@
 package kr.or.ns.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import kr.or.ns.vo.Users;
@@ -34,4 +35,8 @@ public interface AjaxRestDao {
 	
 	//선택된 쪽지 삭제하기
 	public int delete_Message(HashMap<String,Object> map);
+	
+	//유저정보 모달창에 띄우기
+	public List<HashMap<String, Object>> getUserInfo(String user_id);
+	
 }

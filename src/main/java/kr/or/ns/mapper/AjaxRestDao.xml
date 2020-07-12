@@ -58,4 +58,12 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 	where m_seq = #{m_seq}
 	</delete>
 	
+	<!-- 유저정보 모달창에 띄우기 -->
+	<select id="getUserInfo" resultType="hashMap">
+		select * from users where
+		user_id=#{USER_ID}
+	</select>
+
+	
+	
 </mapper>
