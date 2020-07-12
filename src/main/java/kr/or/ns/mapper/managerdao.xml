@@ -52,10 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 		SELECT * FROM blame_board -->
 <!-- 		ORDER -->
 <!-- 		BY BL_SEQ asc -->
-		select b.*,t.type
+		select *
 		from blame_board b
 		join blame_type_category t
-		on b.BTC_SEQ = t.BTC_SEQ;
+		on b.BTC_SEQ = t.BTC_SEQ
+		join blame_place_category p
+		on b.BPC_SEQ = p.BPC_SEQ
 	</select>
 
 </mapper>

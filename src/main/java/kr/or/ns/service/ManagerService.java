@@ -23,6 +23,6 @@ public interface ManagerService {
 	public String memberDel(String user_id);
 	
 	//신고게시판 목록가져오기
-	public List<Blame> getBlameList(String bl_seq);
+	public List<Blame> getBlameList();
 	
 }

@@ -18,32 +18,67 @@
 
 	<dependencies>
 
-
-
-
 		<!-- 엑셀 제어(xls) maven setting -->
 		<dependency>
-		<groupId>org.apache.poi</groupId>
-		<artifactId>poi</artifactId>
-		<version>3.12</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.12</version>
 		</dependency>
-		
-		<!-- 엑셀 제어(xlsx) maven setting-->
+
+		<!-- 엑셀 제어(xlsx) maven setting -->
 		<dependency>
-		<groupId>org.apache.poi</groupId>
-		<artifactId>poi-ooxml</artifactId>
-		<version>3.9</version>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.9</version>
 		</dependency>
-		
-		
-		
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-->
-<!-- 		<dependency> -->
-<!-- 		    <groupId>org.apache.poi</groupId> -->
-<!-- 		    <artifactId>poi-ooxml</artifactId> -->
-<!-- 		    <version>4.0.0</version> -->
-<!-- 		</dependency>     -->
- 
+
+		<!-- pdf 제어 start-->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.5.13</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itext-pdfa -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itext-pdfa</artifactId>
+			<version>5.5.13</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itext-xtra -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itext-xtra</artifactId>
+			<version>5.5.13</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.itextpdf.tool/xmlworker -->
+		<dependency>
+			<groupId>com.itextpdf.tool</groupId>
+			<artifactId>xmlworker</artifactId>
+			<version>5.5.13</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/font-asian -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>font-asian</artifactId>
+			<version>7.1.6</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- pdf 제어 end-->
+
+
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.poi</groupId> -->
+		<!-- <artifactId>poi-ooxml</artifactId> -->
+		<!-- <version>4.0.0</version> -->
+		<!-- </dependency> -->
+
 
 		<!-- OOXML: MS OFFICE OPEN XML / MS사의 XML 기반 파일 형식을 읽는데 필요한 라이브러리 -->
 		<dependency>
@@ -122,19 +157,19 @@
 			<artifactId>jackson-core</artifactId>
 			<version>2.9.8</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.8</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
