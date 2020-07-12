@@ -10,8 +10,8 @@
 
 <!-- 폰트어썸 아이콘 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	
+<!-- sweetalert -->	
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <link rel="stylesheet"
    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -341,17 +341,33 @@ outline:none;
            async pwCheck(){
               try{
                 if(this.user.userId !== '' && this.user.userEmail !== ''){ //userId이랑 userEmail  빈값이 아닐 때
-                     
+                	this.user.userId = this.user.userId.trim();
+                	this.user.userEmail = this.user.userEmail.trim();
                 	const res = await axios.post('/ajax/pwCheck.do', this.user);
                           if(res.data === 0){
-                             alert(" 입력하신 아이디와 이메일을 다시한번 확인 해주세요  ");
+                             swal({
+                            	  title: "알림",
+                            	  text: "입력하신 아이디와 이메일을 다시한번 확인 해주세요",
+                            	  icon: "warning",
+                            	  button: "확인",
+                            	});
                              console.log("키값이 0입니다.   ")
                           }else{
-                             alert(" 임시비밀번호를 발급했습니다.");
+                        	  swal({
+                        		  title: "완료",
+                        		  text: "임시비밀번호를 발급했습니다.",
+                        		  icon: "success",
+                        		  button: "확인",
+                        		});
                              const res = await axios.post('/ajax/makeNewPWD.do', this.user);
                           }
                        }else{
-                          alert(" 아이디와 이메일을 입력바랍니다  ");
+                    	   swal({
+                    		   title: "알림",
+                    		   text: "아이디와 이메일을 입력바랍니다.",
+                    		   icon: "warning",
+                    		   button: "확인",
+                    		 });
                        }
               }catch(error){
                  console.error(error);
