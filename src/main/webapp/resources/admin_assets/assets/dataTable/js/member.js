@@ -49,7 +49,7 @@ $(document).ready(function () {
 			action: function (e, dt, node, config)
 			{
 				//This will send the page to the location specified
-				location.href = 'excelView.do';
+				location.href = 'viewMemberExcel.do';
 			}
 		},
 		{extend:'csvHtml5',
@@ -60,7 +60,7 @@ $(document).ready(function () {
 			action: function (e, dt, node, config)
 			{
 				  //This will send the page to the location specified
-				  window.location.href = 'pdfView.do';
+				  window.location.href = 'viewMemberPdf.do';
 			}
 		},
 		{extend:'csvHtml5',

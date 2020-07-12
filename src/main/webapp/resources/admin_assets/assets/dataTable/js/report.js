@@ -49,7 +49,7 @@ $(document).ready(function () {
 			action: function (e, dt, node, config)
 			{
 				//This will send the page to the location specified
-				window.location.href = '*.do';
+				window.location.href = 'viewReportExcel.do';
 			}
 		},
 		{extend:'csvHtml5',
@@ -60,7 +60,7 @@ $(document).ready(function () {
 			action: function (e, dt, node, config)
 			{
 				  //This will send the page to the location specified
-				  window.location.href = '*.do';
+				  window.location.href = 'viewReportPdf.do';
 			}
 		}
 		]

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ns.export.WriteMemberListToExcelFile;
 import kr.or.ns.export.WriteMemberListToPdfFile;
+import kr.or.ns.export.WriteReportListToExcelFile;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
@@ -56,6 +57,7 @@ public class ManagerController {
 		return "manager/board/member_Detail";
 
 	}
+
 //	회원정보 상세에서 삭제버튼클릭시 삭제하기
 	@RequestMapping("board/memberDel.do")
 	public String memberDel(String user_id) {
@@ -80,7 +82,7 @@ public class ManagerController {
 	}
 
 	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
-	@RequestMapping("board/excelView.do")
+	@RequestMapping("board/viewMemberExcel.do")
 //	public String excelMemberView(Model model) throws Exception {
 	public ModelAndView excelMemberView(HttpServletRequest request) throws Exception {
 		List<Users> memberList = null;
@@ -88,40 +90,75 @@ public class ManagerController {
 
 		// 배포경로에 엑셀을 만들어서 다운하는
 		WriteMemberListToExcelFile.writeMemberListToExcepFile("회원관리_목록.xls", memberList, request);
-		String path = request.getServletContext().getRealPath("/manager/");
+		String path = request.getServletContext().getRealPath("/manager/member/");
 		File xlsFile = new File(path + "회원관리_목록.xls"); // 저장경로 설정
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("FileDownload"); // 뷰의 이름
 		mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
 		return mv;
 	}
-	
-	
-	// 회원관리 목록 pdf뽑기-----------------------------------------------------------
-		@RequestMapping("board/pdfView.do")
-//		public String excelMemberView(Model model) throws Exception {
-		public ModelAndView pdfMemberView(HttpServletRequest request) throws Exception {
-			List<Users> memberList = null;
-			memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
 
-			WriteMemberListToPdfFile.writeMemberListToPdfFile("회원관리_목록.pdf", memberList, request);
-			
-			String path = request.getServletContext().getRealPath("/manager/");
-			File xlsFile = new File(path + "회원관리_목록.pdf"); // 저장경로 설정
-			ModelAndView mv = new ModelAndView();
-			mv.setViewName("FileDownload"); // 뷰의 이름
-			mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
-			return mv;
-		}
+	// 회원관리 목록 pdf뽑기-----------------------------------------------------------
+	@RequestMapping("board/viewMemberPdf.do")
+//		public String excelMemberView(Model model) throws Exception {
+	public ModelAndView pdfMemberView(HttpServletRequest request) throws Exception {
+		List<Users> memberList = null;
+		memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
+
+		WriteMemberListToPdfFile.writeMemberListToPdfFile("회원관리_목록.pdf", memberList, request);
+
+		String path = request.getServletContext().getRealPath("/manager/member/");
+		File xlsFile = new File(path + "회원관리_목록.pdf"); // 저장경로 설정
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("FileDownload"); // 뷰의 이름
+		mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
+		return mv;
+	}
+
+	// 신고관리 목록 엑셀뽑기-----------------------------------------------------------
+	@RequestMapping("board/viewReportExcel.do")
+//		public String excelMemberView(Model model) throws Exception {
+	public ModelAndView excelReportView(HttpServletRequest request) throws Exception {
+
+		List<HashMap<String, Object>> blameList = null;
+		blameList = service.getBlameList();
+
+		// 배포경로에 엑셀을 만들어서 다운하는
+		WriteReportListToExcelFile.writeReportListToExcelFile("신고관리_목록.xls", blameList, request);
+		String path = request.getServletContext().getRealPath("/manager/report/");
+		File xlsFile = new File(path + "신고관리_목록.xls"); // 저장경로 설정
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("FileDownload"); // 뷰의 이름
+		mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
+		return mv;
+
+	}
+
+	// 신고관리 목록 pdf뽑기-----------------------------------------------------------
+	@RequestMapping("board/viewReportPdf.do")
+//		public String excelMemberView(Model model) throws Exception {
+	public ModelAndView pdfReportView(HttpServletRequest request) throws Exception {
+		List<Users> memberList = null;
+		memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
+
+		WriteMemberListToPdfFile.writeMemberListToPdfFile("신고관리_목록.pdf", memberList, request);
+
+		String path = request.getServletContext().getRealPath("/manager/report/");
+		File xlsFile = new File(path + "신고관리_목록.pdf"); // 저장경로 설정
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("FileDownload"); // 뷰의 이름
+		mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
+		return mv;
+	}
 
 	// ----------------------------------------------------------------------------
 	@RequestMapping("board/report_Management.do")
-	public String reportManagementPage(Model model,String bl_seq,String btc_seq) {
+	public String reportManagementPage(Model model, String bl_seq, String btc_seq) {
 		System.out.println("어드민 회원관리 테이블페이지이동");
 
-
-		List<Blame> blameList = null;
+		List<HashMap<String, Object>> blameList = null;
 		blameList = service.getBlameList(); // 블레임리스트
+		System.out.println("신고다내갓힌고다내가 : " + blameList);
 		model.addAttribute("blameList", blameList); // view까지 전달
 		System.out.println("dncjf : " + blameList);
 

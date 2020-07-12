@@ -48,9 +48,9 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	public List<Blame> getBlameList() {
+	public List<HashMap<String, Object>> getBlameList() {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		List<Blame> blame = dao.getBlameList();
+		List<HashMap<String, Object>> blame = dao.getBlameList();
 		return blame;
 	}
 

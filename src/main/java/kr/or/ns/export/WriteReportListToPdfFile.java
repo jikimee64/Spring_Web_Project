@@ -2,12 +2,10 @@ package kr.or.ns.export;
 
 import java.io.File;
 import java.io.FileOutputStream;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import org.springframework.stereotype.Service;
- 
+
+import javax.servlet.http.HttpServletRequest;
+
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -21,15 +19,15 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import kr.or.ns.vo.Users;
 
-public class WriteMemberListToPdfFile {
-	public static void writeMemberListToPdfFile(String fileName, List<Users> memberList, HttpServletRequest request)
+public class WriteReportListToPdfFile {
+	public static void writeReportListToPdfFile(String fileName, List<Users> memberList, HttpServletRequest request)
 			throws Exception {
 
 		String result = ""; // 초기값이 null이 들어가면 오류가 발생될수 있기 때문에 공백을 지정
 
 		try {
 			Document document = new Document(); // pdf문서를 처리하는 객체
-			String path = request.getServletContext().getRealPath("/manager/member/");
+			String path = request.getServletContext().getRealPath("/manager/report/");
 			File pdfFile = new File(path+fileName); //저장경로 설정
 			
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));

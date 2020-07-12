@@ -21,7 +21,7 @@ public class WriteMemberListToExcelFile {
    public static void writeMemberListToExcepFile(String fileName, List<Users> memberList, HttpServletRequest request) throws Exception {
       
    Workbook workbook = null;
-   String path = request.getServletContext().getRealPath("/manager/");
+   String path = request.getServletContext().getRealPath("/manager/member/");
    File xlsFile = new File(path+fileName); //저장경로 설정
    
    if(fileName.endsWith("xlsx")) {
