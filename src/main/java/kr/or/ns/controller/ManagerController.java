@@ -1,5 +1,6 @@
 package kr.or.ns.controller;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,7 +17,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import kr.or.ns.export.WriteListToExcelFile;
+import kr.or.ns.export.WriteMemberListToExcelFile;
+import kr.or.ns.export.WriteMemberListToPdfFile;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
@@ -60,8 +62,6 @@ public class ManagerController {
 		System.out.println("삭제 컨트롤러 찍히나요?");
 		return service.memberDel(user_id);
 	}
-	
-	
 
 	// 회원관리 목록
 	@RequestMapping("board/member_Management.do")
@@ -79,32 +79,51 @@ public class ManagerController {
 		return "manager/board/member_Management";
 	}
 
-	
 	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
 	@RequestMapping("board/excelView.do")
 //	public String excelMemberView(Model model) throws Exception {
-		public ModelAndView excelMemberView(HttpServletRequest request) throws Exception {
+	public ModelAndView excelMemberView(HttpServletRequest request) throws Exception {
 		List<Users> memberList = null;
-		memberList = service.getMemberPoiList(); //회원목록가져와서 memberList에 넣음
-		
-		//배포경로에 엑셀을 만들어서 다운하는 
-		WriteListToExcelFile.writeMemberListToFile("회원관리_목록.xls", memberList,request);
-		
-		
-//		return "manager/board/member_Management";
-		return new ModelAndView("fileDownloadView", "downloadFile","");
-	}
+		memberList = service.getMemberPoiList(); // 회원목록가져와서 memberList에 넣음
 
+		// 배포경로에 엑셀을 만들어서 다운하는
+		WriteMemberListToExcelFile.writeMemberListToExcepFile("회원관리_목록.xls", memberList, request);
+		String path = request.getServletContext().getRealPath("/manager/");
+		File xlsFile = new File(path + "회원관리_목록.xls"); // 저장경로 설정
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("FileDownload"); // 뷰의 이름
+		mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
+		return mv;
+	}
 	
-	//----------------------------------------------------------------------------
+	
+	// 회원관리 목록 pdf뽑기-----------------------------------------------------------
+		@RequestMapping("board/pdfView.do")
+//		public String excelMemberView(Model model) throws Exception {
+		public ModelAndView pdfMemberView(HttpServletRequest request) throws Exception {
+			List<Users> memberList = null;
+			memberList = service.getMemberPoiList(); // 회원목록가져와서 memberList에 넣음
+
+			WriteMemberListToPdfFile.writeMemberListToPdfFile("회원관리_목록.pdf", memberList, request);
+			
+			String path = request.getServletContext().getRealPath("/manager/");
+			File xlsFile = new File(path + "회원관리_목록.pdf"); // 저장경로 설정
+			ModelAndView mv = new ModelAndView();
+			mv.setViewName("FileDownload"); // 뷰의 이름
+			mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
+			return mv;
+		}
+
+	// ----------------------------------------------------------------------------
 	@RequestMapping("board/report_Management.do")
 	public String reportManagementPage(Model model,String bl_seq,String btc_seq) {
 		System.out.println("어드민 회원관리 테이블페이지이동");
 
 
 		List<Blame> blameList = null;
-		blameList = service.getBlameList(bl_seq); // 블레임리스트
+		blameList = service.getBlameList(); // 블레임리스트
 		model.addAttribute("blameList", blameList); // view까지 전달
+		System.out.println("dncjf : " + blameList);
 
 		return "manager/board/report_Management";
 	}

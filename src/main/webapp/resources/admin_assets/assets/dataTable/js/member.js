@@ -60,7 +60,7 @@ $(document).ready(function () {
 			action: function (e, dt, node, config)
 			{
 				  //This will send the page to the location specified
-				  window.location.href = '*.do';
+				  window.location.href = 'pdfView.do';
 			}
 		},
 		{extend:'csvHtml5',
