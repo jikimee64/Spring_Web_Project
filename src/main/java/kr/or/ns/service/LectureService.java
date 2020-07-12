@@ -26,6 +26,9 @@ public interface LectureService {
 
 //	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s,List<Map<String,Object>> mypageBookmarkList);
 	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
+
+	//l_seq 를 가져오는 함수
+	public List<Integer> getCheckedL_seq(String user_id);
 	
 	//북마크 목록 페이징 시도
 //	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s, String userid);
