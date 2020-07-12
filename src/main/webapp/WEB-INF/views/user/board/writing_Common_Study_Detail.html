@@ -270,7 +270,7 @@ keyframes heart-keyframes { 100% {
 									</div>
 									<div th:case="${study.FILESRC}" class="form-group" style="margin: 0">
 										<a href="" style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
-											<span class="_file_name1" th:text="${study.FILESRC}"></span>
+											<sapn class="_file_name1" th:text="${study.FILESRC}"></span>
 										</a>
 									</div>
 								</th:block>
@@ -479,6 +479,22 @@ keyframes heart-keyframes { 100% {
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		$(function() {
+			 /* 첨부파일명 자르기 시작 */
+			
+			 if($('._file_name1')[0].innerText.length >= 15){
+				 $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,15) + "...";
+			 }
+			 if($('._file_name2')[0].innerText.length >= 15){
+				 $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
+			 }
+		 	
+		 /* 첨부파일명 자르기 끝 */
+		 
+			
+			
+			
+			
+			
 			//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
 			//https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h
 			// Add the following code if you want the name of the file appear on select
@@ -572,20 +588,6 @@ keyframes heart-keyframes { 100% {
 	
 	 <script>
  $(function() {
-	 
-	 
-	 /* 첨부파일명 자르기 시작 */
-		console.warn($('._file_name1').text());
-		console.warn($('._file_name2').text());
-	 	
-		var fileName1 = $('._file_name1');
-		var fileName2 = $('._file_name2');
-		
-		
-		fileName1.innerText =  $('._file_name1').text().substring(0,8);
-		fileName2.innerText = $('._file_name2').text().substring(0,8);
-	 	
-	 /* 첨부파일명 자르기 끝 */
 	 
 	 
 	  $(".blameform").submit(function(e) {
