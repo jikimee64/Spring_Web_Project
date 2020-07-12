@@ -137,8 +137,10 @@ a {
 				role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalCenterTitle">
-							<b>@@님의 회원정보</b>
+						<h5 class="modal-title">
+							<b><span style="margin-left:30px; font-size:xx-large;"class="ModalUserName"> <!-- <b>@@님의 회원정보</b> -->
+							</span></b>
+							<span>님의 회원정보</span>
 						</h5>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
@@ -149,19 +151,16 @@ a {
 						<div class="container-fluid">
 							<div class="row" style="padding: 0px;">
 								<div class="col-md-3">
-									<div class="card-body" id="lef"
-										style="background-color: rgb(241, 255, 235); height: 100%; text-align: center;">
+									<div class="card-body"
+										style="background-color: rgb(241, 255, 235); height: 100%; text-align: center; ">
 										<div style="transform: translateY(83px);">
 											<div>
 												<img
 													src="https://www.beffreport.com/news/photo/201904/58805_29372_2821.jpg"
 													class="mb-2"
 													style="width: 100%; background-color: rgb(255, 251, 219); border-radius: 35%;">
+												<span class="ModalUserName"></span>
 											</div>
-											<b> 구슬구슬</b>
-											<button type="button"
-												class="btn btn-outline-light btn-sm mt-5"
-												data-dismiss="modal">쪽지보내기</button>
 										</div>
 
 									</div>
@@ -199,17 +198,17 @@ a {
 												<group class="inline-radio"> <span
 													style="font-size: larger; width: 100px;">Java</span>
 												<div class="_div_radio">
-													<input type="radio" name="Java" class="_input_radio"
-														checked onclick="return(false);"><label
+													<input type="radio" id="java" name="java"  value="입문" class="_input_radio"
+														checked onclick="return(false);" th:attr="checked=${skill[0].skill_level == '입문' ? 'true' : 'false'}"><label
 														class="_radio_label">입문</label>
 												</div>
 												<div class="_div_radio">
-													<input type="radio" name="Java" class="_input_radio"
+													<input type="radio" id="java" name="java"  value="초급" class="_input_radio"
 														onclick="return(false);"><label
 														class="_radio_label">초급</label>
 												</div>
 												<div class="_div_radio">
-													<input type="radio" name="Java" class="_input_radio"
+													<input type="radio" id="java" name="java" value="중급이상" class="_input_radio"
 														onclick="return(false);"><label
 														class="_radio_label">중급이상</label>
 												</div>

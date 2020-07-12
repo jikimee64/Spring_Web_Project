@@ -186,12 +186,9 @@ public class AjaxRestController {
 	public int onlyEmailCheck(String user_email) throws ClassNotFoundException {
 		System.out.println(user_email + " : user_id 컨트롤러");
 		int result = service.onlyEmailCheck(user_email);
-
 		return result;
 
 	}
-	
-	
 	
 	
 

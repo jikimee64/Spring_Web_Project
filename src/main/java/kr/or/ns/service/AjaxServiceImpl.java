@@ -1,33 +1,22 @@
 package kr.or.ns.service;
 
-import java.sql.SQLException;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.context.support.GenericXmlApplicationContext;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import kr.or.ns.dao.AjaxRestDao;
 import kr.or.ns.util.Mail;
-import kr.or.ns.util.MailHandler;
 import kr.or.ns.util.Mailer;
 import kr.or.ns.util.Tempkey;
-import kr.or.ns.vo.Blame;
-import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
-import sun.print.resources.serviceui;
 
 @Service
 public class AjaxServiceImpl implements AjaxService {
@@ -42,6 +31,8 @@ public class AjaxServiceImpl implements AjaxService {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+
 
 	/////////////////////////////////////////////////////////////////// 이름과 이메일 받아서
 	/////////////////////////////////////////////////////////////////// 존재하는 회원인지 확인
@@ -225,9 +216,9 @@ public class AjaxServiceImpl implements AjaxService {
 		return result;
 	}
 
+	//쪽지삭제
 	@Override
 	public int deleteMessage(HashMap<String, Object> params) {
-
 		String m_seq = (String) params.get("m_seq"); // 글번호
 
 		HashMap map = new HashMap();
@@ -240,7 +231,7 @@ public class AjaxServiceImpl implements AjaxService {
 
 		return result;
 	}
-
+	//유저정보 모달창에 뿌리기
 	@Override
 	public List<HashMap<String, Object>> userInfoModal(HashMap<String, Object> params) {
 		String user_id = (String) params.get("user_id");
@@ -252,6 +243,7 @@ public class AjaxServiceImpl implements AjaxService {
 		
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		List<HashMap<String, Object>> userinfo = dao.getUserInfo(user_id);
+	
 
 		System.out.println("유저정보 잘 가져왔니" + userinfo);
 		return userinfo;
