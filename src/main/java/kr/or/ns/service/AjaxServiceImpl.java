@@ -257,4 +257,15 @@ public class AjaxServiceImpl implements AjaxService {
 		return userinfo;
 	}
 
+		
+	//이메일 중복체크
+	@Override
+	public int onlyEmailCheck(String user_email) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		int result = dao.onlyEmailCheck(user_email);
+		System.out.println("result:" + result);
+
+		return result;
+	}
+
 }

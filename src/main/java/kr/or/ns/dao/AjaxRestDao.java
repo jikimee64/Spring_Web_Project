@@ -38,5 +38,8 @@ public interface AjaxRestDao {
 	
 	//유저정보 모달창에 띄우기
 	public List<HashMap<String, Object>> getUserInfo(String user_id);
+
+	//이메일 중복체크
+	public int onlyEmailCheck(String user_email);
 	
 }

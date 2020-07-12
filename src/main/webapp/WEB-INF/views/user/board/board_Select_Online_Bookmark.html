@@ -195,8 +195,8 @@ body {
                               class="link-details"><i class="ion ion-heart"></i></a>
                         </figure>
 
-                        <div class="portfolio-info">
-                           <h4 th:text="${bookMarkList.L_TITLE}">
+                        <div class="portfolio-info" style="padding-top: 15px;">
+                           <h4 class="_course_title"th:text="${bookMarkList.L_TITLE}" style="display: contents;">
                               <!--                            <a href="/lecture/writing_Course_Study.do?">등록 폼이동(임시)</a> -->
                            </h4>
                            <p th:text="${bookMarkList.LAN_SEQ}">App</p>
@@ -256,6 +256,31 @@ body {
 
 
 </body>
+
+<script>
+$(function(){
+	/* 강의 글자수 자르기  시작*/	
+	var courseTitleTag = $('._course_title');
+
+	var courseTitleName = "";
+
+	$.each(courseTitleTag, function(index,item){
+		
+		courseTitleName = courseTitleTag[index].innerText;
+		
+		
+		/* if문 그냥 대충 짜름 나중에 재수정 필요 */
+		if(courseTitleName.length > 17){
+			courseTitleName = courseTitleName.substring(0,20)+"...";
+		}
+		courseTitleTag[index].innerText = courseTitleName;
+	})
+
+	/* 강의 글자수 자르기  끝*/
+	
+});
+
+</script>
 
 
 </html>

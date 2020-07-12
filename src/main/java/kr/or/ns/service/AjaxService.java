@@ -45,5 +45,8 @@ public interface AjaxService {
 	//유저정보 모달 뿌리기
 	public List<HashMap<String, Object>> userInfoModal(HashMap<String, Object> params);
 	
+	//이메일 중복체크
+	public int onlyEmailCheck(String user_email);
+	
 
 }

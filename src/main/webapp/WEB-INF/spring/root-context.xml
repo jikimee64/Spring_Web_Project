@@ -71,7 +71,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="velocityConfig"
 		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="WEB-INF/views/vm/" />
+		<property name="resourceLoaderPath" value="/WEB-INF/views/vm/" />
 		<property name="velocityProperties">
 			<value>
 				input.encoding=UTF-8
@@ -79,9 +79,6 @@
 			</value>
 		</property>
 	</bean>
-
-	<!-- <bean id="velocityEngine" 우철이가 해놓은거 class="org.springframework.ui.velocity.VelocityEngineFactoryBean"> 
-		<property name="resourceLoaderPath" value="/WEB-INF/velocity/" /> </bean> -->
 
 	<bean id="velocityEngine"
 		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
