@@ -3,6 +3,13 @@ package kr.or.ns.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,19 +81,18 @@ public class ManagerController {
 	
 	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
 	@RequestMapping("board/excelView.do")
-	public String excelMemberView(Model model) throws Exception {
+//	public String excelMemberView(Model model) throws Exception {
+		public String excelMemberView(HttpServletRequest request) throws Exception {
 		System.out.println("회원 목록을 excel로 뽑아요");
 
 		List<Users> memberList = null;
-		// memberList = service.getMemberList(); //회원목록가져와서 memberList에 넣음
-
-		model.addAttribute("memberList", memberList); // view까지 전달
-		/* WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList); */
-		// cordova는 대체 무엇인고
-
+		memberList = service.getMemberPoiList(); //회원목록가져와서 memberList에 넣음
+		System.out.println("잘뽑히냐임마!! : " + memberList);
+//		model.addAttribute("memberList", memberList); // view까지 전달
 		
-		WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList);
-		return "manager/board/member_Management";
+		WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList,request);
+//		return "manager/board/member_Management";
+		return "excelView";
 	}
 
 	
