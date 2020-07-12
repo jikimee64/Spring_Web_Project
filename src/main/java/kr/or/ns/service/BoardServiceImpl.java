@@ -255,7 +255,18 @@ public class BoardServiceImpl implements BoardService {
 	
 	public int heartnum(Likes like) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		int heart = dao.heartnum(like);
+		int heart = 0;
+		try {
+			
+			heart = dao.heartcheck(like);
+			if(heart != 0) {
+				 heart = dao.heartnum(like);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
 		return heart;
 	}
 
