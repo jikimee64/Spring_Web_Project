@@ -473,7 +473,7 @@ group+group {
 					$('.ModalUserName').text(data[0].USER_NAME);
 					$('.introduce').text(data[0].INTRODUCE)
 					'src','/material/images/jQuery/asimo.png'
-					$('#profile_img').attr('src', data[0].PROFILE_IMG);
+					$('#profile_img').attr('src', '/userboard/upload/' + data[0].PROFILE_IMG);
 					console.log(data[0].INTRODUCE);
 					$.each(data, function (index, item) {
 						console.log('정아 : ' + item.SKILL_NAME)
