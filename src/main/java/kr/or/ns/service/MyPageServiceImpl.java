@@ -34,8 +34,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	
-	
-	
+
 
 	//마이페이지(북마크)
 	public List<Map<String, Object>> myPagelist(String userid) {
