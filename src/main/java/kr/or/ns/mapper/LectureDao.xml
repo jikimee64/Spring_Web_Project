@@ -6,6 +6,12 @@
 	<select id="getLectureCount" resultType="Integer">
 		SELECT COUNT(*) FROM LECTURE_BOARD
 	</select>
+	
+	
+	<!-- 총 게시글 수 -->
+	<select id="getCheckedL_seq" resultType="Integer">
+		select L_seq from bookmark where BOOKMARK_CHECK = 1 and user_id = #{user_id}
+	</select>
 
 
 

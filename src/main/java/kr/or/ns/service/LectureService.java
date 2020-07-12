@@ -26,6 +26,9 @@ public interface LectureService {
 
 	//북마크 목록 페이징 
 	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
+
+	//l_seq 를 가져오는 함수
+	public List<Integer> getCheckedL_seq(String user_id);
 	
 	
 }

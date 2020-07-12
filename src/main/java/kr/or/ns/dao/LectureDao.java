@@ -1,5 +1,6 @@
 package kr.or.ns.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,11 @@ public interface LectureDao {
 
 	//가져온 북마크 목록 페이징
 	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
+
+	//l_seq 를 가져오는 함수
+	public List<Integer> getCheckedL_seq(String user_id);
+
+//	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s, String userid);
 
 	public HashMap<String, Object> getLecture(String l_seq);
 }

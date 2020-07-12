@@ -43,10 +43,11 @@ public class LectureController {
 
 	// 스터디목록 + 페이징
 	@RequestMapping("course_List.do")
-	public String courseListPage(Criteria cri, Model model) {
+	public String courseListPage(Criteria cri, Model model,Principal principal) {
 		System.out.println("강좌페이지로 이동이동(연규가씀)");
 		System.out.println(cri.getPage());
 		PageMaker pageMaker = new PageMaker();
+		String user_id = principal.getName();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.getLectureCount());
 
@@ -62,6 +63,15 @@ public class LectureController {
 
 		System.out.println(list.toString());
 
+		//서비스, dao
+		List<Integer> seqlist = new ArrayList<Integer>();
+		seqlist = service.getCheckedL_seq(user_id);
+		System.out.println("--------------seqlist 찍어보기 -----------");
+		System.out.println(seqlist );
+		System.out.println(seqlist.toString());
+		System.out.println("--------------seqlist 찍어보기 -----------");
+		model.addAttribute("seqlist", seqlist); // view까지 전달(forward)
+		
 		return "user/board/course_List"; // study_List.html
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,7 @@ import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Message;
+import kr.or.ns.vo.Users;
 
 @RestController //controller + responsebody
 @RequestMapping("/ajax/")
@@ -171,11 +173,26 @@ public class AjaxRestController {
 			return list;
 			
 		}
-		
-		
-		
-		
-		
-		
-
 }
+		
+	//쪽지함에서 유저정보 모달 불러오기
+		/*
+		 * @RequestMapping(value = "userInfoModal.do", method = RequestMethod.POST)
+		 * public List<Message> userInfoModal(@RequestBody HashMap<String, Object>
+		 * params, Principal principal) {
+		 * 
+		 * 
+		 * 
+		 * return list; } }
+		 */
+
+
+		/*
+		 * @RequestMapping(value = "MyPageUserDetail.do") public String
+		 * mypageUserEditView(Model model, Principal principal) {
+		 * System.out.println("상세정보"); Users user =
+		 * service.getUsers(principal.getName()); List<HashMap<String, String>> list =
+		 * service.getSkill(principal.getName()); model.addAttribute("member", user);
+		 * model.addAttribute("skill", list); System.out.println(user); return
+		 * "user/mypage/mypage_User_Detail.html"; }
+		 */

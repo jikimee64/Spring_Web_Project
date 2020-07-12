@@ -1,5 +1,6 @@
 package kr.or.ns.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -116,6 +117,15 @@ public class LectureServiceImpl implements LectureService{
 		List<HashMap<String, Object>> list = dao.getBookmarkList(map);
 		return list;
 	}
+
+	@Override
+	public List<Integer> getCheckedL_seq(String user_id) {
+		LectureDao dao = sqlsession.getMapper(LectureDao.class);
+		List<Integer> seqlist = new ArrayList<Integer>();
+		seqlist = dao.getCheckedL_seq(user_id);
+		return seqlist;
+	}
+
 
 
 	
