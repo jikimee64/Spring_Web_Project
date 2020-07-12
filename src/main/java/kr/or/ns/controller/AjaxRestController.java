@@ -3,10 +3,7 @@ package kr.or.ns.controller;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.MessageService;
-import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Message;
-import kr.or.ns.vo.Users;
 
 @RestController // controller + responsebody
 @RequestMapping("/ajax/")
