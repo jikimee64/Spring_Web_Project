@@ -369,20 +369,42 @@ body {
 
 						<div class="col-7">
 							<input type="text" class="input--style-6" id="user_id"
-								placeholder="아이디를 입력해주세요." name="user_id" required />
-
+								placeholder="아이디를 입력해주세요." name="user_id" required /> <span
+								class="idcheck hide"></span>
 						</div>
 
 						<div class="col-3" style="align-self: center; padding-left: 0px">
 							<button class="login100-form-btn" id="IdCheck"
-								style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
-							<div class="idcheck hide"
-								style="transform: translateX(-533px); width: 500px; color: tomato;"></div>
+								style="border: 1px solid #18d26e; height: 40px; width: 78px; transform: translateX(-13px);">중복체크</button>
+
 						</div>
 					</div>
 				</div>
 
 
+				&nbsp;&nbsp;
+
+
+				<div class="value">
+					<div class="row" style="place-content: center; padding-left: 100px">
+						<div class="col-2 _label_center"
+							style="align-self: center; padding-top: 10px; text-align: right;">
+							<label class="label-input100" style="place-self: center">이메일</label>
+						</div>
+
+						<div class="col-7">
+							<input type="text" class="input--style-6" id="user_email"
+								placeholder="이메일을 입력해주세요." name="user_email" required /> <span
+								class="email hide"></span>
+						</div>
+
+						<div class="col-3" style="align-self: center; padding-left: 0px">
+							<button class="login100-form-btn" id="EmailCheck"
+								style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
+
+						</div>
+					</div>
+				</div>
 				&nbsp;&nbsp;
 
 
@@ -464,29 +486,6 @@ body {
 							<input type="text" class="input--style-6" id="nickname"
 								placeholder="닉네임을 입력해주세요" name="nickname" required> <span
 								class="nickname hide"></span>
-
-						</div>
-
-						<div class="col-2"></div>
-
-					</div>
-				</div>
-
-				&nbsp;&nbsp;
-
-
-				<div class="value">
-					<div class="row" style="place-content: center; padding-left: 100px">
-						<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center">이메일 주소</label>
-						</div>
-
-						<div class="col-8">
-							<input type="email" class="input--style-6" id="user_email"
-								placeholder="이메일을 입력해주세요" name="user_email" required> <span
-								class="email hide"></span>
 
 						</div>
 
@@ -901,13 +900,92 @@ body {
 						})
 
 					});
+			
+			$('#EmailCheck').click(
+					function(e) {
+						e.preventDefault();
+						var value = $('#user_email').val();
+						$.ajax({
+							url : "/ajax/onlyEmailCheck.do",
+							type : 'POST',
+							dataType : 'json',
+							data : {
+								user_email : $('#user_email').val()
+							},
+							success : function(data) {
+								//아이디 중복시 아이디 인풋값 제거
+
+								if ($('#user_email').val() === '') {
+									
+									swal({
+										  title: "이메일을 입력해주세요",
+										  icon: "info",
+										  buttons: true
+										})
+									
+									
+									toggle = false;
+								} else if (data == 1) { //이메일이 존재
+									
+									swal({
+										title: "동일한 이메일이 존재합니다.",
+										  icon: "info",
+										  buttons: true
+										})
+									
+									//$('.idcheck').html("동일한 아이디가 존재합니다.")
+									$('#user_email').val("");
+									$('#user_email').focus();
+									toggle = false;
+									
+								} else {
+									if(regFlag[1] === false){
+										swal({
+											  title: "유효성 검사부터 해주세요.",
+											  icon: "info",
+											  buttons: true
+											})
+										toggle = false;
+									}else{
+										swal({
+											  title: "사용하셔도 됩니다.",
+											  icon: "success",
+											  buttons: true 
+											})
+											toggle = true;
+									}
+			
+									//$('.idcheck').html("사용하셔도 됩니다.")
+									toggle = true;
+								}
+							},
+							error : function(request, status, error) {
+								console.log("code:" + request.status + "\n"
+										+ "error:" + error);
+
+							}
+						})
+
+					});
+			
+
+			
+			
+			
+			
+			
+			
 		});
 		
 	</script>
 
 	<script>
-		$(function() {
+	
+	
+	</script>
 
+	<script>
+		$(function() {
 			// Add the following code if you want the name of the file appear on select
 			$(".custom-file-input").on(
 					"change",

@@ -64,6 +64,9 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 		user_id=#{USER_ID}
 	</select>
 
-	
+	<!-- 이메일 중복체크 -->
+		<select id="onlyEmailCheck" resultType="int">
+		select count(*) from users where user_email = #{user_email}
+	</select>
 	
 </mapper>
