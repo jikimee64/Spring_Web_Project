@@ -6,9 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>다른유저 정보보기</title>
-<script
-	src="https://rawgit.com/ftlabs/fastclick/master/lib/fastclick.js"></script>
-
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 </head>
@@ -149,11 +146,9 @@ a {
 						</button>
 					</div>
 					<div class="modal-body" style="padding-right: 0px;">
-
 						<div class="container-fluid">
-
-							<div class="row" style="padding: 0px; background-color: red;">
-								<div class="col-md-3" style="background-color: blue;">
+							<div class="row" style="padding: 0px;">
+								<div class="col-md-3">
 									<div class="card-body" id="lef"
 										style="background-color: rgb(241, 255, 235); height: 600px; text-align: center;">
 										<div style="transform: translateY(83px);">
@@ -168,139 +163,136 @@ a {
 												class="btn btn-outline-light btn-sm mt-5"
 												data-dismiss="modal">쪽지보내기</button>
 										</div>
+
 									</div>
 								</div>
-
 								<div class="col-md-9"
-									style="text-align: -webkit-center; padding-left: 0; margin-top: 20px; background-color: black;">
+									style="text-align: -webkit-center; padding-left: 0; margin-top: 20px;">
 									<div class="_form_radio" style="padding: 0px;">
 										<div class="row" id="header_info">
-											<div class="col" style="align-self: center;">
+											<div class="col"
+												style="align-self: center; font-size: xx-large; padding-bottom: 0px; padding-top: 30px;">
 												<b>자기소개</b>
+												<div class="col">
+													<hr style="margin-top: 0px; width: 150px;">
+												</div>
+
 											</div>
 										</div>
-										<p style="height: 200px; margin-bottom: 0px; padding: 40px;">안녕하세요
+										<p style="height: 150px; margin-bottom: 0px; padding: 20px;">안녕하세요
 											저는 자바를 16년째 해오고 있는 구구단 주부 9단 눈치 100단 태권도 2단 무단횡단 자진모리장단 로켓단
 											바위처럼단단 등 여러 경력을 보유하고있는 경력자 구슬구슬입니다 현재 스타트업을 같이할 인재들을 모집하고있습니다</p>
 									</div>
-									<!-- <div class="row"
-									style="text-align: -webkit-center; margin-top: 30px;
-									background-color: white;"> -->
-									<div class="_form_radio" style="padding: 0px;">
-										<div class="row" id="header_info">
-											<div class="col-md-12"
-												style="align-self: center; background-color: yellow;">
-												<b>실력</b>
-											</div>
-										</div>
-										<div class="row" style="background-color: pink;">
-											<div style="padding: 20px; background-color: green;"
-												class="col-md-12">
-												<div class="row" style="background-color: gray;">
-													<group class="inline-radio; col-md-9"> 
-													<span
-														style="font-size: larger; width: 100px;">Java</span> <!-- 												<div class="_div_radio"> -->
-													<input type="radio" name="Java" class="_input_radio"
-														checked onclick="return(false);"> <label
-														class="_radio_label">입문</label>
-
-
-													<div class="_div_radio">
-														<input type="radio" name="Java" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">초급</label>
+									<div class="col-md-12"
+										style="text-align: -webkit-center; margin-top: 30px;">
+										<div class="_form_radio" style="padding: 0px;">
+											<div class="row" id="header_info">
+												<div class="col"
+													style="align-self: center; padding-bottom: 0px; padding-top: 30px; font-size: xx-large;">
+													<b>실력</b>
+													<div class="col">
+														<hr style="margin-top: 0px; width: 150px;">
 													</div>
-													<div class="_div_radio">
-														<input type="radio" name="Java" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">중급이상</label>
-													</div>
-													</group>
-
-													<group class="inline-radio; col-md-9"> <span
-														style="font-size: larger; width: 100px;">Python</span>
-													<div class="_div_radio">
-														<input type="radio" name="Python" class="_input_radio"
-															checked onclick="return(false);"><label
-															class="_radio_label">입문</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="Python" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">초급</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="Python" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">중급이상</label>
-													</div>
-													</group>
-													<group class="inline-radio; col-md-9"> <span
-														style="font-size: larger; width: 100px;">HTML/CSS</span>
-													<div class="_div_radio">
-														<input type="radio" name="HTML/CSS" class="_input_radio"
-															checked onclick="return(false);"><label
-															class="_radio_label">입문</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="HTML/CSS" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">초급</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="HTML/CSS" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">중급이상</label>
-													</div>
-													</group>
-													<group class="inline-radio; col-md-9"> <span
-														style="font-size: larger; width: 100px;">Javascript</span>
-													<div class="_div_radio">
-														<input type="radio" name="Javascript" class="_input_radio"
-															checked onclick="return(false);"><label
-															class="_radio_label">입문</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="Javascript" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">초급</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="Javascript" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">중급이상</label>
-													</div>
-													</group>
-													<group class="inline-radio; col-md-9"> <span
-														style="font-size: larger; width: 100px;">SQL</span>
-													<div class="_div_radio">
-														<input type="radio" name="SQL" class="_input_radio"
-															checked onclick="return(false);"> <label
-															class="_radio_label">입문</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="SQL" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">초급</label>
-													</div>
-													<div class="_div_radio">
-														<input type="radio" name="SQL" class="_input_radio"
-															onclick="return(false);"><label
-															class="_radio_label">중급이상</label>
-													</div>
-													</group>
 												</div>
+											</div>
+											<div style="padding: 30px;">
+												<group class="inline-radio"> <span
+													style="font-size: larger; width: 100px;">Java</span>
+												<div class="_div_radio">
+													<input type="radio" name="Java" class="_input_radio"
+														checked onclick="return(false);"><label
+														class="_radio_label">입문</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="Java" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">초급</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="Java" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">중급이상</label>
+												</div>
+												</group>
+
+												<group class="inline-radio"> <span
+													style="font-size: larger; width: 100px;">Python</span>
+												<div class="_div_radio">
+													<input type="radio" name="Python" class="_input_radio"
+														checked onclick="return(false);"><label
+														class="_radio_label">입문</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="Python" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">초급</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="Python" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">중급이상</label>
+												</div>
+												</group>
+												<group class="inline-radio"> <span
+													style="font-size: larger; width: 100px;">HTML/CSS</span>
+												<div class="_div_radio">
+													<input type="radio" name="HTML/CSS" class="_input_radio"
+														checked onclick="return(false);"><label
+														class="_radio_label">입문</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="HTML/CSS" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">초급</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="HTML/CSS" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">중급이상</label>
+												</div>
+												</group>
+												<group class="inline-radio"> <span
+													style="font-size: larger; width: 100px;">Javascript</span>
+												<div class="_div_radio">
+													<input type="radio" name="Javascript" class="_input_radio"
+														checked onclick="return(false);"><label
+														class="_radio_label">입문</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="Javascript" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">초급</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="Javascript" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">중급이상</label>
+												</div>
+												</group>
+												<group class="inline-radio"> <span
+													style="font-size: larger; width: 100px;">SQL</span>
+												<div class="_div_radio">
+													<input type="radio" name="SQL" class="_input_radio" checked
+														onclick="return(false);"> <label
+														class="_radio_label">입문</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="SQL" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">초급</label>
+												</div>
+												<div class="_div_radio">
+													<input type="radio" name="SQL" class="_input_radio"
+														onclick="return(false);"><label
+														class="_radio_label">중급이상</label>
+												</div>
+												</group>
 											</div>
 										</div>
 									</div>
-									<!-- </div> -->
-
 								</div>
-
 							</div>
-
 						</div>
-
 						<!-- 이제 여기서 밑에꺼 작업 게시판 글목록 모달 사용자정보 화이팅 -->
 						<div class="container">
 							<div class="row mt-2" style="padding: 10px; padding-bottom: 0px;">
@@ -317,7 +309,7 @@ a {
 												<th>글제목</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody style="text-align: center;">
 											<tr>
 												<td>1578</td>
 												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
@@ -340,10 +332,8 @@ a {
 				</div>
 			</div>
 		</div>
-		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-
-
+	</div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 </body>
-
 
 </html>
