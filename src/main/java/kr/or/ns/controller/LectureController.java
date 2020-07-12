@@ -59,10 +59,9 @@ public class LectureController {
 		list = service.getLectureList(cri);
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("pageMaker", pageMaker);
+		System.out.println("우철이는 : " + list);
 
-		System.out.println("미네미네미네미네미네미넴니ㅔ " + pageMaker.isNext());
 		System.out.println(list.toString());
-		System.out.println("컨트롤러2");
 
 		//서비스, dao
 		List<Integer> seqlist = new ArrayList<Integer>();
@@ -114,9 +113,6 @@ public class LectureController {
 			System.out.println("다음버튼이 있니?: " + pageMakers.isNext());
 			System.out.println(bookMarkList.toString());
 			System.out.println("북마크 컨트롤러 끝~");
-
-			
-			
 			
 			return "user/board/board_Select_Online_Bookmark";
 		}
@@ -170,76 +166,18 @@ public class LectureController {
 //		RETURN "USER/BOARD/BOARD_SELECT_ONLINE_BOOKMARK";
 //	}
 	//---------------------------------------------------------
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
+	//북마크선택페이지에서 -> 강의전용글쓰기 페이지
 	@RequestMapping(value = "writing_Course_Study.do", method = RequestMethod.GET)
-	public String writingCourseStudyPage() {
-		System.out.println("온라인saas강의 선택페이지(북마크)에서 다음페이지인 강의전용 글쓰기페이지로 이동이동(연규가씀)");
-
+	public String writingCourseStudyPage(String l_seq, Model model) {
+		System.out.println("l_seq : " + l_seq);
+		HashMap<String, Object> map = service.getLecture(l_seq);
+		model.addAttribute("lecture", map);
+		
 		return "user/board/writing_Course_Study";
 	}
 
-	@RequestMapping(value = "writing_Course_Study.do", method = RequestMethod.POST)
-	public String writingCourseStudyPage(Study study, HttpServletRequest request) {
 
-		List<CommonsMultipartFile> files = study.getFiles();
-		List<String> filenames = new ArrayList<String>(); // 파일명관리
-		System.out.println("?? " + files);
-
-		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
-			for (CommonsMultipartFile multifile : files) {
-				String filename = multifile.getOriginalFilename();
-				System.out.println("파일업로드 : " + filename);
-				String path = request.getServletContext().getRealPath("/studyboard/upload");
-
-				String fpath = path + "\\" + filename;
-
-				if (!filename.equals("")) { // 실 파일 업로드
-					try {
-						FileOutputStream fs = new FileOutputStream(fpath);
-						fs.write(multifile.getBytes());
-						fs.close();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-				filenames.add(filename); // 파일명을 별도 관리 (DB insert)
-				System.out.println("fs" + filename);
-			}
-
-		}
-
-//		  System.out.println("제목 : " + study.getTitle());
-//		  System.out.println("내용 : " + study.getContent());
-//		  System.out.println("언어" + study.getSelectlan());
-//		  System.out.println("모집인원" + study.getSelectPeo());
-//		  System.out.println("지역선택" + study.getSelectloc());
-//		  System.out.println("난이도" + study.getSelectlev());
-//		  System.out.println("모집마감일" + study.getSelectend());
-
-		return "user/board/writing_Course_Study";
-	}
 
 	@RequestMapping("writing_Course_Study_Edit.do")
 	public String writingCourseStudyEditPage() {
@@ -265,38 +203,4 @@ public class LectureController {
 
 	}
 
-	// 스터디 상세보기(하나 다시만들어줘라!!)
-	// BoardServiceImpl의 getStudy똑같이 만등러줘라!!
-	@RequestMapping("writing_Course_Study_Detail.do")
-	public String writingCourseStudyDetailPage(String s_seq, String page, String perPageNum, Model model) {
-		System.out.println("강의게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
-
-		Map<String, Object> study = service2.getStudy(s_seq);
-		model.addAttribute("study", study);
-		model.addAttribute("page", page);
-		model.addAttribute("perPageNum", perPageNum);
-
-		System.out.println(page);
-		System.out.println(perPageNum);
-
-		return "user/board/writing_Course_Study_Detail"; // writing_Course_Study_Detail.html
-
-	}
-
-//	@RequestMapping("course_List.do")
-//	public String courseListPage(Model m odel) {
-//		System.out.println("강좌페이지로 이동이동(연규가씀)");
-//		List<Map<String,Object>> list = null;
-//		list = service.getStudyBoardList(cri);
-//		model.addAttribute("list",list); //view까지 전달(forward)
-//		model.addAttribute("pageMaker",pageMaker); 
-//		
-//		System.out.println(list.toString());
-//		System.out.println("찍어보자2");
-//		return "/user/board/study_List"; //study_List.html
-//		
-//		
-//		return "/user/board/course_List";
-//	}
-//	
 }

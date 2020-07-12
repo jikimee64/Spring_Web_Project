@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +104,11 @@ public class MyPageServiceImpl implements MyPageService {
 		} else {
 			users.setProfile_img("member.png");
 		}
-
+		
+    	//true일시 세션이 있으면 기존꺼 사용 아니면 세션을새로 만듬
+		 HttpSession session = request.getSession(true);
+		 session.setAttribute("currentUser", users);
+		
 		int result = 0;
 		int result2 = 0;
 

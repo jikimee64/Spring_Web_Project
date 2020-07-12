@@ -101,27 +101,27 @@
 			<!-- <br /> -->
 			<div class="row" id="row">
 				<div class="col-1">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
+					<select name="lan_seq" class="selectpicker mb-3" data-style="btn-light"
 						style="width: 10%;" data-live-search="true" data-width="120px">
 						<option value="언어" selected>언어</option>
-						<option value="Java">Java</option>
-						<option value="Javascript">Javascript</option>
-						<option value="HTML/CSS">HTML/CSS</option>
-						<option value="Spring">Spring</option>
-						<option value="Python">Python</option>
-						<option value="Vue.js">Vue.js</option>
-						<option value="React">React</option>
-						<option value="JQuery">JQuery</option>
-						<option value="JSP">JSP</option>
-						<option value="Bootstrap">Bootstrap</option>
-						<option value="JPA">JPA</option>
+						<option value="1">Java</option>
+						<option value="2">Javascript</option>
+						<option value="3">HTML/CSS</option>
+						<option value="4">Spring</option>
+						<option value="5">Python</option>
+						<option value="6">Vue.js</option>
+						<option value="7">React</option>
+						<option value="8">JQuery</option>
+						<option value="9">JSP</option>
+						<option value="10">Bootstrap</option>
+						<option value="11">JPA</option>
 					</select>
 				</div>
 				<div class="col-1">
 					<select name="people" class="selectpicker mb-3"
 						data-style="btn-light" style="width: 10%;" data-live-search="true"
 						data-width="120px">
-						<option value="0" selected>모집인원</option>
+						<option value="모집인원" selected>모집인원</option>
 						<option value="1">1명</option>
 						<option value="2">2명</option>
 						<option value="3">3명</option>
@@ -136,22 +136,22 @@
 				</div>
 
 				<div class="col-1">
-					<select name="" class="selectpicker mb-3" data-style="btn-light"
+					<select name="loc_seq" class="selectpicker mb-3" data-style="btn-light"
 						style="width: 10%;" data-live-search="true" data-width="120px">
 						<option value="지역" selected>지역</option>
-						<option value="온라인">온라인</option>
-						<option value="충청북도">충북</option>
-						<option value="충청남도">충남</option>
-						<option value="경기도">경기도</option>
-						<option value="전라북도">전북</option>
-						<option value="전라남도">전남</option>
-						<option value="경상남도">경남</option>
-						<option value="경상북도">경북</option>
-						<option value="강원도">강원도</option>
-						<option value="세종특별시">세종시</option>
-						<option value="서울특별시">서울시</option>
-						<option value="인천광역시">인천시</option>
-						<option value="제주특별시">제주시</option>
+						<option value="1">온라인</option>
+						<option value="2">충북</option>
+						<option value="3">충남</option>
+						<option value="4">경기도</option>
+						<option value="5">전북</option>
+						<option value="6">전남</option>
+						<option value="7">경남</option>
+						<option value="8">경북</option>
+						<option value="9">강원도</option>
+						<option value="10">세종시</option>
+						<option value="11">서울시</option>
+						<option value="12">인천시</option>
+						<option value="13">제주시</option>
 					</select>
 				</div>
 				<div class="col-1">
@@ -202,7 +202,7 @@
 
 				<div class="col-md-3" style="margin-top: 24px;">
 					<div class="form-group" style="margin: 0">
-						<img id="preview" src="/studyboard/upload/default.png" alt="썸네일"
+						<img id="preview" src="/studyboard/upload/study_board_default.jpg" alt="썸네일"
 							style="margin-bottom: 15px; width: 280px; height: 200px;">
 						<div class="filebox"
 							style="text-align: center; margin-left: 22px;">
@@ -266,10 +266,6 @@
 							.html(fileName);
 				});
 	</script>
-
-	
-
-
 
 	<script>
 		$(document).ready(function() {
@@ -348,16 +344,13 @@
 
 	<script>
 		$(function() {
-
-			
 			$('._submit').click(function(evt) {
-
 						evt.preventDefault();
-
 						var selectBox1 = $('.selectpicker option:selected').eq(
 								0).val();
 						var selectBox2 = $('.selectpicker option:selected').eq(
 								1).val();
+						console.log(selectBox2)
 						var selectBox3 = $('.selectpicker option:selected').eq(
 								2).val();
 						var selectBox4 = $('.selectpicker option:selected').eq(
@@ -367,7 +360,6 @@
 						//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
 
 						var selectAlert = "";
-
 						if (selectBox1 == "언어" || selectBox2 == "모집인원"
 								|| selectBox3 == "지역" || selectBox4 == "난이도"
 								|| selectBox5 == "") {
@@ -392,22 +384,18 @@
 										selectAlert.length);
 							}
 							swal(selectAlert+"를 선택해주세요","", "error");
-
-
 						} else {
-
 							if (selectBox6 == "") {
 								swal("글 제목을 입력해주세요","", "error");
 							} else {
-								swal("작성이 완료되었습니다", "", "success");			
+								//swal("작성이 완료되었습니다", "", "success");			
 								$('._submit').unbind();
-								$(this).click();
+								$(this).click(); 
 							}
 
 						}
 
 					});
-			console.log('이건 내꺼44444444444444444');
 		});
 	</script>
 

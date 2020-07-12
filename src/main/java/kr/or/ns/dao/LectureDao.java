@@ -35,15 +35,7 @@ public interface LectureDao {
 	//가져온 북마크 갯수
 	public int getBookmarkCount(String userid);
 
-	//가져온 북마크 목록
-	
-//	public List<HashMap<String, Object>> getBookmarkList(@Param("cri_s")Criteria_Select cri_s,@Param("mypageBookmarkList")List<Map<String,Object>> mypageBookmarkList);
-//	public List<HashMap<String, Object>> getBookmarkList(@Param("cri_s")Criteria_Select cri_s,@Param("userid")String userid);
-	
-	//페이징 시도----------------------------------------------------------------
-//	public List<Map<String, Object>> getBookmarkList(Criteria_Select cri_s, String userid);
-//	public List<HashMap<?,?>> getBookmarkList(Criteria_Select cri_s, List<Map<String, Object>> mypageBookmarkList);
-
+	//가져온 북마크 목록 페이징
 	public List<HashMap<String, Object>> getBookmarkList(HashMap<String, Object> map);
 
 	//l_seq 를 가져오는 함수
@@ -51,4 +43,5 @@ public interface LectureDao {
 
 //	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s, String userid);
 
+	public HashMap<String, Object> getLecture(String l_seq);
 }

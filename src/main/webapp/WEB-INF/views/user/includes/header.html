@@ -65,11 +65,14 @@
 								모임</a></li>
 						<li
 							style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
-
+						
 						<th:block sec:authorize="hasRole('ROLE_USER')">
-<!-- 							<a href="/mypage/mypage.do" style="padding-left: 20px;"> <img -->
-<!-- 								src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSSBGjSeYimOBFkTRv3VK3T8aZZ8a1GWsSFzA&usqp=CAU" -->
-<!-- 								alt="" style="height: 50px; border-radius: 50%;"></a> -->
+							<!-- <a href="/mypage/mypage.do" style="padding-left: 20px;"> 
+							 <img
+								th:src="'/userboard/upload/' + ${session.currentUser.profile_img}"
+								alt="" style="height: 50px; border-radius: 50%;"> 
+						
+							</a> -->
 							<li class="drop-down"
 								style="padding-left: 0px; padding-right: 15px;"><a href=""></a>
 
