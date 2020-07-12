@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
 
 
@@ -45,4 +46,7 @@ public interface BoardService {
 	
 	//좋아요 테이블에 좋아요 넣기 
 	public void heartinsert(String user_id, String s_seq);
+	
+	//좋아요 0/1컬럼 체크
+	public int heartnum(Likes like);
 }

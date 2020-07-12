@@ -252,6 +252,12 @@ public class BoardServiceImpl implements BoardService {
 		
 		
 	}
+	
+	public int heartnum(Likes like) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int heart = dao.heartnum(like);
+		return heart;
+	}
 
 	
 	
