@@ -1,6 +1,7 @@
 package kr.or.ns.controller;
 
 import java.security.Principal;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,8 +50,11 @@ public class MyPageController {
 		
 		List<Map<String,Object>> list = null;
 		list = service.myPagelist(users);
+		Users user = service.userInfo(users);
+		
 		model.addAttribute("list", list);
-		System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + list);
+		model.addAttribute("user", user);
+		System.out.println("유저정보 확인" + user);
 		
 		return "user/mypage/mypage";
 		

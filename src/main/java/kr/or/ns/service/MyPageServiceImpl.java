@@ -164,6 +164,16 @@ public class MyPageServiceImpl implements MyPageService {
 
 
 
+	// 사용자 정보 가져오기
+	@Override
+	public Users userInfo(String user) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		Users man = dao.getUsers(user);
+		return man;
+	}
+
+
+
 	
 	
 }
