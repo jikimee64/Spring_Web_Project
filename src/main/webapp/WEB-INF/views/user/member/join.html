@@ -688,13 +688,18 @@ body {
 								|| regFlag[2] === false || regFlag[3] ===false) {
 							alert('모든 값을 조건에 맞게 입력해주세요.')
 							return false;
-						} else if (toggle === false) {
+						} else if (toggleid === false) {
 							alert('아이디 중복체크를 해주세요.')
 							return false;
 						} else if (pwCheck === false) {
 							alert('입력하신 비밀번호가 일치하지 않습니다.')
 							return false;
-						} else {
+						} else if (toggle === false) {
+							alert('이메일 중복체크를 해주세요.')
+							return false;
+						}
+						
+						else{
 							flag = true;
 						}
 		
@@ -729,6 +734,7 @@ body {
 			var toggle = false;
 			var pwCheck = false;
 			var regFlag = [ false, false, false, false ];
+			var toggleid = false;
 
 			//유효성 검사
 			// 목표 : 이름은 2글자 이상 10글자 이하로 정한다
@@ -854,7 +860,7 @@ body {
 										})
 									
 									//$('.idcheck').html("아이디를 입력해주세요.")
-									toggle = false;
+									toggleid = false;
 								} else if (data == 1) { //아이디 존재
 									
 									swal({
@@ -866,7 +872,7 @@ body {
 									//$('.idcheck').html("동일한 아이디가 존재합니다.")
 									$('#user_id').val("");
 									$('#user_id').focus();
-									toggle = false;
+									toggleid = false;
 								} else {
 									if(regFlag[3] === false){
 										swal({
@@ -875,7 +881,7 @@ body {
 											  buttons: true
 											  
 											})
-										toggle = false;
+										toggleid = false;
 									}else{
 										
 										swal({
@@ -884,12 +890,12 @@ body {
 											  buttons: true
 											  
 											})
-											toggle = true;
+											toggleid = true;
 									}
 									
 										
 									//$('.idcheck').html("사용하셔도 됩니다.")
-									toggle = true;
+									toggleid = true;
 								}
 							},
 							error : function(request, status, error) {
@@ -913,7 +919,7 @@ body {
 								user_email : $('#user_email').val()
 							},
 							success : function(data) {
-								//아이디 중복시 아이디 인풋값 제거
+								//이메일 중복시 아이디 인풋값 제거
 
 								if ($('#user_email').val() === '') {
 									
@@ -922,8 +928,6 @@ body {
 										  icon: "info",
 										  buttons: true
 										})
-									
-									
 									toggle = false;
 								} else if (data == 1) { //이메일이 존재
 									

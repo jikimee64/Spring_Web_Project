@@ -467,9 +467,14 @@ group+group {
 			contentType : "application/json",
 			cache : false,
 			type : 'POST',
-			 data : JSON.stringify(data),
+			data : JSON.stringify(data),
 			success : function(data) {
-				console.log(data);
+				console.log('우철 : ' + data[0].USER_NAME);
+				console.log($('#exampleModalCenterTitle'));
+				console.log('정아 :::' + data[0].SKILL_LEVEL)
+				$('.ModalUserName').text(data[0].USER_NAME);
+				$('#java').val(data[0].SKILL_LEVEL);
+				
 			},
 			error : function(e) {
 				console.log("error:", e);

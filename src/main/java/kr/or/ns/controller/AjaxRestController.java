@@ -181,4 +181,14 @@ public class AjaxRestController {
 
 	}
 
+	//이메일 중복체크
+	@RequestMapping(value = "onlyEmailCheck.do", method = RequestMethod.POST)
+	public int onlyEmailCheck(String user_email) throws ClassNotFoundException {
+		System.out.println(user_email + " : user_id 컨트롤러");
+		int result = service.onlyEmailCheck(user_email);
+		return result;
+
+	}
+
+
 }
