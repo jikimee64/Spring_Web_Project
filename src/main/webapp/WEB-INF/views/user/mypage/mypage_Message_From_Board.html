@@ -222,7 +222,8 @@ group+group {
 					</a>
 					<button type="button" class="btn btn-warning" id="deletemessage"
 						name="deletemessage"
-						style="width: 100px; color: white; margin-top: 30px;">삭제 하기</button>
+						style="width: 100px; color: white; margin-top: 30px;">삭제
+						하기</button>
 
 				</div>
 
@@ -256,12 +257,15 @@ group+group {
 						<input type="checkbox" class="_input_check" name="_input_check" />
 					</div>
 					<!-- td2(보낸사람) -->
-					<div class="col-md-2"
-						style="place-self: center; text-align: center;">
-						<a href="" data-toggle="modal" data-target="#userInfoModal"> <span
-							th:text="${list.senderid}"></span>
-						</a>
-					</div>
+					<!-- 이게모달이다 ★★★★★★★★★★★★★★★ -->
+               <div class="col-md-2"
+                  style="place-self: center; text-align: center;">
+                  <!-- @{/ajax/userInfoModal.do=(senderid=${list.senderid})} -->
+                  <a href="" th:classappend="|InfoModal${list.m_seq}|"
+                     th:onclick="|javascript:InfoModal('${list.m_seq}')|" data-toggle="modal"data-target="#userInfoModal">
+                     <span th:text="${list.senderid}"></span>
+                  </a>
+               </div>
 
 					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
 					<!-- td3(내용) -->
@@ -300,7 +304,6 @@ group+group {
 					<hr
 						style="color: #dfe4ea; border: solid 0.5px; margin-bottom: 0px; margin-top: 0px; width: 97%">
 				</div>
-
 			</th:block>
 
 			<div class="row" style="place-content: center;">
@@ -314,6 +317,7 @@ group+group {
 			</div>
 		</div>
 	</div>
+
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 
 
@@ -363,52 +367,50 @@ group+group {
 								checkbox.each(function(i) {
 									//let check = checkbox.parent().parent().eq(i);
 									let check = checkbox.parent().parent() //부모태그로 접근
-											.eq(i); 
+									.eq(i);
 									let check2 = check.children(); //부모태그의 자식들로 접근
-/* 
-									let sender1 = check2.eq(1).text().trim();
-									console.log("sender:" + sender1); //발신자
-
-									let content1 = check2.eq(2).text().trim();
-									console.log("content:" + content1); //내용
-
-									let time1 = check2.eq(3).text().trim();
-									console.log("time:" + time1); //시간 */
+									/* 
+									 let sender1 = check2.eq(1).text().trim();
+									 console.log("sender:" + sender1); //발신자
+									 let content1 = check2.eq(2).text().trim();
+									 console.log("content:" + content1); //내용
+									 let time1 = check2.eq(3).text().trim();
+									 console.log("time:" + time1); //시간 */
 
 									let m_seq1 = check2.eq(4).val().trim(); //쪽지번호
-									
+
 									console.log("m_seq:" + m_seq1)
-									
-									let data= {
-								/* 		"sender": sender1,
-										"content" : content1,
-										"time" : time1, */
+
+									let data = {
+										/* 		"sender": sender1,
+												"content" : content1,
+												"time" : time1, */
 										"m_seq" : m_seq1
-										
+
 									}
-									console.log(data);						
-									
-			$.ajax({
-				url : '/ajax/deleteMessage.do',
-				processData : false,
-				contentType:"application/json",
-				cache : false,
-				type : 'POST',
-				data : JSON.stringify(data),
-				success : function(data) {
-					check2.remove();
-				},
-				error : function(e) {
-					console.log("error:", e);
-				}
-		
-								});
-							})
-		});
+									console.log(data);
+
+									$.ajax({
+										url : '/ajax/deleteMessage.do',
+										processData : false,
+										contentType : "application/json",
+										cache : false,
+										type : 'POST',
+										data : JSON.stringify(data),
+										success : function(data) {
+											check2.remove();
+										},
+										error : function(e) {
+											console.log("error:", e);
+										}
+
+									});
+								})
+							});
 		});
 	</script>
 
-<script>
+	<script>
 		$(function() {
 			$(".blameform").submit(function(e) {
 				e.preventDefault();
@@ -447,6 +449,31 @@ group+group {
 		});
 	</script>
 
+
+	<script>
+    function InfoModal(idx){
+        let id = $('.InfoModal'+idx).children().text();
+        console.log("아이디 : " + id); 
+    /*     
+        $.ajax({
+			url : '/ajax/userInfoModal.do',
+			processData : false,
+			contentType : "application/json",
+			cache : false,
+			type : 'POST',
+			data : 
+			success : function(data) {
+				console.log(data);
+			},
+			error : function(e) {
+				console.log("error:", e);
+			}
+		}); 
+         */
+     }
+									
+			
+	</script>
 
 
 </body>

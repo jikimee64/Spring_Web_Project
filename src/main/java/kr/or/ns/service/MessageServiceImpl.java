@@ -49,6 +49,7 @@ public class MessageServiceImpl implements MessageService {
 		try {
 			System.out.println("아이디 : " + userid);
 			list = dao.getListMessage(userid);
+			System.out.println("으철 : " + list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
