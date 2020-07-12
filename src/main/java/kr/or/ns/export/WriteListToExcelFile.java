@@ -1,9 +1,12 @@
 package kr.or.ns.export;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -16,7 +19,7 @@ import kr.or.ns.vo.Users;
 
 
 public class WriteListToExcelFile {
-	public static void writeMemberListToFile(String fileName, List<Users> memberList) throws Exception {
+	public static void writeMemberListToFile(String fileName, List<Users> memberList, HttpServletRequest request) throws Exception {
 		
 	Workbook workbook = null;
 	
@@ -31,9 +34,10 @@ public class WriteListToExcelFile {
 	}
 		
 	
-	Sheet sheet = workbook.createSheet("cordova");
+	Sheet sheet = workbook.createSheet("회원관리");
 	
 	Iterator<Users> iterator = memberList.iterator();
+	System.out.println("머냐이건 : " + iterator);
 	
 	int rowIndex = 0;
 	int excelName = 0; // 처음에는 고정값을 넣기 위해 사용한 변수
@@ -79,7 +83,9 @@ public class WriteListToExcelFile {
 	}while(iterator.hasNext());  //다음값이 없을때까지 뽑음
 		
 	//excel데이터를 file로 만듦
-	FileOutputStream fos = new FileOutputStream(fileName);
+	String path = request.getServletContext().getRealPath("/manager/");
+    File xlsFile = new File(path+fileName); //저장경로 설정
+	FileOutputStream fos = new FileOutputStream(xlsFile);
 	workbook.write(fos); //쓴다
 	fos.close();
 	

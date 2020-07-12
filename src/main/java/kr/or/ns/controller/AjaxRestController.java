@@ -25,7 +25,7 @@ public class AjaxRestController {
 	@Autowired
 	private AjaxService service;
 
-	@Autowired
+	@Autowired                       
 	private MessageService mservice;
 
 	// 아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
@@ -180,19 +180,5 @@ public class AjaxRestController {
 		return list;
 
 	}
-	
-	//이메일 중복체크
-	@RequestMapping(value = "onlyEmailCheck.do", method = RequestMethod.POST)
-	public int onlyEmailCheck(String user_email) throws ClassNotFoundException {
-		System.out.println(user_email + " : user_id 컨트롤러");
-		int result = service.onlyEmailCheck(user_email);
-
-		return result;
-
-	}
-	
-	
-	
-	
 
 }

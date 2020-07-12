@@ -90,8 +90,12 @@
 	<!-- bean네임추가 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="3"></property>
+		<property name="order" value="0"></property>
 	</bean>
+	
+	<bean id="excelView" class="kr.or.ns.export.WriteListToExcelFile"/>
+	
+	
 
 	<!-- 파일 다운로드할 클래스 경로 설정 -->
 	<!-- <bean id="download" class=""/> -->
