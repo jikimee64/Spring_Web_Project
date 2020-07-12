@@ -60,8 +60,9 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 	
 	<!-- 유저정보 모달창에 띄우기 -->
 	<select id="getUserInfo" resultType="hashMap">
-		select * from users where
-		user_id=#{USER_ID}
+		select * from users left outer join skill on 
+		users.user_id = skill.user_id where
+		users.user_id=#{user_id}
 	</select>
 
 	<!-- 이메일 중복체크 -->

@@ -49,11 +49,17 @@ public class MyPageController {
 		System.out.println("유저정보" + users);
 		
 		List<Map<String,Object>> list = null;
-		list = service.myPagelist(users);
-		Users user = service.userInfo(users);
-		
+		list = service.myPagelist(users);      //북마크 리스트
+		Users user = service.userInfo(users);  //사용자 정보
+		int bk = service.bookmarkCount(users); //북마크갯수
+		int cm = service.commentCount(users);  //댓글 갯수
+		int sb = service.s_boardCount(users);  //스터디게시판 게시글 갯수
+
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
+		model.addAttribute("bk", bk);
+		model.addAttribute("cm", cm);
+		model.addAttribute("sb", sb);
 		System.out.println("유저정보 확인" + user);
 		
 		return "user/mypage/mypage";

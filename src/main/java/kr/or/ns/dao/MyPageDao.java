@@ -26,6 +26,15 @@ public interface MyPageDao {
 	
 	//마이페이지(북마크 가져오기)
 	public List<Map<String, Object>> getBookMark(String userid);
+
+	//마이페이지(북마크 갯수 가져오기)
+	public int getbkCount(String users);
+	
+	//마이페이지(댓글 갯수 가져오기)
+	public int getcmCount(String users);
+
+	//마이페이지(스터디게시판 게시글 갯수 가져오기 
+	public int getsbCount(String users);
 	
 
 	
