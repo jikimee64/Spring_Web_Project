@@ -24,16 +24,6 @@ public class ManagerServiceImpl implements ManagerService {
 		return list;
 	}
 
-	// 회원목록 가져오기 select All(Poi용)
-	public List<Users> getMemberPoiList() {
-
-		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		List<Users> list = dao.getMemberPoiList();
-		System.out.println("우철 : " + list);
-
-		return list;
-	}
-
 	@Override
 	public Users getUsers(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);

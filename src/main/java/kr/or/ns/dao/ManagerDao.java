@@ -9,8 +9,6 @@ import kr.or.ns.vo.Users;
 public interface ManagerDao {
 
 	public List<Users> getMemberList();
-	
-	public List<Users> getMemberPoiList();
 
 	public Users getUsers(String user_id);
 

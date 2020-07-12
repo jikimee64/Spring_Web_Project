@@ -84,7 +84,7 @@ public class ManagerController {
 //	public String excelMemberView(Model model) throws Exception {
 	public ModelAndView excelMemberView(HttpServletRequest request) throws Exception {
 		List<Users> memberList = null;
-		memberList = service.getMemberPoiList(); // 회원목록가져와서 memberList에 넣음
+		memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
 
 		// 배포경로에 엑셀을 만들어서 다운하는
 		WriteMemberListToExcelFile.writeMemberListToExcepFile("회원관리_목록.xls", memberList, request);
@@ -102,7 +102,7 @@ public class ManagerController {
 //		public String excelMemberView(Model model) throws Exception {
 		public ModelAndView pdfMemberView(HttpServletRequest request) throws Exception {
 			List<Users> memberList = null;
-			memberList = service.getMemberPoiList(); // 회원목록가져와서 memberList에 넣음
+			memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
 
 			WriteMemberListToPdfFile.writeMemberListToPdfFile("회원관리_목록.pdf", memberList, request);
 			
