@@ -1,6 +1,7 @@
 package kr.or.ns.controller;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,9 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker_Board;
@@ -22,7 +24,6 @@ import kr.or.ns.service.BoardServiceImpl;
 
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Study;
-
 
 /*
 클래스명 : BoardController
@@ -60,7 +61,7 @@ public class BoardController {
 		return "user/board/study_List"; // study_List.html
 	}
 
-	//일반컨텐츠(스터디 게시판 글 등록)
+	// 일반컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
 	public String boardRegister(Study study, HttpServletRequest request, Principal principal) {
 
@@ -77,8 +78,8 @@ public class BoardController {
 		}
 		System.out.println("리턴 전...");
 
-		//return "user/board/study_List";
-		 return "redirect:/board/study_List.do";
+		// return "user/board/study_List";
+		return "redirect:/board/study_List.do";
 		// /index.htm
 		// return "redirect:index.do"; // /index.htm
 		// return "redirect:study_List.do"; // /index.htm
@@ -90,10 +91,8 @@ public class BoardController {
 		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
 		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
 	}
-	
-	
-	
-	//온라인컨텐츠(스터디 게시판 글 등록)
+
+	// 온라인컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
 	public String registerOnline(Study study, Principal principal, HttpServletRequest request) {
 
@@ -111,8 +110,8 @@ public class BoardController {
 		}
 		System.out.println("리턴 전...");
 
-		//return "user/board/study_List";
-		 return "redirect:/board/study_List.do";
+		// return "user/board/study_List";
+		return "redirect:/board/study_List.do";
 	}
 
 	@RequestMapping("board_Select.do")
@@ -129,9 +128,9 @@ public class BoardController {
 		return "user/board/writing_Normal_Study";
 	}
 
-	
 	@RequestMapping("writing_Common_Study_Detail.do")
-	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model, Principal principal) {
+	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
+			Principal principal) {
 
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
@@ -149,20 +148,19 @@ public class BoardController {
 		return "user/board/writing_Common_Study_Detail";
 	}
 
-
-	//글 수정 페이지 이동
+	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
 	public String writingNormalStudyEditPage(String s_seq, Model model) {
 		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
 		System.out.println("study" + study);
-		
+
 		return "user/board/writing_Normal_Study_Edit";
 	}
-	
-	//글 수정 로직
-	@RequestMapping(value= "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
+
+	// 글 수정 로직
+	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
 	public String writingNormalStudyEdit() {
 		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 
@@ -174,7 +172,7 @@ public class BoardController {
 			throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 
-		//게시글 삭제
+		// 게시글 삭제
 		int result = service.delete(s_seq);
 
 		PageMaker_Board pageMakerb = new PageMaker_Board();
@@ -198,5 +196,20 @@ public class BoardController {
 		return "user/board/board_Support_Status";
 	}
 
-	
+	@RequestMapping(value = "heart.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+		String user_id = principal.getName();
+		String s_seq = (String) params.get("s_seq");
+		System.out.println(user_id);
+		System.out.println(s_seq);
+
+		try {
+			service.heartinsert(user_id, s_seq);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
 }

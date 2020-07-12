@@ -60,7 +60,7 @@ public class LectureServiceImpl implements LectureService{
 			System.out.println( "---------------------------------------------------------------");
 			 if(result == 0 ) {
 				 //없으면 insert
-				 System.out.println("넣으러 왔어요"); 
+				 System.out.println("insert 넣으러 왔어요"); 
 				 bk.setBookmark_check(1);
 				 dao.heartinsert(bk); 
 			 }else { 

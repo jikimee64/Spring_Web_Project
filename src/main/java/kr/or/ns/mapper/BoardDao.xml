@@ -62,6 +62,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	
+	<!-- 좋아요 추가 -->
+	<insert id="heartinsert" parameterType="kr.or.ns.vo.Likes">
+		INSERT INTO likes(user_id,s_seq,like_check) values(#{user_id},#{s_seq},1)
+	</insert>
+	
 	
 	
 	

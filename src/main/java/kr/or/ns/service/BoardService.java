@@ -42,4 +42,7 @@ public interface BoardService {
 	
 	//댓글 개수
 	public int getReplyCnt(String s_seq);
+	
+	//좋아요 테이블에 좋아요 넣기 
+	public void heartinsert(String user_id, String s_seq);
 }
