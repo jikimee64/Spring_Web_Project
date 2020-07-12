@@ -31,5 +31,8 @@ public interface MyPageService {
 	
 	//마이페이지(북마크 가져오기)
 	public List<Map<String, Object>> myPagelist(String userid);
+	
+	//마이페이지(사용자 정보 가져오기)
+	public Users userInfo(String user);
 
 }
