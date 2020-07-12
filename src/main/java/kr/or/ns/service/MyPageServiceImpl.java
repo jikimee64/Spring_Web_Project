@@ -174,6 +174,37 @@ public class MyPageServiceImpl implements MyPageService {
 
 
 
+
+	@Override
+	public int bookmarkCount(String users) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		int count = dao.getbkCount(users);
+		System.out.println("--------------"+count+"--------------");
+		return count;
+	}
+
+
+	@Override
+	public int commentCount(String users) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		int count = dao.getcmCount(users);
+		System.out.println("--------------"+count+"--------------");
+		return count;
+	}
+
+
+
+
+	@Override
+	public int s_boardCount(String users) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		int count = dao.getsbCount(users);
+		System.out.println("--------------"+count+"--------------");
+		return count;
+	}
+
+
+
 	
 	
 }

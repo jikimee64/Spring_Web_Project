@@ -34,5 +34,15 @@ public interface MyPageService {
 	
 	//마이페이지(사용자 정보 가져오기)
 	public Users userInfo(String user);
+	
+	//마이페이지(북마크 갯수 카운트)
+	public int bookmarkCount(String users);
+
+	
+	//마이페이지(댓글 갯수 카운트)
+	public int commentCount(String users);
+
+	//마이페이지(스터디 게시판 게시글 카운트)
+	public int s_boardCount(String users);
 
 }
