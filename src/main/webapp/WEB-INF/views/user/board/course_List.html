@@ -707,13 +707,15 @@ keyframes heart-keyframes { 100% {
 			  var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
 			  
 			  console.warn(L_seq);
-			  /* if($(this).is(":checked")){
-				    alert(lectureTitle + ' 북마크에 추가됨' +L_seq);
-				    console.log($(this).is(":checked"));
+			  
+			  
+			   if($(this).is(":checked")){
+				    swal("북마크에 추가되었습니다", "", "success");
+// 				    console.log($(this).is(":checked"));
 			  }else{
-				  alert(lectureTitle + ' 북마크에서 삭제됨');
-				  console.log($(this).is(":checked"));
-			  } */
+				  swal("북마크에서 삭제되었습니다", "", "info");
+// 				  console.log($(this).is(":checked"));
+			  } 
 			  
 			  var obj = {"l_seq" : L_seq};
 			  
