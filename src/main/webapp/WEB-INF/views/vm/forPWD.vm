@@ -1,23 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>vm</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
+
+
+<style>
+</style>
+
 <body>
-<div style = "border : 3px solid lightgray; padding : 5em;">
-	<p style = "color : #005792"><b>인증번호는 ${key}입니다.</b></p><br>
-	<p style = "color : #005792"><b>주식회사 스쿱을 이용해 주셔서 감사합니다.</b></p><br>
-	<p>-------------------------------------------------------------</p><br>
-	<p> 본 이메일은</p><br>
-	<p> Social Cooperation 스쿱 회원가입을 위한 이메일 인증입니다 </p><br>
-	<p> 회원가입을 완료하시려면 아래의 인증을 클릭해 주세요.  </p><br>
-	<p> <a href = "http://192.168.6.16:8090/Scoop_Project/frontpage.jsp"><input type="button" style="width: 60px; height: 30px; margin-left: 12%" value="인증"></a>  </p><br>
-	<p>-------------------------------------------------------------</p><br>
-	<p>(주)스쿱</p>
-	<p>010-2720-****</p>
-	<p>서울특별시 강남구 테헤란로5길 11 YBM빌딩 2층</p>
-	
-</div>
+    <div style="width: 79%;margin: 31px 10px 10px 38px;">
+        <div style="background-color: #3f3f3f; margin-bottom: 1px;">
+            <img src="https://user-images.githubusercontent.com/61257242/87244918-ea59da00-c47b-11ea-93f7-f51e868fff2e.png"
+                alt="">
+
+        </div>
+        <div class="container"
+            style="background-color: white; border: 1px solid #303030; border-top: 6px solid #18D26E;margin-bottom: 11px;">
+
+            <div style="margin-top: 20px;">
+                <span style="padding-left:30px; font-size: xx-large;"> 이메일 인증을 완료하시려면 인증번호를 입력해주세요</span>
+            </div>
+
+            <div>
+                <h3 style="padding-left:30px;">인증번호 안내</h3>
+            </div>
+            <div style="text-align:-webkit-center; text-align-last:start;">
+                <div class="grid-container"
+                    style=" border-top: 1px solid black; border-bottom: 1px solid #dddddd; width:95%;margin-bottom:10px;">
+                    <div style=" background-color: #F8F8F8; padding: 10px 0 10px 10px;">
+                        
+                        인증번호
+                       
+                    </div>
+                    <div style="background-color: rgba(255, 255, 255, 0.8);padding: 10px 0 10px 10px;">
+                        <b style="font-size: x-large;">${key}</b>
+                    </div>
+                </div>
+               
+                <div style="padding-left:30px; margin-bottom: 50px;">※인증번호를 입력하셔야만 이메일 인증이 완료됩니다.</div>
+
+            </div>
+
+        </div>
+        <span style="color:#a8a8a8">본 메일은 발신 전용 메일입니다. 문의는 <span style="color:#7a7a7a">고객센터</span> 를 이용해 주세요.</span>
+        <hr style="border: 1px solid #dddddd;" />
+        (주)위스터디
+        <span style="color:#a8a8a8">비트캠프 서울시 서초구 3층 301호 강남대로 459 (서초동, 백암빌딩) | 고객센터 nosangcoding@gmail.com / &copyCopyright NosangCoding All Rights Reserved.</span>
+            
+
+
+    </div>
 </body>
+
 </html>
