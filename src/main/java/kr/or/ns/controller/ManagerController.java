@@ -90,7 +90,7 @@ public class ManagerController {
 		System.out.println("잘뽑히냐임마!! : " + memberList);
 //		model.addAttribute("memberList", memberList); // view까지 전달
 		
-		WriteListToExcelFile.writeMemberListToFile("cordova.xls", memberList,request);
+		WriteListToExcelFile.writeMemberListToFile("회원관리_목록.xls", memberList,request);
 //		return "manager/board/member_Management";
 		return "excelView";
 	}
