@@ -10,7 +10,8 @@
 <!-- 폰트어썸 아이콘 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+<!-- sweetalert -->	
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 
 
 <link rel="stylesheet"
@@ -381,24 +382,44 @@ outline:none;
                 	useremail: ''
                 },
              }),
-            methods: {  //수정하는 중 //값을 못 보내는게 문제임
+            methods: {  
+            	
             	async emailCheck(){
+            		
             		try{
+            			
 	            		if(this.username !== '' && this.useremail !== ''){ //username이랑 userid가 빈값이 아닐 때
+	                        this.user.username = this.user.username.trim();
+	                        this.user.useremail = this.user.useremail.trim();
 	            			 const res = await axios.post('/ajax/emailCheck.do', this.user);
 	            				if(res.data === 1){
-	            					alert('인증번호를 발급했습니다 ');
+	            					swal({
+	                          		  title: "완료",
+	                          		  text: "임시비밀번호를 발급했습니다.",
+	                          		  icon: "success",
+	                          		  button: "확인",
+	                          		});
 	            					 const res = await axios.post('/ajax/makeAuthKey.do', this.user);
 	            					 $('#aa').val(res.data.key);
 		                             $('#bb').val(res.data.id);
 	            					
 	            				}else{
 
-	            					alert('일치하는 데이터가 없습니다.이름과 이메일 주소를 확인해주세요. ');
+	            					 swal({
+	                               	  title: "알림",
+	                               	  text: "입력하신 이름과 이메일을 다시한번 확인 해주세요",
+	                               	  icon: "warning",
+	                               	  button: "확인",
+	                               	});
 	            				}
 	            			
 	            		}else{
-	                        alert(" 아이디와 이메일을 입력바랍니다  ");
+	            			swal({
+	                    		   title: "알림",
+	                    		   text: "아이디와 이메일을 입력해주세요.",
+	                    		   icon: "warning",
+	                    		   button: "확인",
+	                    		 });
 	                    }
             		}catch(error){
             			console.warn("오류났어 슬기야");
