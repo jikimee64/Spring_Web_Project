@@ -28,4 +28,6 @@ public interface MyPageDao {
 	public List<Map<String, Object>> getBookMark(String userid);
 	
 
+	
+
 }

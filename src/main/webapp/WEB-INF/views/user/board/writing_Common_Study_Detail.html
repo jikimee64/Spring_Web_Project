@@ -270,7 +270,7 @@ keyframes heart-keyframes { 100% {
 									</div>
 									<div th:case="${study.FILESRC}" class="form-group" style="margin: 0">
 										<a href="" style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
-											<span th:text="${study.FILESRC}"></span>
+											<span class="_file_name1" th:text="${study.FILESRC}"></span>
 										</a>
 									</div>
 								</th:block>
@@ -288,7 +288,7 @@ keyframes heart-keyframes { 100% {
 									</div>
 									<div th:case="${study.FILESRC2}" class="form-group" style="margin: 0">
 										<a href="" style="color: black;"> <i class="fa fa-folder-open" aria-hidden="true"></i>
-											<span th:text="${study.FILESRC2}"></span>
+											<span class="_file_name2" th:text="${study.FILESRC2}"></span>
 										</a>
 									</div>
 								</th:block>
@@ -572,6 +572,21 @@ keyframes heart-keyframes { 100% {
 	
 	 <script>
  $(function() {
+	 
+	 
+	 /* 첨부파일명 자르기 시작 */
+		console.warn($('._file_name1').text());
+		console.warn($('._file_name2').text());
+	 	
+		var fileName1 = $('._file_name1');
+		var fileName2 = $('._file_name2');
+		
+		
+		fileName1.innerText =  $('._file_name1').text().substring(0,8);
+		fileName2.innerText = $('._file_name2').text().substring(0,8);
+	 	
+	 /* 첨부파일명 자르기 끝 */
+	 
 	 
 	  $(".blameform").submit(function(e) {
 		 	 e.preventDefault();
