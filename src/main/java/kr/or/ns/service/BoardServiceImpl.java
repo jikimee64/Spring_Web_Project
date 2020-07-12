@@ -219,20 +219,31 @@ public class BoardServiceImpl implements BoardService {
 		
 		try {
 			//id&l_seq 값으로 북마크 유무 체크
-			/*
-			 * int result = dao.heartcheck(like); System.out.println(
-			 * "---------------------   result 찍어보기 -----------------------");
-			 * System.out.println(result); System.out.println(
-			 * "---------------------------------------------------------------"); if(result
-			 * == 0 ) { //없으면 insert System.out.println("insert 넣으러 왔어요");
-			 * like.setLike_check(1); dao.heartinsert(like); }else { //있으면 update
-			 * System.out.println("update 갑니다.");
-			 * 
-			 * if(dao.heartnum(like) == 0 ) { //1 넣으러 왔어요 System.out.println("1 넣으러 왔어요");
-			 * like.setLike_check(1); dao.heartupdate(like); }else { //0 넣으러 왔어요
-			 * System.out.println("0 넣으러 왔어요"); like.setLike_check(0);
-			 * dao.heartupdate(like); } }
-			 */
+			int result =  dao.heartcheck(like);
+			System.out.println( "---------------------   result 찍어보기 -----------------------");
+			System.out.println(result);
+			System.out.println( "---------------------------------------------------------------");
+			 if(result == 0 ) {
+				 //없으면 insert
+				 System.out.println("insert 넣으러 왔어요"); 
+				 like.setLike_check(1);
+				 dao.heartinsert(like);
+			 }else { 
+					 //있으면 update
+					 System.out.println("update 갑니다."); 
+					 
+					 if(dao.heartnum(like) == 0 ) {
+						 //1 넣으러 왔어요
+						 System.out.println("1 넣으러 왔어요");
+						 like.setLike_check(1);
+						 dao.heartupdate(like);
+					 }else {
+						 //0 넣으러 왔어요
+						 System.out.println("0 넣으러 왔어요");
+						 like.setLike_check(0);
+						 dao.heartupdate(like);
+					 }
+			 }
 			 
 		} catch (Exception e) {
 			System.out.println("오류 났어요.");

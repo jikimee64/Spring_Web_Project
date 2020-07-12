@@ -45,6 +45,15 @@ public interface BoardDao {
 	//라이크테이블에 넣기 
 	public void heartinsert(Likes like);
 	
+	//좋아요 유무 확인
+	public int heartcheck(Likes like);
+	
+	//좋아요의 0/1 컬럼 확인
+	public int heartnum(Likes like);
+	
+	//좋아요의 0/1 컬럼에 업데이트
+	public void heartupdate(Likes like);
+	
 
 
 
