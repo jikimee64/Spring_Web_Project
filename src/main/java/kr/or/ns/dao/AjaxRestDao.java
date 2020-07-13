@@ -42,4 +42,7 @@ public interface AjaxRestDao {
 	//이메일 중복체크
 	public int onlyEmailCheck(String user_email);
 	
+	//마이페이지 모집중 스터디 비동기
+	public List<HashMap<String, Object>> recrutingStudy(String user_id);
+	
 }

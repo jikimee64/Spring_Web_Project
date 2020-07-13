@@ -48,5 +48,8 @@ public interface AjaxService {
 	//이메일 중복체크
 	public int onlyEmailCheck(String user_email);
 	
+	//마이페이지 모집중 스터디 비동기
+	public List<HashMap<String, Object>> recrutingStudy(HashMap<String, Object> params);
+	
 
 }

@@ -259,5 +259,16 @@ public class AjaxServiceImpl implements AjaxService {
 
 		return result;
 	}
+	
+	//마이페이지 모집중 스터디 비동기
+	@Override
+	public List<HashMap<String, Object>> recrutingStudy(HashMap<String, Object> params) {
+		String user_id = (String) params.get("user_id");
+		System.out.println("유저아이디 비동기 가져오기" + user_id);
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		List<HashMap<String, Object>> list = dao.recrutingStudy(user_id);
+		System.out.println("모집중 스터디 리스트" + list);
+		return list;
+	}
 
 }

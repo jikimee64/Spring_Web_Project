@@ -65,7 +65,7 @@ body {
 		<!-- Breadcrumbs Section -->
 
 	</main>
-	<div class="_border_box_shadow2" style=" height: 1400px;">
+	<div class="_border_box_shadow2" style="height: 1400px;">
 		<div class="container"
 			style="margin-top: 25px; padding: 0px; background-color: white;">
 			<div class="row" style="height: 200px;">
@@ -76,6 +76,7 @@ body {
 							style="height: 130px; border-radius: 50%;">
 					</p>
 				</div>
+
 				<div class="col-md-4 pl-0" style="align-self: center;">
 					<b style="font-size: larger; margin-left: 20px;"
 						th:text="${user.nickname}"></b> <a class="_message_hover"
@@ -142,11 +143,13 @@ body {
 						<b>모집중 스터디</b>
 					</button>
 				</div>
-					<div style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
-				<div th:each="studylist: ${studylist}">
-					<hr style="border: solid 1px; margin-top: 0px;" />
-					<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
-				
+				<div
+					style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;"
+					id="recruting_study">
+					<div th:each="studylist: ${studylist}">
+						<hr style="border: solid 1px; margin-top: 0px;" />
+						<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
+
 						<div class="row p-4">
 							<div class="col-md-1" style="text-align: center;">
 								<!-- 스터디 글 번호 -->
@@ -156,27 +159,40 @@ body {
 
 							<div class="col-md-8">
 								<!-- @{/board/board_Support_Status.do} -->
-								<span class="badge badge-pill badge-warning"
-									th:text="|${studylist.PEOPLE}명|">모집인원 4/6</span> <span
-									class="ml-3 badge badge-pill badge-danger"
-									th:text="|마감일 : ${studylist.DEADLINE}|">마감일</span> <a href=""><img
-									th:src="${studylist.IMAGE}" class="mb-1 _message_hover" alt=""
-									style="height: 27px; margin-left: 5px; margin-top: 2px;"></a>
-								<span th:text="${studylist.TITLE}"></span> <span
-									th:text="${studylist.CONTENT}"></span> &nbsp; <br />
+								<span class="badge badge-pill badge-primary"
+									th:text="${studylist.STATUS}"></span> <span
+									class="badge badge-pill badge-info"
+									th:text="${studylist.LEVEL}"></span> <span
+									class="badge badge-pill badge-secondary"
+									th:text="${studylist.CATE_LANGUAGE}"></span> <span
+									class="badge badge-pill badge-warning"
+									th:text="|${studylist.PEOPLE}명|" id="recruting_people">모집인원
+									4/6</span> <span class="badge badge-pill badge-warning"
+									th:text="${studylist.LOC}"></span> <span
+									class="badge badge-pill badge-light"
+									th:text="${studylist.CONTENT_KIND}"></span> <span
+									class="badge badge-pill badge-danger"
+									th:text="|마감일 : ${studylist.DEADLINE}|"></span><!-- <a
+									class="_message_hover" th:href="@{/board/board.Support_Status.do}"> -->
+									<img
+									src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
+									class="mb-1 _message_hover" alt="" style="height: 27px;">
+								</a><br /> <b><span th:text="${studylist.TITLE}"
+									style="font-size: xx-large;"></span></b><br /> <span
+									th:text="${studylist.CONTENT}"></span><br />
+
 
 
 							</div>
 							<div class="col-md-3" style="text-align: right;">
-								<img
-									src="https://cdn.inflearn.com/wp-content/uploads/jjn_es62.jpg"
-									alt="" style="height: 140px; width: 140px;">
+								<img th:src="${studylist.IMAGE}" alt=""
+									style="height: 140px; width: 140px;">
 							</div>
 						</div>
 					</div>
+					<br />
+					<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
 				</div>
-				<br />
-				<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
 			</div>
 			<!--  중간부분 끝  //////////////////////////////////////// -->
 			<!-- 여기부터 마지막 부분 시작/// 북마크 -->
@@ -199,7 +215,8 @@ body {
 					<div
 						style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
 						<div th:each="list: ${list}">
-
+							<input type="hidden" id="user_id" name="user_id"
+								th:value="${list.USER_ID}">
 
 							<!-- 여기부터 데이터 하나 넣기 시작 -->
 							<!-- 타임리프 for문 -->
@@ -294,8 +311,94 @@ body {
 	<!-- 참여중, 모집중 스터디 비동기 ajax -->
 	<script>
 		$(function() {
+			let user_id = $('#user_id').val();
+			console.log("유저아이디: " + user_id);
+			let data = {
+				"user_id" : user_id
+			}
 
+			$('#_study_button2').on("click", function() {
+				$.ajax({
+					url : '/ajax/recrutingStudy.do',
+					processData : false,
+					contentType : "application/json",
+					cache : false,
+					type : 'POST',
+					data : JSON.stringify(data),
+					success : function(data) {
+						$('#recruting_study').empty();
+							
+		/* 				let recruting_people = data[0].PEOPLE;
+						let recruting_num = data[0].S_SEQ;
+						console.log("신청자수 " + recruting_people);
+						let recruting_deadline = data[0].DEDLINE;
+						let recruting_image = data[0].IMAGE;
+						let recruting_title = data[0].TITLE;
+						let recruting_content = data[0].CONTENT;
+					 */
+					
+				 		$.each(data, function(index, item) {
+				 			console.log(item.S_SEQ);
+				 			let html = "";
+			
+						html += "<div>";
+						html += "<hr style='border: solid 1px; margin-top: 0px;' />";
+						html += "<div class='row p-4'>";
+						html +=	"<div class='col-md-1' style='text-align: center;'>";
+						html +=	"<p style='font-size: xx-large; font-weight: bold;'>" + data[index].S_SEQ +"</p></div>";
+						html += "<div class='col-md-8'>";
+						html += "<span class='badge badge-pill badge-primary'>" + data[index].STATUS + "</span>"; 
+						html += "<span class='badge badge-pill badge-info'>" +  data[index].LEVEL + "</span>";
+				 		html += "<span class='badge badge-pill badge-secondary'>" + data[index].CATE_LANGUAGE + "</span>";
+						html += "<span class='badge badge-pill badge-warning'>" + data[index].PEOPLE  +  "명</span>";
+						html += "<span class='badge badge-pill badge-warning'>" + data[index].LOC + "</span>"
+						html += "<span class='badge badge-pill badge-light'>" + data[index].CONTENT_KIND + "</span>";
+						html += "<a class='_message_hover' href='/mypage/MyPageUserDetail.do'>";
+						html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
+
+						/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
+						html +=	"<b><span style='font-size:xx-large;'>" + data[index].TITLE +"</span></b><br/>";
+						html += "<span>" + data[index].CONTENT +"</span><br />";
+						html +=	"</div>";
+						html += "<div class='col-md-3' style='text-align: right;'>";
+						html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>"
+						html +=	"</div>";	
+						html += "</div>"
+						html +=	"</div>";		
+						html +=	"</div>";	
+						$('#recruting_study').append(html);
+				 		}); 
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+
+				});
+	
 		});
+		});
+	</script>
+	<script>
+	$(function() {
+		let user_id = $('#user_id').val();
+		console.log("유저아이디: " + user_id);
+		let data = {
+			"user_id" : user_id
+		}
+		$('#_study_button1').on("click", function() {
+			$.ajax({
+				url : '/ajax/inStudy.do',
+				processData : false,
+				contentType : "application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+					console.log("가져오기");
+				}
+					$('#recruting_study').empty();
+			}
+	});
 	</script>
 </body>
 

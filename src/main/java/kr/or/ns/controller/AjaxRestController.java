@@ -20,7 +20,7 @@ public class AjaxRestController {
 	@Autowired
 	private AjaxService service;
 
-	@Autowired                       
+	@Autowired
 	private MessageService mservice;
 
 	// 아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
@@ -164,19 +164,19 @@ public class AjaxRestController {
 
 	// 쪽지함에서 유저정보 모달 불러오기
 	@RequestMapping(value = "userInfoModal.do", method = RequestMethod.POST)
-	public List<HashMap<String, Object>> userInfoModal(@RequestBody HashMap<String, Object> params, Principal principal) {
+	public List<HashMap<String, Object>> userInfoModal(@RequestBody HashMap<String, Object> params) {
 		System.out.println("유저정보 오나요");
 		System.out.println("유저정보:" + params);
 
 		List<HashMap<String, Object>> list = null;
 
 		list = service.userInfoModal(params);
-		System.out.println("리스트에 유저정보 담기: " +list);
+		System.out.println("리스트에 유저정보 담기: " + list);
 		return list;
 
 	}
-	
-	//이메일 중복체크
+
+	// 이메일 중복체크
 	@RequestMapping(value = "onlyEmailCheck.do", method = RequestMethod.POST)
 	public int onlyEmailCheck(String user_email) throws ClassNotFoundException {
 		System.out.println(user_email + " : user_id 컨트롤러");
@@ -186,5 +186,15 @@ public class AjaxRestController {
 
 	}
 
+	// 마이페이지 모집중 스터디 비동기
+	@RequestMapping(value = "recrutingStudy.do", method = RequestMethod.POST)
+	List<HashMap<String, Object>> recrutingStudy(@RequestBody HashMap<String, Object> params) {
+		System.out.println(params + " : user_id 컨트롤러");
+		List<HashMap<String, Object>> list = null;
+
+		list = service.recrutingStudy(params);
+		return list;
+
+	}
 
 }
