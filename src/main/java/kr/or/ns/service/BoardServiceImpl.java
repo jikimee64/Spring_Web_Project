@@ -252,7 +252,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		
 	}
-	
+	//하트 0/1 컬럼 확인
 	public int heartnum(Likes like) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		int heart = 0;
@@ -268,6 +268,13 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		return heart;
+	}
+	
+	//해당글의 좋아요 갯수 가져오기 
+	public int getLikeCnt(String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int result = dao.getLikeCnt(Integer.parseInt(s_seq));
+		return result;
 	}
 
 	

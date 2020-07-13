@@ -324,8 +324,8 @@ keyframes heart-keyframes { 100% {
 							   </label>	
 							   <span style="margin-left:50px;"> 
 								   <strong>좋아요&nbsp; </strong> 
-								   <strong th:text="${study.LIKE_CNT}" id="replyTotal"
-									style="margin-right: 10px;">1</strong>
+								   <strong th:text="${study.LIKE_CNT}" id="replyTotal" class="heartt"
+									style="margin-right: 10px;"></strong>
 								</span>
 							            
 							
@@ -680,6 +680,7 @@ keyframes heart-keyframes { 100% {
 		    contentType:"application/json",
 			data : JSON.stringify(obj),
 			success : function(data) {
+				var heartnum = $('.heartt').text(data);
 			},
 			error : function(e) {
 				console.log("error:", e);

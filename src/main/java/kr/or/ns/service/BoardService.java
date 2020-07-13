@@ -49,4 +49,7 @@ public interface BoardService {
 	
 	//좋아요 0/1컬럼 체크
 	public int heartnum(Likes like);
+	
+	//해당글의 좋아요 총 갯수 가져오기
+	public int getLikeCnt(String s_seq);
 }

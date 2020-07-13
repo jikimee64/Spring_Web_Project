@@ -205,7 +205,7 @@ public class BoardController {
 
 	@RequestMapping(value = "heart.do", method = RequestMethod.POST)
 	@ResponseBody
-	public void heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+	public int heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
 		String user_id = principal.getName();
 		String s_seq = (String) params.get("s_seq");
 		System.out.println(user_id);
@@ -216,7 +216,10 @@ public class BoardController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
+		
+		//해당 게시글 좋아요 총 갯수 반환
+		int result = service.getLikeCnt(s_seq);
+		return result;
 	}
 
 }
