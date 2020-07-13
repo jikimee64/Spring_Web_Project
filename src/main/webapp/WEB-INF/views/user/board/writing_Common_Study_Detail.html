@@ -183,8 +183,6 @@ keyframes heart-keyframes { 100% {
 </style>
 
 <body>
-
-	
 	
 	<input id="s_seq" type="hidden" th:value="${study.S_SEQ}"/>
 	<input id="page" type="hidden" th:value="${page}"/>
@@ -326,8 +324,8 @@ keyframes heart-keyframes { 100% {
 							   </label>	
 							   <span style="margin-left:50px;"> 
 								   <strong>좋아요&nbsp; </strong> 
-								   <strong th:text="${study.LIKE_CNT}" id="replyTotal"
-									style="margin-right: 10px;">1</strong>
+								   <strong th:text="${study.LIKE_CNT}" id="replyTotal" class="heartt"
+									style="margin-right: 10px;"></strong>
 								</span>
 							            
 							
@@ -468,6 +466,7 @@ keyframes heart-keyframes { 100% {
 			<!-- 		</th:block> -->
 		</div>
 	</div>
+	
 <!-- </form> -->
 	<div th:replace="/user/includes/footer :: footer"></div>
 	
@@ -475,10 +474,33 @@ keyframes heart-keyframes { 100% {
 	<div
 		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
 	</div>
+	<input th:class="${heart}" type="hidden" id="heartlike">
 	<!-- alert창 꾸미기 -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		$(function() {
+			
+			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
+
+			var heart = $('#heartlike').attr('class').trim();  
+			console.log("하트 찍업보기 "+heart) ;
+			if(heart.trim() === '1'){
+				console.warn("---------여기 들어오냐------");
+				$("input:checkbox[id='heartheart33333']").attr("checked", true);
+
+			}
+			
+			
+			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			 /* 첨부파일명 자르기 시작 */
 			
 			 if($('._file_name1')[0].innerText.length >= 15){
@@ -658,6 +680,7 @@ keyframes heart-keyframes { 100% {
 		    contentType:"application/json",
 			data : JSON.stringify(obj),
 			success : function(data) {
+				var heartnum = $('.heartt').text(data);
 			},
 			error : function(e) {
 				console.log("error:", e);

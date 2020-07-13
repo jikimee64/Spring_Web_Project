@@ -23,6 +23,7 @@ import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardServiceImpl;
 
 import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
 
 /*
@@ -131,7 +132,13 @@ public class BoardController {
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
-
+		String user_id = principal.getName();
+		Likes like = new Likes();
+		like.setS_seq(Integer.parseInt(s_seq));
+		like.setUser_id(user_id);
+		//좋아요 0/1 중 뭔지 알아오기
+		int heart = service.heartnum(like);
+				
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
 		model.addAttribute("page", page);
@@ -139,8 +146,8 @@ public class BoardController {
 
 		int count = service.getReplyCnt(s_seq);
 		model.addAttribute("count", count);
-		model.addAttribute("sessionid", principal.getName());
-
+		model.addAttribute("sessionid", user_id);
+		model.addAttribute("heart", heart);
 		System.out.println("목록 -> 일반 : " + study);
 
 		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
@@ -198,7 +205,7 @@ public class BoardController {
 
 	@RequestMapping(value = "heart.do", method = RequestMethod.POST)
 	@ResponseBody
-	public void heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+	public int heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
 		String user_id = principal.getName();
 		String s_seq = (String) params.get("s_seq");
 		System.out.println(user_id);
@@ -209,7 +216,10 @@ public class BoardController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-
+		
+		//해당 게시글 좋아요 총 갯수 반환
+		int result = service.getLikeCnt(s_seq);
+		return result;
 	}
 
 }

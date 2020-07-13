@@ -31,13 +31,11 @@ public class MessageServiceImpl implements MessageService {
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
 		int result = 0;
 		try {
-			System.out.println("어느 메세지를 보낼깝숑 : " + message);
 			result = dao.insertMessage(message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		System.out.println("일단 여긴옴2");
 		return result;
 	}
 

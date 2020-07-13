@@ -9,8 +9,6 @@ import kr.or.ns.vo.Users;
 public interface ManagerDao {
 
 	public List<Users> getMemberList();
-	
-	public List<Users> getMemberPoiList();
 
 	public Users getUsers(String user_id);
 
@@ -18,7 +16,7 @@ public interface ManagerDao {
 
 	public int memberDelete(String user_id);
 
-	public List<Blame> getBlameList(String bl_seq);
+	public List<HashMap<String, Object>> getBlameList();
 
 
 }

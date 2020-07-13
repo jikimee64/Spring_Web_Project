@@ -11,8 +11,6 @@ public interface ManagerService {
 	//회원정보 목록가져오기
 	public List<Users> getMemberList();
 	
-	public List<Users> getMemberPoiList();
-	
 	//유저  상세보기 정보 가져오기(실력 제외)
 	public Users getUsers(String user_id);
 	
@@ -23,6 +21,6 @@ public interface ManagerService {
 	public String memberDel(String user_id);
 	
 	//신고게시판 목록가져오기
-	public List<Blame> getBlameList(String bl_seq);
+	public List<HashMap<String, Object>> getBlameList();
 	
 }

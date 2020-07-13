@@ -17,10 +17,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import kr.or.ns.vo.Users;
 
 
-public class WriteListToExcelFile {
-   public static void writeMemberListToFile(String fileName, List<Users> memberList, HttpServletRequest request) throws Exception {
+public class WriteMemberListToExcelFile {
+   public static void writeMemberListToExcepFile(String fileName, List<Users> memberList, HttpServletRequest request) throws Exception {
       
    Workbook workbook = null;
+   String path = request.getServletContext().getRealPath("/manager/member/");
+   File xlsFile = new File(path+fileName); //저장경로 설정
    
    if(fileName.endsWith("xlsx")) {
       workbook = new XSSFWorkbook();
@@ -32,6 +34,10 @@ public class WriteListToExcelFile {
       throw new Exception("유효하지 않은 파일명입니다. xls나 xlsx만 가능합니다.");
    }
    
+   if( ! xlsFile.isDirectory()) {
+	   xlsFile.delete();   //파일이면 바로 삭제
+     }
+
    Sheet sheet = workbook.createSheet("회원관리");
    
    Iterator<Users> iterator = memberList.iterator();
@@ -76,8 +82,7 @@ public class WriteListToExcelFile {
    }while(iterator.hasNext());  //다음값이 없을때까지 뽑음
       
  //excel데이터를 file로 만듦
- 	String path = request.getServletContext().getRealPath("/manager/");
-    File xlsFile = new File(path+fileName); //저장경로 설정
+ 	
  	FileOutputStream fos = new FileOutputStream(xlsFile);
  	workbook.write(fos); //쓴다
  	fos.close();

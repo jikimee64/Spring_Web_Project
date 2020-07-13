@@ -3,6 +3,7 @@ package kr.or.ns.websocket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.vo.Message;
+import kr.or.ns.vo.Users;
 
 @Configuration
 public class MessageHandler extends TextWebSocketHandler {
@@ -22,6 +25,9 @@ public class MessageHandler extends TextWebSocketHandler {
 	@Autowired
 	private MessageService service;
 
+	@Autowired
+	private ManagerServiceImpl mservice;
+	
 	private static Map<String, WebSocketSession> users = new HashMap<String, WebSocketSession>();
 
 	private void log(String msg) {
@@ -92,14 +98,42 @@ public class MessageHandler extends TextWebSocketHandler {
 
 				//log(userid + " / " + message.getPayload() + " / " + msg.getPayload());
 			}
-		} else { // 쪽지 보냈을때 탐(message.jsp에서 데이터 전송받음)
+		} else if( message.getPayload().split(",")[0].equals("all")){ //전체쪽지
+			String content = message.getPayload().split(",")[1];
+			List<Users> list = mservice.getMemberList();
+			
+			for(int i = 0; i < list.size(); i++) {
+				String receptionid = list.get(i).getUser_id();
+				System.out.println(list.size());
+				Message savemsg = new Message();
+				savemsg.setSenderid("admin"); //발신인
+				savemsg.setContent(content);
+				savemsg.setReceptionid(receptionid);//수신인
+				int result2 = service.insertMessage(savemsg);
+				
+				int result = service.getmsgcount(receptionid);
+				// 수신인이 받은 문자 개수 추출
+
+				if (users.containsKey(receptionid)) {
+					TextMessage msg = new TextMessage("" + result + "");
+					users.get(receptionid).sendMessage(msg);
+
+					// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
+
+					//log(receptionid + " / " + message.getPayload() + " / " + msg.getPayload());
+				}
+				
+			}
+			
+		} else { // 쪽지 보냈을때 탐(message.jsp에서 데이터 전송받음) / 1:1쪽지
+		
+			System.out.println("1:1쪽지입니다ㅏㄻ쥐");
 			String receptionid = message.getPayload().split(",")[0];
 			String content = message.getPayload().split(",")[1];
 			
 			Message savemsg = new Message();
 			savemsg.setReceptionid(receptionid);//수신인
 			savemsg.setSenderid(userid); //발신인
-			savemsg.setRs_code("발신");
 			savemsg.setContent(content);
 					
 					/*(message.getPayload().split(",")[0], message.getPayload().split(",")[1],
@@ -107,7 +141,6 @@ public class MessageHandler extends TextWebSocketHandler {
 			int result2 = service.insertMessage(savemsg);
 			
 			// ★★★쪽지 테이블에 보낸 쪽지 데이터 삽입
-
 			int result = service.getmsgcount(receptionid);
 			// 수신인이 받은 문자 개수 추출
 
