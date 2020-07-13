@@ -141,15 +141,16 @@ public class BoardController {
 				
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
-		
 		model.addAttribute("page", page);
 		model.addAttribute("perPageNum", perPageNum);
-
+		
+		 List<Map<String,Object>> commentList = service.getComment(s_seq); 
+		System.out.println("commentList 찍어보기"+commentList);
 		int count = service.getReplyCnt(s_seq);
 		model.addAttribute("count", count);
 		model.addAttribute("sessionid", user_id);
 		model.addAttribute("heart", heart);
-		System.out.println("목록 -> 일반 : " + study);
+		System.out.println("목록 -> 일반 ************: " + study);
 
 		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
