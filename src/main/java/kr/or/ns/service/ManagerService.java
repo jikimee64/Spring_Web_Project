@@ -32,4 +32,10 @@ public interface ManagerService {
 	//신고번호에 따른 상세내용 뿌려주기
 	public HashMap<String, Object> getDetailDeclare(String bl_seq);
 	
+	//신고관리(정상신고)
+	public int blameYes(String bl_seq, String bl_target_id);
+	
+	//신고관리(신고X)
+	public int blameNo(String bl_seq);
+	
 }

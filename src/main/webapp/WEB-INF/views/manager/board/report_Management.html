@@ -198,28 +198,17 @@ td:focus {
 					  }
 					});
 			})
-			
-			$('#message').click(function(){
-				swal({
-					  title: "쪽지제목",
-					  text: "쪽지내용",
-					  buttons: true,
-					  dangerMode: true,
-					})
-					/* .then((willDelete) => {
-					  if (willDelete) {
-					    swal("처리가 완료되었습니다(처리상태 db에서 변경)", {
-					      icon: "success",
-					    });
-					  } else {
-					    swal("처리가 취소되었습니다.");
-					  }
-					}); */
-			})
+		
 		});
 	</script>
 	
-	
+ 	<script>
+	$(function() {
+		function declareYes() {
+			console.log("sss")
+		}
+	});
+	</script> 
 	
 	<script>
 	function declareModal(bl_seq) {
@@ -240,6 +229,7 @@ td:focus {
 			data : JSON.stringify(data),
 			success : function(data) {
 				$('#declareButtons').empty();
+			/* 	$('#message').empty(); */
 				console.log(data);
 				let html = "";
 				let html2 = "";
@@ -249,40 +239,178 @@ td:focus {
 				$('#bl_content').text(data.BL_CONTENT);
 				
 				if(data.PLACE ==='쪽지 게시판'){
+					
+					$('#bl_seq').val(data.BL_SEQ);
+					$('#target').val(data.BL_TARGET_ID);
+					$('#study').hide();
+					$('#message').show();
+					
+					if(data.BL_STATUS ==='처리중'){
+						$('#declareMessageButtons').attr('class', 'col-4');
+						$('#messageOk').show();
+						$('#messageNo').show();
+					}else{
+						$('#declareMessageButtons').attr('class', 'col-12');
+						$('#messageOk').hide();
+						$('#messageNo').hide();
+					}
+					
 					html += "<div class='col-4' style='padding:0px;'>";
 					html += "<button id='message' type='button' class='btn btn-outline-success' data-dismiss='modal'>쪽지내용</button>";
 					html += "</div>";
-					html += "<div class='col-4' style='padding: 0px;' text-align: center;'>";
+					/* html += "<div class='col-4' style='padding: 0px;' text-align: center;'>";
 					html += "<a href='/message/mypage_Message_From_Board.do?'>";
 					html += "<button id='board' type='button' class='btn btn-outline-success'>쪽지함이동</button>";
 					html += "</a>";
-					html += "</div>";
-					html += "<div class='col-4' style='padding:0px;'>";
+					html += "</div>"; */
+				/* 	html += "<div class='col-4' style='padding:0px;'>";
 					html += "<button id='declare' type='button' class='btn btn-outline-danger' data-dismiss='modal'>신고처리</button>";
-					html += "</div>";
+					html += "</div>"; */
+					
+				/* 	html2 += "<h5><b>[쪽지]</b></h5>";
+					html2 += "<div style='padding-left:30px;'>";
+					html2 += "<label id='type' for='1'></label><br>"
+					html2 += "<div class='form-group'>";
+					html2 += "<textarea class='form-control' rows='3' id='bl_content' readonly name='comment' placeholder='추가내용'></textarea>";
+					html2 += "</div>";
+					html2 += "</div>"; */
 				}else{
-					html += "<div class='col-6' style='padding: 0px;' text-align: center;'>";
+					$('#bl_seq').val(data.BL_SEQ);
+					$('#target').val(data.BL_TARGET_ID);
+					$('#message').hide();
+					$('#study').show();
+					
+					if(data.BL_STATUS ==='처리중'){
+						$('#declareButtons').attr('class', 'col-4');
+						$('#studyOk').show();
+						$('#studyNo').show();
+					}else{
+						$('#declareButtons').attr('class', 'col-12');
+						$('#studyOk').hide();
+						$('#studyNo').hide();
+					}
+					
+					//html += "<div class='col-4' style='padding: 0px;' text-align: center;'>";
 					html += "<a href='/board/writing_Common_Study_Detail.do?s_seq="+ data.BOARD_SEQ +"'>";
 					html += "<button id='board' type='button' class='btn btn-outline-success'>게시글 이동</button>";
 					html += "</a>";
+					//html += "</div>";
+				/* 	html += "<div class='col-4' style='padding:0px;'>";
+					html += "<button th:onclick='|javascript:declareYess()|' id='declareYes' type='button' class='btn btn-outline-danger'>신고정상</button>";
 					html += "</div>";
-					html += "<div class='col-6' style='padding:0px;'>";
-					html += "<button id='declare' id='blame-check' type='button' class='btn btn-outline-danger'>신고처리</button>";
-					html += "</div>";
+					html += "<div class='col-4' style='padding:0px;'>";
+					html += "<button id='declareNo' type='button' class='btn btn-outline-danger'>신고비정상</button>";
+					html += "</div>"; */
 				}
 				
 				$('#declareButtons').append(html);
+				/* $('#message').append(html2); */
 			},
 			error : function(e) {
 				console.log("error:", e);
 			}
 		});
+		
+		
+		$('#message').click(function(){
+			swal({
+				  title: "쪽지제목",
+				  text: "쪽지내용",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				/* .then((willDelete) => {
+				  if (willDelete) {
+				    swal("처리가 완료되었습니다(처리상태 db에서 변경)", {
+				      icon: "success",
+				    });
+				  } else {
+				    swal("처리가 취소되었습니다.");
+				  }
+				}); */
+		})
 
 	}
+	
 	</script>
 
 	<script>
+	
+	function declareYes() {	
 		
+		var bl_seq = $('#bl_seq').val();
+		var bl_target_id = $('#target').val();
+		console.log('나ㅣ는 퉁퉁이' + bl_seq);
+		console.log('나ㅣ는 퉁퉁이22 ' + bl_target_id);
+		
+		 let data = {
+			"bl_seq" : bl_seq,
+			"bl_target_id" : bl_target_id
+		}
+		
+		$.ajax({
+			url : '/manager/blameYes.do',
+			processData : false,
+			contentType : "application/json",
+			cache : false,
+			type : 'POST',
+			data : JSON.stringify(data),
+			success : function(data) {
+				if(data === 1){
+					swal({
+						  title: "신고정상처리가 되었습니다.",
+						  icon: "success",
+						  buttons: true,
+						}).then((willDelete) => {
+							if(willDelete){
+								location.href="/manager/board/report_Management.do"
+							}
+						})
+				}
+			},
+			error : function(e) {
+				console.log("error:", e);
+			}
+		})
+		
+	}
+	
+	function declareNo() {
+		var bl_seq = $('#bl_seq').val();
+		console.log('나ㅣ는 퉁퉁이' + bl_seq);
+		
+		 let data = {
+			"bl_seq" : bl_seq,
+		}
+		
+		$.ajax({
+			url : '/manager/blameNo.do',
+			processData : false,
+			contentType : "application/json",
+			cache : false,
+			type : 'POST',
+			data : JSON.stringify(data),
+			success : function(data) {
+				if(data === 1){
+					swal({
+						  title: "신고기 비정상처리 되었습니다.",
+						  icon: "success",
+						  buttons: true,
+						}).then((willDelete) => {
+							if(willDelete){
+								location.href="/manager/board/report_Management.do"
+							}
+						})
+				}
+			},
+			error : function(e) {
+				console.log("error:", e);
+			}
+		})
+	}
+		
+	
+	</script>
 	
 	</script>
 

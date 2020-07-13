@@ -8,12 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +22,8 @@ import kr.or.ns.export.WriteMemberListToExcelFile;
 import kr.or.ns.export.WriteMemberListToPdfFile;
 import kr.or.ns.export.WriteReportListToExcelFile;
 import kr.or.ns.export.WriteReportListToPdfFile;
+import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
-import kr.or.ns.vo.Blame;
-import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -37,7 +31,7 @@ import kr.or.ns.vo.Users;
 public class ManagerController {
 
 	@Autowired
-	private ManagerServiceImpl service;
+	private ManagerService service;
 
 	/*
 	 * @Autowired private ManagerService service;
@@ -198,5 +192,38 @@ public class ManagerController {
 		HashMap<String, Object> result = service.getDetailDeclare((String) params.get("bl_seq")); // 블레임리스트
 		return result;
 	}
+	
+	@RequestMapping(value = "blameYes.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int blameYes(@RequestBody Map<String, Object> params) throws IOException {
+		int result = 0;
+		try {
+			String bl_seq = ((String) params.get("bl_seq"));
+			String bl_tasrget_id = ((String) params.get("bl_target_id"));
+			System.out.println();
+			result = service.blameYes(bl_seq, bl_tasrget_id); // 블레임리스트
+
+		} catch (Exception e) {
+			System.out.println("gd");
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+		@RequestMapping(value = "blameNo.do", method = RequestMethod.POST)
+		@ResponseBody
+		public int blameNo(@RequestBody Map<String, Object> params) throws IOException {
+			int result = 0;
+			try {
+				String bl_seq = ((String) params.get("bl_seq"));
+				System.out.println();
+				result = service.blameNo(bl_seq); // 블레임리스트
+
+			} catch (Exception e) {
+				System.out.println("gd");
+				System.out.println(e.getMessage());
+			}
+			return result;
+		}
 
 }

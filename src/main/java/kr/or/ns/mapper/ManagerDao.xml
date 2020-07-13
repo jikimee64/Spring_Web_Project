@@ -68,5 +68,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on b.BPC_SEQ = p.BPC_SEQ
 		where BL_SEQ = #{BL_SEQ}
 	</select>
+	
+	
+	<update id="blameYes">
+		update blame_board
+		set bl_status = '처리완료'
+		where bl_seq = #{bl_seq}
+	</update>
+
+	<!-- blameYes와 트랜잭션 묶음  -->
+	<update id="blameTargetUp">
+		update users
+		set blame_count = blame_count + 1
+		where user_id = #{user_id}
+	</update>
+	
+	<update id="blameNo">
+		update blame_board
+		set bl_status = '처리취소'
+		where bl_seq = #{bl_seq}
+	</update>
+	
 
 </mapper>
