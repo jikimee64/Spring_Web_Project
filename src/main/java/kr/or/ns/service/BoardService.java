@@ -56,4 +56,7 @@ public interface BoardService {
 	
 	//댓글 등록하기 기능
 	public void commentInsert(Comment cm);
+	
+	//해당글의 댓글 select
+	public List<Map<String, Object>> getComment(String s_seq); 
 }

@@ -61,6 +61,9 @@ public interface BoardDao {
 	//댓글 insert 하는 함수
 	public void commentInsert(Comment cm);
 
+	//해당글의 댓글 select
+	public List<Map<String, Object>> getComment(int parseInt);
+
 
 
 }

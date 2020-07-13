@@ -45,8 +45,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on study_board.loc_seq = location.loc_seq
 		left outer join study_content_category
 		on study_board.c_seq = study_content_category.c_seq
-		left outer join comment
-		on study_board.s_seq = comment.s_seq 
 		WHERE study_board.S_SEQ=#{S_SEQ}
 	</select>
 	
@@ -97,5 +95,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{s_seq},#{r_content},#{r_name},now(),#{r_refer},#{r_depth},#{r_step})
 	</insert> 
 	
+	<!-- 스터디 글 상세보기 -->
+	<select id="getComment" resultType="hashmap">
+		select * from comment
+		WHERE S_SEQ = #{S_SEQ}
+	</select>
 
 </mapper>

@@ -285,6 +285,14 @@ public class BoardServiceImpl implements BoardService {
 		dao.commentInsert(cm);
 	}
 
+	//해당글의 댓글 select
+	public List<Map<String, Object>> getComment(String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		List<Map<String, Object>> list = dao.getComment(Integer.parseInt(s_seq));
+		System.out.println("select 하고 리턴갑니다(서비스)");
+		return list;
+	}
+
 	
 	
 	
