@@ -140,11 +140,11 @@ public class BoardController {
 		int heart = service.heartnum(like);
 				
 		Map<String, Object> study = service.getStudy(s_seq);
-		model.addAttribute("study", study);
+		model.addAttribute("study", study); 
 		model.addAttribute("page", page);
 		model.addAttribute("perPageNum", perPageNum);
 		
-		 List<Map<String,Object>> commentList = service.getComment(s_seq); 
+		List<Map<String,Object>> commentList = service.getComment(s_seq); 
 		int count = service.getReplyCnt(s_seq);
 		model.addAttribute("count", count);
 		model.addAttribute("sessionid", user_id);
