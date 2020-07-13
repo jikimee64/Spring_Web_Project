@@ -105,4 +105,8 @@
 	    select * from study_group where s_seq = #{s_seq}
 	</select>
 
+	<select id="getRole" resultType="String">
+	    select role_name from study_group where user_id = #{user_id} and s_seq = #{s_seq}
+	</select>
+	
 </mapper>

@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -126,14 +127,19 @@ public class MyPageController {
 
 	// 참여현황 페이지 정보 뿌려주기
 	@RequestMapping(value = "SupportStatus.do")
-	public String SupportStatus(String s_seq, Model model) {
+	public String SupportStatus(String s_seq, Model model, Principal principal) {
 		System.out.println("스터디 상세페이지");
 
 		List<HashMap<String, Object>> status = service.studyStatus(s_seq);
+		String user_id = principal.getName();
+		String role = service.getRole(user_id, s_seq);
+		/*model.addAttribute("id" , user_id);*/
 		model.addAttribute("status", status);
+		model.addAttribute("role", role);
 		
 		System.out.println(status);
-		return "user/mypage/Support_Status.html";
+		System.out.println(role);
+		return "user/mypage/mypage_Support_Status.html";
 
 	}
 

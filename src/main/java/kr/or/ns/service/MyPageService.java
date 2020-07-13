@@ -48,5 +48,8 @@ public interface MyPageService {
 	
 	//마이페이지 참여유저 현황 보여주기
 	public List<HashMap<String, Object>> studyStatus(String name);
+	
+	//
+	public String getRole(String user_id, String s_seq);
 
 }
