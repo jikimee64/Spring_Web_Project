@@ -293,6 +293,12 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	//해당글의 댓글 delete
+	public void commentDelete(Comment cm) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		dao.commentDelete(cm);
+	}
+
 	
 	
 	

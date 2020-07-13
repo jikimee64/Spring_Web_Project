@@ -145,7 +145,6 @@ public class BoardController {
 		model.addAttribute("perPageNum", perPageNum);
 		
 		 List<Map<String,Object>> commentList = service.getComment(s_seq); 
-		System.out.println("commentList 찍어보기"+commentList);
 		int count = service.getReplyCnt(s_seq);
 		model.addAttribute("count", count);
 		model.addAttribute("sessionid", user_id);
@@ -225,7 +224,7 @@ public class BoardController {
 	}
 	@RequestMapping(value = "InsertComment.do" , method = RequestMethod.POST)
 	@ResponseBody
-	public void commentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+	public List<Map<String,Object>> commentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
 		String user_id = principal.getName();
 		String s_seq = (String) params.get("s_seq");
 		String r_content = (String) params.get("r_content");
@@ -237,7 +236,29 @@ public class BoardController {
 		
 		service.commentInsert(cm);
 		
+		List<Map<String,Object>> commentList = service.getComment(s_seq); 
+		System.out.println("----commentList 찍어보기----"+commentList);
 		
+		return commentList;
+	}
+	
+	@RequestMapping(value = "DeleteComment.do" , method = RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String,Object>> commentDelete(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+		String user_id = principal.getName();
+		String s_seq = (String) params.get("s_seq");
+		String r_seq = (String) params.get("r_seq");
+
+		Comment cm = new Comment();
+		cm.setS_seq(Integer.parseInt(s_seq));
+		cm.setR_seq(Integer.parseInt(r_seq));
+		
+		service.commentDelete(cm);
+		
+		List<Map<String,Object>> commentList = service.getComment(s_seq); 
+		System.out.println("----commentList 찍어보기----"+commentList);
+		
+		return commentList;
 	}
 
 }

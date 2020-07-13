@@ -59,4 +59,7 @@ public interface BoardService {
 	
 	//해당글의 댓글 select
 	public List<Map<String, Object>> getComment(String s_seq); 
+
+	//해당글의 댓글 delete
+	public void commentDelete(Comment cm) ;
 }
