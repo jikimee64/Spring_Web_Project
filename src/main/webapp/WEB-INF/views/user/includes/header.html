@@ -65,7 +65,7 @@
 								모임</a></li>
 						<li
 							style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
-						
+					
 						<th:block sec:authorize="hasRole('ROLE_USER')">
 							<!-- <a href="/mypage/mypage.do" style="padding-left: 20px;"> 
 							 <img
@@ -107,12 +107,20 @@
 							</a>
 						</th:block>
 
-						<th:block sec:authorize="!hasRole('ROLE_USER')">
+						<th:block sec:authorize="isAnonymous()">
 							<li><a href="/member/login.do">로그인</a></li>
 							<li><a href="/member/join.do">회원가입</a></li>
 						</th:block>
 
-
+						<!-- <th:block sec:authorize="!hasRole('ROLE_USER')">
+							<li><a href="/member/login.do">로그인</a></li>
+							<li><a href="/member/join.do">회원가입</a></li>
+						</th:block> -->
+							
+					<!-- 	<th:block sec:authorize="!hasRole('ROLE_USER')">
+							<li><a href="/member/login.do">로그인</a></li>
+							<li><a href="/member/join.do">회원가입</a></li>
+						</th:block> -->
 
 					</ul>
 

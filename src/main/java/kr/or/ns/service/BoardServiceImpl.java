@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.dao.BoardDao;
+import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
@@ -275,6 +276,21 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		int result = dao.getLikeCnt(Integer.parseInt(s_seq));
 		return result;
+	}
+
+	//댓글 등록하기 
+	public void commentInsert(Comment cm) {
+		System.out.println("commentInsert 왔어요");
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		dao.commentInsert(cm);
+	}
+
+	//해당글의 댓글 select
+	public List<Map<String, Object>> getComment(String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		List<Map<String, Object>> list = dao.getComment(Integer.parseInt(s_seq));
+		System.out.println("select 하고 리턴갑니다(서비스)");
+		return list;
 	}
 
 	

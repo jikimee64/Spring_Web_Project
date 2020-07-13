@@ -119,7 +119,8 @@ td:focus {
 											<th style="width: 30px;">이메일</th>
 											<th style="width: 30px;">닉네임</th>
 											<th style="width: 30px;">신고횟수</th>
-											<th style="width: 30px;">정지버튼</th>
+											<th style="width: 30px;">활성상태</th>
+											<th style="width: 30px;">활성화버튼</th>
 										</tr>
 									</thead>
 
@@ -130,18 +131,29 @@ td:focus {
 												<!-- 													<a th:href="@{noticeDetail.htm(seq=${n.seq})}"> -->
 												<td align="center"><a
 													th:classappend="|${memberList.user_id}|"
-													th:onclick="|javascript:stopMember('${memberList.user_id}')|"
 													th:href="@{/manager/board/member_Detail.do(user_id=${memberList.user_id})}"
 													th:text="${memberList.user_id}"></a>
 												</td>
 												<td align="center" th:text="${memberList.user_email}"></td>
 												<td align="center" th:text="${memberList.nickname}"></td>
 												<td align="center" th:text="${memberList.blame_count}"></td>
+												<th:block th:switch="${memberList.enabled}">
+													<td th:case="1" align="center" th:text="활성화"></td>
+													<td th:case="0" align="center" th:text="비활성화"></td>
+												</th:block>
 												<td align="center" class="button" style="padding-top: 10px;">
-													<a href="#" id="stop">
+													<a href="#" 
+													th:onclick="|javascript:stopButton('${memberList.user_id}')|"
+														id="stop">
 														<button type="button" class="btn btn-danger btn-sm"
 															style="color: white; border-radius: 5px;">정지</button>
-												</a>
+													</a>
+													<a href="#" 
+													th:onclick="|javascript:restoreButton('${memberList.user_id}')|"
+														id="stop">
+														<button type="button" class="btn btn-success btn-sm"
+															style="color: white; border-radius: 5px;">복구</button>
+													</a>
 												</td>
 											</tr>
 										</th:block>
@@ -196,74 +208,89 @@ td:focus {
 	</div>
 
 	<script>
-		$(function() {
-			$('#stop').click(function(){
-				swal({
-					  title: "계정을 정지하시겠습니까??",
-					  text: "정지하는 순간 사이트 로그인 영구정지...",
-					  icon: "warning",
-					  buttons: true,
-					  dangerMode: true,
-					})
-					.then((willDelete) => {
-						console.log('확인버튼누르면 요기...');
-					  if (willDelete) {
-					    swal("성공적으로 정지완료!!", {
-					      icon: "success",
-					    });
-					  } else {
-					    swal("취소");
-					  }
-					});
-			})
+		//idx는 user_id받음, 정지버튼 onclick
+		function stopButton(idx){
+			console.log(idx)
 			
-		});
-		
-		//idx는 user_id받음
-		function stopMember(idx) {
-
-			//let id = $('.InfoModal' + idx).children().text();
-			//formData.append("user_id" , this.id);
-
-			console.log("아이디 : " + idx);
-			// let obj = {"user_id" : id}; 
-
-			/* let data = {
-				"user_id" : id
-			} */
-
-			/* $.ajax({
-				url : '/ajax/userInfoModal.do',
-				processData : false,
-				contentType : "application/json",
-				cache : false,
-				type : 'POST',
-				data : JSON.stringify(data),
-				success : function(data) {
-
-					$('.ModalUserName').text(data[0].USER_NAME);
-					$('.introduce').text(data[0].INTRODUCE)
-					'src','/material/images/jQuery/asimo.png'
-					$('#profile_img').attr('src', '/userboard/upload/' + data[0].PROFILE_IMG);
-					console.log(data[0].INTRODUCE);
-					$.each(data, function (index, item) {
-						if (item.SKILL_LEVEL === '입문') {
-							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
-						} else if (item.SKILL_LEVEL === '초급') {
-							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
-						} else {
-							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
-						}
-					})
-				},
-				error : function(e) {
-					console.log("error:", e);
-				}
-			}); */
-
+			 let data = {
+				"user_id" : idx
+			}
+			
+			swal({
+				  title: idx+"계정을 정지 하시겠습니까?",
+				  text: "",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    //ajax id값 보내줘서 enabled 0으로 세팅
+					   $.ajax({
+							url : '/manager/stopMember.do',
+							processData : false,
+							contentType : "application/json",
+							cache : false,
+							type : 'POST',
+							data : JSON.stringify(data),
+							success : function(data) {
+								console.log('우철 : ' + data)
+								if(data === 1){
+									swal({
+										  title: "정상적으로 정지되었습니다.",
+										  icon: "success",
+										  buttons: true,
+										})
+								}
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
+						});  
+				  }
+				});
 		}
 		
-		
+		function restoreButton(idx){
+			console.log(idx)
+			
+			 let data = {
+				"user_id" : idx
+			}
+			
+			swal({
+				  title: idx+"계정정지를 해제 하시겠습니까?",
+				  text: "",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    //ajax id값 보내줘서 enabled 0으로 세팅
+					   $.ajax({
+							url : '/manager/restoreMember.do',
+							processData : false,
+							contentType : "application/json",
+							cache : false,
+							type : 'POST',
+							data : JSON.stringify(data),
+							success : function(data) {
+								if(data === 1){
+									swal({
+										  title: "정상적으로 정지가 해지되었습니다.",
+										  icon: "success",
+										  buttons: true,
+										})
+								}
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
+						});  
+				  }
+				});
+		}
 		
 	</script>
 

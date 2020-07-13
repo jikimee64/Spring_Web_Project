@@ -50,5 +50,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		join blame_place_category p
 		on b.BPC_SEQ = p.BPC_SEQ
 	</select>
+	
+	<update id="stopMember">
+		update users set enabled = 0 where user_id=#{user_id}
+	</update>
+	
+	<update id="restoreMember">
+		update users set enabled = 1 where user_id=#{user_id}
+	</update>
 
 </mapper>

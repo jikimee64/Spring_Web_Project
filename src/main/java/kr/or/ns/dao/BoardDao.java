@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
@@ -56,6 +57,12 @@ public interface BoardDao {
 	
 	//해당글의 좋아요 총 갯수 확인
 	public int getLikeCnt(int s_seq);
+
+	//댓글 insert 하는 함수
+	public void commentInsert(Comment cm);
+
+	//해당글의 댓글 select
+	public List<Map<String, Object>> getComment(int parseInt);
 
 
 
