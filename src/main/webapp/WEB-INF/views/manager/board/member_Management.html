@@ -240,6 +240,10 @@ td:focus {
 										  title: "정상적으로 정지되었습니다.",
 										  icon: "success",
 										  buttons: true,
+										}).then((willDelete) => {
+											if(willDelete){
+												location.href="/manager/board/member_Management.do"
+											}
 										})
 								}
 							},
@@ -281,6 +285,10 @@ td:focus {
 										  title: "정상적으로 정지가 해지되었습니다.",
 										  icon: "success",
 										  buttons: true,
+										}).then((willDelete) => {
+											if(willDelete){
+												location.href="/manager/board/member_Management.do"
+											}
 										})
 								}
 							},
