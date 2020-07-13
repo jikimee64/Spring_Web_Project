@@ -272,8 +272,7 @@ group+group {
 					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
 					<!-- td3(내용) -->
 <!-- 					<div th:if="${list[index.index].opendate} != null" class="col-md-6" -->
-<!-- 					<div th:if="${list.opendate} != null" class="col-md-6" -->
-					<div th:if="${map.get(list).opendate} != null" class="col-md-6"
+					<div th:if="${list.OPENDATE} != null" class="col-md-6"
 						style="place-self: center; text-align: center;">
 						<a style="color: #636e72;"
 							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
@@ -284,8 +283,7 @@ group+group {
 					
 					<!-- td3(내용) -->
 <!-- 					<div th:if="${list[index.index].opendate} == null" class="col-md-6" -->
-<!-- 					<div th:if="${list.opendate} == null" class="col-md-6" -->
-					<div th:if="${map.get(list).opendate} != null" class="col-md-6"
+					<div th:if="${list.OPENDATE} == null" class="col-md-6"
 						style="place-self: center; text-align: center;">
 						<a style="color: #00b894;"
 							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
@@ -314,19 +312,91 @@ group+group {
 				</div>
 			</th:block>
 
-			<div class="row" style="place-content: center;">
-				<ul class="pager d-flex">
-					<li><a class="page-link" href="#">PREV</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li><a class="page-link" href="#">NEXT</a></li>
-				</ul>
-			</div>
+
+
+
+<!--  윗부분 끝 //////////////////////////////////////// -->
+
+<div class="row" style="place-content: center;">
+		<!-- 페이징 부트스트랩 버튼 생성하기  -->
+		<ul class="pager d-flex" style="place-content: center;">
+
+			<!-- 이전버튼 생성여부 -->
+			<li th:if="${pageMakerb.prev} == true"><a
+				th:href="@{mypage_Message_From_Board.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+				class="page-link"> Previous </a></li>
+
+
+			<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가 -->
+			<li class="page-item"
+				th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
+				th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
+				<a class="page-link"
+				th:href="@{mypage_Message_From_Board.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
+				th:text="${idx}">1 </a>
+			</li>
+
+
+			<!-- 다음버튼 생성여부 -->
+			<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+				<a
+				th:href="@{mypage_Message_From_Board.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+				class="page-link"> Next</a>                                    <a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
+			</li>
+
+
+		</ul>
+		<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 			<div class="row" style="place-content: center;"> -->
+<!-- 				<ul class="pager d-flex"> -->
+<!-- 					<li><a class="page-link" href="#">PREV</a></li> -->
+<!-- 					<li class="page-item"><a class="page-link" href="#">1</a></li> -->
+<!-- 					<li class="page-item active"><a class="page-link" href="#">2</a></li> -->
+<!-- 					<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!-- 					<li><a class="page-link" href="#">NEXT</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 		</div>
 	</div>
 
-	<!--  윗부분 끝 //////////////////////////////////////// -->
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>

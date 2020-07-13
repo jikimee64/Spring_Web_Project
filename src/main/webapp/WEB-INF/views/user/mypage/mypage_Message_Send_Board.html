@@ -163,10 +163,10 @@ body {
 			</div>
 
 
-
+<!-- 타임리프 시작 -->
 			<th:block th:each="list : ${messageList}">
-				<div class="row"
-					style="margin: 0px 20px 10px 20px; position: relative; top: -93px; text-align: center;">
+					<div class="row" id="parent"
+					style="margin: 0px 20px 0px 20px; position: relative; top: -93px; text-align: center;">
 					<div class="col-md-1"
 						style="place-self: center; text-align: center;">
 						<input type="checkbox" class="_input_check" />
@@ -199,24 +199,14 @@ body {
 				</div>
 			</th:block>
 
+
+
 			<!--  윗부분 끝 //////////////////////////////////////// -->
 
-<!-- 			<div class="row" style="place-content: center;"> -->
-<!-- 				<ul class="pager d-flex"> -->
-<!-- 					<li><a class="page-link" href="#">PREV</a></li> -->
-<!-- 					<li class="page-item"><a class="page-link" href="#">1</a></li> -->
-<!-- 					<li class="page-item active"><a class="page-link" href="#">2</a></li> -->
-<!-- 					<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-<!-- 					<li><a class="page-link" href="#">NEXT</a></li> -->
-<!-- 				</ul> -->
-<!-- 			</div> -->
-		</div>
-	</div>
 
 
 
-
-<div class="row" style="place-content: center;">
+	<div class="row" style="place-content: center;">
 		<!-- 페이징 부트스트랩 버튼 생성하기  -->
 		<ul class="pager d-flex" style="place-content: center;">
 
@@ -252,10 +242,17 @@ body {
 
 
 
-
-
-
-
+<!-- 			<div class="row" style="place-content: center;"> -->
+<!-- 				<ul class="pager d-flex"> -->
+<!-- 					<li><a class="page-link" href="#">PREV</a></li> -->
+<!-- 					<li class="page-item"><a class="page-link" href="#">1</a></li> -->
+<!-- 					<li class="page-item active"><a class="page-link" href="#">2</a></li> -->
+<!-- 					<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!-- 					<li><a class="page-link" href="#">NEXT</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
+		</div>
+	</div>
 
 
 
