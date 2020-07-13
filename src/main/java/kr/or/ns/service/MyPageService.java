@@ -44,5 +44,9 @@ public interface MyPageService {
 
 	//마이페이지(스터디 게시판 게시글 카운트)
 	public int s_boardCount(String users);
+	
+	//마이페이지(스터디 리스트)
+	public List<HashMap<String,Object>> myPageStudyList(String userid);
+	
 
 }

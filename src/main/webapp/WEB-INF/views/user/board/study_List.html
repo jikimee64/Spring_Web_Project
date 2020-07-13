@@ -337,7 +337,7 @@ group+group {
 		<!-- 타임리프 반복시작 -->
 		<div th:each="list : ${list}" style="width: 1000px;">
 			<div class="row">
-			<div class="col-md-3"></div>
+				<div class="col-md-3"></div>
 				<div class="col-md-4" style="padding: 0px; text-align: center;">
 					<!-- 여기에 뱃지 -->
 					<span class="badge badge-pill badge-primary"
@@ -382,7 +382,7 @@ group+group {
 				</th:block>
 
 
-				<div class="col-md-9" style="padding:3Cpx 30px 30px 30px;">
+				<div class="col-md-9" style="padding: 3Cpx 30px 30px 30px;">
 					<div class="row" style="margin-top: 10px;">
 						<!-- <div class="col-md-2">
 							<b th:text="${list.USER_ID}">
@@ -390,8 +390,7 @@ group+group {
 								미네미네
 							</b>
 						</div> -->
-						<div class="col-md-1"></div>
-						<b>작성자:</b>
+						<b style="margin-left:35px;">작성자:</b>
 						<div class="col-md-4"
 							style="padding-right: 0px; font-size: medium;">
 							<a href="" th:classappend="|InfoModal${list.S_SEQ}|"
@@ -400,8 +399,7 @@ group+group {
 								th:text="${list.USER_ID}"
 								style="color: black; margin-right: 10px;"> 작성자 : <!-- 여기에 닉네임 -->
 									미네미네
-							</b>
-							</a>
+							</b> </a>
 						</div>
 						<div class="col-md-3"
 							style="text-align: center; padding-right: 0px;">
@@ -420,7 +418,8 @@ group+group {
 
 						<a
 							th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
-							<h2 th:text="${list.TITLE}" style="margin-top:20px; padding-left:10px;"></h2>
+							<h2 th:text="${list.TITLE}"
+								style="margin-top: 20px; padding-left: 34px;"></h2>
 						</a>
 
 						<!-- <th:block th:switch="${list.CONTENT_KIND}">
@@ -433,7 +432,7 @@ group+group {
 						</th:block> -->
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 					</div>
-					<div class="row" style="margin: 0px 5px 0px 2px;"
+					<div class="row" style="margin: 0px 5px 0px 28px; height:150px;"
 						th:text="${list.CONTENT}">
 						<p></p>
 					</div>
@@ -587,7 +586,7 @@ group+group {
 		}
 	</script>
 	<script>
-
+		
 	</script>
 </body>
 
