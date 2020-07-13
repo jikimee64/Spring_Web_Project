@@ -689,7 +689,187 @@ keyframes heart-keyframes { 100% {
  });
  
  </script>
+ 
+ 
+<script>											/*  비동기 댓글  */
+
+		
+	//////비동기	
+		/* $.ajax({
+			url: "SelectCommentList.ua",
+			data: {
+				f_code:'${f_code}'},
+			dataType: "json",
+			success: function(resData) {
+				makeComment(resData);
+			}
+		}); 
+		
+		//댓글 등록
+		$('#commentWrite').click(function() {
+			if($('#comment').val() == "") {
+				alert('내용을 입력하세요');
+				return false;
+			}
+			
+			$.ajax({
+				url: "InsertComment.ua",
+				data: {
+					f_code:'${f_code}',
+					r_writer:'${id}',
+					content:$('#comment').val()
+				},
+				dataType: "json",
+				success: function(resData) {
+					$('#com').empty();
+					makeComment(resData);
+					$('#comment').val("");
+				}
+			}).done(function(){ //댓글 작성 후 댓글 개수  count
+				$.ajax({
+					url: "CommentTotal.ua",
+					data: {
+						f_code:'${f_code}'
+					},
+					dataType: "json",
+					success: function(resData) {
+						$('#replyTotal').text(resData.totalComment);
+					}
+				})
+				
+			});;
+		});
+		
+		//댓글 삭제
+		$('#com').on('click', '.deleteComment', function() {
+			$.ajax({
+				url: "DeleteComment.ua",
+				data: {
+					f_code: '${f_code}',
+					r_code: $(this).data("value")
+				},
+				dataType: "json",
+				success: function(resData) {
+					$('#com').empty();
+					makeComment(resData);
+				}
+			}).done(function(){ //댓글 삭제 후 댓글 개수  count
+				$.ajax({
+					url: "CommentTotal.ua",
+					data: {
+						f_code:'${f_code}'
+					},
+					dataType: "json",
+					success: function(resData) {
+						$('#replyTotal').text(resData.totalComment);
+					}
+				})
+				
+			});;
+		});
+		
+		//댓글 수정
+		var check = true;
+		$('#com').on('click', '.updateComment', function() {
+			if(check) {
+				check = false;
+				//클릭한 a태그의 class를 cancelUpdate로 바꾸고 아이콘 바꾸기
+				$(this).attr('class', 'cancelUpdate');
+				$(this).html("<i class='ri-close-line'></i>");
+				
+				//this(a태그)의 부모태그(blockquote태그)를 parentTag변수에 담기
+				var parentTag = $(this).parent();
+
+				//자식태그 중 code(댓글내용이 들어있는 태그)를 찾아서 변수에 담기
+				var code = parentTag.find('code');
+				//댓글내용 변수에 담기
+				var codeText = parentTag.find('code').text();
+				//댓글내용이 있는 code태그 삭제
+				$(code).remove();
+				//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
+				var html = "";
+				html += '<div id="updateDiv">';
+				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent">';
+				html += '<button class="button special small alt" id="commUpdateBtn">Edit</button>';
+				html += '</div>';
+				parentTag.append(html);
+				parentTag.find('input').focus();
+				
+				var commentNum = $(this).data("value");
+				$('#commUpdateBtn').click(function() {
+					if($('#updateContent').val() == "") {
+						alert('내용을 입력하세요');
+						return false;
+					}
+					
+					$.ajax({
+						url: "UpdateComment.ua",
+						data: {
+							f_code: '${f_code}',
+							r_code: commentNum,
+							r_content: $('#updateContent').val()
+						},
+						dataType: "json",
+						success: function(resData) {
+							$('#com').empty();
+							makeComment(resData);
+						}
+					});
+				});
+			}
+			
+			//수정 취소 눌렀을 경우 리스트 다시 불러오기
+			$('#com').on('click', '.cancelUpdate', function() {
+				$.ajax({
+					url: "SelectCommentList.ua",
+					data: {f_code:'${f_code}'},
+					dataType: "json",
+					success: function(resData) {
+						$('#com').empty();
+						makeComment(resData);
+					}
+				});
+				check = true;
+			});
+		});
+
+			//댓글 목록 그리는 함수
 	
+	function makeComment(result) {
+				
+				console.log("www : " + $('#sessionId').text());
+				
+				var html = "";
+				$.each(result, function(index, obj) {
+					html += "<blockquote><b>" + obj.r_writer + "</b>"  + " ";
+					if($('#sessionId').text() === obj.r_writer){
+						html += " <a href='javascript:void(0);' data-value='" + obj.r_code + "' class='updateComment' ><i class='ri-pencil-line'></i></a>";
+						html += " <a href='javascript:void(0);' data-value='" + obj.r_code + "' class='deleteComment'><i class='ri-delete-bin-line'></i></a><br>";
+					}
+					html += "<code><div style='font-size:15px; color:black;'>" + obj.r_content + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.r_write_date + "</div></blockquote>";
+				});
+				$('#com').append(html);
+			}*/
+		
+	</script>
+
+	<script>
+/*
+ 	$(document)
+  			.on(
+  					'click',
+  					'#deleteBoard',
+  					function(e) {
+  						e.preventDefault();
+  						if($('#replyTotal').text() > 0){
+  							alert('댓글이 달린글은 삭제할 수 없습니다.')
+  						}else{
+  							location.href = "BoardFreeDelete.b?f_code=${f_code}";
+  						}
+  						
+  					});
+  					*/
+	</script>	
 </body>
 
 
