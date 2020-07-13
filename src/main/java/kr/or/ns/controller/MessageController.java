@@ -1,6 +1,7 @@
 package kr.or.ns.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.or.ns.page.PageMaker_Board;
+import kr.or.ns.page.PageMaker_Select;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.service.MyPageService;
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Message;
 
 @Controller
@@ -23,17 +27,69 @@ public class MessageController {
 	MessageService mservice;
 
 	
-	@RequestMapping("mypage_Message_From_Board.do")
-	public String myMessageFromBoardPage(Principal principal, Model model) {
-		// 받은 쪽지 뿌려주기
-		List<Message> mlist = mservice.getListMessage(principal.getName());
-		model.addAttribute("message", mlist);
-
-		System.out.println("이게 받은쪽지인가 : " + mlist);
-		
-		System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
-		return "user/mypage/mypage_Message_From_Board";
-	}
+	
+	//받은 쪽지 목록
+//	@RequestMapping("mypage_Message_From_Board.do")
+//	public String myMessageFromBoardPage(Principal principal, Model model) {
+//		// 받은 쪽지 뿌려주기
+//		List<Message> mlist = mservice.getListMessage(principal.getName());
+//		model.addAttribute("message", mlist);
+//
+//		System.out.println("이게 받은쪽지인가 : " + mlist);
+//		
+//		System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
+//		return "user/mypage/mypage_Message_From_Board";
+//	}
+//	
+	
+	
+	
+	
+	//받은 쪽지 목록+페이징
+		@RequestMapping("mypage_Message_From_Board.do")
+		public String myMessageFromBoardPage(Criteria_Board cri_b, Principal principal, Model model) {
+			
+			
+			//쪽지 테이블에서 사용자 아이디와 일치하는 데이터 가져오기 
+			String user_id = principal.getName();
+			
+			//페이징
+			PageMaker_Board pageMakerb = new PageMaker_Board();
+			pageMakerb.setCri_b(cri_b);
+			pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
+			
+			
+			
+			
+			// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
+			// 받은 쪽지 뿌려주기
+			
+			//페이징 들고오기
+			List<HashMap<String, Object>> messageList = null;
+			
+			HashMap<String, Object> map = new HashMap();		
+			map.put("user_id", user_id);
+			map.put("cri_b", cri_b);
+			
+			messageList = mservice.getMessageList(map);
+			System.out.println("messageList:"+messageList);
+			
+			model.addAttribute("messageList", messageList);// view까지 전달(forward)
+			model.addAttribute("pageMakerb", pageMakerb);
+			
+			System.out.println("다음버튼이 있니?: " + pageMakerb.isNext());
+			System.out.println("이게 받은쪽지인가 : " + messageList.toString());
+			
+			System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
+			
+			return "user/mypage/mypage_Message_From_Board";
+		}
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping("mypage_Message_Send_Board.do")
 	public String mypageMessageSendBoardPage(Principal principal, Model model) {

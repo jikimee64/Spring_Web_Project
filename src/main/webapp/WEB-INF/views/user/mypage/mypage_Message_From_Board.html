@@ -244,7 +244,11 @@ group+group {
 			</div>
 
 
-			<th:block th:each="list : ${message}">
+
+
+
+<!-- 			<th:block th:each="list,index : ${messageList}"> -->
+			<th:block th:each="list : ${messageList}">
 				<!-- th(부모태그) -->
 				<div class="row" id="parent"
 					style="margin: 0px 20px 0px 20px; position: relative; top: -93px; text-align: center;">
@@ -258,28 +262,34 @@ group+group {
 					<div class="col-md-2"
 						style="place-self: center; text-align: center;">
 						<!-- @{/ajax/userInfoModal.do=(senderid=${list.senderid})} -->
-						<a href="" th:classappend="|InfoModal${list.m_seq}|"
-							th:onclick="|javascript:InfoModal('${list.m_seq}')|"
+						<a href="" th:classappend="|InfoModal${list.M_SEQ}|"
+							th:onclick="|javascript:InfoModal('${list.M_SEQ}')|"
 							data-toggle="modal" data-target="#userInfoModal"> <span
-							th:text="${list.senderid}"></span>
+							th:text="${list.SENDERID}"></span>
 						</a>
 					</div>
 
 					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
 					<!-- td3(내용) -->
-					<div th:if="${list.opendate} != null" class="col-md-6"
+<!-- 					<div th:if="${list[index.index].opendate} != null" class="col-md-6" -->
+<!-- 					<div th:if="${list.opendate} != null" class="col-md-6" -->
+					<div th:if="${map.get(list).opendate} != null" class="col-md-6"
 						style="place-self: center; text-align: center;">
 						<a style="color: #636e72;"
-							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
-							<span th:text="${list.content}"></span>
+							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
+							<span th:text="${list.CONTENT}"></span>
 						</a>
 					</div>
+					
+					
 					<!-- td3(내용) -->
-					<div th:if="${list.opendate} == null" class="col-md-6"
+<!-- 					<div th:if="${list[index.index].opendate} == null" class="col-md-6" -->
+<!-- 					<div th:if="${list.opendate} == null" class="col-md-6" -->
+					<div th:if="${map.get(list).opendate} != null" class="col-md-6"
 						style="place-self: center; text-align: center;">
 						<a style="color: #00b894;"
-							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
-							<span th:text="${list.content}"></span>
+							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
+							<span th:text="${list.CONTENT}"></span>
 						</a>
 					</div>
 
@@ -294,10 +304,10 @@ group+group {
 					<!-- td4(받은시간) -->
 					<div class="col-md-3"
 						style="place-self: center; text-align: center;">
-						<span th:text="${list.senddate}"></span>
+						<span th:text="${list.SENDDATE}"></span>
 					</div>
 
-					<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
+					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" />
 
 					<hr
 						style="color: #dfe4ea; border: solid 0.5px; margin-bottom: 0px; margin-top: 0px; width: 97%">
