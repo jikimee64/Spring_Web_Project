@@ -101,5 +101,8 @@
 			]]>
 	</select>
 
+	<select id="studyStatus" resultType="hashMap">
+	    select * from study_group where s_seq = #{s_seq}
+	</select>
 
 </mapper>

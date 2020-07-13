@@ -173,9 +173,11 @@ body {
 									th:text="${studylist.CONTENT_KIND}"></span> <span
 									class="badge badge-pill badge-danger"
 									th:text="|마감일 : ${studylist.DEADLINE}|"></span>
+									<a th:href = "@{SupportStatus.do(s_seq=${studylist.S_SEQ})}">
 								<img
 									src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
-									class="mb-1 _message_hover" alt="" style="height: 27px;"><a th:href = "@{/board/board.Support_Status.do}">
+									class="mb-1 _message_hover" alt="" style="height: 27px;">
+									
 								<br/> <b><span th:text="${studylist.TITLE}"
 									style="font-size: xx-large;"></span></b><br /> </a>
 									<span
@@ -353,11 +355,11 @@ body {
 						html += "<span class='badge badge-pill badge-warning'>" + data[index].PEOPLE  +  "명</span>";
 						html += "<span class='badge badge-pill badge-warning'>" + data[index].LOC + "</span>"
 						html += "<span class='badge badge-pill badge-light'>" + data[index].CONTENT_KIND + "</span>";
-						html += "<a class='_message_hover' href='/mypage/MyPageUserDetail.do'>";
+						html += "<a class='_message_hover' href='/mypage/SupportStatus.do'>";
+						html += "<a href = '/board/board.Support_Status.do'>";
 						html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
-
 						/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-						html +=	"<b><span style='font-size:xx-large;'>" + data[index].TITLE +"</span></b><br/>";
+						html +=	"<b><span style='font-size:xx-large;'>" + data[index].TITLE +"</span></b><br/></a>";
 						html += "<span>" + data[index].CONTENT +"</span><br />";
 						html +=	"</div>";
 						html += "<div class='col-md-3' style='text-align: right;'>";
@@ -413,11 +415,11 @@ body {
 					html += "<span class='badge badge-pill badge-warning'>" + data[index].PEOPLE  +  "명</span>";
 					html += "<span class='badge badge-pill badge-warning'>" + data[index].LOC + "</span>"
 					html += "<span class='badge badge-pill badge-light'>" + data[index].CONTENT_KIND + "</span>";
-					html += "<a class='_message_hover' href='/mypage/MyPageUserDetail.do'>";
+					html += "<a class='_message_hover' href='/mypage/SupportStatus.do'>";
 					html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
-
+					html += "<a href = '/board/board.Support_Status.do'>";
 					/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-					html +=	"<b><span style='font-size:xx-large;'>" + data[index].TITLE +"</span></b><br/>";
+					html +=	"<b><span style='font-size:xx-large;'>" + data[index].TITLE +"</span></b><br/><a/>";
 					html += "<span>" + data[index].CONTENT +"</span><br />";
 					html +=	"</div>";
 					html += "<div class='col-md-3' style='text-align: right;'>";

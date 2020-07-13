@@ -38,5 +38,8 @@ public interface MyPageDao {
 
 	// 마이페이지(스터디 목록 가져오기)
 	public List<HashMap<String, Object>> myPageStudyList(String userid);
+	
+	//마이페이지 스터디 현황
+	public List<HashMap<String, Object>> studyStatus(String userid);
 
 }

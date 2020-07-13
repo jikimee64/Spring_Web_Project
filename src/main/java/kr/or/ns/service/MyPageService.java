@@ -45,5 +45,8 @@ public interface MyPageService {
 
 	// 마이페이지(스터디 리스트)
 	public List<HashMap<String, Object>> myPageStudyList(String userid);
+	
+	//마이페이지 참여유저 현황 보여주기
+	public List<HashMap<String, Object>> studyStatus(String name);
 
 }

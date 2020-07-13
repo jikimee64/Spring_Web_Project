@@ -201,4 +201,13 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageStudyList;
 	}
 
+	@Override
+	public List<HashMap<String, Object>> studyStatus(String userid) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		 List<HashMap<String, Object>> myPageStudyList = dao.studyStatus(userid);
+		System.out.println("이거 되는거니...?" + myPageStudyList);
+		
+		return myPageStudyList;
+	}
+
 }
