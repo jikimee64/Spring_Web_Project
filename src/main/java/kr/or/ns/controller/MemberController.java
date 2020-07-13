@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ns.service.MemberService;
 import kr.or.ns.vo.Users;
@@ -27,9 +28,18 @@ public class MemberController {
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@RequestMapping("login.do")
-	public String loginPage() {
-		System.out.println("로그인으로 이동이동(연규가씀)");
+	public String loginPage(@RequestParam(value = "errormsg", required = false) Object errormsg, HttpServletRequest request) {
+		if(errormsg != null) {
+			request.setAttribute("errormsgname", (String)errormsg);
+		}
 		return "user/member/login";
+	}
+	
+	@RequestMapping("loginFail.do")
+	public String loginFailPage(HttpServletRequest request, RedirectAttributes redirect) {
+		Object errormsg = request.getAttribute("errormsgname");
+		redirect.addAttribute("errormsg", errormsg);  
+		return "redirect:/member/login.do";
 	}
 
 	@RequestMapping("join.do")

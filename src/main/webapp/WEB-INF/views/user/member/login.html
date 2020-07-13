@@ -78,7 +78,6 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	background-image: url('../images/img-01.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -413,15 +412,18 @@ button:focus {
 	</main><!-- End #main -->
 
 	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
-	<div th:if="${param.error!=null}">
+	<input type="hidden" th:value="${param.error}" id="error" />
+	
+ <!-- 	<div th:if="${param.error!=null}">
 		로그인 실패 <br />
 		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
-			<!-- <c:if test="${SPRING_SECURITY_LAST_EXCEPTION !=null }"> -->
+			<c:if test="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
 			<span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
-			<!-- <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"></c:out> -->
+			<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"></c:out>
 		</th:block>
-		<!-- </c:if> -->
-	</div>
+		</c:if>
+	</div>    -->
+	
 
 	<div class="limiter" style="height:834px;">
 		<div class="container-login100" style="position:inherit;">
@@ -435,8 +437,7 @@ button:focus {
 					</h2>
 					<hr style="width: 80%; margin-bottom: 11px;" />
 
-					<form th:action="@{/login}" method="post" class=""
-						novalidate>
+					<form th:action="@{/login}" method="post" class="">
 
 
 						<div class="form-group" style="text-align: -webkit-center;">
@@ -444,8 +445,6 @@ button:focus {
 
 							<input class="input--style-6" type="text" id="user_id"
 								placeholder="Enter userid" name="user_id" required>
-							<div class="valid-feedback">Valid.</div>
-							<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
 
 
@@ -453,23 +452,14 @@ button:focus {
 							<label for="pwd"><b style="margin-right: 208px">Password</b></label>
 							<input class="input--style-6" type="password" id="user_pwd"
 								placeholder="Enter password" name="user_pwd" required>
-							<div class="valid-feedback">Valid.</div>
-							<div class="invalid-feedback">Please fill out this field.</div>
 						</div>
-
-
-						<!-- <div class="form-group form-check">
-               <label class="form-check-label"> <input
-                  class="form-check-input" type="checkbox" name="remember" required>
-                  I agree on blabla.
-                  <div class="valid-feedback">Valid.</div>
-                  <div class="invalid-feedback">Check this checkbox to
-                     continue.</div>
-               </label>
-            </div> -->
-
+						
+						<div class="form-group" style="text-align: -webkit-center; color:red">
+							<div th:text="${#request.getAttribute('errormsgname')}"></div>
+						</div>   
+						
 						<div style="text-align: -webkit-center;">
-							<button type="submit" class="login100-form-btn"
+							<button id="login-button" type="submit" class="login100-form-btn"
 								style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;">
 								<b>Login</b>
 							</button>
@@ -530,45 +520,19 @@ button:focus {
 
 		</div>
 	</div>
-
-
-		<script>
-			// Disable form submissions if there are invalid fields
-			(function() {
-				'use strict';
-				window
-						.addEventListener(
-								'load',
-								function() {
-									// Get the forms we want to add validation styles to
-									var forms = document
-											.getElementsByClassName('needs-validation');
-									// Loop over them and prevent submission
-									var validation = Array.prototype.filter
-											.call(
-													forms,
-													function(form) {
-														form
-																.addEventListener(
-																		'submit',
-																		function(
-																				event) {
-																			if (form
-																					.checkValidity() === false) {
-																				event
-																						.preventDefault();
-																				event
-																						.stopPropagation();
-																			}
-																			form.classList
-																					.add('was-validated');
-																		},
-																		false);
-													});
-								}, false);
-			})();
+		
+<!-- 	 	<script>
+			$(function() {
+					$('#login-button').click(function(){
+					let a = $('#kwc').text();
+					alert(a)
+						if(a !== null){
+							alert(a);	
+						}
+					});
+			});
 		</script>
-
+ -->
 		<div th:replace="/user/includes/footer :: footer"></div>
 
 		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>

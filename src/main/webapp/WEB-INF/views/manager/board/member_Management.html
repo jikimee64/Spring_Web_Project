@@ -130,7 +130,6 @@ td:focus {
 												<!-- 													<a th:href="@{noticeDetail.htm(seq=${n.seq})}"> -->
 												<td align="center"><a
 													th:classappend="|${memberList.user_id}|"
-													th:onclick="|javascript:stopMember('${memberList.user_id}')|"
 													th:href="@{/manager/board/member_Detail.do(user_id=${memberList.user_id})}"
 													th:text="${memberList.user_id}"></a>
 												</td>
@@ -138,7 +137,9 @@ td:focus {
 												<td align="center" th:text="${memberList.nickname}"></td>
 												<td align="center" th:text="${memberList.blame_count}"></td>
 												<td align="center" class="button" style="padding-top: 10px;">
-													<a href="#" id="stop">
+													<a href="#" 
+													th:onclick="|javascript:stopButton('${memberList.user_id}')|"
+														id="stop">
 														<button type="button" class="btn btn-danger btn-sm"
 															style="color: white; border-radius: 5px;">정지</button>
 												</a>
@@ -196,28 +197,27 @@ td:focus {
 	</div>
 
 	<script>
-		$(function() {
-			$('#stop').click(function(){
-				swal({
-					  title: "계정을 정지하시겠습니까??",
-					  text: "정지하는 순간 사이트 로그인 영구정지...",
-					  icon: "warning",
-					  buttons: true,
-					  dangerMode: true,
-					})
-					.then((willDelete) => {
-						console.log('확인버튼누르면 요기...');
-					  if (willDelete) {
-					    swal("성공적으로 정지완료!!", {
-					      icon: "success",
-					    });
-					  } else {
-					    swal("취소");
-					  }
-					});
-			})
-			
-		});
+		//idx는 user_id받음, 정지버튼 onclick
+		function stopButton(idx){
+			console.log(idx)
+			swal({
+				  title: idx+"계정을 정지 하시겠습니까?",
+				  text: "정지하는 순간 사이트 로그인 영구정지...",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+					console.log('확인버튼누르면 요기...');
+				  if (willDelete) {
+				    swal("성공적으로 정지완료!!", {
+				      icon: "success",
+				    });
+				  } else {
+				    swal("취소");
+				  }
+				});
+		}
 		
 		//idx는 user_id받음
 		function stopMember(idx) {
@@ -262,8 +262,6 @@ td:focus {
 			}); */
 
 		}
-		
-		
 		
 	</script>
 

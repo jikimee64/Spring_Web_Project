@@ -19,9 +19,11 @@
 		<security:form-login
 			username-parameter="user_id"
 			password-parameter="user_pwd"
-			default-target-url="/user/main.do" login-page="/member/login.do"
+			default-target-url="" 
+			login-page="/member/login.do"
 			authentication-success-handler-ref="loginSuccessHandler"
-			authentication-failure-url="/member/login.do?error" /> <!-- 이건 로그인을 실패할 때 error를 붙이면 에러페이지로 스프링이 자동으로 넘겨줌 -->
+			authentication-failure-handler-ref="loginFailureHandler"
+		/> 
 		<security:logout logout-success-url="/user/main.do" />
 		
 		<!-- 비로그인 막는 페이지..   -->
@@ -50,11 +52,12 @@
 			
 	
 	</security:http>
+	<!-- enabled가 1인것만 로그인.. 0인 아이디로 로그인할 시 로그인 에러 터짐  -->
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="driverManagerDataSource"
-				users-by-username-query="SELECT USER_ID, USER_PWD AS PASSWORD, 1 enabled FROM users where user_id=?"
+				users-by-username-query="SELECT USER_ID, USER_PWD AS PASSWORD, enabled FROM users where user_id=?"
 
 				authorities-by-username-query="select u.USER_ID , a.USER_ROLE  
          										  from users u join authorities a 
@@ -71,6 +74,13 @@
 	<bean id="loginSuccessHandler" class="kr.or.ns.interceptor.LoginSuccessHandler">
 	    <!-- <property name="loginEmail" value="user_email"/> -->
 	    <property name="defaultUrl" value="/user/main.do"/> 
+	</bean>
+	
+<bean id="loginFailureHandler" class="kr.or.ns.interceptor.LoginFailureHandler">
+	    <property name="loginidname" value="user_id"/>
+	    <property name="loginpwdname" value="user_pwd"/>
+	    <property name="errormsgname" value="ERRORMSG"/>
+	    <property name="defaultFailureUrl" value="/member/loginFail.do"/> 
 	</bean>
 	
 
