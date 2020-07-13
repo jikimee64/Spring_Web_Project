@@ -53,17 +53,23 @@ public class ManagerServiceImpl implements ManagerService {
 		List<HashMap<String, Object>> blame = dao.getBlameList();
 		return blame;
 	}
-	
+
 	public int stopMember(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = dao.stopMember(user_id);
 		return result;
 	}
-	
+
 	public int restoreMember(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = dao.restoreMember(user_id);
 		return result;
+	}
+
+	public HashMap<String, Object> getDetailDeclare(String bl_seq) {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		HashMap<String, Object> map = dao.getDetailDeclare(bl_seq);
+		return map;
 	}
 
 }

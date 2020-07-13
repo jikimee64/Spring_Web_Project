@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ns.dao.BoardDao;
 import kr.or.ns.dao.MainDao;
-
 @Service
 public class MainServiceImpl implements MainDao {
 

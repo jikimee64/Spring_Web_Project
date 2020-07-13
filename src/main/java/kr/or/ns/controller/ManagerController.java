@@ -149,7 +149,7 @@ public class ManagerController {
 		List<HashMap<String, Object>> blameList = null;
 		blameList = service.getBlameList();
 		System.out.println("신고관리pdf : " + blameList);
-		
+
 		// 배포경로에 엑셀을 만들어서 다운하는
 		WriteReportListToPdfFile.writeReportListToPdfFile("신고관리_목록.pdf", blameList, request);
 		String path = request.getServletContext().getRealPath("/manager/report/");
@@ -174,18 +174,29 @@ public class ManagerController {
 
 		return "manager/board/report_Management";
 	}
-	
-	@RequestMapping(value = "stopMember.do" , method = RequestMethod.POST)
+
+	// 계정정지
+	@RequestMapping(value = "stopMember.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int stopMember(@RequestBody Map<String, Object> params) throws IOException {
-		int result = service.stopMember((String)params.get("user_id")); // 블레임리스트
+		int result = service.stopMember((String) params.get("user_id")); // 블레임리스트
 		return result;
 	}
-	
-	@RequestMapping(value = "restoreMember.do" , method = RequestMethod.POST)
+
+	// 계정복구
+	@RequestMapping(value = "restoreMember.do", method = RequestMethod.POST)
 	@ResponseBody
-	public int restoreMembe(@RequestBody Map<String, Object> params) throws IOException {
-		int result = service.restoreMember((String)params.get("user_id")); // 블레임리스트
+	public int restoreMember(@RequestBody Map<String, Object> params) throws IOException {
+		int result = service.restoreMember((String) params.get("user_id")); // 블레임리스트
 		return result;
 	}
+
+	// 신고모달에 내용 전달
+	@RequestMapping(value = "getDetailDeclare.do", method = RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, Object> getDetailDeclare(@RequestBody Map<String, Object> params) throws IOException {
+		HashMap<String, Object> result = service.getDetailDeclare((String) params.get("bl_seq")); // 블레임리스트
+		return result;
+	}
+
 }

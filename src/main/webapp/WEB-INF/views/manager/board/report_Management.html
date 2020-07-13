@@ -128,14 +128,16 @@ td:focus {
 											<th:block th:each="blameList : ${blameList}">
 												<tr onmouseover="this.style.backgroundColor='#cecece'"
 													onmouseout="this.style.backgroundColor='white'">
-													<td align="center"><a data-toggle="modal"
+													<td align="center"><a 
+														th:onclick="|javascript:declareModal('${blameList.BL_SEQ}')|"
+														data-toggle="modal"
 														data-target="#declationPageModal" href="#"
-														th:text="${blameList.BL_SEQ}">${list.m_id}</a></td>
-													<td align="center" th:text="${blameList.TYPE}">bpc_seq</td>
-													<td align="center" th:text="${blameList.BOARD_SEQ}">board_seq</td>
-													<td align="center" th:text="${blameList.BL_ID}">bl_id</td>
-													<td align="center" th:text="${blameList.BL_TARGET_ID}">bl_target_id</td>
-													<td align="center" th:text="${blameList.BL_STATUS}">bl_status</td>
+														th:text="${blameList.BL_SEQ}"></a></td>
+													<td align="center" th:text="${blameList.PLACE}"></td>
+													<td align="center" th:text="${blameList.BOARD_SEQ}"></td>
+													<td align="center" th:text="${blameList.BL_ID}"></td>
+													<td align="center" th:text="${blameList.BL_TARGET_ID}"></td>
+													<td align="center" th:text="${blameList.BL_STATUS}"></td>
 													<!-- <td align="center">${list.phone}</td> -->
 												</tr>
 											</th:block>
@@ -216,7 +218,73 @@ td:focus {
 			})
 		});
 	</script>
+	
+	
+	
+	<script>
+	function declareModal(bl_seq) {
 
+		console.log("신고번호 : " + bl_seq);
+		// let obj = {"user_id" : id}; 
+
+		let data = {
+			"bl_seq" : bl_seq
+		}
+
+		$.ajax({
+			url : '/manager/getDetailDeclare.do',
+			processData : false,
+			contentType : "application/json",
+			cache : false,
+			type : 'POST',
+			data : JSON.stringify(data),
+			success : function(data) {
+				$('#declareButtons').empty();
+				console.log(data);
+				let html = "";
+				let html2 = "";
+				$('#write_date').text(data.WRITE_DATE);
+				$('#bl_title').val(data.BL_TITLE);
+				$('#type').text(data.TYPE);
+				$('#bl_content').text(data.BL_CONTENT);
+				
+				if(data.PLACE ==='쪽지 게시판'){
+					html += "<div class='col-4' style='padding:0px;'>";
+					html += "<button id='message' type='button' class='btn btn-outline-success' data-dismiss='modal'>쪽지내용</button>";
+					html += "</div>";
+					html += "<div class='col-4' style='padding: 0px;' text-align: center;'>";
+					html += "<a href='/message/mypage_Message_From_Board.do?'>";
+					html += "<button id='board' type='button' class='btn btn-outline-success'>쪽지함이동</button>";
+					html += "</a>";
+					html += "</div>";
+					html += "<div class='col-4' style='padding:0px;'>";
+					html += "<button id='declare' type='button' class='btn btn-outline-danger' data-dismiss='modal'>신고처리</button>";
+					html += "</div>";
+				}else{
+					html += "<div class='col-6' style='padding: 0px;' text-align: center;'>";
+					html += "<a href='/board/writing_Common_Study_Detail.do?s_seq="+ data.BOARD_SEQ +"'>";
+					html += "<button id='board' type='button' class='btn btn-outline-success'>게시글 이동</button>";
+					html += "</a>";
+					html += "</div>";
+					html += "<div class='col-6' style='padding:0px;'>";
+					html += "<button id='declare' id='blame-check' type='button' class='btn btn-outline-danger'>신고처리</button>";
+					html += "</div>";
+				}
+				
+				$('#declareButtons').append(html);
+			},
+			error : function(e) {
+				console.log("error:", e);
+			}
+		});
+
+	}
+	</script>
+
+	<script>
+		
+	
+	</script>
 
 </body>
 

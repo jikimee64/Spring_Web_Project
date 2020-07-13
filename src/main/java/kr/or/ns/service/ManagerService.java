@@ -29,4 +29,7 @@ public interface ManagerService {
 	//계정 정지 해제
 	public int restoreMember(String user_id);
 	
+	//신고번호에 따른 상세내용 뿌려주기
+	public HashMap<String, Object> getDetailDeclare(String bl_seq);
+	
 }
