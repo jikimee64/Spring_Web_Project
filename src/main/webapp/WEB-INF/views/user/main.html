@@ -490,260 +490,41 @@ body {
 
 				<div class="row portfolio-container aos-init aos-animate"
 					data-aos="fade-up" data-aos-delay="200"
-					style="position: relative; height: 3240px;">
-
+					style="position: relative; height: 3240px;" >
+					
+					<th:block th:each="list,index : ${mainList}">
 					<div class="col-lg-4 col-md-6 portfolio-item filter-app"
 						style="position: absolute; left: 0px; top: 0px;">
 						<div class="portfolio-wrap">
 							<figure>
-								<img th:src="${mainList[0].IMAGE}" class="img-fluid"
-									alt="">
+								 <th:block th:switch="${mainList[index.index].CONTENT_KIND}">
+									<img th:case="일반 " th:src="'/studyboard/upload/' + ${mainList[index.index].IMAGE}" class="img-fluid"
+										alt="">
+									<img th:case="온라인강의 " th:src="${mainList[index.index].IMAGE}" class="img-fluid"
+										alt="">
+								</th:block> 
 							</figure>
 
 							<div class="portfolio-info">
 								<div class="_text_align_start">
 								 <span
-										class="badge badge-pill badge-info" th:text="${mainList[0].LEVEL}"></span>
+										class="badge badge-pill badge-info" th:text="${mainList[index.index].LEVEL}"></span>
 									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[0].CATE_LANGUAGE}"></span> <span
+										th:text="${mainList[index.index].CATE_LANGUAGE}"></span> <span
 										class="badge badge-pill badge-success"
-										th:text="|${mainList[0].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[0].LOC}"></span>
+										th:text="|${mainList[index.index].PEOPLE}명|"></span> <span
+										class="badge badge-pill badge-warning" th:text="${mainList[index.index].LOC}"></span>
 									<span class="badge badge-pill badge-light"
-										th:text="${mainList[0].CONTENT_KIND}"></span>
+										th:text="${mainList[index.index].CONTENT_KIND}"></span>
 								</div>
 
 								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[0].TITLE}"></a></b>
-								<p th:text="${mainList[0].USER_ID}">Web</p>
+									href="portfolio-details.html" th:text="${mainList[index.index].TITLE}"></a></b>
+								<p th:text="${mainList[index.index].USER_ID}">Web</p>
 							</div>
 						</div>
 					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-web"
-						style="position: absolute; left: 0px; top: 360px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[1].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-									 <span
-										class="badge badge-pill badge-info" th:text="${mainList[1].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[1].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[1].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[1].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[1].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[1].TITLE}"></a></b>
-								<p th:text="${mainList[1].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-app"
-						style="position: absolute; left: 0px; top: 720px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[2].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-									<span
-										class="badge badge-pill badge-info" th:text="${mainList[2].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[2].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[2].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[2].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[2].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[2].TITLE}"></a></b>
-								<p th:text="${mainList[2].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-card"
-						style="position: absolute; left: 0px; top: 1080px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[3].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-									
-								 <span
-										class="badge badge-pill badge-info" th:text="${mainList[3].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[3].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[3].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[3].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[3].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[3].TITLE}"></a></b>
-								<p th:text="${mainList[3].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-web"
-						style="position: absolute; left: 0px; top: 1440px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[4].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-								 <span
-										class="badge badge-pill badge-info" th:text="${mainList[4].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[4].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[4].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[4].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[4].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[4].TITLE}"></a></b>
-								<p th:text="${mainList[4].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-app"
-						style="position: absolute; left: 0px; top: 1800px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[5].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-								<span
-										class="badge badge-pill badge-info" th:text="${mainList[5].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[5].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[5].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[5].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[5].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[5].TITLE}"></a></b>
-								<p th:text="${mainList[5].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-card"
-						style="position: absolute; left: 0px; top: 2160px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[6].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-									 <span
-										class="badge badge-pill badge-info" th:text="${mainList[6].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[6].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[6].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[6].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[6].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[6].TITLE}"></a></b>
-								<p th:text="${mainList[6].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-card"
-						style="position: absolute; left: 0px; top: 2520px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[7].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-								 <span
-										class="badge badge-pill badge-info" th:text="${mainList[7].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[7].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[7].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[7].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[7].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[7].TITLE}"></a></b>
-								<p th:text="${mainList[7].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-lg-4 col-md-6 portfolio-item filter-web"
-						style="position: absolute; left: 0px; top: 2880px;">
-						<div class="portfolio-wrap">
-							<figure>
-								<img th:src="${mainList[8].IMAGE}" class="img-fluid"
-									alt="">
-							</figure>
-
-							<div class="portfolio-info">
-								<div class="_text_align_start">
-									 <span
-										class="badge badge-pill badge-info" th:text="${mainList[8].LEVEL}"></span>
-									<span class="badge badge-pill badge-secondary"
-										th:text="${mainList[8].CATE_LANGUAGE}"></span> <span
-										class="badge badge-pill badge-success"
-										th:text="|${mainList[8].PEOPLE}명|"></span> <span
-										class="badge badge-pill badge-warning" th:text="${mainList[8].LOC}"></span>
-									<span class="badge badge-pill badge-light"
-										th:text="${mainList[8].CONTENT_KIND}"></span>
-								</div>
-
-								<b style="font-size: x-large;"><a
-									href="portfolio-details.html" th:text="${mainList[8].TITLE}"></a></b>
-								<p th:text="${mainList[8].USER_ID}">Web</p>
-							</div>
-						</div>
-					</div>
+					</th:block>
 
 				</div>
 

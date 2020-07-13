@@ -73,8 +73,8 @@ body {
 
 	<div th:replace="/user/includes/header :: header"></div>
 
-<sec:authorize access = "isAuthenticated()">
-<sec:authentication property="principal.username" var = "user_id"/>
+<!-- <sec:authorize access = "isAuthenticated()">
+<sec:authentication property="principal.username" var = "user_id"/> -->
 	<!-- 배너 -->
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -116,9 +116,9 @@ body {
 					</div>
 					<div class="row"
 						style="text-align: center; height: 35px; width: 100%"></div>
-					<th:block th:each="status : ${status}">
+					<th:block th:each="status,index : ${status}">
 						<div class="col" id="doing_study_col" style="font-size: x-large">
-							<span th:if="${status.ROLE_NAME == '방장'}"> <span
+							<span th:if="${index.index} > 0"> <span
 								th:text="${status.USER_ID}"></span> <!-- 방장 아이콘 추가 -->
 							</span>
 						</div>

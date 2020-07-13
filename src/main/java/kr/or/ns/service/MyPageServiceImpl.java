@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -210,12 +211,13 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageStudyList;
 	}
 
-	@Override
-	public String getRole(String user_id, String s_seq) {
-		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
-		String getRole = dao.getRole(user_id,s_seq);
-		
-		return getRole;
-	}
+	
+	  //@Override public String getRole(@Param("user_id") String
+	 //user_id, @Param("s_seq") String s_seq) { MyPageDao dao =
+	 //sqlsession.getMapper(MyPageDao.class); String getRole =
+	 //dao.getRole(user_id,s_seq); System.out.println(getRole);
+	 // 
+	 //return getRole; }
+	 
 
 }

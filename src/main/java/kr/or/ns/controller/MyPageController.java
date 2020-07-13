@@ -129,16 +129,16 @@ public class MyPageController {
 	@RequestMapping(value = "SupportStatus.do")
 	public String SupportStatus(String s_seq, Model model, Principal principal) {
 		System.out.println("스터디 상세페이지");
-
 		List<HashMap<String, Object>> status = service.studyStatus(s_seq);
 		String user_id = principal.getName();
-		String role = service.getRole(user_id, s_seq);
+		System.out.println(user_id);
+		//String role = service.getRole(user_id, s_seq);
 		/*model.addAttribute("id" , user_id);*/
 		model.addAttribute("status", status);
-		model.addAttribute("role", role);
+		//model.addAttribute("role", role);
 		
 		System.out.println(status);
-		System.out.println(role);
+		//System.out.println(role);
 		return "user/mypage/mypage_Support_Status.html";
 
 	}
