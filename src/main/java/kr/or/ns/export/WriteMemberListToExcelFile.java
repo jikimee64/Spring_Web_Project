@@ -48,7 +48,6 @@ public class WriteMemberListToExcelFile {
    do {
       Row row = sheet.createRow(rowIndex++);
       if(excelName==0) { //처음에 고정값
-    	  System.out.println("칼럼입니다.");
          Cell cell0 = row.createCell(0);
          cell0.setCellValue("아이디");
          
@@ -60,6 +59,9 @@ public class WriteMemberListToExcelFile {
          
          Cell cell3 = row.createCell(3);
          cell3.setCellValue("신고횟수");
+         
+         Cell cell4 = row.createCell(4);
+         cell4.setCellValue("활성상태");
          
          excelName++;
       }else { //다음부터는 순차적으로 값이 들어감
@@ -77,6 +79,9 @@ public class WriteMemberListToExcelFile {
          
          Cell cell3 = row.createCell(3);
          cell3.setCellValue(users.getBlame_count());
+         
+         Cell cell4 = row.createCell(4);
+         cell4.setCellValue(users.getEnabled());
       }
       
    }while(iterator.hasNext());  //다음값이 없을때까지 뽑음

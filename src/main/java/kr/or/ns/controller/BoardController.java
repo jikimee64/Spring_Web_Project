@@ -235,8 +235,6 @@ public class BoardController {
 		cm.setR_name(user_id);
 		
 		service.commentInsert(cm);
-		
-		
 	}
 
 }

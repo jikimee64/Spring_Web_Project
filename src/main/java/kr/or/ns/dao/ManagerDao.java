@@ -17,6 +17,10 @@ public interface ManagerDao {
 	public int memberDelete(String user_id);
 
 	public List<HashMap<String, Object>> getBlameList();
+	
+	public int stopMember(String user_id);
+	
+	public int restoreMember(String user_id);
 
 
 }

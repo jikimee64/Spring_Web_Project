@@ -1,8 +1,11 @@
 package kr.or.ns.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +17,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ns.export.WriteMemberListToExcelFile;
@@ -23,6 +29,7 @@ import kr.or.ns.export.WriteReportListToExcelFile;
 import kr.or.ns.export.WriteReportListToPdfFile;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.vo.Blame;
+import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -166,5 +173,19 @@ public class ManagerController {
 		System.out.println("dncjf : " + blameList);
 
 		return "manager/board/report_Management";
+	}
+	
+	@RequestMapping(value = "stopMember.do" , method = RequestMethod.POST)
+	@ResponseBody
+	public int stopMember(@RequestBody Map<String, Object> params) throws IOException {
+		int result = service.stopMember((String)params.get("user_id")); // 블레임리스트
+		return result;
+	}
+	
+	@RequestMapping(value = "restoreMember.do" , method = RequestMethod.POST)
+	@ResponseBody
+	public int restoreMembe(@RequestBody Map<String, Object> params) throws IOException {
+		int result = service.restoreMember((String)params.get("user_id")); // 블레임리스트
+		return result;
 	}
 }

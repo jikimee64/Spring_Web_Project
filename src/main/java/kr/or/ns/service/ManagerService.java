@@ -23,4 +23,10 @@ public interface ManagerService {
 	//신고게시판 목록가져오기
 	public List<HashMap<String, Object>> getBlameList();
 	
+	//계정 정지
+	public int stopMember(String user_id);
+	
+	//계정 정지 해제
+	public int restoreMember(String user_id);
+	
 }
