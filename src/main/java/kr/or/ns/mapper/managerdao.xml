@@ -58,5 +58,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="restoreMember">
 		update users set enabled = 1 where user_id=#{user_id}
 	</update>
+	
+	<select id="getDetailDeclare" resultType="hashmap">
+		select *
+		from blame_board b
+		join blame_type_category t
+		on b.BTC_SEQ = t.BTC_SEQ
+		join blame_place_category p
+		on b.BPC_SEQ = p.BPC_SEQ
+		where BL_SEQ = #{BL_SEQ}
+	</select>
 
 </mapper>

@@ -21,6 +21,7 @@ public interface ManagerDao {
 	public int stopMember(String user_id);
 	
 	public int restoreMember(String user_id);
-
+	
+	public HashMap<String, Object> getDetailDeclare(String bl_seq);
 
 }

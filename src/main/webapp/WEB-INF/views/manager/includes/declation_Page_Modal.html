@@ -2,7 +2,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>신고페이지</title>
@@ -54,15 +55,16 @@
 						<div class="modal-body container"
 							style="padding: 30px; padding-bottom: 0px;">
 							<div class="row">
-								<div style="padding-bottom:10px;" class="col-md-3">신고일자</div>
+								<div style="padding-bottom: 10px;" class="col-md-3">신고일자</div>
 								<div class="col-md-9" style="padding-left: 0px;">
-									<span>1995.09.10</span>
+									<span id="write_date"></span>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-2">제목 :</div>
 								<div class="col-md-9" style="padding-left: 0px;">
-									<input readonly type="text" class="form-control form-control-sm">
+									<input id="bl_title" readonly type="text"
+										class="form-control form-control-sm">
 								</div>
 							</div>
 							<hr>
@@ -73,35 +75,45 @@
 								<b>[사유]</b>
 							</h5>
 							<div style="padding-left: 30px;">
-								<label
-									for="1">게시판 성격과 맞지 않는 게시글</label><br> 
+								<label id="type" for="1"></label><br>
 								<div class="form-group">
-									<textarea class="form-control" rows="3" id="comment"
+									<textarea class="form-control" rows="3" id="bl_content"
 										readonly name="comment" placeholder="추가 내용"></textarea>
 								</div>
-								
+								<label id="type" for="1">쪽지내용</label><br>
+								<div class="form-group">
+									<textarea class="form-control" rows="3" id="bl_content"
+										readonly name="comment" placeholder="추가 내용"></textarea>
+								</div>
+
 								<!-- 게시판 유형 넘겨받는 hidden(될랑가모르겠네!!!!! - 우철 - )  -->
 								<input type="hidden" id="board_type" value="" />
-								
-								<div class="row" style="text-align:center; margin: 0 auto;">
-									쪽지냐 게시판우형이냐에 따라 버튼 달리 보여주기
-									디폴트는 쪽지함 + 신고처리
-									<div class="col-4" style="padding: 0px;">
-									<button id="message" type="button" class="btn btn-outline-success"
-											data-dismiss="modal">쪽지내용</button>
-									</div>
-									<div class="col-4" style="padding: 0px;text-align:center;">
-										<a href="sss.do">
-											<button id="" type="button" class="btn btn-outline-success">게시글 이동</button>
-										</a>
-										<a href="sss.do">
-											<button id="" type="button" class="btn btn-outline-success">쪽지함</button>
-										</a>
-									</div>
-									<div class="col-4" style="padding: 0px;">
-										<button id="declare" type="button" class="btn btn-outline-danger"
-												data-dismiss="modal">신고처리</button>
-									</div>
+
+								<div class="row" id="declareButtons" style="text-align: center; margin: 0 auto;">
+
+										<div class="col-4"
+											style="padding: 0px;">
+											<button id="message" type="button"
+												class="btn btn-outline-success" data-dismiss="modal">쪽지내용</button>
+										</div>
+
+
+										<div class="col-4" style="padding: 0px; text-align: center;">
+											<a href="sss.do">
+												<button id="board" type="button" class="btn btn-outline-success">게시글
+													이동</button>
+											</a> <a href="sss.do">
+												<button id="message2" type="button" class="btn btn-outline-success">쪽지함</button>
+											</a>
+										</div>
+
+										<!-- 반드시..  -->
+										<div class="col-4" style="padding: 0px;">
+											<button id="declare" type="button"
+												class="btn btn-outline-danger" data-dismiss="modal">신고처리</button>
+										</div>
+
+
 								</div>
 							</div>
 						</div>
