@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
@@ -52,4 +53,7 @@ public interface BoardService {
 	
 	//해당글의 좋아요 총 갯수 가져오기
 	public int getLikeCnt(String s_seq);
+	
+	//댓글 등록하기 기능
+	public void commentInsert(Comment cm);
 }

@@ -21,7 +21,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardServiceImpl;
-
+import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
@@ -141,6 +141,7 @@ public class BoardController {
 				
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
+		
 		model.addAttribute("page", page);
 		model.addAttribute("perPageNum", perPageNum);
 
@@ -220,6 +221,22 @@ public class BoardController {
 		//해당 게시글 좋아요 총 갯수 반환
 		int result = service.getLikeCnt(s_seq);
 		return result;
+	}
+	@RequestMapping(value = "InsertComment.do" , method = RequestMethod.POST)
+	@ResponseBody
+	public void commentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+		String user_id = principal.getName();
+		String s_seq = (String) params.get("s_seq");
+		String r_content = (String) params.get("r_content");
+		
+		Comment cm = new Comment();
+		cm.setS_seq(Integer.parseInt(s_seq));
+		cm.setR_content(r_content);
+		cm.setR_name(user_id);
+		
+		service.commentInsert(cm);
+		
+		
 	}
 
 }
