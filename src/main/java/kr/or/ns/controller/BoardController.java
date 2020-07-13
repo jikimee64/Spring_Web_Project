@@ -149,6 +149,8 @@ public class BoardController {
 		model.addAttribute("count", count);
 		model.addAttribute("sessionid", user_id);
 		model.addAttribute("heart", heart);
+		model.addAttribute("commentList", commentList);
+		System.out.println("우철이는 : " + commentList);
 		System.out.println("목록 -> 일반 ************: " + study);
 
 		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
@@ -203,7 +205,7 @@ public class BoardController {
 
 		return "user/board/board_Support_Status";
 	}
-
+	//좋아요 넣는 로직
 	@RequestMapping(value = "heart.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
@@ -222,6 +224,8 @@ public class BoardController {
 		int result = service.getLikeCnt(s_seq);
 		return result;
 	}
+	
+	//댓글 넣는 로직
 	@RequestMapping(value = "InsertComment.do" , method = RequestMethod.POST)
 	@ResponseBody
 	public List<Map<String,Object>> commentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
@@ -238,11 +242,11 @@ public class BoardController {
 
 		
 		List<Map<String,Object>> commentList = service.getComment(s_seq); 
-		System.out.println("----commentList 찍어보기----"+commentList);
 		
 		return commentList;
 	}
 	
+	//댓글 지우는 로직
 	@RequestMapping(value = "DeleteComment.do" , method = RequestMethod.POST)
 	@ResponseBody
 	public List<Map<String,Object>> commentDelete(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
@@ -257,10 +261,22 @@ public class BoardController {
 		service.commentDelete(cm);
 		
 		List<Map<String,Object>> commentList = service.getComment(s_seq); 
+		return commentList;
+
+	}
+	
+	//댓글 가져오는 함수
+	@RequestMapping(value = "SelectCommentList.do" , method = RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String,Object>> getCommentList(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+		String s_seq = (String) params.get("s_seq");
+		
+		
+		List<Map<String,Object>> commentList = service.getComment(s_seq); 
 		System.out.println("----commentList 찍어보기----"+commentList);
 		
 		return commentList;
-
+		
 	}
 
 }
