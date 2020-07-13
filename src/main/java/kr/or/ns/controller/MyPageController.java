@@ -132,13 +132,16 @@ public class MyPageController {
 		List<HashMap<String, Object>> status = service.studyStatus(s_seq);
 		String user_id = principal.getName();
 		System.out.println(user_id);
-		//String role = service.getRole(user_id, s_seq);
-		/*model.addAttribute("id" , user_id);*/
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("user_id", user_id);
+		map.put("s_seq", s_seq);
+		HashMap<String, Object> role = service.getRole(map);
+		model.addAttribute("id" , user_id);
 		model.addAttribute("status", status);
-		//model.addAttribute("role", role);
+		model.addAttribute("role", role);
 		
 		System.out.println(status);
-		//System.out.println(role);
+		System.out.println(role);
 		return "user/mypage/mypage_Support_Status.html";
 
 	}

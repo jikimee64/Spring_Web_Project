@@ -42,6 +42,7 @@ public interface MyPageDao {
 	//마이페이지 스터디 현황
 	public List<HashMap<String, Object>> studyStatus(String userid);
 
-	//public String getRole(String user_id, String s_seq);
+	public HashMap<String,Object> getRole(HashMap<String, Object> map);
+
 
 }

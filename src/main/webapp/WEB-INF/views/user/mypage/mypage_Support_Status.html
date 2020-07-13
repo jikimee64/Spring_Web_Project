@@ -73,100 +73,103 @@ body {
 
 	<div th:replace="/user/includes/header :: header"></div>
 
-<!-- <sec:authorize access = "isAuthenticated()">
-<sec:authentication property="principal.username" var = "user_id"/> -->
-	<!-- 배너 -->
-	<main id="main">
-		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs cover4"
-			style="margin-top: 0px; height: 300px; padding: 1000 0 100 0px;">
-			<div class="container d-flex h-100" style="padding: 200px 0;">
-				<div class="row justify-content-center align-self-center">
-					<h1 style="color: white; font-size: 50px;">
-						<b>지원현황</b>
-					</h1>
+	<sec:authorize access="isAuthenticated()">
+		<sec:authentication property="principal.username" var="user_id" />
+		<!-- 배너 -->
+		<main id="main">
+			<!-- ======= Breadcrumbs Section ======= -->
+			<section class="breadcrumbs cover4"
+				style="margin-top: 0px; height: 300px; padding: 1000 0 100 0px;">
+				<div class="container d-flex h-100" style="padding: 200px 0;">
+					<div class="row justify-content-center align-self-center">
+						<h1 style="color: white; font-size: 50px;">
+							<b>지원현황</b>
+						</h1>
+					</div>
 				</div>
-			</div>
 
-		</section>
-		<!-- Breadcrumbs Section -->
-	</main>
+			</section>
+			<!-- Breadcrumbs Section -->
+		</main>
 
-	<div class="_border_box_shadow2">
-		<div class="row"
-			style="align-items: center; margin-top: 50px; margin-bottom: 30px;">
-			<div class="col-md-6"
-				style="text-align: -webkit-center; padding-left: 13px;">
-				<div class="_form_radio" style="padding: 0px; height: 500px;">
-					<hr style="margin-bottom: 0;" />
-					<!-- 모집완료 첫번째 줄 (여기는 테이블 헤드부분) -->
-					<div class="row"
-						style="background-color: rgb(213, 235, 217); text-align: center; height: 40px; width: 100%;">
-						<div class="col" style="align-self: center;">
-							<b>참가중인 스터디원</b>
+		<div class="_border_box_shadow2">
+			<div class="row"
+				style="align-items: center; margin-top: 50px; margin-bottom: 30px;">
+				<div class="col-md-6"
+					style="text-align: -webkit-center; padding-left: 13px;">
+					<div class="_form_radio" style="padding: 0px; height: 500px;">
+						<hr style="margin-bottom: 0;" />
+						<!-- 모집완료 첫번째 줄 (여기는 테이블 헤드부분) -->
+						<div class="row"
+							style="background-color: rgb(213, 235, 217); text-align: center; height: 40px; width: 100%;">
+							<div class="col" style="align-self: center;">
+								<b>참가중인 스터디원</b>
+							</div>
+
 						</div>
-
-					</div>
-					<!-- <div class="col" style="align-self: center;">No.</div> -->
-					<div class="row"
-						style="background-color: rgb(232, 241, 233); text-align: center; height: 32px; width: 100%">
-						<div class="col" style="align-self: center;">
-							<b>아이디</b>
+						<!-- <div class="col" style="align-self: center;">No.</div> -->
+						<div class="row"
+							style="background-color: rgb(232, 241, 233); text-align: center; height: 32px; width: 100%">
+							<div class="col" style="align-self: center;">
+								<b>아이디</b>
+							</div>
 						</div>
-					</div>
-					<div class="row"
-						style="text-align: center; height: 35px; width: 100%"></div>
-					<th:block th:each="status,index : ${status}">
-						<div class="col" id="doing_study_col" style="font-size: x-large">
-							<span th:if="${index.index} > 0"> <span
-								th:text="${status.USER_ID}"></span> <!-- 방장 아이콘 추가 -->
+						<div class="row"
+							style="text-align: center; height: 35px; width: 100%"></div>
+						<th:block th:each="status : ${status}">
+							<div class="col" id="doing_study_col" style="font-size: x-large">
+								<span th:if="${status.ROLE_NAME == '방장'}"> <span
+									th:text="${status.USER_ID}"></span> <!-- 방장 아이콘 추가 -->
+								</span>
+							</div>
+							<span
+								th:if="${status.ACCEPT_STATUS == '승인완료' && status.ROLE_NAME == '회원'}">
+								<span class="row" id="doing_study_row"> <span class="col"
+									id="doing_study_col" style="font-size: x-large">
+										<p th:text="${status.USER_ID}"></p>
+								</span>
 							</span>
-						</div>
-						<span
-							th:if="${status.ACCEPT_STATUS == '승인완료' && status.ROLE_NAME == '회원'}">
-							<span class="row" id="doing_study_row"> <span class="col"
-								id="doing_study_col" style="font-size: x-large">
-									<p th:text="${status.USER_ID}"></p>
 							</span>
-						</span>
-						</span>
 
-						<!-- 회원정보 반복 끝 (더미데이터 끝) -->
+							<!-- 회원정보 반복 끝 (더미데이터 끝) -->
+					</div>
 				</div>
-			</div>
 
-			<div class="col-md-6"
-				style="text-align: -webkit-center; padding-left: 0;">
-				<div class="_form_radio" style="padding: 0px; height: 500px;">
-					<hr style="margin-bottom: 0;" />
-					<!-- 모집중 첫번째 줄 (여기는 테이블 헤드부분) -->
-					<div class="row"
-						style="background-color: rgb(213, 235, 217); text-align: center; height: 40px; width: 100%">
-						<div class="col" id="doing_study_col">
-							<b>승인 대기중</b>
+				<div class="col-md-6"
+					style="text-align: -webkit-center; padding-left: 0;">
+					<div class="_form_radio" style="padding: 0px; height: 500px;">
+						<hr style="margin-bottom: 0;" />
+						<!-- 모집중 첫번째 줄 (여기는 테이블 헤드부분) -->
+						<div class="row"
+							style="background-color: rgb(213, 235, 217); text-align: center; height: 40px; width: 100%">
+							<div class="col" id="doing_study_col">
+								<b>승인 대기중</b>
+							</div>
 						</div>
-					</div>
-					<div class="row"
-						style="background-color: rgb(232, 241, 233); text-align: center; height: 32px; width: 100%">
-						<div class="col" id="doing_study_col">
-							<b>아이디</b>
+						<div class="row"
+							style="background-color: rgb(232, 241, 233); text-align: center; height: 32px; width: 100%">
+							<div class="col" id="doing_study_col">
+								<b>아이디</b>
+							</div>
+							<div class="col" id="doing_study_col">
+								<b>승인여부</b>
+							</div>
 						</div>
-						<div class="col" id="doing_study_col">
-							<b>승인여부</b>
-						</div>
-					</div>
-					<div class="row"
-						style="text-align: center; height: 35px; width: 100%"></div>
-					<th:block th:each="status : ${status}">
-						<div
-							th:if="${status.ROLE_NAME == '회원' && status.ACCEPT_STATUS == '승인대기중'}">
-							<div class="row"
-								style="text-align: center; height: 35px; width: 100%">
-								<div class="col-md-6" id="doing_study_col"
-									th:text="${status.USER_ID}" style="font-size: x-large;"></div>
-									
-							<th:block
-							th:if="${role} == '방장'">
+						<div class="row"
+							style="text-align: center; height: 35px; width: 100%"></div>
+						
+						<th:block th:each="status,index : ${status}">
+						<th:block th:if="${index.index} == 0">
+								<div class="col-md-6">
+									<span th:block
+										th:if="${status.ACCEPT_STATUS == '승인대기중' && status.ROLE_NAME == '회원'}">
+										<span class="row" id="doing_study_row"> <span
+											class="col" id="doing_study_col" style="font-size: x-large">
+												<p th:text="${status.USER_ID}"></p>
+										</span>
+									</span>
+									</span>
+								</div>
 								<div class="col-md-6">
 									<button type="button" class="btn btn-success btn"
 										id="button_approval">
@@ -177,17 +180,29 @@ body {
 										<span style="font-size: smaller;">거절</span>
 									</button>
 								</div>
-								</th:block>
+							</th:block>
+
+							<div th:block th:if="${index.index} != 0">
+								<span
+									th:if="${status.ACCEPT_STATUS == '승인대기중' && status.ROLE_NAME == '회원'}">
+									<span class="row" id="doing_study_row"> <span
+										class="col" id="doing_study_col" style="font-size: x-large">
+											<p th:text="${status.USER_ID}"></p>
+									</span>
+								</span>
+								</span>
+
+
 							</div>
-						</div>
+						</th:block>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- 모집중 첫번째 줄 끝 -->
+		<!-- 모집중 첫번째 줄 끝 -->
 
-	<div th:replace="/user/includes/footer :: footer"></div>
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+		<div th:replace="/user/includes/footer :: footer"></div>
+		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 </body>
 
 </html>

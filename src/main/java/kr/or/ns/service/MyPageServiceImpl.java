@@ -212,12 +212,13 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	
-	  //@Override public String getRole(@Param("user_id") String
-	 //user_id, @Param("s_seq") String s_seq) { MyPageDao dao =
-	 //sqlsession.getMapper(MyPageDao.class); String getRole =
-	 //dao.getRole(user_id,s_seq); System.out.println(getRole);
-	 // 
-	 //return getRole; }
+	  @Override public HashMap<String, Object> getRole(HashMap<String,Object> map) { 
+		  MyPageDao dao = sqlsession.getMapper(MyPageDao.class); 
+	 HashMap<String, Object> getRole = dao.getRole(map); 
+	 System.out.println(getRole);
+	 
+	 return getRole; 
+	 }
 	 
 
 }
