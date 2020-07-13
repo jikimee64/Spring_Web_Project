@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.or.ns.export.WriteMemberListToExcelFile;
 import kr.or.ns.export.WriteMemberListToPdfFile;
 import kr.or.ns.export.WriteReportListToExcelFile;
+import kr.or.ns.export.WriteReportListToPdfFile;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
@@ -108,10 +109,10 @@ public class ManagerController {
 		WriteMemberListToPdfFile.writeMemberListToPdfFile("회원관리_목록.pdf", memberList, request);
 
 		String path = request.getServletContext().getRealPath("/manager/member/");
-		File xlsFile = new File(path + "회원관리_목록.pdf"); // 저장경로 설정
+		File pdfFile = new File(path + "회원관리_목록.pdf"); // 저장경로 설정
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("FileDownload"); // 뷰의 이름
-		mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
+		mv.addObject("downloadFile", pdfFile); // 뷰로 보낼 데이터 값
 		return mv;
 	}
 
@@ -138,17 +139,19 @@ public class ManagerController {
 	@RequestMapping("board/viewReportPdf.do")
 //		public String excelMemberView(Model model) throws Exception {
 	public ModelAndView pdfReportView(HttpServletRequest request) throws Exception {
-		List<Users> memberList = null;
-		memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
-
-		WriteMemberListToPdfFile.writeMemberListToPdfFile("신고관리_목록.pdf", memberList, request);
-
+		List<HashMap<String, Object>> blameList = null;
+		blameList = service.getBlameList();
+		System.out.println("신고관리pdf : " + blameList);
+		
+		// 배포경로에 엑셀을 만들어서 다운하는
+		WriteReportListToPdfFile.writeReportListToPdfFile("신고관리_목록.pdf", blameList, request);
 		String path = request.getServletContext().getRealPath("/manager/report/");
-		File xlsFile = new File(path + "신고관리_목록.pdf"); // 저장경로 설정
+		File pdfFile = new File(path + "신고관리_목록.pdf"); // 저장경로 설정
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("FileDownload"); // 뷰의 이름
-		mv.addObject("downloadFile", xlsFile); // 뷰로 보낼 데이터 값
+		mv.addObject("downloadFile", pdfFile); // 뷰로 보낼 데이터 값
 		return mv;
+
 	}
 
 	// ----------------------------------------------------------------------------
