@@ -164,7 +164,7 @@ body {
 
 
 
-			<th:block th:each="list : ${message}">
+			<th:block th:each="list : ${messageList}">
 				<div class="row"
 					style="margin: 0px 20px 10px 20px; position: relative; top: -93px; text-align: center;">
 					<div class="col-md-1"
@@ -174,24 +174,24 @@ body {
 					<div class="col-md-2"
 						style="place-self: center; text-align: center;">
 						<a href="#" data-toggle="modal" data-target="#userInfoModal">
-							<span th:text="${list.receptionid}"></span>
+							<span th:text="${list.RECEPTIONID}"></span>
 						</a>
 					</div>
 					<div class="col-md-6"
 						style="place-self: center; text-align: center;">
 						<a style="color: #636e72;"
-							th:href="@{/message/mypage_Message_Send_Detail_Board.do(m_seq=${list.m_seq})}">
-							<span th:text="${list.content}"></span>
+							th:href="@{/message/mypage_Message_Send_Detail_Board.do(m_seq=${list.M_SEQ})}">
+							<span th:text="${list.CONTENT}"></span>
 						</a>
 					</div>
 					<div class="col-md-3"
 						style="place-self: center; text-align: center;">
-						<span th:text="${list.senddate}"></span>
+						<span th:text="${list.SENDDATE}"></span>
 					</div>
 				</div>
 				<div class="row"
 					style="position: relative; top: -90px; padding: 0px 30px 0px 30px;">
-					<input type="hidden" id="m_seq" th:value="${list.m_seq}" />
+					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" />
 
 					<hr
 						style="color: #dfe4ea; border: solid 0.5px; margin-top: 0px; width: 97%">
@@ -201,17 +201,68 @@ body {
 
 			<!--  윗부분 끝 //////////////////////////////////////// -->
 
-			<div class="row" style="place-content: center;">
-				<ul class="pager d-flex">
-					<li><a class="page-link" href="#">PREV</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item active"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li><a class="page-link" href="#">NEXT</a></li>
-				</ul>
-			</div>
+<!-- 			<div class="row" style="place-content: center;"> -->
+<!-- 				<ul class="pager d-flex"> -->
+<!-- 					<li><a class="page-link" href="#">PREV</a></li> -->
+<!-- 					<li class="page-item"><a class="page-link" href="#">1</a></li> -->
+<!-- 					<li class="page-item active"><a class="page-link" href="#">2</a></li> -->
+<!-- 					<li class="page-item"><a class="page-link" href="#">3</a></li> -->
+<!-- 					<li><a class="page-link" href="#">NEXT</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</div> -->
 		</div>
 	</div>
+
+
+
+
+<div class="row" style="place-content: center;">
+		<!-- 페이징 부트스트랩 버튼 생성하기  -->
+		<ul class="pager d-flex" style="place-content: center;">
+
+			<!-- 이전버튼 생성여부-->
+			<li th:if="${pageMakerb.prev} == true"><a
+				th:href="@{mypage_Message_Send_Board.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+				class="page-link"> Previous </a></li>
+
+
+			<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+			<li class="page-item"
+				th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
+				th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
+				<a class="page-link"
+				th:href="@{mypage_Message_Send_Board.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
+				th:text="${idx}">1 </a>
+			</li>
+
+
+			<!-- 다음버튼 생성여부 -->
+			<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+				<a
+				th:href="@{mypage_Message_Send_Board.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+				class="page-link"> Next</a> <!--                                    <a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+			</li>
+
+
+		</ul>
+		<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>

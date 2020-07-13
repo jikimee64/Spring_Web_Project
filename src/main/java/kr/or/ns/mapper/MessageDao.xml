@@ -39,7 +39,7 @@
 	</select>
 
 
-<!--  목록 페이징 -->
+<!--  받은목록 페이징 -->
 	<select id="getMessageList" resultType="hashmap" parameterType="hashmap" >
 	   <![CDATA[
 		select * from message 
@@ -49,7 +49,15 @@
 		]]>
 	</select> 
 
-
+<!--  보낸목록 페이징 -->
+	<select id="getSendMessageList" resultType="hashmap" parameterType="hashmap" >
+	   <![CDATA[
+		select * from message 
+		where senderid = #{user_id} 
+		ORDER BY m_seq desc 
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select> 
 
 
 

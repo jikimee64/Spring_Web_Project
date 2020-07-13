@@ -34,4 +34,7 @@ public interface MessageDao {
 	
 	//받은 쪽지함 목록 + 페이징
 	public List<HashMap<String, Object>> getMessageList(HashMap<String, Object> map);
+	
+	//보낸 쪽지함 목록 + 페이징
+	public List<HashMap<String, Object>> getSendMessageList(HashMap<String, Object> map);
 }

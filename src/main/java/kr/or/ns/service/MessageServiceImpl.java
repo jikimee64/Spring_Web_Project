@@ -69,7 +69,7 @@ public class MessageServiceImpl implements MessageService {
 
 	
 	
-	//목록+페이징
+	//받은목록+페이징
 	@Override
 	public List<HashMap<String, Object>> getMessageList(HashMap<String, Object> map) {
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
@@ -90,7 +90,24 @@ public class MessageServiceImpl implements MessageService {
 	
 	
 	
-	
+	//보낸목록+페이징
+		@Override
+		public List<HashMap<String, Object>> getSendMessageList(HashMap<String, Object> map) {
+			MessageDao dao = sqlsession.getMapper(MessageDao.class);
+			
+			Criteria_Board cri_b = (Criteria_Board) map.get("cri_b");
+			
+			System.out.println("page:"+cri_b.getPage());
+			System.out.println("PageStart:"+cri_b.getPageStart());
+			System.out.println("PerPageNum:"+cri_b.getPerPageNum());
+			
+			map.put("pageStart", cri_b.getPageStart());
+			map.put("perPageNum", cri_b.getPerPageNum());
+			
+			List<HashMap<String, Object>> list = dao.getSendMessageList(map);
+			
+			return list;
+		}
 	
 	
 	

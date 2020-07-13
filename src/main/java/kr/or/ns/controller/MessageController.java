@@ -59,8 +59,6 @@ public class MessageController {
 			pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
 			
 			
-			
-			
 			// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
 			// 받은 쪽지 뿌려주기
 			
@@ -90,20 +88,77 @@ public class MessageController {
 	
 	
 	
+//보낸쪽지
+//	@RequestMapping("mypage_Message_Send_Board.do")
+//	public String mypageMessageSendBoardPage(Principal principal, Model model) {
+//		// 보낸 쪽지함
+//		List<Message> mlist = mservice.sendListMessage(principal.getName());
+//		model.addAttribute("message", mlist);
+//		System.out.println("보낸 목록 : " + mlist);
+//
+//		
+//		
+//		System.out.println("보낸 쪽지함으로 이동이동(연규가씀)");
+//		return "user/mypage/mypage_Message_Send_Board";
+//	}
 
+	
+	
+		//보낸쪽지 + 페이징
 	@RequestMapping("mypage_Message_Send_Board.do")
-	public String mypageMessageSendBoardPage(Principal principal, Model model) {
-		// 보낸 쪽지함
-		List<Message> mlist = mservice.sendListMessage(principal.getName());
-		model.addAttribute("message", mlist);
-		System.out.println("보낸 목록 : " + mlist);
-
+	public String mypageMessageSendBoardPage(Criteria_Board cri_b,Principal principal, Model model) {
+		
+		//쪽지 테이블에서 사용자 아이디와 일치하는 데이터 가져오기 
+		String user_id = principal.getName();
+		
+		//페이징
+		PageMaker_Board pageMakerb = new PageMaker_Board();
+		pageMakerb.setCri_b(cri_b);
+		pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
+		
+		// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
+		// 받은 쪽지 뿌려주기
+		
+		//페이징 들고오기
+		List<HashMap<String, Object>> messageList = null;
+		
+		HashMap<String, Object> map = new HashMap();		
+		map.put("user_id", user_id);
+		map.put("cri_b", cri_b);
+		
+		messageList = mservice.getSendMessageList(map);
+		System.out.println("messageList:"+messageList);
+		
+		model.addAttribute("messageList", messageList);// view까지 전달(forward)
+		model.addAttribute("pageMakerb", pageMakerb);
+		
+		System.out.println("다음버튼이 있니?: " + pageMakerb.isNext());
+		System.out.println("이게 보낸쪽지인가 : " + messageList.toString());
 		
 		
 		System.out.println("보낸 쪽지함으로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Message_Send_Board";
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 받은편지함 -> 상세보기
 	@RequestMapping("mypage_Message_From_Detail_Board.do")
 	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
