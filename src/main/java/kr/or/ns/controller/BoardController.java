@@ -235,6 +235,7 @@ public class BoardController {
 		cm.setR_name(user_id);
 		
 		service.commentInsert(cm);
+
 		
 		List<Map<String,Object>> commentList = service.getComment(s_seq); 
 		System.out.println("----commentList 찍어보기----"+commentList);
@@ -259,6 +260,7 @@ public class BoardController {
 		System.out.println("----commentList 찍어보기----"+commentList);
 		
 		return commentList;
+
 	}
 
 }
