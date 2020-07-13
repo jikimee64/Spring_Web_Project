@@ -41,30 +41,30 @@ public class MyPageController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	
-	//마이페이지 뿌려줄 데이터 가져오기
-	@RequestMapping(value= "mypage.do")
+	// 마이페이지 뿌려줄 데이터 가져오기
+	@RequestMapping(value = "mypage.do")
 	public String myPage(Model model, Principal principal) {
 		String users = principal.getName();
 		System.out.println("유저정보" + users);
-		
-		List<Map<String,Object>> list = null;
-		list = service.myPagelist(users);      //북마크 리스트
-		Users user = service.userInfo(users);  //사용자 정보
-		int bk = service.bookmarkCount(users); //북마크갯수
-		int cm = service.commentCount(users);  //댓글 갯수
-		int sb = service.s_boardCount(users);  //스터디게시판 게시글 갯수
-		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); //스터디 목록
+
+		List<Map<String, Object>> list = null;
+		list = service.myPagelist(users); // 북마크 리스트
+		Users user = service.userInfo(users); // 사용자 정보
+		int bk = service.bookmarkCount(users); // 북마크갯수
+		int cm = service.commentCount(users); // 댓글 갯수
+		int sb = service.s_boardCount(users); // 스터디게시판 게시글 갯수
+		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
 		model.addAttribute("bk", bk);
 		model.addAttribute("cm", cm);
 		model.addAttribute("sb", sb);
-		model.addAttribute("studylist",studylist);
-		
+		model.addAttribute("studylist", studylist);
+		System.out.println("받아온 스터디리스트" + studylist);
+
 		System.out.println("유저정보 확인" + user);
-		
-		return "user/mypage/mypage";	
+
+		return "user/mypage/mypage";
 	}
 
 	// 유저 상세정보 뿌리기
@@ -124,15 +124,17 @@ public class MyPageController {
 		return "user/mypage/mypage_Myboard";
 	}
 
-	
-	  //참여중 스터디, 모집중 스터디 뿌리기
-	  @RequestMapping(value = "board_Support_Status.do") public String
-	  SupportStatus(Principal principal, HttpServletRequest request,
-	  HttpServletResponse response) { System.out.println("스터디 상세페이지 이동중");
-	  
-	  return null;
-	  
-	 
-	  }
-	 
+	// 참여현황 페이지 정보 뿌려주기
+	@RequestMapping(value = "SupportStatus.do")
+	public String SupportStatus(String s_seq, Model model) {
+		System.out.println("스터디 상세페이지");
+
+		List<HashMap<String, Object>> status = service.studyStatus(s_seq);
+		model.addAttribute("status", status);
+		
+		System.out.println(status);
+		return "user/mypage/Support_Status.html";
+
+	}
+
 }

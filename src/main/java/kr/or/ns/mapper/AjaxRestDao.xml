@@ -70,4 +70,37 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 		select count(*) from users where user_email = #{user_email}
 	</select>
 	
+	<!-- 마이페이지 모집중 스터디 -->
+	<select id="recrutingStudy" resultType="hashMap">
+	<![CDATA[
+        	select *
+		from study_board
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+		left outer join study_group
+		on study_board.s_seq = study_group.s_seq 
+		WHERE study_board.user_id=#{user_id} and study_group.role_name = '방장'
+			]]>
+	</select>
+	<select id="inStudy" resultType="hashMap">
+	    			<![CDATA[
+		select *
+		from study_board
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+		left outer join study_group
+		on study_board.s_seq = study_group.s_seq 
+		WHERE study_group.user_id= #{user_id} and study_group.accept_status  = '승인대기중'     
+			]]>
+	    
+	    
+    </select>
 </mapper>

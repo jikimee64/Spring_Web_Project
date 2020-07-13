@@ -61,31 +61,48 @@
 
 	<!-- 북마크 갯수 가져오기 -->
 	<select id="getbkCount" resultType="int">
-		SELECT count(*) FROM users as u JOIN bookmark AS b ON u.user_id = b.user_id
-		where u.user_id = #{user_id}
+		SELECT count(*) FROM users as
+		u JOIN bookmark AS b ON u.user_id = b.user_id
+		where u.user_id =
+		#{user_id}
 	</select>
 
 	<!-- 댓굴 갯수 가져오기 -->
 	<select id="getcmCount" resultType="int">
-		select count(*) from users as u join comment as c on u.user_id = c.r_name
-		where u.user_id = #{user_id}
+		select count(*) from users as
+		u join comment as c on u.user_id = c.r_name
+		where u.user_id =
+		#{user_id}
 	</select>
 
 	<!-- 댓굴 갯수 가져오기 -->
 	<select id="getsbCount" resultType="int">
-		select count(*) from users as u join study_board as s on u.user_id =
-		s.user_id where u.user_id = #{user_id}
+		select count(*) from users as
+		u join study_board as s on u.user_id =
+		s.user_id where u.user_id =
+		#{user_id}
 	</select>
 
 	<!-- 스터디 목록 가져오기 -->
 
 	<select id="myPageStudyList" resultType="hashMap">
 			<![CDATA[
-		      select * from study_group
-        left outer join study_board on study_group.s_seq = study_board.s_seq
-        where study_group.user_id = #{user_id} and study_group.accept_status = '승인대기중'
+		select *
+		from study_board
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+		left outer join study_group
+		on study_board.s_seq = study_group.s_seq 
+		WHERE study_group.user_id= #{user_id} and study_group.accept_status  = '승인대기중'     
 			]]>
 	</select>
 
+	<select id="studyStatus" resultType="hashMap">
+	    select * from study_group where s_seq = #{s_seq}
+	</select>
 
 </mapper>
