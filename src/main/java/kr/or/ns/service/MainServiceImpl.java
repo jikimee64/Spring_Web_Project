@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import kr.or.ns.dao.BoardDao;
 import kr.or.ns.dao.MainDao;
 
+@Service
 public class MainServiceImpl implements MainDao {
 
 	@Autowired
