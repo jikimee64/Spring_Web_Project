@@ -32,7 +32,7 @@
 			<version>3.9</version>
 		</dependency>
 
-		<!-- pdf 제어 start-->
+		<!-- pdf 제어 start -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
@@ -40,18 +40,6 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itext-pdfa -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>3.12</version>
-		</dependency>
-
-		<!-- 엑셀 제어(xlsx) maven setting -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>3.9</version>
-		</dependency>
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itext-pdfa</artifactId>
@@ -80,7 +68,8 @@
 			<version>7.1.6</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- pdf 제어 end-->
+
+		<!-- pdf 제어 end -->
 
 
 
@@ -375,7 +364,6 @@
 		</dependency>
 
 
-
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -501,15 +489,6 @@
 		</dependency>
 
 		<!--thymeleaf 시큐리티 끝 -->
-
-		<!-- 크롤링을 위한 jsoup -->
-		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
-			<version>1.12.1</version>
-		</dependency>
-		<!-- 크롤링을 위한 jsoup 끝 -->
-
 	</dependencies>
 	<build>
 		<plugins>

@@ -129,6 +129,8 @@ td:focus {
 												onmouseout="this.style.backgroundColor='white'">
 												<!-- 													<a th:href="@{noticeDetail.htm(seq=${n.seq})}"> -->
 												<td align="center"><a
+													th:classappend="|${memberList.user_id}|"
+													th:onclick="|javascript:stopMember('${memberList.user_id}')|"
 													th:href="@{/manager/board/member_Detail.do(user_id=${memberList.user_id})}"
 													th:text="${memberList.user_id}"></a>
 												</td>
@@ -197,7 +199,7 @@ td:focus {
 		$(function() {
 			$('#stop').click(function(){
 				swal({
-					  title: "OO계정을 진짜 정지하시겠습니까??",
+					  title: "계정을 정지하시겠습니까??",
 					  text: "정지하는 순간 사이트 로그인 영구정지...",
 					  icon: "warning",
 					  buttons: true,
@@ -216,6 +218,53 @@ td:focus {
 			})
 			
 		});
+		
+		//idx는 user_id받음
+		function stopMember(idx) {
+
+			//let id = $('.InfoModal' + idx).children().text();
+			//formData.append("user_id" , this.id);
+
+			console.log("아이디 : " + idx);
+			// let obj = {"user_id" : id}; 
+
+			/* let data = {
+				"user_id" : id
+			} */
+
+			/* $.ajax({
+				url : '/ajax/userInfoModal.do',
+				processData : false,
+				contentType : "application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+
+					$('.ModalUserName').text(data[0].USER_NAME);
+					$('.introduce').text(data[0].INTRODUCE)
+					'src','/material/images/jQuery/asimo.png'
+					$('#profile_img').attr('src', '/userboard/upload/' + data[0].PROFILE_IMG);
+					console.log(data[0].INTRODUCE);
+					$.each(data, function (index, item) {
+						if (item.SKILL_LEVEL === '입문') {
+							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
+						} else if (item.SKILL_LEVEL === '초급') {
+							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
+						} else {
+							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
+						}
+					})
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			}); */
+
+		}
+		
+		
+		
 	</script>
 
 	<script type="text/javascript">
