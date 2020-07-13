@@ -210,4 +210,12 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageStudyList;
 	}
 
+	@Override
+	public String getRole(String user_id, String s_seq) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		String getRole = dao.getRole(user_id,s_seq);
+		
+		return getRole;
+	}
+
 }
