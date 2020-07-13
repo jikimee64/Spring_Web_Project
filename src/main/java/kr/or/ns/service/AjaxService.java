@@ -51,5 +51,8 @@ public interface AjaxService {
 	//마이페이지 모집중 스터디 비동기
 	public List<HashMap<String, Object>> recrutingStudy(HashMap<String, Object> params);
 	
+	//마이페이지 참여중 스터디 비동기
+	public List<HashMap<String, Object>> inStudy(HashMap<String, Object> params);
+	
 
 }

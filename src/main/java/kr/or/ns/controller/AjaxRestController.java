@@ -189,10 +189,21 @@ public class AjaxRestController {
 	// 마이페이지 모집중 스터디 비동기
 	@RequestMapping(value = "recrutingStudy.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> recrutingStudy(@RequestBody HashMap<String, Object> params) {
-		System.out.println(params + " : user_id 컨트롤러");
+		System.out.println(params + " : 모집중 컨트롤러");
 		List<HashMap<String, Object>> list = null;
 
 		list = service.recrutingStudy(params);
+		return list;
+
+	}
+
+	// 마이페이지 참여중 스터디 비동기
+	@RequestMapping(value = "inStudy.do", method = RequestMethod.POST)
+	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params) {
+		System.out.println(params + " : 참여중 컨트롤러");
+		List<HashMap<String, Object>> list = null;
+
+		list = service.inStudy(params);
 		return list;
 
 	}

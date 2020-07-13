@@ -45,4 +45,7 @@ public interface AjaxRestDao {
 	//마이페이지 모집중 스터디 비동기
 	public List<HashMap<String, Object>> recrutingStudy(String user_id);
 	
+	//마이페이지 참여중 스터디 비동기
+	public List<HashMap<String, Object>> inStudy(String user_id);
+	
 }
