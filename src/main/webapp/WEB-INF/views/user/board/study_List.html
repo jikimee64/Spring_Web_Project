@@ -1,51 +1,50 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>stydy_list</title>
-	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-	
-	<!-- 폰트어썸 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>stydy_list</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
+<!-- 폰트어썸 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
 
 <style>
-	._category {
-		text-align: center;
-		align-self: center;
-	}
+._category {
+	text-align: center;
+	align-self: center;
+}
 
-	._category_button {
-		place-self: center;
-	}
+._category_button {
+	place-self: center;
+}
 
-	._button_color {
-		background-color: #BCF1D3;
-		color: black;
-		border-color: darkseagreen;
-	}
+._button_color {
+	background-color: #BCF1D3;
+	color: black;
+	border-color: darkseagreen;
+}
 
-	._margin_0 {
-		margin: 0;
-	}
+._margin_0 {
+	margin: 0;
+}
 
-	.verticalLine {
-		border-left: solid 0.5px #979696;
+.verticalLine {
+	border-left: solid 0.5px #979696;
+}
 
-	}
-
-
-	#portfolio #portfolio-flters-lan li ,
-	#portfolio #portfolio-flters-level li ,
-	#portfolio #portfolio-flters-ingOrDone li ,
-	#portfolio #portfolio-flters-local li ,
+#portfolio #portfolio-flters-lan li, #portfolio #portfolio-flters-level li,
+	#portfolio #portfolio-flters-ingOrDone li, #portfolio #portfolio-flters-local li,
 	#portfolio #portfolio-flters-studyContent li {
 	cursor: pointer;
-	margin:  0;
+	margin: 0;
 	display: inline-block;
 	padding: 10px 20px;
 	font-size: 12px;
@@ -56,85 +55,152 @@
 	background: #fff;
 	margin-bottom: 5px;
 	transition: all 0.3s ease-in-out;
-	}
-	#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active ,
-	#portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active ,
-	#portfolio #portfolio-flters-ingOrDone li:hover, #portfolio #portfolio-flters-ingOrDone li.filter-active ,
-	#portfolio #portfolio-flters-local li:hover, #portfolio #portfolio-flters-local li.filter-active ,
-	#portfolio #portfolio-flters-studyContent li:hover, #portfolio #portfolio-flters-studyContent li.filter-active {
+}
+
+#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active,
+	#portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active,
+	#portfolio #portfolio-flters-ingOrDone li:hover, #portfolio #portfolio-flters-ingOrDone li.filter-active,
+	#portfolio #portfolio-flters-local li:hover, #portfolio #portfolio-flters-local li.filter-active,
+	#portfolio #portfolio-flters-studyContent li:hover, #portfolio #portfolio-flters-studyContent li.filter-active
+	{
 	background: #18d26e;
 	color: #fff;
-	}	
+}
 
-	#portfolio #portfolio-flters-lan ,
-	#portfolio #portfolio-flters-level ,
-	#portfolio #portfolio-flters-ingOrDone ,
-	#portfolio #portfolio-flters-local ,
+#portfolio #portfolio-flters-lan, #portfolio #portfolio-flters-level,
+	#portfolio #portfolio-flters-ingOrDone, #portfolio #portfolio-flters-local,
 	#portfolio #portfolio-flters-studyContent {
 	padding: 0;
 	margin: 5px 0 0 0;
 	list-style: none;
 	text-align: left;
-	}
+}
 
-	#portfolio #portfolio-flters-lan li {
+#portfolio #portfolio-flters-lan li {
 	background: rgb(240, 238, 238);
-	}
+}
 
-			.pager li>a, .pager li>span {
-				border: white;
-				background-color: #fff;
-			}
-			.pager li>a, .pager li>span {
-				display: inline-block;
-				padding: 5px 14px;
-				border-radius: 5px;
-			}
-			.page-link {
-				color:  #18d26e;
-			}
-			
-			.page-link {
-				position: relative;
-				margin-left: -1px;
-				line-height: 1.25;
-			}
-			a {
-				text-decoration: none;
-			}
-			
-			a {
-				transition: 0.5s;
-			}
-			
-			* {
-				box-sizing: border-box;
-			}
-			a:-webkit-any-link {
-				cursor: pointer;
-			}
-			li {
-				text-align: -webkit-match-parent;
-			}
-			.pager {
-				padding-left: 0;
-				margin: 20px 0;
-				list-style: none;
-			}
-			body {
-				
-   				font-size: 14px;
-				background-color: #fff;
-				background: #fff;
-				margin: 0;
-			}
-		   .page-item.active .page-link {
-                z-index: 3;
-                color: #fff;
-                background-color: #18d26e;
-                border-color: #18d26e;
-            }
-		</style>
+.pager li>a, .pager li>span {
+	border: white;
+	background-color: #fff;
+}
+
+.pager li>a, .pager li>span {
+	display: inline-block;
+	padding: 5px 14px;
+	border-radius: 5px;
+}
+
+.page-link {
+	color: #18d26e;
+}
+
+.page-link {
+	position: relative;
+	margin-left: -1px;
+	line-height: 1.25;
+}
+
+a {
+	text-decoration: none;
+}
+
+a {
+	transition: 0.5s;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+a:-webkit-any-link {
+	cursor: pointer;
+}
+
+li {
+	text-align: -webkit-match-parent;
+}
+
+.pager {
+	padding-left: 0;
+	margin: 20px 0;
+	list-style: none;
+}
+
+body {
+	font-size: 14px;
+	background-color: #fff;
+	background: #fff;
+	margin: 0;
+}
+
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
+}
+/* 라디오버튼 css*/
+._form_radio {
+	background: #fff;
+	/*    width: 509px; */
+	margin: auto;
+	padding: 30px;
+	min-width: 320px;
+	max-width: 540px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+}
+
+group+group {
+	margin-top: 20px;
+}
+
+.inline-radio {
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+._div_radio {
+	position: relative;
+	flex: 1;
+	border-radius: 3px;
+}
+
+._input_radio {
+	width: 100%;
+	opacity: 0;
+	height: 100%;
+	cursor: pointer;
+}
+
+._radio_label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #272C33;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+}
+
+._div_radio:last-child label {
+	border-right: 0;
+}
+
+._input_radio:checked+label {
+	background: #00d463;
+	font-weight: 500;
+	color: #fff;
+	border-radius: 5px;
+}
+</style>
 
 
 <body>
@@ -145,56 +211,61 @@
 	<main id="main">
 
 		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs" style="margin-top: 70px; ">
+		<section class="breadcrumbs" style="margin-top: 70px;">
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
-					<h2>찾고 싶은 <b style="color:#18d26e">키워드</b>를 선택해 주세요.</h2>
+					<h2>
+						찾고 싶은 <b style="color: #18d26e">키워드</b>를 선택해 주세요.
+					</h2>
 				</div>
 			</div>
-		</section><!-- Breadcrumbs Section -->
-	</main><!-- End #main -->
+		</section>
+		<!-- Breadcrumbs Section -->
+	</main>
+	<!-- End #main -->
 
 
 	<!--포트폴리오 section 으로 감싸줘야 css가 입혀짐-->
-	<section id="portfolio" class="section-bg" style="margin-bottom: 60px; padding: 20px 0px 20px 0px;">
+	<section id="portfolio" class="section-bg"
+		style="margin-bottom: 60px; padding: 20px 0px 20px 0px;">
 
 		<!-- course란 강좌라는 뜻이에염~ -->
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
 		<div class="container">
 			<div class="row">
 				<div class="row " style="width: 100%; margin-bottom: 0px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">모집 상태</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-ingOrDone">
 							&nbsp;
-							<li data-filter=".filter-ingOrDone">모집중</li>
-							&nbsp;
+							<li data-filter=".filter-ingOrDone">모집중</li> &nbsp;
 							<li data-filter=".filter-ingOrDone">모집 완료</li>
 						</ul>
 					</div>
 
 				</div>
-				<div class="row" style="width: 100%; margin-bottom: 0px; ">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">난이도</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-level">
 							&nbsp;
-							<li data-filter=".filter-level">입문</li>
-							&nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">초급</li>
-							&nbsp;&nbsp;&nbsp;
+							<li data-filter=".filter-level">입문</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter=".filter-level">초급</li> &nbsp;&nbsp;&nbsp;
 							<li data-filter=".filter-level">중급 이상</li>
 						</ul>
 					</div>
 				</div>
 
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<div>
 							<span class="title _category_list  ">언어</span>
 						</div>
@@ -202,58 +273,47 @@
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">JAVA</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Javascript</li>
-							&nbsp;
-							<li data-filter=".filter-lan">HTML/CSS</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Spring</li>
-							&nbsp;
-							<li data-filter=".filter-lan">DataBase</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Python</li>
-							&nbsp;
-							<li data-filter=".filter-lan">Vue.js</li>
-							&nbsp;
+							<li data-filter=".filter-lan">JAVA</li> &nbsp;
+							<li data-filter=".filter-lan">Javascript</li> &nbsp;
+							<li data-filter=".filter-lan">HTML/CSS</li> &nbsp;
+							<li data-filter=".filter-lan">Spring</li> &nbsp;
+							<li data-filter=".filter-lan">DataBase</li> &nbsp;
+							<li data-filter=".filter-lan">Python</li> &nbsp;
+							<li data-filter=".filter-lan">Vue.js</li> &nbsp;
 							<li data-filter=".filter-lan">React</li>
 						</ul>
 						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">Jquery</li>
-							&nbsp;
-							<li data-filter=".filter-lan">JSP</li>
-							&nbsp;
-							<li data-filter=".filter-lan">BootStrap</li>
-							&nbsp;
+							<li data-filter=".filter-lan">Jquery</li> &nbsp;
+							<li data-filter=".filter-lan">JSP</li> &nbsp;
+							<li data-filter=".filter-lan">BootStrap</li> &nbsp;
 							<li data-filter=".filter-lan">JPA</li>
 						</ul>
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">지역</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-local">
 							&nbsp;
-							<li data-filter=".filter-local">온라인</li>
-							&nbsp;
-							<li data-filter=".filter-local">서울</li>
-							&nbsp;
+							<li data-filter=".filter-local">온라인</li> &nbsp;
+							<li data-filter=".filter-local">서울</li> &nbsp;
 							<li data-filter=".filter-local">경기도</li>
 						</ul>
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
-					<div class="col-md-3 _category box aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
 						<span class="title _category_list">스터디 콘텐츠</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-studyContent">
 							&nbsp;
-							<li data-filter=".filter-studyContent">온라인 강의</li>
-							&nbsp;
+							<li data-filter=".filter-studyContent">온라인 강의</li> &nbsp;
 							<li data-filter=".filter-studyContent">일반</li>
 						</ul>
 					</div>
@@ -262,46 +322,67 @@
 		</div>
 	</section>
 	<!-- 여기부터 스터디 목록 -->
-	<div class="container" style="margin-top: 50px; margin-bottom: 25px; padding: 0px 100px 15px 100px;">
+	<div class="container"
+		style="margin-top: 50px; margin-bottom: 25px; padding: 0px 0px 15px 100px;">
 		<!--  버튼-->
 		<div class="row">
 			<div class="col-md-9"></div>
 			<div class="col-md-3">
-				<div class="text-center"><a href="/board/board_Select.do" class="btn btn-outline-secondary">스터디 모집하기</a>
+				<div class="text-center">
+					<a href="/board/board_Select.do" class="btn btn-outline-secondary">스터디
+						모집하기</a>
 				</div>
 			</div>
 		</div>
 		<!-- 타임리프 반복시작 -->
-		<div th:each="list : ${list}">
+		<div th:each="list : ${list}" style="width: 1000px;">
 			<div class="row">
-			
-			<th:block th:switch="${list.CONTENT_KIND}">
-				<div th:case="일반" class="col-md-3 align-self-center">
-					<div class="card" style="width: 100%">
-						<img class="card-img-top" th:src="'/studyboard/upload/' + ${list.IMAGE}"
-					alt="Card image" style="width: 100%;">
-					</div>
+				<div class="col-md-3"></div>
+				<div class="col-md-4" style="padding: 0px; text-align: center;">
+					<!-- 여기에 뱃지 -->
+					<span class="badge badge-pill badge-primary"
+						th:text="${list.STATUS}"></span> <span
+						class="badge badge-pill badge-info" th:text="${list.LEVEL}"></span>
+					<span class="badge badge-pill badge-secondary"
+						th:text="${list.CATE_LANGUAGE}"></span> <span
+						class="badge badge-pill badge-success" th:text="|${list.PEOPLE}명|"></span>
+					<span class="badge badge-pill badge-warning" th:text="${list.LOC}"></span>
+					<span class="badge badge-pill badge-light"
+						th:text="${list.CONTENT_KIND}"></span>
 				</div>
-				<div th:case="온라인강의" class="col-md-3">
-					 <div class="card" style="width: 100%">
-						<img class="card-img-top" th:src="${list.IMAGE}"
-					alt="Card image" style="width: 100%;">
-						<div class="card-body">
-							<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-							<p class="card-text _margin_0" style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-							<a href="/board/writing_Course_Study_Detail.do" class="stretched-link"></a> 
-							<!-- 별 다섯개 이미지  -->
-							<img
-								src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-								alt="" style="height: 30px;"> <span>(6)</span>
-								<b>₩44,000</b>
+
+			</div>
+			<div class="row">
+
+				<th:block th:switch="${list.CONTENT_KIND}">
+					<div th:case="일반" class="col-md-3 align-self-center">
+						<div class="card" style="width: 100%">
+							<img class="card-img-top"
+								th:src="'/studyboard/upload/' + ${list.IMAGE}" alt="Card image"
+								style="width: 100%;">
 						</div>
-					</div> 
-				</div>
-			</th:block>
-				
-				
-				<div class="col-md-9" style="padding:30px;">
+					</div>
+					<div th:case="온라인강의" class="col-md-3">
+						<div class="card" style="width: 100%">
+							<img class="card-img-top" th:src="${list.IMAGE}" alt="Card image"
+								style="width: 100%;">
+							<div class="card-body">
+								<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+								<p class="card-text _margin_0"
+									style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+								<a href="/board/writing_Course_Study_Detail.do"
+									class="stretched-link"></a>
+								<!-- 별 다섯개 이미지  -->
+								<img
+									src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+									alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+							</div>
+						</div>
+					</div>
+				</th:block>
+
+
+				<div class="col-md-9" style="padding: 3Cpx 30px 30px 30px;">
 					<div class="row" style="margin-top: 10px;">
 						<!-- <div class="col-md-2">
 							<b th:text="${list.USER_ID}">
@@ -309,36 +390,36 @@
 								미네미네
 							</b>
 						</div> -->
-						<div class="col-md-1" style="padding-right: 0px;">
-							<a href="" data-toggle="modal" data-target="#exampleModalCenter">
-								<b th:text="${list.USER_ID}" style="color:black;">
-									작성자 : <!-- 여기에 닉네임 --> 미네미네
-								</b>
-							</a>
+						<b style="margin-left:35px;">작성자:</b>
+						<div class="col-md-4"
+							style="padding-right: 0px; font-size: medium;">
+							<a href="" th:classappend="|InfoModal${list.S_SEQ}|"
+								th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
+								data-toggle="modal" data-target="#userInfoModal"><b
+								th:text="${list.USER_ID}"
+								style="color: black; margin-right: 10px;"> 작성자 : <!-- 여기에 닉네임 -->
+									미네미네
+							</b> </a>
 						</div>
-						<div class="col-md-5" style="padding: 0px; text-align:center;">
-							<!-- 여기에 뱃지 -->
-							<span class="badge badge-pill badge-primary" th:text="${list.STATUS}"></span> <span
-								class="badge badge-pill badge-info" th:text="${list.LEVEL}"></span>
-							<span class="badge badge-pill badge-secondary" th:text="${list.CATE_LANGUAGE}"></span> <span
-								class="badge badge-pill badge-success" th:text="|${list.PEOPLE}명|"></span>
-							<span class="badge badge-pill badge-warning" th:text="${list.LOC}"></span>
-							<span class="badge badge-pill badge-light" th:text="${list.CONTENT_KIND}"></span>
-						</div>
-						 <div class="col-md-3" style="text-align: center;">
+						<div class="col-md-3"
+							style="text-align: center; padding-right: 0px;">
 							<b th:text="|등록일 : ${list.WRITE_DATE}|"></b>
-						</div>  
-						<div class="col-md-3" style="text-align: center;">
+						</div>
+						<div class="col-md-3"
+							style="text-align: center; padding-left: 0px;">
 							<b th:text="|마감일 : ${list.DEADLINE}|"></b>
 						</div>
+
 					</div>
 
-					<div class="row" style="margin-top: 30px;">
-<!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
-<!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
+					<div class="row">
+						<!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
+						<!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
 
-						<a th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
-							<h2 th:text="${list.TITLE}"></h2>
+						<a
+							th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
+							<h2 th:text="${list.TITLE}"
+								style="margin-top: 20px; padding-left: 34px;"></h2>
 						</a>
 
 						<!-- <th:block th:switch="${list.CONTENT_KIND}">
@@ -351,12 +432,14 @@
 						</th:block> -->
 						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 					</div>
-					<div class="row" style="margin: 0px 5px 0px 2px;" th:text="${list.CONTENT}"><p>고행을 하였으며
-						예수는 무엇을 위하여 광야에서 방황하였으며 공자는 무엇을 위하여 천하를 철환하였는가? 밥을 위하여서 옷을 위하여서
-						미인을 구하기 위하여서 그리하였는가? 아니다 그들은 커다란 이상 곧 만천하의 대중을 품에 안고 그들에게 밝은 길을</p></div>
+					<div class="row" style="margin: 0px 5px 0px 28px; height:150px;"
+						th:text="${list.CONTENT}">
+						<p></p>
+					</div>
 				</div>
 			</div>
-			<hr style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px" />
+			<hr
+				style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px" />
 
 
 		</div>
@@ -373,33 +456,37 @@
 
 
 			<!-- 경계 -->
-<!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
+			<!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
 
 			<!-- 페이징 부트스트랩 버튼 생성하기  -->
-			<ul class="pager d-flex" style="place-content: center; margin-top:35px;margin-bottom:140px;">
-			
-			
+			<ul class="pager d-flex"
+				style="place-content: center; margin-top: 35px; margin-bottom: 140px;">
+
+
 				<!-- 이전버튼 생성여부 -->
-				<li th:if="${pageMakerb.prev} == true">
-				<a
-					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Previous">&laquo;</a></li>
-					<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
+				<li th:if="${pageMakerb.prev} == true"><a
+					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+					class="page-link" th:text="Previous">&laquo;</a></li>
+				<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
-		
+
 				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-				<li class="page-item" th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
+				<li class="page-item"
+					th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
 					th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
-					<a class="page-link" th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}" th:text="${idx}">1</a> 
-<!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+					<a class="page-link"
+					th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
+					th:text="${idx}">1</a> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
 
 				<!-- 다음버튼 생성여부 -->
-<!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
-					<li  th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
-						<a th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}" class="page-link" th:text="Next">&raquo;</a>
-						<!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
-					</li>
+				<!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
+				<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+					<a
+					th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+					class="page-link" th:text="Next">&raquo;</a> <!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+				</li>
 			</ul>
 
 			<!-- 경계끝 -->
@@ -409,36 +496,97 @@
 	<!-- 페이징 버튼 끝 -->
 
 
-<!-- 	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div> -->
+	<!-- 	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div> -->
 	<div th:replace="user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-	
-	
-	<script>
+	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
+	</div>
 
-	 $(function(){
-		
-		/*  location.reload(); */
-	}); 
-	
-	
-	
+	<script>
+		$(function() {
+
+			/*  location.reload(); */
+		});
 	</script>
-	
-	<script>
-	
-	$(function(){
-		
-	/* 페이지 0 뜨는거 없애기 시작 */
 
-	var _page_button0 = $('.page-item').children().last().text();
-	
-	if(_page_button0 == 0){
-		$('.page-item').children().last().remove();
-	}
-	/*  페이지 0 뜨는거 없애기 끝 */
-	
-	});
+	<script>
+		$(function() {
+
+			/* 페이지 0 뜨는거 없애기 시작 */
+
+			var _page_button0 = $('.page-item').children().last().text();
+
+			if (_page_button0 == 0) {
+				$('.page-item').children().last().remove();
+			}
+			/*  페이지 0 뜨는거 없애기 끝 */
+
+		});
+	</script>
+
+	<script>
+		function InfoModal(idx) {
+
+			let id = $('.InfoModal' + idx).children().text();
+			//formData.append("user_id" , this.id);
+
+			console.log("아이디 : " + id);
+			// let obj = {"user_id" : id}; 
+
+			let data = {
+				"user_id" : id
+			}
+
+			$.ajax({
+				url : '/ajax/userInfoModal.do',
+				processData : false,
+				contentType : "application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+
+					$('.ModalUserName').text(data[0].USER_NAME);
+					$('.introduce').text(data[0].INTRODUCE)
+					'src', '/material/images/jQuery/asimo.png'
+					$('#profile_img').attr('src',
+							'/userboard/upload/' + data[0].PROFILE_IMG);
+					console.log(data[0].INTRODUCE);
+					$.each(data, function(index, item) {
+						console.log('정아 : ' + item.SKILL_NAME)
+						console.log('우철 : ' + item.SKILL_LEVEL)
+
+						if (item.SKILL_LEVEL === '입문') {
+							console.log("t333e");
+							$(
+									'input[name=' + item.SKILL_NAME
+											+ ']:radio[value="입문"]').prop(
+									'checked', true);
+						} else if (item.SKILL_LEVEL === '초급') {
+							console.log("11e");
+							$(
+									'input[name=' + item.SKILL_NAME
+											+ ']:radio[value="초급"]').prop(
+									'checked', true);
+						} else {
+							console.log("tww2ㄴㄴ2!!");
+							$(
+									'input[name=' + item.SKILL_NAME
+											+ ']:radio[value="중급이상"]').prop(
+									'checked', true);
+						}
+					})
+
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			});
+
+		}
+	</script>
+	<script>
+		
 	</script>
 </body>
 

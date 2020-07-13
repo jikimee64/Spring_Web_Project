@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
 
 
@@ -41,6 +42,20 @@ public interface BoardDao {
 	//댓글 개수
 	public int getReplyCnt(String s_seq);
 	
+	//라이크테이블에 넣기 
+	public void heartinsert(Likes like);
+	
+	//좋아요 유무 확인
+	public int heartcheck(Likes like);
+	
+	//좋아요의 0/1 컬럼 확인
+	public int heartnum(Likes like);
+	
+	//좋아요의 0/1 컬럼에 업데이트
+	public void heartupdate(Likes like);
+	
+	//해당글의 좋아요 총 갯수 확인
+	public int getLikeCnt(int s_seq);
 
 
 

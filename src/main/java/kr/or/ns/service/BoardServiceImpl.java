@@ -17,6 +17,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import kr.or.ns.dao.BoardDao;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
 
 /*
@@ -208,5 +209,88 @@ public class BoardServiceImpl implements BoardService {
 
 		return count;
 	}
+	//좋아요 게시판에 넣기 
+	public void heartinsert(String user_id, String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		Likes like = new Likes();
+		like.setS_seq(Integer.parseInt(s_seq));
+		like.setUser_id(user_id);
+		
+		
+		try {
+			//id&l_seq 값으로 북마크 유무 체크
+			int result =  dao.heartcheck(like);
+			System.out.println( "---------------------   result 찍어보기 -----------------------");
+			System.out.println(result);
+			System.out.println( "---------------------------------------------------------------");
+			 if(result == 0 ) {
+				 //없으면 insert
+				 System.out.println("insert 넣으러 왔어요"); 
+				 like.setLike_check(1);
+				 dao.heartinsert(like);
+			 }else { 
+					 //있으면 update
+					 System.out.println("update 갑니다."); 
+					 
+					 if(dao.heartnum(like) == 0 ) {
+						 //1 넣으러 왔어요
+						 System.out.println("1 넣으러 왔어요");
+						 like.setLike_check(1);
+						 dao.heartupdate(like);
+					 }else {
+						 //0 넣으러 왔어요
+						 System.out.println("0 넣으러 왔어요");
+						 like.setLike_check(0);
+						 dao.heartupdate(like);
+					 }
+			 }
+			 
+		} catch (Exception e) {
+			System.out.println("오류 났어요.");
+			System.out.println(e.getMessage());
+		}
+		
+		
+	}
+	//하트 0/1 컬럼 확인
+	public int heartnum(Likes like) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int heart = 0;
+		try {
+			
+			heart = dao.heartcheck(like);
+			if(heart != 0) {
+				 heart = dao.heartnum(like);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return heart;
+	}
+	
+	//해당글의 좋아요 갯수 가져오기 
+	public int getLikeCnt(String s_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int result = dao.getLikeCnt(Integer.parseInt(s_seq));
+		return result;
+	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -32,20 +32,16 @@ public class MyPageServiceImpl implements MyPageService {
 	public void setSqlsession(SqlSession sqlsession) {
 		this.sqlsession = sqlsession;
 	}
-	
-	
 
-
-	//마이페이지(북마크)
+	// 마이페이지(북마크)
 	public List<Map<String, Object>> myPagelist(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<Map<String, Object>> myPagelist = dao.getBookMark(userid);
 		System.out.println("마이페이지 서비스 잘 오는가" + myPagelist);
-		
+
 		return myPagelist;
 	}
-	
-	
+
 	// 회원 가져오기
 	@Override
 	public Users getUsers(String userid) {
@@ -103,11 +99,11 @@ public class MyPageServiceImpl implements MyPageService {
 		} else {
 			users.setProfile_img("member.png");
 		}
-		
-    	//true일시 세션이 있으면 기존꺼 사용 아니면 세션을새로 만듬
-		 HttpSession session = request.getSession(true);
-		 session.setAttribute("currentUser", users);
-		
+
+		// true일시 세션이 있으면 기존꺼 사용 아니면 세션을새로 만듬
+		HttpSession session = request.getSession(true);
+		session.setAttribute("currentUser", users);
+
 		int result = 0;
 		int result2 = 0;
 
@@ -162,8 +158,6 @@ public class MyPageServiceImpl implements MyPageService {
 		System.out.println("탈퇴오는거겠지");
 	}
 
-
-
 	// 사용자 정보 가져오기
 	@Override
 	public Users userInfo(String user) {
@@ -171,40 +165,40 @@ public class MyPageServiceImpl implements MyPageService {
 		Users man = dao.getUsers(user);
 		return man;
 	}
-
-
-
-
+	//북마크 갯수
 	@Override
 	public int bookmarkCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.getbkCount(users);
-		System.out.println("--------------"+count+"--------------");
+		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
-
-
+	//댓글 갯수
 	@Override
 	public int commentCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.getcmCount(users);
-		System.out.println("--------------"+count+"--------------");
+		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
-
-
-
-
+	//게시글 갯수
 	@Override
 	public int s_boardCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.getsbCount(users);
-		System.out.println("--------------"+count+"--------------");
+		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
 
+	//마이페이지(스터디리스트)
+	@Override
+	public List<HashMap<String, Object>> myPageStudyList(String userid) {
+		System.out.println("불러와야 한다");
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		List<HashMap<String, Object>> myPageStudyList = dao.myPageStudyList(userid);
+		System.out.println("이거 되는거니...?" + myPageStudyList);
+		
+		return myPageStudyList;
+	}
 
-
-	
-	
 }

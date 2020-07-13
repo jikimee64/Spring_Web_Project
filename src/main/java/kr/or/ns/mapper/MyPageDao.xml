@@ -58,20 +58,34 @@
 			where bookmark.user_id = #{user_id} and bookmark.bookmark_check = 1   
 			]]>
 	</select>
-	
+
 	<!-- 북마크 갯수 가져오기 -->
 	<select id="getbkCount" resultType="int">
-			SELECT count(*) FROM users as u JOIN bookmark AS b ON u.user_id = b.user_id where u.user_id = #{user_id}
+		SELECT count(*) FROM users as u JOIN bookmark AS b ON u.user_id = b.user_id
+		where u.user_id = #{user_id}
 	</select>
 
 	<!-- 댓굴 갯수 가져오기 -->
 	<select id="getcmCount" resultType="int">
-			select count(*) from users as u join comment as c on u.user_id = c.r_name where u.user_id = #{user_id}
+		select count(*) from users as u join comment as c on u.user_id = c.r_name
+		where u.user_id = #{user_id}
 	</select>
-	
+
 	<!-- 댓굴 갯수 가져오기 -->
 	<select id="getsbCount" resultType="int">
-			select count(*) from users as u join study_board as s on u.user_id = s.user_id where u.user_id = #{user_id}
+		select count(*) from users as u join study_board as s on u.user_id =
+		s.user_id where u.user_id = #{user_id}
 	</select>
+
+	<!-- 스터디 목록 가져오기 -->
+
+	<select id="myPageStudyList" resultType="hashMap">
+			<![CDATA[
+		      select * from study_group
+        left outer join study_board on study_group.s_seq = study_board.s_seq
+        where study_group.user_id = #{user_id} and study_group.accept_status = '승인대기중'
+			]]>
+	</select>
+
 
 </mapper>

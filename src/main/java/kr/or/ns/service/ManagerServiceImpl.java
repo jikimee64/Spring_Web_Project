@@ -10,34 +10,19 @@ import org.springframework.stereotype.Service;
 import kr.or.ns.dao.ManagerDao;
 import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
+
 @Service
 public class ManagerServiceImpl implements ManagerService {
-	
+
 	@Autowired
 	private SqlSession sqlsession;
-	
-	
-	//회원목록 가져오기 select All
+
+	// 회원목록 가져오기 select All
 	public List<Users> getMemberList() {
-		
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		List<Users> list = dao.getMemberList();
-		System.out.println("우철 : " + list);
-		
-	return list;
+		return list;
 	}
-	
-	
-	//회원목록 가져오기 select All
-	public List<Users> getMemberPoiList() {
-		
-		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		List<Users> list = dao.getMemberPoiList();
-		System.out.println("우철 : " + list);
-		
-	return list;
-	}
-
 
 	@Override
 	public Users getUsers(String user_id) {
@@ -45,7 +30,6 @@ public class ManagerServiceImpl implements ManagerService {
 		Users user = dao.getUsers(user_id);
 		return user;
 	}
-
 
 	@Override
 	public List<HashMap<String, String>> getSkill(String user_id) {
@@ -55,7 +39,6 @@ public class ManagerServiceImpl implements ManagerService {
 		return list;
 	}
 
-	
 	@Override
 	public String memberDel(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
@@ -64,21 +47,11 @@ public class ManagerServiceImpl implements ManagerService {
 		return "redirect:member_Management.do";
 	}
 
-
-
 	@Override
-	public List<Blame> getBlameList(String bl_seq) {
+	public List<HashMap<String, Object>> getBlameList() {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		List<Blame> blame = dao.getBlameList(bl_seq);
+		List<HashMap<String, Object>> blame = dao.getBlameList();
 		return blame;
 	}
-
-
-
-
-
-	
-
-
 
 }

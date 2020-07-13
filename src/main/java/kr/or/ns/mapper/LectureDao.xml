@@ -42,9 +42,7 @@
 	
 	<!-- 북마크추가 -->
 	<insert id="heartinsert" parameterType="kr.or.ns.vo.BookMark">
-		
 		INSERT INTO BookMark(user_id,l_seq,bookmark_check) values(#{user_id},#{l_seq},#{bookmark_check})
-	
 	</insert>
 	
 	<!-- 존재하는 북마크인지 확인 -->

@@ -10,21 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- SELECT COUNT(*) FROM 멤버보드_BOARD -->
 	<!-- </select> -->
 
-
-
 	<!-- 회원리스트 가져오기 -->
-	<select id="getMemberList" resultType="hashmap" parameterType="kr.or.ns.vo.Users">
+	<select id="getMemberList" resultType="kr.or.ns.vo.Users">
 <!-- 	<select id="getMemberList" resultType="hashmap"> -->
 		SELECT * FROM USERS
 		ORDER BY user_id asc
 	</select>
-	
-		<!-- 회원리스트 가져오기 -->
-	<select id="getMemberPoiList" resultType="kr.or.ns.vo.Users">
-		SELECT * FROM USERS
-		ORDER BY user_id asc
-	</select>
-
 
 
 	<!-- 회원 상세정보가져오기 -->
@@ -52,10 +43,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 		SELECT * FROM blame_board -->
 <!-- 		ORDER -->
 <!-- 		BY BL_SEQ asc -->
-		select b.*,t.type
+		select *
 		from blame_board b
 		join blame_type_category t
-		on b.BTC_SEQ = t.BTC_SEQ;
+		on b.BTC_SEQ = t.BTC_SEQ
+		join blame_place_category p
+		on b.BPC_SEQ = p.BPC_SEQ
 	</select>
 
 </mapper>

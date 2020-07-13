@@ -65,22 +65,21 @@ body {
 		<!-- Breadcrumbs Section -->
 
 	</main>
-	<div class="_border_box_shadow2">
+	<div class="_border_box_shadow2" style=" height: 1400px;">
 		<div class="container"
 			style="margin-top: 25px; padding: 0px; background-color: white;">
 			<div class="row" style="height: 200px;">
 				<div class="col-md-3"
 					style="align-self: center; text-align: center; left: 15px;">
 					<p>
-						<img
-							th:src="${user.profile_img}"
-							alt="" style="height: 130px; border-radius: 50%;">
+						<img th:src="${user.profile_img}" alt=""
+							style="height: 130px; border-radius: 50%;">
 					</p>
 				</div>
 				<div class="col-md-4 pl-0" style="align-self: center;">
-					<b style="font-size: larger; margin-left: 20px;" th:text="${user.nickname}"></b> <a
-						class="_message_hover" th:href="@{/mypage/MyPageUserDetail.do}">
-						<img
+					<b style="font-size: larger; margin-left: 20px;"
+						th:text="${user.nickname}"></b> <a class="_message_hover"
+						th:href="@{/mypage/MyPageUserDetail.do}"> <img
 						src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
 						class="mb-1 _message_hover" alt="" style="height: 27px;">
 					</a> <a th:href="@{/message/mypage_Message_From_Board.do}"
@@ -97,12 +96,14 @@ body {
 					<div class="row">
 						<div class="col-md-2" style="text-align: center;">
 							<a href="/mypage/mypage_Myboard.do">
-								<h5 style="color: cornflowerblue" class="_message_hover" th:text="${sb}"></h5>
+								<h5 style="color: cornflowerblue" class="_message_hover"
+									th:text="${sb}"></h5>
 							</a> <b>게시글</b>
 						</div>
 						<div class="col-md-2" style="text-align: center;">
 							<a href="/mypage/mypage_Myboard.do">
-								<h5 style="color: cornflowerblue" class="_message_hover" th:text="${cm}"></h5>
+								<h5 style="color: cornflowerblue" class="_message_hover"
+									th:text="${cm}"></h5>
 							</a> <b>댓글</b>
 						</div>
 						<div class="col-md-2" style="text-align: center;">
@@ -126,7 +127,7 @@ body {
 		</div>
 		<!--  윗부분 끝 //////////////////////////////////////// -->
 		<!--  중간부분 시작  //////////////////////////////////////// -->
-		<div class="container" style="height: 300px; padding-top: 15px;">
+		<div class="container" style="height: 500px; padding-top: 15px;">
 			<div style="padding: 40px 30px;">
 				<div class="row">
 					&nbsp; &nbsp; &nbsp;
@@ -141,102 +142,110 @@ body {
 						<b>모집중 스터디</b>
 					</button>
 				</div>
-				<hr style="border: solid 1px; margin-top: 0px; max-width: 1200px;" />
-				<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
-				<div class="row p-4">
-					<div class="col-md-1" style="text-align: center;">
-						<!-- 스터디 글 번호 -->
-						<p style="font-size: xx-large; font-weight: bold;">1</p>
-					</div>
-					<div class="col-md-8">
-						<span class="badge badge-pill badge-warning">모집인원 4/6</span> <span
-							class="ml-3 badge badge-pill badge-danger">20/05/05</span> <a
-							href=""><img
-							src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
-							class="mb-1 _message_hover" alt=""
-							style="height: 27px; margin-left: 5px; margin-top: 2px;"></a>
-						<h4 style="font-weight: bold;">따라하며 배우는 노드 같이 스터디 하실분~~?</h4>
-						<p>노드 20일짜리 과정 20일동안 같이 해보실분 찾아요~ 20일동안 같이 해보실분 찾아요~ 노드 20일짜리
-							과정 ...</p>
-						&nbsp; <br />
+					<div style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
+				<div th:each="studylist: ${studylist}">
+					<hr style="border: solid 1px; margin-top: 0px;" />
+					<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
+				
+						<div class="row p-4">
+							<div class="col-md-1" style="text-align: center;">
+								<!-- 스터디 글 번호 -->
+								<p style="font-size: xx-large; font-weight: bold;"
+									th:text=${studylist.S_SEQ}></p>
+							</div>
+
+							<div class="col-md-8">
+								<!-- @{/board/board_Support_Status.do} -->
+								<span class="badge badge-pill badge-warning"
+									th:text="|${studylist.PEOPLE}명|">모집인원 4/6</span> <span
+									class="ml-3 badge badge-pill badge-danger"
+									th:text="|마감일 : ${studylist.DEADLINE}|">마감일</span> <a href=""><img
+									th:src="${studylist.IMAGE}" class="mb-1 _message_hover" alt=""
+									style="height: 27px; margin-left: 5px; margin-top: 2px;"></a>
+								<span th:text="${studylist.TITLE}"></span> <span
+									th:text="${studylist.CONTENT}"></span> &nbsp; <br />
 
 
-					</div>
-					<div class="col-md-3" style="text-align: right;">
-						<img
-							src="https://cdn.inflearn.com/wp-content/uploads/jjn_es62.jpg"
-							alt="" style="height: 140px; width: 140px;">
+							</div>
+							<div class="col-md-3" style="text-align: right;">
+								<img
+									src="https://cdn.inflearn.com/wp-content/uploads/jjn_es62.jpg"
+									alt="" style="height: 140px; width: 140px;">
+							</div>
+						</div>
 					</div>
 				</div>
-
-
+				<br />
+				<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
 			</div>
-			<br />
-			<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
-		</div>
-		<!--  중간부분 끝  //////////////////////////////////////// -->
-		<!-- 여기부터 마지막 부분 시작/// 북마크 -->
-		<div class="container"
-			style="padding-top: 15px; ">
-			<div style="margin-bottom: 20px;">
-	
+			<!--  중간부분 끝  //////////////////////////////////////// -->
+			<!-- 여기부터 마지막 부분 시작/// 북마크 -->
+			<div class="container" style="padding: 40px 30px; height: 500px;">
+				<div style="margin-bottom: 20px;">
+
 					<!-- <img src="../../../../resources/images/img/bookmark.png" alt=""
 					style="height: 40px; margin-bottom: 10px;">  -->
-			
-				<div class="row" style="margin-left:40px;">					
-				<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 51.02">
-					<path d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+
+					<div class="row" style="margin-left: 40px;">
+						<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 56.69 51.02">
+					<path
+								d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
 					</svg>
-				
-							&nbsp;&nbsp;
-						<b style="font-size: 30px;">북마크</b>
+
+						&nbsp;&nbsp; <b style="font-size: 30px;">북마크</b>
 					</div>
-					<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 10px; max-width: 1000px;" />
-					<div style="overflow-y: auto; overlow-x: hidden; width: 100%; height: 200px;">
-					<div th:each="list: ${list}">
-				
+					<hr style="border: solid 1px; margin-top: 0px;" />
+					<div
+						style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
+						<div th:each="list: ${list}">
 
-					<!-- 여기부터 데이터 하나 넣기 시작 -->
-					<!-- 타임리프 for문 -->
 
-					<div class="row" style="padding: 40px 30px;">
-						<div class="col-md-1" style="text-align: center;">
-							<!-- 스터디 글 번호 -->
-							<p style="font-size: xx-large; font-weight: bold;"
-								th:text="${list.L_SEQ}"></p>
-						</div>
-						<div class="col-md-2" style="text-align: center;">
-							<img
-								src="https://cdn.inflearn.com/public/courses/325053/course_cover/b5fb69d7-2957-4023-82f1-76f3ff0b8860/nodeReactchatbot.png"
-								alt="" style="height: 140px; width: 140px;">
-						</div>
-						<div class="col-md-7"
-							style="padding-left: 50px; padding-right:0px; padding-top: 10px;">
-						
-								<h4 style="font-weight: bold; color: black;"
-									th:text="${list.L_TITLE}"></h4>
-								<br /> <br /> <img
-								src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-								alt="" style="height: 40px;">
-							<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
-							&nbsp; <span> <b th:text="${list.CATE_PRICE}"></b>
-							</span> <br />
+							<!-- 여기부터 데이터 하나 넣기 시작 -->
+							<!-- 타임리프 for문 -->
 
-						</div>
-						<div class="col-md-1" style="padding-right:0px;">
-							<button type="button" class="btn btn-danger"
-								style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;"><b>삭제</b></button>
+							<div class="row" style="padding: 24px;">
+								<div class="col-md-1" style="text-align: center;">
+									<!-- 스터디 글 번호 -->
+									<p style="font-size: xx-large; font-weight: bold;"
+										th:text="${list.L_SEQ}"></p>
+								</div>
+								<div class="col-md-2" style="text-align: center;">
+									<img
+										src="https://cdn.inflearn.com/public/courses/325053/course_cover/b5fb69d7-2957-4023-82f1-76f3ff0b8860/nodeReactchatbot.png"
+										alt="" style="height: 140px; width: 140px;">
+								</div>
+								<div class="col-md-7"
+									style="padding-left: 50px; padding-right: 0px; padding-top: 10px;">
+
+									<h4 style="font-weight: bold; color: black;"
+										th:text="${list.L_TITLE}"></h4>
+									<br /> <br /> <img
+										src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+										alt="" style="height: 40px;">
+									<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
+									&nbsp; <span> <b th:text="${list.CATE_PRICE}"></b>
+									</span> <br />
+
+								</div>
+								<div class="col-md-1" style="padding-right: 0px;">
+									<button type="button" class="btn btn-danger"
+										style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;">
+										<b>삭제</b>
+									</button>
+								</div>
+							</div>
+
+							<!-- 이건 더미데이터 끝 -->
+							<hr
+								style="border: solid 1px; margin-top: 0px; margin-bottom: 10px; max-width: 1000px;" />
 						</div>
 					</div>
+				</div>
 
-					<!-- 이건 더미데이터 끝 -->
-								<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 10px; max-width: 1000px;" />
-				</div>
-				</div>
 			</div>
-
+			<!-- 여기까지 마지막 부분 끝/// 북마크 -->
 		</div>
-		<!-- 여기까지 마지막 부분 끝/// 북마크 -->
 	</div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
@@ -278,6 +287,13 @@ body {
 						$('#_study_button3').css('border-color',
 								'rgb(134, 240, 180)');
 					});
+
+		});
+	</script>
+
+	<!-- 참여중, 모집중 스터디 비동기 ajax -->
+	<script>
+		$(function() {
 
 		});
 	</script>

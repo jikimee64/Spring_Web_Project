@@ -473,25 +473,17 @@ group+group {
 					$('.ModalUserName').text(data[0].USER_NAME);
 					$('.introduce').text(data[0].INTRODUCE)
 					'src','/material/images/jQuery/asimo.png'
-					$('#profile_img').attr('src', data[0].PROFILE_IMG);
+					$('#profile_img').attr('src', '/userboard/upload/' + data[0].PROFILE_IMG);
 					console.log(data[0].INTRODUCE);
 					$.each(data, function (index, item) {
-						console.log('정아 : ' + item.SKILL_NAME)
-						console.log('우철 : ' + item.SKILL_LEVEL)
-						
 						if (item.SKILL_LEVEL === '입문') {
-							console.log("t333e");
 							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
 						} else if (item.SKILL_LEVEL === '초급') {
-							console.log("11e");
 							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
 						} else {
-							console.log("tww2ㄴㄴ2!!");
 							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
 						}
 					})
-					
-					
 				},
 				error : function(e) {
 					console.log("error:", e);

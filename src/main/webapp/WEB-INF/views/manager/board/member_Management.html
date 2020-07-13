@@ -127,13 +127,14 @@ td:focus {
 										<th:block th:each="memberList : ${memberList}">
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
-<!-- 													<a th:href="@{noticeDetail.htm(seq=${n.seq})}"> -->
+												<!-- 													<a th:href="@{noticeDetail.htm(seq=${n.seq})}"> -->
 												<td align="center"><a
-													th:href="@{/manager/board/member_Detail.do(user_id=${memberList.USER_ID})}" th:text="${memberList.USER_ID}">123${memberList.USER_ID}</a>
+													th:href="@{/manager/board/member_Detail.do(user_id=${memberList.user_id})}"
+													th:text="${memberList.user_id}"></a>
 												</td>
-												<td align="center" th:text="${memberList.USER_EMAIL}">${memberList.USER_EMAIL}</td>
-												<td align="center" th:text="${memberList.NICKNAME}">${memberList.NICKNAME}</td>
-												<td align="center" th:text="${memberList.BLAME_COUNT}">${memberList.BLAME_COUNT}</td>
+												<td align="center" th:text="${memberList.user_email}"></td>
+												<td align="center" th:text="${memberList.nickname}"></td>
+												<td align="center" th:text="${memberList.blame_count}"></td>
 												<td align="center" class="button" style="padding-top: 10px;">
 													<a href="#" id="stop">
 														<button type="button" class="btn btn-danger btn-sm"
@@ -156,11 +157,23 @@ td:focus {
 	<!-- /#right-panel -->
 
 
-	<div th:replace="/manager/includes/script :: script"></div>
+	<!-- <div th:replace="/manager/includes/script :: script"></div> -->
+	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script
+		src="../../../../resources/admin_assets/vendors/jquery/dist/jquery.min.js"></script> 
+	<script
+		src="../../../../resources/admin_assets/vendors/popper.js/dist/umd/popper.min.js"></script>
+	<script src="../../../../resources/admin_assets/assets/js/main.js"></script>
+
+	<!-- alert창 꾸미기 -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 
 	<!-- dataTaBle start -->
-	<script
-		src='../../../../resources/admin_assets/assets/dataTable/js/jquery-3.3.1.min.js'></script>
+ 	<script
+		src='../../../../resources/admin_assets/assets/dataTable/js/jquery-3.3.1.min.js'></script> 
 	<script
 		src="../../../../resources/admin_assets/assets/dataTable/js/jquery.dataTables.js"></script>
 	<script
@@ -172,6 +185,9 @@ td:focus {
 	<script
 		src="../../../../resources/admin_assets/assets/dataTable/js/member.js"></script>
 	<!-- dataTaBle end -->
+
+	<script
+		src="../../../../resources/admin_assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
 	<div
 		th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
@@ -199,13 +215,67 @@ td:focus {
 					});
 			})
 			
-			
-			$('.excel').click(function(){
-				console.log('마내미내마내노마ㅣ노미너미');
-			})
-			
 		});
 	</script>
+
+	<script type="text/javascript">
+	 $(function() {
+			connect();
+			$('#message-btn').click(function() {
+				swal({
+					  title: "정상적으로 쪽지를 보냈습니다.",
+					  icon: "info",
+					  buttons: true,
+					 /*  dangerMode: true, */
+					})
+	  				$('#messagePageModal').modal('hide');
+				send();
+				//form태그 이동..
+			});
+		})
+
+		var wsocket;
+
+		function connect() {
+			wsocket = new WebSocket("ws://" + location.host + "/messageSocket.do");
+			wsocket.onopen = onOpen;
+			wsocket.onmessage = onMessage;
+			wsocket.onclose = onClose;
+		}
+		function disconnect() {
+			wsocket.close();
+		}
+
+		function onOpen(evt) {
+			console.log("onOpen(evt)");
+		}
+
+		function onMessage(evt) {
+			/* console.log("evt :" + evt);
+			var data = evt.data;
+			appendMessage(data); */
+		}
+
+		function onClose(evt) {
+		}
+
+		function send() {
+			console.log("여긴오2222냐!!")
+			let message = $('#message').val();
+			console.log('ㅇㅇ : ' + message);
+			
+			wsocket.send("all," + message);
+		/* 	$('#message').val(""); */
+		}
+
+		//자기 자신한테 보냈을때 실행
+		function appendMessage(msg) {
+			console.log(msg);
+			alert("msg : " + msg);
+		}
+
+	</script>
+
 
 </body>
 

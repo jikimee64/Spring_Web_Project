@@ -127,7 +127,7 @@ body {
 
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+	 $(function() {
 			connect();
 			$('#sendBtn').click(function() {
 				swal({
@@ -144,7 +144,7 @@ body {
 		var wsocket;
 
 		function connect() {
-			wsocket = new WebSocket("ws://192.168.0.2:8001/messageSocket.do");
+			wsocket = new WebSocket("ws://" + location.host + "/messageSocket.do");
 			wsocket.onopen = onOpen;
 			wsocket.onmessage = onMessage;
 			wsocket.onclose = onClose;

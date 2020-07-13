@@ -62,8 +62,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	
+	<!-- 좋아요 추가 -->
+	<insert id="heartinsert" parameterType="kr.or.ns.vo.Likes">
+		INSERT INTO likes(user_id,s_seq,like_check) values(#{user_id},#{s_seq},1)
+	</insert>
 	
+	<!-- 존재하는 좋아요인지 확인 -->
+	<select id="heartcheck" parameterType="kr.or.ns.vo.Likes" resultType="int">
+		select count(*) from likes
+		where user_id = #{user_id} and s_seq = #{s_seq}
+	</select>
 	
+	<!-- 좋아요의 체크유무번호 확인 -->
+	<select id="heartnum" parameterType="kr.or.ns.vo.Likes" resultType="int">
+		select like_check from likes
+		where user_id = #{user_id} and s_seq = #{s_seq}
+	</select>
+	
+	<!-- 기존 좋아요테이블에 업데이트 하러갑니다 -->
+	<update id="heartupdate" parameterType="kr.or.ns.vo.Likes">
+		update likes set like_check = #{like_check} 
+		where user_id = #{user_id} and s_seq = #{s_seq}
+	</update>
+	
+	<!-- 좋아요 총갯수 -->
+	<select id="getLikeCnt"  resultType="int">
+		select like_cnt from study_board
+		where s_seq = #{s_seq}
+	</select>
 	
 
 </mapper>
