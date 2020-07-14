@@ -80,43 +80,54 @@
 									<textarea class="form-control" rows="3" id="bl_content"
 										readonly name="comment" placeholder="추가 내용"></textarea>
 								</div>
-								<label id="type" for="1">쪽지내용</label><br>
-								<div class="form-group">
-									<textarea class="form-control" rows="3" id="bl_content"
-										readonly name="comment" placeholder="추가 내용"></textarea>
+							</div>
+							
+							<input type="hidden" id="bl_seq" value="" />
+							<input type="hidden" id="target" value="" />
+							<input type="hidden" id="m_seq"  value="" />
+							
+							
+							<div id="message">
+								<div class='col-4' id="declareMessageButtons" style='padding: 0px; text-align: center;'>
+									<button id='message' th:onclick="|javascript:messageCheck()|" type='button'
+										class='btn btn-outline-success' >쪽지내용</button>
 								</div>
 
-								<!-- 게시판 유형 넘겨받는 hidden(될랑가모르겠네!!!!! - 우철 - )  -->
-								<input type="hidden" id="board_type" value="" />
+								<div class='col-4' id="messageOk"
+									style='padding: 0px; text-align: center; margin: 0 auto;'>
+									<button th:onclick="|javascript:declareYes()|" type='button'
+										class='btn btn-outline-danger'>신고정상</button>
+								</div>
 
-								<div class="row" id="declareButtons" style="text-align: center; margin: 0 auto;">
+								<div class='col-4' id="messageNo"
+									style='padding: 0px; text-align: center; margin: 0 auto;'>
+									<button th:onclick="|javascript:declareNo()|" type='button'
+										class='btn btn-outline-danger'>신고비정상</button>
+								</div>
 
-										<div class="col-4"
-											style="padding: 0px;">
-											<button id="message" type="button"
-												class="btn btn-outline-success" data-dismiss="modal">쪽지내용</button>
-										</div>
-
-
-										<div class="col-4" style="padding: 0px; text-align: center;">
-											<a href="sss.do">
-												<button id="board" type="button" class="btn btn-outline-success">게시글
-													이동</button>
-											</a> <a href="sss.do">
-												<button id="message2" type="button" class="btn btn-outline-success">쪽지함</button>
-											</a>
-										</div>
-
-										<!-- 반드시..  -->
-										<div class="col-4" style="padding: 0px;">
-											<button id="declare" type="button"
-												class="btn btn-outline-danger" data-dismiss="modal">신고처리</button>
-										</div>
+							</div>
 
 
+							<div id="study">
+								<div class="col-4" id="declareButtons"
+									style='padding: 0px; text-align: center; margin: 0 auto;'>
+
+								</div>
+
+								<div class='col-4' id="studyOk"
+									style='padding: 0px; text-align: center; margin: 0 auto;'>
+									<button th:onclick="|javascript:declareYes()|" type='button'
+										class='btn btn-outline-danger'>신고정상</button>
+								</div>
+
+								<div class='col-4' id="studyNo"
+									style='padding: 0px; text-align: center; margin: 0 auto;'>
+									<button th:onclick="|javascript:declareNo()|" type='button'
+										class='btn btn-outline-danger'>신고비정상</button>
 								</div>
 							</div>
 						</div>
+
 					</div>
 			</form>
 		</div>

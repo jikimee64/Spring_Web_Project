@@ -17,8 +17,8 @@
                       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<task:annotation-driven />
-	<tx:annotation-driven
-		transaction-manager="transactionManager" />
+<!-- 	<tx:annotation-driven
+		transaction-manager="transactionManager" /> -->
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<context:component-scan

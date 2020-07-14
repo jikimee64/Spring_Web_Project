@@ -50,6 +50,6 @@ public interface MyPageService {
 	public List<HashMap<String, Object>> studyStatus(String name);
 	
 	//
-	//public String getRole(String user_id, String s_seq);
+	public HashMap<String, Object> getRole(HashMap<String,Object> map);
 
 }

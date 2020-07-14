@@ -23,5 +23,21 @@ public interface ManagerDao {
 	public int restoreMember(String user_id);
 	
 	public HashMap<String, Object> getDetailDeclare(String bl_seq);
+	
+	public int blameYes(String bl_seq);
+	
+	public int blameTargetUp(String bl_target_id);
+	
+	public int blameNo(String bl_seq);
+
+	public HashMap<String, Object> messageGet(String m_seq);
+	
+	public int memberCount();
+	
+	public String bestLocation();
+	
+	public String bestLanguage();
+
+	public int blameCount();
 
 }

@@ -8,12 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,9 +22,10 @@ import kr.or.ns.export.WriteMemberListToExcelFile;
 import kr.or.ns.export.WriteMemberListToPdfFile;
 import kr.or.ns.export.WriteReportListToExcelFile;
 import kr.or.ns.export.WriteReportListToPdfFile;
+import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
-import kr.or.ns.vo.Blame;
-import kr.or.ns.vo.Comment;
+import kr.or.ns.service.MessageService;
+import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -37,16 +33,32 @@ import kr.or.ns.vo.Users;
 public class ManagerController {
 
 	@Autowired
-	private ManagerServiceImpl service;
+	private ManagerService service;
 
 	/*
 	 * @Autowired private ManagerService service;
 	 */
 
 	@RequestMapping("index.do")
-	public String indexPage() {
+	public String indexPage(Model model) {
 		System.out.println("어드민대문이동");
-
+		
+		//총 회원 수
+		int membercount = service.membercount();
+		model.addAttribute("membercount", membercount);
+		
+		//스터디 언어로 가장 많이 선택된 언어
+		String bestLanguage = service.bestLanguage();
+		model.addAttribute("bestLanguage", bestLanguage);
+		
+		//가장 많이 스터디가 개설된 지역
+		String bestLocation = service.bestLocation();
+		model.addAttribute("bestLocation", bestLocation);
+		
+		//아직 처리중인 신고 건수
+		int blameCount = service.blameCount();
+		model.addAttribute("blameCount", blameCount);
+		
 		return "manager/index";
 	}
 
@@ -196,6 +208,48 @@ public class ManagerController {
 	@ResponseBody
 	public HashMap<String, Object> getDetailDeclare(@RequestBody Map<String, Object> params) throws IOException {
 		HashMap<String, Object> result = service.getDetailDeclare((String) params.get("bl_seq")); // 블레임리스트
+		return result;
+	}
+
+	@RequestMapping(value = "blameYes.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int blameYes(@RequestBody Map<String, Object> params) throws IOException {
+		int result = 0;
+		try {
+			String bl_seq = ((String) params.get("bl_seq"));
+			String bl_tasrget_id = ((String) params.get("bl_target_id"));
+			System.out.println();
+			result = service.blameYes(bl_seq, bl_tasrget_id); // 블레임리스트
+
+		} catch (Exception e) {
+			System.out.println("gd");
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "blameNo.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int blameNo(@RequestBody Map<String, Object> params) throws IOException {
+		int result = 0;
+		try {
+			String bl_seq = ((String) params.get("bl_seq"));
+			System.out.println();
+			result = service.blameNo(bl_seq); // 블레임리스트
+
+		} catch (Exception e) {
+			System.out.println("gd");
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "messageGet.do", method = RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, Object> messageGet(@RequestBody Map<String, Object> params) throws IOException {
+		String m_seq = ((String) params.get("m_seq"));
+		HashMap<String, Object> result = service.messageGet(m_seq); // 블레임리스트
+		System.out.println("실제 반환 : "+ result);
 		return result;
 	}
 

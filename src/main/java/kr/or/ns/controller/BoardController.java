@@ -278,5 +278,42 @@ public class BoardController {
 		return commentList;
 		
 	}
+	
+	//댓글 수정 로직
+		@RequestMapping(value = "UpdateComment.do" , method = RequestMethod.POST)
+		@ResponseBody
+		public List<Map<String,Object>> commentUpdate(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+			String s_seq = (String) params.get("s_seq");
+			String r_content = (String) params.get("r_content");
+			String r_seq = (String) params.get("r_seq");
+			
+			Comment cm = new Comment();
+			cm.setS_seq(Integer.parseInt(s_seq));
+			cm.setR_seq(Integer.parseInt(r_seq));
+			cm.setR_content(r_content);
+			System.out.println(cm.toString());
+			service.commentUpdate(cm);
+			
+			System.out.println("수정 로직 입성!");
+
+			List<Map<String,Object>> commentList = service.getComment(s_seq); 
+			return commentList;
+		}
+		
+		//댓글 갯수 세기
+		@RequestMapping(value = "countComment.do" , method = RequestMethod.POST)
+		@ResponseBody
+		public int countComment(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+			String s_seq = (String) params.get("s_seq");
+			
+			Comment cm = new Comment();
+			cm.setS_seq(Integer.parseInt(s_seq));
+			int result = service.countComment(cm);
+			
+			System.out.println("**********************************************");
+			
+			return result;
+		}
+	
 
 }

@@ -84,7 +84,6 @@
 	</select>
 
 	<!-- 스터디 목록 가져오기 -->
-
 	<select id="myPageStudyList" resultType="hashMap">
 			<![CDATA[
 		select *
@@ -98,11 +97,18 @@
 		left outer join study_group
 		on study_board.s_seq = study_group.s_seq 
 		WHERE study_group.user_id= #{user_id} and study_group.accept_status  = '승인대기중'     
+			
 			]]>
 	</select>
 
 	<select id="studyStatus" resultType="hashMap">
-	    select * from study_group where s_seq = #{s_seq}
+	    select * from study_group where s_seq = #{s_seq} order by s_seq desc
 	</select>
+	
+	
+	<select id="getRole" parameterType="hashmap" resultType="hashMap">
+	     select user_id from study_group where role_name = #{role_name} and s_seq = #{s_seq} 
+	</select>
+	
 
 </mapper>

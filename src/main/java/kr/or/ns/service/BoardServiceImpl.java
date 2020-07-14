@@ -299,6 +299,20 @@ public class BoardServiceImpl implements BoardService {
 		dao.commentDelete(cm);
 	}
 
+	//댓글 수정해주는거
+	public void commentUpdate(Comment cm) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		dao.commentUpdate(cm);
+	}
+
+	//댓글갯수
+	public int countComment(Comment cm) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int result = dao.countComment(cm);
+		
+		return result;
+	}
+
 	
 	
 	

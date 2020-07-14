@@ -67,6 +67,12 @@ public interface BoardDao {
 	//해당글의 댓글 delete
 	public void commentDelete(Comment cm);
 
+	//댓글 update
+	public void commentUpdate(Comment cm);
+
+	//댓글 count
+	public int countComment(Comment cm);
+
 
 
 }

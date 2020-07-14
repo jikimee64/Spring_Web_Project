@@ -62,4 +62,10 @@ public interface BoardService {
 
 	//해당글의 댓글 delete
 	public void commentDelete(Comment cm) ;
+	
+	//댓글 수정해주는거
+	public void commentUpdate(Comment cm);
+	
+	//댓글갯수
+	public int countComment(Comment cm);
 }
