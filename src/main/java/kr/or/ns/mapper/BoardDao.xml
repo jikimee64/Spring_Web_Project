@@ -105,5 +105,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="commentDelete" parameterType="kr.or.ns.vo.Comment" >
 		  delete from comment where r_seq = #{r_seq} and s_seq = #{s_seq}
 	</delete>
+	
+	<!-- 댓글 수정하기 -->
+	<update id="commentUpdate" parameterType="kr.or.ns.vo.Comment">
+		update comment set r_content = #{r_content} 
+		where s_seq = #{s_seq} and r_seq = #{r_seq}
+	</update>
 
 </mapper>
