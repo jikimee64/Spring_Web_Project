@@ -302,6 +302,8 @@ public class BoardController {
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_content(r_content);
 		cm.setR_name(user_id);
+		//refer 가져와서 +1해서 넣어주기 
+		//cm.setR_refer(r_refer+1);
 		
 		service.commentInsert(cm);
 
@@ -378,6 +380,28 @@ public class BoardController {
 			System.out.println("**********************************************");
 			
 			return result;
+		}
+		
+		//   "대"   댓글 넣는 로직
+		@RequestMapping(value = "insertReComment.do" , method = RequestMethod.POST)
+		@ResponseBody
+		public List<Map<String,Object>> reCommentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+			String user_id = principal.getName(); //유저 아이디
+			String s_seq = (String) params.get("s_seq"); //글 번호
+			String r_content = (String) params.get("r_content"); //대댓글 내용
+			String r_seq = (String) params.get("r_seq"); //대댓글 번호
+			
+			Comment cm = new Comment();
+			cm.setR_name(user_id);
+			cm.setS_seq(Integer.parseInt(s_seq));
+			cm.setR_content(r_content);
+			cm.setR_seq(Integer.parseInt(r_seq));
+			
+			//service.reCommentInsert(cm);
+			
+			List<Map<String,Object>> commentList = service.getComment(s_seq); 
+			
+			return commentList;
 		}
 	
 

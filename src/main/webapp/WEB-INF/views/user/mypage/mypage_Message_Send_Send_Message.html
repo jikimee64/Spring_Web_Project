@@ -56,17 +56,17 @@ body {
 	</main>
 
 	<div class="container"
-		style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 500px; width: 900px;">
+		style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 610px; width: 900px;">
 		<div class="_border_box_shadow2">
 			<a href="/message/mypage_Message_From_Board.do">
-				<button type="button" class="btn btn-secondary"
-					style="height: 110px; position: relative; left: -68px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;">
+				<button type="button" class="btn btn-secondary _btn_style"
+					style="height: 110px; position: relative; left: -70px; border-radius: 15px 0px 0px 15px;border:none; background-color: #18d26e; ">
 					<b><span>받은<br> 쪽지함
 					</span></b>
 				</button>
 			</a> <a href="/message/mypage_Message_Send_Board.do">
-				<button type="button" class="btn btn-secondary"
-					style="height: 110px; position: relative; left: -144px; bottom: -110px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;">
+				<button type="button" class="btn btn-secondary _btn_style2"
+					style="height: 110px; position: relative; left: -144px; bottom: -110px; border-radius: 15px 0px 0px 15px;border:none;background-color: #86F0B4; ">
 					<b><span>보낸<br> 쪽지함
 					</span></b>
 				</button>
@@ -129,6 +129,7 @@ body {
 	<script type="text/javascript">
 	 $(function() {
 			connect();
+			/* 아이디 체크 시작 */
 			$('#sendBtn').click(function(e) {
 				e.preventDefault();
 				var value = $('._user_id').val();
@@ -188,6 +189,10 @@ body {
 				})
 				
 			});
+			/* 아이디 체크 끝 */
+			
+			
+			
 		})
 
 		var wsocket;
@@ -230,72 +235,6 @@ body {
 			console.log(msg);
 			alert("msg : " + msg);
 		}
-		
-		
-		
-		//보내기시 아이디 확인 ajax 시작
-		
-// 		$('#sendBtn').click(function(e) {
-// 						e.preventDefault();
-// 						var value = $('._user_id').val();
-// 						$.ajax({
-// 							url : "/ajax/idcheck.do",
-// 							type : 'POST',
-// 							dataType : 'json',
-// 							data : {
-// 								id : $('.user_id').val()
-// 							},
-// 							success : function(data) {
-// 								//아이디 중복시 아이디 인풋값 제거
-
-// 								if ($('._user_id').val() === '') {
-									
-// 									swal({
-// 										  title: "아이디를 입력해주세요",
-// 										  icon: "info",
-// 										  buttons: true
-// 										})
-									
-// 									//$('.idcheck').html("아이디를 입력해주세요.")
-// 									toggleid = false;
-// 								} else if (data == 0) { //아이디 존재하지 않을때
-									
-// 									swal({
-// 										title: "해당하는 아이디가 존재하지 않습니다.",
-// 										  icon: "error",
-// 										  buttons: true
-// 										})
-									
-// 									//$('.idcheck').html("동일한 아이디가 존재합니다.")
-// 									$('._user_id').val("");
-// 									$('._user_id').focus();
-// 									toggleid = false;
-// 								} else {
-// 										swal({
-// 											  title: "쪽지보내기 성공",
-// 											  icon: "success",
-// 											  buttons: true
-											  
-// 											})
-// 											toggleid = true;
-										
-// 									//$('.idcheck').html("사용하셔도 됩니다.")
-// 									toggleid = true;
-// 									e.unbind();
-// 								}
-// 							},
-// 							error : function(request, status, error) {
-// 								console.log("code:" + request.status + "\n"
-// 										+ "error:" + error);
-
-// 							}
-// 						})
-						
-// 					});
-		
-		//보내기시 id 확인 ajax 끝
-		
-		
 		
 		
 		

@@ -582,12 +582,73 @@ keyframes heart-keyframes { 100% {
 							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
 							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
 						}
-						html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
+						html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+
+						" <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='rereply' id='" + obj.R_SEQ + "'"+">답글쓰기&nbsp;<i class='ri-quill-pen-line'></i></a>"+"</div></blockquote>";
 					});
 					$('#com').append(html);
 				}
+				
+				
+				//대댓글 틀 만들어주는 함수
+				$(document).on("click",".rereply",function(){
+					console.log("대댓글 틀 만들어주는 함수");
+					var r_seq = $(this).attr('id');
+					var parentTag = $(this).parent();
+					//parentTag.empty();  이건 나중에 추가하자 
+					var html = "";
+					html += '<div id="replyDiv">';
+					html += '<textarea rows="2" id="reComment" name="content" style="resize: none;width:100%;border-color:#CED4DA;border-radius: 3px;"></textarea>';
+					html += '<div class="row">';
+					html += '<div class="col-md-11" style="padding: 0px;"></div>';
+					html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
+					html += '<button class="btn btn-outline-primary reCommentBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px; ">';
+					html += '등록</button>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
+					
+					parentTag.append(html);
+					$('#reComment').focus();
+					/* if($('[name=reply_form_'+$(this).attr("rpindex")+']').length > 0) {
+						return;
+// 					} else {
+						let a ='';
+						let sessionNick = "<%=session.getAttribute("nick")%>";
+
+										a += '<br><div name="reply_form_'
+												+ $(this).attr("rpindex")
+												+ '">'
+												+ '<b><label for="message">'
+												+ sessionNick
+												+ '</label></b>'
+												+ '<textarea class="form-control" style="width:100%; height:80px;" name="remessage_'
+												+ $(this).attr("rpindex")
+												+ '" rows="8"></textarea>'
+												+ '<br>'
+												+ '<div class="d-flex flex-row-reverse">'
+												+ '<button class="btn btn-transparent" style="padding:10px 20px" id="rewriteCancel" rpindex="'
+												+ $(this).attr("rpindex")
+												+ '">취소</button>'
+												+ '&nbsp;&nbsp;<button class="btn btn-transparent" style="padding:10px 20px" id="rewriteReply" rpindex="'
+												+ $(this).attr("rpindex")
+												+ '">등록</button>'
+												+ '&nbsp;&nbsp;&nbsp;'
+												+ '<div class="form-group form-check">'
+												+ '<label class="form-check-label">'
+												+ '<input class="form-check-input" type="checkbox" name="rescstate_'
+												+ $(this).attr("rpindex")
+												+ '" value="Y"> 비밀댓글 등록하기' + '</label>'
+												+ '</div>' + '</div>' + '</div>';
+										$(
+												'[name=reply_'
+														+ $(this).attr("rpindex") + ']')
+												.after(a);
+									} */
+
+								});
+
 			
-				//댓글 카운트 갱신 !!
+				//댓글 카운트 갱신 !!////////////////////////////////////////////////////////////////////////
 				function countComment() {
 					
 					var s_seq = $('#s_seq').val();
@@ -611,7 +672,7 @@ keyframes heart-keyframes { 100% {
 				}
 				
 				
-				//댓글 등록
+				//댓글 등록///////////////////////////////////////////////////////////////////////////////////
 				$('#commentWrite').click(function() {
 						if($('#comment').val() == "") {
 							swal({title:"댓글을 입력하세요",
@@ -644,8 +705,49 @@ keyframes heart-keyframes { 100% {
 							});
 				});
 				
+				//대댓글 등록///////////////////////////////////////////////////////////////////////////////
+				$(document).on("click",".reCommentBtn",function(){
+					console.log("등록버튼 눌렀을때 떠야하는 곳");
+						if($('#reComment').val() == "") {
+							swal({title:"댓글을 입력하세요",
+								icon: "warning"})
+							return false;
+						} 
+						
+			            var r_seq = $(this).attr('id'); //부모댓글 번호   (클릭한거의 refer로 )
+						var s_seq = $('#s_seq').val();  //글번호
+						var r_content = $('#reComment').val(); //댓글 내용
+						console.warn("페이지에서 찍는거");
+						console.warn(r_seq);
+						console.warn(s_seq);
+						console.warn(r_content);
+						console.warn("다 찍어본거 ");
+						let obj = {
+								"s_seq" : s_seq,
+								"r_content" : r_content,
+								"r_seq" : r_seq
+						};
+						
+						$.ajax({
+							 url: "/board/insertReComment.do",
+							 type : 'POST',
+							 contentType:"application/json",
+								data : JSON.stringify(obj),
+								success : function(data) {
+									/* $('#com').empty();
+									makeComment(data);
+									$('#comment').val(""); */
+									console.log(data);
+									countComment(); //갯수 띄워주기 
+								},
+								error : function(e) {
+									console.log("error:", e);
+								}
+							}); 
+				});
 				
-				//댓글 삭제
+				
+				//댓글 삭제/////////////////////////////////////////////////////////////////////////////////
 				$('#com').on('click', '.deleteComment', function() {
 					var s_seq = $('#s_seq').val();
 				    var r_seq = $(this).attr('id');
@@ -672,7 +774,7 @@ keyframes heart-keyframes { 100% {
 				});
 				
 				
-				//댓글 수정 
+				//댓글 수정//////////////////////////////////////////////////////////////////////////////////////////////////// 
 				var check = true;
 				$('#com').on('click', '.updateComment', function() {
 					console.log("여기로 와야합니다");
@@ -700,12 +802,12 @@ keyframes heart-keyframes { 100% {
 //		 				html += '</div>';
 						
 						html += '<div id="updateDiv">';
-						html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;">'+codeText+'</textarea>';
+						html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;width:100%;border-color:#CED4DA;border-radius: 3px;">'+codeText+'</textarea>';
 						html += '<div class="row">';
 						html += '<div class="col-md-11" style="padding: 0px;"></div>';
 						html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
-						html += '<button class="btn btn-warning" id="commUpdateBtn" style="padding: 7px; height: 30px; padding-top: 4px; color: white;">';
-						html += '등록</button>';
+						html += '<button class="btn btn-outline-primary" id="commUpdateBtn" style="padding: 7px; height: 30px; padding-top: 3px; ">';
+						html += '수정</button>';
 						html += '</div>';
 						html += '</div>';
 						html += '</div>';
@@ -719,7 +821,7 @@ keyframes heart-keyframes { 100% {
 //		 				<div class="col-md-1" style="position: relative; padding: 0px;">
 //		 					<button class="btn btn-warning" id="commentWrite"
 //		 						name="commentWrite"
-//		 						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
+//		 						style="padding: 7px; height: 30px; padding-top: 3px; color: white;">등록</button>
 //		 				</div>
 //		 			</div>
 					
@@ -761,7 +863,7 @@ keyframes heart-keyframes { 100% {
 									});
 						});
 					
-					//수정 취소 눌렀을 경우 리스트 다시 불러오기
+					//수정 취소 눌렀을 경우 리스트 다시 불러오기//////////////////////////////////////////////////////////
 					$('#com').on('click', '.cancelUpdate', function() {
 						var s_seqq = $('#s_seq').val();
 						let obj = {

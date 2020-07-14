@@ -266,7 +266,8 @@ body {
 							type : 'POST',
 							data : JSON.stringify(data),
 							success : function(data) {
-								console.log(data);
+								console.log('ss!!s')
+								console.log(data[0].USER_ID);
 								//승인누른거 지우기
 								$('.' + user_id).remove();
 								$('#success').empty();
@@ -306,7 +307,7 @@ body {
 																&& index !== 0) {
 															
 															html += "<div class='col-md-6'>"
-															html += "<button type='button' onclick='cancel(" + data.USER_ID +", "+ data.S_SEQ + ")' id='cancel' class='btn btn-danger btn' style='line-height: normal;'>"
+															html += "<button type=\"button\" onclick=\"cancel(\" " + data[index].USER_ID + " \")\" id=\"cancel\" class=\"btn btn-danger btn\" style=\"line-height: normal;\">'
 															html += "<span style='font-size: smaller;'>취소</span>"
 															html += "</button></div></div></div>"
 														}
@@ -373,9 +374,10 @@ body {
 						$('.success' + user_id).remove();
 						$('#wait').empty();
 						
-						$.each(data, function(index, iten){
+						$.each(data, function(index, item){
 							var host = data[0].USER_ID;
 							console.log('gdgdgdgdgd : '+ data.length)
+							console.log('하하 : ' + data.USER_ID)
 							var id = data[data.length - 1].user_id
 							let html = "";
 							
@@ -390,9 +392,10 @@ body {
 								html += "</div>"	
 							}if(host === id && index !== 0){
 								html += "<div class='col-md-6'>"
-								html += "<button type='button' onclick='accept("+ data.USER_ID+", " + data.S_SEQ +")' id='approval' class='btn btn-success btn' id='button_approval'>"
+					
+								html += '<button type="button" onclick="accept('+ data[index].USER_ID+', ' + data[index].S_SEQ +')" "id="approval" class="btn btn-success btn" id="button_approval">'
 								html +=	"<span style='font-size: smaller;'>승인</span></button>"						
-								html += "<button type='button' onclick='reject("+ data.user_ID + ", " + data.S_SEQ +")' id='reject' class='btn btn-danger btn' style='line-height: normal;'>"
+								html += '<button type="button" onclick="reject('+ data[index].user_ID + ', ' + data[index].S_SEQ +')" "id="reject" class="btn btn-danger btn" style="line-height: normal;">'
 								html += "<span style='font-size: smaller;'>거절</span></button></div>"						
 								html += "</div></div>"															
 							}
@@ -407,7 +410,7 @@ body {
 
 			}
 			
- 			 $(document).on("click","#cancel",function(USER_ID, S_SEQ){
+ /* 			 $(document).on("click","#cancel",function(USER_ID, S_SEQ){
 				 console.log("이걸타긴하는건가 취소: " + USER_ID)
 				 console.log("이걸타긴하는건가 취소: " +S_SEQ)
 				 
@@ -420,7 +423,7 @@ body {
 				
 				$(document).on("click", "#reject",function(user_id, s_seq){
 					reject(user_id, s_seq);
-				}); 
+				});  */
 			 
 			
 		</script>
