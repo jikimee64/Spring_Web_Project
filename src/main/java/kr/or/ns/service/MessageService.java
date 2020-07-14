@@ -13,12 +13,12 @@ public interface MessageService {
 	public Message getMessage(String m_seq);
 	
 	//보낸목록
-//	public List<Message> sendListMessage(String userid);
+	public List<Message> sendListMessage(String userid);
 	
 	public int deleteMessageOne(String m_seq);
 	
 	//목록
-//	public List<Message> getListMessage(String userid);
+	public List<Message> getListMessage(String userid);
 	
 	//내 메세지 갯수
 	public int getMyMessageCount(String user_id);

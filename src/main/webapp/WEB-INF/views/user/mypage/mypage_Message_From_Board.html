@@ -227,7 +227,7 @@ group+group {
 			</div>
 
 			<div class="row _box_shadow_row"
-				style="margin: 0px 20px 6px 20px; position: relative; top: -90px; text-align: center;">
+				style="margin: 0px 20px 10px 20px; position: relative; top: -90px; text-align: center;">
 				<div class="col-md-1"
 					style="place-self: flex-end; text-align: center;">
 					<input type="checkbox" id="_all_check" />
@@ -251,7 +251,7 @@ group+group {
 			<th:block th:each="list : ${messageList}">
 				<!-- th(부모태그) -->
 				<div class="row" id="parent"
-					style="margin: 12px 20px 0px 20px; position: relative; top: -93px; text-align: center;">
+					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center;">
 					<!-- td(체크박스) -->
 					<div class="col-md-1"
 						style="place-self: center; text-align: center;">
@@ -327,7 +327,7 @@ group+group {
 
 			<!--  윗부분 끝 //////////////////////////////////////// -->
 
-			<div class="row" style="place-content: center;transform: translateY(-30px);">
+			<div class="row" style="place-content: center;transform: translateY(-82px);">
 				<!-- 페이징 부트스트랩 버튼 생성하기  -->
 				<ul class="pager d-flex" style="place-content: center;">
 
@@ -348,33 +348,15 @@ group+group {
 
 
 					<!-- 다음버튼 생성여부 -->
-					<li
-						th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
-						<a
-						th:href="@{mypage_Message_From_Board.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
-						class="page-link"> Next</a> <a
-						th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
+					<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+						<a th:href="@{mypage_Message_From_Board.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+						class="page-link"> Next</a> 
 					</li>
 
 
 				</ul>
 				<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -421,7 +403,7 @@ group+group {
 
 	<script>
 		$(function() {
-			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
+			//맨위 체크박스 클릭시 모든 체크박스 체크하기
 			$('#_all_check').click(function() {
 
 				var chk = $(this).is(":checked");//.attr('checked');
@@ -441,6 +423,14 @@ group+group {
 			$('#deletemessage')
 					.click(
 							function(e) {
+								
+								
+								
+								
+								
+								
+								
+								console.log("여기왓냐");
 								//체크된 체크박스의 개수 구하기
 								console
 										.log("length: "
@@ -453,12 +443,22 @@ group+group {
 								var checkbox = $("input:checkbox[name=_input_check]:checked");
 								console.log("체크박스");
 
+								
+								
+								
+								
+								
+								
+								
 								//체크된 체크박스의 값을 반복해서 불러오기
 								checkbox.each(function(i) {
 									//let check = checkbox.parent().parent().eq(i);
-									let check = checkbox.parent().parent() //부모태그로 접근
-									.eq(i);
+									let check = checkbox.parent().parent().eq(i);
 									let check2 = check.children(); //부모태그의 자식들로 접근
+									
+									console.log(check);
+									console.log(check2);
+									
 									/* 
 									 let sender1 = check2.eq(1).text().trim();
 									 console.log("sender:" + sender1); //발신자
@@ -466,7 +466,9 @@ group+group {
 									 console.log("content:" + content1); //내용
 									 let time1 = check2.eq(3).text().trim();
 									 console.log("time:" + time1); //시간 */
+									 
 
+// 									let m_seq1 = check2.eq(4).val(); //쪽지번호
 									let m_seq1 = check2.eq(4).val().trim(); //쪽지번호
 
 									console.log("m_seq:" + m_seq1)
@@ -475,10 +477,16 @@ group+group {
 										/* 		"sender": sender1,
 												"content" : content1,
 												"time" : time1, */
+												
+												
 										"m_seq" : m_seq1
 
 									}
+									
+									
 									console.log(data);
+									
+									
 
 									$.ajax({
 										url : '/ajax/deleteMessage.do',
@@ -494,10 +502,21 @@ group+group {
 											console.log("error:", e);
 										}
 
-									});
-								})
-							});
-		});
+									});/* ajax */
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+								})/*check each */
+							}); /* click+func */
+		});/* func */
 	</script>
 
 	<script>

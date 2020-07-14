@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Message;
@@ -59,6 +60,14 @@ public interface AjaxService {
 	
 	//지원현황 승인
 	public List<HashMap<String, Object>> accept(HashMap<String, Object> params);
+	
+	//지원현황 거절
+	public int reject(HashMap<String, Object> params);
+	
+	//참가중인 스터디원 취소
+	public List<HashMap<String, Object>> cancel(HashMap<String, Object> params);
+	
+	
 	
 
 }

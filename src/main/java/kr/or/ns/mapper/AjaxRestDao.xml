@@ -116,6 +116,25 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
     	order by role_name
     </select>
     
+    <update id="reject">
+    	update study_group
+    	set accept_status = '승인거절'
+    	where user_id = #{user_id} and s_seq = #{s_seq}
+    </update>
+    
+     <update id="cancel">
+    	update study_group
+    	set accept_status = '승인대기중'
+    	where user_id = #{user_id} and s_seq = #{s_seq}
+    </update>
+    
+       <select id="cancelList" resultType="hashMap">
+    	select *
+    	from study_group
+    	where s_seq = #{s_seq} and accept_status = '승인대기중' 
+    	order by role_name
+    </select>
+    
     
    
 </mapper>

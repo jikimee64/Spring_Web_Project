@@ -1,6 +1,5 @@
 package kr.or.ns.service;
 
-
 import java.util.HashMap;
 import java.util.List;
 
@@ -31,8 +30,6 @@ public class AjaxServiceImpl implements AjaxService {
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
-
 
 	/////////////////////////////////////////////////////////////////// 이름과 이메일 받아서
 	/////////////////////////////////////////////////////////////////// 존재하는 회원인지 확인
@@ -216,7 +213,7 @@ public class AjaxServiceImpl implements AjaxService {
 		return result;
 	}
 
-	//쪽지삭제
+	// 쪽지삭제
 	@Override
 	public int deleteMessage(HashMap<String, Object> params) {
 		String m_seq = (String) params.get("m_seq"); // 글번호
@@ -231,7 +228,8 @@ public class AjaxServiceImpl implements AjaxService {
 
 		return result;
 	}
-	//유저정보 모달창에 뿌리기
+
+	// 유저정보 모달창에 뿌리기
 	@Override
 	public List<HashMap<String, Object>> userInfoModal(HashMap<String, Object> params) {
 		String user_id = (String) params.get("user_id");
@@ -240,17 +238,15 @@ public class AjaxServiceImpl implements AjaxService {
 		 * HashMap map = new HashMap(); map.put("user_id", user_id);
 		 * System.out.println(map + "에는 잘 담기니");
 		 */
-		
+
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		List<HashMap<String, Object>> userinfo = dao.getUserInfo(user_id);
-	
 
 		System.out.println("유저정보 잘 가져왔니" + userinfo);
 		return userinfo;
 	}
 
-		
-	//이메일 중복체크
+	// 이메일 중복체크
 	@Override
 	public int onlyEmailCheck(String user_email) {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
@@ -259,8 +255,8 @@ public class AjaxServiceImpl implements AjaxService {
 
 		return result;
 	}
-	
-	//마이페이지 모집중 스터디 비동기
+
+	// 마이페이지 모집중 스터디 비동기
 	@Override
 	public List<HashMap<String, Object>> recrutingStudy(HashMap<String, Object> params) {
 		String user_id = (String) params.get("user_id");
@@ -270,20 +266,19 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("모집중 스터디 리스트" + list);
 		return list;
 	}
-	
-	//마이페이지 참여중 스터디 비동기
+
+	// 마이페이지 참여중 스터디 비동기
 	@Override
 	public List<HashMap<String, Object>> inStudy(HashMap<String, Object> params) {
-		
+
 		String user_id = (String) params.get("user_id");
 		System.out.println("참여중 스터디 비동기 가져오기" + user_id);
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		List<HashMap<String, Object>> list = dao.inStudy(user_id);
 		System.out.println("모집중 스터디 리스트" + list);
-		
+
 		return list;
-		
-		
+
 	}
 
 	@Override
@@ -292,16 +287,34 @@ public class AjaxServiceImpl implements AjaxService {
 		List<HashMap<String, Object>> list = dao.mainChart();
 		return list;
 	}
-	
-	//지원현황 승인 후 승인완료 데이터 반환
-		public List<HashMap<String, Object>> accept(HashMap<String, Object> params){
-			AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-			int a = dao.accept(params);
-			List<HashMap<String, Object>> list = null;
-			if(a == 1) {
-				list = dao.acceptList(params);
-			}
-			return list;
+
+	// 지원현황 승인 후 승인완료 데이터 반환
+	public List<HashMap<String, Object>> accept(HashMap<String, Object> params) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		int a = dao.accept(params);
+		List<HashMap<String, Object>> list = null;
+		if (a == 1) {
+			list = dao.acceptList(params);
 		}
+		return list;
+	}
+	
+	public int reject(HashMap<String, Object> params) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		int a = dao.reject(params);
+		
+		return a;
+	}
+	
+	//참가중인 스터디원 취소
+	public List<HashMap<String, Object>> cancel(HashMap<String, Object> params){
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		int a = dao.cancel(params);
+		List<HashMap<String, Object>> list = null;
+		if (a == 1) {
+			list = dao.cancelList(params);
+		}
+		return list;
+	}
 
 }
