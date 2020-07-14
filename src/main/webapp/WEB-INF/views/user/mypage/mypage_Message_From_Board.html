@@ -249,9 +249,10 @@ group+group {
 
 			<!-- 			<th:block th:each="list,index : ${messageList}"> -->
 			<th:block th:each="list : ${messageList}">
+			<div class="row"></div>
 				<!-- th(부모태그) -->
-				<div class="row" id="parent"
-					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center;">
+				<div class="row" id="parent" 
+					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center; height:30px; align-self:auto;  align-content: space-between;">
 					<!-- td(체크박스) -->
 					<div class="col-md-1"
 						style="place-self: center; text-align: center;">
@@ -305,20 +306,27 @@ group+group {
 						style="place-self: center; text-align: center;">
 						<span th:text="${list.SENDDATE}"></span>
 					</div>
+					
+					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" /> 
+					
+					<hr
+						style="color: #dfe4ea; border: solid 0.5px; margin-bottom: 0px; margin-top: 0px; width: 97%">
+				
 				</div>
 				<!-- 					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" /> -->
 
 				<!-- 					<hr -->
 				<!-- 						style="color: #dfe4ea; border: solid 0.5px;  margin:0px 0px 4px 0px; width: 97%"> -->
 
-				<div class="row"
+				<!-- <div class="row" th:classappend="|success${list.USER_ID}|" -->
+<!-- 
+				 <div class="row" th:classappend="|hr${list.M_SEQ}|"
 					style="position: relative; top: -90px; padding: 0px 30px 0px 30px; justify-content: center;">
 					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" />
 
 					<hr
 						style="color: #dfe4ea; border: solid 0.5px; margin: 0px 0px 4px 0px; width: 97%">
-
-				</div>
+				</div>  -->
 
 			</th:block>
 
@@ -327,7 +335,8 @@ group+group {
 
 			<!--  윗부분 끝 //////////////////////////////////////// -->
 
-			<div class="row" style="place-content: center;transform: translateY(-82px);">
+			<div class="row"
+				style="place-content: center; transform: translateY(-82px);">
 				<!-- 페이징 부트스트랩 버튼 생성하기  -->
 				<ul class="pager d-flex" style="place-content: center;">
 
@@ -460,12 +469,6 @@ group+group {
 								//체크된 체크박스를 가져온다.
 								var checkbox = $("input:checkbox[name=_input_check]:checked");
 								console.log("체크박스");
-
-								
-								
-								
-								
-								
 								
 								
 								//체크된 체크박스의 값을 반복해서 불러오기
@@ -474,7 +477,7 @@ group+group {
 									let check = checkbox.parent().parent().eq(i);
 									let check2 = check.children(); //부모태그의 자식들로 접근
 									
-									console.log(check);
+									console.log(check); //row
 									console.log(check2);
 									
 									/* 
@@ -485,9 +488,15 @@ group+group {
 									 let time1 = check2.eq(3).text().trim();
 									 console.log("time:" + time1); //시간 */
 									 
+									let m_seq1 = check2.eq(4).val(); //쪽지번호
+									
+									
+									
+// 									let m_seq1 = check2.eq(4).val().trim(); //쪽지번호
 
-// 									let m_seq1 = check2.eq(4).val(); //쪽지번호
-									let m_seq1 = check2.eq(4).val().trim(); //쪽지번호
+									console.log('s')
+									console.log(check2.eq(4));
+									console.log('sss')
 
 									console.log("m_seq:" + m_seq1)
 
@@ -505,7 +514,6 @@ group+group {
 									console.log(data);
 									
 									
-
 									$.ajax({
 										url : '/ajax/deleteMessage.do',
 										processData : false,
@@ -514,7 +522,10 @@ group+group {
 										type : 'POST',
 										data : JSON.stringify(data),
 										success : function(data) {
-											check2.remove();
+											console.log("아나")
+											console.log(data);
+											$('#parent').remove();
+										 $('#hr'+data.M_SEQ) 
 										},
 										error : function(e) {
 											console.log("error:", e);

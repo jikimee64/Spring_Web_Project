@@ -225,8 +225,9 @@ group+group {
 
 <!-- 타임리프 시작 -->
 			<th:block th:each="list : ${messageList}">
-					<div class="row" id="parent"
-					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center;">
+			<div class="row"></div>
+					<div class="row" id="parent" 
+					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center; height:30px; align-self:auto;  align-content: space-between;">
 					<div class="col-md-1"
 						style="place-self: center; text-align: center;">
 						<input type="checkbox" class="_input_check"  style="transform: translateY(2px);"/>
@@ -248,15 +249,22 @@ group+group {
 						style="place-self: center; text-align: center;">
 						<span th:text="${list.SENDDATE}"></span>
 					</div>
+					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" /> 
+					
+					<hr
+						style="color: #dfe4ea; border: solid 0.5px; margin-bottom: 0px; margin-top: 0px; width: 97%">
+				
 				</div>
-				<div class="row"
+				
+				
+				<!-- <div class="row"
 					style="position: relative;top: -90px;padding: 0px 30px 0px 30px;justify-content: center;">
 					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" />
 
 					<hr
 						style="color: #dfe4ea; border: solid 0.5px; margin:0px 0px 4px 0px; width: 97%">
 
-				</div>
+				</div> -->
 			</th:block>
 
 
