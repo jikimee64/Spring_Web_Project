@@ -834,8 +834,8 @@ keyframes heart-keyframes { 100% {
 		$('#com').on('click', '.updateComment', function() {
 			console.log("여기로 와야합니다");
 			
-			if(check) {
-				check = false;
+				var r_seq = $(this).attr('id');
+				
 				//클릭한 a태그의 class를 cancelUpdate로 바꾸고 아이콘 바꾸기
 				$(this).attr('class', 'cancelUpdate');
 				$(this).html("<i class='ri-close-line'></i>");
@@ -868,8 +868,8 @@ keyframes heart-keyframes { 100% {
 			            
 						var s_seq = $('#s_seq').val();
 						var r_content = $('#updateContent').val();
-						var r_seq = $('.updateComment').attr('id');
 						
+
 						let obj = {
 								"s_seq" : s_seq,
 								"r_content" : r_content,
@@ -891,7 +891,6 @@ keyframes heart-keyframes { 100% {
 								}
 							});
 				});
-			}
 			
 			//수정 취소 눌렀을 경우 리스트 다시 불러오기
 			$('#com').on('click', '.cancelUpdate', function() {
@@ -914,7 +913,7 @@ keyframes heart-keyframes { 100% {
 							console.log("error:", e);
 						}
 					});
-				check = true;
+				
 			});
 		
 		});
