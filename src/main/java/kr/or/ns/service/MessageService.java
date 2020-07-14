@@ -11,7 +11,9 @@ public interface MessageService {
 	public int getmsgcount(String userid);
 	public int insertMessage(Message message);
 	public Message getMessage(String m_seq);
-	public List<Message> sendListMessage(String userid);
+	
+	//보낸목록
+//	public List<Message> sendListMessage(String userid);
 	public int deleteMessageOne(String m_seq);
 	
 	//목록
