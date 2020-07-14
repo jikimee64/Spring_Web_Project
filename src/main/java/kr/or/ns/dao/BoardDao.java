@@ -74,7 +74,7 @@ public interface BoardDao {
 	public int countComment(Comment cm);
 
 	//조회수
-	public void updateReadNum(Integer s_seq);
+	public int updateReadNum(String s_seq);
 
 
 }

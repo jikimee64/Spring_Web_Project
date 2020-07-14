@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
@@ -70,5 +72,5 @@ public interface BoardService {
 	public int countComment(Comment cm);
 	
 	//조회수
-	public void updateReadNum(Integer s_seq);
+//	public void updateReadNum(Integer s_seq);
 }

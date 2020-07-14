@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.dao.BoardDao;
@@ -186,23 +187,44 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 스터디 글 상세보기
-	public Map<String, Object> getStudy(String s_seq) {
-		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		Map<String, Object> study = dao.getStudy(s_seq);
+//	public Map<String, Object> getStudy(String s_seq) {
+//		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+//		Map<String, Object> study = dao.getStudy(s_seq);
+//
+//		return study;
+//	}
+//	
+	
+	
+	
+	// 스터디 글 상세보기 트랜잭션
+	
+		public Map<String, Object> getStudy(String s_seq) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			Map<String, Object> study = null;
+			
+			
+		try {
+			study = dao.getStudy(s_seq);
+			dao.updateReadNum(s_seq);
+			System.out.println("정상");
+			
+		} catch (Exception e) {
+			
+			System.out.println("문제발생"+e.getMessage());
+			throw e;
+			
+		}
+			
 
-		return study;
-	}
+			return study;
+		}
 
 	
 	//조회수 증가
-	public void updateReadNum(Integer s_seq) {
-		
-		
-		
-		
-		
-	}
-	
+//	public void updateReadNum(Integer s_seq) {
+//	}
+//	
 	
 	
 	

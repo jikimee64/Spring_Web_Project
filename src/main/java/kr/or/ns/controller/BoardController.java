@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -131,6 +132,41 @@ public class BoardController {
 
 	
 	//상세보기
+//	@RequestMapping("writing_Common_Study_Detail.do")
+//	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
+//			Principal principal) {
+//		String user_id = principal.getName();
+//		Likes like = new Likes();
+//		like.setS_seq(Integer.parseInt(s_seq));
+//		like.setUser_id(user_id);
+//		//좋아요 0/1 중 뭔지 알아오기
+//		int heart = service.heartnum(like);
+//				
+//		Map<String, Object> study = service.getStudy(s_seq);
+//		model.addAttribute("study", study); 
+//		model.addAttribute("page", page);
+//		model.addAttribute("perPageNum", perPageNum);
+//		
+//		List<Map<String,Object>> commentList = service.getComment(s_seq); 
+//		int count = service.getReplyCnt(s_seq);
+//		model.addAttribute("count", count);
+//		model.addAttribute("sessionid", user_id);
+//		model.addAttribute("heart", heart);
+//		model.addAttribute("commentList", commentList);
+//		System.out.println("우철이는 : " + commentList);
+//		System.out.println("목록 -> 일반 ************: " + study);
+//
+//		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+//
+//		return "user/board/writing_Common_Study_Detail";
+//	}
+	
+	
+	
+	
+	
+	//상세보기 트랜잭션
+	@Transactional
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
@@ -141,24 +177,51 @@ public class BoardController {
 		//좋아요 0/1 중 뭔지 알아오기
 		int heart = service.heartnum(like);
 				
-		Map<String, Object> study = service.getStudy(s_seq);
-		model.addAttribute("study", study); 
-		model.addAttribute("page", page);
-		model.addAttribute("perPageNum", perPageNum);
 		
-		List<Map<String,Object>> commentList = service.getComment(s_seq); 
-		int count = service.getReplyCnt(s_seq);
-		model.addAttribute("count", count);
-		model.addAttribute("sessionid", user_id);
-		model.addAttribute("heart", heart);
-		model.addAttribute("commentList", commentList);
-		System.out.println("우철이는 : " + commentList);
-		System.out.println("목록 -> 일반 ************: " + study);
+		//트랜잭션 처리
+		try {
+			
+			
+			Map<String, Object> study = service.getStudy(s_seq);
+			model.addAttribute("study", study); 
+			model.addAttribute("page", page);
+			model.addAttribute("perPageNum", perPageNum);
+			
+			List<Map<String,Object>> commentList = service.getComment(s_seq); 
+			int count = service.getReplyCnt(s_seq);
+			model.addAttribute("count", count);
+			model.addAttribute("sessionid", user_id);
+			model.addAttribute("heart", heart);
+			model.addAttribute("commentList", commentList);
+			System.out.println("우철이는 : " + commentList);
+			System.out.println("목록 -> 일반 ************: " + study);
 
-		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 
 		return "user/board/writing_Common_Study_Detail";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
