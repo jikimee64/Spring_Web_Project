@@ -166,7 +166,8 @@ public class MyPageServiceImpl implements MyPageService {
 		Users man = dao.getUsers(user);
 		return man;
 	}
-	//북마크 갯수
+
+	// 북마크 갯수
 	@Override
 	public int bookmarkCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
@@ -174,7 +175,8 @@ public class MyPageServiceImpl implements MyPageService {
 		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
-	//댓글 갯수
+
+	// 댓글 갯수
 	@Override
 	public int commentCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
@@ -182,7 +184,8 @@ public class MyPageServiceImpl implements MyPageService {
 		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
-	//게시글 갯수
+
+	// 게시글 갯수
 	@Override
 	public int s_boardCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
@@ -191,34 +194,48 @@ public class MyPageServiceImpl implements MyPageService {
 		return count;
 	}
 
-	//마이페이지(스터디리스트)
+	// 마이페이지(스터디리스트)
 	@Override
 	public List<HashMap<String, Object>> myPageStudyList(String userid) {
 		System.out.println("불러와야 한다");
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<HashMap<String, Object>> myPageStudyList = dao.myPageStudyList(userid);
 		System.out.println("이거 되는거니...?" + myPageStudyList);
-		
+
 		return myPageStudyList;
 	}
 
 	@Override
 	public List<HashMap<String, Object>> studyStatus(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
-		 List<HashMap<String, Object>> myPageStudyList = dao.studyStatus(userid);
+		List<HashMap<String, Object>> myPageStudyList = dao.studyStatus(userid);
 		System.out.println("이거 되는거니...?" + myPageStudyList);
-		
+
 		return myPageStudyList;
 	}
 
-	
-	  @Override public HashMap<String, Object> getRole(HashMap<String,Object> map) { 
-		  MyPageDao dao = sqlsession.getMapper(MyPageDao.class); 
-	 HashMap<String, Object> getRole = dao.getRole(map); 
-	 System.out.println(getRole);
-	 
-	 return getRole; 
-	 }
-	 
+	@Override
+	public HashMap<String, Object> getRole(HashMap<String, Object> map) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		HashMap<String, Object> getRole = dao.getRole(map);
+		System.out.println(getRole);
+		return getRole;
+	}
+
+	@Override
+	public int join_study(String users) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		int count = dao.join_study(users);
+		System.out.println("--------------" + count + "--------------");
+		return count;
+	}
+
+	@Override
+	public int recruit_study(String users) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		int count = dao.recruit_study(users);
+		System.out.println("--------------" + count + "--------------");
+		return count;
+	}
 
 }

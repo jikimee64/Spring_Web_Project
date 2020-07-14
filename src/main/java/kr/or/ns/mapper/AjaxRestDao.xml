@@ -128,12 +128,17 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
     	where user_id = #{user_id} and s_seq = #{s_seq}
     </update>
     
-       <select id="cancelList" resultType="hashMap">
+     <select id="cancelList" resultType="hashMap">
     	select *
     	from study_group
     	where s_seq = #{s_seq} and accept_status = '승인대기중' 
     	order by role_name
     </select>
+    
+    <delete id="deleteBookMark" parameterType="hashMap">
+    	delete from bookmark
+		where user_id = #{user_id} and l_seq = #{l_seq}
+    </delete>
     
     
    

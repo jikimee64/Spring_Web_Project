@@ -54,14 +54,20 @@ public class MyPageController {
 		int bk = service.bookmarkCount(users); // 북마크갯수
 		int cm = service.commentCount(users); // 댓글 갯수
 		int sb = service.s_boardCount(users); // 스터디게시판 게시글 갯수
+		int js = service.join_study(users); //참여중 스터디 개수
+		int rs = service.recruit_study(users); //모집중 스터디 개수
+		
 		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
 		model.addAttribute("bk", bk);
 		model.addAttribute("cm", cm);
 		model.addAttribute("sb", sb);
+		model.addAttribute("js", js);
+		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
 		System.out.println("받아온 스터디리스트" + studylist);
+		System.out.println("받아온 북마크리스트" + list);
 
 		System.out.println("유저정보 확인" + user);
 
