@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 회원리스트 가져오기 -->
 	<select id="getMemberList" resultType="kr.or.ns.vo.Users">
-<!-- 	<select id="getMemberList" resultType="hashmap"> -->
+		<!-- <select id="getMemberList" resultType="hashmap"> -->
 		SELECT * FROM USERS
 		ORDER BY user_id asc
 	</select>
@@ -40,54 +40,77 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- public List<Blame> getBlameList(String bl_seq); -->
 	<!-- 신고게시판 목록 뿌려주기 -->
 	<select id="getBlameList" resultType="hashmap">
-<!-- 		SELECT * FROM blame_board -->
-<!-- 		ORDER -->
-<!-- 		BY BL_SEQ asc -->
+		<!-- SELECT * FROM blame_board -->
+		<!-- ORDER -->
+		<!-- BY BL_SEQ asc -->
 		select *
 		from blame_board b
 		join blame_type_category t
-		on b.BTC_SEQ = t.BTC_SEQ
+		on b.BTC_SEQ =
+		t.BTC_SEQ
 		join blame_place_category p
 		on b.BPC_SEQ = p.BPC_SEQ
 	</select>
-	
+
 	<update id="stopMember">
 		update users set enabled = 0 where user_id=#{user_id}
 	</update>
-	
+
 	<update id="restoreMember">
 		update users set enabled = 1 where user_id=#{user_id}
 	</update>
-	
+
 	<select id="getDetailDeclare" resultType="hashmap">
 		select *
-		from blame_board b
+		from
+		blame_board b
 		join blame_type_category t
 		on b.BTC_SEQ = t.BTC_SEQ
-		join blame_place_category p
+		join
+		blame_place_category p
 		on b.BPC_SEQ = p.BPC_SEQ
 		where BL_SEQ = #{BL_SEQ}
 	</select>
-	
-	
+
+
 	<update id="blameYes">
 		update blame_board
 		set bl_status = '처리완료'
-		where bl_seq = #{bl_seq}
+		where bl_seq
+		= #{bl_seq}
 	</update>
 
-	<!-- blameYes와 트랜잭션 묶음  -->
+	<!-- blameYes와 트랜잭션 묶음 -->
 	<update id="blameTargetUp">
 		update users
 		set blame_count = blame_count + 1
-		where user_id = #{user_id}
+		where
+		user_id = #{user_id}
 	</update>
-	
+
 	<update id="blameNo">
 		update blame_board
 		set bl_status = '처리취소'
-		where bl_seq = #{bl_seq}
+		where bl_seq
+		= #{bl_seq}
 	</update>
+
+	<select id="memberCount" resultType="java.lang.Integer">
+		select count(*) from users;
+	</select>
+
+	<select id="bestLocation" resultType="String">
+		  select max(loc) from location;
+	</select>
+
+	<select id="bestLanguage" resultType="String">
+		select max(cate_language) from language_category;
+	</select>
+
+	<select id="blameCount" resultType="java.lang.Integer">
+	 select count(bl_status) from blame_board where '처리중';
+	</select>
+
 	
 
 </mapper>

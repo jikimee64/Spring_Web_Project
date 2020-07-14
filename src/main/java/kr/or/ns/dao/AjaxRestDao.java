@@ -48,4 +48,7 @@ public interface AjaxRestDao {
 	//마이페이지 참여중 스터디 비동기
 	public List<HashMap<String, Object>> inStudy(String user_id);
 	
+	//메인페이지 차트
+	public List<HashMap<String, Object>> mainChart();
+	
 }

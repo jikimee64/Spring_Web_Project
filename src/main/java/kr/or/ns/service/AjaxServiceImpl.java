@@ -286,4 +286,11 @@ public class AjaxServiceImpl implements AjaxService {
 		
 	}
 
+	@Override
+	public List<HashMap<String, Object>> mainChart() {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		List<HashMap<String, Object>> list = dao.mainChart();
+		return list;
+	}
+
 }

@@ -30,4 +30,14 @@ public interface ManagerDao {
 	
 	public int blameNo(String bl_seq);
 
+	public int memberCount();
+	
+	public String bestLocation();
+	
+	public String bestLanguage();
+
+	public int blameCount();
+
+
+
 }

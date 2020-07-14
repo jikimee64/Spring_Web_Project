@@ -100,5 +100,39 @@ public class ManagerServiceImpl implements ManagerService {
 		int result = dao.blameNo(bl_seq);
 		return result;
 	}
+	
+	//총 회원 수
+	@Override
+	public int membercount() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		int membercount = dao.memberCount();
+		return membercount;
+	}
+	
+	//가장 많이 스터디가 개설된 지역
+	@Override
+	public String bestLocation() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		String bestLocation = dao.bestLocation();
+		
+		return bestLocation;
+	}
+
+	//가장 많이 선택받은 언어
+	@Override
+	public String bestLanguage() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		String bestLanguage = dao.bestLanguage();
+		return bestLanguage;
+	}
+	
+	//처리 안된 신고 갯수
+	@Override
+	public int blameCount() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		int blameCount = dao.blameCount();
+		return blameCount;
+	}
+
 
 }

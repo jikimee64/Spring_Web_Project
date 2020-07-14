@@ -54,5 +54,8 @@ public interface AjaxService {
 	//마이페이지 참여중 스터디 비동기
 	public List<HashMap<String, Object>> inStudy(HashMap<String, Object> params);
 	
+	//차트
+	public List<HashMap<String, Object>> mainChart();
+	
 
 }

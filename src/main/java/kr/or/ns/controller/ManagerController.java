@@ -38,9 +38,25 @@ public class ManagerController {
 	 */
 
 	@RequestMapping("index.do")
-	public String indexPage() {
+	public String indexPage(Model model) {
 		System.out.println("어드민대문이동");
-
+		
+		//총 회원 수
+		int membercount = service.membercount();
+		model.addAttribute("membercount", membercount);
+		
+		//스터디 언어로 가장 많이 선택된 언어
+		String bestLanguage = service.bestLanguage();
+		model.addAttribute("bestLanguage", bestLanguage);
+		
+		//가장 많이 스터디가 개설된 지역
+		String bestLocation = service.bestLocation();
+		model.addAttribute("bestLocation", bestLocation);
+		
+		//아직 처리중인 신고 건수
+		int blameCount = service.blameCount();
+		model.addAttribute("blameCount", blameCount);
+		
 		return "manager/index";
 	}
 
@@ -225,5 +241,7 @@ public class ManagerController {
 			}
 			return result;
 		}
+		
+
 
 }
