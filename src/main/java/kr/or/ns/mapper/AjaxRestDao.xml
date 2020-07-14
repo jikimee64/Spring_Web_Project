@@ -136,12 +136,14 @@
 		update study_group
 		set accept_status = '승인거절'
 		where user_id = #{user_id} and s_seq = #{s_seq}
+		order by role_name
 	</update>
 
 	<update id="cancel">
 		update study_group
 		set accept_status = '승인대기중'
 		where user_id = #{user_id} and s_seq = #{s_seq}
+			order by role_name
 	</update>
 
 	<select id="cancelList" resultType="hashMap">

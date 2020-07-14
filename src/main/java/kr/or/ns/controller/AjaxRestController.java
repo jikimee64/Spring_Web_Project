@@ -269,9 +269,12 @@ public class AjaxRestController {
 
 	// 참가중인 스터디원 취소
 	@RequestMapping(value = "cancel.do", method = RequestMethod.POST)
-	List<HashMap<String, Object>> cancel(@RequestBody HashMap<String, Object> params) {
+	List<HashMap<String, Object>> cancel(@RequestBody HashMap<String, Object> params, Principal principal) {
 		List<HashMap<String, Object>> list = service.cancel(params);
-		System.out.println("거절 결과 : " + list);
+		HashMap<String, Object> map = new HashMap();
+		map.put("user_id", principal.getName());
+		list.add(map);
+		System.out.println("취소 결과 : " + list);
 		return list;
 
 	}
