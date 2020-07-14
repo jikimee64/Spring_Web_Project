@@ -186,6 +186,15 @@ keyframes heart-keyframes { 100% {
 .updateComment,.deleteComment{
  cursor: pointer;
 }
+._update_content{
+	border-color:#CED4DA;
+	border-radius: 3px;
+}
+._update_content:focus{
+	   border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
 </style>
 
 <body>
@@ -882,37 +891,13 @@ keyframes heart-keyframes { 100% {
 				$(code).remove();
 				//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
 				var html = "";
-// 				html += '<div id="updateDiv">';
-// 				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent" style="border-radius:10px;">';
-// 				html += '<button class="btn btn-outline-secondary btn-sm special alt" id="commUpdateBtn">Edit</button>';
-// 				html += '</div>';
-				
 				html += '<div id="updateDiv">';
-				html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;">'+codeText+'</textarea>';
-				html += '<div class="row">';
-				html += '<div class="col-md-11" style="padding: 0px;"></div>';
-				html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
-				html += '<button class="btn btn-warning" id="commUpdateBtn"
-						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">';
-				html += '등록</button>';
-				html += '</div>';
-				html += '</div>';
+				html += '<textarea rows="2" name="content" id="updateContent" class="_update_content" style="resize:none; width:100%;">'+codeText+'</textarea>';
+				html +=	'<div style="text-align: end;">'
+				html += '<button class="btn btn-primary btn-sm special alt" id="commUpdateBtn">Edit</button>';
+				html +=	'</div>'
 				html += '</div>';
 				
-				
-				
-// 				<textarea  rows="2" id="comment"
-// 					name="comment" style="resize: none;"></textarea>
-// 			<div class="row">
-// 				<div class="col-md-11" style="padding: 0px;"></div>
-// 				<div class="col-md-1" style="position: relative; padding: 0px;">
-// 					<button class="btn btn-warning" id="commentWrite"
-// 						name="commentWrite"
-// 						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
-// 				</div>
-// 			</div>
-			
-			
 				parentTag.append(html);
 				parentTag.find('input').focus();
 				

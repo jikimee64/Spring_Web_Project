@@ -227,7 +227,7 @@ group+group {
 			</div>
 
 			<div class="row _box_shadow_row"
-				style="margin: 0px 20px 6px 20px; position: relative; top: -90px; text-align: center;">
+				style="margin: 0px 20px 10px 20px; position: relative; top: -90px; text-align: center;">
 				<div class="col-md-1"
 					style="place-self: flex-end; text-align: center;">
 					<input type="checkbox" id="_all_check" />
@@ -251,7 +251,7 @@ group+group {
 			<th:block th:each="list : ${messageList}">
 				<!-- th(부모태그) -->
 				<div class="row" id="parent"
-					style="margin: 12px 20px 0px 20px; position: relative; top: -93px; text-align: center;">
+					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center;">
 					<!-- td(체크박스) -->
 					<div class="col-md-1"
 						style="place-self: center; text-align: center;">
@@ -327,7 +327,7 @@ group+group {
 
 			<!--  윗부분 끝 //////////////////////////////////////// -->
 
-			<div class="row" style="place-content: center;transform: translateY(-30px);">
+			<div class="row" style="place-content: center;transform: translateY(-82px);">
 				<!-- 페이징 부트스트랩 버튼 생성하기  -->
 				<ul class="pager d-flex" style="place-content: center;">
 
@@ -421,7 +421,7 @@ group+group {
 
 	<script>
 		$(function() {
-			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
+			//맨위 체크박스 클릭시 모든 체크박스 체크하기
 			$('#_all_check').click(function() {
 
 				var chk = $(this).is(":checked");//.attr('checked');
