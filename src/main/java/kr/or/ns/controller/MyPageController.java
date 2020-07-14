@@ -67,6 +67,7 @@ public class MyPageController {
 		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
 		System.out.println("받아온 스터디리스트" + studylist);
+		System.out.println("받아온 북마크리스트" + list);
 
 		System.out.println("유저정보 확인" + user);
 
