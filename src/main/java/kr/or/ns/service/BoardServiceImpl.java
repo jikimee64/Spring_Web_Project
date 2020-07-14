@@ -193,6 +193,30 @@ public class BoardServiceImpl implements BoardService {
 		return study;
 	}
 
+	
+	//조회수 증가
+	public void updateReadNum(Integer s_seq) {
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 스터디 글 삭제
 	public int delete(String s_seq) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);

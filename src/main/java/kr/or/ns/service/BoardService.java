@@ -68,4 +68,7 @@ public interface BoardService {
 	
 	//댓글갯수
 	public int countComment(Comment cm);
+	
+	//조회수
+	public void updateReadNum(Integer s_seq);
 }

@@ -129,6 +129,8 @@ public class BoardController {
 		return "user/board/writing_Normal_Study";
 	}
 
+	
+	//상세보기
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {

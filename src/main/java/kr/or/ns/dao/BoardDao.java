@@ -73,6 +73,8 @@ public interface BoardDao {
 	//댓글 count
 	public int countComment(Comment cm);
 
+	//조회수
+	public void updateReadNum(Integer s_seq);
 
 
 }
