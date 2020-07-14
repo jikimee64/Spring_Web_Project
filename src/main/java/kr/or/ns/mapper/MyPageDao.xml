@@ -96,7 +96,7 @@
 		on study_board.c_seq = study_content_category.c_seq
 		left outer join study_group
 		on study_board.s_seq = study_group.s_seq 
-		WHERE study_group.user_id= #{user_id} and study_group.accept_status  = '승인대기중'     
+		WHERE study_group.user_id= #{user_id} and study_group.role_name  = '회원'     
 			
 			]]>
 	</select>

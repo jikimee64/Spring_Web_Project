@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.MessageService;
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Message;
 
 @RestController // controller + responsebody
@@ -143,24 +145,80 @@ public class AjaxRestController {
 	}
 
 	// 쪽지함 선택된 쪽지 삭제
+//	@RequestMapping(value = "deleteMessage.do", method = RequestMethod.POST)
+//	public List<Message> deleteMessage(@RequestBody HashMap<String, Object> params, Principal principal) {
+//		System.out.println("쪽지삭제 컨트롤러");
+//		System.out.println(params);
+//		int result = service.deleteMessage(params);
+//		List<Message> list = null;
+//		String userid = principal.getName();
+//		try {
+//			System.out.println("아이디 : " + userid);
+//			list = mservice.getListMessage(userid);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		System.out.println("쪽지 삭제 성공");
+//		System.out.println("ㅇ철이다 : " + list);
+//		return list;
+//	}
+	
+	
+	// 쪽지함 선택된 쪽지 삭제
 	@RequestMapping(value = "deleteMessage.do", method = RequestMethod.POST)
-	public List<Message> deleteMessage(@RequestBody HashMap<String, Object> params, Principal principal) {
+	public List<HashMap<String, Object>> deleteMessage(@RequestBody HashMap<String, Object> params, Principal principal,Criteria_Board cri_b) {
 		System.out.println("쪽지삭제 컨트롤러");
 		System.out.println(params);
+		
 		int result = service.deleteMessage(params);
-		List<Message> list = null;
-		String userid = principal.getName();
+		
+		//쪽지 테이블에서 사용자 아이디와 일치하는 데이터 가져오기 
+		String user_id = principal.getName();
+		
+		//페이징
+		PageMaker_Board pageMakerb = new PageMaker_Board();
+		pageMakerb.setCri_b(cri_b);
+		pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
+		
+		// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
+	    // 받은 쪽지 뿌려주기
+		
+		List<HashMap<String, Object>> messageList = null;
+		HashMap<String, Object> map = null;	
+		
 		try {
-			System.out.println("아이디 : " + userid);
-			list = mservice.getListMessage(userid);
+			map = new HashMap();
+			map.put("user_id", user_id);
+			map.put("cri_b", cri_b);
+			
+			System.out.println("아이디 : " + user_id);
+			messageList = mservice.getMessageList(map);
+			
+			System.out.println("messageList:"+messageList);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		System.out.println("쪽지 삭제 성공");
-		System.out.println("ㅇ철이다 : " + list);
-		return list;
+		
+		
+		System.out.println("1.다음버튼이 있니?: " + pageMakerb.isNext());
+		System.out.println("2.이게 받은쪽지인가 : " + messageList.toString());
+		
+		System.out.println("3.받은 쪽지함으로 이동이동(연규가씀)");
+		System.out.println("4.쪽지 삭제 성공");
+		System.out.println("5.messageList: " + messageList);
+		
+		return messageList;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 쪽지함에서 유저정보 모달 불러오기
 	@RequestMapping(value = "userInfoModal.do", method = RequestMethod.POST)
@@ -207,13 +265,23 @@ public class AjaxRestController {
 		return list;
 
 	}
-	//차트
+
+	// 차트
 	@RequestMapping(value = "mainChart.do", method = RequestMethod.POST)
-	List<HashMap<String,Object>> mainChart(){
+	List<HashMap<String, Object>> mainChart() {
 		System.out.println("차트데이터");
 		List<HashMap<String, Object>> list = null;
 		list = service.mainChart();
 		return list;
+	}
+
+	// 지원현황 승인 후 승인완료 데이터 반환
+	@RequestMapping(value = "accept.do", method = RequestMethod.POST)
+	List<HashMap<String, Object>> accept(@RequestBody HashMap<String, Object> params) {
+		List<HashMap<String, Object>> list = service.accept(params);
+		System.out.println("우철이다!!! : " + list);
+		return list;
+
 	}
 
 }

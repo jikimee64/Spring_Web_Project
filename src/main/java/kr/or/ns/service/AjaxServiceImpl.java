@@ -292,5 +292,16 @@ public class AjaxServiceImpl implements AjaxService {
 		List<HashMap<String, Object>> list = dao.mainChart();
 		return list;
 	}
+	
+	//지원현황 승인 후 승인완료 데이터 반환
+		public List<HashMap<String, Object>> accept(HashMap<String, Object> params){
+			AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+			int a = dao.accept(params);
+			List<HashMap<String, Object>> list = null;
+			if(a == 1) {
+				list = dao.acceptList(params);
+			}
+			return list;
+		}
 
 }
