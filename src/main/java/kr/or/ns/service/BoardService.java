@@ -68,4 +68,7 @@ public interface BoardService {
 	
 	//댓글갯수
 	public int countComment(Comment cm);
+	
+	//대댓글  insert
+	public void reCommentInsert(Comment cm);
 }

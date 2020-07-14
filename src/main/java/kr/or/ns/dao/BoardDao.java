@@ -73,6 +73,15 @@ public interface BoardDao {
 	//댓글 count
 	public int countComment(Comment cm);
 
+	//대댓글 insert
+	public void reCommentInsert(Comment cm);
+
+	//refer,depth 조회 하는 함수
+	public Map<String, Integer> getReferDepth(Comment cm);
+
+	//Maxstep 조회하는 함수
+	public String getMaxStep(Comment cm);
+
 
 
 }
