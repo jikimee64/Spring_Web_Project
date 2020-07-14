@@ -57,4 +57,13 @@ public interface AjaxRestDao {
 	//지원현황 승인 후 승인완료 데이터 뽑기
 	public List<HashMap<String, Object>> acceptList(HashMap<String, Object> params);
 	
+	//지원현황 거절
+	public int reject(HashMap<String, Object> params);
+	
+	//지원현황 취소
+	public int cancel(HashMap<String, Object> params);
+	
+	//지원취소 후 승인대기중 데이터 뽑기
+	public List<HashMap<String, Object>> cancelList(HashMap<String, Object> params);
+	
 }

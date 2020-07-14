@@ -186,6 +186,15 @@ keyframes heart-keyframes { 100% {
 .updateComment,.deleteComment{
  cursor: pointer;
 }
+._update_content{
+	border-color:#CED4DA;
+	border-radius: 3px;
+}
+._update_content:focus{
+	   border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
 </style>
 
 <body>
@@ -520,7 +529,7 @@ keyframes heart-keyframes { 100% {
 	<script>
 		$(function() {
 			
-			
+			/***********************************************   댓글 시리즈    ***********************************************/
 			/* 상세페이지 들어가면 댓글 뿌려주는 로직 */
 			var s_seqq = $('#s_seq').val();
 			let obj = {
@@ -540,10 +549,248 @@ keyframes heart-keyframes { 100% {
 					}
 				});
 			
+			/* 댓글 만들어 주는 함수 */
+				function makeComment(result) {
+					console.log("makeComment함수 도착");
+					var user_id =$('input[id="userId"]').attr('class');
+					var html = "";
+					 $.each(result, function(index, obj) {
+						html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
+						if(user_id === obj.R_NAME){
+							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
+							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
+						}
+						html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
+					});
+					$('#com').append(html);
+				}
 			
 			
 			
 			
+
+				
+				
+				//댓글 틀 만들어주는 함수@!
+				function makeComment(result) {
+					console.log("makeComment함수 도착");
+					var user_id =$('input[id="userId"]').attr('class');
+					var html = "";
+					 $.each(result, function(index, obj) {
+						html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
+						if(user_id === obj.R_NAME){
+							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
+							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
+						}
+						html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
+					});
+					$('#com').append(html);
+				}
+			
+				//댓글 카운트 갱신 !!
+				function countComment() {
+					
+					var s_seq = $('#s_seq').val();
+					
+					let obj = {
+							"s_seq" : s_seq
+					};
+					$.ajax({
+						 url: "/board/countComment.do",
+						 type : 'POST',
+						 contentType:"application/json",
+							data : JSON.stringify(obj),
+							success : function(data) {
+								console.warn("댓글 기능 끝"+data);
+								$('.dott').text(data);
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
+						});
+				}
+				
+				
+				//댓글 등록
+				$('#commentWrite').click(function() {
+						if($('#comment').val() == "") {
+							swal({title:"댓글을 입력하세요",
+								icon: "warning"})
+							return false;
+						} 
+			            
+						var s_seq = $('#s_seq').val();
+						var r_content = $('#comment').val().trim();
+						
+						let obj = {
+								"s_seq" : s_seq,
+								"r_content" : r_content
+						};
+						
+						$.ajax({
+							 url: "/board/InsertComment.do",
+							 type : 'POST',
+							 contentType:"application/json",
+								data : JSON.stringify(obj),
+								success : function(data) {
+									$('#com').empty();
+									makeComment(data);
+									$('#comment').val("");
+									countComment(); //갯수 띄워주기 
+								},
+								error : function(e) {
+									console.log("error:", e);
+								}
+							});
+				});
+				
+				
+				//댓글 삭제
+				$('#com').on('click', '.deleteComment', function() {
+					var s_seq = $('#s_seq').val();
+				    var r_seq = $(this).attr('id');
+					let obj = {
+							"s_seq" : s_seq,
+							"r_seq" : r_seq
+					};
+					
+					 $.ajax({
+						 url: "/board/DeleteComment.do",
+						 type : 'POST',
+						 contentType:"application/json",
+							data : JSON.stringify(obj),
+							success : function(data) {
+								$('#com').empty();
+								makeComment(data);
+								$('#comment').val("");
+								countComment(); //갯수 띄워주기
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
+						});
+				});
+				
+				
+				//댓글 수정 
+				var check = true;
+				$('#com').on('click', '.updateComment', function() {
+					console.log("여기로 와야합니다");
+					
+						var r_seq = $(this).attr('id');
+						
+						//클릭한 a태그의 class를 cancelUpdate로 바꾸고 아이콘 바꾸기
+						$(this).attr('class', 'cancelUpdate');
+						$(this).html("<i class='ri-close-line'></i>");
+						
+						//this(a태그)의 부모태그(blockquote태그)를 parentTag변수에 담기
+						var parentTag = $(this).parent();
+
+						//자식태그 중 code(댓글내용이 들어있는 태그)를 찾아서 변수에 담기
+						var code = parentTag.find('code');
+						//댓글내용 변수에 담기
+						var codeText = parentTag.find('code').text();
+						//댓글내용이 있는 code태그 삭제
+						$(code).remove();
+						//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
+						var html = "";
+//		 				html += '<div id="updateDiv">';
+//		 				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent" style="border-radius:10px;">';
+//		 				html += '<button class="btn btn-outline-secondary btn-sm special alt" id="commUpdateBtn">Edit</button>';
+//		 				html += '</div>';
+						
+						html += '<div id="updateDiv">';
+						html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;">'+codeText+'</textarea>';
+						html += '<div class="row">';
+						html += '<div class="col-md-11" style="padding: 0px;"></div>';
+						html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
+						html += '<button class="btn btn-warning" id="commUpdateBtn" style="padding: 7px; height: 30px; padding-top: 4px; color: white;">';
+						html += '등록</button>';
+						html += '</div>';
+						html += '</div>';
+						html += '</div>';
+						
+						
+						
+//		 				<textarea  rows="2" id="comment"
+//		 					name="comment" style="resize: none;"></textarea>
+//		 			<div class="row">
+//		 				<div class="col-md-11" style="padding: 0px;"></div>
+//		 				<div class="col-md-1" style="position: relative; padding: 0px;">
+//		 					<button class="btn btn-warning" id="commentWrite"
+//		 						name="commentWrite"
+//		 						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
+//		 				</div>
+//		 			</div>
+					
+					
+						parentTag.append(html);
+						parentTag.find('input').focus();
+						
+						var commentNum = $(this).data("value");
+						$('#commUpdateBtn').click(function() {
+								if($('#updateContent').val() == "") {
+									swal({title:"댓글을 입력하세요",
+										icon: "warning"})
+									return false;
+								} 
+					            
+								var s_seq = $('#s_seq').val();
+								var r_content = $('#updateContent').val();
+								
+
+								let obj = {
+										"s_seq" : s_seq,
+										"r_content" : r_content,
+										"r_seq" : r_seq
+								};
+								
+								$.ajax({
+									 url: "/board/UpdateComment.do",
+									 type : 'POST',
+									 contentType:"application/json",
+										data : JSON.stringify(obj),
+										success : function(data) {
+											$('#com').empty();
+											makeComment(data);
+											$('#comment').val("");
+										},
+										error : function(e) {
+											console.log("error:", e);
+										}
+									});
+						});
+					
+					//수정 취소 눌렀을 경우 리스트 다시 불러오기
+					$('#com').on('click', '.cancelUpdate', function() {
+						var s_seqq = $('#s_seq').val();
+						let obj = {
+								"s_seq" : s_seqq
+						};
+						
+						 $.ajax({
+							 url: "/board/SelectCommentList.do",
+							 type : 'POST',
+							 contentType:"application/json",
+								data : JSON.stringify(obj),
+								success : function(data) {
+									$('#com').empty();
+									makeComment(data);
+									$('#comment').val("");
+								},
+								error : function(e) {
+									console.log("error:", e);
+								}
+							});
+						
+					});
+				
+				});
+				
+			
+				/***********************************************   댓글 시리즈 끝   ***********************************************/
+				
+				
 			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
 
 			var heart = $('#heartlike').attr('class').trim();  
@@ -560,11 +807,6 @@ keyframes heart-keyframes { 100% {
 			
 			
 			
-			
-			
-			
-			
-			
 			 /* 첨부파일명 자르기 시작 */
 			
 			 if($('._file_name1')[0].innerText.length >= 15){
@@ -576,9 +818,6 @@ keyframes heart-keyframes { 100% {
 		 	
 		 /* 첨부파일명 자르기 끝 */
 		 
-			
-			
-			
 			
 			
 			//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
@@ -753,230 +992,6 @@ keyframes heart-keyframes { 100% {
  });
  
  </script>
-
-
-	<script>											/*  비동기 댓글  */
-
-		
-		
-		//댓글 틀 만들어주는 함수@!
-		function makeComment(result) {
-			console.log("makeComment함수 도착");
-			var user_id =$('input[id="userId"]').attr('class');
-			var html = "";
-			 $.each(result, function(index, obj) {
-				html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
-				if(user_id === obj.R_NAME){
-					html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
-					html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
-				}
-				html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
-			});
-			$('#com').append(html);
-		}
-	
-		//댓글 카운트 갱신 !!
-		function countComment() {
-			
-			var s_seq = $('#s_seq').val();
-			
-			let obj = {
-					"s_seq" : s_seq
-			};
-			$.ajax({
-				 url: "/board/countComment.do",
-				 type : 'POST',
-				 contentType:"application/json",
-					data : JSON.stringify(obj),
-					success : function(data) {
-						console.warn("댓글 기능 끝"+data);
-						$('.dott').text(data);
-					},
-					error : function(e) {
-						console.log("error:", e);
-					}
-				});
-		}
-		
-		
-		//댓글 등록
-		$('#commentWrite').click(function() {
-				if($('#comment').val() == "") {
-					swal({title:"댓글을 입력하세요",
-						icon: "warning"})
-					return false;
-				} 
-	            
-				var s_seq = $('#s_seq').val();
-				var r_content = $('#comment').val().trim();
-				
-				let obj = {
-						"s_seq" : s_seq,
-						"r_content" : r_content
-				};
-				
-				$.ajax({
-					 url: "/board/InsertComment.do",
-					 type : 'POST',
-					 contentType:"application/json",
-						data : JSON.stringify(obj),
-						success : function(data) {
-							$('#com').empty();
-							makeComment(data);
-							$('#comment').val("");
-							countComment(); //갯수 띄워주기 
-						},
-						error : function(e) {
-							console.log("error:", e);
-						}
-					});
-		});
-		
-		
-		//댓글 삭제
-		$('#com').on('click', '.deleteComment', function() {
-			var s_seq = $('#s_seq').val();
-		    var r_seq = $(this).attr('id');
-			let obj = {
-					"s_seq" : s_seq,
-					"r_seq" : r_seq
-			};
-			
-			 $.ajax({
-				 url: "/board/DeleteComment.do",
-				 type : 'POST',
-				 contentType:"application/json",
-					data : JSON.stringify(obj),
-					success : function(data) {
-						$('#com').empty();
-						makeComment(data);
-						$('#comment').val("");
-						countComment(); //갯수 띄워주기
-					},
-					error : function(e) {
-						console.log("error:", e);
-					}
-				});
-		});
-		
-		
-		//댓글 수정 
-		var check = true;
-		$('#com').on('click', '.updateComment', function() {
-			console.log("여기로 와야합니다");
-			
-				var r_seq = $(this).attr('id');
-				
-				//클릭한 a태그의 class를 cancelUpdate로 바꾸고 아이콘 바꾸기
-				$(this).attr('class', 'cancelUpdate');
-				$(this).html("<i class='ri-close-line'></i>");
-				
-				//this(a태그)의 부모태그(blockquote태그)를 parentTag변수에 담기
-				var parentTag = $(this).parent();
-
-				//자식태그 중 code(댓글내용이 들어있는 태그)를 찾아서 변수에 담기
-				var code = parentTag.find('code');
-				//댓글내용 변수에 담기
-				var codeText = parentTag.find('code').text();
-				//댓글내용이 있는 code태그 삭제
-				$(code).remove();
-				//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
-				var html = "";
-// 				html += '<div id="updateDiv">';
-// 				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent" style="border-radius:10px;">';
-// 				html += '<button class="btn btn-outline-secondary btn-sm special alt" id="commUpdateBtn">Edit</button>';
-// 				html += '</div>';
-				
-				html += '<div id="updateDiv">';
-				html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;">'+codeText+'</textarea>';
-				html += '<div class="row">';
-				html += '<div class="col-md-11" style="padding: 0px;"></div>';
-				html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
-				html += '<button class="btn btn-warning" id="commUpdateBtn"
-						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">';
-				html += '등록</button>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				
-				
-				
-// 				<textarea  rows="2" id="comment"
-// 					name="comment" style="resize: none;"></textarea>
-// 			<div class="row">
-// 				<div class="col-md-11" style="padding: 0px;"></div>
-// 				<div class="col-md-1" style="position: relative; padding: 0px;">
-// 					<button class="btn btn-warning" id="commentWrite"
-// 						name="commentWrite"
-// 						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
-// 				</div>
-// 			</div>
-			
-			
-				parentTag.append(html);
-				parentTag.find('input').focus();
-				
-				var commentNum = $(this).data("value");
-				$('#commUpdateBtn').click(function() {
-						if($('#updateContent').val() == "") {
-							swal({title:"댓글을 입력하세요",
-								icon: "warning"})
-							return false;
-						} 
-			            
-						var s_seq = $('#s_seq').val();
-						var r_content = $('#updateContent').val();
-						
-
-						let obj = {
-								"s_seq" : s_seq,
-								"r_content" : r_content,
-								"r_seq" : r_seq
-						};
-						
-						$.ajax({
-							 url: "/board/UpdateComment.do",
-							 type : 'POST',
-							 contentType:"application/json",
-								data : JSON.stringify(obj),
-								success : function(data) {
-									$('#com').empty();
-									makeComment(data);
-									$('#comment').val("");
-								},
-								error : function(e) {
-									console.log("error:", e);
-								}
-							});
-				});
-			
-			//수정 취소 눌렀을 경우 리스트 다시 불러오기
-			$('#com').on('click', '.cancelUpdate', function() {
-				var s_seqq = $('#s_seq').val();
-				let obj = {
-						"s_seq" : s_seqq
-				};
-				
-				 $.ajax({
-					 url: "/board/SelectCommentList.do",
-					 type : 'POST',
-					 contentType:"application/json",
-						data : JSON.stringify(obj),
-						success : function(data) {
-							$('#com').empty();
-							makeComment(data);
-							$('#comment').val("");
-						},
-						error : function(e) {
-							console.log("error:", e);
-						}
-					});
-				
-			});
-		
-		});
-		
-	</script>
 
 
 </body>
