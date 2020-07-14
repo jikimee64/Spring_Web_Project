@@ -274,24 +274,26 @@ group+group {
 					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
 					<!-- td3(내용) -->
 					<!-- 					<div th:if="${list[index.index].opendate} != null" class="col-md-6" -->
-					<div th:if="${list.OPENDATE} != null" class="col-md-6"
-						style="place-self: center; text-align: center;">
-						<a style="color: #636e72;"
-							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
-							<span th:text="${list.CONTENT}"></span>
-						</a>
-					</div>
+					   <div th:if="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
+                  style="place-self: center; text-align: center;">
+                  
+                     <a style="color: #00b894;"
+                     th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
+                     <span th:text="${list.CONTENT}"></span>
+                  </a>
+               </div>
 
 
-					<!-- td3(내용) -->
-					<!-- 					<div th:if="${list[index.index].opendate} == null" class="col-md-6" -->
-					<div th:if="${list.OPENDATE} == null" class="col-md-6"
-						style="place-self: center; text-align: center;">
-						<a style="color: #00b894;"
-							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
-							<span th:text="${list.CONTENT}"></span>
-						</a>
-					</div>
+               <!-- td3(내용) -->
+               <!--                <div th:if="${list[index.index].opendate} == null" class="col-md-6" -->
+               <div th:unless="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
+                  style="place-self: center; text-align: center;">
+<!--                   <a style="color: green;" -->
+                     <a style="color: #636e72;"
+                     th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
+                     <span th:text="${list.CONTENT}"></span>
+                  </a>
+               </div>
 
 					<!--                <div class="col-md-6"
                   style="place-self: center; text-align: center;">
