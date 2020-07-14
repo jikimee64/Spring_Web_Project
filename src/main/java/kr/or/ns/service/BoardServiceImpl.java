@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.dao.BoardDao;
@@ -186,13 +187,58 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 스터디 글 상세보기
-	public Map<String, Object> getStudy(String s_seq) {
-		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		Map<String, Object> study = dao.getStudy(s_seq);
+//	public Map<String, Object> getStudy(String s_seq) {
+//		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+//		Map<String, Object> study = dao.getStudy(s_seq);
+//
+//		return study;
+//	}
+//	
+	
+	
+	
+	// 스터디 글 상세보기 트랜잭션
+	
+		public Map<String, Object> getStudy(String s_seq) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			Map<String, Object> study = null;
+			
+			
+		try {
+			study = dao.getStudy(s_seq);
+			dao.updateReadNum(s_seq);
+			System.out.println("정상");
+			
+		} catch (Exception e) {
+			
+			System.out.println("문제발생"+e.getMessage());
+			throw e;
+			
+		}
+			
 
-		return study;
-	}
+			return study;
+		}
 
+	
+	//조회수 증가
+//	public void updateReadNum(Integer s_seq) {
+//	}
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 스터디 글 삭제
 	public int delete(String s_seq) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
@@ -311,6 +357,36 @@ public class BoardServiceImpl implements BoardService {
 		int result = dao.countComment(cm);
 		
 		return result;
+	}
+
+	//대댓글  insert
+	public void reCommentInsert(Comment cm) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		
+		System.out.println("reCommentInsert 서비스 입성");
+
+		//1. refer,depth 조회 
+		System.out.println(cm);
+		Map<String, Integer> map = dao.getReferDepth(cm);
+		System.out.println(map);
+		int r_depth = map.get("r_depth");
+		cm.setR_depth(r_depth);
+		cm.setR_refer(map.get("r_refer"));
+		
+		//2. step 조회 
+		
+		String result =  dao.getMaxStep(cm);
+		System.out.println(result);
+		
+		//3.depth 가 1보다 작으면 ++
+		
+		if (r_depth < 1) {
+			r_depth++;
+		}
+		cm.setR_depth(r_depth);
+		
+		//4.insert
+		dao.reCommentInsert(cm);  
 	}
 
 	

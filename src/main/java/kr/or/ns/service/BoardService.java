@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
@@ -68,4 +70,7 @@ public interface BoardService {
 	
 	//댓글갯수
 	public int countComment(Comment cm);
+	
+	//대댓글  insert
+	public void reCommentInsert(Comment cm);
 }
