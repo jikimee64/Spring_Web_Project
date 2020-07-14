@@ -24,10 +24,10 @@
 
 
 <!-- 페이징 매퍼 -->
-<!-- 	<select id="getListMessage" parameterType="String" -->
-<!-- 		resultType="kr.or.ns.vo.Message"> -->
-<!-- 		select * from message where receptionid = #{userid} ORDER BY m_seq desc -->
-<!-- 	</select> -->
+	<select id="getListMessage" parameterType="String"
+		resultType="kr.or.ns.vo.Message">
+		select * from message where receptionid = #{userid} ORDER BY m_seq desc
+	</select>
 
 
 

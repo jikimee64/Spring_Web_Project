@@ -203,7 +203,7 @@ body {
 									<br> <span th:text="${bookMarkList.L_WRITER}">저자</span><br> <span><img
 										src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
 										alt="" style="height: 40px;"></span> <span th:text="'('+${bookMarkList.L_REVIEW}+')'">리뷰수</span>
-										<p th:text="${bookMarkList.LAN_SEQ}">글번호</p>
+<!-- 										<p th:text="${bookMarkList.LAN_SEQ}">글번호</p> -->
 									
 								</div>
 							</div>
@@ -268,8 +268,8 @@ $(function(){
 		
 		
 		/* if문 그냥 대충 짜름 나중에 재수정 필요 */
-		if(courseTitleName.length > 17){
-			courseTitleName = courseTitleName.substring(0,20)+"...";
+		if(courseTitleName.length > 15){
+			courseTitleName = courseTitleName.substring(0,16)+"...";
 		}
 		courseTitleTag[index].innerText = courseTitleName;
 	})

@@ -42,19 +42,19 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	// 받은편지 목록 뿌리기
-//	@Override
-//	public List<Message> getListMessage(String userid) {
-//		MessageDao dao = sqlsession.getMapper(MessageDao.class);
-//		List<Message> list = null;
-//		try {
-//			System.out.println("아이디 : " + userid);
-//			list = dao.getListMessage(userid);
-//			System.out.println("으철 : " + list);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return list;
-//	}
+	@Override
+	public List<Message> getListMessage(String userid) {
+		MessageDao dao = sqlsession.getMapper(MessageDao.class);
+		List<Message> list = null;
+		try {
+			System.out.println("아이디 : " + userid);
+			list = dao.getListMessage(userid);
+			System.out.println("으철 : " + list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 	
 	
@@ -141,18 +141,18 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	// 보낸편지 목록 뿌리기
-//	@Override
-//	public List<Message> sendListMessage(String userid) {
-//		MessageDao dao = sqlsession.getMapper(MessageDao.class);
-//		List<Message> list = null;
-//		try {
-//			System.out.println("아이디 : " + userid);
-//			list = dao.sendListMessage(userid);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return list;
-//	}
+	@Override
+	public List<Message> sendListMessage(String userid) {
+		MessageDao dao = sqlsession.getMapper(MessageDao.class);
+		List<Message> list = null;
+		try {
+			System.out.println("아이디 : " + userid);
+			list = dao.sendListMessage(userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 	//쪽지상세페이지서 쪽지 하나 삭제
 	@Override

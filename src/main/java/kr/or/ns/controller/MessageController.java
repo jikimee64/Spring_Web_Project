@@ -58,7 +58,6 @@ public class MessageController {
 			pageMakerb.setCri_b(cri_b);
 			pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
 			
-			
 			// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
 			// 받은 쪽지 뿌려주기
 			
