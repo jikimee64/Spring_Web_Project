@@ -250,7 +250,7 @@ public class AjaxRestController {
 	@RequestMapping(value = "accept.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> accept(@RequestBody HashMap<String, Object> params, Principal principal) {
 		List<HashMap<String, Object>> list = service.accept(params);
-		HashMap<String ,Object> map = new HashMap();
+		HashMap<String, Object> map = new HashMap();
 		map.put("user_id", principal.getName());
 		list.add(map);
 		System.out.println("우철이다!!! : " + list);
@@ -273,6 +273,18 @@ public class AjaxRestController {
 		List<HashMap<String, Object>> list = service.cancel(params);
 		System.out.println("거절 결과 : " + list);
 		return list;
+
+	}
+
+	// 북마크 삭제 후 받은 북마크 ㅂ너호 그대로 반호란
+	@RequestMapping(value = "deleteBookMark.do", method = RequestMethod.POST)
+	String deleteBookMark(@RequestBody HashMap<String, Object> params, Principal principal) {
+		String bookmark = (String) params.get("l_seq");
+		String user_id = principal.getName();
+		params.put("user_id", user_id);
+		int a = service.deleteBookMark(params);
+		System.out.println("북마크 삭제결과 : " + a);
+		return bookmark;
 
 	}
 

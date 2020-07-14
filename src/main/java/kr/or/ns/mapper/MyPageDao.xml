@@ -82,6 +82,18 @@
 		s.user_id where u.user_id =
 		#{user_id}
 	</select>
+	
+	<!-- 참여중 스터디  -->
+	<select id="join_study" resultType="int">
+		select count(*) from study_group
+		where user_id = #{user_id} and role_name = '회원'
+	</select>
+	
+	<!-- 모집중 스터디  -->
+	<select id="recruit_study" resultType="int">
+	select count(*) from study_group
+	where user_id = #{user_id} and role_name = '방장'
+	</select>
 
 	<!-- 스터디 목록 가져오기 -->
 	<select id="myPageStudyList" resultType="hashMap">

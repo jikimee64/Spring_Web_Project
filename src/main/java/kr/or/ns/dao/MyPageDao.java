@@ -35,6 +35,12 @@ public interface MyPageDao {
 
 	// 마이페이지(스터디게시판 게시글 갯수 가져오기
 	public int getsbCount(String users);
+	
+	//마이페이지(참여중 스터디)
+	public int join_study(String users);
+	
+	//마이페이지(참여중 스터디)
+	public int recruit_study(String users);
 
 	// 마이페이지(스터디 목록 가져오기)
 	public List<HashMap<String, Object>> myPageStudyList(String userid);

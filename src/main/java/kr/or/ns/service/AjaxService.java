@@ -1,5 +1,6 @@
 package kr.or.ns.service;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,7 +68,9 @@ public interface AjaxService {
 	//참가중인 스터디원 취소
 	public List<HashMap<String, Object>> cancel(HashMap<String, Object> params);
 	
-	
+	//북마크 취소
+	public int deleteBookMark(HashMap<String, Object> params);
+		
 	
 
 }
