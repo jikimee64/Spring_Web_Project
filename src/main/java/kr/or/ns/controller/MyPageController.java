@@ -133,15 +133,17 @@ public class MyPageController {
 		String user_id = principal.getName();
 		System.out.println(user_id);
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("user_id", user_id);
+		map.put("role_name", "방장");
 		map.put("s_seq", s_seq);
-		HashMap<String, Object> role = service.getRole(map);
+		HashMap<String, Object> writer = service.getRole(map);
+		String a = (String)writer.get("user_id");
 		model.addAttribute("id" , user_id);
 		model.addAttribute("status", status);
-		model.addAttribute("role", role);
+		model.addAttribute("writer", a);
 		
+		System.out.println(user_id);
 		System.out.println(status);
-		System.out.println(role);
+		System.out.println(a);
 		return "user/mypage/mypage_Support_Status.html";
 
 	}

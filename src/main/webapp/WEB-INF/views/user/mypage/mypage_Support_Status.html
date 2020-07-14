@@ -157,11 +157,123 @@ body {
 						</div>
 						<div class="row"
 							style="text-align: center; height: 35px; width: 100%"></div>
-						
-						<th:block th:each="status,index : ${status}">
-						<th:block th:if="${index.index} == 0">
-								<div class="col-md-6">
-									<span th:block
+
+
+
+
+
+
+
+						<th:block th:each="list,index : ${status}">
+							<th:block th:switch="${index.index}">
+								<th:block th:case="0">
+
+								</th:block>
+								
+								<th:block th:case="*">
+									<th:block
+										th:if="${list.ACCEPT_STATUS} == '승인대기중' and ${list.ROLE_NAME} == '회원'">
+										<div class="col-md-6">
+											<span class="row" id="doing_study_row"> <span
+												class="col" id="doing_study_col" style="font-size: x-large">
+													<p th:text="${list.USER_ID}"></p>
+											</span>
+											</span>
+										</div>
+										<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
+										
+										<th:block th:if="${writer} == ${id}">
+											<div class="col-md-6">
+												<button type="button" class="btn btn-success btn"
+													id="button_approval">
+													<span style="font-size: smaller;">승인</span>
+												</button>
+												<button type="button" class="btn btn-danger btn"
+													style="line-height: normal;">
+													<span style="font-size: smaller;">거절</span>
+												</button>
+											</div>
+										</th:block>
+										
+									</th:block>
+									
+								</th:block>
+
+							</th:block>
+							
+							</th:block>
+
+							<!-- <th:block
+									th:if="${list.ACCEPT_STATUS} == '승인완료' and ${list.ROLE_NAME} == '방장'">
+									<div class="col-md-6">
+										<span class="row" id="doing_study_row"> <span
+											class="col" id="doing_study_col" style="font-size: x-large">
+												<p th:text="${list.USER_ID}"></p>
+										</span>
+										</span>
+									</div>
+
+								</th:block> -->
+
+						<!-- 		<span sec:authentication="principal.username"></span>님
+							<div th:text="${index.index}"></div>
+							<div th:text="${list.ROLE_NAME}"></div> 
+							<div th:text="${list.ACCEPT_STATUS}"></div>
+							<div th:text="${list.USER_ID}"></div> -->
+
+						<!-- <th:block th:switch="${list.ROLE_NAME}">
+
+								<th:block th:case="방장"> -->
+						<!-- <th:block th:switch="${status.ACCEPT_STATUS}">
+										<div th:case="승인대기중" class="col-md-6">
+											<span class="row" id="doing_study_row"> <span
+												class="col" id="doing_study_col" style="font-size: x-large">
+													<p th:text="${status.USER_ID}"></p>
+											</span>
+											</span>
+										</div>
+
+										<div th:case="승인대기중" class="col-md-6">
+											<button type="button" class="btn btn-success btn"
+												id="button_approval">
+												<span style="font-size: smaller;">승인</span>
+											</button>
+											<button type="button" class="btn btn-danger btn"
+												style="line-height: normal;">
+												<span style="font-size: smaller;">거절</span>
+											</button>
+										</div>
+									</th:block> -->
+
+						<!-- <th:block th:case="회원">
+									<div class="col-md-6">
+										<span class="row" id="doing_study_row"> <span
+											class="col" id="doing_study_col" style="font-size: x-large">
+												<p th:text="${list.USER_ID}"></p>
+										</span>
+										</span>
+									</div>
+
+								</th:block>
+ -->
+						<!-- 이버튼은 방장만  -->
+						<!-- <th:block th:switch="${list.ROLE_NAME}">
+									<div th:case="${role}" class="col-md-6">
+										<button type="button" class="btn btn-success btn"
+											id="button_approval">
+											<span style="font-size: smaller;">승인</span>
+										</button>
+										<button type="button" class="btn btn-danger btn"
+											style="line-height: normal;">
+											<span style="font-size: smaller;">거절</span>
+										</button>
+									</div>
+								</th:block> -->
+
+
+
+						<!-- <div th:block th:if="${index.index} != 0">
+									<span
 										th:if="${status.ACCEPT_STATUS == '승인대기중' && status.ROLE_NAME == '회원'}">
 										<span class="row" id="doing_study_row"> <span
 											class="col" id="doing_study_col" style="font-size: x-large">
@@ -169,32 +281,8 @@ body {
 										</span>
 									</span>
 									</span>
-								</div>
-								<div class="col-md-6">
-									<button type="button" class="btn btn-success btn"
-										id="button_approval">
-										<span style="font-size: smaller;">승인</span>
-									</button>
-									<button type="button" class="btn btn-danger btn"
-										style="line-height: normal;">
-										<span style="font-size: smaller;">거절</span>
-									</button>
-								</div>
-							</th:block>
-
-							<div th:block th:if="${index.index} != 0">
-								<span
-									th:if="${status.ACCEPT_STATUS == '승인대기중' && status.ROLE_NAME == '회원'}">
-									<span class="row" id="doing_study_row"> <span
-										class="col" id="doing_study_col" style="font-size: x-large">
-											<p th:text="${status.USER_ID}"></p>
-									</span>
-								</span>
-								</span>
-
-
-							</div>
-						</th:block>
+								</div> -->
+						<!-- 	</th:block> -->
 					</div>
 				</div>
 			</div>

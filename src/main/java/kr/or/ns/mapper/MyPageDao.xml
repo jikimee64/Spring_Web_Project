@@ -84,7 +84,6 @@
 	</select>
 
 	<!-- 스터디 목록 가져오기 -->
-
 	<select id="myPageStudyList" resultType="hashMap">
 			<![CDATA[
 		select *
@@ -107,7 +106,7 @@
 	
 	
 	<select id="getRole" parameterType="hashmap" resultType="hashMap">
-	     select role_name from study_group where user_id = #{user_id} and s_seq = #{s_seq} 
+	     select user_id from study_group where role_name = #{role_name} and s_seq = #{s_seq} 
 	</select>
 	
 
