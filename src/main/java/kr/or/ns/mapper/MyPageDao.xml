@@ -102,7 +102,7 @@
 	</select>
 
 	<select id="studyStatus" resultType="hashMap">
-	    select * from study_group where s_seq = #{s_seq} order by s_seq desc
+	    select * from study_group where s_seq = #{s_seq} order by s_seq asc, role_name
 	</select>
 	
 	

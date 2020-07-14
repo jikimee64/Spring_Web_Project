@@ -138,7 +138,7 @@ body {
 						<b>참여중 스터디</b>
 					</button>
 					<button type="button" class="btn btn-success"
-						style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
+						style="background-color: rgb(134, 240, 180); border-color:rgb(134, 240, 180); border-radius: 15px 15px 0px 0px;"
 						id="_study_button2">
 						<b>모집중 스터디</b>
 					</button>
@@ -275,6 +275,8 @@ body {
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<script>
 		$(function() {
+			
+			
 			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
 			$('#_study_button1').click(
 					function() {
@@ -288,10 +290,6 @@ body {
 						$('#_study_button2').css('border-color',
 								'rgb(134, 240, 180)');
 
-						$('#_study_button3').css('background-color',
-								'rgb(134, 240, 180)');
-						$('#_study_button3').css('border-color',
-								'rgb(134, 240, 180)');
 					});
 
 			$('#_study_button2').click(
@@ -305,11 +303,6 @@ body {
 								'rgb(19, 204, 97)');
 						$('#_study_button2').css('border-color',
 								'rgb(19, 204, 97)');
-
-						$('#_study_button3').css('background-color',
-								'rgb(134, 240, 180)');
-						$('#_study_button3').css('border-color',
-								'rgb(134, 240, 180)');
 					});
 
 		});
@@ -363,9 +356,10 @@ body {
 						html += "<span class='badge badge-pill badge-warning'>" + data[index].LOC + "</span>"
 						html += "<span class='badge badge-pill badge-light'>" + data[index].CONTENT_KIND + "</span>";
 						
-						html += "<a class='_message_hover' href='/mypage/SupportStatus.do?s_seq=" + data[index].S_SEQ + ">" ;
-						html += "<a href = '/board/board.Support_Status.do'>";
+						html += "<a class='_message_hover' href='/mypage/SupportStatus.do?s_seq=" + data[index].S_SEQ + "'>" ;
+						/* html += "<a href = '/board/board.Support_Status.do'>"; */
 						html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
+						html += "<a href = '/board/board.Suppor11t_Status.do'>";
 						/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 						html +=	"<b><span style='font-size:xx-large;'>" + data[index].TITLE +"</span></b><br/></a>";
 						html += "<span>" + data[index].CONTENT +"</span><br />";
@@ -395,6 +389,8 @@ body {
 		let data = {
 			"user_id" : user_id
 		}
+		
+		//참옂
 		$('#_study_button1').on("click", function() {
 			console.log("유저아이디: " + user_id);
 			$.ajax({
@@ -424,9 +420,9 @@ body {
 					html += "<span class='badge badge-pill badge-warning'>" + data[index].PEOPLE  +  "명</span>";
 					html += "<span class='badge badge-pill badge-warning'>" + data[index].LOC + "</span>"
 					html += "<span class='badge badge-pill badge-light'>" + data[index].CONTENT_KIND + "</span>";
-					html += "<a class='_message_hover' href='/mypage/SupportStatus.do'>";
+					html += "<a class='_message_hover' href='/mypage/SupportStatus.do?s_seq=" + data[index].S_SEQ + "'>" ;
 					html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
-					html += "<a href = '/board/board.Support_Status.do'>";
+					html += "<a href = '/board/board.Support_Statuㄴㄴㄴㄴㄴs.do'>";
 					/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 					html +=	"<b><span style='font-size:xx-large;'>" + data[index].TITLE +"</span></b><br/><a/>";
 					html += "<span>" + data[index].CONTENT +"</span><br />";
