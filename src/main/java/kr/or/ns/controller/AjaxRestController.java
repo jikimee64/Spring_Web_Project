@@ -276,7 +276,7 @@ public class AjaxRestController {
 
 	}
 
-	// 북마크 삭제 후 받은 북마크 ㅂ너호 그대로 반호란
+	// 북마크 삭제 후 받은 북마크 번호호 그대로 반환
 	@RequestMapping(value = "deleteBookMark.do", method = RequestMethod.POST)
 	String deleteBookMark(@RequestBody HashMap<String, Object> params, Principal principal) {
 		String bookmark = (String) params.get("l_seq");

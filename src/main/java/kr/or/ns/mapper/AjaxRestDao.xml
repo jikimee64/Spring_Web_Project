@@ -5,71 +5,87 @@
 	<!-- 이름과 이메일 받아서 존재하는 회원인지 확인 -->
 	<select id="emailCheck" parameterType="hashmap" resultType="int">
 		select count(*) from users
-		where user_name = #{user_name} and user_email = #{user_email}
+		where user_name = #{user_name} and
+		user_email = #{user_email}
 	</select>
 
-	<!-- 이름과 이메일 받아서 아이디 제공  -->
-	<select id="searchId" parameterType="hashMap" resultType="kr.or.ns.vo.Users">
+	<!-- 이름과 이메일 받아서 아이디 제공 -->
+	<select id="searchId" parameterType="hashMap"
+		resultType="kr.or.ns.vo.Users">
 		select * from users
-		where user_name = #{user_name} and user_email = #{user_email}
+		where user_name = #{user_name} and
+		user_email = #{user_email}
 	</select>
-	
+
 	<!-- 새로운 임시 비밀번호 생성 -->
 	<update id="updatePw">
-		update users set user_pwd =#{user_pwd} 
+		update users set user_pwd =#{user_pwd}
 		where user_id = #{user_id} and user_email = #{user_email}
 	</update>
 
 	<!-- 아이디 중복체크 -->
 	<select id="idcheck" resultType="int">
-		select count(*) from users where user_id = #{user_id}
+		select count(*) from users where
+		user_id = #{user_id}
 	</select>
 
 
-	<!-- 아이디와 이메일 받아서 이름 제공  -->
+	<!-- 아이디와 이메일 받아서 이름 제공 -->
 	<select id="checkEmail" parameterType="hashMap" resultType="int">
 		select count(*) from users
-		where user_id = #{user_id} and user_email = #{user_email}
+		where user_id = #{user_id} and user_email =
+		#{user_email}
 	</select>
-	
+
 	<!-- 스터디 그룹 인서트 -->
 	<insert id="insertStudyGroup" parameterType="hashMap">
-insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s_seq}, #{user_id}, '승인대기중', '회원')
+		insert IGNORE into study_group(s_seq,user_id,accept_status,role_name)
+		values(#{s_seq}, #{user_id}, '승인대기중', '회원')
 	</insert>
-	
+
 	<!-- 신고처리(게시판) -->
 	<insert id="insertBlame" parameterType="hashMap">
-		insert into blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
-		select #{btc_seq}, 1, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
-		where not exists(select * from blame_board where bpc_seq=#{bpc_seq} and board_seq=#{board_seq})
+		insert into
+		blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
+		select #{btc_seq}, 1, #{board_seq}, #{current_userid},
+		#{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
+		where not
+		exists(select * from blame_board where bpc_seq=#{bpc_seq} and
+		board_seq=#{board_seq})
 	</insert>
-	
+
 	<!-- 신고처리(쪽지) -->
 	<insert id="insertBlame_Message" parameterType="hashMap">
-		insert into blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
-		select #{btc_seq}, 2, #{board_seq}, #{current_userid}, #{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
-		where not exists(select * from blame_board where bpc_seq=#{bpc_seq} and board_seq=#{board_seq})
-	</insert> 
-	
-	
-	<!-- 선택된 쪽지만 삭제하기  -->
-	<delete id= "delete_Message" parameterType= "hashMap">
-	delete from message
-	where m_seq = #{m_seq}
+		insert into
+		blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
+		select #{btc_seq}, 2, #{board_seq}, #{current_userid},
+		#{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
+		where not
+		exists(select * from blame_board where bpc_seq=#{bpc_seq} and
+		board_seq=#{board_seq})
+	</insert>
+
+
+	<!-- 선택된 쪽지만 삭제하기 -->
+	<delete id="delete_Message" parameterType="hashMap">
+		delete from message
+		where m_seq = #{m_seq}
 	</delete>
-	
+
 	<!-- 유저정보 모달창에 띄우기 -->
 	<select id="getUserInfo" resultType="hashMap">
-		select * from users left outer join skill on 
+		select * from users left
+		outer join skill on
 		users.user_id = skill.user_id where
 		users.user_id=#{user_id}
 	</select>
 
 	<!-- 이메일 중복체크 -->
-		<select id="onlyEmailCheck" resultType="int">
-		select count(*) from users where user_email = #{user_email}
+	<select id="onlyEmailCheck" resultType="int">
+		select count(*) from
+		users where user_email = #{user_email}
 	</select>
-	
+
 	<!-- 마이페이지 모집중 스터디 -->
 	<select id="recrutingStudy" resultType="hashMap">
 	<![CDATA[
@@ -101,45 +117,55 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 		WHERE study_group.user_id= #{user_id} and study_group.role_name  = '회원'     
 			]]>
 
-    </select>
-    
-    <update id="accept">
-    	update study_group
-    	set accept_status = '승인완료'
-    	where user_id = #{user_id} and s_seq = #{s_seq}
-    </update>
-    
-    <select id="acceptList" resultType="hashMap">
-    	select *
-    	from study_group
-    	where s_seq = #{s_seq} and accept_status = '승인완료' 
-    	order by role_name
-    </select>
-    
-    <update id="reject">
-    	update study_group
-    	set accept_status = '승인거절'
-    	where user_id = #{user_id} and s_seq = #{s_seq}
-    </update>
-    
-     <update id="cancel">
-    	update study_group
-    	set accept_status = '승인대기중'
-    	where user_id = #{user_id} and s_seq = #{s_seq}
-    </update>
-    
-     <select id="cancelList" resultType="hashMap">
-    	select *
-    	from study_group
-    	where s_seq = #{s_seq} and accept_status = '승인대기중' 
-    	order by role_name
-    </select>
-    
-    <delete id="deleteBookMark" parameterType="hashMap">
-    	delete from bookmark
+	</select>
+
+	<update id="accept">
+		update study_group
+		set accept_status = '승인완료'
+		where user_id = #{user_id} and s_seq = #{s_seq}
+	</update>
+
+	<select id="acceptList" resultType="hashMap">
+		select *
+		from study_group
+		where s_seq = #{s_seq} and accept_status = '승인완료'
+		order by role_name
+	</select>
+
+	<update id="reject">
+		update study_group
+		set accept_status = '승인거절'
+		where user_id = #{user_id} and s_seq = #{s_seq}
+	</update>
+
+	<update id="cancel">
+		update study_group
+		set accept_status = '승인대기중'
+		where user_id = #{user_id} and s_seq = #{s_seq}
+	</update>
+
+	<select id="cancelList" resultType="hashMap">
+		select *
+		from study_group
+		where s_seq = #{s_seq} and accept_status = '승인대기중'
+		order by role_name
+	</select>
+
+	<delete id="deleteBookMark" parameterType="hashMap">
+		delete from bookmark
 		where user_id = #{user_id} and l_seq = #{l_seq}
-    </delete>
-    
-    
-   
+	</delete>
+	
+	<!-- 관리자페이지 차트 -->
+	<select id="mainChart" resultType="hashMap">
+		select l.l_seq,l.l_title, count(b.l_seq) as count
+		from bookmark b
+		inner join lecture_board l
+		on b.l_seq = l.l_seq
+		group by l.l_seq
+       order by count(b.l_seq) desc
+       limit 10
+	</select>
+
+
 </mapper>
