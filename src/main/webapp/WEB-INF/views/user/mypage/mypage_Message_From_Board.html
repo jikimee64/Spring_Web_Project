@@ -441,6 +441,14 @@ group+group {
 			$('#deletemessage')
 					.click(
 							function(e) {
+								
+								
+								
+								
+								
+								
+								
+								console.log("여기왓냐");
 								//체크된 체크박스의 개수 구하기
 								console
 										.log("length: "
@@ -453,12 +461,22 @@ group+group {
 								var checkbox = $("input:checkbox[name=_input_check]:checked");
 								console.log("체크박스");
 
+								
+								
+								
+								
+								
+								
+								
 								//체크된 체크박스의 값을 반복해서 불러오기
 								checkbox.each(function(i) {
 									//let check = checkbox.parent().parent().eq(i);
-									let check = checkbox.parent().parent() //부모태그로 접근
-									.eq(i);
+									let check = checkbox.parent().parent().eq(i);
 									let check2 = check.children(); //부모태그의 자식들로 접근
+									
+									console.log(check);
+									console.log(check2);
+									
 									/* 
 									 let sender1 = check2.eq(1).text().trim();
 									 console.log("sender:" + sender1); //발신자
@@ -466,7 +484,9 @@ group+group {
 									 console.log("content:" + content1); //내용
 									 let time1 = check2.eq(3).text().trim();
 									 console.log("time:" + time1); //시간 */
+									 
 
+// 									let m_seq1 = check2.eq(4).val(); //쪽지번호
 									let m_seq1 = check2.eq(4).val().trim(); //쪽지번호
 
 									console.log("m_seq:" + m_seq1)
@@ -475,10 +495,16 @@ group+group {
 										/* 		"sender": sender1,
 												"content" : content1,
 												"time" : time1, */
+												
+												
 										"m_seq" : m_seq1
 
 									}
+									
+									
 									console.log(data);
+									
+									
 
 									$.ajax({
 										url : '/ajax/deleteMessage.do',
@@ -494,10 +520,21 @@ group+group {
 											console.log("error:", e);
 										}
 
-									});
-								})
-							});
-		});
+									});/* ajax */
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+								})/*check each */
+							}); /* click+func */
+		});/* func */
 	</script>
 
 	<script>
