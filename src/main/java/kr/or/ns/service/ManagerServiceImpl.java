@@ -74,10 +74,10 @@ public class ManagerServiceImpl implements ManagerService {
 		HashMap<String, Object> map = dao.getDetailDeclare(bl_seq);
 		return map;
 	}
-	
+
 	@Override
 	/* @Transactional */
-	public int blameYes(String bl_seq, String bl_target_id)  {
+	public int blameYes(String bl_seq, String bl_target_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = 0;
 		try {
@@ -85,7 +85,7 @@ public class ManagerServiceImpl implements ManagerService {
 			int b = dao.blameTargetUp(bl_target_id);
 			System.out.println("a : " + a);
 			System.out.println("b : " + b);
-			if(a == 1 && b == 1) {
+			if (a == 1 && b == 1) {
 				result = 1;
 			}
 		} catch (Exception e) {
@@ -94,19 +94,53 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		return result;
 	}
-	
+
 	public int blameNo(String bl_seq) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = dao.blameNo(bl_seq);
 		return result;
 	}
-	
+
+	//신고관리 쪽지내용 확인
 	public HashMap<String, Object> messageGet(String m_seq) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		System.out.println("메시지벊소 : " + m_seq);
 		HashMap<String, Object> map = dao.messageGet(m_seq);
 		System.out.println("서비스입니다 : " + map);
 		return map;
+	}
+
+	// 총 회원 수
+	@Override
+	public int membercount() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		int membercount = dao.memberCount();
+		return membercount;
+	}
+
+	// 가장 많이 스터디가 개설된 지역
+	@Override
+	public String bestLocation() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		String bestLocation = dao.bestLocation();
+
+		return bestLocation;
+	}
+
+	// 가장 많이 선택받은 언어
+	@Override
+	public String bestLanguage() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		String bestLanguage = dao.bestLanguage();
+		return bestLanguage;
+	}
+
+	// 처리 안된 신고 갯수
+	@Override
+	public int blameCount() {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		int blameCount = dao.blameCount();
+		return blameCount;
 	}
 
 }

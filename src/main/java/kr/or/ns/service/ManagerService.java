@@ -40,5 +40,19 @@ public interface ManagerService {
 	public int blameNo(String bl_seq);
 	
 	public HashMap<String, Object> messageGet(String m_seq);
+
+	//총 회원 수
+	public int membercount();
 	
+	//가장 많이 스터디가 개설된 지역
+	public String bestLocation();
+	
+	//가장 많이 선택받은 언어
+	public String bestLanguage();
+	
+	//처리안된 신고 갯수
+	public int blameCount();
+
+	
+
 }

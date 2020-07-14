@@ -207,5 +207,13 @@ public class AjaxRestController {
 		return list;
 
 	}
+	//차트
+	@RequestMapping(value = "mainChart.do", method = RequestMethod.POST)
+	List<HashMap<String,Object>> mainChart(){
+		System.out.println("차트데이터");
+		List<HashMap<String, Object>> list = null;
+		list = service.mainChart();
+		return list;
+	}
 
 }

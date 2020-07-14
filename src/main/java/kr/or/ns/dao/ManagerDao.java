@@ -32,4 +32,12 @@ public interface ManagerDao {
 
 	public HashMap<String, Object> messageGet(String m_seq);
 	
+	public int memberCount();
+	
+	public String bestLocation();
+	
+	public String bestLanguage();
+
+	public int blameCount();
+
 }
