@@ -24,6 +24,8 @@ import kr.or.ns.export.WriteReportListToExcelFile;
 import kr.or.ns.export.WriteReportListToPdfFile;
 import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
+import kr.or.ns.service.MessageService;
+import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -192,7 +194,7 @@ public class ManagerController {
 		HashMap<String, Object> result = service.getDetailDeclare((String) params.get("bl_seq")); // 블레임리스트
 		return result;
 	}
-	
+
 	@RequestMapping(value = "blameYes.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int blameYes(@RequestBody Map<String, Object> params) throws IOException {
@@ -209,21 +211,30 @@ public class ManagerController {
 		}
 		return result;
 	}
-	
-		@RequestMapping(value = "blameNo.do", method = RequestMethod.POST)
-		@ResponseBody
-		public int blameNo(@RequestBody Map<String, Object> params) throws IOException {
-			int result = 0;
-			try {
-				String bl_seq = ((String) params.get("bl_seq"));
-				System.out.println();
-				result = service.blameNo(bl_seq); // 블레임리스트
 
-			} catch (Exception e) {
-				System.out.println("gd");
-				System.out.println(e.getMessage());
-			}
-			return result;
+	@RequestMapping(value = "blameNo.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int blameNo(@RequestBody Map<String, Object> params) throws IOException {
+		int result = 0;
+		try {
+			String bl_seq = ((String) params.get("bl_seq"));
+			System.out.println();
+			result = service.blameNo(bl_seq); // 블레임리스트
+
+		} catch (Exception e) {
+			System.out.println("gd");
+			System.out.println(e.getMessage());
 		}
+		return result;
+	}
+
+	@RequestMapping(value = "messageGet.do", method = RequestMethod.POST)
+	@ResponseBody
+	public HashMap<String, Object> messageGet(@RequestBody Map<String, Object> params) throws IOException {
+		String m_seq = ((String) params.get("m_seq"));
+		HashMap<String, Object> result = service.messageGet(m_seq); // 블레임리스트
+		System.out.println("실제 반환 : "+ result);
+		return result;
+	}
 
 }

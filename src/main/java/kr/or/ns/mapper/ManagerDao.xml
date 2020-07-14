@@ -89,5 +89,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where bl_seq = #{bl_seq}
 	</update>
 	
+	<select id="messageGet" resultType="hashmap">
+		select *
+		from message
+		where m_seq = #{m_seq}
+	</select>
+	
 
 </mapper>

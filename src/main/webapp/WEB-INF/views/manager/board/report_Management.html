@@ -239,7 +239,8 @@ td:focus {
 				$('#bl_content').text(data.BL_CONTENT);
 				
 				if(data.PLACE ==='쪽지 게시판'){
-					
+					console.log('이오 : ' + data.BOARD_SEQ)
+					$('#m_seq').val(data.BOARD_SEQ);
 					$('#bl_seq').val(data.BL_SEQ);
 					$('#target').val(data.BL_TARGET_ID);
 					$('#study').hide();
@@ -310,31 +311,43 @@ td:focus {
 				console.log("error:", e);
 			}
 		});
-		
-		
-		$('#message').click(function(){
-			swal({
-				  title: "쪽지제목",
-				  text: "쪽지내용",
-				  buttons: true,
-				  dangerMode: true,
-				})
-				/* .then((willDelete) => {
-				  if (willDelete) {
-				    swal("처리가 완료되었습니다(처리상태 db에서 변경)", {
-				      icon: "success",
-				    });
-				  } else {
-				    swal("처리가 취소되었습니다.");
-				  }
-				}); */
-		})
 
 	}
 	
 	</script>
 
 	<script>
+	
+	function messageCheck(){
+		var m_seq = $('#m_seq').val();
+		console.log('나는 메시지번호' + m_seq);
+		
+		 let data = {
+					"m_seq" : m_seq
+			}
+		
+		 $.ajax({
+				url : '/manager/messageGet.do',
+				processData : false,
+				contentType : "application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+					console.log();
+					swal({
+						  title: "쪽지 내용",
+						  text: data.CONTENT,
+						  icon: "info",
+						  buttons: true,
+						})
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		
+	}
 	
 	function declareYes() {	
 		

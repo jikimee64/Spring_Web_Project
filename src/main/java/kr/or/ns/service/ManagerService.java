@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.or.ns.vo.Blame;
+import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
 public interface ManagerService {
@@ -37,5 +38,7 @@ public interface ManagerService {
 	
 	//신고관리(신고X)
 	public int blameNo(String bl_seq);
+	
+	public HashMap<String, Object> messageGet(String m_seq);
 	
 }

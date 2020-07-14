@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.or.ns.dao.ManagerDao;
 import kr.or.ns.vo.Blame;
+import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
 @Service
@@ -73,7 +74,7 @@ public class ManagerServiceImpl implements ManagerService {
 		HashMap<String, Object> map = dao.getDetailDeclare(bl_seq);
 		return map;
 	}
-
+	
 	@Override
 	/* @Transactional */
 	public int blameYes(String bl_seq, String bl_target_id)  {
@@ -94,11 +95,18 @@ public class ManagerServiceImpl implements ManagerService {
 		return result;
 	}
 	
-	
 	public int blameNo(String bl_seq) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = dao.blameNo(bl_seq);
 		return result;
+	}
+	
+	public HashMap<String, Object> messageGet(String m_seq) {
+		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
+		System.out.println("메시지벊소 : " + m_seq);
+		HashMap<String, Object> map = dao.messageGet(m_seq);
+		System.out.println("서비스입니다 : " + map);
+		return map;
 	}
 
 }

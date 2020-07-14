@@ -30,4 +30,6 @@ public interface ManagerDao {
 	
 	public int blameNo(String bl_seq);
 
+	public HashMap<String, Object> messageGet(String m_seq);
+	
 }
