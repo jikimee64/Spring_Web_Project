@@ -308,8 +308,8 @@ keyframes heart-keyframes { 100% {
 					<br />
 					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
 					<textarea th:text="${study.CONTENT}" name="" id="" cols="30"
-						rows="10" class="form-control _textarea_readonly" readonly
-						style="background-color: #F5F5F5">
+						rows="10" class="form-control _textarea_readonly" readonly 
+						style="background-color: #F5F5F5; resize: none;">
 					</textarea>
 
 
@@ -412,7 +412,7 @@ keyframes heart-keyframes { 100% {
 							
 							<div class="form-group">
 								<textarea class="form-control" rows="2" id="comment"
-									name="comment"></textarea>
+									name="comment" style="resize: none;"></textarea>
 							</div>
 							<div class="row">
 								<div class="col-md-11" style="padding: 0px;"></div>
@@ -882,10 +882,37 @@ keyframes heart-keyframes { 100% {
 				$(code).remove();
 				//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
 				var html = "";
+// 				html += '<div id="updateDiv">';
+// 				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent" style="border-radius:10px;">';
+// 				html += '<button class="btn btn-outline-secondary btn-sm special alt" id="commUpdateBtn">Edit</button>';
+// 				html += '</div>';
+				
 				html += '<div id="updateDiv">';
-				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent" style="border-radius:10px;">';
-				html += '<button class="btn btn-outline-secondary btn-sm special alt" id="commUpdateBtn">Edit</button>';
+				html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;">'+codeText+'</textarea>';
+				html += '<div class="row">';
+				html += '<div class="col-md-11" style="padding: 0px;"></div>';
+				html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
+				html += '<button class="btn btn-warning" id="commUpdateBtn"
+						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">';
+				html += '등록</button>';
 				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				
+				
+				
+// 				<textarea  rows="2" id="comment"
+// 					name="comment" style="resize: none;"></textarea>
+// 			<div class="row">
+// 				<div class="col-md-11" style="padding: 0px;"></div>
+// 				<div class="col-md-1" style="position: relative; padding: 0px;">
+// 					<button class="btn btn-warning" id="commentWrite"
+// 						name="commentWrite"
+// 						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
+// 				</div>
+// 			</div>
+			
+			
 				parentTag.append(html);
 				parentTag.find('input').focus();
 				
