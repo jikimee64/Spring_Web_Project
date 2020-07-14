@@ -103,10 +103,10 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 
     </select>
    
-	    <!-- 관리자페이지 차트 -->
+<!-- 	    관리자페이지 차트
 	<select id="mainChart" resultType="hashMap">
 	select * from 
 	
 	
-	</select>
+	</select> -->
 </mapper>
