@@ -119,54 +119,53 @@ body {
 						</div>
 						<div class="row"
 							style="text-align: center; height: 25px; width: 100%"></div>
-						
-					<div id="success">
-						<th:block th:each="list,index : ${status}">
-							<th:block th:switch="${index.index}">
-								<th:block th:case="0">
-									<div class="row"
-											style="text-align: center; margin-bottom: 10px; font-size: x-large; width: 100%">
-									<div class="col-md-6" id="doing_study_col" >
-										<span th:if="${list.ROLE_NAME == '방장'}"> <span
-												th:text="${list.USER_ID}"></span> <!-- 방장 아이콘 추가 -->
-										</span>
-									</div>
-									<div class="col-md-6" id="doing_study_col" >
-										이미지
-									</div>
-									</div>
-								</th:block>
 
-								<th:block th:case="*">
-									<th:block
-										th:if="${list.ACCEPT_STATUS} == '승인완료' and ${list.ROLE_NAME} == '회원'">
+						<div id="success">
+							<th:block th:each="list,index : ${status}">
+								<th:block th:switch="${index.index}">
+									<th:block th:case="0">
 										<div class="row"
-											style="text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;">
-											<div class="col-md-6">
-												<span class="row" id="doing_study_row"> <span
-													class="col" id="doing_study_col">
-														<p style="margin-left: 30px;" th:text="${list.USER_ID}"></p>
-												</span>
+											style="text-align: center; margin-bottom: 10px; font-size: x-large; width: 100%">
+											<div class="col-md-6" id="doing_study_col">
+												<span th:if="${list.ROLE_NAME == '방장'}"> <span
+													th:text="${list.USER_ID}"></span> <!-- 방장 아이콘 추가 -->
 												</span>
 											</div>
-											<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
-
-											<th:block th:if="${writer} == ${id}">
-												<div class="col-md-6">
-													<button type="button" class="btn btn-danger btn"
-														style="line-height: normal;">
-														<span style="font-size: smaller;">취소</span>
-													</button>
-												</div>
-											</th:block>
+											<div class="col-md-6" id="doing_study_col">이미지</div>
 										</div>
+									</th:block>
+
+									<th:block th:case="*">
+										<th:block
+											th:if="${list.ACCEPT_STATUS} == '승인완료' and ${list.ROLE_NAME} == '회원'">
+											<div class="row" th:classappend="|success${list.USER_ID}|"
+												style="text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;">
+												<div class="col-md-6">
+													<span class="row" id="doing_study_row"> <span
+														class="col" id="doing_study_col">
+															<p style="margin-left: 30px;" th:text="${list.USER_ID}"></p>
+													</span>
+													</span>
+												</div>
+												<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
+
+												<th:block th:if="${writer} == ${id}">
+													<div class="col-md-6">
+														<button type="button" class="btn btn-danger btn"
+															th:onclick="|javascript:cancel('${list.USER_ID}','${list.S_SEQ}')|"
+															style="line-height: normal;">
+															<span style="font-size: smaller;">취소</span>
+														</button>
+													</div>
+												</th:block>
+											</div>
+										</th:block>
 									</th:block>
 								</th:block>
 							</th:block>
-						</th:block>
-					</div>
-						
-							<!-- 회원정보 반복 끝 (더미데이터 끝) -->
+						</div>
+
+						<!-- 회원정보 반복 끝 (더미데이터 끝) -->
 					</div>
 				</div>
 
@@ -194,59 +193,52 @@ body {
 						<!-- 	<div class="row"
 							style="text-align: center; height: 35px; width: 100%"> -->
 
-						<th:block th:each="list,index : ${status}">
 
-							<th:block th:switch="${index.index}">
-								<th:block th:case="0">
+						<div id="wait">
+							<th:block th:each="list,index : ${status}">
 
-								</th:block>
+								<th:block th:switch="${index.index}">
+									<th:block th:case="0">
 
-								<th:block th:case="*">
-									<th:block
-										th:if="${list.ACCEPT_STATUS} == '승인대기중' and ${list.ROLE_NAME} == '회원'">
-										<div class="row" th:classappend="${list.USER_ID}"
-											style="text-align: center; margin-bottom: 10px; width: 100%">
-											<div class="col-md-6">
-												<span class="row" id="doing_study_row"> <span
-													class="col" id="doing_study_col" style="font-size: x-large">
-														<p style="margin-left: 30px;" th:text="${list.USER_ID}"></p>
-												</span>
-												</span>
-											</div>
-											<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
+									</th:block>
 
-											<th:block th:if="${writer} == ${id}">
+									<th:block th:case="*">
+										<th:block
+											th:if="${list.ACCEPT_STATUS} == '승인대기중' and ${list.ROLE_NAME} == '회원'">
+											<div class="row" th:classappend="${list.USER_ID}"
+												style="text-align: center; margin-bottom: 10px; width: 100%">
 												<div class="col-md-6">
-													<button type="button" 
-														th:onclick="|javascript:accept('${list.USER_ID}','${list.S_SEQ}')|"
-														class="btn btn-success btn"
-														id="button_approval">
-														<span style="font-size: smaller;">승인</span>
-													</button>
-													<button type="button" 
-														th:onclick="|javascript:reject('${list.USER_ID}')|"
-														class="btn btn-danger btn"
-														style="line-height: normal;">
-														<span style="font-size: smaller;">거절</span>
-													</button>
+													<span class="row" id="doing_study_row"> <span
+														class="col" id="doing_study_col"
+														style="font-size: x-large">
+															<p style="margin-left: 30px;" th:text="${list.USER_ID}"></p>
+													</span>
+													</span>
 												</div>
-											</th:block>
-										</div>
+												<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
+
+												<th:block th:if="${writer} == ${id}">
+													<div class="col-md-6">
+														<button type="button"
+															th:onclick="|javascript:accept('${list.USER_ID}','${list.S_SEQ}')|"
+															class="btn btn-success btn" id="button_approval">
+															<span style="font-size: smaller;">승인</span>
+														</button>
+														<button type="button"
+															th:onclick="|javascript:reject('${list.USER_ID}','${list.S_SEQ}')|"
+															class="btn btn-danger btn" style="line-height: normal;">
+															<span style="font-size: smaller;">거절</span>
+														</button>
+													</div>
+												</th:block>
+											</div>
+										</th:block>
 									</th:block>
 								</th:block>
 							</th:block>
-						</th:block>
-						
+						</div>
+
 					</div>
-				</div>
-			</div>
-				<div class="row">
-			<div class="col-md-5"></div>
-				<div class="col-md-6" style="margin-left: 30px;">
-					<button type="button" class="btn btn-danger btn-lg"
-						style="line-height: normal;">
-						<span style="font-size: smaller;">제출</span>
-					</button>
 				</div>
 			</div>
 		</div>
@@ -256,104 +248,100 @@ body {
 		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 
-	<script>
-	function accept(user_id, s_seq) {
-		
-		let data = {
-				"user_id" : user_id,
-				"s_seq" : s_seq
-		}
-		
-		
-		$.ajax({
-			url : '/ajax/accept.do',
-			processData : false,
-			contentType : "application/json",
-			cache : false,
-			type : 'POST',
-			data : JSON.stringify(data),
-			success : function(data) {
-				console.log(data);
-				//승인누른거 지우기
-				$('.' + user_id).remove();
-				$('#success').empty();
-				
-				$.each(data, function(index, item) {
-					let html = "";
-					
-					
-				/* 	<div id="success">
-					<th:block th:each="list,index : ${status}">
-						<th:block th:switch="${index.index}">
-							<th:block th:case="0">
-								<div class="row"
-										style="text-align: center; margin-bottom: 10px; font-size: x-large; width: 100%">
-								<div class="col-md-6" id="doing_study_col" >
-									<span th:if="${list.ROLE_NAME == '방장'}"> <span
-											th:text="${list.USER_ID}"></span> <!-- 방장 아이콘 추가 -->
-									</span>
-								</div>
-								<div class="col-md-6" id="doing_study_col" >
-									이미지
-								</div>
-								</div>
-							</th:block>
+		<script>
+			function accept(user_id, s_seq) {
 
-							<th:block th:case="*">
-								<th:block
-									th:if="${list.ACCEPT_STATUS} == '승인완료' and ${list.ROLE_NAME} == '회원'">
-									<div class="row"
-										style="text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;">
-										<div class="col-md-6">
-											<span class="row" id="doing_study_row"> <span
-												class="col" id="doing_study_col">
-													<p style="margin-left: 30px;" th:text="${list.USER_ID}"></p>
-											</span>
-											</span>
-										</div>
-										<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
+				let data = {
+					"user_id" : user_id,
+					"s_seq" : s_seq
+				}
 
-										<th:block th:if="${writer} == ${id}">
-											<div class="col-md-6">
-												<button type="button" class="btn btn-danger btn"
-													style="line-height: normal;">
-													<span style="font-size: smaller;">취소</span>
-												</button>
-											</div>
-										</th:block>
-									</div>
-								</th:block>
-							</th:block>
-						</th:block>
-					</th:block>
-				</div>
-					 */
-					
-					
-					
+				$.ajax({
+					url : '/ajax/accept.do',
+					processData : false,
+					contentType : "application/json",
+					cache : false,
+					type : 'POST',
+					data : JSON.stringify(data),
+					success : function(data) {
+						console.log(data);
+						//승인누른거 지우기
+						$('.' + user_id).remove();
+						$('#success').empty();
+
+						$.each(data, function(index, item) {
+							let html = "";
+
+						});
+
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
 				});
-				
-				
-			},
-			error : function(e) {
-				console.log("error:", e);
+
 			}
-		});
-		
-		
-	}
-	
-	
-	function reject(user_id) {
-		console.log('dwwd ' + user_id)
-		
-		
-		
-	}
-	
-	</script>
 
+			function reject(user_id, s_seq) {
 
+				let data = {
+					"user_id" : user_id,
+					"s_seq" : s_seq
+				}
+
+				$.ajax({
+					url : '/ajax/reject.do',
+					processData : false,
+					contentType : "application/json",
+					cache : false,
+					type : 'POST',
+					data : JSON.stringify(data),
+					success : function(data) {
+						console.log(data);
+						//승인누른거 지우기
+						$('.' + user_id).remove();
+
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				});
+
+			}
+
+			//승인취소
+			function cancel(user_id, s_seq) {
+
+				console.log(user_id);
+				console.log(s_seq);
+
+				let data = {
+					"user_id" : user_id,
+					"s_seq" : s_seq
+				}
+
+				$.ajax({
+					url : '/ajax/cancel.do',
+					processData : false,
+					contentType : "application/json",
+					cache : false,
+					type : 'POST',
+					data : JSON.stringify(data),
+					success : function(data) {
+						console.log(data);
+						//승인누른거 지우기
+						$('.success' + user_id).remove();
+						$('#wait').empty();
+				
+
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				});
+
+			}
+		</script>
 </body>
 
 </html>
