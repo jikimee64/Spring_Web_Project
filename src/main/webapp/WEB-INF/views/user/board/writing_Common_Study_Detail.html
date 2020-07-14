@@ -883,7 +883,7 @@ keyframes heart-keyframes { 100% {
 				//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
 				var html = "";
 				html += '<div id="updateDiv">';
-				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent">';
+				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent" style="border-radius:10px;">';
 				html += '<button class="btn btn-outline-secondary btn-sm special alt" id="commUpdateBtn">Edit</button>';
 				html += '</div>';
 				parentTag.append(html);
