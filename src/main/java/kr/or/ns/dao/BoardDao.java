@@ -70,6 +70,9 @@ public interface BoardDao {
 	//댓글 update
 	public void commentUpdate(Comment cm);
 
+	//댓글 count
+	public int countComment(Comment cm);
+
 
 
 }

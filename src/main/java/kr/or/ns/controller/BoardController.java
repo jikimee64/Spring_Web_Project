@@ -299,6 +299,21 @@ public class BoardController {
 			List<Map<String,Object>> commentList = service.getComment(s_seq); 
 			return commentList;
 		}
+		
+		//댓글 갯수 세기
+		@RequestMapping(value = "countComment.do" , method = RequestMethod.POST)
+		@ResponseBody
+		public int countComment(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+			String s_seq = (String) params.get("s_seq");
+			
+			Comment cm = new Comment();
+			cm.setS_seq(Integer.parseInt(s_seq));
+			int result = service.countComment(cm);
+			
+			System.out.println("**********************************************");
+			
+			return result;
+		}
 	
 
 }

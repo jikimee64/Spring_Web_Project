@@ -111,5 +111,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update comment set r_content = #{r_content} 
 		where s_seq = #{s_seq} and r_seq = #{r_seq}
 	</update>
-
+	
+	<!-- 댓글 갯수 -->
+	<select id="countComment" parameterType="kr.or.ns.vo.Comment" resultType="int">
+		select count(*) from comment
+		where s_seq = #{s_seq}
+	</select>
+	
 </mapper>

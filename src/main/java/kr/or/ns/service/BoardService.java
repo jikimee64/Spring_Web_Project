@@ -65,4 +65,7 @@ public interface BoardService {
 	
 	//댓글 수정해주는거
 	public void commentUpdate(Comment cm);
+	
+	//댓글갯수
+	public int countComment(Comment cm);
 }

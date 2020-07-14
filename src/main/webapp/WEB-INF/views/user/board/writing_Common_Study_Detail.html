@@ -334,14 +334,19 @@ keyframes heart-keyframes { 100% {
 							    <path
 										d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
 							                     </svg>
-							</label> <span style="margin-left: 50px;"> <strong>좋아요&nbsp;
-							</strong> <strong th:text="${study.LIKE_CNT}" id="replyTotal"
-								class="heartt" style="margin-right: 10px;"></strong>
-							</span> <span style="margin-right: 5px; margin-left: 10px;"> <img
-								style="margin-right: 5px;"
-								src="../../../../resources/images/img/comment-dots-regular.svg">
-							</span> <strong>댓글&nbsp; </strong> <strong id="replyTotal"
-								th:text="${count}" style="margin-right: 10px;"></strong>
+							</label> 
+							<span style="margin-left: 50px;"> 
+								<strong>좋아요&nbsp;</strong>
+								<strong id="replyTotal" th:text="${study.LIKE_CNT}" class="heartt" style="margin-right: 10px;"></strong>
+							</span> 
+							
+							<span style="margin-right: 5px; margin-left: 10px;"> 
+								<img style="margin-right: 5px;"
+									src="../../../../resources/images/img/comment-dots-regular.svg">
+							</span> 
+							
+							<strong>댓글&nbsp; </strong> 
+							<strong id="replyTotal" th:text="${count}" class="dott" style="margin-right: 10px;"></strong>
 
 						</div>
 
@@ -769,6 +774,30 @@ keyframes heart-keyframes { 100% {
 			});
 			$('#com').append(html);
 		}
+	
+		//댓글 카운트 갱신 !!
+		function countComment() {
+			
+			var s_seq = $('#s_seq').val();
+			
+			let obj = {
+					"s_seq" : s_seq
+			};
+			$.ajax({
+				 url: "/board/countComment.do",
+				 type : 'POST',
+				 contentType:"application/json",
+					data : JSON.stringify(obj),
+					success : function(data) {
+						console.warn("댓글 기능 끝"+data);
+						$('.dott').text(data);
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				});
+		}
+		
 		
 		//댓글 등록
 		$('#commentWrite').click(function() {
@@ -795,6 +824,7 @@ keyframes heart-keyframes { 100% {
 							$('#com').empty();
 							makeComment(data);
 							$('#comment').val("");
+							countComment(); //갯수 띄워주기 
 						},
 						error : function(e) {
 							console.log("error:", e);
@@ -821,6 +851,7 @@ keyframes heart-keyframes { 100% {
 						$('#com').empty();
 						makeComment(data);
 						$('#comment').val("");
+						countComment(); //갯수 띄워주기
 					},
 					error : function(e) {
 						console.log("error:", e);

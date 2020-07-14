@@ -305,6 +305,14 @@ public class BoardServiceImpl implements BoardService {
 		dao.commentUpdate(cm);
 	}
 
+	//댓글갯수
+	public int countComment(Comment cm) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int result = dao.countComment(cm);
+		
+		return result;
+	}
+
 	
 	
 	
