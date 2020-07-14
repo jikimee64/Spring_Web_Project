@@ -168,7 +168,6 @@ body {
 						<!-- 회원정보 반복 끝 (더미데이터 끝) -->
 					</div>
 				</div>
-
 				<div class="col-md-6"
 					style="text-align: -webkit-center; padding-left: 0;">
 					<div class="_form_radio" style="padding: 0px; height: 500px;">
@@ -190,8 +189,8 @@ body {
 							</div>
 						</div>
 						<div class="row" style="height: 30px;"></div>
-						<!-- 	<div class="row"
-							style="text-align: center; height: 35px; width: 100%"> -->
+						<!--    <div class="row"
+                     style="text-align: center; height: 35px; width: 100%"> -->
 
 
 						<div id="wait">
@@ -237,8 +236,8 @@ body {
 								</th:block>
 							</th:block>
 						</div>
-
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -249,6 +248,8 @@ body {
 
 
 		<script>
+		
+	
 			function accept(user_id, s_seq) {
 
 				let data = {
@@ -256,29 +257,68 @@ body {
 					"s_seq" : s_seq
 				}
 
-				$.ajax({
-					url : '/ajax/accept.do',
-					processData : false,
-					contentType : "application/json",
-					cache : false,
-					type : 'POST',
-					data : JSON.stringify(data),
-					success : function(data) {
-						console.log(data);
-						//승인누른거 지우기
-						$('.' + user_id).remove();
-						$('#success').empty();
+				$
+						.ajax({
+							url : '/ajax/accept.do',
+							processData : false,
+							contentType : "application/json",
+							cache : false,
+							type : 'POST',
+							data : JSON.stringify(data),
+							success : function(data) {
+								console.log('ss!!s')
+								console.log(data[0].USER_ID);
+								//승인누른거 지우기
+								$('.' + user_id).remove();
+								$('#success').empty();
 
-						$.each(data, function(index, item) {
-							let html = "";
+								$.each(
+												data,
+												function(index, item) {
+													var host = data[0].USER_ID;
+													console.log('ㅎㅇ : '
+															+ data.length)
+													var id = data[data.length - 1].user_id
 
+													let html = "";
+
+													if (data[index].ACCEPT_STATUS === '승인완료') {
+
+														if (data[index].ROLE_NAME === '방장') { //0번째 인덱스
+															html += "<div id='success'>";
+															html += "<div class='row' style='text-align: center; margin-bottom: 10px; font-size: x-large; width: 100%'>";
+															html += "<div class='col-md-6' id='doing_study_col'>";
+															html += "<span>"
+																	+ data[0].USER_ID
+																	+ "</span></div>";
+															html += "<div class='col-md-6' id='doing_study_col'>이미지";
+															html += "</div></div>";
+														} else {
+															html += "<div class='row' style='text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;'>"
+															html += "<div class='col-md-6'>"
+															html += "<span class='row' id='doing_study_row'>"
+															html += "<span class='col' id='doing_study_col'>"
+															html += "<p style='margin-left: 30px;'>"
+																	+ data[index].USER_ID
+																	+ "</p></span>"
+															html += "</span></div>"
+														}
+														if (host === id
+																&& index !== 0) {
+															
+															html += "<div class='col-md-6'>"
+															html += "<button type=\"button\" onclick=\"cancel(\" " + data[index].USER_ID + " \")\" id=\"cancel\" class=\"btn btn-danger btn\" style=\"line-height: normal;\">'
+															html += "<span style='font-size: smaller;'>취소</span>"
+															html += "</button></div></div></div>"
+														}
+													}
+													$('#success').append(html);
+												});
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
 						});
-
-					},
-					error : function(e) {
-						console.log("error:", e);
-					}
-				});
 
 			}
 
@@ -297,7 +337,7 @@ body {
 					type : 'POST',
 					data : JSON.stringify(data),
 					success : function(data) {
-						console.log(data);
+						console.log("단단히 꼬였네" + data);
 						//승인누른거 지우기
 						$('.' + user_id).remove();
 
@@ -312,8 +352,8 @@ body {
 			//승인취소
 			function cancel(user_id, s_seq) {
 
-				console.log(user_id);
-				console.log(s_seq);
+				console.log("승인취소 user_id: " + user_id);
+				console.log("승인취소 s_seq:" + s_seq);
 
 				let data = {
 					"user_id" : user_id,
@@ -328,11 +368,39 @@ body {
 					type : 'POST',
 					data : JSON.stringify(data),
 					success : function(data) {
-						console.log(data);
+						console.log("설마:::" + data);
+						
 						//승인누른거 지우기
 						$('.success' + user_id).remove();
 						$('#wait').empty();
-				
+						
+						$.each(data, function(index, item){
+							var host = data[0].USER_ID;
+							console.log('gdgdgdgdgd : '+ data.length)
+							console.log('하하 : ' + data.USER_ID)
+							var id = data[data.length - 1].user_id
+							let html = "";
+							
+							if(data[index].ROLE_NAME ==='방장'){
+								html+= "<div></div>";
+							}else if(data[index].ROLE_NAME ==='회원' && data[index].ACCEPT_STATUS ==='승인대기중' ){
+								html += "<div class='row' " + data[index].USER_ID + " style='text-align: center; margin-bottom: 10px; width: 100%'>"
+								html += "<div class='col-md-6'>"
+								html += "<span class='row' id='doing_study_row'>"
+								html += "<span class='col' id='doing_study_col' style='font-size: x-large'>"
+								html += "<p style='margin-left: 30px;' th:text='${list.USER_ID}'></p></span></span>"
+								html += "</div>"	
+							}if(host === id && index !== 0){
+								html += "<div class='col-md-6'>"
+					
+								html += '<button type="button" onclick="accept('+ data[index].USER_ID+', ' + data[index].S_SEQ +')" "id="approval" class="btn btn-success btn" id="button_approval">'
+								html +=	"<span style='font-size: smaller;'>승인</span></button>"						
+								html += '<button type="button" onclick="reject('+ data[index].user_ID + ', ' + data[index].S_SEQ +')" "id="reject" class="btn btn-danger btn" style="line-height: normal;">'
+								html += "<span style='font-size: smaller;'>거절</span></button></div>"						
+								html += "</div></div>"															
+							}
+							$('#wait').append(html);
+						});
 
 					},
 					error : function(e) {
@@ -341,6 +409,27 @@ body {
 				});
 
 			}
+			
+ /* 			 $(document).on("click","#cancel",function(USER_ID, S_SEQ){
+				 console.log("이걸타긴하는건가 취소: " + USER_ID)
+				 console.log("이걸타긴하는건가 취소: " +S_SEQ)
+				 
+					cancel(user_id, s_seq);
+				});
+				
+				$(document).on("click", "#approval",function(user_id, s_seq){
+					accept(user_id, s_seq);
+				});
+				
+				$(document).on("click", "#reject",function(user_id, s_seq){
+					reject(user_id, s_seq);
+				});  */
+			 
+			
+		</script>
+		
+		<script>
+
 		</script>
 </body>
 

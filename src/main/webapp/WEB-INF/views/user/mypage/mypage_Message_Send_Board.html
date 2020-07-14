@@ -161,7 +161,7 @@ group+group {
 
 				<div class="d-flex justify-content-between align-items-center">
 					<h2 style="color: #666666;">
-						<b><span sec:authentication="principal.username"></span>&nbsp;&nbsp;님의 쪽지함</b>
+						<b><span sec:authentication="principal.username"></span>님의 쪽지함</b>
 					</h2>
 				</div>
 
@@ -170,17 +170,17 @@ group+group {
 		<!-- Breadcrumbs Section -->
 	</main>
 	<div class="container"
-		style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 560px; width: 900px;">
+		style="margin-top: 25px; margin-bottom: 25px; padding: 0px; background-color: white; height: 610px; width: 900px;">
 		<div class="_border_box_shadow2">
 			<a href="/message/mypage_Message_From_Board.do">
 				<button type="button" class="btn btn-secondary"
-					style="height: 110px; position: relative; left: -70px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;border:none;">
+					style="height: 110px; position: relative; left: -69px; border-radius: 15px 0px 0px 15px; background-color: #86F0B4;border:none;">
 					<b><span>받은<br> 쪽지함
 					</span></b>
 				</button>
 			</a> <a href="/message/mypage_Message_Send_Board.do">
 				<button type="button" class="btn btn-secondary"
-					style="height: 110px; position: relative; left: -142px; bottom: -110px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;border:none;">
+					style="height: 110px; position: relative; left: -143px; bottom: -110px; border-radius: 15px 0px 0px 15px; background-color: #18d26e;border:none;">
 					<b><span>보낸<br> 쪽지함
 					</span></b>
 				</button>
@@ -225,8 +225,9 @@ group+group {
 
 <!-- 타임리프 시작 -->
 			<th:block th:each="list : ${messageList}">
-					<div class="row" id="parent"
-					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center;">
+			<div class="row"></div>
+					<div class="row" id="parent" 
+					style="margin: 4px 20px 4px 20px; position: relative; top: -93px; text-align: center; height:30px; align-self:auto;  align-content: space-between;">
 					<div class="col-md-1"
 						style="place-self: center; text-align: center;">
 						<input type="checkbox" class="_input_check"  style="transform: translateY(2px);"/>
@@ -248,15 +249,22 @@ group+group {
 						style="place-self: center; text-align: center;">
 						<span th:text="${list.SENDDATE}"></span>
 					</div>
+					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" /> 
+					
+					<hr
+						style="color: #dfe4ea; border: solid 0.5px; margin-bottom: 0px; margin-top: 0px; width: 97%">
+				
 				</div>
-				<div class="row"
+				
+				
+				<!-- <div class="row"
 					style="position: relative;top: -90px;padding: 0px 30px 0px 30px;justify-content: center;">
 					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" />
 
 					<hr
 						style="color: #dfe4ea; border: solid 0.5px; margin:0px 0px 4px 0px; width: 97%">
 
-				</div>
+				</div> -->
 			</th:block>
 
 
