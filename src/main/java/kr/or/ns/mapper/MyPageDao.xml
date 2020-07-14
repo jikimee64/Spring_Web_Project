@@ -97,6 +97,7 @@
 		left outer join study_group
 		on study_board.s_seq = study_group.s_seq 
 		WHERE study_group.user_id= #{user_id} and study_group.accept_status  = '승인대기중'     
+			
 			]]>
 	</select>
 
