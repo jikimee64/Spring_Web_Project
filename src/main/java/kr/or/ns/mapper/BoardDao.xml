@@ -48,6 +48,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE study_board.S_SEQ=#{S_SEQ}
 	</select>
 	
+	
+	<update id="updateReadNum">
+	   update study_board set readnum = readnum+1
+       where s_seq=#{s_seq}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 댓글 개수  -->
 	<select id="getReplyCnt" resultType="Integer">
 		select count(*) 
@@ -100,6 +123,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from comment
 		WHERE S_SEQ = #{S_SEQ}
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<!-- 댓글 삭제하기 -->
 	<delete id="commentDelete" parameterType="kr.or.ns.vo.Comment" >

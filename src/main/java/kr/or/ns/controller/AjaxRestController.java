@@ -269,14 +269,17 @@ public class AjaxRestController {
 
 	// 참가중인 스터디원 취소
 	@RequestMapping(value = "cancel.do", method = RequestMethod.POST)
-	List<HashMap<String, Object>> cancel(@RequestBody HashMap<String, Object> params) {
+	List<HashMap<String, Object>> cancel(@RequestBody HashMap<String, Object> params, Principal principal) {
 		List<HashMap<String, Object>> list = service.cancel(params);
-		System.out.println("거절 결과 : " + list);
+		HashMap<String, Object> map = new HashMap();
+		map.put("user_id", principal.getName());
+		list.add(map);
+		System.out.println("취소 결과 : " + list);
 		return list;
 
 	}
 
-	// 북마크 삭제 후 받은 북마크 ㅂ너호 그대로 반호란
+	// 북마크 삭제 후 받은 북마크 번호호 그대로 반환
 	@RequestMapping(value = "deleteBookMark.do", method = RequestMethod.POST)
 	String deleteBookMark(@RequestBody HashMap<String, Object> params, Principal principal) {
 		String bookmark = (String) params.get("l_seq");
