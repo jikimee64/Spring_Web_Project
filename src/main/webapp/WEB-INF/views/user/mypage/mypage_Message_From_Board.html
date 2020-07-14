@@ -357,33 +357,15 @@ group+group {
 
 
 					<!-- 다음버튼 생성여부 -->
-					<li
-						th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
-						<a
-						th:href="@{mypage_Message_From_Board.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
-						class="page-link"> Next</a> <a
-						th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a>
+					<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
+						<a th:href="@{mypage_Message_From_Board.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+						class="page-link"> Next</a> 
 					</li>
 
 
 				</ul>
 				<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
