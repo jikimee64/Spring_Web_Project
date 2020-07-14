@@ -30,6 +30,8 @@ public interface ManagerDao {
 	
 	public int blameNo(String bl_seq);
 
+	public HashMap<String, Object> messageGet(String m_seq);
+	
 	public int memberCount();
 	
 	public String bestLocation();
@@ -37,7 +39,5 @@ public interface ManagerDao {
 	public String bestLanguage();
 
 	public int blameCount();
-
-
 
 }

@@ -108,9 +108,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="blameCount" resultType="java.lang.Integer">
-	 select count(bl_status) from blame_board where '처리중';
+	 select count(bl_status) from blame_board where bl_status='처리중';
 	</select>
 
+	
+	<select id="messageGet" resultType="hashmap">
+		select *
+		from message
+		where m_seq = #{m_seq}
+	</select>
 	
 
 </mapper>

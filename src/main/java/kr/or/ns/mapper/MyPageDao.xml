@@ -97,11 +97,12 @@
 		left outer join study_group
 		on study_board.s_seq = study_group.s_seq 
 		WHERE study_group.user_id= #{user_id} and study_group.accept_status  = '승인대기중'     
+			
 			]]>
 	</select>
 
 	<select id="studyStatus" resultType="hashMap">
-	    select * from study_group where s_seq = #{s_seq} order by s_seq desc
+	    select * from study_group where s_seq = #{s_seq} order by s_seq asc, role_name
 	</select>
 	
 	

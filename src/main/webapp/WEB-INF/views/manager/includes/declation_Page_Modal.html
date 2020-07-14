@@ -84,15 +84,13 @@
 							
 							<input type="hidden" id="bl_seq" value="" />
 							<input type="hidden" id="target" value="" />
+							<input type="hidden" id="m_seq"  value="" />
 							
-							
-							<input type="hidden" id="messageTitle" value="" />
-							<input type="hidden" id="messageContent" value="" />
 							
 							<div id="message">
 								<div class='col-4' id="declareMessageButtons" style='padding: 0px; text-align: center;'>
-									<button id='message' type='button'
-										class='btn btn-outline-success' data-dismiss='modal'>쪽지내용</button>
+									<button id='message' th:onclick="|javascript:messageCheck()|" type='button'
+										class='btn btn-outline-success' >쪽지내용</button>
 								</div>
 
 								<div class='col-4' id="messageOk"

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import kr.or.ns.vo.Blame;
+import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
 public interface ManagerService {
@@ -38,6 +39,8 @@ public interface ManagerService {
 	//신고관리(신고X)
 	public int blameNo(String bl_seq);
 	
+	public HashMap<String, Object> messageGet(String m_seq);
+
 	//총 회원 수
 	public int membercount();
 	
@@ -49,7 +52,6 @@ public interface ManagerService {
 	
 	//처리안된 신고 갯수
 	public int blameCount();
-
 
 	
 

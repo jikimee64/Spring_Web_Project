@@ -308,8 +308,8 @@ keyframes heart-keyframes { 100% {
 					<br />
 					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
 					<textarea th:text="${study.CONTENT}" name="" id="" cols="30"
-						rows="10" class="form-control _textarea_readonly" readonly
-						style="background-color: #F5F5F5">
+						rows="10" class="form-control _textarea_readonly" readonly 
+						style="background-color: #F5F5F5; resize: none;">
 					</textarea>
 
 
@@ -334,14 +334,19 @@ keyframes heart-keyframes { 100% {
 							    <path
 										d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
 							                     </svg>
-							</label> <span style="margin-left: 50px;"> <strong>좋아요&nbsp;
-							</strong> <strong th:text="${study.LIKE_CNT}" id="replyTotal"
-								class="heartt" style="margin-right: 10px;"></strong>
-							</span> <span style="margin-right: 5px; margin-left: 10px;"> <img
-								style="margin-right: 5px;"
-								src="../../../../resources/images/img/comment-dots-regular.svg">
-							</span> <strong>댓글&nbsp; </strong> <strong id="replyTotal"
-								th:text="${count}" style="margin-right: 10px;"></strong>
+							</label> 
+							<span style="margin-left: 50px;"> 
+								<strong>좋아요&nbsp;</strong>
+								<strong id="replyTotal" th:text="${study.LIKE_CNT}" class="heartt" style="margin-right: 10px;"></strong>
+							</span> 
+							
+							<span style="margin-right: 5px; margin-left: 10px;"> 
+								<img style="margin-right: 5px;"
+									src="../../../../resources/images/img/comment-dots-regular.svg">
+							</span> 
+							
+							<strong>댓글&nbsp; </strong> 
+							<strong id="replyTotal" th:text="${count}" class="dott" style="margin-right: 10px;"></strong>
 
 						</div>
 
@@ -407,7 +412,7 @@ keyframes heart-keyframes { 100% {
 							
 							<div class="form-group">
 								<textarea class="form-control" rows="2" id="comment"
-									name="comment"></textarea>
+									name="comment" style="resize: none;"></textarea>
 							</div>
 							<div class="row">
 								<div class="col-md-11" style="padding: 0px;"></div>
@@ -514,8 +519,10 @@ keyframes heart-keyframes { 100% {
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		$(function() {
+			
+			
+			/* 상세페이지 들어가면 댓글 뿌려주는 로직 */
 			var s_seqq = $('#s_seq').val();
-		    var r_seqq = $(this).attr('id');
 			let obj = {
 					"s_seq" : s_seqq
 			};
@@ -760,13 +767,37 @@ keyframes heart-keyframes { 100% {
 			 $.each(result, function(index, obj) {
 				html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
 				if(user_id === obj.R_NAME){
-					html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+"><i class='ri-pencil-line'></i></a>";
+					html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
 					html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
 				}
 				html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
 			});
 			$('#com').append(html);
 		}
+	
+		//댓글 카운트 갱신 !!
+		function countComment() {
+			
+			var s_seq = $('#s_seq').val();
+			
+			let obj = {
+					"s_seq" : s_seq
+			};
+			$.ajax({
+				 url: "/board/countComment.do",
+				 type : 'POST',
+				 contentType:"application/json",
+					data : JSON.stringify(obj),
+					success : function(data) {
+						console.warn("댓글 기능 끝"+data);
+						$('.dott').text(data);
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				});
+		}
+		
 		
 		//댓글 등록
 		$('#commentWrite').click(function() {
@@ -793,6 +824,7 @@ keyframes heart-keyframes { 100% {
 							$('#com').empty();
 							makeComment(data);
 							$('#comment').val("");
+							countComment(); //갯수 띄워주기 
 						},
 						error : function(e) {
 							console.log("error:", e);
@@ -819,6 +851,7 @@ keyframes heart-keyframes { 100% {
 						$('#com').empty();
 						makeComment(data);
 						$('#comment').val("");
+						countComment(); //갯수 띄워주기
 					},
 					error : function(e) {
 						console.log("error:", e);
@@ -831,9 +864,9 @@ keyframes heart-keyframes { 100% {
 		var check = true;
 		$('#com').on('click', '.updateComment', function() {
 			console.log("여기로 와야합니다");
-			/*
-			if(check) {
-				check = false;
+			
+				var r_seq = $(this).attr('id');
+				
 				//클릭한 a태그의 class를 cancelUpdate로 바꾸고 아이콘 바꾸기
 				$(this).attr('class', 'cancelUpdate');
 				$(this).html("<i class='ri-close-line'></i>");
@@ -849,50 +882,98 @@ keyframes heart-keyframes { 100% {
 				$(code).remove();
 				//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
 				var html = "";
+// 				html += '<div id="updateDiv">';
+// 				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent" style="border-radius:10px;">';
+// 				html += '<button class="btn btn-outline-secondary btn-sm special alt" id="commUpdateBtn">Edit</button>';
+// 				html += '</div>';
+				
 				html += '<div id="updateDiv">';
-				html += '<input type="text" value="'+codeText+'" name="content" id="updateContent">';
-				html += '<button class="button special small alt" id="commUpdateBtn">Edit</button>';
+				html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;">'+codeText+'</textarea>';
+				html += '<div class="row">';
+				html += '<div class="col-md-11" style="padding: 0px;"></div>';
+				html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
+				html += '<button class="btn btn-warning" id="commUpdateBtn"
+						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">';
+				html += '등록</button>';
 				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				
+				
+				
+// 				<textarea  rows="2" id="comment"
+// 					name="comment" style="resize: none;"></textarea>
+// 			<div class="row">
+// 				<div class="col-md-11" style="padding: 0px;"></div>
+// 				<div class="col-md-1" style="position: relative; padding: 0px;">
+// 					<button class="btn btn-warning" id="commentWrite"
+// 						name="commentWrite"
+// 						style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
+// 				</div>
+// 			</div>
+			
+			
 				parentTag.append(html);
 				parentTag.find('input').focus();
 				
 				var commentNum = $(this).data("value");
 				$('#commUpdateBtn').click(function() {
-					if($('#updateContent').val() == "") {
-						alert('내용을 입력하세요');
-						return false;
-					}
-					
-					$.ajax({
-						url: "UpdateComment.ua",
-						data: {
-							f_code: '${f_code}',
-							r_code: commentNum,
-							r_content: $('#updateContent').val()
-						},
-						dataType: "json",
-						success: function(resData) {
-							$('#com').empty();
-							makeComment(resData);
-						}
-					});
+						if($('#updateContent').val() == "") {
+							swal({title:"댓글을 입력하세요",
+								icon: "warning"})
+							return false;
+						} 
+			            
+						var s_seq = $('#s_seq').val();
+						var r_content = $('#updateContent').val();
+						
+
+						let obj = {
+								"s_seq" : s_seq,
+								"r_content" : r_content,
+								"r_seq" : r_seq
+						};
+						
+						$.ajax({
+							 url: "/board/UpdateComment.do",
+							 type : 'POST',
+							 contentType:"application/json",
+								data : JSON.stringify(obj),
+								success : function(data) {
+									$('#com').empty();
+									makeComment(data);
+									$('#comment').val("");
+								},
+								error : function(e) {
+									console.log("error:", e);
+								}
+							});
 				});
-			}
 			
 			//수정 취소 눌렀을 경우 리스트 다시 불러오기
 			$('#com').on('click', '.cancelUpdate', function() {
-				$.ajax({
-					url: "SelectCommentList.ua",
-					data: {f_code:'${f_code}'},
-					dataType: "json",
-					success: function(resData) {
-						$('#com').empty();
-						makeComment(resData);
-					}
-				});
-				check = true;
+				var s_seqq = $('#s_seq').val();
+				let obj = {
+						"s_seq" : s_seqq
+				};
+				
+				 $.ajax({
+					 url: "/board/SelectCommentList.do",
+					 type : 'POST',
+					 contentType:"application/json",
+						data : JSON.stringify(obj),
+						success : function(data) {
+							$('#com').empty();
+							makeComment(data);
+							$('#comment').val("");
+						},
+						error : function(e) {
+							console.log("error:", e);
+						}
+					});
+				
 			});
-		*/
+		
 		});
 		
 	</script>

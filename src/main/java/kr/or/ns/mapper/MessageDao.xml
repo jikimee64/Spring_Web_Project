@@ -21,10 +21,45 @@
 		)
 	</insert>
 
-	<select id="getListMessage" parameterType="String"
-		resultType="kr.or.ns.vo.Message">
-		select * from message where receptionid = #{userid} ORDER BY m_seq desc
+
+
+<!-- 페이징 매퍼 -->
+<!-- 	<select id="getListMessage" parameterType="String" -->
+<!-- 		resultType="kr.or.ns.vo.Message"> -->
+<!-- 		select * from message where receptionid = #{userid} ORDER BY m_seq desc -->
+<!-- 	</select> -->
+
+
+
+<!-- 내 메세지 총 갯수 -->
+	<select id="getMyMessageCount" resultType="Integer">
+		<![CDATA[
+		select count(*) from message where receptionid = #{user_id}
+		]]>
 	</select>
+
+
+<!--  받은목록 페이징 -->
+	<select id="getMessageList" resultType="hashmap" parameterType="hashmap" >
+	   <![CDATA[
+		select * from message 
+		where receptionid = #{user_id} 
+		ORDER BY m_seq desc 
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select> 
+
+<!--  보낸목록 페이징 -->
+	<select id="getSendMessageList" resultType="hashmap" parameterType="hashmap" >
+	   <![CDATA[
+		select * from message 
+		where senderid = #{user_id} 
+		ORDER BY m_seq desc 
+		limit #{pageStart}, #{perPageNum}
+		]]>
+	</select> 
+
+
 
 	<select id="getMessage" parameterType="String"
 		resultType="kr.or.ns.vo.Message">

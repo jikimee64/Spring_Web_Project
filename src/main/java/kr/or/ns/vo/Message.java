@@ -15,5 +15,7 @@ public class Message {
 	private String senderid;
 	private String content;
 	private Date opendate;
+//	private String opendate;
 	private Date senddate;
+//	private String senddate;
 }
