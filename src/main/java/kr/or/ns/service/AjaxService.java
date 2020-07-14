@@ -57,5 +57,8 @@ public interface AjaxService {
 	//차트
 	public List<HashMap<String, Object>> mainChart();
 	
+	//지원현황 승인
+	public List<HashMap<String, Object>> accept(HashMap<String, Object> params);
+	
 
 }
