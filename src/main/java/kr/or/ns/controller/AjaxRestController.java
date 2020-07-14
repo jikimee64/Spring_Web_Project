@@ -214,8 +214,11 @@ public class AjaxRestController {
 
 	// 지원현황 승인 후 승인완료 데이터 반환
 	@RequestMapping(value = "accept.do", method = RequestMethod.POST)
-	List<HashMap<String, Object>> accept(@RequestBody HashMap<String, Object> params) {
+	List<HashMap<String, Object>> accept(@RequestBody HashMap<String, Object> params, Principal principal) {
 		List<HashMap<String, Object>> list = service.accept(params);
+		HashMap<String ,Object> map = new HashMap();
+		map.put("user_id", principal.getName());
+		list.add(map);
 		System.out.println("우철이다!!! : " + list);
 		return list;
 
