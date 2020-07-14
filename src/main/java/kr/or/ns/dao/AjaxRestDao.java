@@ -51,4 +51,10 @@ public interface AjaxRestDao {
 	//메인페이지 차트
 	public List<HashMap<String, Object>> mainChart();
 	
+	//지원현황 승인
+	public int accept(HashMap<String, Object> params);
+	
+	//지원현황 승인 후 승인완료 데이터 뽑기
+	public List<HashMap<String, Object>> acceptList(HashMap<String, Object> params);
+	
 }

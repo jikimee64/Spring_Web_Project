@@ -265,13 +265,23 @@ public class AjaxRestController {
 		return list;
 
 	}
-	//차트
+
+	// 차트
 	@RequestMapping(value = "mainChart.do", method = RequestMethod.POST)
-	List<HashMap<String,Object>> mainChart(){
+	List<HashMap<String, Object>> mainChart() {
 		System.out.println("차트데이터");
 		List<HashMap<String, Object>> list = null;
 		list = service.mainChart();
 		return list;
+	}
+
+	// 지원현황 승인 후 승인완료 데이터 반환
+	@RequestMapping(value = "accept.do", method = RequestMethod.POST)
+	List<HashMap<String, Object>> accept(@RequestBody HashMap<String, Object> params) {
+		List<HashMap<String, Object>> list = service.accept(params);
+		System.out.println("우철이다!!! : " + list);
+		return list;
+
 	}
 
 }

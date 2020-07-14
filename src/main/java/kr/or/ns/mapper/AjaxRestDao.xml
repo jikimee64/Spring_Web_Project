@@ -98,15 +98,24 @@ insert IGNORE into study_group(s_seq,user_id,accept_status,role_name) values(#{s
 		on study_board.c_seq = study_content_category.c_seq
 		left outer join study_group
 		on study_board.s_seq = study_group.s_seq 
-		WHERE study_group.user_id= #{user_id} and study_group.accept_status  = '승인대기중'     
+		WHERE study_group.user_id= #{user_id} and study_group.role_name  = '회원'     
 			]]>
 
     </select>
+    
+    <update id="accept">
+    	update study_group
+    	set accept_status = '승인완료'
+    	where user_id = #{user_id} and s_seq = #{s_seq}
+    </update>
+    
+    <select id="acceptList" resultType="hashMap">
+    	select *
+    	from study_group
+    	where s_seq = #{s_seq} and accept_status = '승인완료' 
+    	order by role_name
+    </select>
+    
+    
    
-	    <!-- 관리자페이지 차트 -->
-	<select id="mainChart" resultType="hashMap">
-	select * from 
-	
-	
-	</select>
 </mapper>
