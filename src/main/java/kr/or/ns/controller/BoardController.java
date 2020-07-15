@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker_Board;
+import kr.or.ns.service.BoardService;
 import kr.or.ns.service.BoardServiceImpl;
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
@@ -43,7 +44,7 @@ study_List 목록뿌리기 작업
 public class BoardController {
 
 	@Autowired
-	private BoardServiceImpl service;
+	private BoardService service;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
@@ -169,7 +170,7 @@ public class BoardController {
 	
 	
 	//상세보기 트랜잭션
-	@Transactional
+	
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
@@ -381,16 +382,18 @@ public class BoardController {
 		public List<Map<String,Object>> reCommentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
 			String user_id = principal.getName(); //유저 아이디
 			String s_seq = (String) params.get("s_seq"); //글 번호
-			String r_refer = (String) params.get("r_seq"); //refer 번호
+			String r_seq = (String) params.get("r_seq"); //부모글 번호
 			String r_content = (String) params.get("r_content"); //대댓글 내용
 			
 			Comment cm = new Comment();
-			cm.setR_name(user_id);
-			cm.setS_seq(Integer.parseInt(s_seq));
-			cm.setR_refer(Integer.parseInt(r_refer));
-			cm.setR_content(r_content);
+			cm.setR_name(user_id);                   //아이디
+			cm.setS_seq(Integer.parseInt(s_seq));    //글번호
+			cm.setR_content(r_content);              //대댓글내용
 			
-			service.reCommentInsert(cm);
+			int r_refer = service.getP_refer(r_seq); //부모글의 r_refer
+			cm.setR_refer(r_refer);//그룹번호
+			
+			service.reCommentInsert(cm);    //인서트 하러가기 
 			
 			List<Map<String,Object>> commentList = service.getComment(s_seq); 
 			
