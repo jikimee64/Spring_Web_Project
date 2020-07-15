@@ -391,6 +391,13 @@ public class BoardServiceImpl implements BoardService {
 		return r_refer;
 	}
 
+	//r_exists 컬럼을 n으로 업데이트
+	@Override
+	public void updateR_exists(Comment cm) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		dao.updateR_exists(cm);
+	}
+
 	
 	
 	

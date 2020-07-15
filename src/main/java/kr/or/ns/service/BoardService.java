@@ -79,4 +79,7 @@ public interface BoardService {
 	
 	//부모댓글 refer 가져오기 
 	public int getP_refer(String r_seq);
+
+	//r_exists 컬럼을 n으로 업데이트 
+	public void updateR_exists(Comment cm);
 }

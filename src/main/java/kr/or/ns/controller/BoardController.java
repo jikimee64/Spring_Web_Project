@@ -319,7 +319,8 @@ public class BoardController {
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_seq(Integer.parseInt(r_seq));
 		
-		service.commentDelete(cm);
+		//service.commentDelete(cm);
+		service.updateR_exists(cm);
 		
 		List<Map<String,Object>> commentList = service.getComment(s_seq); 
 		return commentList;

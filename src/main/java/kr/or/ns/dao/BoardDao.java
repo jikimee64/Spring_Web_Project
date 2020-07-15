@@ -88,6 +88,9 @@ public interface BoardDao {
 	//부모 refer가져오기
 	public int getP_refer(String r_seq);
 
+	//r_exists 컬럼을 n으로 업데이트
+	public void updateR_exists(Comment cm);
+
 
 
 }

@@ -578,24 +578,39 @@ keyframes heart-keyframes { 100% {
 					var user_id =$('input[id="userId"]').attr('class');
 					var html = "";
 					
-					 $.each(result, function(index, obj) {
-						var depthcss = "";
-						var quillpen = " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='rereply' id='" + obj.R_SEQ + "'"+">답글쓰기&nbsp;<i class='ri-quill-pen-line'></i></a>";
+						 $.each(result, function(index, obj) {
+							 if(obj.R_EXISTS === 'Y'){
+							 	
+									var depthcss = "";
+									var quillpen = " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='rereply' id='" + obj.R_SEQ + "'"+">답글쓰기&nbsp;<i class='ri-quill-pen-line'></i></a>";
+								
+									if(obj.R_DEPTH === 1){
+										 depthcss = "padding-left:45px;";
+										 quillpen = "";
+									}
+									
+									html += "<blockquote class='OComment'><b style='"+depthcss+ "'>" + obj.R_NAME + "</b>"  + " ";
+									if(user_id === obj.R_NAME){
+										html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
+										html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
+									}
+									html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" +  obj.R_DATE+
+									quillpen +"</div></blockquote>";
+								
+								}else{
+									
+									var depthcss = "";
+									if(obj.R_DEPTH === 1){
+										 depthcss = "padding-left:45px;";
+										 quillpen = "";
+									}
+									html += "<blockquote class='OComment'>" ;
+									html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>&nbsp;삭제된 댓글 입니다.&nbsp;</div></code>" + "<div style='font-size:14px'></div></blockquote>";
+									
+								}
+								
 						
-						if(obj.R_DEPTH === 1){
-							 depthcss = "padding-left:45px;";
-							 quillpen = "";
-						}
-						
-						html += "<blockquote class='OComment'><b style='"+depthcss+ "'>" + obj.R_NAME + "</b>"  + " ";
-						if(user_id === obj.R_NAME){
-							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
-							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
-						}
-						html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+
-						quillpen +"</div></blockquote>";
-					
-					 });
+						 });
 					
 					$('#com').append(html);
 				}
