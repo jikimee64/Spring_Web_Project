@@ -316,9 +316,10 @@ keyframes heart-keyframes { 100% {
 					</div>
 					<br />
 					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
-					<textarea th:text="${study.CONTENT}" name="" id="" cols="30"
+					<textarea th:utext="${study.CONTENT}" name="" id="" cols="30"
 						rows="10" class="form-control _textarea_readonly" readonly 
 						style="background-color: #F5F5F5; resize: none;">
+						<th:block></th:block>
 					</textarea>
 
 

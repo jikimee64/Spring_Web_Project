@@ -109,4 +109,21 @@
 			</props>
 		</property>
 	</bean>
+	
+	<bean id="restTemplate"
+		class="org.springframework.web.client.RestTemplate">
+		<property name="requestFactory">
+			<bean
+				class="org.springframework.http.client.SimpleClientHttpRequestFactory">
+				<property name="connectTimeout" value="5000" />
+				<property name="readTimeout" value="5000" />
+			</bean>
+		</property>
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
 </beans>
