@@ -169,8 +169,6 @@ public class BoardController {
 	
 	
 	
-	//상세보기 트랜잭션
-	
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
@@ -210,8 +208,6 @@ public class BoardController {
 
 		return "user/board/writing_Common_Study_Detail";
 	}
-	
-	
 	
 
 	// 글 수정 페이지 이동
