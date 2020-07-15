@@ -1,6 +1,7 @@
 package kr.or.ns.dao;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,9 +32,12 @@ public interface BoardDao {
 	//총 스터디게시글 수
 	public int getStudyBoardCount();
 	
-	//스터디 글 등록
+	//스터디 글 등록(공통)
 	public int studyReg(Study study);
-
+	
+	//스터디 글 편집
+	public int studyEdit(Study study);
+	
 	//스터디 글 상세보기
 	public Map<String, Object> getStudy(String s_seq);
 	
@@ -90,6 +94,9 @@ public interface BoardDao {
 
 	//r_exists 컬럼을 n으로 업데이트
 	public void updateR_exists(Comment cm);
+	
+	//StudyBoardOnline에 강의 글번호 넣기
+	public int insertStudyBoardOnline(HashMap<String, Object> map);
 
 
 

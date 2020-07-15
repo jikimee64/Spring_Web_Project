@@ -96,7 +96,15 @@
 			left outer join bookmark
 			on lecture_board.l_seq = bookmark.l_seq
 			where bookmark.user_id = #{user_id} and
-			bookmark_check = 1
+			bookmark_check = 1 and
+			bookmark.l_seq not in(
+				select l_seq 
+			    from study_board 
+			    left outer join study_board_online
+				on study_board.s_seq = study_board_online.s_seq
+			    where study_board.user_id=#{user_id} and
+			    l_seq is not null 
+			)
 			order by bookmark.l_seq desc
             limit #{pageStart}, #{perPageNum} 
 		]]>

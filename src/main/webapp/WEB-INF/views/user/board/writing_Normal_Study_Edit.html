@@ -91,6 +91,7 @@
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
+	<input type="hidden" id="s_seq" th:value="${study.S_SEQ}" />
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -109,8 +110,8 @@
 		<!-- Breadcrumbs Section -->
 	</main>
 	<div class="_border_box_shadow2" style="width: 1430px;">
-		<form action="/board/study_List.do" class="registerform"
-			id="registerform" enctype="multipart/form-data">
+		<form action="" class="registerform"
+			id="registerform" enctype="multipart/form-data" method="post">
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
 				<!-- <br /> -->
@@ -139,16 +140,16 @@
 							data-style="btn-light" style="width: 10%;"
 							data-live-search="true" data-width="120px">
 							<option value="모집인원" selected>모집인원</option>
-							<option value="1" th:selected="${study.LAN_SEQ} == 1">1명</option>
-							<option value="2" th:selected="${study.LAN_SEQ} == 2">2명</option>
-							<option value="3" th:selected="${study.LAN_SEQ} == 3">3명</option>
-							<option value="4" th:selected="${study.LAN_SEQ} == 4">4명</option>
-							<option value="5" th:selected="${study.LAN_SEQ} == 5">5명</option>
-							<option value="6" th:selected="${study.LAN_SEQ} == 6">6명</option>
-							<option value="7" th:selected="${study.LAN_SEQ} == 7">7명</option>
-							<option value="8" th:selected="${study.LAN_SEQ} == 8">8명</option>
-							<option value="9" th:selected="${study.LAN_SEQ} == 9">9명</option>
-							<option value="10" th:selected="${study.LAN_SEQ} == 10">10명</option>
+							<option value="1" th:selected="${study.PEOPLE} == 1">1명</option>
+							<option value="2" th:selected="${study.PEOPLE} == 2">2명</option>
+							<option value="3" th:selected="${study.PEOPLE} == 3">3명</option>
+							<option value="4" th:selected="${study.PEOPLE} == 4">4명</option>
+							<option value="5" th:selected="${study.PEOPLE} == 5">5명</option>
+							<option value="6" th:selected="${study.PEOPLE} == 6">6명</option>
+							<option value="7" th:selected="${study.PEOPLE} == 7">7명</option>
+							<option value="8" th:selected="${study.PEOPLE} == 8">8명</option>
+							<option value="9" th:selected="${study.PEOPLE} == 9">9명</option>
+							<option value="10" th:selected="${study.PEOPLE} == 10">10명</option>
 						</select>
 					</div>
 
@@ -157,19 +158,19 @@
 							data-style="btn-light" style="width: 10%;"
 							data-live-search="true" data-width="120px">
 							<option value="지역" selected>지역</option>
-							<option value="1" th:selected="${study.LAN_SEQ} == 1">충북</option>
-							<option value="2" th:selected="${study.LAN_SEQ} == 2">충남</option>
-							<option value="3" th:selected="${study.LAN_SEQ} == 3">경기도</option>
-							<option value="4" th:selected="${study.LAN_SEQ} == 4">전북</option>
-							<option value="5" th:selected="${study.LAN_SEQ} == 5">전남</option>
-							<option value="6" th:selected="${study.LAN_SEQ} == 6">경남</option>
-							<option value="7" th:selected="${study.LAN_SEQ} == 7">경북</option>
-							<option value="8" th:selected="${study.LAN_SEQ} == 8">강원도</option>
-							<option value="9" th:selected="${study.LAN_SEQ} == 9">세종시</option>
-							<option value="10" th:selected="${study.LAN_SEQ} == 10">서울시</option>
-							<option value="11" th:selected="${study.LAN_SEQ} == 11">인천시</option>
-							<option value="12" th:selected="${study.LAN_SEQ} == 12">제주시</option>
-							<option value="13" th:selected="${study.LAN_SEQ} == 13">온라인</option>
+							<option value="1" th:selected="${study.LOC_SEQ} == 1">충북</option>
+							<option value="2" th:selected="${study.LOC_SEQ} == 2">충남</option>
+							<option value="3" th:selected="${study.LOC_SEQ} == 3">경기도</option>
+							<option value="4" th:selected="${study.LOC_SEQ} == 4">전북</option>
+							<option value="5" th:selected="${study.LOC_SEQ} == 5">전남</option>
+							<option value="6" th:selected="${study.LOC_SEQ} == 6">경남</option>
+							<option value="7" th:selected="${study.LOC_SEQ} == 7">경북</option>
+							<option value="8" th:selected="${study.LOC_SEQ} == 8">강원도</option>
+							<option value="9" th:selected="${study.LOC_SEQ} == 9">세종시</option>
+							<option value="10" th:selected="${study.LOC_SEQ} == 10">서울시</option>
+							<option value="11" th:selected="${study.LOC_SEQ} == 11">인천시</option>
+							<option value="12" th:selected="${study.LOC_SEQ} == 12">제주시</option>
+							<option value="13" th:selected="${study.LOC_SEQ} == 13">온라인</option>
 						</select>
 					</div>
 					<div class="col-1">
@@ -177,14 +178,14 @@
 							data-style="btn-light" style="width: 10%;"
 							data-live-search="true" data-width="120px">
 							<option value="난이도" selected>난이도</option>
-							<option value="입문">입문</option>
-							<option value="초급">초급</option>
-							<option value="중급이상">중급이상</option>
+							<option value="입문" th:selected="${study.LEVEL} == 입문">입문</option>
+							<option value="초급" th:selected="${study.LEVEL} == 초급">초급</option>
+							<option value="중급이상" th:selected="${study.LEVEL} == 중급이상">중급이상</option>
 						</select>
 					</div>
 					<div class="col-3">
 						<input style="margin-bottom: 15px; width: 164px;" type="text"
-							class="form-control _deadline" name="selectend" id="date-time"
+							class="form-control _deadline" name="selectend" id="date-time" th:value="${study.DEADLINE}"
 							placeholder="모집마감일">
 					</div>
 					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
@@ -352,10 +353,10 @@
 			$("#registerform").submit(function(e) {
 				var formData = new FormData(this);
 				console.log(formData)
-
+				formData.append("s_seq", $('#s_seq').val());
 				console.log("데이터 : " + formData)
 				$.ajax({
-					url : "/board/register.do",
+					url : "/board/writing_Normal_Study_Edit.do",
 					processData : false,
 					contentType : false,
 					cache : false,

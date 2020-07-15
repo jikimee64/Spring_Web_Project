@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -123,18 +124,96 @@ public class BoardServiceImpl implements BoardService {
 		return 0;
 	}
 	
-	
-	
-	// 스터디 글 등록(온라인 컨텐츠)
-	public int studyOnlineReg(Study study, HttpServletRequest request, Principal principal) {
+
+	// 일반컨텐츠(스터디 게시판 글 편집) 
+	@Override
+	public int studyNormalEdit(Study study, HttpServletRequest request, Principal principal) {
+		
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		System.out.println("조ㅓㅁ와라조모!!!!");
+		System.out.println("스터디 일반 편집");
 		System.out.println("철이는 나빠ㅣ용" + study.getImage());
 		
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
 		System.out.println("?? " + files);
 		int count = 0;
+		
+		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
+			for (CommonsMultipartFile multifile : files) {
+				String filename = multifile.getOriginalFilename();
+				System.out.println("파일업로드 : " + filename);
+				String path = request.getServletContext().getRealPath("/studyboard/upload");
+
+				String fpath = path + "\\" + filename;
+
+				if (!filename.equals("")) { // 실 파일 업로드
+					try {
+						FileOutputStream fs = new FileOutputStream(fpath);
+						fs.write(multifile.getBytes());
+						fs.close();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}else { //filename이 공백일시넘 어옴 
+					for(int i = count; i < count+1; i++) {
+						if(i==0) {
+							filename = "study_board_default.jpg"; 
+						}else if(i==1) {
+							filename = "defaultfile"; 
+						}else {
+							filename = "defaultfile2"; 
+						}
+					}
+				}
+				count++;
+				filenames.add(filename); // 파일명을 별도 관리 (DB insert)
+				System.out.println("fs" + filename);
+			}
+		}
+		study.setUser_id(principal.getName());
+		study.setC_seq(2); //일반강의 등록폼이니까 일반 컨텐츠 정적 부여
+		study.setImage(filenames.get(0));  
+		System.out.println("1: " + study.getImage());
+		study.setFilesrc(filenames.get(1));
+		System.out.println("1: " + study.getFilesrc());
+		study.setFilesrc2(filenames.get(2));
+		System.out.println("1: " + study.getFilesrc2());
+		try {
+			System.out.println("여긴오니?ㄴㄴㄴ");
+			System.out.println("우철 : " + study);
+			int result = dao.studyEdit(study);
+			System.out.println("여긴오니22?");
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			System.out.println("삽입 에러");
+		}
+		
+		return 0;
+		
+	}
+	
+	
+	@Transactional
+	// 스터디 글 등록(온라인 컨텐츠)
+	public int studyOnlineReg(Study study, HttpServletRequest request, Principal principal) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		System.out.println("조ㅓㅁ와라조모!!!!");
+		System.out.println("철이는 나빠ㅣ용" + study.getImage());
+		System.out.println(study.getL_seq());
+		int l_seq = study.getL_seq();
+		int s_seq = study.getS_seq();
+	
+		HashMap<String, Object> map = new HashMap();
+		map.put("s_seq",s_seq);
+		map.put("l_seq",l_seq);
+		
+		
+		List<CommonsMultipartFile> files = study.getFiles();
+		List<String> filenames = new ArrayList<String>(); // 파일명관리
+		System.out.println("?? " + files);
+		int count = 0;
+		
 		
 		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
 			for (CommonsMultipartFile multifile : files) {
@@ -167,7 +246,7 @@ public class BoardServiceImpl implements BoardService {
 			}
 		}
 		study.setUser_id(principal.getName());
-		study.setC_seq(1); //온라인강의 등록폼이니까 일반 컨텐츠 정적 부여
+		study.setC_seq(1); //온라인강의 등록폼이니까 온라인 컨텐츠 정적 부여
 		study.setFilesrc(filenames.get(0));
 		System.out.println("1: " + study.getFilesrc());
 		study.setFilesrc2(filenames.get(1));
@@ -176,7 +255,9 @@ public class BoardServiceImpl implements BoardService {
 			System.out.println("여긴오니?ㄴㄴㄴ");
 			System.out.println("우철 : " + study);
 			int result = dao.studyReg(study);
+			int result2 = dao.insertStudyBoardOnline(map);
 			System.out.println("여긴오니22?");
+			System.out.println("board_online에 들어갔는지?" + result2);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -199,7 +280,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 스터디 글 상세보기 트랜잭션
 //	@Override
-//	@Transactional
+	@Transactional
 		public Map<String, Object> getStudy(String s_seq) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			Map<String, Object> study = null;
@@ -226,19 +307,7 @@ public class BoardServiceImpl implements BoardService {
 //	public void updateReadNum(Integer s_seq) {
 //	}
 //	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	// 스터디 글 삭제
 	public int delete(String s_seq) {
@@ -398,6 +467,7 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		dao.updateR_exists(cm);
 	}
+
 
 	
 	

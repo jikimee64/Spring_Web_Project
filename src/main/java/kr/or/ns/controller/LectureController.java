@@ -198,6 +198,7 @@ public class LectureController {
 		System.out.println(l_seq);
 		try {
 			service.heartinsert(user_id, l_seq);
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
