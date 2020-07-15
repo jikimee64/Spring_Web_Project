@@ -32,9 +32,12 @@ public interface BoardDao {
 	//총 스터디게시글 수
 	public int getStudyBoardCount();
 	
-	//스터디 글 등록
+	//스터디 글 등록(공통)
 	public int studyReg(Study study);
-
+	
+	//스터디 글 편집
+	public int studyEdit(Study study);
+	
 	//스터디 글 상세보기
 	public Map<String, Object> getStudy(String s_seq);
 	
