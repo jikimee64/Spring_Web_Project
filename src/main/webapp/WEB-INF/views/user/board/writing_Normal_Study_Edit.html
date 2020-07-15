@@ -106,7 +106,7 @@
 					
 					
 					
-					<input type="hidden" class="LOC_SEQ" th:id="${study.LOC_SEQ}">
+			<!-- 		<input type="hidden" class="LOC_SEQ" th:id="${study.LOC_SEQ}">
 					<input type="hidden" class="LAN_SEQ" th:id="${study.LAN_SEQ}">
 					<input type="hidden" class="S_SEQ" th:id="${study.S_SEQ}">
 					<input type="hidden" class="LIKE_CNT" th:id="${study.LIKE_CNT}">
@@ -124,7 +124,7 @@
 					<input type="hidden" class="FILESRC" th:id="${study.FILESRC}">
 					<input type="hidden" class="FILESRC2" th:id="${study.FILESRC2}">
 					<input type="hidden" class="TITLE" th:id="${study.TITLE}">
-					<input type="hidden" class="CONTENT" th:id="${study.CONTENT}">
+					<input type="hidden" class="CONTENT" th:id="${study.CONTENT}"> -->
 					
 					
 					
@@ -400,10 +400,6 @@
 		});
 	</script>
 
-
-
-
-
 	<!-- mysql이랑 맞출것  -->
 	<script>
 		$(function() {
@@ -433,6 +429,28 @@
 				console.log('잘되니222?')
 			};
 		};
+	</script>
+	
+	<script>
+		$(function() {
+			$("#category").submit(function(e) {
+				var formData = new FormData(this);
+				console.log("데이터 : " + formData)
+				$.ajax({
+					url :"/board/writing_Normal_Study_Edit.do",
+					processData : false,
+					contentType : false,
+					cache : false,
+					type : 'POST',
+					data : formData,
+					success : function(data) {
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				})
+			})
+		});
 	</script>
 
 </body>
