@@ -276,6 +276,12 @@ keyframes heart-keyframes { 100% {
 					</div>
 
 
+
+
+
+
+	
+
 					<div class="row">
 						<div class="col-md-8"></div>
 						<div class="col-md-4" style="width: 100%;">
@@ -285,7 +291,7 @@ keyframes heart-keyframes { 100% {
 									</div>
 									<div th:case="${study.FILESRC}" class="form-group"
 										style="margin: 0">
-										<a href="" style="color: black;"> <i
+										<a th:href="@{FileDownload.do(s_seq=${study.S_SEQ})}" style="color: black;"> <i
 											class="fa fa-folder-open" aria-hidden="true"></i> <sapn
 												class="_file_name1" th:text="${study.FILESRC}">
 											</span></a>
@@ -305,7 +311,7 @@ keyframes heart-keyframes { 100% {
 										style="margin: 0"></div>
 									<div th:case="${study.FILESRC2}" class="form-group"
 										style="margin: 0">
-										<a href="" style="color: black;"> <i
+										<a th:href="@{FileDownload.do(s_seq=${study.S_SEQ})}" style="color: black;">  <i
 											class="fa fa-folder-open" aria-hidden="true"></i> <span
 											class="_file_name2" th:text="${study.FILESRC2}"></span>
 										</a>

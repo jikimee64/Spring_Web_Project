@@ -9,8 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
+@Getter@Setter
 @ToString
 public class Study {
 	private int s_seq;
