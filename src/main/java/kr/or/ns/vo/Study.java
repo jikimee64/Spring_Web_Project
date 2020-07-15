@@ -38,3 +38,4 @@ public class Study {
 	private List<CommonsMultipartFile> files;
 	
 }
+

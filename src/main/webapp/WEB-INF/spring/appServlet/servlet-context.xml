@@ -93,6 +93,8 @@
 		<property name="order" value="0"></property>
 	</bean>
 
+
+<!-- 파일 다운로드 -->
 	<bean id="FileDownload" class="kr.or.ns.util.FileDownload" />
 
 

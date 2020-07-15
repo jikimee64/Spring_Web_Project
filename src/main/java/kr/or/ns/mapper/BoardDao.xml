@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getReplyCnt" resultType="Integer">
 		select count(*) 
 		from comment
-		WHERE s_seq=#{S_SEQ}
+		WHERE s_seq=#{S_SEQ} and r_exists = 'Y'
 	</select>
 	
 	<delete id="delete">
@@ -139,7 +139,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 댓글 갯수 -->
 	<select id="countComment" parameterType="kr.or.ns.vo.Comment" resultType="int">
 		select count(*) from comment
-		where s_seq = #{s_seq}
+		where s_seq = #{s_seq} and r_exists = 'Y'
 	</select>
 	
 	<!-- 댓글 등록하기(대댓글)  -->

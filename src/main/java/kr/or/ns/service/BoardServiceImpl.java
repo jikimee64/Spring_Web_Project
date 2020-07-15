@@ -210,8 +210,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	// 스터디 글 상세보기 트랜잭션
-	@Override
-	@Transactional
+//	@Override
+//	@Transactional
 		public Map<String, Object> getStudy(String s_seq) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			Map<String, Object> study = null;
@@ -341,8 +341,6 @@ public class BoardServiceImpl implements BoardService {
 	public void commentInsert(Comment cm) {
 		System.out.println("commentInsert 왔어요");
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		int r_refer = dao.getMaxRefer();
-		cm.setR_refer(r_refer+1);
 		dao.commentInsert(cm);
 	}
 
@@ -386,7 +384,8 @@ public class BoardServiceImpl implements BoardService {
 		
 		//2. step 조회 
 		
-		int r_step =  dao.getMaxStep(cm);
+		int r_step  =  dao.getMaxStep(cm);
+		System.out.println(r_step);
 		
 
 		cm.setR_step(r_step+1);

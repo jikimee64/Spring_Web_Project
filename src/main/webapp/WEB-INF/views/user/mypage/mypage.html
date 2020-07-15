@@ -94,7 +94,8 @@ body {
 						class="_message_hover"> <img class="_message_hover"
 						src="../../../../resources/images/img/message_black.png"
 						style="width: 30px; margin-bottom: 5px;" alt=""></a>
-					<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width:99%;"/>
+					<hr
+						style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 99%;" />
 					<p style="margin-left: 20px;" th:text="${user.introduce}"></p>
 				</div>
 				<div class="col-md-5">
@@ -157,7 +158,7 @@ body {
 				<!-- <span th:text="${user.USER_ID}"></span> -->
 
 				<div class="_border_box_shadow3"
-					style="padding: 9px; overflow-y: auto; border:3px solid lightskyblue;">
+					style="padding: 9px; overflow-y: auto; border: 3px solid lightskyblue;">
 					<div style="overflow-x: hidden; width: 100%; height: 400px;"
 						id="recruting_study">
 						<div th:each="studylist: ${studylist}">
@@ -238,11 +239,12 @@ body {
 						&nbsp;&nbsp; <b style="font-size: 30px;">북마크</b>
 
 					</div>
-					<div class="_border_box_shadow3" style="padding:9px; border:3px solid wheat; ">
-					
+					<div class="_border_box_shadow3"
+						style="padding: 9px; border: 3px solid wheat;">
+
 						<div
 							style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
-								<hr style="border: solid 1px; margin-top: 0px; width:98%;" />
+							<hr style="border: solid 1px; margin-top: 0px; width: 98%;" />
 							<div th:each="list: ${list}">
 								<!-- 여기부터 데이터 하나 넣기 시작 -->
 								<!-- 타임리프 for문 -->
@@ -293,7 +295,7 @@ body {
 	<script>
 		$(function() {
 
-			// 참여중 스터디 버튼 클릭시 색깔 바꾸기
+			// 참여중 스터디 버튼 클릭시 색깔 바꾸기 시작
 			$('#_study_button1').click(
 					function() {
 						$('#_study_button1').css('background-color',
@@ -320,6 +322,7 @@ body {
 						$('#_study_button2').css('border-color',
 								'rgb(19, 204, 97)');
 					});
+			// 참여중 스터디 버튼 클릭시 색깔 바꾸기 끝
 
 		});
 	</script>
@@ -348,6 +351,10 @@ body {
 											type : 'POST',
 											data : JSON.stringify(data),
 											success : function(data) {
+												
+												
+												
+												
 												$('#recruting_study').empty();
 
 												/* 				let recruting_people = data[0].PEOPLE;
@@ -366,6 +373,18 @@ body {
 																		item) {
 																	console
 																			.log(item.S_SEQ);
+																	
+																	/*  제목이랑 내용 문자열 자르기 시작 */
+																	if(data[index].TITLE.length > 18){
+																		data[index].TITLE = data[index].TITLE.substr(0,18) + "...";
+																	}
+																	
+																	if(data[index].CONTENT.length > 335){
+																		data[index].CONTENT = data[index].CONTENT.substr(0,335) + "...";
+																	
+																	}
+																	/*  제목이랑 내용 문자열 자르기 끝  */
+																	
 																	let html = "";
 
 																	html += "<div>";
@@ -435,7 +454,9 @@ body {
 
 										});
 
+								
 							});
+
 		});
 	</script>
 	<script>
@@ -507,10 +528,10 @@ body {
 																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
 																	html += "<a href = '/board/board.Support_Statuㄴㄴㄴㄴㄴs.do'>";
 																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-																	html += "<b><span style='font-size:xx-large;'>"
+																	html += "<b><span style='font-size:xx-large;' class='_title2'>"
 																			+ data[index].TITLE
 																			+ "</span></b><br/><a/>";
-																	html += "<span>"
+																	html += "<span class='_content2'>"
 																			+ data[index].CONTENT
 																			+ "</span><br />";
 																	html += "</div>";
@@ -566,6 +587,7 @@ body {
 
 		}
 	</script>
+	
 </body>
 
 
