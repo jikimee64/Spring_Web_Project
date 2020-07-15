@@ -1,6 +1,7 @@
 package kr.or.ns.dao;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -90,6 +91,9 @@ public interface BoardDao {
 
 	//r_exists 컬럼을 n으로 업데이트
 	public void updateR_exists(Comment cm);
+	
+	//StudyBoardOnline에 강의 글번호 넣기
+	public int insertStudyBoardOnline(HashMap<String, Object> map);
 
 
 
