@@ -325,4 +325,17 @@ public class AjaxServiceImpl implements AjaxService {
 		return result;
 	}
 
+	
+	//내가 쓴 댓글 리스트
+	@Override
+	public List<HashMap<String, Object>> commentList(HashMap<String, Object> params) {
+		String user_id = (String) params.get("user_id");
+		System.out.println("참여중 스터디 비동기 가져오기" + user_id);
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		List<HashMap<String, Object>> list = dao.commentList(user_id);
+		System.out.println("모집중 스터디 리스트" + list);
+
+		return list;
+	}
+
 }
