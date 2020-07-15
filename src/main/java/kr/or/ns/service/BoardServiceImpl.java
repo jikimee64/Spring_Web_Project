@@ -198,7 +198,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	// 스터디 글 상세보기 트랜잭션
-	
+	@Override
+	@Transactional
 		public Map<String, Object> getStudy(String s_seq) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			Map<String, Object> study = null;

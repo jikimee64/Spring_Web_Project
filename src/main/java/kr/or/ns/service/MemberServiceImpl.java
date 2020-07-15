@@ -102,7 +102,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		System.out.println( "실력리스트"+ list);
 		try {
-			result = dao.joininsert(users);
+			resu lt = dao.joininsert(users);
 			System.out.println("회원강비 결과 : "  +result);
 			result2 = dao.insertskill(mo);
 			System.out.println("정상적인 처리 일 때 출력되는 부분 insert 정상, update 정상");
