@@ -17,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker_Board;
@@ -26,6 +28,7 @@ import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
+import kr.or.ns.vo.Users;
 
 /*
 클래스명 : BoardController
@@ -211,17 +214,6 @@ public class BoardController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
@@ -236,12 +228,14 @@ public class BoardController {
 
 	// 글 수정 로직
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit() {
-		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
-
+	public String writingNormalStudyEdit(@RequestParam(value = "file", required = false) MultipartFile ipload, Users user,
+			HttpServletRequest request, Model model, Principal principal) {
+		System.out.println("본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
+		
 		return "user/board/writing_Normal_Study_Edit";
 	}
-
+	
+	//스터디 리스트 페이지 이동
 	@RequestMapping("writing_Normal_Study_Delete.do")
 	public String writingNormalStudyDelete(Criteria_Board cri_b, Model model, String s_seq)
 			throws ClassNotFoundException, SQLException {
