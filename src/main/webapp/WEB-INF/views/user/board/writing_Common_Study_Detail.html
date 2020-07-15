@@ -567,22 +567,35 @@ keyframes heart-keyframes { 100% {
                error : function(e) {
                   console.log("error:", e);
                }
+               
+               
             });
          
          /* 댓글 만들어 주는 함수 */
             function makeComment(result) {
                console.log("makeComment함수 도착");
+               console.log("makeComment함수 도착");
+               console.log("makeComment함수 도착");
+               console.log("makeComment함수 도착");
                var user_id =$('input[id="userId"]').attr('class');
                var html = "";
+               
                 $.each(result, function(index, obj) {
                   html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
                   if(user_id === obj.R_NAME){
                      html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                      html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
                   }
-                  html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
+                  html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" + obj.R_NAME+"날짜니" + "</div></blockquote>";
                });
                $('#com').append(html);
+               
+               
+               console.warn('111111111111111');
+               console.warn('111111111111111');
+               console.warn('111111111111111');
+               console.warn('111111111111111');
+               console.warn(obj.R_NAME);
             }
          
          
@@ -598,6 +611,10 @@ keyframes heart-keyframes { 100% {
                var html = "";
                
                    $.each(result, function(index, obj) {
+                	   console.warn('보바네미');
+                	   console.warn('보바네미');
+                	   console.warn('보바네미');
+                	   	var date1 = new Date(obj.R_DATE);
                       if(obj.R_EXISTS === 'Y'){
                          
                            var depthcss = "";
@@ -613,7 +630,7 @@ keyframes heart-keyframes { 100% {
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
                            }
-                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" +  obj.R_DATE+
+                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" +  date1.toLocaleDateString()+
                            quillpen +"</div></blockquote>";
                         
                         }else{

@@ -337,6 +337,8 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		List<Map<String, Object>> list = dao.getComment(Integer.parseInt(s_seq));
 		System.out.println("select 하고 리턴갑니다(서비스)");
+		System.out.println("2.서비스 댓글:"+list.toString());
+		
 		return list;
 	}
 

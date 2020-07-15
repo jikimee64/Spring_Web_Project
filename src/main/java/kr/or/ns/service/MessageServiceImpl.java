@@ -134,6 +134,10 @@ public class MessageServiceImpl implements MessageService {
 			message = dao.getMessage(m_seq);
 			dao.updateMessage(m_seq);
 			
+			
+			System.out.println("2.서비스: "+message);
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

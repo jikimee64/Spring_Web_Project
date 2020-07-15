@@ -198,6 +198,9 @@ public class BoardController {
 			model.addAttribute("commentList", commentList);
 			System.out.println("우철이는 : " + commentList);
 			System.out.println("목록 -> 일반 ************: " + study);
+			
+			
+			System.out.println("1.컨트롤러 댓글:"+commentList.toString());
 
 			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 			
@@ -363,6 +366,7 @@ public class BoardController {
 		
 		List<Map<String,Object>> commentList = service.getComment(s_seq); 
 		System.out.println("----commentList 찍어보기----"+commentList);
+		System.out.println("0. 코멘트리스트 찍어보기:"+commentList);
 		
 		return commentList;
 		
