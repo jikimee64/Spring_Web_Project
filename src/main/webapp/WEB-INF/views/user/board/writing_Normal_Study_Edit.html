@@ -69,12 +69,29 @@
 #row>.col-1 {
 	margin-right: 50px;
 }
+
+
+._border_box_shadow2 {
+	background: #fff;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+}
 </style>
 </head>
 
 <body>
 
 	<div th:replace="/user/includes/header :: header"></div>
+
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
 
 
 	<main id="main">
@@ -118,7 +135,6 @@
 					<input type="hidden" class="FILESRC2" th:id="${study.FILESRC2}">
 					<input type="hidden" class="TITLE" th:id="${study.TITLE}">
 					<input type="hidden" class="CONTENT" th:id="${study.CONTENT}"> -->
-
 
 					<select name="lan_seq" class="selectpicker mb-3" id="lan"
 						data-style="btn-light" style="width: 10%;" data-live-search="true"
@@ -197,9 +213,10 @@
 			</div>
 		</div>
 
-		<hr style="border-color: rgb(224, 224, 224); width: 95%">
+			<hr style="border-color: rgb(224, 224, 224); width: 95%">
 
 
+<<<<<<< HEAD
 		<div class="container" style="margin-bottom: 25px;">
 			<div class="row">
 				<div class="col-md-9">
@@ -219,6 +236,7 @@
                      placeholder="글 내용을 입력해주세요"></textarea> -->
 						<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
                   나중에 썸머노트로 바꿔야할듯 -->
+<<<<<<< HEAD
 					</div>
 					<div style="text-align: center;">
 						<button type="submit" class="btn btn-primary"
@@ -226,10 +244,11 @@
 					</div>
 				</div>
 
-				<div class="col-md-3" style="margin-top: 24px;">
-					<!--    <div
+					<div class="col-md-3" style="margin-top: 24px;">
+						<!--    <div
                style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
                디폴트이미지 3개 중 하나 출력하거나 아니면 이미지 선택 (이건아직 안함) -->
+<<<<<<< HEAD
 					<div class="form-group" style="margin: 0">
 						<th:block th:switch="${study.CONTENT_KIND}">
 							<img th:case="온라인강의" th:src="${study.IMAGE}" alt='이미지가 없습니다'
@@ -247,7 +266,8 @@
                                  <input type="file" class="custom-file-input" name="files[0]" id="Thum">
                                  <label class="custom-file-label" for="customFile">썸네일</label>
                               </div> -->
-					</div>
+						</div>
+
 
 					<div class="form-group" style="margin: 0">
 						<div class="custom-file mb-3" style="width: 280px;">
@@ -256,7 +276,7 @@
 								class="custom-file-label" id="pname" for="customFile"
 							th:text="${study.FILESRC}"></label>
 						</div>
-					</div>
+
 
 					<div class="form-group" style="margin: 0">
 						<div class="custom-file mb-3" style="width: 280px;">
@@ -265,24 +285,24 @@
 								class="custom-file-label" id="pname2" for="customFile"
 								th:text="${study.FILESRC2}"></label>
 						</div>
-					</div>
 
-					<!-- <label
+						<!-- <label
                class="custom-file-label" for="inputGroupFile01"
                style="text-align: left">Choose file</label> -->
 
 
-					<!-- <img class="card-img-top"
+						<!-- <img class="card-img-top"
                   src="https://file3.instiz.net/data/cached_img/upload/2020/02/08/14/bd5841404e045a4781679d91d2a427d8.gif
                "
                   alt="Card image" style="width: 100%"> <br /> <br />
                <div style="text-align: center;">
                   <button type="button" class="btn btn-success">이미지 첨부</button>
                </div> -->
+					</div>
 				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 

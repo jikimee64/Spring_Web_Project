@@ -163,4 +163,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select r_refer from comment where r_seq = #{r_seq}
 	</select>
 	
+	<!-- r_exists 컬럼을 n으로 업데이트 -->
+	<update id="updateR_exists" parameterType="kr.or.ns.vo.Comment">
+		update comment set r_exists = 'N'
+		where r_seq = #{r_seq} and s_seq = #{s_seq}
+	</update>
+	
 </mapper>
