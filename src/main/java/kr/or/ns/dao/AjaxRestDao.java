@@ -64,9 +64,9 @@ public interface AjaxRestDao {
 	public int cancel(HashMap<String, Object> params);
 	
 	//지원취소 후 승인대기중 데이터 뽑기
-	
 	public int deleteBookMark(HashMap<String, Object> params);public List<HashMap<String, Object>> cancelList(HashMap<String, Object> params);
 	
-	
+	//스터디게시판 필터
+	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params);
 	
 }

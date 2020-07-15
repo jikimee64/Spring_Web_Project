@@ -166,6 +166,32 @@
        order by count(b.l_seq) desc
        limit 10
 	</select>
+	
+	<select id="studyBoardFilter" resultType="hashMap">
+		select * from study_board
+		<where>
+			<if test="ingOrDone != null">
+				status= #{ingOrDone}
+			</if>
+			<if test="level != null">
+				 and level = #{level}
+			</if>
+			 <if test="language != null">
+			     and lan_seq = 
+			     <foreach collection="language" item="item" index="index" separator="," open="(" close=")">
+			      	#{language}
+			     </foreach>
+			     
+			</if> 
+			<if test="local != null">
+			     and loc_seq = #{local}
+			</if>
+			<if test="studyContent != null">
+			     and c_seq = #{studyContent}
+			</if>
+		</where>
+	
+	</select>
 
 
 </mapper>

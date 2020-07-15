@@ -324,5 +324,13 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("북마크 삭제 결과 : " + result);
 		return result;
 	}
+	
+	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params){
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		System.out.println("유저정보:" + params);
+		List<HashMap<String, Object>> result = dao.studyBoardFilter(params);
+		/* System.out.println("필터 결과 : " + result); */
+		return result;
+	}
 
 }
