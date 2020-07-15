@@ -176,12 +176,11 @@
 			<if test="level != null">
 				 and level = #{level}
 			</if>
-			 <if test="language != null">
-			     and lan_seq = 
+			 <if test="language.size != 0">
+			     and lan_seq in
 			     <foreach collection="language" item="item" index="index" separator="," open="(" close=")">
-			      	#{language}
+			      	#{item}
 			     </foreach>
-			     
 			</if> 
 			<if test="local != null">
 			     and loc_seq = #{local}
