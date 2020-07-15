@@ -17,8 +17,8 @@
                       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<task:annotation-driven />
-<!-- 	<tx:annotation-driven
-		transaction-manager="transactionManager" /> -->
+ 	<tx:annotation-driven
+		transaction-manager="transactionManager" /> 
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<context:component-scan
@@ -126,8 +126,8 @@
 		<!-- driverManagerDataSource는 루트컨테이너에 있는거 사용 그럼왜 트랜잭션을 루트에안만들었는가?? 적용할라고 
 			하는 빈객체가 servlet-context.xml에 있기 때문에 여기에 사용 -->
 	</bean>
-	<tx:annotation-driven
-		transaction-manager="transactionManager" />
+<!-- 	<tx:annotation-driven
+		transaction-manager="transactionManager" /> -->
 
 
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
