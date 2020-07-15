@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.page.PageMaker_Board;
+import kr.or.ns.service.BoardService;
 import kr.or.ns.service.BoardServiceImpl;
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
@@ -40,7 +41,7 @@ study_List 목록뿌리기 작업
 public class BoardController {
 
 	@Autowired
-	private BoardServiceImpl service;
+	private BoardService service;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
