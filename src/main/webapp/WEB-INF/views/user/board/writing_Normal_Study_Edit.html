@@ -9,15 +9,13 @@
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="../../../../resources/assets/vendor/selectbox/css/bootstrap-select.min.css">
+
 
 <link
 	href="../../../../resources/assets/vendor/summernote/summernote-lite.css"
-	rel="stylesheet">
-<link
-	href="../../../../resources/assets/vendor/selectbox/bootstrap-select.css"
 	rel="stylesheet">
 
 <link rel="stylesheet"
@@ -68,19 +66,16 @@
 	opacity: 0.7;
 }
 
-#row > .col-1{
-	margin-right:50px;
-} 
-
+#row>.col-1 {
+	margin-right: 50px;
+}
 </style>
 </head>
 
 <body>
 
 	<div th:replace="/user/includes/header :: header"></div>
-	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-	
-	
+
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -97,16 +92,14 @@
 		</section>
 		<!-- Breadcrumbs Section -->
 	</main>
-	<form class="" id="category">
+	<form action="" method="post" class="updateform" id="updateform" enctype="multipart/form-data" novalidate> 
 		<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 			<!-- <h2>스터디 모집 글 작성하ss기(일반)</h2> -->
 			<!-- <br /> -->
-				<div class="row" id="row">
-					<div class="col-1">
-					
-					
-					
-			<!-- 		<input type="hidden" class="LOC_SEQ" th:id="${study.LOC_SEQ}">
+			<div class="row" id="row">
+				<div class="col-1">
+
+	<!-- 			<input type="hidden" class="LOC_SEQ" th:id="${study.LOC_SEQ}">
 					<input type="hidden" class="LAN_SEQ" th:id="${study.LAN_SEQ}">
 					<input type="hidden" class="S_SEQ" th:id="${study.S_SEQ}">
 					<input type="hidden" class="LIKE_CNT" th:id="${study.LIKE_CNT}">
@@ -125,80 +118,83 @@
 					<input type="hidden" class="FILESRC2" th:id="${study.FILESRC2}">
 					<input type="hidden" class="TITLE" th:id="${study.TITLE}">
 					<input type="hidden" class="CONTENT" th:id="${study.CONTENT}"> -->
-					
-					
-					
-						<select name="" class="selectpicker mb-3" data-style="btn-light" id="lan"
-							style="width: 10%;" data-live-search="true" data-width="120px">
-							<option value="언어" selected>언어</option>
-							<option value="Java">Java</option>
-							<option value="Javascript">Javascript</option>
-							<option value="HTML/CSS">HTML/CSS</option>
-							<option value="Spring">Spring</option>
-							<option value="Python">Python</option>
-							<option value="Vue.js">Vue.js</option>
-							<option value="React">React</option>
-							<option value="JQuery">JQuery</option>
-							<option value="JSP">JSP</option>
-							<option value="Bootstrap">Bootstrap</option>
-							<option value="JPA">JPA</option>
-						</select>
-					</div>
-					<div class="col-1">
-						<select name="" class="selectpicker mb-3" data-style="btn-light"  id="people"
-							style="width: 10%;" data-live-search="true" data-width="120px">
-							<option value="모집인원" selected>모집인원</option>
-							<option value="1">1명</option>
-							<option value="2">2명</option>
-							<option value="3">3명</option>
-							<option value="4">4명</option>
-							<option value="5">5명</option>
-							<option value="6">6명</option>
-							<option value="7">7명</option>
-							<option value="8">8명</option>
-							<option value="9">9명</option>
-							<option value="10">10명</option>
-						</select>
-					</div>
 
-					<div class="col-1">
-						<select name="" class="selectpicker mb-3" data-style="btn-light" id="loc"
-							style="width: 10%;" data-live-search="true" data-width="120px">
-							<option value="지역" selected>지역</option>
-							<option value="온라인">온라인</option>
-							<option value="충청북도">충북</option>
-							<option value="충청남도">충남</option>
-							<option value="경기도">경기도</option>
-							<option value="전라북도">전북</option>
-							<option value="전라남도">전남</option>
-							<option value="경상남도">경남</option>
-							<option value="경상북도">경북</option>
-							<option value="강원도">강원도</option>
-							<option value="세종특별시">세종시</option>
-							<option value="서울특별시">서울시</option>
-							<option value="인천광역시">인천시</option>
-							<option value="제주특별시">제주시</option>
-						</select>
-					</div>
-					<div class="col-1">
-						<select name="" class="selectpicker mb-3" data-style="btn-light" id="level"
-							style="width: 10%;" data-live-search="true" data-width="120px">
-							<option value="난이도" selected>난이도</option>
-							<option value="입문">입문</option>
-							<option value="초급">초급</option>
-							<option value="중급이상">중급이상</option>
-						</select>
-					</div>
-					<div class="col-3">
-						<input style="margin-bottom: 15px; width:164px;" type="text"
-							class="form-control" name="selectend" id="date-time" th:value="${study.DEADLINE}"
-							placeholder="모집마감일" >
-					</div>
-					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
+
+					<select name="lan_seq" class="selectpicker mb-3" id="lan"
+						data-style="btn-light" style="width: 10%;" data-live-search="true"
+						data-width="120px">
+						<option value="언어" selected>언어</option>
+						<option value="1">Java</option>
+						<option value="2">Javascript</option>
+						<option value="3">HTML/CSS</option>
+						<option value="4">Spring</option>
+						<option value="5">Python</option>
+						<option value="6">Vue.js</option>
+						<option value="7">React</option>
+						<option value="8">JQuery</option>
+						<option value="9">JSP</option>
+						<option value="10">Bootstrap</option>
+						<option value="11">JPA</option>
+					</select>
+				</div>
+				<div class="col-1">
+					<select name="people" class="selectpicker mb-3"
+						data-style="btn-light" id="people" style="width: 10%;" data-live-search="true"
+						data-width="120px">
+						<option value="모집인원" selected>모집인원</option>
+						<option value="1">1명</option>
+						<option value="2">2명</option>
+						<option value="3">3명</option>
+						<option value="4">4명</option>
+						<option value="5">5명</option>
+						<option value="6">6명</option>
+						<option value="7">7명</option>
+						<option value="8">8명</option>
+						<option value="9">9명</option>
+						<option value="10">10명</option>
+					</select>
+				</div>
+				<div class="col-1">
+					<select name="loc_seq" class="selectpicker mb-3" id="loc"
+						data-style="btn-light" style="width: 10%;" data-live-search="true"
+						data-width="120px">
+						<option value="지역" selected>지역</option>
+						<option value="1">온라인</option>
+						<option value="2">충북</option>
+						<option value="3">충남</option>
+						<option value="4">경기도</option>
+						<option value="5">전북</option>
+						<option value="6">전남</option>
+						<option value="7">경남</option>
+						<option value="8">경북</option>
+						<option value="9">강원도</option>
+						<option value="10">세종시</option>
+						<option value="11">서울시</option>
+						<option value="12">인천시</option>
+						<option value="13">제주시</option>
+					</select>
+				</div>
+
+				<div class="col-1">
+					<select name="level" id="level" class="selectpicker mb-3 _select_box4"
+						data-style="btn-light" style="width: 10%;" data-live-search="true"
+						data-width="120px">
+						<option value="난이도" selected>난이도</option>
+						<option value="입문">입문</option>
+						<option value="초급">초급</option>
+						<option value="중급이상">중급이상</option>
+					</select>
+				</div>
+				<div class="col-3">
+					<input type="text" style="margin-bottom: 15px; width: 164px;"
+						class="form-control_deadline" name="selectend" id="date-time" th:value="${study.DEADLINE}"
+						placeholder="모집마감일" />
+				</div>
+				<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
 				<option selected>모집마감일</option>
 				<option value="_calendar">달력</option>
 			</select> -->
-				</div>
+			</div>
 		</div>
 
 		<hr style="border-color: rgb(224, 224, 224); width: 95%">
@@ -207,44 +203,27 @@
 		<div class="container" style="margin-bottom: 25px;">
 			<div class="row">
 				<div class="col-md-9">
-						<div class="row">
-							<div class="col-md-12">
-								<br />
-								<div class="form-group">
-									<input type="text" class="form-control" id="usr"
-										name="username" placeholder="글 제목을 입력해주세요" th:value="${study.TITLE}">
-								</div>
+					<div class="row">
+						<div class="col-md-12">
+							<br />
+							<div class="form-group">
+								<input type="text" class="form-control" id="usr" name="title"
+									placeholder="글 제목을 입력해주세요" th:value="${study.TITLE}">
 							</div>
-
-							<!-- <div class="col-md-5" style="width: 100%; padding-left: 40px;">
-                     <div class="row" style="margin: 0 auto;">
-                        <div class="form-group" style="margin: 0">
-                           <div class="custom-file mb-3">
-                              <input type="file" class="custom-file-input" id="customFile" name="files[0]">
-                              <label class="custom-file-label" for="customFile">Choose file</label>
-                           </div>
-                        </div>
-
-                        <div class="form-group" style="margin: 0">
-                           <div class="custom-file mb-3">
-                              <input type="file" class="custom-file-input" id="customFile" name="files[1]">
-                              <label class="custom-file-label" for="customFile">Choose file</label>
-                           </div>
-                        </div>
-                     </div>
-                  </div> -->
-						</div>
-						<div class="form-group">
-							<textarea id="summernote" name="n_content" class="contentt"></textarea>
-							<!-- <textarea name="" id="" cols="30" rows="10" class="form-control"
+						</div>		
+					</div>
+					<div class="form-group">
+						<textarea id="summernote" name="content" class="content"
+							th:text="${study.CONTENT}"></textarea>
+						<!-- <textarea name="" id="" cols="30" rows="10" class="form-control"
                      placeholder="글 내용을 입력해주세요"></textarea> -->
-							<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
+						<!-- textarea가 form으로 데이터를 넘겨줄수 있는지는 모르겟음
                   나중에 썸머노트로 바꿔야할듯 -->
-						</div>
-						<div style="text-align: center;">
-							<button type="submit" class="btn btn-primary"
-								style="width: 15%; background-color: #18d26e; border-color: #18d26e;">작성</button>
-						</div>
+					</div>
+					<div style="text-align: center;">
+						<button type="submit" class="btn btn-primary"
+							style="width: 15%; background-color: #18d26e; border-color: #18d26e;">작성</button>
+					</div>
 				</div>
 
 				<div class="col-md-3" style="margin-top: 24px;">
@@ -252,12 +231,17 @@
                style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
                디폴트이미지 3개 중 하나 출력하거나 아니면 이미지 선택 (이건아직 안함) -->
 					<div class="form-group" style="margin: 0">
-						<img id="preview" src="/studyboard/upload/호랭이.jpg" alt="썸네일"
-							style="margin-bottom: 15px; width: 280px; height: 200px;">
+						<th:block th:switch="${study.CONTENT_KIND}">
+							<img th:case="온라인강의" th:src="${study.IMAGE}" alt='이미지가 없습니다'
+								style='height: 140px; width: 140px;'>
+							<img th:case="일반"
+								th:src="'/studyboard/upload/' + ${study.IMAGE}"
+								alt='이미지가 없습니다' style='height: 140px; width: 140px;'>
+						</th:block>
 						<div class="filebox"
-							style="text-align: center; margin-left: 22px; ">
+							style="text-align: center; margin-left: 22px;">
 							<label for="ex_file">썸네일 업로드</label> <input name="files[0]"
-								type="file" id="ex_file" style="width:100%;">
+								type="file" id="ex_file" style="width: 100%;">
 						</div>
 						<!-- <div class="custom-file mb-3" style="width:280px;">
                                  <input type="file" class="custom-file-input" name="files[0]" id="Thum">
@@ -268,16 +252,18 @@
 					<div class="form-group" style="margin: 0">
 						<div class="custom-file mb-3" style="width: 280px;">
 							<input type="file" class="custom-file-input" id="customFile"
-								name="files[1]" > <label class="custom-file-label" id="pname"
-								for="customFile">Choose file1</label>
+								name="files[1]" > <label
+								class="custom-file-label" id="pname" for="customFile"
+							th:text="${study.FILESRC}"></label>
 						</div>
 					</div>
 
 					<div class="form-group" style="margin: 0">
 						<div class="custom-file mb-3" style="width: 280px;">
 							<input type="file" class="custom-file-input" id="customFile"
-								name="files[2]"> <label class="custom-file-label" id="pname2"
-								for="customFile">Choose file2</label>
+								name="files[2]"> <label
+								class="custom-file-label" id="pname2" for="customFile"
+								th:text="${study.FILESRC2}"></label>
 						</div>
 					</div>
 
@@ -334,7 +320,7 @@
 
 	<script>
 		$(document).ready(function() {
-			
+
 			//글내용 
 			$('#summernote').summernote({
 				tabsize : 2,
@@ -349,54 +335,48 @@
 					$(this).remove();
 				}
 			});
-			
+
 			//파일명			
 			$('#pname').html($('.FILESRC').attr('id'));
 			$('#pname2').html($('.FILESRC2').attr('id'));
-			
-			
+
 			//select 태그 옵션에 selected 주기////////////////////////////////
-			
+
 			//언어선택
 			var cateLan = $('.CATE_LANGUAGE').attr('id');
 			$('select[id="lan"]').val(cateLan);
-			
+
 			//모집인원
 			var catepeo = $('.PEOPLE').attr('id');
 			$('select[id="people"]').val(catepeo);
-			
+
 			//지역
 			var cateloc = $('.LOC').attr('id');
 			$('select[id="loc"]').val(cateloc);
-			
+
 			//level
 			var catelev = $('.LEVEL').attr('id');
 			$('select[id="level"]').val(catelev);
+
+			/* var lanList = $('#lan').children();
+			console.log(lanList);
 			
 			
-					/* var lanList = $('#lan').children();
-					console.log(lanList);
+			//배열 출력
+			var vallist = new Array;
+			for(var i=0 ; i<lanList.length ; i++){ 
+			    vallist[i] = lanList[i].value;
+				console.log(lanList[i].value);
+			}
 			
-			
-					//배열 출력
-					var vallist = new Array;
-					for(var i=0 ; i<lanList.length ; i++){ 
-					    vallist[i] = lanList[i].value;
-						console.log(lanList[i].value);
-					}
-					
-					var isExist = false;
-					for(var i = 0 ; i<vallist.length ; i++){
-					    if(vallist[i] === cateLan ){
-					        isExist = true;
-					        console.log(vallist[i])
-					    }
-					} */
-	
-			
-			
-			
-			
+			var isExist = false;
+			for(var i = 0 ; i<vallist.length ; i++){
+			    if(vallist[i] === cateLan ){
+			        isExist = true;
+			        console.log(vallist[i])
+			    }
+			} */
+
 		});
 	</script>
 
@@ -430,14 +410,14 @@
 			};
 		};
 	</script>
-	
+
 	<script>
 		$(function() {
-			$("#category").submit(function(e) {
+			$("#updateform").submit(function(e) {
 				var formData = new FormData(this);
-				console.log("데이터 : " + formData)
+				console.log("데이ㄴㅁㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇㅇ아아앙바보터 : " + formData)
 				$.ajax({
-					url :"/board/writing_Normal_Study_Edit.do",
+					url : "/board/writing_Normal_Study_Edit.do",
 					processData : false,
 					contentType : false,
 					cache : false,
@@ -450,6 +430,63 @@
 					}
 				})
 			})
+		});
+	</script>
+	
+	<script>
+		$(function() {
+			$('._submit').click(function(evt) {
+						evt.preventDefault();
+						var selectBox1 = $('.selectpicker option:selected').eq(
+								0).val();
+						var selectBox2 = $('.selectpicker option:selected').eq(
+								1).val();
+						console.log(selectBox2)
+						var selectBox3 = $('.selectpicker option:selected').eq(
+								2).val();
+						var selectBox4 = $('.selectpicker option:selected').eq(
+								3).val();
+						var selectBox5 = $('._deadline').val();
+						var selectBox6 = $('#usr').val();
+						//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
+
+						var selectAlert = "";
+						if (selectBox1 == "언어" || selectBox2 == "모집인원"
+								|| selectBox3 == "지역" || selectBox4 == "난이도"
+								|| selectBox5 == "") {
+							if (selectBox1 == "언어") {
+								selectAlert += "언어";
+							}
+							if (selectBox2 == "모집인원") {
+								selectAlert += ", 모집인원";
+							}
+							if (selectBox3 == "지역") {
+								selectAlert += ", 지역";
+							}
+							if (selectBox4 == "난이도") {
+								selectAlert += ", 난이도";
+							}
+							if (selectBox5 == "") {
+								selectAlert += ", 날짜";
+							}
+
+							if (selectAlert.substr(0, 1) == ",") {
+								selectAlert = selectAlert.substr(1,
+										selectAlert.length);
+							}
+							swal(selectAlert+"를 선택해주세요","", "error");
+						} else {
+							if (selectBox6 == "") {
+								swal("글 제목을 입력해주세요","", "error");
+							} else {
+								//swal("작성이 완료되었습니다", "", "success");			
+								$('._submit').unbind();
+								$(this).click(); 
+							}
+
+						}
+
+					});
 		});
 	</script>
 
