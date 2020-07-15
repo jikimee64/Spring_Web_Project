@@ -41,6 +41,9 @@ public interface BoardService {
 	//온라인 컨텐츠(스터디 게시판 글 등록)
 	public int studyOnlineReg(Study study, HttpServletRequest request, Principal principal);
 	
+	//일반 컨텐츠(스터디 게시판 글 편집)
+	public int studyNormalEdit(Study study, HttpServletRequest request, Principal principal);
+	
 	//스터디 글 상세보기
 	public Map<String, Object> getStudy(String s_seq);
 	

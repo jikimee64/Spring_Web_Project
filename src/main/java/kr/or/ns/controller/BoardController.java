@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardService;
@@ -100,6 +101,29 @@ public class BoardController {
 		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
 		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
 	}
+	
+	
+	// 일반컨텐츠(스터디 게시판 글 편집)
+	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
+	public String writingNormalStudyEdit(RedirectAttributes redirect, Study study, Principal principal, HttpServletRequest request){
+		System.out.println("일반게시글수정@@");
+		System.out.println("넘어온 데이터22 " + study.toString());
+		
+		try {
+			// 서비스가서 DB에 등록
+			System.out.println("서비스는 잘가냐 ?");
+			service.studyNormalEdit(study, request, principal);
+		} catch (Exception e) {
+			System.out.println("컨트롤러 에러");
+			System.out.println(e.getMessage());
+		}
+		System.out.println("리턴 전ㄴㄴㄴㄴ...");
+		
+		redirect.addAttribute("s_seq", study.getS_seq());    
+		
+		return "redirect:writing_Common_Study_Detail.do";
+	}
+	
 
 	// 온라인컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
@@ -170,11 +194,11 @@ public class BoardController {
 	
 	
 	
-	
-	
 	//상세보기 트랜잭션
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model, Principal principal) {
+		
+		System.out.println("게시판 디테일 페이지 ㅇ입니다.");
 		String user_id = principal.getName();
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
@@ -253,15 +277,7 @@ public class BoardController {
 		return "user/board/writing_Normal_Study_Edit";
 	}
 
-	// 글 수정 로직
-	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit(Study study, Principal principal, HttpServletRequest request){
-		System.out.println("일반게시글수정@@");
-		System.out.println("넘어온 데이터 " + study.toString());
-		
-		
-		return "user/main";
-	}
+
 	
 	//스터디 리스트 페이지 이동
 	@RequestMapping("writing_Normal_Study_Delete.do")
