@@ -169,4 +169,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r_seq = #{r_seq} and s_seq = #{s_seq}
 	</update>
 	
+	<insert id="insertStudyBoardOnline" parameterType="hashmap">
+	    <selectKey resultType="int" keyProperty="s_seq" order="BEFORE">
+        	SELECT MAX(s_seq) FROM study_board        
+    	</selectKey>  
+		insert into study_board_online(s_seq, l_seq)
+		values(#{s_seq}, #{l_seq})
+	</insert>
+	
 </mapper>

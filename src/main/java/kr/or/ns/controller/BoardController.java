@@ -101,7 +101,7 @@ public class BoardController {
 	// 온라인컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
 	public String registerOnline(Study study, Principal principal, HttpServletRequest request) {
-
+	
 		System.out.println("온라인입니다 고갱님^^");
 		System.out.println("넘어온 데이터 " + study.toString());
 
@@ -109,6 +109,7 @@ public class BoardController {
 			// 서비스가서 DB에 등록
 			System.out.println("서비스는 잘가냐 ?");
 			service.studyOnlineReg(study, request, principal);
+			
 		} catch (Exception e) {
 			System.out.println("컨트롤러 에러");
 			System.out.println(e.getMessage());

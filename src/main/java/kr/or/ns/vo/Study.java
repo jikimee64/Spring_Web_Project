@@ -34,6 +34,7 @@ public class Study {
 	//private int selectloc;
 	//private String selectlev;
 	private String selectend;
+	private int l_seq;
 	private List<CommonsMultipartFile> files;
 	
 }
