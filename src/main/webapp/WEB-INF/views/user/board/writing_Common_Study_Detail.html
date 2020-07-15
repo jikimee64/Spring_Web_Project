@@ -309,7 +309,7 @@ keyframes heart-keyframes { 100% {
                                  style="margin: 0"></div>
                               <div th:case="${study.FILESRC}" class="form-group"
                                  style="margin: 0">
-                                 <a href="" style="color: black;"> <i
+                                 <a th:href="@{FileDownload.do(filesrc=${study.FILESRC})}" style="color: black;"> <i
                                     class="fa fa-folder-open" aria-hidden="true"></i> <sapn
                                        class="_file_name1" th:text="${study.FILESRC}"> </span></a>
                               </div>
@@ -328,7 +328,7 @@ keyframes heart-keyframes { 100% {
                                  style="margin: 0"></div>
                               <div th:case="${study.FILESRC2}" class="form-group"
                                  style="margin: 0">
-                                 <a href="" style="color: black;"> <i
+                                 <a th:href="@{FileDownload.do(filesrc=${study.FILESRC2})}" style="color: black;"> <i
                                     class="fa fa-folder-open" aria-hidden="true"></i> <span
                                     class="_file_name2" th:text="${study.FILESRC2}"></span>
                                  </a>
@@ -344,11 +344,7 @@ keyframes heart-keyframes { 100% {
                      style="background-color: #F5F5F5; resize: none;">
                   <th:block></th:block>
                </textarea>
-
-
                   <br />
-
-
                   <div class="row">
                      <div class="col-4" style="text-align: start;">
 
@@ -397,15 +393,20 @@ keyframes heart-keyframes { 100% {
 			                                    style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
 			                             </a>
 		                         </th:block>
-		                          
+		                             <a
+										     th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
 		                              <button id="delete" type="button" class="btn btn-danger"
 		                                 style="height: 30px; padding-top: 3px;">삭제</button>
+		                             </a>
 	                           </span>
                         </th:block>
 
                         <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                           <a
+								th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
                            <button id="delete" type="button" class="btn btn-danger"
                               style="height: 30px; padding-top: 3px;">삭제</button>
+                            </a>
                         </th:block>
 
                         <a href="" data-toggle="modal" data-target="#declationPageModal"
@@ -499,11 +500,11 @@ keyframes heart-keyframes { 100% {
                      <th:block th:switch="${sessionid}">
                         <div th:case="${study.USER_ID}"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
-                           <a
-                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
-                              <button type="button" class="btn btn-warning"
+                           <!-- <a
+                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"> -->
+                              <button type="button" onclick="history.go(-1); return false;" class="btn btn-warning"
                                  style="width: 100%;">목록으로</button>
-                           </a>
+                         <!--   </a> -->
                         </div>
                         <div th:case="*"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
@@ -1121,6 +1122,32 @@ keyframes heart-keyframes { 100% {
  });
  
  </script>
+ 
+ <!-- 게시글 삭제  -->
+ 	<script>
+	$(function() {
+	
+	var m_seq = $('#m_seq').val();
+	var m_seq = $('#m_seq').val();
+	var m_seq = $('#m_seq').val();
+		
+	$('#delete').click(function(){
+		swal({
+			  title: "쪽지를 삭제 하시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+				  location.href="/message/deleteMessageOneFrom.do?m_seq="+m_seq
+			  } 
+			
+			});
+		})
+	});
+	
+	</script>
 </body>
 
 
