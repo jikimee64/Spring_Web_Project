@@ -142,7 +142,7 @@ body {
 									<th:block th:case="*">
 										<th:block
 											th:if="${list.ACCEPT_STATUS} == '승인완료' and ${list.ROLE_NAME} == '회원'">
-											<div class="row" th:classappend="|success${list.USER_ID}|"
+											<div class="row" th:classappend="|left${list.USER_ID}|"
 												style="text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;">
 												<div class="col-md-6">
 													<span class="row" th:classappend="|cancel${list.USER_ID}|"
@@ -209,7 +209,7 @@ body {
 									<th:block th:case="*">
 										<th:block
 											th:if="${list.ACCEPT_STATUS} == '승인대기중' and ${list.ROLE_NAME} == '회원'">
-											<div class="row" th:classappend="|success${list.USER_ID}|"
+											<div class="row" th:classappend="|right${list.USER_ID}|"
 												style="text-align: center; margin-bottom: 10px; width: 100%"
 												>
 												<div class="col-md-6">
@@ -274,7 +274,8 @@ body {
 								console.log('ss!!s')
 								console.log(data[0].USER_ID);
 								//승인누른거 지우기
-								$('.success' + user_id).remove();
+								console.log('지워줘라!!' + user_id)
+								$('.right' + user_id).remove();
 								$('#success').empty();
 
 								$
@@ -300,7 +301,7 @@ body {
 															html += "<div class='col-md-6' id='doing_study_col'>이미지";
 															html += "</div></div>";
 														} else {
-															html += "<div class='row' id='cancel"+data[index].USER_ID+"' style='text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;'>"
+															html += "<div class='row left"+data[index].USER_ID+"' id='cancel"+data[index].USER_ID+"' style='text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;'>"
 															html += "<div class='col-md-6'>"
 															
 															/* html += "<span class='col' id='doing_study_col'>" */
@@ -347,7 +348,7 @@ body {
 					success : function(data) {
 						console.log("단단히 꼬였네" + data);
 						//승인누른거 지우기
-						$('.' + user_id).remove();
+						$('.right' + user_id).remove();
 
 					},
 					error : function(e) {
@@ -381,7 +382,7 @@ body {
 								console.log(data);
 
 								//승인누른거 지우기
-								$('#cancel'+user_id).remove();
+								$('.left'+user_id).remove();
 								$('#wait').empty();
 
 								$
@@ -403,10 +404,11 @@ body {
 																	html+= "<div></div>";*/
 													if (data[index].ACCEPT_STATUS === '승인대기중' && data[index].ROLE_NAME === '회원') {
 
+														
 												/* 		html += "<div id='wait'>"; */
-														html += "<div class='row' "
+														html += "<div class='row right"
 																+ data[index].USER_ID
-																+ " style='text-align: center; margin-bottom: 10px; width: 100%'>";
+																+"' style='text-align: center; margin-bottom: 10px; width: 100%'>";
 														html += "<div class='col-md-6'>";
 														html += "<span class='row' id='doing_study_row'>";
 														html += "<span class='col' id='doing_study_col' style='font-size: x-large'>";
@@ -415,22 +417,21 @@ body {
 																+ "</p></span></span>";
 														html += "</div>"
 														
-														/* 하하하  */
 														html += "<div class='col-md-6'>";
 
-														html += '<button type="button" onclick=accept("'
+														html += '<button type="button" style="margin-right:4px;" onclick=accept("'
 																+ data[index].USER_ID
 																+ '","'
 																+ data[index].S_SEQ
 																+ '") "id="approval" class="btn btn-success btn" id="button_approval">';
 														html += "<span style='font-size: smaller;'>승인</span></button>";
 														html += '<button type="button" onclick=reject("'
-																+ data[index].user_ID
-																+ '", "'
+																+ data[index].USER_ID
+																+ '","'
 																+ data[index].S_SEQ
 																+ '") "id="reject" class="btn btn-danger btn" style="line-height: normal;">';
 														html += "<span style='font-size: smaller;'>거절</span></button></div>";
-														html += "</div></div>";
+														html += "</div>";
 
 													}
 													if (host === id) {
