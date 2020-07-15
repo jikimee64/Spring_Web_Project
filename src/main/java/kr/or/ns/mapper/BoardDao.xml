@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getReplyCnt" resultType="Integer">
 		select count(*) 
 		from comment
-		WHERE s_seq=#{S_SEQ}
+		WHERE s_seq=#{S_SEQ} and r_exists = 'Y'
 	</select>
 	
 	<delete id="delete">

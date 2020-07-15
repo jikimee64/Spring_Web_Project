@@ -173,6 +173,7 @@ public class LectureController {
 		System.out.println("l_seq : " + l_seq);
 		HashMap<String, Object> map = service.getLecture(l_seq);
 		model.addAttribute("lecture", map);
+		System.out.println("북마크->강의전용페이지" + map);
 		
 		return "user/board/writing_Course_Study";
 	}

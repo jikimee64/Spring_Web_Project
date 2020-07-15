@@ -1,5 +1,6 @@
 package kr.or.ns.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
@@ -7,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardService;
@@ -170,10 +173,8 @@ public class BoardController {
 	
 	
 	//상세보기 트랜잭션
-	
 	@RequestMapping("writing_Common_Study_Detail.do")
-	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
-			Principal principal) {
+	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model, Principal principal) {
 		String user_id = principal.getName();
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
@@ -184,8 +185,6 @@ public class BoardController {
 		
 		//트랜잭션 처리
 		try {
-			
-			
 			Map<String, Object> study = service.getStudy(s_seq);
 			model.addAttribute("study", study); 
 			model.addAttribute("page", page);
@@ -214,6 +213,33 @@ public class BoardController {
 	}
 	
 	
+//	파일 다운로드 
+	@RequestMapping("FileDownload.do")
+	public ModelAndView FileDownload(String s_seq, HttpServletRequest request, Model model){
+		
+		//글번호로 해당 객체의 파일 전체 경로값을 받은 후
+		Map<String, Object> study = service.getStudy(s_seq);
+//		Study study = (Study) service.getStudy(s_seq);
+		String filePath = request.getSession().getServletContext().getRealPath("/studyboard/upload/");
+		
+		System.out.println("으악:"+study.toString());
+		
+		File downloadFile = null;
+		String ss = (String) study.get("FILESRC");
+		System.out.println(ss);
+
+				
+		downloadFile = new File(filePath + study.get("FILESRC"));
+//		downloadFile = new File(filePath + study.get("FILESRC2"));
+		
+		
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("FileDownload"); // 뷰의 이름
+		mv.addObject("downloadFile", downloadFile); // 뷰로 보낼 데이터 값
+
+		return mv;
+	}
 	
 
 	// 글 수정 페이지 이동
@@ -229,11 +255,12 @@ public class BoardController {
 
 	// 글 수정 로직
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit(@RequestParam(value = "file", required = false) MultipartFile ipload, Users user,
-			HttpServletRequest request, Model model, Principal principal) {
-		System.out.println("본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
+	public String writingNormalStudyEdit(Study study, Principal principal, HttpServletRequest request){
+		System.out.println("일반게시글수정@@");
+		System.out.println("넘어온 데이터 " + study.toString());
 		
-		return "user/board/writing_Normal_Study_Edit";
+		
+		return "user/main";
 	}
 	
 	//스터디 리스트 페이지 이동
