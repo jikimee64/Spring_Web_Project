@@ -194,4 +194,10 @@
 	</select>
 
 
+	<!-- 마이페이지 내가 쓴 댓글 리스트 -->
+	<select id="commentList" resultType="hashMap">
+		select * from comment where r_name= #{r_name}
+		order by r_seq desc
+	</select>
+
 </mapper>

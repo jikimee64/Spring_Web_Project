@@ -179,4 +179,11 @@ public class MyPageController {
 
 	}
 
+	
+	
+//	이건 지워야됨
+		@RequestMapping(value = "mypage_Mycomment.do")
+		public String MycommentPage() {
+		return "user/mypage/mypage_Mycomment.html";
+	}
 }

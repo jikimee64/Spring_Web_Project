@@ -296,6 +296,15 @@ public class AjaxRestController {
 		return list;
 	}
 	
-	
+	// 마이페이지 내가쓴 댓글 비동기
+		@RequestMapping(value = "commentList.do", method = RequestMethod.POST)
+		List<HashMap<String, Object>> commentList(@RequestBody HashMap<String, Object> params) {
+			System.out.println(params + " : 댓글리스트  컨트롤러");
+			List<HashMap<String, Object>> list = null;
+
+			list = service.commentList(params);
+			return list;
+
+		}
 
 }

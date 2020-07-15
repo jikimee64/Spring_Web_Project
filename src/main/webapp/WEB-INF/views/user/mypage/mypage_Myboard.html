@@ -84,6 +84,10 @@ body {
 	background-color: #18d26e;
 	border-color: #18d26e;
 }
+
+#_board_button1, #_board_button2 {
+	border: none;
+}
 </style>
 </head>
 
@@ -119,50 +123,81 @@ body {
 			<div class="row">
 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 				<button type="button" class="btn btn-success"
-					style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
+					style="background-color: #13CC61; border-radius: 15px 15px 0px 0px;"
 					id="_board_button1">
 					<b style="font-size: large;"> 게시글</b>
 				</button>
 				<button type="button" class="btn btn-success"
-					style="background-color: #18d26e; border-radius: 15px 15px 0px 0px;"
+					style="background-color: #86F0B4; border-radius: 15px 15px 0px 0px;"
 					id="_board_button2">
 					<b style="font-size: large;"> &nbsp; 댓글 &nbsp; </b>
 				</button>
 			</div>
 
-			
+
 			<!-- 글번호 -->
 			<hr
-				style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 96%;" />
-			<div id="recruting_study" style="overflow-y: auto;overflow-x: hidden;height: 854px;">
-			
-				<div class="row" style="padding: 30px; padding-bottom: 10px;">
-					<div class="col-md-12">
-						<!-- 스터디 종류 -->
-						<span class="badge badge-pill badge-warning">일반스터디</span>
-						<!-- 날짜 -->
-						<span class="badge badge-pill badge-warning">날짜</span>
-						<!-- 작성자 이름 넣어도 되고 안넣어도 될듯 -->
-						<span class="badge badge-pill badge-warning">작성자</span>
-						<!-- 모집중인지 모집완료인지 -->
-						<span class="badge badge-pill badge-warning">모집상태</span>
-					</div>
-				</div>
-				<div class="row" style="margin-left: 45px;">
-					<div class="col-md-8">
-						<a href="">
-							<h3 style="margin-top: 0;">[강남] 쇼핑몰 프로젝트 같이 하실분들 모집합니다</h3> <span
-							style="color: #888888"> html, css, js를 몇번 써보신분, java의 MVC
-								패턴을 사용해보신 분 포트폴리오 작업용으로 같이 프로젝트 하실분들 모집합니다 </span>
-						</a>
+				style='border: solid 1px; margin-top: 0px; margin-bottom: 0px; width: 96%;' />
+			<div id="recruting_study"
+				style="overflow-y: auto; overflow-x: hidden; height: 854px;">
+				<div class="row" style="margin: 0">
 
+					<div class="col-md-2"
+						style="place-self: flex-end; text-align: center; padding-right: 64px;">
+						<p style='font-size: x-large; font-weight: bold; margin: 0;'>1</p>
 					</div>
-					<div class="col-md-3" style="text-align: right;">
-						<img
-							src="https://cdn.inflearn.com/wp-content/uploads/springboot-1-2-1.jpg"
-							alt="" style="width: 180px; height: 180px;">
+
+
+					<div class="col-md-5"
+						style="place-self: center; text-align: center;">
+						<span style="font-size: large;"> 혹시 자리 있나요? 모집 끝났나요? </span>
+						&nbsp; <span style="font-size: large; color: red"> <b>[2]</b>
+						</span>
 					</div>
+					<div class="col-md-3"
+						style="align-self: center; text-align: center;">
+						<a href="" style="color: black;"> <span
+							style="font-size: larger;"> 원문 보기 ▶ </span>
+						</a>
+					</div>
+					<div class="col-md-2"
+						style="align-self: center; text-align: center;">
+						<span style="font-size: larger;"> 2020.05.20 </span>
+					</div>
+					<hr
+						style='border: solid 1px; margin-top: 0px; margin-bottom: 0px; width: 96%;' />
 				</div>
+
+
+				<div class="row" style="margin: 0">
+
+					<div class="col-md-2"
+						style="place-self: flex-end; text-align: center; padding-right: 64px;">
+						<p style='font-size: x-large; font-weight: bold; margin: 0;'>1</p>
+					</div>
+
+
+					<div class="col-md-5"
+						style="place-self: center; text-align: center;">
+						<span style="font-size: large;"> 혹시 자리 있나요? 모집 끝났나요? </span>
+						&nbsp; <span style="font-size: large; color: red"> <b>[2]</b>
+						</span>
+					</div>
+					<div class="col-md-3"
+						style="align-self: center; text-align: center;">
+						<a href="" style="color: black;"> <span
+							style="font-size: larger;"> 원문 보기 ▶ </span>
+						</a>
+					</div>
+					<div class="col-md-2"
+						style="align-self: center; text-align: center;">
+						<span style="font-size: larger;"> 2020.05.20 </span>
+					</div>
+					<hr
+						style='border: solid 1px; margin-top: 0px; margin-bottom: 0px; width: 96%;' />
+				</div>
+
+
 			</div>
 			<!-- 이건 페이징 버튼 시작 -->
 
@@ -209,7 +244,107 @@ body {
 				"user_id" : user_id
 			}
 
-			// 내가 쓴  게시글 ajax 뿌ㄹ주기
+			/* 페이지 로딩시 내가 쓴 게시글 ajax 뿌려주기 */
+						$.ajax({
+							url : '/ajax/recrutingStudy.do',
+							processData : false,
+							contentType : "application/json",
+							cache : false,
+							type : 'POST',
+							data : JSON.stringify(data),
+							success : function(data) {
+								$('#recruting_study').empty();
+									$.each(
+												data,
+												function(index,
+														item) {
+													console
+															.log(item.S_SEQ);
+													/*  제목이랑 내용 문자열 자르기 시작 */
+													if (data[index].TITLE.length > 18) {
+														data[index].TITLE = data[index].TITLE
+																.substr(
+																		0,
+																		18)
+																+ "...";
+													}
+													if (data[index].CONTENT.length > 335) {
+														data[index].CONTENT = data[index].CONTENT
+																.substr(
+																		0,
+																		335)
+																+ "...";
+													}
+													/*  제목이랑 내용 문자열 자르기 끝  */
+													let html = "";
+													html += "<div>";
+													html += "<div class='row p-4'>";
+													html += "<div class='col-md-1' style='text-align: center;'>";
+													html += "<p style='font-size: xx-large; font-weight: bold;'>"
+															+ data[index].S_SEQ
+															+ "</p></div>";
+													html += "<div class='col-md-8'>";
+													html += "<span class='badge badge-pill badge-primary'>"
+															+ data[index].STATUS
+															+ "</span>";
+													html += "<span class='badge badge-pill badge-info'>"
+															+ data[index].LEVEL
+															+ "</span>";
+													html += "<span class='badge badge-pill badge-secondary'>"
+															+ data[index].CATE_LANGUAGE
+															+ "</span>";
+													html += "<span class='badge badge-pill badge-warning'>"
+															+ data[index].PEOPLE
+															+ "명</span>";
+													html += "<span class='badge badge-pill badge-warning'>"
+															+ data[index].LOC
+															+ "</span>"
+													html += "<span class='badge badge-pill badge-light'>"
+															+ data[index].CONTENT_KIND
+															+ "</span>";
+													html += "<span class='badge badge-pill badge-light'>"
+															+ data[index].ACCEPT_STATUS
+															+ "</span>";
+													html += "<a class='_message_hover' href='/mypage/SupportStatus.do?s_seq="
+															+ data[index].S_SEQ
+															+ "'>";
+													/* html += "<a href = '/board/board.Support_Status.do'>"; */
+													html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
+													html += "<a href = '/board/board.Suppor11t_Status.do'>";
+													/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
+													html += "<b><span style='font-size:xx-large;'>"
+															+ data[index].TITLE
+															+ "</span></b><br/></a>";
+													html += "<span>"
+															+ data[index].CONTENT
+															+ "</span><br />";
+													html += "</div>";
+													html += "<div class='col-md-3' style='text-align: right;'>";
+													if (data[index].CONTENT_KIND === '온라인강의') {
+														html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>"
+													} else {
+														html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>"
+													}
+													/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
+													html += "</div>";
+													html += "</div>"
+													html += "</div>";
+													html += "</div>";
+													html += "<hr style='border: solid 1px; margin-top: 0px; width:96%;' />";
+													$(
+															'#recruting_study')
+															.append(
+																	html);
+												});
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
+						});
+			/* 페이지 로딩시 내가 쓴 게시글 ajax 뿌려주기 끝 */
+
+			/* 버튼 클릭시 내가 쓴 게시글 ajax 뿌려주기 시작 */
+
 			$('#_board_button1')
 					.on(
 							"click",
@@ -333,6 +468,134 @@ body {
 										});
 
 							});
+			/* 버튼 클릭시 내가 쓴 게시글 ajax 뿌려주기 끝 */
+
+			/* 댓글 ajax 뿌려주기 시작 */
+			$('#_board_button2').on("click", function() {
+				console.log("유저아이디(모집중): " + user_id);
+				$.ajax({
+					url : '/ajax/commentList.do',
+					processData : false,
+					contentType : "application/json",
+					cache : false,
+					type : 'POST',
+					data : JSON.stringify(data),
+					success : function(data) {
+
+						$('#recruting_study').empty();
+
+						/* 				let recruting_people = data[0].PEOPLE;
+										let recruting_num = data[0].S_SEQ;
+										console.log("신청자수 " + recruting_people);
+										let recruting_deadline = data[0].DEDLINE;
+										let recruting_image = data[0].IMAGE;
+										let recruting_title = data[0].TITLE;
+										let recruting_content = data[0].CONTENT;
+						 */
+
+						$.each(data, function(index, item) {
+							console.log(item.S_SEQ);
+
+							/*  제목이랑 내용 문자열 자르기 시작 */
+							/* 		if (data[index].TITLE.length > 18) {
+										data[index].TITLE = data[index].TITLE
+												.substr(
+														0,
+														18)
+												+ "...";
+									}
+
+									if (data[index].CONTENT.length > 335) {
+										data[index].CONTENT = data[index].CONTENT
+												.substr(
+														0,
+														335)
+												+ "...";
+
+									} */
+							/*  제목이랑 내용 문자열 자르기 끝  */
+						
+							var d = new Date(data[index].R_DATE);
+							let html = "";
+
+							html += '<div class="row" style="margin: 0">';
+							html += '<div class="col-md-2"style="place-self: flex-end; text-align: center; padding-right: 64px;">';
+											
+							html += '<p style="font-size: x-large; font-weight: bold; margin: 0;">';
+							html += data[index].R_SEQ;
+							html += '</p>';
+							html += '</div>';
+							html += '<div class="col-md-5" style="place-self: center; text-align: center;">';
+							html += '<span style="font-size: large;">';
+							html += data[index].R_CONTENT;
+							html += '</span>';
+							html += '&nbsp; <span style="font-size: large; color: red">';
+								
+							html += '<b>';
+							html += '[2]';
+							html += '</span>';
+							html += '</div>';
+							html += '<div class="col-md-3" style="align-self: center; text-align: center;">';
+							html += '<a href="" style="color: black;"> <span style="font-size: larger;">';
+							html += '원문 보기 ▶';
+							html += '</span></a></div>';
+							html += '<div class="col-md-2" style="align-self: center; text-align: center;">';
+							html += '<span style="font-size: larger;">';
+							html += d.toLocaleDateString();
+							html += '</span></div>';
+							html += '<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 0px; width: 96%;" />';
+							html += '</div>';
+// 																						html += "<div class='row p-4'>";
+// 																						html += "<div class='col-md-1' style='text-align: center;'>";
+// 																						html += "<p style='font-size: xx-large; font-weight: bold;'>"
+// 																								+ data[index].S_SEQ
+// 																								+ "</p></div>";
+// 																						html += "<div class='col-md-8'>";
+// 																						html += "<span class='badge badge-pill badge-primary'>"
+// 																								+ data[index].R_SEQ
+// 																								+ "</span>";
+// 																						html += "<span class='badge badge-pill badge-info'>"
+// 																								+ data[index].R_CONTENT
+// 																								+ "</span>";
+// 																						html += "<span class='badge badge-pill badge-secondary'>"
+// 																								+ data[index].R_NAME
+// 																								+ "</span>";
+// 																						html += "<span class='badge badge-pill badge-warning'>"
+// 																								+ data[index].R_DATE
+// 																								+ "명</span>";
+// 																						html += "<span class='badge badge-pill badge-warning'>"
+// 																								+ data[index].R_REFER
+// 																								+ "</span>"
+// 																						/* html += "<a href = '/board/board.Support_Status.do'>"; */
+// 																						html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
+// 																						html += "<a href = '/board/board.Suppor11t_Status.do'>";
+// 																						/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
+// 																						html += "<b><span style='font-size:xx-large;'>"
+// 																								+ data[index].R_REFER
+// 																								+ "</span></b><br/></a>";
+// 																						html += "<span>"
+// 																								+ data[index].R_REFER
+// 																								+ "</span><br />";
+// 																						html += "</div>";
+// 																						html += "<div class='col-md-3' style='text-align: right;'>";
+
+// 																						/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
+// 																						html += "</div>";
+// 																						html += "</div>"
+// 																						html += "</div>";
+// 																						html += "</div>";
+// 																						html += "<hr style='border: solid 1px; margin-top: 0px; width:96%;' />";
+							$('#recruting_study').append(html);
+						});
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+
+				});
+
+			});
+			/* 댓글 ajax 뿌려주기 끝 */
 
 		});
 	</script>
