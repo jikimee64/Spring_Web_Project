@@ -14,7 +14,21 @@
 	</select>
 
 
-
+	<update id="studyOnlineEdit">
+		update study_board
+		set loc_seq = #{loc_seq},
+		lan_seq = #{lan_seq},
+		people = #{people},
+		deadline = now(),
+		title = #{title},
+		content = #{content},
+		level = #{level},
+		image = #{image},
+		filesrc = #{filesrc},
+		filesrc2 = #{filesrc2}
+		where s_seq = #{s_seq}
+	</update>
+	
 	<!-- 강의 리스트 -->
 	<select id="getLectureList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria">
 	   <![CDATA[

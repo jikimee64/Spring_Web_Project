@@ -480,18 +480,19 @@ keyframes heart-keyframes { 100% {
                         </div>
 
                         <div th:case="온라인강의" class="card" style="width: 100%">
-                           <img class="card-img-top" th:src="${study.IMAGE}"
-                              alt="Card image" style="width: 100%">
-                           <div class="card-body">
-                              <h6 class="card-title _margin_0">Do it! Node.js
-                                 프로그래밍(개정판)</h6>
-                              <p class="card-text _margin_0"
-                                 style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-                              <a href="/board/writing_Course_Study_Detail.do"
-                                 class="stretched-link"></a> <img
-                                 src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-                                 alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
-                           </div>
+                        	<th:block th:if="${onlineInfo != null}">
+		                           <img class="card-img-top" th:src="${study.IMAGE}"
+		                              alt="Card image" style="width: 100%">
+		                           <div class="card-body">
+		                              <h6 class="card-title _margin_0" th:text="${onlineInfo.L_TITLE}"></h6>
+		                              <p class="card-text _margin_0" th:text="${onlineInfo.L_WRITER}"
+		                                 style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+		                              <a href="/board/writing_Course_Study_Detail.do"
+		                                 class="stretched-link"></a> <img
+		                                 src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+		                                 alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+		                           </div>
+	                         <th:block>
                         </div>
                      </th:block>
 
@@ -500,11 +501,11 @@ keyframes heart-keyframes { 100% {
                      <th:block th:switch="${sessionid}">
                         <div th:case="${study.USER_ID}"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
-                           <!-- <a
-                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"> -->
-                              <button type="button" onclick="history.go(-1); return false;" class="btn btn-warning"
+                            <a
+                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"> 
+                              <button type="button" class="btn btn-warning"
                                  style="width: 100%;">목록으로</button>
-                         <!--   </a> -->
+                            </a> 
                         </div>
                         <div th:case="*"
                            style="text-align: center; margin: 10px 0px 10px 0px;">

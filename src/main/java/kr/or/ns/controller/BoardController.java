@@ -22,6 +22,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -64,10 +65,17 @@ public class BoardController {
 
 		pageMakerb.setTotalCount(service.getStudyBoardCount());
 
+		//study_board_online에있는 모든정보도 보내야하나?
+		
+		 List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
+		 
+		System.out.println("우초리로로리" + onlineInfo);
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
+		System.out.println("어ㅏ으 : " + list);
 		model.addAttribute("list", list); // view까지 전달(forward)
+		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
 
 		return "user/board/study_List"; // study_List.html
@@ -165,11 +173,11 @@ public class BoardController {
 	}
 	
 	
-	//상세보기 트랜잭션
+	//상세보기
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model, Principal principal) {
 		
-		System.out.println("게시판 디테일 페이지 ㅇ입니다.");
+		System.out.println("게시판 디테일 페이지 입니다.");
 		String user_id = principal.getName();
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
@@ -178,10 +186,14 @@ public class BoardController {
 		int heart = service.heartnum(like);
 				
 		
-		//트랜잭션 처리
 		try {
 			Map<String, Object> study = service.getStudy(s_seq);
+			Map<String, Object> onlineInfo = service.onlineDetailInfo(s_seq);
+			
+			System.out.println("onlineinfo : " + onlineInfo);
+			
 			model.addAttribute("study", study); 
+			model.addAttribute("onlineInfo", onlineInfo); 
 			model.addAttribute("page", page);
 			model.addAttribute("perPageNum", perPageNum);
 			
@@ -191,7 +203,6 @@ public class BoardController {
 			model.addAttribute("sessionid", user_id);
 			model.addAttribute("heart", heart);
 			model.addAttribute("commentList", commentList);
-			System.out.println("우철이는 : " + commentList);
 			System.out.println("목록 -> 일반 ************: " + study);
 
 			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");

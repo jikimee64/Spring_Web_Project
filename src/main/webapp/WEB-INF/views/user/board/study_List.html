@@ -390,21 +390,25 @@ group+group {
 							</div>
 						</div>
 						<div th:case="온라인강의" class="col-md-3">
-							<div class="card" style="width: 100%">
-								<img class="card-img-top" th:src="${list.IMAGE}"
-									alt="Card image" style="width: 100%;">
-								<div class="card-body">
-									<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-									<p class="card-text _margin_0"
-										style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-									<a href="/board/writing_Course_Study_Detail.do"
-										class="stretched-link"></a>
-									<!-- 별 다섯개 이미지  -->
-									<img
-										src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-										alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
-								</div>
-							</div>
+							<th:block th:each="list2 : ${onlineInfo}">
+								 <th:block th:switch="${list2.S_SEQ}">
+									<div th:case="${list.S_SEQ}" class="card" style="width: 100%">
+										<img class="card-img-top" th:src="${list.IMAGE}"
+											alt="Card image" style="width: 100%;">
+										<div class="card-body">
+											<h6 th:text="${list2.L_TITLE}" class="card-title _margin_0"></h6>
+											<p class="card-text _margin_0" th:text="${list2.L_WRITER}"
+												style="color: gray; font-size: small;"></p>
+											<a href="/board/writing_Course_Study_Detail.do"
+												class="stretched-link"></a>
+											<!-- 별 다섯개 이미지  -->
+											<img
+												src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+												alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+										</div>
+									</div>
+								</th:block>
+							</th:block>
 						</div>
 					</th:block>
 
@@ -440,24 +444,10 @@ group+group {
 						</div>
 
 						<div class="row">
-							<!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
-							<!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
-
-							<a
-								th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
+							<a th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
 								<h2 th:text="${list.TITLE}" class="_title"
 									style="margin-top: 20px; padding-left: 34px;"></h2>
 							</a>
-
-							<!-- <th:block th:switch="${list.CONTENT_KIND}">
-							<a th:case="일반" th:href="@{/board/writing_Normal_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
-								<h2 th:text="${list.TITLE}"></h2>
-							</a>
-							<a th:case="온라인강의" th:href="@{/lecture/writing_Course_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
-								<h2 th:text="${list.TITLE}"></h2>
-							</a>
-						</th:block> -->
-							<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 						</div>
 						<div class="row _content"
 							style="margin: 0px 5px 0px 28px; height: 150px;"
