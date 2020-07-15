@@ -310,7 +310,7 @@ body {
 															+ "'>";
 													/* html += "<a href = '/board/board.Support_Status.do'>"; */
 													html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
-													html += "<a href = '/board/board.Suppor11t_Status.do'>";
+													html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
 													/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 													html += "<b><span style='font-size:xx-large;'>"
 															+ data[index].TITLE
@@ -433,7 +433,7 @@ body {
 																			+ "'>";
 																	/* html += "<a href = '/board/board.Support_Status.do'>"; */
 																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
-																	html += "<a href = '/board/board.Suppor11t_Status.do'>";
+																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
 																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 																	html += "<b><span style='font-size:xx-large;'>"
 																			+ data[index].TITLE
@@ -530,13 +530,12 @@ body {
 							html += data[index].R_CONTENT;
 							html += '</span>';
 							html += '&nbsp; <span style="font-size: large; color: red">';
-								
 							html += '<b>';
 							html += '[2]';
 							html += '</span>';
 							html += '</div>';
 							html += '<div class="col-md-3" style="align-self: center; text-align: center;">';
-							html += '<a href="" style="color: black;"> <span style="font-size: larger;">';
+							html += '<a href="/board/my_Writing_Common_Study_Detail.do?s_seq='+data[index].S_SEQ+'" style="color: black;"> <span style="font-size: larger;">';
 							html += '원문 보기 ▶';
 							html += '</span></a></div>';
 							html += '<div class="col-md-2" style="align-self: center; text-align: center;">';

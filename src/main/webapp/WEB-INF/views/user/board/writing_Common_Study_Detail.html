@@ -495,13 +495,13 @@ keyframes heart-keyframes { 100% {
                      </th:block>
 
 
-
+<!-- onclick="history.go(-1); return false;" -->
                      <th:block th:switch="${sessionid}">
                         <div th:case="${study.USER_ID}"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
                            <a
-                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
-                              <button type="button" class="btn btn-warning"
+                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}" class="_to_the_list_a_tag" >
+                              <button type="button" class="btn btn-warning _to_the_list_button"
                                  style="width: 100%;">목록으로</button>
                            </a>
                         </div>
@@ -512,8 +512,8 @@ keyframes heart-keyframes { 100% {
                            <!-- 이거는 사용자 권한 -->
                            <div style="text-align: center; margin: 10px 0px 10px 0px;">
                               <a
-                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
-                                 <button type="button" class="btn btn-warning"
+                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}" class="_to_the_list_a_tag">
+                                 <button type="button" class="btn btn-warning _to_the_list_button" 
                                     style="width: 100%;">목록으로</button>
                               </a>
                            </div>
@@ -1121,6 +1121,27 @@ keyframes heart-keyframes { 100% {
  });
  
  </script>
+
+
+ <script>
+ <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 -->
+ 	$(function(){
+ 		
+ 		
+ 		console.warn(window.location.href.substr(73, 1));
+ 		console.warn($('._to_the_list_a_tag')[0]);
+ 		console.warn($('._to_the_list_button')[0].innerText);
+ 		if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
+ 			$('._to_the_list_a_tag').removeAttr('href');
+ 			
+ 			$('._to_the_list_button')[0].innerText = "마이페이지로";
+ 			$('._to_the_list_a_tag')[0].setAttribute('href', '/mypage/mypage.do');
+ 		}
+ 		
+ 	});
+ 	 <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 ... 끝 -->
+ </script>
+
 </body>
 
 
