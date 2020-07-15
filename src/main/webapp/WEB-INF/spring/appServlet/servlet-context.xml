@@ -23,6 +23,8 @@
 	<context:annotation-config />
 	<context:component-scan
 		base-package="kr.or.ns.controller" />
+		<context:component-scan
+		base-package="kr.or.ns.crawling" />
 	<context:component-scan
 		base-package="kr.or.ns.dao" />
 	<context:component-scan
@@ -32,9 +34,11 @@
 	<context:component-scan
 		base-package="kr.or.ns.util" />
 	<context:component-scan
-		base-package="kr.or.ns.interceptor" />	
+		base-package="kr.or.ns.interceptor" />
 	<context:component-scan
 		base-package="kr.or.ns.export" />
+
+	
 
 
 	<!-- <bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver"> 
@@ -43,14 +47,10 @@
 		/> <property name="suffix" value=".jsp" /> <property name="order" value="0" 
 		/> </bean> -->
 
-<!--  	<bean id="urlBasedViewResolver"
-		class="kr.or.ns.util.CustomViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="viewClass"
-			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="suffix" value=".jsp" />
-		<property name="order" value="0" />
-	</bean>  -->
+	<!-- <bean id="urlBasedViewResolver" class="kr.or.ns.util.CustomViewResolver"> 
+		<property name="prefix" value="/WEB-INF/views/" /> <property name="viewClass" 
+		value="org.springframework.web.servlet.view.JstlView" /> <property name="suffix" 
+		value=".jsp" /> <property name="order" value="0" /> </bean> -->
 
 
 	<!-- 뷰리조버1 -->
@@ -92,10 +92,10 @@
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="0"></property>
 	</bean>
-	
-	<bean id="FileDownload" class="kr.or.ns.util.FileDownload"/>
-	
-	
+
+	<bean id="FileDownload" class="kr.or.ns.util.FileDownload" />
+
+
 
 	<!-- 파일 다운로드할 클래스 경로 설정 -->
 	<!-- <bean id="download" class=""/> -->
