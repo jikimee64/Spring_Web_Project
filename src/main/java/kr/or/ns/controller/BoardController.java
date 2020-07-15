@@ -184,8 +184,6 @@ public class BoardController {
 		
 		//트랜잭션 처리
 		try {
-			
-			
 			Map<String, Object> study = service.getStudy(s_seq);
 			model.addAttribute("study", study); 
 			model.addAttribute("page", page);
@@ -229,11 +227,12 @@ public class BoardController {
 
 	// 글 수정 로직
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit(@RequestParam(value = "file", required = false) MultipartFile ipload, Users user,
-			HttpServletRequest request, Model model, Principal principal) {
-		System.out.println("본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
+	public String writingNormalStudyEdit(Study study, Principal principal, HttpServletRequest request){
+		System.out.println("일반게시글수정@@");
+		System.out.println("넘어온 데이터 " + study.toString());
 		
-		return "user/board/writing_Normal_Study_Edit";
+		
+		return "user/main";
 	}
 	
 	//스터디 리스트 페이지 이동
