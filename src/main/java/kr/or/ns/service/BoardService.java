@@ -76,4 +76,7 @@ public interface BoardService {
 	
 	//대댓글  insert
 	public void reCommentInsert(Comment cm);
+	
+	//부모댓글 refer 가져오기 
+	public int getP_refer(String r_seq);
 }
