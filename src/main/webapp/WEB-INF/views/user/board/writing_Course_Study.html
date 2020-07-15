@@ -79,6 +79,7 @@
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 	
 	<input type="hidden" id="l_image" th:value="${lecture.L_IMAGE}" />
+	<input type="hidden" id="l_seq" th:value="${lecture.L_SEQ}" />
 	
 
 
@@ -210,9 +211,9 @@
 							<img class="card-img-top" th:src="${lecture.L_IMAGE}"
 								alt="Card image" style="width: 100%;">
 							<div class="card-body">
-								<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+								<h6 th:text="${lecture.L_TITLE}" class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
 								<p class="card-text _margin_0"
-									style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+									th:text="${lecture.L_WRITER}"style="color: gray; font-size: small;">이지스 퍼블리싱</p>
 								<a href="#"
 									class="stretched-link"></a>
 								<!-- 별 다섯개 이미지  -->
@@ -313,6 +314,7 @@
 				var formData = new FormData(this);
 				console.log(formData)
 				formData.append('image', $('#l_image').val());
+				formData.append('l_seq', $('#l_seq').val());
 
 				console.log("데이터 : " + formData)
 				$.ajax({
