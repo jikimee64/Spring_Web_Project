@@ -1,39 +1,41 @@
 package kr.or.ns.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.UUID;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.sun.media.jfxmedia.logging.Logger;
+
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardService;
-import kr.or.ns.service.BoardServiceImpl;
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
-import kr.or.ns.vo.Users;
 
 /*
 클래스명 : BoardController
@@ -161,38 +163,6 @@ public class BoardController {
 
 		return "user/board/writing_Normal_Study";
 	}
-
-	
-	//상세보기
-//	@RequestMapping("writing_Common_Study_Detail.do")
-//	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
-//			Principal principal) {
-//		String user_id = principal.getName();
-//		Likes like = new Likes();
-//		like.setS_seq(Integer.parseInt(s_seq));
-//		like.setUser_id(user_id);
-//		//좋아요 0/1 중 뭔지 알아오기
-//		int heart = service.heartnum(like);
-//				
-//		Map<String, Object> study = service.getStudy(s_seq);
-//		model.addAttribute("study", study); 
-//		model.addAttribute("page", page);
-//		model.addAttribute("perPageNum", perPageNum);
-//		
-//		List<Map<String,Object>> commentList = service.getComment(s_seq); 
-//		int count = service.getReplyCnt(s_seq);
-//		model.addAttribute("count", count);
-//		model.addAttribute("sessionid", user_id);
-//		model.addAttribute("heart", heart);
-//		model.addAttribute("commentList", commentList);
-//		System.out.println("우철이는 : " + commentList);
-//		System.out.println("목록 -> 일반 ************: " + study);
-//
-//		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
-//
-//		return "user/board/writing_Common_Study_Detail";
-//	}
-	
 	
 	
 	//상세보기 트랜잭션
@@ -240,23 +210,13 @@ public class BoardController {
 	
 //	파일 다운로드 
 	@RequestMapping("FileDownload.do")
-	public ModelAndView FileDownload(String s_seq, HttpServletRequest request, Model model){
+	public ModelAndView FileDownload(String filesrc, HttpServletRequest request, Model model){
 		
-		//글번호로 해당 객체의 파일 전체 경로값을 받은 후
-		Map<String, Object> study = service.getStudy(s_seq);
-//		Study study = (Study) service.getStudy(s_seq);
 		String filePath = request.getSession().getServletContext().getRealPath("/studyboard/upload/");
 		
-		System.out.println("으악:"+study.toString());
-		
 		File downloadFile = null;
-		String ss = (String) study.get("FILESRC");
-		System.out.println(ss);
-
 				
-		downloadFile = new File(filePath + study.get("FILESRC"));
-//		downloadFile = new File(filePath + study.get("FILESRC2"));
-		
+		downloadFile = new File(filePath + filesrc);
 		
 		
 		ModelAndView mv = new ModelAndView();
@@ -280,8 +240,8 @@ public class BoardController {
 
 
 	
-	//스터디 리스트 페이지 이동
-	@RequestMapping("writing_Normal_Study_Delete.do")
+	//스터디 게시판 글 삭제
+	@RequestMapping("writing_Common_Study_Delete.do")
 	public String writingNormalStudyDelete(Criteria_Board cri_b, Model model, String s_seq)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
@@ -484,6 +444,44 @@ public class BoardController {
 
 			return "user/board/writing_Common_Study_Detail";
 		}
+		
+		
+	//   썸머노트 이미지 넣는 함수
+	      @RequestMapping(value = "ProfileImage.do" , method = RequestMethod.POST)
+	      @ResponseBody
+	      public String profileUpload(String email, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	         response.setContentType("text/html;charset=utf-8");
+	         PrintWriter out = response.getWriter();
+	         // 업로드할 폴더 경로
+	         String realFolder = request.getSession().getServletContext().getRealPath("board/profileUpload/");
+	         UUID uuid = UUID.randomUUID();
+
+	         // 업로드할 파일 이름
+	         String org_filename = file.getOriginalFilename();
+	         String str_filename = uuid.toString() + org_filename;
+
+	         System.out.println("원본 파일명 : " + org_filename);
+	         System.out.println("저장할 파일명 : " + str_filename);
+	         System.out.println(realFolder);
+
+	         String filepath = realFolder + "\\" + email + "\\" + str_filename;
+	         System.out.println("파일경로 : " + filepath);
+
+	         File f = new File(filepath);
+	         if (!f.exists()) {
+	            f.mkdirs();
+	         }
+	         file.transferTo(f);
+	         out.println("board/profileUpload/"+email+"/"+str_filename);
+	         System.out.println("-----------------------------------------");
+	         System.out.println("profileUpload/"+email+"/"+str_filename);
+	         System.out.println("-----------------------------------------");
+	         out.close();
+	         
+	         return null;
+	      }
+		
+		
 		
 
 }

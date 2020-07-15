@@ -393,11 +393,16 @@ public class BoardServiceImpl implements BoardService {
 		int result = dao.getLikeCnt(Integer.parseInt(s_seq));
 		return result;
 	}
-
+	/*************************************    댓글   시작  **********************************************/
+	
 	//댓글 등록하기 
 	public void commentInsert(Comment cm) {
 		System.out.println("commentInsert 왔어요");
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		
+		//refer 넣어주기
+		int r_refer = dao.getMaxRefer();
+		cm.setR_refer(r_refer+1);
 		dao.commentInsert(cm);
 	}
 
@@ -467,7 +472,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
-	
+	/*************************************    댓글   끝  **********************************************/
 	
 	
 	

@@ -256,8 +256,8 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-ingOrDone">
 							&nbsp;
-							<li data-filter=".filter-ingOrDone">모집중</li> &nbsp;
-							<li data-filter=".filter-ingOrDone">모집 완료</li>
+							<li data-filter="모집중">모집중</li> &nbsp;
+							<li data-filter="모집완료">모집 완료</li>
 						</ul>
 					</div>
 
@@ -270,9 +270,9 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-level">
 							&nbsp;
-							<li data-filter=".filter-level">입문</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">초급</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">중급 이상</li>
+							<li data-filter="입문">입문</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="초급">초급</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="중급이상">중급 이상</li>
 						</ul>
 					</div>
 				</div>
@@ -281,27 +281,23 @@ group+group {
 					<div class="col-md-3 _category box aos-init aos-animate"
 						data-aos="fade-up" data-aos-delay="300">
 						<div>
-							<span class="title _category_list  ">언어</span>
+							<span class="title_category_list">언어</span>
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">JAVA</li> &nbsp;
-							<li data-filter=".filter-lan">Javascript</li> &nbsp;
-							<li data-filter=".filter-lan">HTML/CSS</li> &nbsp;
-							<li data-filter=".filter-lan">Spring</li> &nbsp;
-							<li data-filter=".filter-lan">DataBase</li> &nbsp;
-							<li data-filter=".filter-lan">Python</li> &nbsp;
-							<li data-filter=".filter-lan">Vue.js</li> &nbsp;
-							<li data-filter=".filter-lan">React</li>
-						</ul>
-						<ul id="portfolio-flters-lan">
-							&nbsp;
-							<li data-filter=".filter-lan">Jquery</li> &nbsp;
-							<li data-filter=".filter-lan">JSP</li> &nbsp;
-							<li data-filter=".filter-lan">BootStrap</li> &nbsp;
-							<li data-filter=".filter-lan">JPA</li>
+							<li data-filter="1">JAVA</li> &nbsp;
+							<li data-filter="2">Javascript</li> &nbsp;
+							<li data-filter="3">HTML/CSS</li> &nbsp;
+							<li data-filter="4">Spring</li> &nbsp;
+							<li data-filter="5">Python</li> &nbsp;
+							<li data-filter="6">Vue.js</li> &nbsp;
+							<li data-filter="7">React</li>&nbsp;
+							<li data-filter="8">Jquery</li> &nbsp;
+							<li data-filter="9">JSP</li> &nbsp;
+							<li data-filter="10">BootStrap</li> &nbsp;
+							<li data-filter="11">JPA</li>
 						</ul>
 					</div>
 				</div>
@@ -313,9 +309,21 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-local">
 							&nbsp;
-							<li data-filter=".filter-local">온라인</li> &nbsp;
-							<li data-filter=".filter-local">서울</li> &nbsp;
-							<li data-filter=".filter-local">경기도</li>
+							<li data-filter="1">충청북도</li> &nbsp;
+							<li data-filter="2">충청남도</li> &nbsp;
+							<li data-filter="3">경기도</li>
+							<li data-filter="4">전라북도</li>
+							<li data-filter="5">전라남도</li>
+							<li data-filter="6">경상남도</li>
+							<li data-filter="7">경상북도</li>
+							<li data-filter="8">강원도</li>
+							<li data-filter="9">세종특별시</li>
+							<li data-filter="10">서울특별시</li>
+							<li data-filter="11">인천광역시</li>
+							<li data-filter="12">제주특별시</li>
+							<li data-filter="13">온라인</li>
+
+
 						</ul>
 					</div>
 				</div>
@@ -327,8 +335,8 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-studyContent">
 							&nbsp;
-							<li data-filter=".filter-studyContent">온라인 강의</li> &nbsp;
-							<li data-filter=".filter-studyContent">일반</li>
+							<li data-filter="1">온라인 강의</li> &nbsp;
+							<li data-filter="2">일반</li>
 						</ul>
 					</div>
 				</div>
@@ -339,18 +347,19 @@ group+group {
 	<!-- 여기부터 스터디 목록 -->
 	<div class="container"
 		style="margin-top: 50px; margin-bottom: 25px; padding: 0px 0px 15px 0px;">
-		
-			<!--  버튼-->
-			<div class="row">
-				<div class="col-md-9"></div>
-				<div class="col-md-3">
-					<div class="text-center" style="text-align-last: end;">
-						<a href="/board/board_Select.do" class="btn btn-outline-danger">스터디
-							모집하기</a>
-					</div>
+
+		<!--  버튼-->
+		<div class="row">
+			<div class="col-md-9"></div>
+			<div class="col-md-3">
+				<div class="text-center" style="text-align-last: end;">
+					<a href="/board/board_Select.do" class="btn btn-outline-danger">스터디
+						모집하기</a>
 				</div>
 			</div>
-			<div class="_border_box_shadow2" style="border: 10px solid gainsboro;padding: 30px 30px 0px 30px;">
+		</div>
+		<div class="_border_box_shadow2"
+			style="border: 10px solid gainsboro; padding: 30px 30px 0px 30px;">
 			<!-- 타임리프 반복시작 -->
 			<div th:each="list : ${list}">
 				<div class="row">
@@ -450,7 +459,8 @@ group+group {
 						</th:block> -->
 							<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
 						</div>
-						<div class="row _content" style="margin: 0px 5px 0px 28px; height: 150px;"
+						<div class="row _content"
+							style="margin: 0px 5px 0px 28px; height: 150px;"
 							th:text="${list.CONTENT}">
 							<p></p>
 						</div>
@@ -472,8 +482,6 @@ group+group {
 	<!-- 페이징 버튼 시작-->
 	<div id="pager-wrapper" class="margin-small">
 		<div class="pager clear">
-
-
 			<!-- 경계 -->
 			<!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
 
@@ -573,9 +581,6 @@ group+group {
 	
 		});
 		
-		
-		
-		
 		function InfoModal(idx) {
 
 			let id = $('.InfoModal' + idx).children().text();
@@ -636,8 +641,72 @@ group+group {
 
 		}
 	</script>
+
 	<script>
+	
+	$("li").on("click", function(){ 
+		var ingOrDone = $('#portfolio-flters-ingOrDone').children('.filter-active').attr('data-filter');
+		var level = $('#portfolio-flters-level').children('.filter-active').attr('data-filter');
+		var language = new Array();
+		$.each($('#portfolio-flters-lan').find('.filter-active'), function(index, item){
+			language[index] = item.getAttribute('data-filter');
+			console.log(item.getAttribute('data-filter'))
+		});
 		
+		var local = $('#portfolio-flters-local').children('.filter-active').attr('data-filter');
+		var studyContent = $('#portfolio-flters-studyContent').children('.filter-active').attr('data-filter');
+		
+		let data = {
+				"ingOrDone" : ingOrDone,
+				"level" : level,
+				"language" : language,
+				"local" : local,
+				"studyContent" : studyContent
+		}
+		
+		$.ajax({
+			url : '/ajax/studyBoardFilter.do',
+			processData : false,
+			contentType : "application/json",
+			cache : false,
+			type : 'POST',
+			data : JSON.stringify(data),
+			success : function(data) {
+				$.each(data, function (index, item) {
+					console.log(data)
+				})
+				console.log("=============================")
+			
+
+				
+			},
+			error : function(e) {
+				console.log("error:", e);
+			}
+		});
+	
+	});
+
+	
+		/* function Filter() {
+		
+		} */
+		
+	/* $( "#portfolio-flters-ingOrDone li" ).click(function() { 
+
+	    var customType = $( this ).data('filter'); 
+	    console.log(customType); */
+	   /*  console.log(posts.length); 
+
+	    posts
+	        .hide()
+	        .filter(function () {
+	            return $(this).data('cat') === customType;
+	        })
+	        .show(); */
+	/* }); */
+	
+	
 	</script>
 </body>
 

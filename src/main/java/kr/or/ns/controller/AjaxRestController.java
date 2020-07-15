@@ -202,7 +202,6 @@ public class AjaxRestController {
 		list = service.userInfoModal(params);
 		System.out.println("리스트에 유저정보 담기: " + list);
 		return list;
-
 	}
 
 	// 이메일 중복체크
@@ -255,7 +254,6 @@ public class AjaxRestController {
 		list.add(map);
 		System.out.println("우철이다!!! : " + list);
 		return list;
-
 	}
 
 	// 승인 거절
@@ -264,7 +262,6 @@ public class AjaxRestController {
 		int result = service.reject(params);
 		System.out.println("거절 결과 : " + result);
 		return result;
-
 	}
 
 	// 참가중인 스터디원 취소
@@ -288,7 +285,15 @@ public class AjaxRestController {
 		int a = service.deleteBookMark(params);
 		System.out.println("북마크 삭제결과 : " + a);
 		return bookmark;
+	}
 
+	// 스터디게시판 필터
+	@RequestMapping(value = "studyBoardFilter.do", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> studyBoardFilter(@RequestBody HashMap<String, Object> params) {
+		service.studyBoardFilter(params);
+		List<HashMap<String, Object>> list = service.studyBoardFilter(params);
+		System.out.println("받긴받니?"+ list);
+		return list;
 	}
 	
 	// 마이페이지 내가쓴 댓글 비동기
