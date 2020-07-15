@@ -108,7 +108,7 @@
 			<!-- 차트 시작 -->
 			<div class="col-xl-12">
 				<div class="card">
-					<div class="card-body" style="height: 600px;">
+					<div class="card-body" style="height: 800px;">
 						<div class="chart-wrapper mt-4">
 							<canvas id="myChart" height="100"></canvas>
 						</div>
@@ -139,8 +139,6 @@
 						console.log(data);
 						console.log(data[0].l_title);
 						console.log(data[0].count);
-						let frameworks = [ "1위", "2위", "3위", "4위", "5위", "6위",
-								"7위", "8위", "9위", "10위" ];
 						var barChartData = {
 							labels : [ data[0].l_title, data[1].l_title,
 									data[2].l_title, data[3].l_title,

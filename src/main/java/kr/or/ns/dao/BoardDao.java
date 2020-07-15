@@ -79,14 +79,17 @@ public interface BoardDao {
 	//대댓글 insert
 	public void reCommentInsert(Comment cm);
 
-	//refer,depth 조회 하는 함수
-	public Map<String, Integer> getReferDepth(Comment cm);
-
 	//Maxstep 조회하는 함수
 	public int getMaxStep(Comment cm);
 
-	//MaxRefer 조회하는 함수
+	//MaxRefer 조회하는 함수(댓글 인서트에서 사용)
 	public int getMaxRefer();
+
+	//부모 refer가져오기
+	public int getP_refer(String r_seq);
+
+	//r_exists 컬럼을 n으로 업데이트
+	public void updateR_exists(Comment cm);
 
 
 
