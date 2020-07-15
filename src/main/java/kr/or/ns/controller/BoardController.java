@@ -166,7 +166,7 @@ public class BoardController {
 	
 	
 	//상세보기 트랜잭션
-	@Transactional
+	
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
