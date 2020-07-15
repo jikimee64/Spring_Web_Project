@@ -367,28 +367,27 @@ public class BoardServiceImpl implements BoardService {
 		
 		System.out.println("reCommentInsert 서비스 입성");
 
-		//1. refer,depth 조회 
-		System.out.println(cm);
-		Map<String, Integer> map = dao.getReferDepth(cm);
-		System.out.println(map);
-		int r_depth = map.get("r_depth");
-		cm.setR_depth(r_depth);
+		//1. depth 1로 주기 
+		cm.setR_depth(1);
 		
 		
 		//2. step 조회 
 		
 		int r_step =  dao.getMaxStep(cm);
 		
-		//3.depth 가 1보다 작으면 ++
-		
-		if (r_depth < 1) {
-			r_depth++;
-		}
-		cm.setR_depth(r_depth);
+
 		cm.setR_step(r_step+1);
 		
 		//4.insert
 		dao.reCommentInsert(cm);  
+	}
+
+	//부모댓글 refer 가져오기 
+	public int getP_refer(String r_seq) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int r_refer = dao.getP_refer(r_seq);
+		
+		return r_refer;
 	}
 
 	
