@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -192,16 +193,27 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 	
+	
+	@Transactional
 	// 스터디 글 등록(온라인 컨텐츠)
 	public int studyOnlineReg(Study study, HttpServletRequest request, Principal principal) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		System.out.println("조ㅓㅁ와라조모!!!!");
 		System.out.println("철이는 나빠ㅣ용" + study.getImage());
+		System.out.println(study.getL_seq());
+		int l_seq = study.getL_seq();
+		int s_seq = study.getS_seq();
+	
+		HashMap<String, Object> map = new HashMap();
+		map.put("s_seq",s_seq);
+		map.put("l_seq",l_seq);
+		
 		
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
 		System.out.println("?? " + files);
 		int count = 0;
+		
 		
 		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
 			for (CommonsMultipartFile multifile : files) {
@@ -243,7 +255,9 @@ public class BoardServiceImpl implements BoardService {
 			System.out.println("여긴오니?ㄴㄴㄴ");
 			System.out.println("우철 : " + study);
 			int result = dao.studyReg(study);
+			int result2 = dao.insertStudyBoardOnline(map);
 			System.out.println("여긴오니22?");
+			System.out.println("board_online에 들어갔는지?" + result2);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -293,19 +307,7 @@ public class BoardServiceImpl implements BoardService {
 //	public void updateReadNum(Integer s_seq) {
 //	}
 //	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	// 스터디 글 삭제
 	public int delete(String s_seq) {

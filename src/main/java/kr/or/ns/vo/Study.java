@@ -9,7 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter@Setter
+@Getter
+@Setter
 @ToString
 public class Study {
 	private int s_seq;
@@ -33,6 +34,8 @@ public class Study {
 	//private int selectloc;
 	//private String selectlev;
 	private String selectend;
+	private int l_seq;
 	private List<CommonsMultipartFile> files;
 	
 }
+
