@@ -211,6 +211,11 @@ keyframes heart-keyframes { 100% {
 	width: 100%;
 	height: 100%;
 }
+	._textarea_border:focus{
+    border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+  }
 </style>
 
 <body>
@@ -635,14 +640,14 @@ keyframes heart-keyframes { 100% {
 					console.log("대댓글 틀 만들어주는 함수");
 					var r_seq = $(this).attr('id');
 					var parentTag = $(this).parent();
-					//parentTag.empty();  이건 나중에 추가하자 
+					parentTag.empty(); 
 					var html = "";
 					html += '<div id="replyDiv">';
-					html += '<textarea rows="2" id="reComment" name="content" style="resize: none;width:100%;border-color:#CED4DA;border-radius: 3px;"></textarea>';
+					html += '<textarea rows="2" id="reComment" name="content" class="_textarea_border"style="resize: none;width:100%;border-color:#CED4DA;border-radius: 3px;"></textarea>';
 					html += '<div class="row">';
 					html += '<div class="col-md-10" style="padding: 0px;"></div>';
-					html += '<div class="col-md-2" style="position: relative; padding: 0px;">';
-					html += '<button class="btn btn-outline-secondary reCommentCBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px; ">';
+					html += '<div class="col-md-2" style="position: relative; padding: 0px;text-align-last: end;padding-right: 21px;">';
+					html += '<button class="btn btn-outline-secondary reCommentCBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px;margin-right: 8px; ">';
 					html += '취소</button>';
 					html += '<button class="btn btn-outline-primary reCommentBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px; ">';
 					html += '등록</button>';
@@ -829,7 +834,7 @@ keyframes heart-keyframes { 100% {
 						//input태그 append하기(value에는 기존의 값 셋팅하고, 포커스주기)
 						var html = "";
 						html += '<div id="updateDiv">';
-						html += '<textarea rows="2" id="updateContent" name="content" style="resize: none;width:100%;border-color:#CED4DA;border-radius: 3px;">'+codeText+'</textarea>';
+						html += '<textarea rows="2" id="updateContent" class="_textarea_border"name="content" style="resize: none;width:100%;border-color:#CED4DA;border-radius: 3px;">'+codeText+'</textarea>';
 						html += '<div class="row">';
 						html += '<div class="col-md-11" style="padding: 0px;"></div>';
 						html += '<div class="col-md-1" style="position: relative; padding: 0px;">';
