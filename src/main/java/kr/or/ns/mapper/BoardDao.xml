@@ -48,6 +48,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE study_board.S_SEQ=#{S_SEQ}
 	</select>
 	
+	
+	<update id="updateReadNum">
+	   update study_board set readnum = readnum+1
+       where s_seq=#{s_seq}
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 댓글 개수  -->
 	<select id="getReplyCnt" resultType="Integer">
 		select count(*) 
@@ -100,6 +123,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from comment
 		WHERE S_SEQ = #{S_SEQ}
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 
 	<!-- 댓글 삭제하기 -->
 	<delete id="commentDelete" parameterType="kr.or.ns.vo.Comment" >
@@ -126,12 +157,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- refer , depth 조회  -->
 	<select id="getReferDepth" parameterType="kr.or.ns.vo.Comment" resultType="hashmap">
-		select r_refer,r_depth from comment where s_seq = #{s_seq} and r_seq = #{r_seq}
+		select r_depth from comment where s_seq = #{s_seq} and r_refer = #{r_refer}
 	</select>
 	
 	<!-- MaxStep 조회  -->
-	<select id="getMaxStep" parameterType="kr.or.ns.vo.Comment" resultType="string">
+	<select id="getMaxStep" parameterType="kr.or.ns.vo.Comment" resultType="int">
 		select ifnull(max(r_step),0) from comment where r_depth=#{r_depth} and r_refer=#{r_refer}
+	</select>
+	
+	<!-- MaxStep 조회  -->
+	<select id="getMaxRefer" parameterType="kr.or.ns.vo.Comment" resultType="int">
+		select ifnull(max(r_refer),0) r_refer from comment
 	</select>
 	
 </mapper>

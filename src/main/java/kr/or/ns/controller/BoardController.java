@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -129,6 +130,43 @@ public class BoardController {
 		return "user/board/writing_Normal_Study";
 	}
 
+	
+	//상세보기
+//	@RequestMapping("writing_Common_Study_Detail.do")
+//	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
+//			Principal principal) {
+//		String user_id = principal.getName();
+//		Likes like = new Likes();
+//		like.setS_seq(Integer.parseInt(s_seq));
+//		like.setUser_id(user_id);
+//		//좋아요 0/1 중 뭔지 알아오기
+//		int heart = service.heartnum(like);
+//				
+//		Map<String, Object> study = service.getStudy(s_seq);
+//		model.addAttribute("study", study); 
+//		model.addAttribute("page", page);
+//		model.addAttribute("perPageNum", perPageNum);
+//		
+//		List<Map<String,Object>> commentList = service.getComment(s_seq); 
+//		int count = service.getReplyCnt(s_seq);
+//		model.addAttribute("count", count);
+//		model.addAttribute("sessionid", user_id);
+//		model.addAttribute("heart", heart);
+//		model.addAttribute("commentList", commentList);
+//		System.out.println("우철이는 : " + commentList);
+//		System.out.println("목록 -> 일반 ************: " + study);
+//
+//		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+//
+//		return "user/board/writing_Common_Study_Detail";
+//	}
+	
+	
+	
+	
+	
+	//상세보기 트랜잭션
+	@Transactional
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
@@ -139,24 +177,51 @@ public class BoardController {
 		//좋아요 0/1 중 뭔지 알아오기
 		int heart = service.heartnum(like);
 				
-		Map<String, Object> study = service.getStudy(s_seq);
-		model.addAttribute("study", study); 
-		model.addAttribute("page", page);
-		model.addAttribute("perPageNum", perPageNum);
 		
-		List<Map<String,Object>> commentList = service.getComment(s_seq); 
-		int count = service.getReplyCnt(s_seq);
-		model.addAttribute("count", count);
-		model.addAttribute("sessionid", user_id);
-		model.addAttribute("heart", heart);
-		model.addAttribute("commentList", commentList);
-		System.out.println("우철이는 : " + commentList);
-		System.out.println("목록 -> 일반 ************: " + study);
+		//트랜잭션 처리
+		try {
+			
+			
+			Map<String, Object> study = service.getStudy(s_seq);
+			model.addAttribute("study", study); 
+			model.addAttribute("page", page);
+			model.addAttribute("perPageNum", perPageNum);
+			
+			List<Map<String,Object>> commentList = service.getComment(s_seq); 
+			int count = service.getReplyCnt(s_seq);
+			model.addAttribute("count", count);
+			model.addAttribute("sessionid", user_id);
+			model.addAttribute("heart", heart);
+			model.addAttribute("commentList", commentList);
+			System.out.println("우철이는 : " + commentList);
+			System.out.println("목록 -> 일반 ************: " + study);
 
-		System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+			
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 
 		return "user/board/writing_Common_Study_Detail";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
@@ -237,8 +302,7 @@ public class BoardController {
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_content(r_content);
 		cm.setR_name(user_id);
-		//refer 가져와서 +1해서 넣어주기 
-		//cm.setR_refer(r_refer+1);
+		
 		
 		service.commentInsert(cm);
 
@@ -323,16 +387,16 @@ public class BoardController {
 		public List<Map<String,Object>> reCommentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
 			String user_id = principal.getName(); //유저 아이디
 			String s_seq = (String) params.get("s_seq"); //글 번호
+			String r_refer = (String) params.get("r_seq"); //refer 번호
 			String r_content = (String) params.get("r_content"); //대댓글 내용
-			String r_seq = (String) params.get("r_seq"); //대댓글 번호
 			
 			Comment cm = new Comment();
 			cm.setR_name(user_id);
 			cm.setS_seq(Integer.parseInt(s_seq));
+			cm.setR_refer(Integer.parseInt(r_refer));
 			cm.setR_content(r_content);
-			cm.setR_seq(Integer.parseInt(r_seq));
 			
-			//service.reCommentInsert(cm);
+			service.reCommentInsert(cm);
 			
 			List<Map<String,Object>> commentList = service.getComment(s_seq); 
 			

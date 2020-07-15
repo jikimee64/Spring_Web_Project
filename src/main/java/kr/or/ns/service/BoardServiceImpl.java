@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.dao.BoardDao;
@@ -186,13 +187,58 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 스터디 글 상세보기
-	public Map<String, Object> getStudy(String s_seq) {
-		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		Map<String, Object> study = dao.getStudy(s_seq);
+//	public Map<String, Object> getStudy(String s_seq) {
+//		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+//		Map<String, Object> study = dao.getStudy(s_seq);
+//
+//		return study;
+//	}
+//	
+	
+	
+	
+	// 스터디 글 상세보기 트랜잭션
+	
+		public Map<String, Object> getStudy(String s_seq) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			Map<String, Object> study = null;
+			
+			
+		try {
+			study = dao.getStudy(s_seq);
+			dao.updateReadNum(s_seq);
+			System.out.println("정상");
+			
+		} catch (Exception e) {
+			
+			System.out.println("문제발생"+e.getMessage());
+			throw e;
+			
+		}
+			
 
-		return study;
-	}
+			return study;
+		}
 
+	
+	//조회수 증가
+//	public void updateReadNum(Integer s_seq) {
+//	}
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 스터디 글 삭제
 	public int delete(String s_seq) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
@@ -282,6 +328,8 @@ public class BoardServiceImpl implements BoardService {
 	public void commentInsert(Comment cm) {
 		System.out.println("commentInsert 왔어요");
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int r_refer = dao.getMaxRefer();
+		cm.setR_refer(r_refer+1);
 		dao.commentInsert(cm);
 	}
 
@@ -325,12 +373,11 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println(map);
 		int r_depth = map.get("r_depth");
 		cm.setR_depth(r_depth);
-		cm.setR_refer(map.get("r_refer"));
+		
 		
 		//2. step 조회 
 		
-		String result =  dao.getMaxStep(cm);
-		System.out.println(result);
+		int r_step =  dao.getMaxStep(cm);
 		
 		//3.depth 가 1보다 작으면 ++
 		
@@ -338,6 +385,7 @@ public class BoardServiceImpl implements BoardService {
 			r_depth++;
 		}
 		cm.setR_depth(r_depth);
+		cm.setR_step(r_step+1);
 		
 		//4.insert
 		dao.reCommentInsert(cm);  

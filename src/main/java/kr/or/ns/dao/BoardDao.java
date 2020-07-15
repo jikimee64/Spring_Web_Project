@@ -73,6 +73,9 @@ public interface BoardDao {
 	//댓글 count
 	public int countComment(Comment cm);
 
+	//조회수
+	public int updateReadNum(String s_seq);
+	
 	//대댓글 insert
 	public void reCommentInsert(Comment cm);
 
@@ -80,7 +83,10 @@ public interface BoardDao {
 	public Map<String, Integer> getReferDepth(Comment cm);
 
 	//Maxstep 조회하는 함수
-	public String getMaxStep(Comment cm);
+	public int getMaxStep(Comment cm);
+
+	//MaxRefer 조회하는 함수
+	public int getMaxRefer();
 
 
 
