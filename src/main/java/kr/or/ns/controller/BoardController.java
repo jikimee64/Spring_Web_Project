@@ -19,16 +19,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.ns.page.PageMaker_Board;
+import kr.or.ns.service.BoardService;
 import kr.or.ns.service.BoardServiceImpl;
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
+import kr.or.ns.vo.Users;
 
 /*
 클래스명 : BoardController
@@ -43,7 +47,7 @@ study_List 목록뿌리기 작업
 public class BoardController {
 
 	@Autowired
-	private BoardServiceImpl service;
+	private BoardService service;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
@@ -182,8 +186,6 @@ public class BoardController {
 		
 		//트랜잭션 처리
 		try {
-			
-			
 			Map<String, Object> study = service.getStudy(s_seq);
 			model.addAttribute("study", study); 
 			model.addAttribute("page", page);
@@ -252,17 +254,6 @@ public class BoardController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
@@ -277,12 +268,15 @@ public class BoardController {
 
 	// 글 수정 로직
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit() {
-		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
-
-		return "user/board/writing_Normal_Study_Edit";
+	public String writingNormalStudyEdit(Study study, Principal principal, HttpServletRequest request){
+		System.out.println("일반게시글수정@@");
+		System.out.println("넘어온 데이터 " + study.toString());
+		
+		
+		return "user/main";
 	}
-
+	
+	//스터디 리스트 페이지 이동
 	@RequestMapping("writing_Normal_Study_Delete.do")
 	public String writingNormalStudyDelete(Criteria_Board cri_b, Model model, String s_seq)
 			throws ClassNotFoundException, SQLException {
@@ -365,7 +359,8 @@ public class BoardController {
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_seq(Integer.parseInt(r_seq));
 		
-		service.commentDelete(cm);
+		//service.commentDelete(cm);
+		service.updateR_exists(cm);
 		
 		List<Map<String,Object>> commentList = service.getComment(s_seq); 
 		return commentList;
@@ -428,16 +423,18 @@ public class BoardController {
 		public List<Map<String,Object>> reCommentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
 			String user_id = principal.getName(); //유저 아이디
 			String s_seq = (String) params.get("s_seq"); //글 번호
-			String r_refer = (String) params.get("r_seq"); //refer 번호
+			String r_seq = (String) params.get("r_seq"); //부모글 번호
 			String r_content = (String) params.get("r_content"); //대댓글 내용
 			
 			Comment cm = new Comment();
-			cm.setR_name(user_id);
-			cm.setS_seq(Integer.parseInt(s_seq));
-			cm.setR_refer(Integer.parseInt(r_refer));
-			cm.setR_content(r_content);
+			cm.setR_name(user_id);                   //아이디
+			cm.setS_seq(Integer.parseInt(s_seq));    //글번호
+			cm.setR_content(r_content);              //대댓글내용
 			
-			service.reCommentInsert(cm);
+			int r_refer = service.getP_refer(r_seq); //부모글의 r_refer
+			cm.setR_refer(r_refer);//그룹번호
+			
+			service.reCommentInsert(cm);    //인서트 하러가기 
 			
 			List<Map<String,Object>> commentList = service.getComment(s_seq); 
 			

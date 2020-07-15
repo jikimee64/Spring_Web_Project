@@ -300,10 +300,10 @@ public class AjaxServiceImpl implements AjaxService {
 		return list;
 	}
 	
+	//승인 거절(Delete 치기)
 	public int reject(HashMap<String, Object> params) {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		int a = dao.reject(params);
-		
 		return a;
 	}
 	

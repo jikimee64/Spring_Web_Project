@@ -38,6 +38,9 @@ public interface BoardService {
 	//스터디 모집 글 작성하기
 	public int studyReg(Study study, HttpServletRequest request, Principal principal);
 	
+	//온라인 컨텐츠(스터디 게시판 글 등록)
+	public int studyOnlineReg(Study study, HttpServletRequest request, Principal principal);
+	
 	//스터디 글 상세보기
 	public Map<String, Object> getStudy(String s_seq);
 	
@@ -73,4 +76,10 @@ public interface BoardService {
 	
 	//대댓글  insert
 	public void reCommentInsert(Comment cm);
+	
+	//부모댓글 refer 가져오기 
+	public int getP_refer(String r_seq);
+
+	//r_exists 컬럼을 n으로 업데이트 
+	public void updateR_exists(Comment cm);
 }

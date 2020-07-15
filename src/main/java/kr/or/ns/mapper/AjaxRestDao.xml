@@ -132,12 +132,10 @@
 		order by role_name
 	</select>
 
-	<update id="reject">
-		update study_group
-		set accept_status = '승인거절'
+	<delete id="reject">
+		delete from study_group
 		where user_id = #{user_id} and s_seq = #{s_seq}
-		order by role_name
-	</update>
+	</delete>
 
 	<update id="cancel">
 		update study_group

@@ -1,4 +1,5 @@
-	<!DOCTYPE html>
+
+<!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -200,6 +201,19 @@ group+group {
 	color: #fff;
 	border-radius: 5px;
 }
+
+._border_box_shadow2 {
+	background: #fff;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+}
 </style>
 
 
@@ -230,9 +244,9 @@ group+group {
 	<section id="portfolio" class="section-bg"
 		style="margin-bottom: 60px; padding: 20px 0px 20px 0px;">
 
-		<!-- course란 강좌라는 뜻이에염~ -->
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
 		<div class="container">
+
 			<div class="row">
 				<div class="row " style="width: 100%; margin-bottom: 0px;">
 					<div class="col-md-3 _category box aos-init aos-animate"
@@ -319,110 +333,114 @@ group+group {
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</section>
 	<!-- 여기부터 스터디 목록 -->
 	<div class="container"
-		style="margin-top: 50px; margin-bottom: 25px; padding: 0px 0px 15px 100px;">
-		<!--  버튼-->
-		<div class="row">
-			<div class="col-md-9"></div>
-			<div class="col-md-3">
-				<div class="text-center">
-					<a href="/board/board_Select.do" class="btn btn-outline-secondary">스터디
-						모집하기</a>
-				</div>
-			</div>
-		</div>
-		<!-- 타임리프 반복시작 -->
-		<div th:each="list : ${list}" style="width: 1000px;">
+		style="margin-top: 50px; margin-bottom: 25px; padding: 0px 0px 15px 0px;">
+		
+			<!--  버튼-->
 			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-4" style="padding: 0px; text-align: center;">
-					<!-- 여기에 뱃지 -->
-					<span class="badge badge-pill badge-primary"
-						th:text="${list.STATUS}"></span> <span
-						class="badge badge-pill badge-info" th:text="${list.LEVEL}"></span>
-					<span class="badge badge-pill badge-secondary"
-						th:text="${list.CATE_LANGUAGE}"></span> <span
-						class="badge badge-pill badge-success" th:text="|${list.PEOPLE}명|"></span>
-					<span class="badge badge-pill badge-warning" th:text="${list.LOC}"></span>
-					<span class="badge badge-pill badge-light"
-						th:text="${list.CONTENT_KIND}"></span>
-				</div>
-
-			</div>
-			<div class="row">
-
-				<th:block th:switch="${list.CONTENT_KIND}">
-					<div th:case="일반" class="col-md-3 align-self-center">
-						<div class="card" style="width: 100%">
-							<img class="card-img-top"
-								th:src="'/studyboard/upload/' + ${list.IMAGE}" alt="Card image"
-								style="width: 100%;">
-						</div>
+				<div class="col-md-9"></div>
+				<div class="col-md-3">
+					<div class="text-center" style="text-align-last: end;">
+						<a href="/board/board_Select.do" class="btn btn-outline-danger">스터디
+							모집하기</a>
 					</div>
-					<div th:case="온라인강의" class="col-md-3">
-						<div class="card" style="width: 100%">
-							<img class="card-img-top" th:src="${list.IMAGE}" alt="Card image"
-								style="width: 100%;">
-							<div class="card-body">
-								<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
-								<p class="card-text _margin_0"
-									style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-								<a href="/board/writing_Course_Study_Detail.do"
-									class="stretched-link"></a>
-								<!-- 별 다섯개 이미지  -->
-								<img
-									src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-									alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+				</div>
+			</div>
+			<div class="_border_box_shadow2" style="border: 10px solid gainsboro;padding: 30px 30px 0px 30px;">
+			<!-- 타임리프 반복시작 -->
+			<div th:each="list : ${list}">
+				<div class="row">
+					<div class="col-md-3"></div>
+					<div class="col-md-4" style="padding: 0px; text-align: center;">
+						<!-- 여기에 뱃지 -->
+						<span class="badge badge-pill badge-primary"
+							th:text="${list.STATUS}"></span> <span
+							class="badge badge-pill badge-info" th:text="${list.LEVEL}"></span>
+						<span class="badge badge-pill badge-secondary"
+							th:text="${list.CATE_LANGUAGE}"></span> <span
+							class="badge badge-pill badge-success"
+							th:text="|${list.PEOPLE}명|"></span> <span
+							class="badge badge-pill badge-warning" th:text="${list.LOC}"></span>
+						<span class="badge badge-pill badge-light"
+							th:text="${list.CONTENT_KIND}"></span>
+					</div>
+
+				</div>
+				<div class="row">
+
+					<th:block th:switch="${list.CONTENT_KIND}">
+						<div th:case="일반" class="col-md-3 align-self-center">
+							<div class="card" style="width: 100%">
+								<img class="card-img-top"
+									th:src="'/studyboard/upload/' + ${list.IMAGE}" alt="Card image"
+									style="width: 100%;">
 							</div>
 						</div>
-					</div>
-				</th:block>
+						<div th:case="온라인강의" class="col-md-3">
+							<div class="card" style="width: 100%">
+								<img class="card-img-top" th:src="${list.IMAGE}"
+									alt="Card image" style="width: 100%;">
+								<div class="card-body">
+									<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6>
+									<p class="card-text _margin_0"
+										style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+									<a href="/board/writing_Course_Study_Detail.do"
+										class="stretched-link"></a>
+									<!-- 별 다섯개 이미지  -->
+									<img
+										src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+										alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+								</div>
+							</div>
+						</div>
+					</th:block>
 
 
-				<div class="col-md-9" style="padding: 3Cpx 30px 30px 30px;">
-					<div class="row" style="margin-top: 10px;">
-						<!-- <div class="col-md-2">
+					<div class="col-md-9" style="padding: 3Cpx 30px 30px 30px;">
+						<div class="row" style="margin-top: 10px;">
+							<!-- <div class="col-md-2">
 							<b th:text="${list.USER_ID}">
 								여기에 닉네임
 								미네미네
 							</b>
 						</div> -->
-						<b style="margin-left:35px;">작성자:</b>
-						<div class="col-md-4"
-							style="padding-right: 0px; font-size: medium;">
-							<a href="" th:classappend="|InfoModal${list.S_SEQ}|"
-								th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
-								data-toggle="modal" data-target="#userInfoModal"><b
-								th:text="${list.USER_ID}"
-								style="color: black; margin-right: 10px;"> 작성자 : <!-- 여기에 닉네임 -->
-									미네미네
-							</b> </a>
+							<b style="margin-left: 35px;">작성자:</b>
+							<div class="col-md-4"
+								style="padding-right: 0px; font-size: medium;">
+								<a href="" th:classappend="|InfoModal${list.S_SEQ}|"
+									th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
+									data-toggle="modal" data-target="#userInfoModal"><b
+									th:text="${list.USER_ID}"
+									style="color: black; margin-right: 10px;"> 작성자 : <!-- 여기에 닉네임 -->
+										미네미네
+								</b> </a>
+							</div>
+							<div class="col-md-3"
+								style="text-align: center; padding-right: 0px;">
+								<b th:text="|등록일 : ${list.WRITE_DATE}|"></b>
+							</div>
+							<div class="col-md-3"
+								style="text-align: center; padding-left: 0px;">
+								<b th:text="|마감일 : ${list.DEADLINE}|"></b>
+							</div>
+
 						</div>
-						<div class="col-md-3"
-							style="text-align: center; padding-right: 0px;">
-							<b th:text="|등록일 : ${list.WRITE_DATE}|"></b>
-						</div>
-						<div class="col-md-3"
-							style="text-align: center; padding-left: 0px;">
-							<b th:text="|마감일 : ${list.DEADLINE}|"></b>
-						</div>
 
-					</div>
+						<div class="row">
+							<!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
+							<!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
 
-					<div class="row">
-						<!-- 						<a href="/board/writing_Course_Study_Detail.do"> -->
-						<!-- 						<a href="/board/writing_Course_Study_Detail.do?s_seq=${list.S_SEQ}"> -->
+							<a
+								th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
+								<h2 th:text="${list.TITLE}" class="_title"
+									style="margin-top: 20px; padding-left: 34px;"></h2>
+							</a>
 
-						<a
-							th:href="@{/board/writing_Common_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
-							<h2 th:text="${list.TITLE}"
-								style="margin-top: 20px; padding-left: 34px;"></h2>
-						</a>
-
-						<!-- <th:block th:switch="${list.CONTENT_KIND}">
+							<!-- <th:block th:switch="${list.CONTENT_KIND}">
 							<a th:case="일반" th:href="@{/board/writing_Normal_Study_Detail.do(s_seq=${list.S_SEQ},page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">
 								<h2 th:text="${list.TITLE}"></h2>
 							</a>
@@ -430,21 +448,22 @@ group+group {
 								<h2 th:text="${list.TITLE}"></h2>
 							</a>
 						</th:block> -->
-						<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
-					</div>
-					<div class="row" style="margin: 0px 5px 0px 28px; height:150px;"
-						th:text="${list.CONTENT}">
-						<p></p>
+							<!-- 이 a 태그는 옆에있는 그림이랑 똑같은 링크인데 크게 묶어도 되긴함 나중에 수정하면될듯 -->
+						</div>
+						<div class="row _content" style="margin: 0px 5px 0px 28px; height: 150px;"
+							th:text="${list.CONTENT}">
+							<p></p>
+						</div>
 					</div>
 				</div>
+				<hr
+					style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px" />
+
+
 			</div>
-			<hr
-				style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px" />
-
-
+			<!-- 반복끝 -->
+			<!-- 데이터 한개 넣기 끝~ -->
 		</div>
-		<!-- 반복끝 -->
-		<!-- 데이터 한개 넣기 끝~ -->
 	</div>
 	<!-- 경계끝 -->
 
@@ -521,10 +540,42 @@ group+group {
 			}
 			/*  페이지 0 뜨는거 없애기 끝 */
 
+			
+			/* 스터디 리스트 게시글 제목 글자수 자르기 시작 */
+				var titleTag = $('._title');
+			
+				var titleText = "";
+		
+				$.each(titleTag, function(index,item){
+					titleText = titleTag[index].innerHTML;
+				if(titleText.length > 23){
+					titleText = titleText.substring(0,23)+"...";
+				}
+				titleTag[index].innerHTML = titleText;
+			})
+			/* 스터디 리스트 게시글 제목 글자수 자르기 끝 */
+			
+			/* 스터디 리스트 게시글 내용 글자수 자르기 시작 */
+				var contentTag = $('._content');
+			
+				var contentText = "";
+		
+				$.each(contentTag, function(index,item){
+				contentText = contentTag[index].innerHTML;
+				if(contentText.length > 540){
+					contentText = contentText.substring(0,540)+"...";
+				}
+				contentTag[index].innerHTML = contentText;
+			})
+			/* 스터디 리스트 게시글 내용 글자수 자르기 끝 */
+			
+			
+	
 		});
-	</script>
-
-	<script>
+		
+		
+		
+		
 		function InfoModal(idx) {
 
 			let id = $('.InfoModal' + idx).children().text();

@@ -118,20 +118,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{s_seq},#{r_content},#{r_name},now(),#{r_refer},#{r_depth},#{r_step})
 	</insert> 
 	
-	<!-- 스터디 글 상세보기 -->
+	<!-- 댓글 조회 -->
 	<select id="getComment" resultType="hashmap">
-		select * from comment
-		WHERE S_SEQ = #{S_SEQ}
+		select * from comment 
+		WHERE S_SEQ = #{S_SEQ} order by r_refer asc, r_step asc
 	</select>
 	
 	
-	
-	
-	
-	
-	
-	
-
 	<!-- 댓글 삭제하기 -->
 	<delete id="commentDelete" parameterType="kr.or.ns.vo.Comment" >
 		  delete from comment where r_seq = #{r_seq} and s_seq = #{s_seq}
@@ -155,11 +148,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{s_seq},#{r_content},#{r_name},now(),#{r_refer},#{r_depth},#{r_step})
 	</insert> 
 	
-	<!-- refer , depth 조회  -->
-	<select id="getReferDepth" parameterType="kr.or.ns.vo.Comment" resultType="hashmap">
-		select r_depth from comment where s_seq = #{s_seq} and r_refer = #{r_refer}
-	</select>
-	
 	<!-- MaxStep 조회  -->
 	<select id="getMaxStep" parameterType="kr.or.ns.vo.Comment" resultType="int">
 		select ifnull(max(r_step),0) from comment where r_depth=#{r_depth} and r_refer=#{r_refer}
@@ -169,5 +157,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getMaxRefer" parameterType="kr.or.ns.vo.Comment" resultType="int">
 		select ifnull(max(r_refer),0) r_refer from comment
 	</select>
+	
+	<!-- MaxStep 조회  -->
+	<select id="getP_refer" resultType="int">
+		select r_refer from comment where r_seq = #{r_seq}
+	</select>
+	
+	<!-- r_exists 컬럼을 n으로 업데이트 -->
+	<update id="updateR_exists" parameterType="kr.or.ns.vo.Comment">
+		update comment set r_exists = 'N'
+		where r_seq = #{r_seq} and s_seq = #{s_seq}
+	</update>
 	
 </mapper>
