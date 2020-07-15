@@ -14,6 +14,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.vo.Message;
@@ -26,7 +27,7 @@ public class MessageHandler extends TextWebSocketHandler {
 	private MessageService service;
 
 	@Autowired
-	private ManagerServiceImpl mservice;
+	private ManagerService mservice;
 	
 	private static Map<String, WebSocketSession> users = new HashMap<String, WebSocketSession>();
 

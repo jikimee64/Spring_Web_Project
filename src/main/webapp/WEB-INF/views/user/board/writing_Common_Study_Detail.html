@@ -316,9 +316,10 @@ keyframes heart-keyframes { 100% {
 					</div>
 					<br />
 					<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
-					<textarea th:text="${study.CONTENT}" name="" id="" cols="30"
+					<textarea th:utext="${study.CONTENT}" name="" id="" cols="30"
 						rows="10" class="form-control _textarea_readonly" readonly 
 						style="background-color: #F5F5F5; resize: none;">
+						<th:block></th:block>
 					</textarea>
 
 
@@ -576,15 +577,21 @@ keyframes heart-keyframes { 100% {
 					console.log("makeComment함수 도착");
 					var user_id =$('input[id="userId"]').attr('class');
 					var html = "";
+					var depthcss = "";
 					 $.each(result, function(index, obj) {
-						html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
+						
+						if(obj.R_DEPTH === 1){
+							 depthcss = "padding-left:45px;";
+						}
+						html += "<blockquote class='OComment'><b style='"+depthcss+ "'>" + obj.R_NAME + "</b>"  + " ";
 						if(user_id === obj.R_NAME){
 							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
 							html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
 						}
-						html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+
+						html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+
 						" <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='rereply' id='" + obj.R_SEQ + "'"+">답글쓰기&nbsp;<i class='ri-quill-pen-line'></i></a>"+"</div></blockquote>";
 					});
+					
 					$('#com').append(html);
 				}
 				
@@ -714,7 +721,7 @@ keyframes heart-keyframes { 100% {
 							return false;
 						} 
 						
-			            var r_seq = $(this).attr('id'); //부모댓글 번호   (클릭한거의 refer로 )
+			            var r_seq = $(this).attr('id'); //부모댓글 번호   //이걸 refer 로 쓴다 
 						var s_seq = $('#s_seq').val();  //글번호
 						var r_content = $('#reComment').val(); //댓글 내용
 						console.warn("페이지에서 찍는거");
@@ -734,10 +741,10 @@ keyframes heart-keyframes { 100% {
 							 contentType:"application/json",
 								data : JSON.stringify(obj),
 								success : function(data) {
-									/* $('#com').empty();
+									 $('#com').empty();
 									makeComment(data);
-									$('#comment').val(""); */
-									console.log(data);
+									$('#comment').val(""); 
+									
 									countComment(); //갯수 띄워주기 
 								},
 								error : function(e) {

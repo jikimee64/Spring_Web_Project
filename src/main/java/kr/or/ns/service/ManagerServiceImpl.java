@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +16,12 @@ import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
 @Service
+@Qualifier("ManagerServiceImpl")
 public class ManagerServiceImpl implements ManagerService {
 
 	@Autowired
 	private SqlSession sqlsession;
-
+	
 	// 회원목록 가져오기 select All
 	public List<Users> getMemberList() {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
@@ -76,7 +78,7 @@ public class ManagerServiceImpl implements ManagerService {
 	}
 
 	@Override
-	/* @Transactional */
+	@Transactional 
 	public int blameYes(String bl_seq, String bl_target_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = 0;
