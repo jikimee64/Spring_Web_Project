@@ -415,6 +415,46 @@ public class BoardController {
 			
 			return commentList;
 		}
+	
+		//마이페이지에서 상세보기 들어가기 (s_seq 만 잇으면 될듯?)
+		@RequestMapping("my_Writing_Common_Study_Detail.do")
+		public String myWritingStudyDetailPage(String s_seq, Model model, Principal principal) {
+			
+			System.out.println("게시판 디테일 페이지 ㅇ입니다.");
+			String user_id = principal.getName();
+			Likes like = new Likes();
+			like.setS_seq(Integer.parseInt(s_seq));
+			like.setUser_id(user_id);
+			//좋아요 0/1 중 뭔지 알아오기
+			int heart = service.heartnum(like);
+					
+			
+			//트랜잭션 처리
+			try {
+				Map<String, Object> study = service.getStudy(s_seq);
+				model.addAttribute("study", study); 
+				
+				List<Map<String,Object>> commentList = service.getComment(s_seq); 
+				int count = service.getReplyCnt(s_seq);
+				model.addAttribute("count", count);
+				model.addAttribute("sessionid", user_id);
+				model.addAttribute("heart", heart);
+				model.addAttribute("commentList", commentList);
+				System.out.println("우철이는 : " + commentList);
+				System.out.println("목록 -> 일반 ************: " + study);
+
+				System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+				
+				
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
+			
+
+			return "user/board/writing_Common_Study_Detail";
+		}
 		
 		
 	//   썸머노트 이미지 넣는 함수

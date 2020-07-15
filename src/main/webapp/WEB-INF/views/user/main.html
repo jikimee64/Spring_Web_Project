@@ -520,7 +520,7 @@ body {
 
 <div>
 								<b style="font-size: x-large;"><a class="_main_list"
-									href="portfolio-details.html" th:text="${mainList[index.index].TITLE}"></a></b>
+									th:href="@{/board/my_Writing_Common_Study_Detail.do(s_seq=${mainList[index.index].S_SEQ})}" th:text="${mainList[index.index].TITLE}"></a></b>
 									</div>
 								<p th:text="${mainList[index.index].USER_ID}">Web</p>
 							</div>
@@ -539,6 +539,7 @@ body {
 		
 		<script>
 $(function(){
+	
 	/* 강의 글자수 자르기  시작*/	
 	var mainListTag = $('._main_list');
 

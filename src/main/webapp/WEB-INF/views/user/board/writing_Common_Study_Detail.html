@@ -303,7 +303,7 @@ keyframes heart-keyframes { 100% {
                   <div class="row">
                      <div class="col-md-8"></div>
                      <div class="col-md-4" style="width: 100%;">
-                        <div class="row" style="margin-left: 30px; margin-top: -20px;">
+                        <div class="row" id="fileHas1"  style="margin-left: 30px; margin-top: -20px;">
                            <th:block th:switch="${study.FILESRC}">
                               <div th:case="defaultfile" class="form-group"
                                  style="margin: 0"></div>
@@ -322,7 +322,7 @@ keyframes heart-keyframes { 100% {
                   <div class="row">
                      <div class="col-md-8"></div>
                      <div class="col-md-4" style="width: 100%">
-                        <div class="row" style="margin-left: 30px; margin-top: 5px;">
+                        <div class="row" id="fileHas2" style="margin-left: 30px; margin-top: 5px;">
                            <th:block th:switch="${study.FILESRC2}">
                               <div th:case="defaultfile2" class="form-group"
                                  style="margin: 0"></div>
@@ -393,20 +393,20 @@ keyframes heart-keyframes { 100% {
 			                                    style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
 			                             </a>
 		                         </th:block>
-		                             <a
-										     th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+		                           <!--   <a
+										     th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
 		                              <button id="delete" type="button" class="btn btn-danger"
 		                                 style="height: 30px; padding-top: 3px;">삭제</button>
-		                             </a>
+		                             <!-- </a> -->
 	                           </span>
                         </th:block>
 
                         <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                           <a
-								th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+                           <!-- <a
+								th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
                            <button id="delete" type="button" class="btn btn-danger"
                               style="height: 30px; padding-top: 3px;">삭제</button>
-                            </a>
+                     <!--        </a> -->
                         </th:block>
 
                         <a href="" data-toggle="modal" data-target="#declationPageModal"
@@ -497,15 +497,28 @@ keyframes heart-keyframes { 100% {
                      </th:block>
 
 
-
+<!-- onclick="history.go(-1); return false;" -->
                      <th:block th:switch="${sessionid}">
                         <div th:case="${study.USER_ID}"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
-                            <a
-                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"> 
-                              <button type="button" class="btn btn-warning"
-                                 style="width: 100%;">목록으로</button>
-                            </a> 
+                           
+                           <th:block th:if="${page != null && perPageNum != null}">
+								<a
+	                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
+	                              <button type="button" class="btn btn-warning"
+	                                 style="width: 100%;">목록으로</button>
+	                           </a>
+                           </th:block>
+                           
+                            <th:block th:if="${page == null && perPageNum == null}">
+								<a
+	                              th:href="@{/board/study_List.do}">
+	                              <button type="button" class="btn btn-warning"
+	                                 style="width: 100%;">목록으로</button>
+	                           </a>
+                           </th:block>
+                           
+                           
                         </div>
                         <div th:case="*"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
@@ -514,8 +527,8 @@ keyframes heart-keyframes { 100% {
                            <!-- 이거는 사용자 권한 -->
                            <div style="text-align: center; margin: 10px 0px 10px 0px;">
                               <a
-                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
-                                 <button type="button" class="btn btn-warning"
+                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}" class="_to_the_list_a_tag">
+                                 <button type="button" class="btn btn-warning _to_the_list_button" 
                                     style="width: 100%;">목록으로</button>
                               </a>
                            </div>
@@ -596,11 +609,7 @@ keyframes heart-keyframes { 100% {
                $('#com').append(html);
             }
          
-         
-         
-         
 
-            
             
             //댓글 틀 만들어주는 함수@!
             function makeComment(result) {
@@ -940,11 +949,19 @@ keyframes heart-keyframes { 100% {
          
           /* 첨부파일명 자르기 시작 */
          
-          if($('._file_name1')[0].innerText.length >= 15){
-             $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,15) + "...";
+         
+         console.log($('#fileHas1').children().children().children().hasClass("_file_name1"))
+         console.log($('#fileHas2').children().children().children().hasClass("_file_name2"))
+         
+          if($('#fileHas1').children().children().children().hasClass("_file_name1")){
+		     if($('._file_name1')[0].innerText.length >= 15){
+		         $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,15) + "...";
+		     }
           }
-          if($('._file_name2')[0].innerText.length >= 15){
-             $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
+          if($('#fileHas2').children().children().children().hasClass("_file_name2")){   
+	          if($('._file_name2')[0].innerText.length >= 15){
+	             $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
+	          }
           }
           
        /* 첨부파일명 자르기 끝 */
@@ -976,7 +993,7 @@ keyframes heart-keyframes { 100% {
                    var page = $('#page').val();
                    var perPageNum = $('#perPageNum').val();
                    
-                   location.href="writing_Normal_Study_Delete.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
+                   location.href="writing_Common_Study_Delete.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
                  } else {
                    swal({
                       title: "삭제가 취소되었습니다."
@@ -1123,32 +1140,27 @@ keyframes heart-keyframes { 100% {
  });
  
  </script>
- 
- <!-- 게시글 삭제  -->
- 	<script>
-	$(function() {
-	
-	var m_seq = $('#m_seq').val();
-	var m_seq = $('#m_seq').val();
-	var m_seq = $('#m_seq').val();
-		
-	$('#delete').click(function(){
-		swal({
-			  title: "쪽지를 삭제 하시겠습니까?",
-			  icon: "warning",
-			  buttons: true,
-			  dangerMode: true,
-			})
-			.then((willDelete) => {
-			  if (willDelete) {
-				  location.href="/message/deleteMessageOneFrom.do?m_seq="+m_seq
-			  } 
-			
-			});
-		})
-	});
-	
-	</script>
+
+
+ <script>
+//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 -->
+ 	$(function(){
+ 		
+ 		
+ 		console.warn(window.location.href.substr(73, 1));
+ 		console.warn($('._to_the_list_a_tag')[0]);
+ 		console.warn($('._to_the_list_button')[0].innerText);
+ 		if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
+ 			$('._to_the_list_a_tag').removeAttr('href');
+ 			
+ 			$('._to_the_list_button')[0].innerText = "마이페이지로";
+ 			$('._to_the_list_a_tag')[0].setAttribute('href', '/mypage/mypage.do');
+ 		}
+ 		
+ 	});
+ 	//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 ... 끝 -->
+ </script>
+
 </body>
 
 
