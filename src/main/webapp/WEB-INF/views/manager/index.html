@@ -108,9 +108,9 @@
 			<!-- 차트 시작 -->
 			<div class="col-xl-12">
 				<div class="card">
-					<div class="card-body" style="height: 650px;">
+					<div class="card-body" style="height: 800px;">
 						<div class="chart-wrapper mt-4">
-							<canvas id="myChart"></canvas>
+							<canvas id="myChart" height="100"></canvas>
 						</div>
 					</div>
 				</div>
@@ -123,102 +123,100 @@
 	<!-- Right Panel -->
 
 	<div th:replace="/manager/includes/script :: script"></div>
-
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
 	<!-- 차트JS -->
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script>
-   
-   $(function() {
-		$.ajax({
-			type : "post",
-			url : "/ajax/mainChart.do",
-			dataType : "json", //POINT
-			success : function(data) {
-				var barChartData = {
-					labels : [ "1월","2월","3월","4월", "5월", "6월", "7월", "8월", "9월",
-                        "10월", "11월", "12월" ],
-					// type: 'bar',
-                        datasets : [
-                            {
-                               label : '모집중',
-                               data : [ 12, 19, 103, 5, 2, 3, 5, 7, 11, 12,
-                                     55, 23 ],
-                               backgroundColor : [
-                                     'rgba(255, 99, 132, 0.2)',
-                                     'rgba(54, 162, 235, 0.2)',
-                                     'rgba(255, 206, 86, 0.2)',
-                                     'rgba(75, 192, 192, 0.2)',
-                                     'rgba(153, 102, 255, 0.2)',
-                                     'rgba(255, 159, 64, 0.2)',
-                                     'rgba(255, 99, 132, 0.2)',
-                                     'rgba(54, 162, 235, 0.2)',
-                                     'rgba(255, 206, 86, 0.2)',
-                                     'rgba(75, 192, 192, 0.2)',
-                                     'rgba(153, 102, 255, 0.2)',
-                                     'rgba(255, 159, 64, 0.2)', ],
-                               borderColor : [ 'rgba(255,99,132,1)',
-                                     'rgba(54, 162, 235, 1)',
-                                     'rgba(255, 206, 86, 1)',
-                                     'rgba(75, 192, 192, 1)',
-                                     'rgba(153, 102, 255, 1)',
-                                     'rgba(255, 159, 64, 1)' ],
-                            },
-                            {
-                               label : '모집완료',
-                               data : [ 1, 2, 3, 44, 5, 6, 7, 8, 9, 10, 11,
-                                     12 ],
-                               backgroundColor : [
-                                  'rgba(255, 99, 132, 0.2)',
-                                  'rgba(54, 162, 235, 0.2)',
-                                  'rgba(255, 206, 86, 0.2)',
-                                  'rgba(75, 192, 192, 0.2)',
-                                  'rgba(153, 102, 255, 0.2)',
-                                  'rgba(255, 159, 64, 0.2)',
-                                  'rgba(255, 99, 132, 0.2)',
-                                  'rgba(54, 162, 235, 0.2)',
-                                  'rgba(255, 206, 86, 0.2)',
-                                  'rgba(75, 192, 192, 0.2)',
-                                  'rgba(153, 102, 255, 0.2)',
-                                  'rgba(255, 159, 64, 0.2)',],
-                               borderColor : [ 'rgba(255,99,132,1)',
-                                     'rgba(54, 162, 235, 1)',
-                                     'rgba(255, 206, 86, 1)',
-                                     'rgba(75, 192, 192, 1)',
-                                     'rgba(153, 102, 255, 1)',
-                                     'rgba(255, 159, 64, 1)' ],
-                            } ]
-				};
-   
-   
-      // 우선 컨텍스트를 가져옵니다. 
-      var ctx = document.getElementById("myChart").getContext('2d');
-      /*
-      - Chart를 생성하면서, 
-      - ctx를 첫번째 argument로 넘겨주고, 
-      - 두번째 argument로 그림을 그릴때 필요한 요소들을 모두 넘겨줍니다. 
-       */
-      var myChart = new Chart(ctx,
-            {
-               type : 'bar',
-               data : barChartData,
-               options : {
-                  title:{
-                     display: true,
-                     text: '월별 스터디 현황'
-                     fontSize:30,
-                     position : 'top',
-                  },
-                  maintainAspectRatio : true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-                  scales : {
-                     yAxes : [ {
-                        ticks : {
-                           beginAtZero : true
-                        }
-                     } ]
-                  }
-               }
-            });
-   </script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+</body>
+<script>
+	$(function() {
+		$
+				.ajax({
+					type : "post",
+					url : "/ajax/mainChart.do",
+					dataType : "json", //POINT
+					success : function(data) {
+						console.log(data);
+						console.log(data[0].l_title);
+						console.log(data[0].count);
+						var barChartData = {
+							labels : [ data[0].l_title, data[1].l_title,
+									data[2].l_title, data[3].l_title,
+									data[4].l_title, data[5].l_title,
+									data[6].l_title, data[7].l_title,
+									data[8].l_title, data[9].l_title ],
+							//type: 'bar',
+							datasets : [ {
+								data : [ data[0].count, data[1].count,
+										data[2].count, data[3].count,
+										data[4].count, data[5].count,
+										data[6].count, data[7].count,
+										data[8].count, data[9].count ],
+								backgroundColor : [ 'rgba(244,99,132,0.2)',
+										'rgba(54,162,235,0.2)',
+										'rgba(255,206,86,0.2)',
+										'rgba(75,192,192,0.2)',
+										'rgba(244,99,132,0.2)',
+										'rgba(153,102,255,0.2)',
+										'rgba(54,162,235,0.2)',
+										'rgba(255,206,86,0.2)',
+										'rgba(75,192,192,0.2)',
+										'rgba(244,99,132,0.2)' ],
+								label : '총 북마크 개수'
+
+							} ]
+						};
+
+						var ctx = $('#myChart').get(0).getContext("2d");
+						window.theChart = new Chart(ctx, {
+							type : 'bar',
+							data : barChartData,
+							options : {
+								title : {
+									display : true,
+									text : "북마크 순위 TOP 10",
+									position : 'top',
+									fontSize : 20,
+									lineHeight : 1.2,
+									padding : 0,
+								},
+								legend : {
+									display : true,
+									labels : {
+										fontSize : 13,
+									},
+								},
+								scales : {
+									xAxes : [ {
+										ticks : {
+											fontColor : 'rgba(12, 13, 13, 1)',
+											fontSize : 13
+										},
+										barPercentage : 0.9,
+										categoryPercentage : 0.9,
+									} ],
+									yAxes : [ {
+										ticks : {
+											min : 0,
+											max : 10,
+											stepSize : 2
+										},
+									} ],
+								}
+
+							}
+						});
+
+					},
+					error : function(request, status, error) {
+						console.log("code:" + request.status + "\n"
+								+ "message:" + request.responseText + "\n"
+								+ "error:" + error);
+					}
+
+				});
+	});
+</script>
 
 </body>
 
