@@ -413,11 +413,28 @@ body {
 														html += "<p style='margin-left: 30px;'>"
 																+ data[index].USER_ID
 																+ "</p></span></span>";
-														html += "</div></div>"
+														html += "</div>"
+														
+														/* 하하하  */
+														html += "<div class='col-md-6'>";
+
+														html += '<button type="button" onclick=accept("'
+																+ data[index].USER_ID
+																+ '","'
+																+ data[index].S_SEQ
+																+ '") "id="approval" class="btn btn-success btn" id="button_approval">';
+														html += "<span style='font-size: smaller;'>승인</span></button>";
+														html += '<button type="button" onclick=reject("'
+																+ data[index].user_ID
+																+ '", "'
+																+ data[index].S_SEQ
+																+ '") "id="reject" class="btn btn-danger btn" style="line-height: normal;">';
+														html += "<span style='font-size: smaller;'>거절</span></button></div>";
+														html += "</div></div>";
 
 													}
-													if (id === data.USER_ID) {
-														html += "<div class='col-md-6'>";
+													if (host === id) {
+														/* html += "<div class='col-md-6'>";
 
 														html += '<button type="button" onclick=accept("'
 																+ data[index].USER_ID
@@ -431,7 +448,7 @@ body {
 																+ data[index].S_SEQ
 																+ '") "id="reject" class="btn btn-danger btn" style="line-height: normal;">';
 														html += "<span style='font-size: smaller;'>거절</span></button></div>";
-														html += "</div></div>";
+														html += "</div></div>"; */
 													}
 
 													$('#wait').append(html);
