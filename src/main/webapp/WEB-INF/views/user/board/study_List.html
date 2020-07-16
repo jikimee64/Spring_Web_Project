@@ -520,10 +520,11 @@ group+group {
 	</div>
 
 	<script>
+	//내용에 이미지 뜨는거 막기 시작
 		$(function() {
-
-			/*  location.reload(); */
+			$('p > img').remove();
 		});
+		//내용에 이미지 뜨는거 막기 끝
 	</script>
 
 	<script>
@@ -698,17 +699,6 @@ group+group {
 	
 	
 	</script>
-	<script>
-	/* 페이지 로딩시 게시글에 있는 이미지 막기 시작 */
-		$(function(){
-			$('img').each(function(index, item){
-				if($('img').eq(index).attr('class') == null || $('img').eq(index).attr('class') == "" || $('img').eq(index).attr('class') == undefined){
-					$(this).remove();
-				}
-			});
-		});
-	/* 페이지 로딩시 게시글에 있는 이미지 막기 끝 */
-	</script>	
 	
 </body>
 
