@@ -698,6 +698,18 @@ group+group {
 	
 	
 	</script>
+	<script>
+	/* 페이지 로딩시 게시글에 있는 이미지 막기 시작 */
+		$(function(){
+			$('img').each(function(index, item){
+				if($('img').eq(index).attr('class') == null || $('img').eq(index).attr('class') == "" || $('img').eq(index).attr('class') == undefined){
+					$(this).remove();
+				}
+			});
+		});
+	/* 페이지 로딩시 게시글에 있는 이미지 막기 끝 */
+	</script>	
+	
 </body>
 
 
