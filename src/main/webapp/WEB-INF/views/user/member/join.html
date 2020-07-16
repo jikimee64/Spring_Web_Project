@@ -296,6 +296,8 @@ body {
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
+	
+	<input type="hidden" th:value="${snsType}" id='snsType' />
 
 
 	<form action="login.do" method="post" class="joinform" id="joinform"

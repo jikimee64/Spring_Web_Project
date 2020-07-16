@@ -111,7 +111,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	//소셜 로그인 회원가입
 	@Override
-	public Users socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
+	public int socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
 		System.out.println("서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
 		System.out.println("기타 : " + users.getIntroduce());
@@ -136,9 +136,7 @@ public class MemberServiceImpl implements MemberService {
 			users.setProfile_img("member.png");
 		}
 		
-		Users result = null;
-		int result2 = 0;
-
+		
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
 
 		List<HashMap<String, String>> list = new ArrayList();
@@ -176,6 +174,11 @@ public class MemberServiceImpl implements MemberService {
 		HashMap<String, Object> mo = new HashMap();
 		mo.put("insertlist", list);
 		
+		
+		
+		int result = 0;
+		int result2 = 0;
+
 		System.out.println( "실력리스트"+ list);
 		try {
 			result = dao.socialjoininsert(users);
@@ -189,6 +192,14 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		return result;
+	}
+
+	@Override
+	public Users confirmsocial(String user_id) {
+		MemberDao dao = sqlsession.getMapper(MemberDao.class);
+		 Users user = dao.confirmsocial(user_id);
+		
+		return user;
 	}
 		
 

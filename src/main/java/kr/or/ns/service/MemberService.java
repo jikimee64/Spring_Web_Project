@@ -15,6 +15,9 @@ public interface MemberService {
 	public int joininsert(Users users, HttpServletRequest request) throws Exception, SQLException;
 	
 	//소셜 회원가입
-	public Users socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException;
+	public int socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException;
+	
+	//회원가입 했는지 확인용
+	public Users confirmsocial(String user_email);
 	
 }

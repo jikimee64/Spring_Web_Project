@@ -67,23 +67,22 @@
 							style="color: white; font-size: 30px; padding: 0px; padding-left: 20px; margin-top: 5px;">|</li>
 					
 						<th:block sec:authorize="hasRole('ROLE_USER')">
-							<!-- <a href="/mypage/mypage.do" style="padding-left: 20px;"> 
-							 <img
-								th:src="'/userboard/upload/' + ${session.currentUser.profile_img}"
-								alt="" style="height: 50px; border-radius: 50%;"> 
-						
-							</a> -->
+							
+							
+							<!-- <span sec:authentication="principal"></span> -->
 							<li class="drop-down"
 								style="padding-left: 0px; padding-right: 15px;"><a href=""></a>
-
+						
 								<ul
 									style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
 									<!-- <span sec:authentication="principal.username"></span> -->
 									<th:block
 										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
+										<!--  <th:block th:if="${principal != null}"> -->
 										<li style="margin-left: 21px;"><b><span
-												sec:authentication="principal.username"></span>님 환영합니다</b></li>
-
+													th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b></li> 
+					
+										<!-- </th:block> -->
 										<li class="_pageactive"><a th:href="@{/mypage/mypage.do}">마이페이지</a></li>
 										<li class="_pageactive"><a
 											href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>

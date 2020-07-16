@@ -34,7 +34,11 @@
 		#{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img},
 		#{nickname},
 		#{introduce}, #{blame_count})
-	</insert>
+		</insert>
 	
+	<!-- 소셜 로그인 시 DB에 있는 데이터인지 확인 -->
+	<select id="confirmsocial" resultType="kr.or.ns.vo.Users">
+	select * from users where user_id = #{user_id}
+	</select>
 
 </mapper>

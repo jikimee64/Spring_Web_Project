@@ -20,7 +20,7 @@
 			username-parameter="user_id"
 			password-parameter="user_pwd"
 			default-target-url="" 
-			login-page="/member/login.do"
+			login-page="/member/normallogin.do"
 			authentication-success-handler-ref="loginSuccessHandler"
 			authentication-failure-handler-ref="loginFailureHandler"
 		/> 
