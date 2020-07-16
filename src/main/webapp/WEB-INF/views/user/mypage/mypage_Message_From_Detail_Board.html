@@ -126,7 +126,7 @@ body {
 					</span>
 				</div>
 				<div class="col-md-10" style="align-self: center;">
-					<span th:text="${message.senddate}">ㅇㅇ</span>
+					<span th:text="${#dates.format(message.senddate,'yyyy/MM/dd HH:mm')}">ㅇㅇ</span>
 				</div>
 			</div>
 			<div class="row"

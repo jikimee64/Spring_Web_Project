@@ -205,6 +205,9 @@ public class BoardController {
 			model.addAttribute("heart", heart);
 			model.addAttribute("commentList", commentList);
 			System.out.println("목록 -> 일반 ************: " + study);
+			
+			
+			System.out.println("1.컨트롤러 댓글:"+commentList.toString());
 
 			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
@@ -341,10 +344,12 @@ public class BoardController {
 	public List<Map<String, Object>> getCommentList(@RequestBody Map<String, Object> params, Principal principal)
 			throws IOException {
 		String s_seq = (String) params.get("s_seq");
-
-		List<Map<String, Object>> commentList = service.getComment(s_seq);
-		System.out.println("----commentList 찍어보기----" + commentList);
-
+		
+		
+		List<Map<String,Object>> commentList = service.getComment(s_seq); 
+		System.out.println("----commentList 찍어보기----"+commentList);
+		System.out.println("0. 코멘트리스트 찍어보기:"+commentList);
+		
 		return commentList;
 
 	}

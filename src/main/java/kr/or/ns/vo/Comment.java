@@ -18,4 +18,5 @@ public class Comment {
 	private int r_refer;
 	private int r_depth;
 	private int r_step;
+	
 }

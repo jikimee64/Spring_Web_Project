@@ -17,7 +17,7 @@
 		#{receptionid},
 		#{senderid},
 		#{content},
-		now()
+		DATE_SUB(now(), INTERVAL 9 HOUR)
 		)
 	</insert>
 
@@ -76,7 +76,7 @@
 	</delete>
 	
 	<update id="updateMessage">
- 		update message set opendate=now() where m_seq = #{m_seq}
+ 		update message set opendate=DATE_SUB(now(), INTERVAL 9 HOUR) where m_seq = #{m_seq}
  	</update>
 
 </mapper>

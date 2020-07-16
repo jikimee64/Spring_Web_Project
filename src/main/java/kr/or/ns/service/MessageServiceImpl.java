@@ -130,9 +130,15 @@ public class MessageServiceImpl implements MessageService {
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
 		Message message = null;
 		try {
+			
+			System.out.println("2 서비스 왓어욤:"+message);
 			System.out.println("아이디 : " + m_seq);
 			message = dao.getMessage(m_seq);
 			dao.updateMessage(m_seq);
+			
+			
+			System.out.println("3.매퍼갓다왓어욤: "+message);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -273,7 +273,7 @@ group+group {
 
 					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
 					<!-- td3(내용) -->
-					<!-- 					<div th:if="${list[index.index].opendate} != null" class="col-md-6" -->
+<!-- 										<div th:if="${list[index.index].opendate} != null" class="col-md-6" -->
 					   <div th:if="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
                   style="place-self: center; text-align: center;">
                   
@@ -285,7 +285,7 @@ group+group {
 
 
                <!-- td3(내용) -->
-               <!--                <div th:if="${list[index.index].opendate} == null" class="col-md-6" -->
+<!--                               <div th:if="${list[index.index].opendate} == null" class="col-md-6" -->
                <div th:unless="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
                   style="place-self: center; text-align: center;">
 <!--                   <a style="color: green;" -->
@@ -302,11 +302,11 @@ group+group {
                      <span th:text="${list.content}"></span>
                   </a>
                </div> -->
-
+<!-- ${#dates.format(study.WRITE_DATE, 'yyyy/MM/dd HH:mm')} -->
 					<!-- td4(받은시간) -->
 					<div class="col-md-3"
 						style="place-self: center; text-align: center;">
-						<span th:text="${list.SENDDATE}"></span>
+						<span th:text="${#dates.format(list.SENDDATE,'yyyy/MM/dd HH:mm')}"></span>
 					</div>
 					
 					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" /> 
