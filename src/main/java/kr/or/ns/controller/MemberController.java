@@ -4,10 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.google.protobuf.TextFormat.ParseException;
-
+import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.MemberService;
+import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -49,35 +46,57 @@ public class MemberController {
 	MemberService service;
 
 	@Autowired
+	AjaxService ajaxservice;
+
+	@Autowired
+	MyPageService mypageservice;
+
+	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@RequestMapping(value = "login.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "normallogin.do", method = RequestMethod.GET)
 	public String loginPage(@RequestParam(value = "errormsg", required = false) Object errormsg,
 			HttpServletRequest request) {
 
-		
 		if (errormsg != null) {
 			request.setAttribute("errormsgname", (String) errormsg);
 		}
+		return "user/member/login";
+	}
+
+	@RequestMapping(value = "login.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String socialloginPage(@RequestParam(value = "errormsg", required = false) Object errormsg,
+			HttpServletRequest request, HttpSession session, Model model) {
+
+		// 네이버 로그인 인증을 위한 url 생성
+		String naverUrl = naverLoginBO.getAuthorizationUrl(session);
 		
+		//카카오 로그인 인증을 위한 url 생성
+
+		// 메인이외의 페이지에서 로그인했을시 해당 페이지로 return시켜주기위한 url
+		session.setAttribute("loginPage", request.getRequestURL().toString());
+
+		// 넘어온 페이지
+		session.setAttribute("returnUrl", (String) request.getHeader("REFERER"));
+		
+		// 네이버 넘어온 페이지
+		model.addAttribute("naver_url", naverUrl); // 네이버 url\
+		
+		//카카오 url
 
 		return "user/member/login";
 	}
 
-	// 네이버 로그인 성공시 callback호출 메소드
+	// 네이버 회원가입 성공시 callback호출 메소드
 	@RequestMapping(value = "join.do", method = RequestMethod.GET)
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-			throws IOException, ParseException, org.json.simple.parser.ParseException {
+	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session,
+			HttpServletRequest request, Users user) throws SQLException, Exception {
 		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
 
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		// 1. 로그인 사용자 정보를 읽어온다.
 		apiResult = naverLoginBO.getUserProfile(oauthToken); // String형식의 json데이터
-		/**
-		 * apiResult json 구조 {"resultcode":"00", "message":"success",
-		 * "response":{"id":"33666449","nickname":"shinn****","age":"20-29","gender":"M","email":"sh@naver.com","name":"\uc2e0\ubc94\ud638"}}
-		 **/
 
 		// 2. String형식인 apiResult를 json형태로 바꿈
 		JSONParser parser = new JSONParser();
@@ -93,46 +112,66 @@ public class MemberController {
 		String email = (String) response_obj.get("email");
 		System.out.println("res::" + response_obj);
 		System.out.println(nickname);
-		// 4.파싱 닉네임 세션으로 저장
-		model.addAttribute("unickname", nickname); // 세션 생성
-		model.addAttribute("uname", name);
-		model.addAttribute("uemail", email);
-		model.addAttribute("result", apiResult);
+		System.out.println(email);
 
-		// System.out.println("이건뭐야" + apiResult);
+		String returnUrl = (String) session.getAttribute("returnUrl");
+		System.out.println(returnUrl);
 
-		return "user/member/join";
+		// DB에 등록된 이메일인지 확인
+		int check = 0;
+		try {
+			check = ajaxservice.idcheck(email);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (check == 0) {
+			System.out.println("DB에 등록되지 않은 이메일");
+			System.out.println("naver회원가입으로 이동");
+
+			model.addAttribute("uemail", email);
+			model.addAttribute("snsType", "naver");
+			return "user/member/join"; // 여기 주소 확인해봐야될듯. 가입하지 않은 회원이면 회원가입으로 이동시켜주기
+
+		}
+
+		// 스프링 시큐리티 수동 로그인을 위한 작업//
+		// 로그인 세션에 들어갈 권한을 설정
+		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+		list.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+		SecurityContext sc = SecurityContextHolder.getContext();
+		// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
+		// 패스워드는 null로 하여도 값이 생성.
+		sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
+		session = request.getSession(true);
+
+		// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
+		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+		// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
+
+		System.out.println("이미 가입된 회원");
+		Users users = new Users();
+		users = mypageservice.getUsers(email);
+		session = request.getSession();
+		session.setAttribute("currentUser", users);
+		System.out.println("이미 가입된 회원의 정보" + users);
+
+		/*
+		 * if (returnUrl.equals((String) session.getAttribute("loginPage"))) {
+		 * System.out.println("로그인페이지에서의 접근"); session.removeAttribute("loginPage");
+		 * returnUrl = "/"; }
+		 */
+
+		return "redirect:../user/main.do";
 	}
 
 	// 소셜회원가입처리
 	@RequestMapping(value = "join.do", method = RequestMethod.POST)
 	public String socialJoin(@RequestParam(value = "file", required = false) MultipartFile ipload, Users users,
-			HttpServletRequest request,HttpSession session) throws SQLException, Exception {
+			HttpServletRequest request, HttpSession session) throws SQLException, Exception {
 
-		// users.setUser_pwd(this.bCryptPasswordEncoder.encode(users.getUser_pwd()));
-		
-		// 스프링 시큐리티 수동 로그인을 위한 작업//
-				// 로그인 세션에 들어갈 권한을 설정
-				List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-				list.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-				SecurityContext sc = SecurityContextHolder.getContext();
-				// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-				// 패스워드는 null로 하여도 값이 생성.
-				sc.setAuthentication(new UsernamePasswordAuthenticationToken(users, null, list));
-				session = request.getSession(true);
-
-				// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-				session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-				// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
-					
-				// 로그인 유저 정보 가져와서 세션객체에 저장
-				Users loginusers = service.socialjoininsert(users,request);
-				System.out.println("유저네임: " + users.getUser_id());
-
-				session = request.getSession();
-				session.setAttribute("user", loginusers);
-				// 로그인 유저 정보 가져와서 세션객체에 저장 끝//
+		int loginusers = service.socialjoininsert(users, request);
+		System.out.println("유저네임: " + users.getUser_id());
 
 		return "redirect:/index.do";
 		// /index.htm
@@ -152,9 +191,7 @@ public class MemberController {
 	@RequestMapping("menujoin.do")
 	public String menujoin(HttpSession session, Model model) {
 		System.out.println("회원가입메뉴로 이동(연규가씀)");
-
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		// ------여기까지 네이버----//
 
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		model.addAttribute("url", naverAuthUrl);

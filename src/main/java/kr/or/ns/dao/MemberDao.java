@@ -16,6 +16,10 @@ public interface MemberDao {
 	public int insertskill(HashMap<String, Object> map) throws ClassNotFoundException, SQLException;
 	
 	//소셜 회원가입
-	public Users socialjoininsert(Users users);
+	public int socialjoininsert(Users users);
+	
+	//이미 등록된 이메일인지 확인용
+	public Users confirmsocial(String user_id);
+	
 
 }
