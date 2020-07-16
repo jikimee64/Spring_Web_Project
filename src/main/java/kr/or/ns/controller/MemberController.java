@@ -1,6 +1,7 @@
 package kr.or.ns.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,34 +53,11 @@ public class MemberController {
 
 	@RequestMapping(value = "login.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String loginPage(@RequestParam(value = "errormsg", required = false) Object errormsg,
-			HttpServletRequest request, Users user, HttpSession session) {
+			HttpServletRequest request) {
 
+		
 		if (errormsg != null) {
 			request.setAttribute("errormsgname", (String) errormsg);
-		
-
-		// 스프링 시큐리티 수동 로그인을 위한 작업//
-		// 로그인 세션에 들어갈 권한을 설정
-		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-		list.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-		SecurityContext sc = SecurityContextHolder.getContext();
-		// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-		// 패스워드는 null로 하여도 값이 생성.
-		sc.setAuthentication(new UsernamePasswordAuthenticationToken(user, null, list));
-		session = request.getSession(true);
-
-		// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-		// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
-
-		// 로그인 유저 정보 가져와서 세션객체에 저장
-		//Users users = ls.normalLogin(user);
-		System.out.println("유저네임: " + user.getUser_id());
-
-		session = request.getSession();
-		//session.setAttribute("user", users);
-		// 로그인 유저 정보 가져와서 세션객체에 저장 끝//
 		}
 		
 
@@ -92,9 +70,6 @@ public class MemberController {
 			throws IOException, ParseException, org.json.simple.parser.ParseException {
 		System.out.println("여기는 callback");
 		OAuth2AccessToken oauthToken;
-		System.out.println("우철입니다 : " + session);
-		System.out.println("code " + code);
-		System.out.println("state " + state);
 
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
 		// 1. 로그인 사용자 정보를 읽어온다.
@@ -132,17 +107,32 @@ public class MemberController {
 	// 소셜회원가입처리
 	@RequestMapping(value = "join.do", method = RequestMethod.POST)
 	public String socialJoin(@RequestParam(value = "file", required = false) MultipartFile ipload, Users users,
-			HttpServletRequest request) throws IOException {
+			HttpServletRequest request,HttpSession session) throws SQLException, Exception {
 
 		// users.setUser_pwd(this.bCryptPasswordEncoder.encode(users.getUser_pwd()));
+		
+		// 스프링 시큐리티 수동 로그인을 위한 작업//
+				// 로그인 세션에 들어갈 권한을 설정
+				List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+				list.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-		try {
-			System.out.println("여긴오니...?");
-			service.socialjoininsert(users, request);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
+				SecurityContext sc = SecurityContextHolder.getContext();
+				// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
+				// 패스워드는 null로 하여도 값이 생성.
+				sc.setAuthentication(new UsernamePasswordAuthenticationToken(users, null, list));
+				session = request.getSession(true);
 
-		}
+				// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
+				session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+				// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
+					
+				// 로그인 유저 정보 가져와서 세션객체에 저장
+				Users loginusers = service.socialjoininsert(users,request);
+				System.out.println("유저네임: " + users.getUser_id());
+
+				session = request.getSession();
+				session.setAttribute("user", loginusers);
+				// 로그인 유저 정보 가져와서 세션객체에 저장 끝//
 
 		return "redirect:/index.do";
 		// /index.htm

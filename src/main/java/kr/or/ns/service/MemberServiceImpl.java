@@ -52,8 +52,7 @@ public class MemberServiceImpl implements MemberService {
 			users.setProfile_img("member.png");
 		}
 		
-		
-
+	
 		int result = 0;
 		int result2 = 0;
 
@@ -112,7 +111,7 @@ public class MemberServiceImpl implements MemberService {
 	
 	//소셜 로그인 회원가입
 	@Override
-	public int socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
+	public Users socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
 		System.out.println("서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
 		System.out.println("기타 : " + users.getIntroduce());
@@ -137,7 +136,7 @@ public class MemberServiceImpl implements MemberService {
 			users.setProfile_img("member.png");
 		}
 		
-		int result = 0;
+		Users result = null;
 		int result2 = 0;
 
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);
