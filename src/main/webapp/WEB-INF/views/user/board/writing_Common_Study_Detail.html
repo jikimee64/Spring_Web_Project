@@ -610,6 +610,51 @@ keyframes heart-keyframes { 100% {
          
          
          
+//          /* yyyymmddhhmm으로 포맷 */
+//          function getDateFormet(date){
+//         	 var dd = date.getDate();
+//         	 var mm = date.getMonth()+1; //January is 0
+        	 
+//         	 var yyyy = date.getFullYear();
+        	 
+//         	 if(dd<10){
+//         		 dd='0'+dd
+//         	 }
+        	 
+//         	 if(mm<10){
+//         		 mm='0'+mm
+//         	 }
+        	 
+//         	 yyyy = yyyy.toString();
+//         	 mm = mm.toString();
+//         	 dd = dd.toString();
+        	 
+//         	 var m = date.getHours();
+//         	 var s = date.getMinutes();
+        	 
+//         	 if(m<10){
+//         		 m='0'+m
+//         	 }
+        	 
+//         	 if(s<10){
+//         		 s='0'+s
+//         	 }
+	        	 
+//         	 m = m.toString();
+//         	 s = s.toString();
+        	 
+//         	 var s1 = yyyy+'/'+mm+'/'+dd+' '+m+':'+s;
+//         	 return s1;
+//          }
+         
+         
+         
+         
+         
+         
+         
+         
+         
 
             
             
@@ -623,7 +668,14 @@ keyframes heart-keyframes { 100% {
                 	   console.warn('보바네미');
                 	   console.warn('보바네미');
                 	   console.warn('보바네미');
-                	   	var date1 = new Date(obj.R_DATE);
+                	   
+                	   
+//                 	   	var date1 = new Date(obj.r_date);
+//                 	   	date1.setHours(date1.getHours()-9);
+
+                	  var date1 = new Date(obj.r_date);
+                	  date1.setHours(date1.getHours()-9);
+                	
                       if(obj.R_EXISTS === 'Y'){
                          
                            var depthcss = "";
@@ -639,9 +691,9 @@ keyframes heart-keyframes { 100% {
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
                            }
-                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" +  date1.toLocaleDateString()+
+                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" + getDateFormet(date1) +
                            quillpen +"</div></blockquote>";
-                        
+//                            date1.toLocaleString()
                         }else{
                            
                            var depthcss = "";

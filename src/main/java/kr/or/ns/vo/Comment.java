@@ -15,7 +15,6 @@ public class Comment {
 	private String r_content;
 	private String r_name;
 	private Date r_date;
-//	private String r_date;
 	private int r_refer;
 	private int r_depth;
 	private int r_step;
