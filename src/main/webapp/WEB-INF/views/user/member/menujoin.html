@@ -427,7 +427,7 @@ button:focus {
 		</c:if>
 	</div>    -->
 	
-
+	<input type="hidden" th:value="${snstype}" id='snstype' />
 	<div class="limiter" style="height:834px;">
 		<div class="container-login100" style="position:inherit;">
 
@@ -453,6 +453,9 @@ button:focus {
 							네이버회원가입
 						</a>
 					</div>
+						<a th:href="@{${kakao_url}}">
+							카카오회원가입
+						</a>
 				</div>
 
 			</div>

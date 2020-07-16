@@ -22,6 +22,7 @@ public class Users {
 	private String nickname;
 	private String introduce;
 	private int blame_count;
+	private String snstype;
 	private String java;
 	private String python;
 	private String html_css;

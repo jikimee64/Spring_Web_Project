@@ -136,5 +136,9 @@
 			</list>
 		</property>
 	</bean>
-
+	
+	    <bean id="AuthInfo" class="kr.or.ns.vo.AuthInfo">
+        <constructor-arg value="721060596854-347klibg22no5e7lr18vql8q1c7qqnu1.apps.googleusercontent.com" />
+        <constructor-arg value="aR7f4R2w0jhittBeXyyP24tM" />
+    </bean>
 </beans>
