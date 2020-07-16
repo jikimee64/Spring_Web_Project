@@ -16,6 +16,11 @@
                            http://www.springframework.org/schema/tx
                       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	<mvc:resources mapping="/filepath/**" location="file:///C:/kwc/"/>
+	<mvc:resources mapping="/resources/**" location="/resources/"/>
+
+
+
 	<task:annotation-driven />
  	<tx:annotation-driven
 		transaction-manager="transactionManager" /> 
