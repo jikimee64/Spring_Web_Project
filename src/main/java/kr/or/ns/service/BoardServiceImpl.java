@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import kr.or.ns.dao.BoardDao;
+import kr.or.ns.dao.LectureDao;
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
@@ -44,6 +45,32 @@ public class BoardServiceImpl implements BoardService {
 		List<Map<String, Object>> list = dao.getStudyBoardList(cri_b);
 
 		return list;
+	}
+	
+	//study_board_online 게시판 정보 가져오기(목록에서 온라인강의 컨텐츠 정보 부려줄용)
+	public List<Map<String, Object>> getOnlineStudyBoard(){
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		List<Map<String, Object>> list = dao.getOnlineStudyBoard();
+		return list;
+	}
+	
+	
+	//l_seq를 뽑은 다음 강의정보 select
+	@Transactional
+	public Map<String, Object> onlineDetailInfo(String s_seq){
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		LectureDao dao2 = sqlsession.getMapper(LectureDao.class);
+		 Map<String, Object> map = null;
+		try {
+			String l_seq = dao.getL_SEQ(s_seq);
+			System.out.println("오오오 : " + l_seq);
+			map = dao2.getLecture(l_seq);
+		} catch (Exception e) {
+			System.out.println("둘 중에 하나라도 문제가 생기면 예외가 떨어지는 부분" + e.getMessage());
+			throw e; // 예외를 다시 돌려줌. 그리고 이 예외가 발생하는 시점에 transactionManager가 감시를 하다가 rollback 처리를 한다.
+		}
+		return map;
+
 	}
 
 	// 총 스터디게시글 수
@@ -267,56 +294,31 @@ public class BoardServiceImpl implements BoardService {
 		return 0;
 	}
 
-	// 스터디 글 상세보기
-//	public Map<String, Object> getStudy(String s_seq) {
-//		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-//		Map<String, Object> study = dao.getStudy(s_seq);
-//
-//		return study;
-//	}
-//	
-	
-	
 	
 	// 스터디 글 상세보기 트랜잭션
-//	@Override
 	@Transactional
 		public Map<String, Object> getStudy(String s_seq) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			Map<String, Object> study = null;
-			
-			
 		try {
 			study = dao.getStudy(s_seq);
 			dao.updateReadNum(s_seq);
 			System.out.println("정상");
 			
 		} catch (Exception e) {
-			
 			System.out.println("문제발생"+e.getMessage());
 			throw e;
-			
 		}
-			
-
 			return study;
 		}
-
 	
-	//조회수 증가
-//	public void updateReadNum(Integer s_seq) {
-//	}
-//	
-
 	
 	// 스터디 글 삭제
 	public int delete(String s_seq) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-
 		System.out.println("아오 :ㅣ " + s_seq);
 		int count = dao.delete(s_seq);
 		return count;
-
 	}
 
 	// 댓글 개수
@@ -393,11 +395,16 @@ public class BoardServiceImpl implements BoardService {
 		int result = dao.getLikeCnt(Integer.parseInt(s_seq));
 		return result;
 	}
-
+	/*************************************    댓글   시작  **********************************************/
+	
 	//댓글 등록하기 
 	public void commentInsert(Comment cm) {
 		System.out.println("commentInsert 왔어요");
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		
+		//refer 넣어주기
+		int r_refer = dao.getMaxRefer();
+		cm.setR_refer(r_refer+1);
 		dao.commentInsert(cm);
 	}
 
@@ -469,7 +476,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 
-	
+	/*************************************    댓글   끝  **********************************************/
 	
 	
 	

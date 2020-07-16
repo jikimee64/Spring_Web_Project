@@ -166,6 +166,47 @@
        order by count(b.l_seq) desc
        limit 10
 	</select>
+	
+	<select id="studyBoardFilter" resultType="hashMap">
+		select * from study_board
+		<where>
+			<if test="ingOrDone != null">
+				status= #{ingOrDone}
+			</if>
+			<if test="level != null">
+				 and level = #{level}
+			</if>
+			 <if test="language.size != 0">
+			     and lan_seq in
+			     <foreach collection="language" item="item" index="index" separator="," open="(" close=")">
+			      	#{item}
+			     </foreach>
+			</if> 
+			<if test="local != null">
+			     and loc_seq = #{local}
+			</if>
+			<if test="studyContent != null">
+			     and c_seq = #{studyContent}
+			</if>
+		</where>
+	
+	</select>
 
+
+	<!-- 마이페이지 내가 쓴 댓글 리스트 -->
+	<select id="commentList" resultType="hashMap">
+		select * from comment where r_name= #{r_name} and r_exists = 'Y'
+		order by r_seq desc
+	</select>
+	
+	
+	
+	<!-- 마이페이지 내가 쓴 댓글의 대댓글 카운트 -->
+<!-- 	<select id="commentList" resultType="hashMap">
+		select r_refer, count(r_step) from comment where 
+		r_name != #{r_name} and r_exists = 'Y' and R_DEPTH = 1 and r_refer=
+		group by r_refer
+		order by r_seq desc;
+	</select> -->
 
 </mapper>

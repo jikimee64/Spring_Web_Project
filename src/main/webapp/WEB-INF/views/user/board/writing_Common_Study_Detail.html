@@ -303,13 +303,13 @@ keyframes heart-keyframes { 100% {
                   <div class="row">
                      <div class="col-md-8"></div>
                      <div class="col-md-4" style="width: 100%;">
-                        <div class="row" style="margin-left: 30px; margin-top: -20px;">
+                        <div class="row" id="fileHas1"  style="margin-left: 30px; margin-top: -20px;">
                            <th:block th:switch="${study.FILESRC}">
                               <div th:case="defaultfile" class="form-group"
                                  style="margin: 0"></div>
                               <div th:case="${study.FILESRC}" class="form-group"
                                  style="margin: 0">
-                                 <a href="" style="color: black;"> <i
+                                 <a th:href="@{FileDownload.do(filesrc=${study.FILESRC})}" style="color: black;"> <i
                                     class="fa fa-folder-open" aria-hidden="true"></i> <sapn
                                        class="_file_name1" th:text="${study.FILESRC}"> </span></a>
                               </div>
@@ -322,13 +322,13 @@ keyframes heart-keyframes { 100% {
                   <div class="row">
                      <div class="col-md-8"></div>
                      <div class="col-md-4" style="width: 100%">
-                        <div class="row" style="margin-left: 30px; margin-top: 5px;">
+                        <div class="row" id="fileHas2" style="margin-left: 30px; margin-top: 5px;">
                            <th:block th:switch="${study.FILESRC2}">
                               <div th:case="defaultfile2" class="form-group"
                                  style="margin: 0"></div>
                               <div th:case="${study.FILESRC2}" class="form-group"
                                  style="margin: 0">
-                                 <a href="" style="color: black;"> <i
+                                 <a th:href="@{FileDownload.do(filesrc=${study.FILESRC2})}" style="color: black;"> <i
                                     class="fa fa-folder-open" aria-hidden="true"></i> <span
                                     class="_file_name2" th:text="${study.FILESRC2}"></span>
                                  </a>
@@ -344,11 +344,7 @@ keyframes heart-keyframes { 100% {
                      style="background-color: #F5F5F5; resize: none;">
                   <th:block></th:block>
                </textarea>
-
-
                   <br />
-
-
                   <div class="row">
                      <div class="col-4" style="text-align: start;">
 
@@ -397,15 +393,20 @@ keyframes heart-keyframes { 100% {
 			                                    style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
 			                             </a>
 		                         </th:block>
-		                          
+		                           <!--   <a
+										     th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
 		                              <button id="delete" type="button" class="btn btn-danger"
 		                                 style="height: 30px; padding-top: 3px;">삭제</button>
+		                             <!-- </a> -->
 	                           </span>
                         </th:block>
 
                         <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                           <!-- <a
+								th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
                            <button id="delete" type="button" class="btn btn-danger"
                               style="height: 30px; padding-top: 3px;">삭제</button>
+                     <!--        </a> -->
                         </th:block>
 
                         <a href="" data-toggle="modal" data-target="#declationPageModal"
@@ -479,31 +480,45 @@ keyframes heart-keyframes { 100% {
                         </div>
 
                         <div th:case="온라인강의" class="card" style="width: 100%">
-                           <img class="card-img-top" th:src="${study.IMAGE}"
-                              alt="Card image" style="width: 100%">
-                           <div class="card-body">
-                              <h6 class="card-title _margin_0">Do it! Node.js
-                                 프로그래밍(개정판)</h6>
-                              <p class="card-text _margin_0"
-                                 style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-                              <a href="/board/writing_Course_Study_Detail.do"
-                                 class="stretched-link"></a> <img
-                                 src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-                                 alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
-                           </div>
+                        	<th:block th:if="${onlineInfo != null}">
+		                           <img class="card-img-top" th:src="${study.IMAGE}"
+		                              alt="Card image" style="width: 100%">
+		                           <div class="card-body">
+		                              <h6 class="card-title _margin_0" th:text="${onlineInfo.L_TITLE}"></h6>
+		                              <p class="card-text _margin_0" th:text="${onlineInfo.L_WRITER}"
+		                                 style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+		                              <a href="/board/writing_Course_Study_Detail.do"
+		                                 class="stretched-link"></a> <img
+		                                 src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+		                                 alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+		                           </div>
+	                         <th:block>
                         </div>
                      </th:block>
 
 
-
+<!-- onclick="history.go(-1); return false;" -->
                      <th:block th:switch="${sessionid}">
                         <div th:case="${study.USER_ID}"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
-                           <a
-                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
-                              <button type="button" class="btn btn-warning"
-                                 style="width: 100%;">목록으로</button>
-                           </a>
+                           
+                           <th:block th:if="${page != null && perPageNum != null}">
+								<a
+	                              th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
+	                              <button type="button" class="btn btn-warning"
+	                                 style="width: 100%;">목록으로</button>
+	                           </a>
+                           </th:block>
+                           
+                            <th:block th:if="${page == null && perPageNum == null}">
+								<a
+	                              th:href="@{/board/study_List.do}">
+	                              <button type="button" class="btn btn-warning"
+	                                 style="width: 100%;">목록으로</button>
+	                           </a>
+                           </th:block>
+                           
+                           
                         </div>
                         <div th:case="*"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
@@ -512,8 +527,8 @@ keyframes heart-keyframes { 100% {
                            <!-- 이거는 사용자 권한 -->
                            <div style="text-align: center; margin: 10px 0px 10px 0px;">
                               <a
-                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
-                                 <button type="button" class="btn btn-warning"
+                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}" class="_to_the_list_a_tag">
+                                 <button type="button" class="btn btn-warning _to_the_list_button" 
                                     style="width: 100%;">목록으로</button>
                               </a>
                            </div>
@@ -594,8 +609,8 @@ keyframes heart-keyframes { 100% {
                   if(user_id === obj.R_NAME){
                      html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                      html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
-                  }
-                  html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" + obj.R_NAME+"날짜니" + "</div></blockquote>";
+                  }  
+                  html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
                });
                $('#com').append(html);
                
@@ -656,7 +671,6 @@ keyframes heart-keyframes { 100% {
          
          
 
-            
             
             //댓글 틀 만들어주는 함수@!
             function makeComment(result) {
@@ -1007,11 +1021,19 @@ keyframes heart-keyframes { 100% {
          
           /* 첨부파일명 자르기 시작 */
          
-          if($('._file_name1')[0].innerText.length >= 15){
-             $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,15) + "...";
+         
+         console.log($('#fileHas1').children().children().children().hasClass("_file_name1"))
+         console.log($('#fileHas2').children().children().children().hasClass("_file_name2"))
+         
+          if($('#fileHas1').children().children().children().hasClass("_file_name1")){
+		     if($('._file_name1')[0].innerText.length >= 15){
+		         $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,15) + "...";
+		     }
           }
-          if($('._file_name2')[0].innerText.length >= 15){
-             $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
+          if($('#fileHas2').children().children().children().hasClass("_file_name2")){   
+	          if($('._file_name2')[0].innerText.length >= 15){
+	             $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
+	          }
           }
           
        /* 첨부파일명 자르기 끝 */
@@ -1043,7 +1065,7 @@ keyframes heart-keyframes { 100% {
                    var page = $('#page').val();
                    var perPageNum = $('#perPageNum').val();
                    
-                   location.href="writing_Normal_Study_Delete.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
+                   location.href="writing_Common_Study_Delete.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
                  } else {
                    swal({
                       title: "삭제가 취소되었습니다."
@@ -1144,7 +1166,7 @@ keyframes heart-keyframes { 100% {
                        icon: "warning",
                        buttons: true
                      })
-               }else {
+         100      }else {
                swal({title:"신고 접수가 완료되었습니다.",
                   icon: "success"})
 
@@ -1190,6 +1212,27 @@ keyframes heart-keyframes { 100% {
  });
  
  </script>
+
+
+ <script>
+//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 -->
+ 	$(function(){
+ 		
+ 		
+ 		console.warn(window.location.href.substr(73, 1));
+ 		console.warn($('._to_the_list_a_tag')[0]);
+ 		console.warn($('._to_the_list_button')[0].innerText);
+ 		if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
+ 			$('._to_the_list_a_tag').removeAttr('href');
+ 			
+ 			$('._to_the_list_button')[0].innerText = "마이페이지로";
+ 			$('._to_the_list_a_tag')[0].setAttribute('href', '/mypage/mypage.do');
+ 		}
+ 		
+ 	});
+ 	//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 ... 끝 -->
+ </script>
+
 </body>
 
 

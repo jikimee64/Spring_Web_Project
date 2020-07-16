@@ -32,6 +32,12 @@ public interface BoardService {
 	//페이징 스터디 글목록
 	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
 	
+	//study_board_online 게시판 정보 가져오기(목록에서 온라인강의 컨텐츠 정보 부려줄용)
+	public List<Map<String, Object>> getOnlineStudyBoard();
+	
+	//상세페이지에 뿌려줄 강의 정보
+	public Map<String, Object> onlineDetailInfo(String s_seq);
+	
 	//총 스터디게시글 수
 	public int getStudyBoardCount() throws ClassNotFoundException, SQLException;
 	
