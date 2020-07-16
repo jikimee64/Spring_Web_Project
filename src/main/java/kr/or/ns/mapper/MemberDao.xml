@@ -10,10 +10,10 @@
 		#{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img},
 		#{nickname},
 		#{introduce}, #{blame_count})
-		<!-- insert into member(userid, pwd, name,regdate) values(#{userid}, #{pwd}, 
-			#{name},sysdate) -->
-
 	</insert>
+	
+	
+	
 	<!-- skill table -->
 	<insert id="insertskill" parameterType="hashMap">
 		INSERT INTO skill(skill_seq, user_id, skill_name, skill_level) values
@@ -23,6 +23,18 @@
 		</foreach>
 	
 	</insert>
+	
+	<!-- 소셜회원가입 -->
 
+	
+		<insert id="socialjoininsert" parameterType="kr.or.ns.vo.Users">
+		insert into users(user_id, user_pwd, enabled, user_name, user_email,
+		profile_img, nickname, introduce, blame_count)
+		values(#{user_id},
+		#{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img},
+		#{nickname},
+		#{introduce}, #{blame_count})
+	</insert>
+	
 
 </mapper>
