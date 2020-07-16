@@ -188,7 +188,11 @@ body {
 										class="badge badge-pill badge-light"
 										th:text="${studylist.CONTENT_KIND}"></span> <span
 										class="badge badge-pill badge-danger"
-										th:text="|마감일 : ${studylist.DEADLINE}|"></span> <span
+										
+										
+										
+										
+										th:text="|마감일 : ${#dates.format(studylist.DEADLINE,'yyyy/MM/dd HH:mm')}|"></span> <span
 										class="badge badge-pill badge-danger"
 										th:text="|${studylist.ACCEPT_STATUS}|"></span> <a
 										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"> <img
@@ -490,7 +494,13 @@ body {
 																data,
 																function(index,
 																		item) {
-
+																	
+																	 var date1 = new Date(data[index].DEADLINE);
+																	
+																	 
+																	 
+																	 
+																	 
 																	let html = "";
 
 																	html += "<div>";
@@ -519,6 +529,11 @@ body {
 																	html += "<span class='badge badge-pill badge-light'>"
 																			+ data[index].CONTENT_KIND
 																			+ "</span>";
+																			
+																	html += "<span class='badge badge-pill badge-danger'>마감일 : " 
+																			+ getDateFormet(date1)
+																			+ "</span>";
+																			
 																	html += "<span class='badge badge-pill badge-light'>"
 																			+ data[index].ACCEPT_STATUS
 																			+ "</span>";
