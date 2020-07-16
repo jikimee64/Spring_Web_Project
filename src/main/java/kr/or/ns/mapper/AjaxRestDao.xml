@@ -195,7 +195,7 @@
 
 	<!-- 마이페이지 내가 쓴 댓글 리스트 -->
 	<select id="commentList" resultType="hashMap">
-		select * from comment where r_name= #{r_name}
+		select * from comment where r_name= #{r_name} and r_exists = 'Y'
 		order by r_seq desc
 	</select>
 
