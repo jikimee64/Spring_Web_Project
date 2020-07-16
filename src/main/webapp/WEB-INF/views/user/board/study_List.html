@@ -434,11 +434,11 @@ group+group {
 							</div>
 							<div class="col-md-3"
 								style="text-align: center; padding-right: 0px;">
-								<b th:text="|등록일 : ${list.WRITE_DATE}|"></b>
+								<b th:text="|등록일 : ${#dates.format(list.WRITE_DATE, 'yyyy/MM/dd HH:mm')}|"></b>
 							</div>
 							<div class="col-md-3"
 								style="text-align: center; padding-left: 0px;">
-								<b th:text="|마감일 : ${list.DEADLINE}|"></b>
+								<b th:text="|마감일 : ${#dates.format(list.DEADLINE, 'yyyy/MM/dd HH:mm')}|"></b>
 							</div>
 
 						</div>
@@ -450,8 +450,8 @@ group+group {
 							</a>
 						</div>
 						<div class="row _content"
-							style="margin: 0px 5px 0px 28px; height: 150px;"
-							th:text="${list.CONTENT}">
+							style="margin: 0px 5px 0px 28px; height: 150px;">
+							<span th:utext="${list.CONTENT}"></span>
 							<p></p>
 						</div>
 					</div>

@@ -19,7 +19,7 @@
 		set loc_seq = #{loc_seq},
 		lan_seq = #{lan_seq},
 		people = #{people},
-		deadline = now(),
+		deadline = DATE_SUB(now(), INTERVAL 9 HOUR),
 		title = #{title},
 		content = #{content},
 		level = #{level},

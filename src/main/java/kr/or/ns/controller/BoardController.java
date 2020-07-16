@@ -1,12 +1,14 @@
 package kr.or.ns.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -15,6 +17,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,10 +68,10 @@ public class BoardController {
 
 		pageMakerb.setTotalCount(service.getStudyBoardCount());
 
-		//study_board_online에있는 모든정보도 보내야하나?
-		
-		 List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
-		 
+		// study_board_online에있는 모든정보도 보내야하나?
+
+		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
+
 		System.out.println("우초리로로리" + onlineInfo);
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
@@ -111,14 +114,14 @@ public class BoardController {
 		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
 		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
 	}
-	
-	
+
 	// 일반컨텐츠(스터디 게시판 글 편집)
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit(RedirectAttributes redirect, Study study, Principal principal, HttpServletRequest request){
+	public String writingNormalStudyEdit(RedirectAttributes redirect, Study study, Principal principal,
+			HttpServletRequest request) {
 		System.out.println("일반게시글수정@@");
 		System.out.println("넘어온 데이터22 " + study.toString());
-		
+
 		try {
 			// 서비스가서 DB에 등록
 			System.out.println("서비스는 잘가냐 ?");
@@ -128,17 +131,16 @@ public class BoardController {
 			System.out.println(e.getMessage());
 		}
 		System.out.println("리턴 전ㄴㄴㄴㄴ...");
-		
-		redirect.addAttribute("s_seq", study.getS_seq());    
-		
+
+		redirect.addAttribute("s_seq", study.getS_seq());
+
 		return "redirect:writing_Common_Study_Detail.do";
 	}
-	
 
 	// 온라인컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
 	public String registerOnline(Study study, Principal principal, HttpServletRequest request) {
-	
+
 		System.out.println("온라인입니다 고갱님^^");
 		System.out.println("넘어온 데이터 " + study.toString());
 
@@ -146,7 +148,7 @@ public class BoardController {
 			// 서비스가서 DB에 등록
 			System.out.println("서비스는 잘가냐 ?");
 			service.studyOnlineReg(study, request, principal);
-			
+
 		} catch (Exception e) {
 			System.out.println("컨트롤러 에러");
 			System.out.println(e.getMessage());
@@ -171,72 +173,67 @@ public class BoardController {
 
 		return "user/board/writing_Normal_Study";
 	}
-	
-	
-	//상세보기
+
+	// 상세보기
 	@RequestMapping("writing_Common_Study_Detail.do")
-	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model, Principal principal) {
-		
+	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
+			Principal principal) {
+
 		System.out.println("게시판 디테일 페이지 입니다.");
 		String user_id = principal.getName();
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
 		like.setUser_id(user_id);
-		//좋아요 0/1 중 뭔지 알아오기
+		// 좋아요 0/1 중 뭔지 알아오기
 		int heart = service.heartnum(like);
-				
-		
+
 		try {
 			Map<String, Object> study = service.getStudy(s_seq);
 			Map<String, Object> onlineInfo = service.onlineDetailInfo(s_seq);
-			
+
 			System.out.println("onlineinfo : " + onlineInfo);
-			
-			model.addAttribute("study", study); 
-			model.addAttribute("onlineInfo", onlineInfo); 
+
+			model.addAttribute("study", study);
+			model.addAttribute("onlineInfo", onlineInfo);
 			model.addAttribute("page", page);
 			model.addAttribute("perPageNum", perPageNum);
-			
-			List<Map<String,Object>> commentList = service.getComment(s_seq); 
+
+			List<Map<String, Object>> commentList = service.getComment(s_seq);
 			int count = service.getReplyCnt(s_seq);
 			model.addAttribute("count", count);
 			model.addAttribute("sessionid", user_id);
 			model.addAttribute("heart", heart);
 			model.addAttribute("commentList", commentList);
 			System.out.println("목록 -> 일반 ************: " + study);
+			
+			
+			System.out.println("1.컨트롤러 댓글:"+commentList.toString());
 
 			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
-			
-			
-			
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		
 
 		return "user/board/writing_Common_Study_Detail";
 	}
-	
-	
+
 //	파일 다운로드 
 	@RequestMapping("FileDownload.do")
-	public ModelAndView FileDownload(String filesrc, HttpServletRequest request, Model model){
-		
+	public ModelAndView FileDownload(String filesrc, HttpServletRequest request, Model model) {
+
 		String filePath = request.getSession().getServletContext().getRealPath("/studyboard/upload/");
-		
+
 		File downloadFile = null;
-				
+
 		downloadFile = new File(filePath + filesrc);
-		
-		
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("FileDownload"); // 뷰의 이름
 		mv.addObject("downloadFile", downloadFile); // 뷰로 보낼 데이터 값
 
 		return mv;
 	}
-	
 
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
@@ -249,9 +246,7 @@ public class BoardController {
 		return "user/board/writing_Normal_Study_Edit";
 	}
 
-
-	
-	//스터디 게시판 글 삭제
+	// 스터디 게시판 글 삭제
 	@RequestMapping("writing_Common_Study_Delete.do")
 	public String writingNormalStudyDelete(Criteria_Board cri_b, Model model, String s_seq)
 			throws ClassNotFoundException, SQLException {
@@ -280,7 +275,8 @@ public class BoardController {
 
 		return "user/board/board_Support_Status";
 	}
-	//좋아요 넣는 로직
+
+	// 좋아요 넣는 로직
 	@RequestMapping(value = "heart.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
@@ -294,38 +290,38 @@ public class BoardController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-		//해당 게시글 좋아요 총 갯수 반환
+
+		// 해당 게시글 좋아요 총 갯수 반환
 		int result = service.getLikeCnt(s_seq);
 		return result;
 	}
-	
-	//댓글 넣는 로직
-	@RequestMapping(value = "InsertComment.do" , method = RequestMethod.POST)
+
+	// 댓글 넣는 로직
+	@RequestMapping(value = "InsertComment.do", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Map<String,Object>> commentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+	public List<Map<String, Object>> commentInsert(@RequestBody Map<String, Object> params, Principal principal)
+			throws IOException {
 		String user_id = principal.getName();
 		String s_seq = (String) params.get("s_seq");
 		String r_content = (String) params.get("r_content");
-		
+
 		Comment cm = new Comment();
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_content(r_content);
 		cm.setR_name(user_id);
-		
-		
+
 		service.commentInsert(cm);
 
-		
-		List<Map<String,Object>> commentList = service.getComment(s_seq); 
-		
+		List<Map<String, Object>> commentList = service.getComment(s_seq);
+
 		return commentList;
 	}
-	
-	//댓글 지우는 로직
-	@RequestMapping(value = "DeleteComment.do" , method = RequestMethod.POST)
+
+	// 댓글 지우는 로직
+	@RequestMapping(value = "DeleteComment.do", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Map<String,Object>> commentDelete(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+	public List<Map<String, Object>> commentDelete(@RequestBody Map<String, Object> params, Principal principal)
+			throws IOException {
 		String user_id = principal.getName();
 		String s_seq = (String) params.get("s_seq");
 		String r_seq = (String) params.get("r_seq");
@@ -333,166 +329,227 @@ public class BoardController {
 		Comment cm = new Comment();
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_seq(Integer.parseInt(r_seq));
-		
-		//service.commentDelete(cm);
+
+		// service.commentDelete(cm);
 		service.updateR_exists(cm);
-		
-		List<Map<String,Object>> commentList = service.getComment(s_seq); 
+
+		List<Map<String, Object>> commentList = service.getComment(s_seq);
 		return commentList;
 
 	}
-	
-	//댓글 가져오는 함수
-	@RequestMapping(value = "SelectCommentList.do" , method = RequestMethod.POST)
+
+	// 댓글 가져오는 함수
+	@RequestMapping(value = "SelectCommentList.do", method = RequestMethod.POST)
 	@ResponseBody
-	public List<Map<String,Object>> getCommentList(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+	public List<Map<String, Object>> getCommentList(@RequestBody Map<String, Object> params, Principal principal)
+			throws IOException {
 		String s_seq = (String) params.get("s_seq");
 		
 		
 		List<Map<String,Object>> commentList = service.getComment(s_seq); 
 		System.out.println("----commentList 찍어보기----"+commentList);
+		System.out.println("0. 코멘트리스트 찍어보기:"+commentList);
 		
 		return commentList;
-		
+
 	}
+
+	// 댓글 수정 로직
+	@RequestMapping(value = "UpdateComment.do", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String, Object>> commentUpdate(@RequestBody Map<String, Object> params, Principal principal)
+			throws IOException {
+		String s_seq = (String) params.get("s_seq");
+		String r_content = (String) params.get("r_content");
+		String r_seq = (String) params.get("r_seq");
+
+		Comment cm = new Comment();
+		cm.setS_seq(Integer.parseInt(s_seq));
+		cm.setR_seq(Integer.parseInt(r_seq));
+		cm.setR_content(r_content);
+		System.out.println(cm.toString());
+		service.commentUpdate(cm);
+
+		System.out.println("수정 로직 입성!");
+
+		List<Map<String, Object>> commentList = service.getComment(s_seq);
+		return commentList;
+	}
+
+	// 댓글 갯수 세기
+	@RequestMapping(value = "countComment.do", method = RequestMethod.POST)
+	@ResponseBody
+	public int countComment(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+		String s_seq = (String) params.get("s_seq");
+
+		Comment cm = new Comment();
+		cm.setS_seq(Integer.parseInt(s_seq));
+		int result = service.countComment(cm);
+
+		System.out.println("**********************************************");
+
+		return result;
+	}
+
+	// "대" 댓글 넣는 로직
+	@RequestMapping(value = "insertReComment.do", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String, Object>> reCommentInsert(@RequestBody Map<String, Object> params, Principal principal)
+			throws IOException {
+		String user_id = principal.getName(); // 유저 아이디
+		String s_seq = (String) params.get("s_seq"); // 글 번호
+		String r_seq = (String) params.get("r_seq"); // 부모글 번호
+		String r_content = (String) params.get("r_content"); // 대댓글 내용
+
+		Comment cm = new Comment();
+		cm.setR_name(user_id); // 아이디
+		cm.setS_seq(Integer.parseInt(s_seq)); // 글번호
+		cm.setR_content(r_content); // 대댓글내용
+
+		int r_refer = service.getP_refer(r_seq); // 부모글의 r_refer
+		cm.setR_refer(r_refer);// 그룹번호
+
+		service.reCommentInsert(cm); // 인서트 하러가기
+
+		List<Map<String, Object>> commentList = service.getComment(s_seq);
+
+		return commentList;
+	}
+
+	// 마이페이지에서 상세보기 들어가기 (s_seq 만 잇으면 될듯?)
+	@RequestMapping("my_Writing_Common_Study_Detail.do")
+	public String myWritingStudyDetailPage(String s_seq, Model model, Principal principal) {
+
+		System.out.println("게시판 디테일 페이지 ㅇ입니다.");
+		String user_id = principal.getName();
+		Likes like = new Likes();
+		like.setS_seq(Integer.parseInt(s_seq));
+		like.setUser_id(user_id);
+		// 좋아요 0/1 중 뭔지 알아오기
+		int heart = service.heartnum(like);
+
+		// 트랜잭션 처리
+		try {
+			Map<String, Object> study = service.getStudy(s_seq);
+			model.addAttribute("study", study);
+
+			List<Map<String, Object>> commentList = service.getComment(s_seq);
+			int count = service.getReplyCnt(s_seq);
+			model.addAttribute("count", count);
+			model.addAttribute("sessionid", user_id);
+			model.addAttribute("heart", heart);
+			model.addAttribute("commentList", commentList);
+			System.out.println("우철이는 : " + commentList);
+			System.out.println("목록 -> 일반 ************: " + study);
+
+			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+		return "user/board/writing_Common_Study_Detail";
+	}
+
+	/*
+	 * //썸머노트 이미지 넣는 함수
+	 * 
+	 * @RequestMapping(value = "ProfileImage.do" , method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody public String profileUpload(String email, MultipartFile file,
+	 * HttpServletRequest request, HttpServletResponse response) throws Exception {
+	 * response.setContentType("text/html;charset=utf-8"); PrintWriter out =
+	 * response.getWriter(); // 업로드할 폴더 경로 String realFolder =
+	 * request.getSession().getServletContext().getRealPath("board/profileUpload/");
+	 * System.out.println("업로드할 폴더경로 찍어봅니다."); System.out.println(realFolder); UUID
+	 * uuid = UUID.randomUUID(); //랜덤한키 생성해주는 객체
+	 * /////////////////////////////////////////////////////////////////// // 업로드할
+	 * 파일 이름
+	 * 
+	 * String org_filename = file.getOriginalFilename(); String str_filename =
+	 * uuid.toString() + org_filename;
+	 * 
+	 * System.out.println("원본 파일명 : " + org_filename);
+	 * System.out.println("저장할 파일명 : " + str_filename);
+	 * System.out.println(realFolder); String filepath = realFolder +
+	 * "\\" + email + "\\" + str_filename; System.out.println("파일경로 : " + filepath);
+	 * 
+	 * 
+	 * String fileExtension =
+	 * file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(
+	 * ".")); String storedFileName = uuid.toString().replaceAll("-", "") +
+	 * fileExtension; System.out.println("우철 : " + storedFileName); String filePath
+	 * =
+	 * "C:\\Users\\ksks7\\OneDrive\\바탕 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\"
+	 * ; //String filePath =
+	 * "file:\\C:\\Users\\ksks7\\OneDrive\\바탕 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\"
+	 * ;
+	 * 
+	 * 
+	 * File f = new File(filePath + storedFileName); //File f = new File(filepath);
+	 * if (!f.exists()) { f.mkdirs(); //존재하지 않으면 경로에 폴더를 생성해서 만들어준다. } Boolean a =
+	 * f.isAbsolute(); System.out.println(a); Boolean b = f.canExecute();
+	 * System.out.println(b);
+	 * 
+	 * //FileOutputStream fs = new FileOutputStream(filePath + "\\"+
+	 * file.getOriginalFilename());// //fs.write(file.getBytes());//
+	 * 
+	 * 
+	 * file.transferTo(f); out.println(filePath + storedFileName);
+	 * //out.println("profileUpload/"+email+"/"+str_filename);
+	 * System.out.println("-----------------------------------------");
+	 * System.out.println(filePath + file.getOriginalFilename());
+	 * System.out.println("-----------------------------------------"); out.close();
+	 * //fs.close();// return null; }
+	 */
+
 	
-	//댓글 수정 로직
-		@RequestMapping(value = "UpdateComment.do" , method = RequestMethod.POST)
-		@ResponseBody
-		public List<Map<String,Object>> commentUpdate(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
-			String s_seq = (String) params.get("s_seq");
-			String r_content = (String) params.get("r_content");
-			String r_seq = (String) params.get("r_seq");
-			
-			Comment cm = new Comment();
-			cm.setS_seq(Integer.parseInt(s_seq));
-			cm.setR_seq(Integer.parseInt(r_seq));
-			cm.setR_content(r_content);
-			System.out.println(cm.toString());
-			service.commentUpdate(cm);
-			
-			System.out.println("수정 로직 입성!");
+	//우철 커스텀
+	// 썸머노트 이미지 넣는 함수
+	@RequestMapping(value = "ProfileImage.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void  profileUpload(MultipartFile file, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		PrintWriter out = response.getWriter();
+		//PrintWriter out = response.getWriter();
+		// 업로드할 폴더 경로
+		String realFolder = "C:\\kwc\\";
+		System.out.println("업로드할 폴더경로 찍어봅니다.");
+		System.out.println(realFolder);
+		UUID uuid = UUID.randomUUID(); // 랜덤한키 생성해주는 객체
 
-			List<Map<String,Object>> commentList = service.getComment(s_seq); 
-			return commentList;
+		
+		String fileExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		String storedFileName = uuid.toString().replaceAll("-", "") + fileExtension;
+		System.out.println("우철 : " + storedFileName);
+		//String filePath = "C:\\Users\\ksks7\\OneDrive\\바탕 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\";
+		// String filePath = "file:\\C:\\Users\\ksks7\\OneDrive\\바탕
+		// 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\";
+
+		File f = new File(realFolder + storedFileName);
+		// File f = new File(filepath);
+		if (!f.exists()) {
+			f.mkdirs(); // 존재하지 않으면 경로에 폴더를 생성해서 만들어준다.
 		}
-		
-		//댓글 갯수 세기
-		@RequestMapping(value = "countComment.do" , method = RequestMethod.POST)
-		@ResponseBody
-		public int countComment(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
-			String s_seq = (String) params.get("s_seq");
-			
-			Comment cm = new Comment();
-			cm.setS_seq(Integer.parseInt(s_seq));
-			int result = service.countComment(cm);
-			
-			System.out.println("**********************************************");
-			
-			return result;
-		}
-		
-		//   "대"   댓글 넣는 로직
-		@RequestMapping(value = "insertReComment.do" , method = RequestMethod.POST)
-		@ResponseBody
-		public List<Map<String,Object>> reCommentInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
-			String user_id = principal.getName(); //유저 아이디
-			String s_seq = (String) params.get("s_seq"); //글 번호
-			String r_seq = (String) params.get("r_seq"); //부모글 번호
-			String r_content = (String) params.get("r_content"); //대댓글 내용
-			
-			Comment cm = new Comment();
-			cm.setR_name(user_id);                   //아이디
-			cm.setS_seq(Integer.parseInt(s_seq));    //글번호
-			cm.setR_content(r_content);              //대댓글내용
-			
-			int r_refer = service.getP_refer(r_seq); //부모글의 r_refer
-			cm.setR_refer(r_refer);//그룹번호
-			
-			service.reCommentInsert(cm);    //인서트 하러가기 
-			
-			List<Map<String,Object>> commentList = service.getComment(s_seq); 
-			
-			return commentList;
-		}
-	
-		//마이페이지에서 상세보기 들어가기 (s_seq 만 잇으면 될듯?)
-		@RequestMapping("my_Writing_Common_Study_Detail.do")
-		public String myWritingStudyDetailPage(String s_seq, Model model, Principal principal) {
-			
-			System.out.println("게시판 디테일 페이지 ㅇ입니다.");
-			String user_id = principal.getName();
-			Likes like = new Likes();
-			like.setS_seq(Integer.parseInt(s_seq));
-			like.setUser_id(user_id);
-			//좋아요 0/1 중 뭔지 알아오기
-			int heart = service.heartnum(like);
-					
-			
-			//트랜잭션 처리
-			try {
-				Map<String, Object> study = service.getStudy(s_seq);
-				model.addAttribute("study", study); 
-				
-				List<Map<String,Object>> commentList = service.getComment(s_seq); 
-				int count = service.getReplyCnt(s_seq);
-				model.addAttribute("count", count);
-				model.addAttribute("sessionid", user_id);
-				model.addAttribute("heart", heart);
-				model.addAttribute("commentList", commentList);
-				System.out.println("우철이는 : " + commentList);
-				System.out.println("목록 -> 일반 ************: " + study);
+		Boolean a = f.isAbsolute();
+		System.out.println(a);
+		Boolean b = f.canExecute();
+		System.out.println(b);
 
-				System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
-				
-				
-				
-			} catch (Exception e) {
-				System.out.println(e.getMessage());
-			}
-			
-			
-
-			return "user/board/writing_Common_Study_Detail";
-		}
 		
-		
-	//   썸머노트 이미지 넣는 함수
-	      @RequestMapping(value = "ProfileImage.do" , method = RequestMethod.POST)
-	      @ResponseBody
-	      public String profileUpload(String email, MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
-	         response.setContentType("text/html;charset=utf-8");
-	         PrintWriter out = response.getWriter();
-	         // 업로드할 폴더 경로
-	         String realFolder = request.getSession().getServletContext().getRealPath("board/profileUpload/");
-	         UUID uuid = UUID.randomUUID();
+		// FileOutputStream fs = new FileOutputStream(filePath + "\\"+
+		// file.getOriginalFilename());//
+		// fs.write(file.getBytes());//
 
-	         // 업로드할 파일 이름
-	         String org_filename = file.getOriginalFilename();
-	         String str_filename = uuid.toString() + org_filename;
-
-	         System.out.println("원본 파일명 : " + org_filename);
-	         System.out.println("저장할 파일명 : " + str_filename);
-	         System.out.println(realFolder);
-
-	         String filepath = realFolder + "\\" + email + "\\" + str_filename;
-	         System.out.println("파일경로 : " + filepath);
-
-	         File f = new File(filepath);
-	         if (!f.exists()) {
-	            f.mkdirs();
-	         }
-	         file.transferTo(f);
-	         out.println("board/profileUpload/"+email+"/"+str_filename);
-	         System.out.println("-----------------------------------------");
-	         System.out.println("profileUpload/"+email+"/"+str_filename);
-	         System.out.println("-----------------------------------------");
-	         out.close();
-	         
-	         return null;
-	      }
+		file.transferTo(f);
+		//out.println(filePath + storedFileName);
+		// out.println("profileUpload/"+email+"/"+str_filename);
 		
-		
-		
+		response.setContentType("text/html;charset=utf-8");
+		System.out.println("sss");
+		out.println("/filepath/"+storedFileName);
+		out.close();
+	}
 
 }

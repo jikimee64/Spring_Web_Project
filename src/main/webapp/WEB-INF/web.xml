@@ -30,10 +30,28 @@
 			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
 		</init-param>
 	</servlet>
+	
+	
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping> 
+	
+	<!-- <servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>*.jpg</url-pattern>
+	</servlet-mapping> 
+	
+ 	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>  -->
+
+		
+<!-- 	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>  -->
 
 	<!-- Filter 사용한 한글 처리 org.springframework.web.filter.CharacterEncodingFilter -->
 	<filter>

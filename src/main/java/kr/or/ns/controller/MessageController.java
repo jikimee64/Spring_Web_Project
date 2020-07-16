@@ -162,10 +162,13 @@ public class MessageController {
 	// 받은편지함 -> 상세보기
 	@RequestMapping("mypage_Message_From_Detail_Board.do")
 	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
-
+		System.out.println("1 컨트롤러 시작해욤:");
 		Message message = mservice.getMessage(m_seq);
 		model.addAttribute("message", message);
 
+		
+		
+		System.out.println("4.컨트롤러: "+message);
 		System.out.println("받은 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
 		return "user/mypage/mypage_Message_From_Detail_Board";
 	}

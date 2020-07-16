@@ -247,7 +247,7 @@ group+group {
 					</div>
 					<div class="col-md-3"
 						style="place-self: center; text-align: center;">
-						<span th:text="${list.SENDDATE}"></span>
+						<span th:text="${#dates.format(list.SENDDATE,'yyyy/MM/dd HH:mm')}"></span>
 					</div>
 					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" /> 
 					
