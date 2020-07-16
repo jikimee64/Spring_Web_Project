@@ -3,19 +3,19 @@
 <mapper namespace="kr.or.ns.dao.MainDao">
 
 
-	<!-- 페이징 스터디 글목록 -->
-	<!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
-	<select id="getNewListStudy" resultType="hashmap">
-		select sb.S_SEQ,
-		sb.USER_ID, sb.C_SEQ,
-		sb.LOC_SEQ,sb.LAN_SEQ,sb.PEOPLE,sb.DEADLINE,sb.TITLE,sb.CONTENT,sb.WRITE_DATE,sb.LEVEL,sb.IMAGE,sb.FILESRC,sb.FILESRC2,sb.STATUS,sb.READNUM,sb.LIKE_CNT,l.LOC,lc.CATE_LANGUAGE,scc.CONTENT_KIND
-		from study_board sb
-		join location l on sb.LOC_SEQ = l.LOC_SEQ
-		join language_category lc on sb.LAN_SEQ = lc.LAN_SEQ
-		join study_content_category scc on sb.C_SEQ = scc.C_SEQ
-		where sb.STATUS = '모집중'
-		order by sb.S_SEQ desc
-		limit 9
-	</select>
+   <!-- 페이징 스터디 글목록 -->
+   <!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
+   <select id="getNewListStudy" resultType="hashmap">
+      select sb.S_SEQ,
+      sb.USER_ID, sb.C_SEQ,
+      sb.LOC_SEQ,sb.LAN_SEQ,sb.PEOPLE,sb.DEADLINE,sb.TITLE,sb.CONTENT,sb.WRITE_DATE,sb.LEVEL,sb.IMAGE,sb.FILESRC,sb.FILESRC2,sb.STATUS,sb.READNUM,sb.LIKE_CNT,l.LOC,lc.CATE_LANGUAGE,scc.CONTENT_KIND
+      from study_board sb
+      join location l on sb.LOC_SEQ = l.LOC_SEQ
+      join language_category lc on sb.LAN_SEQ = lc.LAN_SEQ
+      join study_content_category scc on sb.C_SEQ = scc.C_SEQ
+      where sb.STATUS = '모집중'
+      order by sb.S_SEQ desc
+      limit 9
+   </select>
 
 </mapper>
