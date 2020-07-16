@@ -394,6 +394,7 @@
 
 	<script>
 		$(function() {
+			/* 작성 버튼 클릭시 유효성검사 시작*/
 			$('._submit').click(
 					function(evt) {
 						evt.preventDefault();
@@ -409,7 +410,7 @@
 						var selectBox5 = $('._deadline').val();
 						var selectBox6 = $('#usr').val();
 						//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
-
+						
 						var selectAlert = "";
 						if (selectBox1 == "언어" || selectBox2 == "모집인원"
 								|| selectBox3 == "지역" || selectBox4 == "난이도"
@@ -438,6 +439,8 @@
 						} else {
 							if (selectBox6 == "") {
 								swal("글 제목을 입력해주세요", "", "error");
+							}else if(selectBox6.length > 40){
+								swal("글 제목을 40자 이하로 입력해주세요", "", "error");
 							} else {
 								//swal("작성이 완료되었습니다", "", "success");			
 								$('._submit').unbind();
@@ -447,8 +450,12 @@
 						}
 
 					});
+			/* 작성 버튼 클릭시 유효성검사  끝*/
+			
 		});
 	</script>
+	
+
 </body>
 
 

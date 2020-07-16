@@ -198,5 +198,15 @@
 		select * from comment where r_name= #{r_name} and r_exists = 'Y'
 		order by r_seq desc
 	</select>
+	
+	
+	
+	<!-- 마이페이지 내가 쓴 댓글의 대댓글 카운트 -->
+<!-- 	<select id="commentList" resultType="hashMap">
+		select r_refer, count(r_step) from comment where 
+		r_name != #{r_name} and r_exists = 'Y' and R_DEPTH = 1 and r_refer=
+		group by r_refer
+		order by r_seq desc;
+	</select> -->
 
 </mapper>
