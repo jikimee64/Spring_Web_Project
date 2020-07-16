@@ -516,10 +516,11 @@ body {
 							/*  제목이랑 내용 문자열 자르기 끝  */
 						
 							var d = new Date(data[index].R_DATE);
+							var date1 = getDateFormet(d);
 							let html = "";
 
 							html += '<div class="row _background_row" style="margin: 0">';
-							html += '<div class="col-md-2"style="place-self: flex-end; text-align: center; padding-right: 64px;">';
+							html += '<div class="col-md-2"style="place-self: flex-end; text-align: center; padding-right: 64px;align-self:center;">';
 											
 							html += '<p style="font-size: x-large; font-weight: bold; margin: 0;">';
 							html += data[index].R_SEQ;
@@ -539,8 +540,8 @@ body {
 							html += '원문 보기 ▶';
 							html += '</span></a></div>';
 							html += '<div class="col-md-2" style="align-self: center; text-align: center;">';
-							html += '<span style="font-size: larger;">';
-							html += d.toLocaleDateString();
+							html += '<span style="font-size: smaller;">';
+							html += date1;
 							html += '</span></div>';
 							html += '<hr style="border: solid 1px; margin-top: 0px; margin-bottom: 0px; width: 96%;" />';
 							html += '</div>';

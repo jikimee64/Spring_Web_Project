@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		set loc_seq = #{loc_seq},
 		lan_seq = #{lan_seq},
 		people = #{people},
-		deadline = now(),
+		deadline = DATE_SUB(now(), INTERVAL 9 HOUR),
 		title = #{title},
 		content = #{content},
 		level = #{level},
@@ -128,7 +128,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 댓글 등록하기  -->
 	<insert id="commentInsert" parameterType="kr.or.ns.vo.Comment" >
 		insert into comment(s_seq, r_content,r_name,r_date,r_refer,r_depth,r_step)
-		values(#{s_seq},#{r_content},#{r_name},now(),#{r_refer},#{r_depth},#{r_step})
+		values(#{s_seq},#{r_content},#{r_name},DATE_SUB(now(), INTERVAL 9 HOUR),#{r_refer},#{r_depth},#{r_step})
 	</insert> 
 	
 	<!-- 댓글 조회 -->
@@ -158,7 +158,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 댓글 등록하기(대댓글)  -->
 	<insert id="reCommentInsert" parameterType="kr.or.ns.vo.Comment" >
 		insert into comment(s_seq, r_content,r_name,r_date,r_refer,r_depth,r_step)
-		values(#{s_seq},#{r_content},#{r_name},now(),#{r_refer},#{r_depth},#{r_step})
+		values(#{s_seq},#{r_content},#{r_name},DATE_SUB(now(), INTERVAL 9 HOUR),#{r_refer},#{r_depth},#{r_step})
 	</insert> 
 	
 	<!-- MaxStep 조회  -->
