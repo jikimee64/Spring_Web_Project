@@ -17,6 +17,18 @@
 		import org.springframework.jdbc.datasource.DriverManagerDataSource; import 
 		org.springframework.jdbc.core.JdbcTemplate; -->
 
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	        <property name="locations">
+	            <list>    
+	                <value>classpath:/config/db.properties</value>
+	                <value>classpath:/config/gmail.properties</value>
+	            </list>
+	        </property>
+	 </bean>
+
+	
+	
+
 	<!-- 공통 DB작업 -->
 	<bean id="driverManagerDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
