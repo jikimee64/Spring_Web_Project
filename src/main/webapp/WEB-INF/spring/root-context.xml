@@ -26,8 +26,6 @@
 	        </property>
 	 </bean>
 
-	
-	
 
 	<!-- 공통 DB작업 -->
 	<bean id="driverManagerDataSource"
@@ -138,4 +136,5 @@
 			</list>
 		</property>
 	</bean>
+
 </beans>

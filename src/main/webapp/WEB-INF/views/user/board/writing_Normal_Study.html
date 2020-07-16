@@ -207,9 +207,13 @@
 								</div>
 							</div>
 						</div>
+
+
 						<div class="form-group">
-							<textarea id="summernote" name="content"></textarea>
+							<textarea class="summernote" id="summernote" name="content"> </textarea>
 						</div>
+
+
 						<div style="text-align: center; padding-bottom: 30px;">
 							<button type="submit" class="btn btn-primary _submit"
 								style="width: 15%; background-color: #18d26e; border-color: #18d26e;">작성</button>
@@ -234,8 +238,8 @@
 
 						<div class="form-group" style="margin: 0">
 							<div class="custom-file mb-3" style="width: 280px;">
-							<input type="file" class="custom-file-input" id="customFile"
-								name="files[1]"> <label class="custom-file-label" 
+								<input type="file" class="custom-file-input" id="customFile"
+									name="files[1]"> <label class="custom-file-label"
 									for="customFile">Choose file1</label>
 							</div>
 						</div>
@@ -254,8 +258,7 @@
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
-	<script
-		src="../../../../resources/assets/vendor/summernote/summernote-lite.js"></script>
+
 
 	<script type="text/javascript"
 		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
@@ -273,7 +276,8 @@
 		src="../../../../resources/assets/vendor/selectbox/js/i18n/defaults-ko_KR.min.js"></script>
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+	<script
+		src="../../../../resources/assets/vendor/summernote/summernote-lite.js"></script>
 
 	<script>
 		//   이건 파일첨부할때 쓰는 w3shool 에서 긁어온aaaaaaaaa거
@@ -288,52 +292,19 @@
 				});
 	</script>
 
-	<script>
-      $(document).ready(function() {
-         $('#summernote').summernote({
-            tabsize : 2,
-            height : 500,
-            focus : false,
-            minHeight : null,
-            maxHeight : null,
-            lang : 'ko-KR',
-            placeholder : '글 내용을 입력해주세요',
-            callbacks: {
-               onImageUpload: function(files, editor, welEditable) {
-                     for (var i = files.length - 1; i >= 0; i--) {
-                        sendFile(files[i], this);
-                     }
-                 }
-            }
-         });
-         $("p").each(function() {
-            if (!$(this).text().trim().length) {
-               $(this).remove();
-            }
-         });
-         
-         
-         function sendFile(file, el) {
-            console.warn("여기 오냐?");
-            var form_data = new FormData();
-               form_data.append('file', file);
-               $.ajax({
-                 data: form_data,
-                 type: "POST",
-                 url: "/board/ProfileImage.do",
-                 cache: false,
-                 contentType: false,
-                 enctype: 'multipart/form-data',
-                 processData: false,
-                 success: function(img_name) {
-                    console.warn("errrrrrrrr");
-                    console.warn(img_name);
-                      $(el).summernote('editor.insertImage', img_name);
-                 }
-               });
-         }   
-      });
-   </script>
+	<!-- 	<script>
+		
+		$("#summernote").on('drop',function(e){
+	        for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
+	        	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
+	        }
+	       e.preventDefault();
+	  	})
+  
+	
+	</script>	 -->
+
+
 
 	<!-- mysql이랑 맞출것  -->
 	<script>
@@ -394,6 +365,7 @@
 
 	<script>
 		$(function() {
+			/* 작성 버튼 클릭시 유효성검사 시작*/
 			$('._submit').click(
 					function(evt) {
 						evt.preventDefault();
@@ -409,7 +381,7 @@
 						var selectBox5 = $('._deadline').val();
 						var selectBox6 = $('#usr').val();
 						//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
-
+						
 						var selectAlert = "";
 						if (selectBox1 == "언어" || selectBox2 == "모집인원"
 								|| selectBox3 == "지역" || selectBox4 == "난이도"
@@ -438,6 +410,8 @@
 						} else {
 							if (selectBox6 == "") {
 								swal("글 제목을 입력해주세요", "", "error");
+							}else if(selectBox6.length > 40){
+								swal("글 제목을 40자 이하로 입력해주세요", "", "error");
 							} else {
 								//swal("작성이 완료되었습니다", "", "success");			
 								$('._submit').unbind();
@@ -447,8 +421,64 @@
 						}
 
 					});
+			/* 작성 버튼 클릭시 유효성검사  끝*/
+			
 		});
 	</script>
+
+
+
+	<script>
+	$(function() {
+         $('#summernote').summernote({
+            tabsize : 2,
+            height : 500,
+            focus : false,
+            minHeight : null,
+            maxHeight : null,
+            lang : 'ko-KR',
+            placeholder : '글 내용을 입력해주세요',
+            callbacks: {
+               onImageUpload: function(files, editor, welEditable) {
+                     for (var i = files.length - 1; i >= 0; i--) {
+                        sendFile(files[i], this);
+                     }
+                 }
+            }
+         });
+         
+         $("p").each(function() {
+            if (!$(this).text().trim().length) {
+               $(this).remove();
+            }
+         });
+         
+         
+      });
+	
+	  
+    //썸머노트 파일 업로드 json데이터 반환
+    function sendFile(file, el) {
+       console.warn("여기 오냐?");
+       var form_data = new FormData();
+          form_data.append('file', file);
+          $.ajax({
+       	   data: form_data,
+              type: "POST",
+              url: "/board/ProfileImage.do",
+              	processData : false,
+				contentType : false,
+				enctype : 'multipart/form-data',
+				cache : false,
+            success: function(data) {
+               console.log(data);
+                 $(el).summernote("editor.insertImage", data);
+            }
+          });
+    } 
+    
+   </script>
+
 </body>
 
 
