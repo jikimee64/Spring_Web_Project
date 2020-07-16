@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import kr.or.ns.vo.BookMark;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Select;
+import kr.or.ns.vo.Study;
 
 public interface LectureDao {
 
@@ -19,6 +20,9 @@ public interface LectureDao {
 
 	//총 게시글 수
 	public int getLectureCount();
+	
+	//스터디 글 편집
+	public int studyOnlineEdit(Study study);
 	
 	//북마크 추가
 	public void heartinsert(BookMark bk);

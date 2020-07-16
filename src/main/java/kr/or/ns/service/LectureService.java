@@ -1,11 +1,15 @@
 package kr.or.ns.service;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Select;
+import kr.or.ns.vo.Study;
 
 public interface LectureService {
 	
@@ -14,6 +18,9 @@ public interface LectureService {
 	
 	//온라인 게시글 페이징 목록
 	public List<Map<String, Object>> getLectureList(Criteria cri);
+	
+	//온라인 컨텐츠(스터디 게시판 글 편집)
+	public int studyOnlineEdit(Study study, HttpServletRequest request, Principal principal);
 	
 	//온라인 게시글 상세(1개)
 	public HashMap<String, Object> getLecture(String l_seq);

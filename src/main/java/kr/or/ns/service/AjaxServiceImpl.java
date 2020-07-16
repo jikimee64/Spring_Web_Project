@@ -1,6 +1,7 @@
 package kr.or.ns.service;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -322,6 +323,16 @@ public class AjaxServiceImpl implements AjaxService {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		int result = dao.deleteBookMark(params);
 		System.out.println("북마크 삭제 결과 : " + result);
+		return result;
+	}
+	
+	//스터디 게시판 필터
+	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params){
+		
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		System.out.println("유저정보:" + params);
+		List<HashMap<String, Object>> result = dao.studyBoardFilter(params);
+		/* System.out.println("필터 결과 : " + result); */
 		return result;
 	}
 

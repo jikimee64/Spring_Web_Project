@@ -29,6 +29,12 @@ public interface BoardDao {
 	//페이징 스터디 글목록
 	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
 
+	//study_board_online 게시판 정보 가져오기
+	public List<Map<String, Object>> getOnlineStudyBoard();
+	
+	//강의글 번호 select 
+	public String getL_SEQ(String s_seq);
+	
 	//총 스터디게시글 수
 	public int getStudyBoardCount();
 	

@@ -70,6 +70,9 @@ public interface AjaxService {
 	
 	//북마크 취소
 	public int deleteBookMark(HashMap<String, Object> params);
+		
+	//스터디게시판 필터
+	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params);
 	
 	//마이페이지 내가 쓴 댓글 비동기
 	public List<HashMap<String, Object>> commentList(HashMap<String, Object> params);

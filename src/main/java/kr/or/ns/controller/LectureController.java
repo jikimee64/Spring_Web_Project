@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ns.page.PageMaker;
 import kr.or.ns.page.PageMaker_Select;
@@ -181,12 +182,47 @@ public class LectureController {
 
 
 	@RequestMapping("writing_Course_Study_Edit.do")
-	public String writingCourseStudyEditPage() {
+	public String writingCourseStudyEditPage(String s_seq, Model model) {
 		System.out.println("강의게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
-
+		Map<String, Object> study = service2.getStudy(s_seq);
+		Map<String, Object> onlineInfo = service2.onlineDetailInfo(s_seq);
+		
+		
+		model.addAttribute("study", study);
+		model.addAttribute("onlineInfo", onlineInfo);
+		System.out.println("온라인편집.. : " + study);
+		System.out.println("온라인강의정보 : " + onlineInfo);
+		
 		return "user/board/writing_Course_Study_Edit";
 	}
+	
+	
+	
+	@RequestMapping(value = "writing_Course_Study_Edit.do", method = RequestMethod.POST)
+	public String writingCourseStudyEdit(RedirectAttributes redirect, Study study, Principal principal, HttpServletRequest request) {
 
+		System.out.println("온라인게시글수정@@");
+		System.out.println("넘어온 데이터(온라인0 " + study.toString());
+		
+		try {
+			// 서비스가서 DB에 등록
+			System.out.println("서비스는 잘가냐 ?");
+			service.studyOnlineEdit(study, request, principal);
+		} catch (Exception e) {
+			System.out.println("컨트롤러 에러");
+			System.out.println(e.getMessage());
+		}
+		System.out.println("리턴 전ㄴㄴㄴㄴ...");
+		
+		redirect.addAttribute("s_seq", study.getS_seq());    
+		
+		return "redirect:../board/writing_Common_Study_Detail.do";
+		
+	}
+
+	
+	
+	
 	// 사용자가 선택한 강의글 북마크 테이블에 추가하는 함수
 
 	@RequestMapping(value = "heart.do", method = RequestMethod.POST)

@@ -27,6 +27,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			LIMIT #{pageStart}, #{perPageNum}
 		]]>
 	</select>
+	
+	<select id="getL_SEQ" resultType="String">
+		select l_seq from
+		study_board_online
+		where s_seq = #{s_seq}
+	</select>
+	
+	<!--   -->
+	<select id="getOnlineStudyBoard" resultType="hashmap">
+		SELECT *
+		FROM STUDY_BOARD_ONLINE
+		left outer join lecture_board
+		on STUDY_BOARD_ONLINE.l_seq = lecture_board.l_seq
+	</select>
 
 	<insert id="studyReg" parameterType="kr.or.ns.vo.Study">
 		insert into study_board(user_id, c_seq, loc_seq, lan_seq, people, deadline, title, content, write_date, level, image, filesrc, filesrc2) 
@@ -68,22 +82,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        where s_seq=#{s_seq}
 	</update>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	<!-- 댓글 개수  -->
 	<select id="getReplyCnt" resultType="Integer">

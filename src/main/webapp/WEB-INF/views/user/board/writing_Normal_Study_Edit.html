@@ -101,7 +101,7 @@
 				<div class="row justify-content-center align-self-center">
 					<h1 style="color: white; font-size: 50px;">
 						<b>모집하기</b>
-					
+
 					</h1>
 				</div>
 			</div>
@@ -110,17 +110,16 @@
 		<!-- Breadcrumbs Section -->
 	</main>
 	<div class="_border_box_shadow2" style="width: 1430px;">
-		<form action="" class="registerform"
-			id="registerform" enctype="multipart/form-data" method="post">
+		<form action="" class="registerform" id="registerform"
+			enctype="multipart/form-data" method="post">
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
 				<!-- <br /> -->
 				<div class="row" id="row" style="padding-top: 30px;">
 					<div class="col-1">
-					<span th:text="${LAN_SEQ}"></span>
-						<select name="lan_seq" class="selectpicker mb-3"
-							data-style="btn-light" style="width: 10%;"
-							data-live-search="true" data-width="120px">
+						<span th:text="${LAN_SEQ}"></span> <select name="lan_seq"
+							class="selectpicker mb-3" data-style="btn-light"
+							style="width: 10%;" data-live-search="true" data-width="120px">
 							<option value="언어" selected>언어</option>
 							<option value="1" th:selected="${study.LAN_SEQ} == 1">Java</option>
 							<option value="2" th:selected="${study.LAN_SEQ} == 2">Javascript</option>
@@ -185,8 +184,8 @@
 					</div>
 					<div class="col-3">
 						<input style="margin-bottom: 15px; width: 164px;" type="text"
-							class="form-control _deadline" name="selectend" id="date-time" th:value="${study.DEADLINE}"
-							placeholder="모집마감일">
+							class="form-control _deadline" name="selectend" id="date-time"
+							th:value="${study.DEADLINE}" placeholder="모집마감일">
 					</div>
 					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
 				<option selected>모집마감일</option>
@@ -211,7 +210,8 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea th:text="${study.CONTENT}" id="summernote" name="content"></textarea>
+							<textarea th:text="${study.CONTENT}" id="summernote"
+								name="content"></textarea>
 						</div>
 						<div style="text-align: center; padding-bottom: 30px;">
 							<button type="submit" class="btn btn-primary _submit"
@@ -227,7 +227,7 @@
 							<div class="filebox"
 								style="text-align: center; margin-left: 22px;">
 								<label for="ex_file">썸네일 업로드</label> <input name="files[0]"
-									type="file" id="ex_file" th:value=${study.IMAGE} >
+									type="file" id="ex_file" th:value=${study.IMAGE}>
 							</div>
 						</div>
 
@@ -237,22 +237,26 @@
 
 						<div class="form-group" style="margin: 0">
 							<div class="custom-file mb-3" style="width: 280px;">
-							<input type="file" class="custom-file-input" id="customFile"
-								name="files[1]" th:value=${study.FILESRC}> 
+								<input type="file" class="custom-file-input" id="customFile"
+									name="files[1]" th:value=${study.FILESRC}>
 								<th:block th:switch="${study.FILESRC}">
-									<label th:case="defaultfile" class="custom-file-label" 
+									<label th:case="defaultfile" class="custom-file-label"
 										for="customFile">Choose file1</label>
+									<label th:case="*" class="custom-file-label" for="customFile"
+										th:text="${study.FILESRC}"></label>
 								</th:block>
 							</div>
 						</div>
 						<div class="form-group" style="margin: 0">
 							<div class="custom-file mb-3" style="width: 280px;">
 								<input type="file" class="custom-file-input" id="customFile"
-									name="files[2]" th:value=${study.FILESRC2}> 
-									<th:block th:switch="${study.FILESRC}">
-										<label class="custom-file-label"
+									name="files[2]" th:value=${study.FILESRC2}>
+								<th:block th:switch="${study.FILESRC2}">
+									<label th:case="defaultfile2" class="custom-file-label"
 										for="customFile">Choose file2</label>
-									</th:block>
+									<label th:case="*" class="custom-file-label" for="customFile"
+										th:text="${study.FILESRC2}"></label>
+								</th:block>
 							</div>
 						</div>
 					</div>

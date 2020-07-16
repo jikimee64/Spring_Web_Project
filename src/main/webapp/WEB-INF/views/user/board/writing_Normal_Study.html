@@ -289,23 +289,51 @@
 	</script>
 
 	<script>
-		$(document).ready(function() {
-			$('#summernote').summernote({
-				tabsize : 2,
-				height : 500,
-				focus : false,
-				minHeight : null,
-				maxHeight : null,
-				lang : 'ko-KR',
-				placeholder : '글 내용을 입력해주세요'
-			});
-			$("p").each(function() {
-				if (!$(this).text().trim().length) {
-					$(this).remove();
-				}
-			});
-		});
-	</script>
+      $(document).ready(function() {
+         $('#summernote').summernote({
+            tabsize : 2,
+            height : 500,
+            focus : false,
+            minHeight : null,
+            maxHeight : null,
+            lang : 'ko-KR',
+            placeholder : '글 내용을 입력해주세요',
+            callbacks: {
+               onImageUpload: function(files, editor, welEditable) {
+                     for (var i = files.length - 1; i >= 0; i--) {
+                        sendFile(files[i], this);
+                     }
+                 }
+            }
+         });
+         $("p").each(function() {
+            if (!$(this).text().trim().length) {
+               $(this).remove();
+            }
+         });
+         
+         
+         function sendFile(file, el) {
+            console.warn("여기 오냐?");
+            var form_data = new FormData();
+               form_data.append('file', file);
+               $.ajax({
+                 data: form_data,
+                 type: "POST",
+                 url: "/board/ProfileImage.do",
+                 cache: false,
+                 contentType: false,
+                 enctype: 'multipart/form-data',
+                 processData: false,
+                 success: function(img_name) {
+                    console.warn("errrrrrrrr");
+                    console.warn(img_name);
+                      $(el).summernote('editor.insertImage', img_name);
+                 }
+               });
+         }   
+      });
+   </script>
 
 	<!-- mysql이랑 맞출것  -->
 	<script>
