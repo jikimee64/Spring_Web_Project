@@ -267,10 +267,10 @@ keyframes heart-keyframes { 100% {
                   <b> 작성자: </b> <span id="user_id" th:text="${study.USER_ID}"></span>
                </div>
                <div>
-                  <b> 등록일: </b> <span th:text="${study.WRITE_DATE}"></span>
+                  <b> 등록일: </b> <span th:text="${#dates.format(study.WRITE_DATE, 'yyyy/MM/dd HH:mm')}"></span>
                </div>
                <div>
-                  <b> 마감일: </b> <span th:text="${study.DEADLINE}"></span>
+                  <b> 마감일: </b> <span th:text="${#dates.format(study.DEADLINE, 'yyyy/MM/dd HH:mm')}"></span>
                </div>
                <div>
                   <b> 조회수: </b> <span th:text="${study.READNUM}"></span>
@@ -673,7 +673,7 @@ keyframes heart-keyframes { 100% {
 //                 	   	var date1 = new Date(obj.r_date);
 //                 	   	date1.setHours(date1.getHours()-9);
 
-                	  var date1 = new Date(obj.r_date);
+                	  var date1 = new Date(obj.R_DATE);
                 	  date1.setHours(date1.getHours()-9);
                 	
                       if(obj.R_EXISTS === 'Y'){
