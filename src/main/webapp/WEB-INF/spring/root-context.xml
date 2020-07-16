@@ -17,6 +17,11 @@
 		import org.springframework.jdbc.datasource.DriverManagerDataSource; import 
 		org.springframework.jdbc.core.JdbcTemplate; -->
 
+
+
+
+
+
 	<!-- 공통 DB작업 -->
 	<bean id="driverManagerDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -126,4 +131,5 @@
 			</list>
 		</property>
 	</bean>
+
 </beans>

@@ -22,7 +22,8 @@
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<context:component-scan
-		base-package="kr.or.ns.controller" />
+		base-package="kr.or.ns.controller">
+		</context:component-scan>
 		<context:component-scan
 		base-package="kr.or.ns.crawling" />
 	<context:component-scan
@@ -37,6 +38,7 @@
 		base-package="kr.or.ns.interceptor" />
 	<context:component-scan
 		base-package="kr.or.ns.export" />
+	
 
 	
 
@@ -131,9 +133,8 @@
 <!-- 	<tx:annotation-driven
 		transaction-manager="transactionManager" /> -->
 
-
-	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<!-- <bean id="naverLoginBO" class="경로설정필요" /> -->
+	<!--NaverLoginBO Class에 대한 Bean설정 추가 -->
+	 <bean id="naverLoginBO" class="kr.or.ns.controller.NaverLoginBO" /> 
 
 	<!-- google Class Bean설정 추가 -->
 	<!-- 클라이언트ID와 보안비밀 세팅 -->
