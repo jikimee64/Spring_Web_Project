@@ -5,6 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/mvc 
@@ -14,7 +15,9 @@
                            http://www.springframework.org/schema/task
                            http://www.springframework.org/schema/task/spring-task-3.0.xsd
                            http://www.springframework.org/schema/tx
-                      http://www.springframework.org/schema/tx/spring-tx.xsd">
+                      	   http://www.springframework.org/schema/tx/spring-tx.xsd
+                      	   http://www.springframework.org/schema/aop
+                      	   http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<mvc:resources mapping="/filepath/**" location="file:///C:/summernote/"/>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
@@ -24,8 +27,8 @@
 	<mvc:resources mapping="/userboard/**" 
 	location="/userboard/"/>
 	
-
-
+	<aop:aspectj-autoproxy/>	
+	
 	<task:annotation-driven />
  	<tx:annotation-driven
 		transaction-manager="transactionManager" /> 
@@ -34,7 +37,7 @@
 	<context:component-scan
 		base-package="kr.or.ns.controller">
 		</context:component-scan>
-		<context:component-scan
+	<context:component-scan
 		base-package="kr.or.ns.crawling" />
 	<context:component-scan
 		base-package="kr.or.ns.dao" />
@@ -48,6 +51,8 @@
 		base-package="kr.or.ns.interceptor" />
 	<context:component-scan
 		base-package="kr.or.ns.export" />
+	<context:component-scan
+		base-package="kr.or.ns.aop" />
 	
 
 	
