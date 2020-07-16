@@ -31,12 +31,12 @@
 	<bean id="driverManagerDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName"
-			value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+			value="${db.driver}"></property>
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://localhost:3306/ns?allowMultiQueries=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;autoReconnection=true&amp;serverTimezone=UTC">
+			value="${db.url}">
 		</property>
-		<property name="username" value="ns" />
-		<property name="password" value="1004" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
 	</bean>
 
 	<bean id="" class="org.springframework.jdbc.core.JdbcTemplate">
@@ -107,8 +107,8 @@
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value="nosangcoding@gmail.com" />
-		<property name="password" value="lfbelobmdswohvqi" />
+		<property name="username" value="${gmail.username}" />
+		<property name="password" value="${gmail.password}" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.debug">true</prop>

@@ -451,17 +451,18 @@ public class BoardController {
 		return "user/board/writing_Common_Study_Detail";
 	}
 	
-	//우철 커스텀
 	// 썸머노트 이미지 넣는 함수
 	@RequestMapping(value = "ProfileImage.do", method = RequestMethod.POST)
 	@ResponseBody
-	public void profileUpload(MultipartFile file, 
+	public void  profileUpload(MultipartFile file, 
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		PrintWriter out = response.getWriter();
 		//PrintWriter out = response.getWriter();
 		// 업로드할 폴더 경로
-		String realFolder = "C:\\kwc\\";
+		String realFolder = "C:\\summernote\\";
+		//String realFolder = request.getServletContext().getRealPath("/summernote/upload/");
+		
 		System.out.println("업로드할 폴더경로 찍어봅니다.");
 		System.out.println(realFolder);
 		UUID uuid = UUID.randomUUID(); // 랜덤한키 생성해주는 객체
@@ -492,6 +493,11 @@ public class BoardController {
 		file.transferTo(f);
 		//out.println(filePath + storedFileName);
 		// out.println("profileUpload/"+email+"/"+str_filename);
+		
+		
+		int as = storedFileName.lastIndexOf(".");
+		String bs = storedFileName.substring(0, as);
+		System.out.println("아오 : " +bs);
 		
 		response.setContentType("text/html;charset=utf-8");
 		System.out.println("sss");

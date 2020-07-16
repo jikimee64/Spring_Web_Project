@@ -16,9 +16,14 @@
                            http://www.springframework.org/schema/tx
                       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<mvc:resources mapping="/filepath/**" location="file:///C:/kwc/"/>
+	<mvc:resources mapping="/filepath/**" location="file:///C:/summernote/"/>
 	<mvc:resources mapping="/resources/**" location="/resources/"/>
-
+	<mvc:resources mapping="/studyboard/**" 
+	location="/studyboard/"/>
+	
+	<mvc:resources mapping="/userboard/**" 
+	location="/userboard/"/>
+	
 
 
 	<task:annotation-driven />

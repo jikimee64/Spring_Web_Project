@@ -381,15 +381,15 @@ group+group {
 				</div>
 				<div class="row">
 
-					<th:block th:switch="${list.CONTENT_KIND}">
-						<div th:case="일반" class="col-md-3 align-self-center">
+					<th:block th:switch="${list.C_SEQ}">
+						<div th:case="2" class="col-md-3 align-self-center">
 							<div class="card" style="width: 100%">
 								<img class="card-img-top"
 									th:src="'/studyboard/upload/' + ${list.IMAGE}" alt="Card image"
 									style="width: 100%;">
 							</div>
 						</div>
-						<div th:case="온라인강의" class="col-md-3">
+						<div th:case="1" class="col-md-3">
 							<th:block th:each="list2 : ${onlineInfo}">
 								 <th:block th:switch="${list2.S_SEQ}">
 									<div th:case="${list.S_SEQ}" class="card" style="width: 100%">
@@ -401,7 +401,7 @@ group+group {
 												style="color: gray; font-size: small;"></p>
 											<a href="/board/writing_Course_Study_Detail.do"
 												class="stretched-link"></a>
-											<!-- 별 다섯개 이미지  -->
+											별 다섯개 이미지 
 											<img
 												src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
 												alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
