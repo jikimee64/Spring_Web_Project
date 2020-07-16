@@ -358,7 +358,7 @@ group+group {
 				</div>
 			</div>
 		</div>
-		<div class="_border_box_shadow2"
+		<div class="_border_box_shadow2 studyFilter"
 			style="border: 10px solid gainsboro; padding: 30px 30px 0px 30px;">
 			<!-- 타임리프 반복시작 -->
 			<div th:each="list : ${list}">
@@ -470,7 +470,7 @@ group+group {
 
 	<!-- 타임리프로 바꾸자 -->
 	<!-- 페이징 버튼 시작-->
-	<div id="pager-wrapper" class="margin-small">
+	<div id="pager-wrapper studyPaging" class="margin-small">
 		<div class="pager clear">
 			<!-- 경계 -->
 			<!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
@@ -663,12 +663,58 @@ group+group {
 			data : JSON.stringify(data),
 			success : function(data) {
 				$.each(data, function (index, item) {
+					let html = "";
 					console.log(data)
+					$('.studyFilter').empty();
+					
+					html +="<div class='row'>"
+					html +="<div class='col-md-3'></div>"
+					html +="<div class='col-md-4' style='padding: 0px; text-align: center;'>"
+					html +="<span class='badge badge-pill badge-primary'>"+data[index].STATUS+"</span>"
+					html +="<span class='badge badge-pill badge-info'>"+data[index].LEVEL+"</span>"
+					html +="<span class='badge badge-pill badge-secondary'>"+data[index].CATE_LANGUAGE+"</span>" 
+					html +="<span class='badge badge-pill badge-success'>"+data[index].PEOPLE+"</span>"
+					html +="<span class='badge badge-pill badge-warning'>"+data[index].LOC+"</span>"
+					html +="<span class='badge badge-pill badge-light'>"+data[index].CONTENT_KINE+"</span></div></div>"	
+					html +="<div class='row'>"
+					if(data[index].CONTENT_KIND == "일반"){
+					html +="<div class='col-md-3 align-self-center'>"
+					html +="<div class='card' style='width: 100%'>"
+					html +="<img class='card-img-top' src='/studyboard/upload/'"+data[index].IMAGE+"'alt='Card image' style='width: 100%;'>"
+					html +="</div></div>"
+					}else{
+					html +="<div class='col-md-3'>"
+					html +="<div class='card' style='width: 100%'>"
+					html +="<img class='card-img-top' src='"+data[index].IMAGE+"' alt='Card image'style='width:100%;'>"
+					html +="<div class='card-body'>"
+					html +="<h6 class='card-title _margin_0'>"+data[index].TITLE+"</h6>"
+					html +="<p class='card-text _margin_0' style='color: gray; font-size: small;'>"+data[index].USER_ID+"</p>"//여기원래 L_WRITER였음
+					html +="<a href='/board/writing_Course_Study_Detail.do' class='stretched-link'></a>"
+					html +="<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 30px;'>"
+					html +="<span>(6)</span>" //여기에 수강평 개수?
+					html +="<b>₩44,000</b></div></div></div>"  //여기에 가격 데이터
+					}
+					html +="<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
+					html +="<div class='row' style='margin-top: 10px;'>"
+					html +="<b style='margin-left: 35px;'>작성자:</b>"
+					html +="<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
+					html +='<a href="" class="InfoModal"'+data[index].S_SEQ+'onclick=InfoModal("'
+							+data[index].S_SEQ+'") data-toggle="modal" data-target="#userInfoModal">'
+					html +="<b style='color: black; margin-right: 10px;'>작성자 :</b>"+data[index].USER_ID+"</a></div>"
+					html +="<div class='col-md-3' style='text-align: center; padding-right: 0px;'>"
+					html +="<b>'등록일 :'+data[index].WRITE_DATE+'</b></div>"
+					html +="<div class='col-md-3' style='text-align: center; padding-left: 0px;'>"
+					html +="<b>마감일 :"+data[index].DEADLINE+"</b></div></div>"
+					html +="<div class='row'>"
+					//다시 html +="<a href='/board/writing_Common_Study_Detail.do?s_seq='"+data[index].S_SEQ+"'&'"'page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">"
+					html +="<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"+data[index].TITLE+"</h2></a></div>"
+					html +="<div class='row _content' style='margin: 0px 5px 0px 28px; height: 150px;'>"
+					html +="<span>"+data[index].CONTENT+"</span></div></div></div>"	
+					html +="<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"	
+					
+					$('.studyFilter').append(html);
 				})
-				console.log("=============================")
-			
-
-				
+				console.log("=============================")			
 			},
 			error : function(e) {
 				console.log("error:", e);

@@ -139,7 +139,7 @@
 		transaction-manager="transactionManager" /> -->
 
 	<!--NaverLoginBO Class에 대한 Bean설정 추가 -->
-	 <bean id="naverLoginBO" class="kr.or.ns.controller.NaverLoginBO" /> 
+	 <bean id="naverLoginBO" class="kr.or.ns.controller.NaverLoginBO" />
 
 	<!-- google Class Bean설정 추가 -->
 	<!-- 클라이언트ID와 보안비밀 세팅 -->
