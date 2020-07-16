@@ -56,7 +56,7 @@
 							console.log("데이터 : " + formData.get("user_id"))
 							
 							$.ajax({
-								url : "/member/join.do",
+								url : "/member/normaljoin.do",
 								processData : false,
 								contentType : false,
 								cache : false,

@@ -78,7 +78,7 @@ public class MemberController {
 		System.out.println("유저네임: " + user.getUser_id());
 
 		session = request.getSession();
-		session.setAttribute("user", users);
+		//session.setAttribute("user", users);
 		// 로그인 유저 정보 가져와서 세션객체에 저장 끝//
 		}
 		
@@ -175,7 +175,7 @@ public class MemberController {
 
 	@RequestMapping("normaljoin.do")
 	public String joinPage() {
-		System.out.println("회원가입으로 이동이동(연규가씀)");
+		System.out.println("회원가입으로dddd 이동이동(연규가씀)");
 
 		return "user/member/join";
 	}
@@ -188,7 +188,7 @@ public class MemberController {
 		users.setUser_pwd(this.bCryptPasswordEncoder.encode(users.getUser_pwd()));
 
 		try {
-			System.out.println("여긴오니...?");
+			System.out.println("일반여긴오니...?");
 			service.joininsert(users, request);
 
 		} catch (Exception e) {

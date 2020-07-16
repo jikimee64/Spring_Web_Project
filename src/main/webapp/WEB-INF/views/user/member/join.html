@@ -683,25 +683,6 @@ body {
 		<script src="../../../../resources/js/socialjoin.js"></script>
 	</th:block>
 	
-	<script>
-	document.onkeydown = fkey;
-	document.onkeypress = fkey;
-	document.onkeyup = fkey;
-	 
-	var wasPressed = false;
-	 
-	function fkey(e){
-		console.log('안녕')
-	    e = e || window.event;
-	    if(wasPressed) return;
-	 
-	    if(e.keyCode == 116){
-	        location.href = "/member/join.do";
-	    }
-	}
-
-
-	</script>
 </body>
 
 
