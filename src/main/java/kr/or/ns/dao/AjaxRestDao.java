@@ -77,4 +77,10 @@ public interface AjaxRestDao {
 
 	//모집마감으로 변경시 승인대기중 회원목록 삭제
 	public void deleteWaitingUsers(String s_seq);
+
+	//스터디 그룹테이블에서 [승인완료, 회원, 글번호] 로 몇명 모였는지 확인
+	public int checkA_staCount(String s_seq);
+
+	//해당글의 모집정원 확인 
+	public int checkPeople(String s_seq);
 }

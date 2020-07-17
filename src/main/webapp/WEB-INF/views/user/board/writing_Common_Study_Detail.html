@@ -1090,7 +1090,7 @@ keyframes heart-keyframes { 100% {
 
 
 	<script>
-
+	/*        지원하기         */
    $(function() {
    $('#apply').click(function(){
        let s_seq =  $('#s_seq').val();
@@ -1113,17 +1113,20 @@ keyframes heart-keyframes { 100% {
                   data : JSON.stringify(obj),
                   success : function(data) {
                      console.log("이게뭐라고?" + data);
-                     if(data == 0){
-                        swal({
-                           title: "이미 지원한 스터디입니다.",
-                             icon: "warning",
-                             buttons: true
-                           })
-                     }else {
-                     swal({title:"지원이 완료되었습니다.",
-                        icon: "success"})
-   
-           }
+	                     if(data == 0){
+	                        swal({
+	                           title: "이미 지원한 스터디입니다.",
+	                             icon: "warning",
+	                             buttons: true
+	                           })
+	                     }else if(data == 1){
+	                     swal({title:"지원이 완료되었습니다.",
+	                        icon: "success"})
+	   
+				           }else{
+				        	   swal({title:"모집인원이 꽉 찼읍니다.",
+				                   icon: "warning"})
+				           }
                   },
                   error: function(request, status, error){
                      console.log("code:" + request.status + "\n"

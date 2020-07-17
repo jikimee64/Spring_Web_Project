@@ -131,11 +131,11 @@ public class AjaxRestController {
 		System.out.println("아이디 : " + userid);
 		System.out.println("글번호 : " + s_seq);
 
-		// 인서트 결과 0,1로 표시
+		// 인서트 결과 0,1,2 로 표시
 		int result = service.applyNomalStudy(s_seq, userid);
 		System.out.println("잘됐나 확인" + result);
 
-		return result; // 0 또는 1 리턴
+		return result; // 0 또는 1 또는 2 리턴
 	}
 
 	// 신고하기(게시판)
