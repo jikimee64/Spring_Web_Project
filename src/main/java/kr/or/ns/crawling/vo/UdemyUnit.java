@@ -1,4 +1,4 @@
-package kr.or.ns.crawlingvo;
+package kr.or.ns.crawling.vo;
 
 import java.util.List;
 
