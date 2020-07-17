@@ -58,4 +58,7 @@ public interface MyPageService {
 	//
 	public HashMap<String, Object> getRole(HashMap<String,Object> map);
 
+	//글번호로 알아보는 모집상태 
+	public String getStatus(String s_seq);
+
 }
