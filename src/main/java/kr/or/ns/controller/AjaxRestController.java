@@ -374,4 +374,16 @@ public class AjaxRestController {
 		service.finishRecruit(s_seq);
 	}
 
+	// 일반스터디 지원취소하기
+		@RequestMapping(value = "applycancel.do", method = RequestMethod.POST)
+		public void applycancelNomalStudy(@RequestBody HashMap<String, Object> params, Principal principal) {
+
+			// 아이디와 강의 글번호 받기
+			String user_id = principal.getName();
+			String s_seq = (String) params.get("s_seq");
+			System.out.println("여기까지 잘 왔으면 쏘리질러!!!!!!!!");
+			
+			service.applycancelNomalStudy(s_seq, user_id);
+
+		}
 }

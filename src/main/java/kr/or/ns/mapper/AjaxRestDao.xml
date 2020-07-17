@@ -262,4 +262,10 @@
 	<select id="checkPeople" resultType="int">
 		select people from study_board where s_seq = #{s_seq}
 	</select>
+	
+	<!-- 스터디 모임 지원 취소 -->
+	<delete id="applycancelNomalStudy" >
+		delete from study_group where s_seq = #{param1} and  user_id = #{param2}
+	</delete>
+	
 </mapper>

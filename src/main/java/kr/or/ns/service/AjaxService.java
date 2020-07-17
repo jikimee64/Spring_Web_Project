@@ -87,6 +87,9 @@ public interface AjaxService {
 
 	//모집마감으로 변경시 승인대기중 회원목록 삭제 
 	public void deleteWaitingUsers(String s_seq);
+
+	//스터디 지원한거 취소하기 
+	public void applycancelNomalStudy(String s_seq, String user_id);
 	
 
 }

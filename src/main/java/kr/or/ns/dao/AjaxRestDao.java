@@ -87,4 +87,7 @@ public interface AjaxRestDao {
 
 	//해당글의 모집정원 확인 
 	public int checkPeople(String s_seq);
+
+	//지원한 스터디 모임 지원취소하기 
+	public void applycancelNomalStudy(String s_seq, String user_id);
 }
