@@ -234,6 +234,12 @@ public class BoardController {
 		like.setUser_id(user_id);
 		// 좋아요 0/1 중 뭔지 알아오기
 		int heart = service.heartnum(like);
+		
+		//지원했는지 여부//insert 정보넘길 맵생성
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("s_seq", s_seq);
+		map.put("user_id", user_id);
+		int apply = service.checkApply(map);
 
 		try {
 			Map<String, Object> study = service.getStudy(s_seq);
@@ -245,6 +251,7 @@ public class BoardController {
 			model.addAttribute("onlineInfo", onlineInfo);
 			model.addAttribute("page", page);
 			model.addAttribute("perPageNum", perPageNum);
+			model.addAttribute("apply", apply);
 
 			List<Map<String, Object>> commentList = service.getComment(s_seq);
 			int count = service.getReplyCnt(s_seq);
@@ -254,10 +261,11 @@ public class BoardController {
 			model.addAttribute("commentList", commentList);
 			System.out.println("목록 -> 일반 ************: " + study);
 
+
 			System.out.println("1.컨트롤러 댓글:" + commentList.toString());
 
-			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
+			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

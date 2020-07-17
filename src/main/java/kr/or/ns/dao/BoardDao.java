@@ -104,6 +104,9 @@ public interface BoardDao {
 	//StudyBoardOnline에 강의 글번호 넣기
 	public int insertStudyBoardOnline(HashMap<String, Object> map);
 
+	//스터지모임에 지원했는지 여부 
+	public int checkApply(HashMap<String, String> map);
+
 
 
 }

@@ -389,4 +389,11 @@ public class AjaxServiceImpl implements AjaxService {
 		dao.deleteWaitingUsers(s_seq);
 	}
 
+	//스터디 지원한거 취소하기 
+	@Override
+	public void applycancelNomalStudy(String s_seq, String user_id) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		dao.applycancelNomalStudy(s_seq,user_id);
+	}
+
 }

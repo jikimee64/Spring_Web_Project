@@ -481,7 +481,26 @@
     } 
     
    </script>
-
+	
+	<script>
+			
+/* 파일 이름이 길경우 튀어나오는 현상이 생기므로 문자열 자르기가 필요함   ====>*/
+$(function(){
+	
+	
+	$("input:file[name='files[1]']").change(function () {
+		if($('.custom-file-label')[0].innerText.length > 12){
+			$('.custom-file-label')[0].innerText = $('.custom-file-label')[0].innerText.substr(0,12)+"...";
+		}
+	});
+	$("input:file[name='files[2]']").change(function () {
+		if($('.custom-file-label')[1].innerText.length > 12){
+			$('.custom-file-label')[1].innerText = $('.custom-file-label')[1].innerText.substr(0,12)+"...";
+		}
+	});
+});
+/*<==== 파일 이름이 길경우 튀어나오는 현상이 생기므로 문자열 자르기가 필요함   */
+	</script>
 </body>
 
 
