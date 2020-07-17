@@ -353,7 +353,7 @@ group+group {
 			<div class="col-md-9"></div>
 			<div class="col-md-3">
 				<div class="text-center" style="text-align-last: end;">
-					<a href="/board/board_Select.do" class="btn btn-outline-danger">스터디
+					<a href="/board/board_Select.do" class="btn btn-outline-danger" style="border:3px solid;font-weight:bold;">스터디
 						모집하기</a>
 				</div>
 				
@@ -454,7 +454,7 @@ group+group {
 						</div>
 						<div class="row _content"
 							style="margin: 0px 5px 0px 28px; height: 150px;">
-							<span th:utext="${list.CONTENT}"></span>
+							<span th:text="${list.CONTENT}"></span>
 							<p></p>
 						</div>
 					</div>
@@ -573,6 +573,8 @@ group+group {
 			/* 스터디 리스트 게시글 내용 글자수 자르기 끝 */
 			
 			
+			
+
 	
 		});
 		
@@ -726,7 +728,7 @@ group+group {
 					//다시 html +="<a href='/board/writing_Common_Study_Detail.do?s_seq='"+data[index].S_SEQ+"'&'"'page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">"
 					html +="<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"+data[index].TITLE+"</h2></a></div>"
 					html +="<div class='row _content' style='margin: 0px 5px 0px 28px; height: 150px;'>"
-					html +="<span>"+data[index].CONTENT+"</span></div></div></div>"	
+					html +=data[index].CONTENT+"</div></div></div>"	
 					html +="<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"	
 					
 					$('.studyFilter').append(html);
@@ -761,6 +763,19 @@ group+group {
 	
 	
 	</script>
+	
+	
+	<script>
+	
+	$('._content').each(function(index, item){
+		
+			$('._content').eq(index)[0].innerText = $('._content').eq(index)[0].innerText.replace(/(<([^>]+)>)/ig,"");
+
+		});
+	var innertext1 = $('._content').eq(0)[0].innerText;
+
+	</script>
+	
 	
 </body>
 

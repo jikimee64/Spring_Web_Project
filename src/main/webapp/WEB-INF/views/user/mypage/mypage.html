@@ -430,7 +430,7 @@ body {
 																	html += "<b><span style='font-size:xx-large;'>"
 																			+ data[index].TITLE
 																			+ "</span></b><br/></a>";
-																	html += "<span>"
+																	html += "<span class='_content' >"
 																			+ data[index].CONTENT
 																			+ "</span><br />";
 																	html += "</div>";
@@ -601,6 +601,17 @@ body {
 			});
 
 		}
+	</script>
+	
+		<script>
+	
+	$('._content').each(function(index, item){
+		
+			$('._content').eq(index)[0].innerText = $('._content').eq(index)[0].innerText.replace(/(<([^>]+)>)/ig,"");
+
+		});
+	var innertext1 = $('._content').eq(0)[0].innerText;
+
 	</script>
 	
 </body>
