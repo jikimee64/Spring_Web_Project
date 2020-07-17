@@ -296,12 +296,15 @@ public class AjaxRestController {
 	}
 
 	public static HashMap<String, Object> paramsTemp = null;
-
+	public static int filterSize = 0;
+	
 	// 스터디게시판 필터
 	@RequestMapping(value = "studyBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public List studyBoardFilter(@RequestBody HashMap<String, Object> params, Criteria_Board cri_b) {
 		System.out.println("테스트1");
 
+		System.out.println("이건떠야됨 " + params.get("language"));
+		
 		paramsTemp = params;
 
 		PageMaker_Board pageMakerb = new PageMaker_Board();
@@ -313,6 +316,8 @@ public class AjaxRestController {
 		List<HashMap<String, Object>> list = service.studyBoardFilter(params, cri_b);
 		List<Map<String, Object>> onlineInfo = bservice.getOnlineStudyBoard();
 
+		filterSize = listSize.size();
+		
 		pageMakerb.setTotalCount(listSize.size());
 		System.out.println("제발.." + listSize);
 		System.out.println("이거제발맞아라 : " + listSize.size());

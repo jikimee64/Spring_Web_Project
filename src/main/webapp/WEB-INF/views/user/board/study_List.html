@@ -220,7 +220,7 @@ group+group {
 <body>
 	<div th:replace="user/includes/header :: header"></div>
 
-
+	<input type="hidden" id="language" th:value="${language}" />
 
 	<main id="main">
 
@@ -256,8 +256,12 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-ingOrDone">
 							&nbsp;
-							<li data-filter="모집중">모집중</li> &nbsp;
-							<li data-filter="모집완료">모집 완료</li>
+							<li data-filter="모집중"
+								th:classappend="${ingOrDone} == '모집중' ? filter-active : null">모집중</li>
+							&nbsp;
+							<li data-filter="모집완료"
+								th:classappend="${ingOrDone} == '모집완료' ? filter-active : null">모집
+								완료</li>
 						</ul>
 					</div>
 
@@ -270,9 +274,15 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-level">
 							&nbsp;
-							<li data-filter="입문">입문</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter="초급">초급</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter="중급이상">중급 이상</li>
+							<li data-filter="입문"
+								th:classappend="${level} == '입문' ? filter-active : null">입문</li>
+							&nbsp;&nbsp;&nbsp;
+							<li data-filter="초급"
+								th:classappend="${level} == '초급' ? filter-active : null">초급</li>
+							&nbsp;&nbsp;&nbsp;
+							<li data-filter="중급이상"
+								th:classappend="${level} == '중급이상' ? filter-active : null">중급
+								이상</li>
 						</ul>
 					</div>
 				</div>
@@ -285,20 +295,42 @@ group+group {
 						</div>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
-						<ul id="portfolio-flters-lan">
-							&nbsp;
-							<li data-filter="1">JAVA</li> &nbsp;
-							<li data-filter="2">Javascript</li> &nbsp;
-							<li data-filter="3">HTML/CSS</li> &nbsp;
-							<li data-filter="4">Spring</li> &nbsp;
-							<li data-filter="5">Python</li> &nbsp;
-							<li data-filter="6">Vue.js</li> &nbsp;
-							<li data-filter="7">React</li>&nbsp;
-							<li data-filter="8">Jquery</li> &nbsp;
-							<li data-filter="9">JSP</li> &nbsp;
-							<li data-filter="10">BootStrap</li> &nbsp;
-							<li data-filter="11">JPA</li>
-						</ul>
+						<th:block th:if="${language != null}">
+							<ul id="portfolio-flters-lan">
+								&nbsp;
+								<li data-filter="1" class="lan1">JAVA</li> &nbsp;
+								<li data-filter="2" class="lan2">Javascript</li> &nbsp;
+								<li data-filter="3" class="lan3">HTML/CSS</li> &nbsp;
+								<li data-filter="4" class="lan4">Spring</li> &nbsp;
+								<li data-filter="5" class="lan5">Python</li> &nbsp;
+								<li data-filter="6" class="lan6">Vue.js</li> &nbsp;
+								<li data-filter="7" class="lan7">React</li>&nbsp;
+								<li data-filter="8" class="lan8">Jquery</li> &nbsp;
+								<li data-filter="9" class="lan9">JSP</li> &nbsp;
+								<li data-filter="10" class="lan10">BootStrap</li> &nbsp;
+								<li data-filter="11" class="lan11">JPA</li>
+							</ul>
+						</th:block>
+						</th:block>
+
+						<!-- 동기식  -->
+						<th:block th:if="${language == null}">
+							<ul id="portfolio-flters-lan">
+								&nbsp;
+								<li data-filter="1">JAVA</li> &nbsp;
+								<li data-filter="2">Javascript</li> &nbsp;
+								<li data-filter="3">HTML/CSS</li> &nbsp;
+								<li data-filter="4">Spring</li> &nbsp;
+								<li data-filter="5">Python</li> &nbsp;
+								<li data-filter="6">Vue.js</li> &nbsp;
+								<li data-filter="7">React</li>&nbsp;
+								<li data-filter="8">Jquery</li> &nbsp;
+								<li data-filter="9">JSP</li> &nbsp;
+								<li data-filter="10">BootStrap</li> &nbsp;
+								<li data-filter="11">JPA</li>
+							</ul>
+						</th:block>
+
 					</div>
 				</div>
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
@@ -309,21 +341,34 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-local">
 							&nbsp;
-							<li data-filter="1">충청북도</li> &nbsp;
-							<li data-filter="2">충청남도</li> &nbsp;
-							<li data-filter="3">경기도</li>
-							<li data-filter="4">전라북도</li>
-							<li data-filter="5">전라남도</li>
-							<li data-filter="6">경상남도</li>
-							<li data-filter="7">경상북도</li>
-							<li data-filter="8">강원도</li>
-							<li data-filter="9">세종특별시</li>
-							<li data-filter="10">서울특별시</li>
-							<li data-filter="11">인천광역시</li>
-							<li data-filter="12">제주특별시</li>
-							<li data-filter="13">온라인</li>
-
-
+							<li data-filter="1"
+								th:classappend="${local} == '1' ? filter-active : null">충청북도</li>
+							&nbsp;
+							<li data-filter="2"
+								th:classappend="${local} == '2' ? filter-active : null">충청남도</li>
+							&nbsp;
+							<li data-filter="3"
+								th:classappend="${local} == '3' ? filter-active : null">경기도</li>
+							<li data-filter="4"
+								th:classappend="${local} == '4' ? filter-active : null">전라북도</li>
+							<li data-filter="5"
+								th:classappend="${local} == '5' ? filter-active : null">전라남도</li>
+							<li data-filter="6"
+								th:classappend="${local} == '6' ? filter-active : null">경상남도</li>
+							<li data-filter="7"
+								th:classappend="${local} == '7' ? filter-active : null">경상북도</li>
+							<li data-filter="8"
+								th:classappend="${local} == '8' ? filter-active : null">강원도</li>
+							<li data-filter="9"
+								th:classappend="${local} == '9' ? filter-active : null">세종특별시</li>
+							<li data-filter="10"
+								th:classappend="${local} == '10' ? filter-active : null">서울특별시</li>
+							<li data-filter="11"
+								th:classappend="${local} == '11' ? filter-active : null">인천광역시</li>
+							<li data-filter="12"
+								th:classappend="${local} == '12' ? filter-active : null">제주특별시</li>
+							<li data-filter="13"
+								th:classappend="${local} == '13' ? filter-active : null">온라인</li>
 						</ul>
 					</div>
 				</div>
@@ -335,8 +380,11 @@ group+group {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-studyContent">
 							&nbsp;
-							<li data-filter="1">온라인 강의</li> &nbsp;
-							<li data-filter="2">일반</li>
+							<li data-filter="1"
+								th:classappend="${studyContent} == '1' ? filter-active : null">온라인
+								강의</li> &nbsp;
+							<li data-filter="2"
+								th:classappend="${studyContent} == '2' ? filter-active : null">일반</li>
 						</ul>
 					</div>
 				</div>
@@ -485,9 +533,16 @@ group+group {
 
 
 				<!-- 이전버튼 생성여부 -->
-				<li th:if="${pageMakerb.prev} == true"><a
-					th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
-					class="page-link" th:text="Previous">&laquo;</a></li>
+				<li th:if="${pageMakerb.prev} == true"><th:block
+						th:if="${type == null}">
+						<a
+							th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							class="page-link" th:text="Previous">&laquo; </a>
+					</th:block> <th:block th:if="${type == null}">
+						<a
+							th:href="@{study_FilterList.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							class="page-link" th:text="Previous">&laquo; </a>
+					</th:block></li>
 				<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
 
 
@@ -496,17 +551,32 @@ group+group {
 				<li class="page-item"
 					th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
 					th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
-					<a class="page-link"
-					th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
-					th:text="${idx}">1</a> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+
+					<th:block th:if="${type == null}">
+						<a class="page-link"
+							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							th:text="${idx}"></a>
+					</th:block> <th:block th:if="${type != null}">
+						<a class="page-link"
+							th:href="@{study_FilterList.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							th:text="${idx}"></a>
+					</th:block> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
 
 				<!-- 다음버튼 생성여부 -->
 				<!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
 				<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
-					<a
-					th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
-					class="page-link" th:text="Next">&raquo;</a> <!-- 						              	<a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+
+					<th:block th:if="${type == null}">
+						<a
+							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							class="page-link" th:text="Next">&raquo;</a>
+					</th:block> <th:block th:if="${type != null}">
+						<a
+							th:href="@{study_FilterList.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							class="page-link" th:text="Next">&raquo;</a>
+					</th:block>
+
 				</li>
 			</ul>
 
@@ -524,7 +594,7 @@ group+group {
 	</div>
 
 	<script>
-	//내용에 이미지 뜨는거 막기 시작
+		//내용에 이미지 뜨는거 막기 시작
 		$(function() {
 			$('p > img').remove();
 			$('iframe').remove();
@@ -544,41 +614,36 @@ group+group {
 			}
 			/*  페이지 0 뜨는거 없애기 끝 */
 
-			
 			/* 스터디 리스트 게시글 제목 글자수 자르기 시작 */
-				var titleTag = $('._title');
-			
-				var titleText = "";
-		
-				$.each(titleTag, function(index,item){
-					titleText = titleTag[index].innerHTML;
-				if(titleText.length > 23){
-					titleText = titleText.substring(0,23)+"...";
+			var titleTag = $('._title');
+
+			var titleText = "";
+
+			$.each(titleTag, function(index, item) {
+				titleText = titleTag[index].innerHTML;
+				if (titleText.length > 23) {
+					titleText = titleText.substring(0, 23) + "...";
 				}
 				titleTag[index].innerHTML = titleText;
 			})
 			/* 스터디 리스트 게시글 제목 글자수 자르기 끝 */
-			
+
 			/* 스터디 리스트 게시글 내용 글자수 자르기 시작 */
-				var contentTag = $('._content');
-			
-				var contentText = "";
-		
-				$.each(contentTag, function(index,item){
+			var contentTag = $('._content');
+
+			var contentText = "";
+
+			$.each(contentTag, function(index, item) {
 				contentText = contentTag[index].innerHTML;
-				if(contentText.length > 540){
-					contentText = contentText.substring(0,350)+"...";
+				if (contentText.length > 540) {
+					contentText = contentText.substring(0, 350) + "...";
 				}
 				contentTag[index].innerHTML = contentText;
 			})
 			/* 스터디 리스트 게시글 내용 글자수 자르기 끝 */
-			
-			
-			
 
-	
 		});
-		
+
 		function InfoModal(idx) {
 
 			let id = $('.InfoModal' + idx).children().text();
@@ -641,201 +706,324 @@ group+group {
 	</script>
 
 	<script>
-	
-	$("li").on("click", function(){ 
-		var ingOrDone = $('#portfolio-flters-ingOrDone').children('.filter-active').attr('data-filter');
-		var level = $('#portfolio-flters-level').children('.filter-active').attr('data-filter');
-		var language = new Array();
-		$.each($('#portfolio-flters-lan').find('.filter-active'), function(index, item){
-			language[index] = item.getAttribute('data-filter');
-			console.log(item.getAttribute('data-filter'))
-		});
-		
-		var local = $('#portfolio-flters-local').children('.filter-active').attr('data-filter');
-		var studyContent = $('#portfolio-flters-studyContent').children('.filter-active').attr('data-filter');
-		
-		let data = {
-				"ingOrDone" : ingOrDone,
-				"level" : level,
-				"language" : language,
-				"local" : local,
-				"studyContent" : studyContent
-		}
-		
-		$.ajax({
-			url : '/ajax/studyBoardFilter.do',
-			processData : false,
-			contentType : "application/json",
-			cache : false,
-			 type : 'POST', 
-			data : JSON.stringify(data),
-			success : function(data) {
-				
-				$('.studyFilter').empty();
-				$('.studyPaging').empty(); 
-				
-				$.each(data, function (index, item) {
-					console.log('ss' + index)
-					var list_length = data[0].length;
-					var onlineInfo_length = data[1].length;
-					
-					
-				if(index === 0){
-					console.log('한ㅂ넘나타라')
-					console.log('천재 데이터 개수 : ' + list_length)
-					for(var i = 0 ; i < list_length; i++) {	
-						let html = "";
-					console.log('두번나와야됨')
-					 var write_date = new Date(data[0][i].WRITE_DATE);
-					 var deadline = new Date(data[0][i].DEADLINE);
-					html +="<div class='row'>"
-					html +="<div class='col-md-3'></div>"
-					html +="<div class='col-md-4' style='padding: 0px; text-align: center;'>"
-					html +="<span class='badge badge-pill badge-primary'>"+data[0][i].STATUS+"</span>"
-					html +="<span class='badge badge-pill badge-info'>"+data[0][i].LEVEL+"</span>"
-					html +="<span class='badge badge-pill badge-secondary'>"+data[0][i].CATE_LANGUAGE+"</span>" 
-					html +="<span class='badge badge-pill badge-success'>"+data[0][i].PEOPLE+"명</span>"
-					html +="<span class='badge badge-pill badge-warning'>"+data[0][i].LOC+"</span>"
-					html +="<span class='badge badge-pill badge-light'>"+data[0][i].CONTENT_KIND+"</span></div></div>"	
-					html +="<div class='row'>"
-					if(data[0][i].CONTENT_KIND == "일반"){
-						html +="<div class='col-md-3 align-self-center'>"
-						html +="<div class='card' style='width: 100%'>"
-						html +="<img class='card-img-top' src='/studyboard/upload/"+data[0][i].IMAGE+"' alt='Card image' style='width: 100%;'>"
-						html +="</div></div>"
-					}else{ //온라인
-						console.log('호호' + data[0][i].S_SEQ)
-						console.log('히히' + onlineInfo_length)
-						for(var j = 0; j < onlineInfo_length; j++){
-							console.log('하하 ' + data[1][j].S_SEQ)
-							if(data[1][j].S_SEQ === data[0][i].S_SEQ){
-								console.log('크크' + data[1][j].S_SEQ)
-								html +="<div class='col-md-3'>"
-								html +="<div class='card' style='width: 100%'>"
-								html +="<img class='card-img-top' src='"+data[1][j].L_IMAGE+"' alt='Card image'style='width:100%;'>"
-								html +="<div class='card-body'>"
-								html +="<h6 class='card-title _margin_0'>"+data[1][j].L_TITLE+"</h6>"
-								html +="<p class='card-text _margin_0' style='color: gray; font-size: small;'>"+data[1][j].L_WRITER+"</p>"//여기원래 L_WRITER였음
-								html +="<a href='/board/writing_Course_Study_Detail.do' class='stretched-link'></a>"
-								html +="<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 30px;'>"
-								html +="<span>(6)</span>" //여기에 수강평 개수?
-								html +="<b>₩44,000</b></div></div></div>"  //여기에 가격 데이터
+		$("li")
+				.on(
+						"click",
+						function() {
+							var ingOrDone = $('#portfolio-flters-ingOrDone')
+									.children('.filter-active').attr(
+											'data-filter');
+							var level = $('#portfolio-flters-level').children(
+									'.filter-active').attr('data-filter');
+							var language = new Array();
+							$.each($('#portfolio-flters-lan').find(
+									'.filter-active'), function(index, item) {
+								language[index] = item
+										.getAttribute('data-filter');
+								console.log(item.getAttribute('data-filter'))
+							});
+
+							var local = $('#portfolio-flters-local').children(
+									'.filter-active').attr('data-filter');
+							var studyContent = $(
+									'#portfolio-flters-studyContent').children(
+									'.filter-active').attr('data-filter');
+
+							let data = {
+								"ingOrDone" : ingOrDone,
+								"level" : level,
+								"language" : language,
+								"local" : local,
+								"studyContent" : studyContent
 							}
-						}
-							
-					}
-					html +="<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
-					html +="<div class='row' style='margin-top: 10px;'>"
-					html +="<b style='margin-left: 35px;'>작성자:</b>"
-					html +="<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
-					html +='<a href="" class="InfoModal"'+data[0][i].S_SEQ+'onclick=InfoModal("'
-							+data[index].S_SEQ+'") data-toggle="modal" data-target="#userInfoModal">'
-					html +="<b style='color: black; margin-right: 10px;'>작성자 :</b>"+data[0][i].USER_ID+"</a></div>"
-					html +="<div class='col-md-3' style='text-align: center; padding-right: 0px;'>"
-					
-					
-					html +="<b>등록일 : "+getDateFormet(write_date)+"</b></div>"
-					
-					
-					html +="<div class='col-md-3' style='text-align: center; padding-left: 0px;'>"
-					
-					
-					html +="<b>마감일 : "+getDateFormet(deadline)+"</b></div></div>";
-					
-					
-					html +="<div class='row'>"
-					//다시 html +="<a href='/board/writing_Common_Study_Detail.do?s_seq='"+data[index].S_SEQ+"'&'"'page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">"
-					html +="<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"+data[0][i].TITLE+"</h2></a></div>"
-					html +="<div class='row _content' style='margin: 0px 5px 0px 28px; height: 150px;'>"
-<<<<<<< HEAD
-					html +=data[index].CONTENT+"</div></div></div>"	
-=======
-					html +="<span>"+data[0][i].CONTENT+"</span></div></div></div>"	
->>>>>>> 3aa09a2afe24f136fef710aea969050ab56c51da
-					html +="<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"	
-					
-					$('.studyFilter').append(html);
-				}
-				}
-				})
-				
-				//페이지 each
-				 $.each(data, function (index, item) {
-					let page = "";
-					console.log('*****************데이터개수 : ' + data[0].length)
- 					if(index === 2){	
-						console.log('안녕' + data[2].prev)
-						console.log('안녕' + data[2].startPage)
-						console.log('안녕' + data[2].endPage)
-						console.log('안녕' + data[2].cri_b.perPageNum)
 
-				page += "<ul class='pager d-flex studyPaging' style='place-content: center; margin-top: 35px; margin-bottom: 140px;'>"
-				if(data[2].prev === true){
-					page+="<li><a href='study_FilterList.do?page="+data[2].startPage-1+"&perPageNum="+data[2].cri_b.perPageNum+" class='page-link'>&laquo;Previous</a></li>"
-				}
-				
-				for(var i = data[2].startPage; i <= data[2].endPage; i++){
-					if(data[2].cri_b.page === i){
-						page+="<li class='page-item active'>"
-						page+="<a class='page-link' href='study_FilterList.do?page="+i+"&perPageNum="+data[2].cri_b.perPageNum+"'>"+i+"</a></li>" 
-					}else{
-						page+="<li class='page-item'>"
-						page+="<a class='page-link' href='study_FilterList.do?page="+i+"&perPageNum="+data[2].cri_b.perPageNum+"'>"+i+"</a></li>"
-					}			
-				}
-				if(data[2].next === true && data[2].endPage>0){
-					page+="<li><a href='study_FilterList.do?page="+data[2].endPage+1+"&perPageNum="+data[2].cri_b.perPageNum+" class='page-link'>&raquo;Next</a></li></ul>"
+							$
+									.ajax({
+										url : '/ajax/studyBoardFilter.do',
+										processData : false,
+										contentType : "application/json",
+										cache : false,
+										type : 'POST',
+										data : JSON.stringify(data),
+										success : function(data) {
 
-				}
-						
-					} //if문
-				$('.studyPaging').append(page);
-				}) 
-				
-				console.log("=============================")			
-			}, //success
-			error : function(e) {
-				console.log("error:", e);
-			}
-		});
-	
-	});
+											$('.studyFilter').empty();
+											$('.studyPaging').empty();
 
-	
+											$
+													.each(
+															data,
+															function(index,
+																	item) {
+																console
+																		.log('ss'
+																				+ index)
+																var list_length = data[0].length;
+																var onlineInfo_length = data[1].length;
+
+																if (index === 0) {
+																	console
+																			.log('한ㅂ넘나타라')
+																	console
+																			.log('천재 데이터 개수 : '
+																					+ list_length)
+																	for (var i = 0; i < list_length; i++) {
+																		let html = "";
+																		console
+																				.log('두번나와야됨')
+																		var write_date = new Date(
+																				data[0][i].WRITE_DATE);
+																		var deadline = new Date(
+																				data[0][i].DEADLINE);
+																		html += "<div class='row'>"
+																		html += "<div class='col-md-3'></div>"
+																		html += "<div class='col-md-4' style='padding: 0px; text-align: center;'>"
+																		html += "<span class='badge badge-pill badge-primary'>"
+																				+ data[0][i].STATUS
+																				+ "</span>"
+																		html += "<span class='badge badge-pill badge-info'>"
+																				+ data[0][i].LEVEL
+																				+ "</span>"
+																		html += "<span class='badge badge-pill badge-secondary'>"
+																				+ data[0][i].CATE_LANGUAGE
+																				+ "</span>"
+																		html += "<span class='badge badge-pill badge-success'>"
+																				+ data[0][i].PEOPLE
+																				+ "명</span>"
+																		html += "<span class='badge badge-pill badge-warning'>"
+																				+ data[0][i].LOC
+																				+ "</span>"
+																		html += "<span class='badge badge-pill badge-light'>"
+																				+ data[0][i].CONTENT_KIND
+																				+ "</span></div></div>"
+																		html += "<div class='row'>"
+																		if (data[0][i].CONTENT_KIND == "일반") {
+																			html += "<div class='col-md-3 align-self-center'>"
+																			html += "<div class='card' style='width: 100%'>"
+																			html += "<img class='card-img-top' src='/studyboard/upload/"
+																					+ data[0][i].IMAGE
+																					+ "' alt='Card image' style='width: 100%;'>"
+																			html += "</div></div>"
+																		} else { //온라인
+																			console
+																					.log('호호'
+																							+ data[0][i].S_SEQ)
+																			console
+																					.log('히히'
+																							+ onlineInfo_length)
+																			for (var j = 0; j < onlineInfo_length; j++) {
+																				console
+																						.log('하하 '
+																								+ data[1][j].S_SEQ)
+																				if (data[1][j].S_SEQ === data[0][i].S_SEQ) {
+																					console
+																							.log('크크'
+																									+ data[1][j].S_SEQ)
+																					html += "<div class='col-md-3'>"
+																					html += "<div class='card' style='width: 100%'>"
+																					html += "<img class='card-img-top' src='"
+																							+ data[1][j].L_IMAGE
+																							+ "' alt='Card image'style='width:100%;'>"
+																					html += "<div class='card-body'>"
+																					html += "<h6 class='card-title _margin_0'>"
+																							+ data[1][j].L_TITLE
+																							+ "</h6>"
+																					html += "<p class='card-text _margin_0' style='color: gray; font-size: small;'>"
+																							+ data[1][j].L_WRITER
+																							+ "</p>"//여기원래 L_WRITER였음
+																					html += "<a href='/board/writing_Course_Study_Detail.do' class='stretched-link'></a>"
+																					html += "<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 30px;'>"
+																					html += "<span>(6)</span>" //여기에 수강평 개수?
+																					html += "<b>₩44,000</b></div></div></div>" //여기에 가격 데이터
+																				}
+																			}
+
+																		}
+																		html += "<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
+																		html += "<div class='row' style='margin-top: 10px;'>"
+																		html += "<b style='margin-left: 35px;'>작성자:</b>"
+																		html += "<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
+																		html += '<a href="" class="InfoModal"'
+																				+ data[0][i].S_SEQ
+																				+ 'onclick=InfoModal("'
+																				+ data[index].S_SEQ
+																				+ '") data-toggle="modal" data-target="#userInfoModal">'
+																		html += "<b style='color: black; margin-right: 10px;'>작성자 :</b>"
+																				+ data[0][i].USER_ID
+																				+ "</a></div>"
+																		html += "<div class='col-md-3' style='text-align: center; padding-right: 0px;'>"
+
+																		html += "<b>등록일 : "
+																				+ getDateFormet(write_date)
+																				+ "</b></div>"
+
+																		html += "<div class='col-md-3' style='text-align: center; padding-left: 0px;'>"
+
+																		html += "<b>마감일 : "
+																				+ getDateFormet(deadline)
+																				+ "</b></div></div>";
+
+																		html += "<div class='row'>"
+																		//다시 html +="<a href='/board/writing_Common_Study_Detail.do?s_seq='"+data[index].S_SEQ+"'&'"'page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">"
+																		html += "<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"
+																				+ data[0][i].TITLE
+																				+ "</h2></a></div>"
+																		html += "<div class='row _content' style='margin: 0px 5px 0px 28px; height: 150px;'>"
+																		html += "<span>"
+																				+ data[0][i].CONTENT
+																				+ "</span></div></div></div>"
+																		html += "<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"
+
+																		$(
+																				'.studyFilter')
+																				.append(
+																						html);
+																	}
+																}
+															})
+
+											//페이지 each
+											$
+													.each(
+															data,
+															function(index,
+																	item) {
+																let page = "";
+																console
+																		.log('*****************데이터개수 : '
+																				+ data[0].length)
+																if (index === 2) {
+																	console
+																			.log('안녕'
+																					+ data[2].prev)
+																	console
+																			.log('안녕'
+																					+ data[2].startPage)
+																	console
+																			.log('안녕'
+																					+ data[2].endPage)
+																	console
+																			.log('안녕'
+																					+ data[2].cri_b.perPageNum)
+
+																	page += "<ul class='pager d-flex studyPaging' style='place-content: center; margin-top: 35px; margin-bottom: 140px;'>"
+																	if (data[2].prev === true) {
+																		page += "<li><a href='study_FilterList.do?page="
+																				+ data[2].startPage
+																				- 1
+																				+ "&perPageNum="
+																				+ data[2].cri_b.perPageNum
+																				+ " class='page-link'>&laquo;Previous</a></li>"
+																	}
+
+																	for (var i = data[2].startPage; i <= data[2].endPage; i++) {
+																		if (data[2].cri_b.page === i) {
+																			page += "<li class='page-item active'>"
+																			page += "<a class='page-link' href='study_FilterList.do?page="
+																					+ i
+																					+ "&perPageNum="
+																					+ data[2].cri_b.perPageNum
+																					+ "'>"
+																					+ i
+																					+ "</a></li>"
+																		} else {
+																			page += "<li class='page-item'>"
+																			page += "<a class='page-link' href='study_FilterList.do?page="
+																					+ i
+																					+ "&perPageNum="
+																					+ data[2].cri_b.perPageNum
+																					+ "'>"
+																					+ i
+																					+ "</a></li>"
+																		}
+																	}
+
+																	if (data[2].next === true
+																			&& data[2].endPage > 0) {
+																		page += "<li><a href='study_FilterList.do?page="
+																				+ data[2].endPage
+																				+ 1
+																				+ "&perPageNum="
+																				+ data[2].cri_b.perPageNum
+																				+ " class='page-link'>&raquo;Next</a></li></ul>"
+
+																	}
+
+																} //if문
+																$(
+																		'.studyPaging')
+																		.append(
+																				page);
+															})
+
+											console
+													.log("=============================")
+										}, //success
+										error : function(e) {
+											console.log("error:", e);
+										}
+									});
+
+						});
+
 		/* function Filter() {
 		
 		} */
-		
-	/* $( "#portfolio-flters-ingOrDone li" ).click(function() { 
 
-	    var customType = $( this ).data('filter'); 
-	    console.log(customType); */
-	   /*  console.log(posts.length); 
+		/* $( "#portfolio-flters-ingOrDone li" ).click(function() { 
 
-	    posts
-	        .hide()
-	        .filter(function () {
-	            return $(this).data('cat') === customType;
-	        })
-	        .show(); */
-	/* }); */
-	
-	
+		    var customType = $( this ).data('filter'); 
+		    console.log(customType); */
+		/*  console.log(posts.length); 
+
+		 posts
+		     .hide()
+		     .filter(function () {
+		         return $(this).data('cat') === customType;
+		     })
+		     .show(); */
+		/* }); */
 	</script>
 
 
 	<script>
-	
-		
-	
-		$('._content').each(function(index, item){
-		
-			$('._content').eq(index)[0].innerText = $('._content').eq(index)[0].innerText.replace(/(<([^>]+)>)/ig,"");
+		$('._content').each(
+				function(index, item) {
 
-		});
+					$('._content').eq(index)[0].innerText = $('._content').eq(
+							index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
+
+				});
 	</script>
 
 
+	<script>
+		$(function() {
+			a = $('#language').val();
+			var b = a.split(",")
+
+			for (var i = 0; i < b.length; i++) {
+				console.log('시작')
+				console.log(regExp(b[i]).trim());
+				var filter = regExp(b[i]).trim()
+				console.log('i : ' + i)
+				$('.lan' + filter).addClass('filter-active');
+			}
+		})
+
+		function regExp(str) {
+			var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+			//특수문자 검증
+			if (reg.test(str)) {
+				//특수문자 제거후 리턴
+				return str.replace(reg, "");
+			} else {
+				//특수문자가 없으므로 본래 문자 리턴
+				return str;
+			}
+		}
+	</script>
+	
 </body>
 
 

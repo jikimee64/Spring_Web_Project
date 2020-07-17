@@ -67,7 +67,6 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
             errormsg = "계정이 비활성화되었습니다. 관리자에게 문의하세요.";
         }
         
-        System.out.println("제발와라여기");
 		/*
 		 * request.setAttribute("loginidname", username);
 		 * request.setAttribute("loginpwdname", password);

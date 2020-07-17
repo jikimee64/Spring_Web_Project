@@ -2,7 +2,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LOGIN</title>
@@ -350,13 +351,14 @@ button:focus {
 	margin-right: 10px;
 	padding-bottom: 1px;
 }
-._google_span{
-	color:#DA5A4A;
-}
-.btn-google:hover ._google_span {
-	color:white;
+
+._google_span {
+	color: #DA5A4A;
 }
 
+.btn-google:hover ._google_span {
+	color: white;
+}
 
 .btn-naver {
 	color: #1CB863;
@@ -386,12 +388,13 @@ button:focus {
 	background: #FFC71C;
 	color: white;
 }
-.btn-google:hover{
+
+.btn-google:hover {
 	background: #DA5A4A;
 	color: white;
 }
 
-#naver_id_login:hover{
+#naver_id_login:hover {
 	color: white;
 }
 
@@ -421,12 +424,11 @@ button:focus {
 	width: 460px;
 	height: 535px;
 }
-
 </style>
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
-	
+
 	<main id="main">
 
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -434,17 +436,18 @@ button:focus {
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
-					<h2> </h2>
+					<h2></h2>
 				</div>
 
 			</div>
-		</section><!-- Breadcrumbs Section --
+		</section>
+		<!-- Breadcrumbs Section --
 
 	</main><!-- End #main -->
 
-	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
-	<input type="hidden" th:value="${param.error}" id="error" />
- <!-- 	<div th:if="${param.error!=null}">
+		<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
+		<input type="hidden" th:value="${param.error}" id="error" />
+		<!-- 	<div th:if="${param.error!=null}">
 		로그인 실패 <br />
 		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
 			<c:if test="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
@@ -453,86 +456,109 @@ button:focus {
 		</th:block>
 		</c:if>
 	</div>    -->
-	
-
-	<div class="limiter" style="height:834px;">
-		<div class="container-login100" style="position:inherit;">
-
-			<!-- 로그인 작업시작 -->
-			<div class="_border_box_shadow2" style="transform: translateY(-83px)">
-				<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30"
-					style="margin-top: -11px;">
-					<h2 style="text-align: center;">
-						<b style="font-size: 26px">LOGIN</b>
-					</h2>
-					<hr style="width: 80%; margin-bottom: 11px;" />
-
-					<form th:action="@{/login}" method="post" class=""><div class="form-group" style="text-align: -webkit-center;"><label for="uname"><b style="margin-right: 260px">ID</b></label><input class="input--style-6" type="text" id="user_id"placeholder="Enter userid" name="user_id" required></div><div class="form-group" style="text-align: -webkit-center;"><label for="pwd"><b style="margin-right: 208px">Password</b></label><input class="input--style-6" type="password" id="user_pwd"placeholder="Enter password" name="user_pwd" required></div><div class="form-group" style="text-align: -webkit-center; color:red"><div th:text="${#request.getAttribute('errormsgname')}"></div></div> <div style="text-align: -webkit-center;"><button id="login-button" type="submit" class="login100-form-btn"style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;"><b>Login</b></button></div></form>
 
 
-					<div
-						style="text-align: center; font-size: small; margin-top: 10px;">
-						<a href="/member/find_Id.do"> <span class="_find">아이디
-								찾기</span>
-						</a> &nbsp;&nbsp;<b style="color: #c5c5c5;">|</b>&nbsp;&nbsp; <a
-							href="/member/find_Passward.do"> <span class="_find">비밀번호
-								찾기</span>
-						</a>
+		<div class="limiter" style="height: 834px;">
+			<div class="container-login100" style="position: inherit;">
+
+				<!-- 로그인 작업시작 -->
+				<div class="_border_box_shadow2"
+					style="transform: translateY(-83px)">
+					<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30"
+						style="margin-top: -11px;">
+						<h2 style="text-align: center;">
+							<b style="font-size: 26px">LOGIN</b>
+						</h2>
+						<hr style="width: 80%; margin-bottom: 11px;" />
+
+						<form th:action="@{/login}" method="post" class="">
+							<div class="form-group" style="text-align: -webkit-center;">
+								<label for="uname"><b style="margin-right: 260px">ID</b></label><input
+									class="input--style-6" type="text" id="user_id"
+									placeholder="Enter userid" name="user_id" required>
+							</div>
+							<div class="form-group" style="text-align: -webkit-center;">
+								<label for="pwd"><b style="margin-right: 208px">Password</b></label><input
+									class="input--style-6" type="password" id="user_pwd"
+									placeholder="Enter password" name="user_pwd" required>
+							</div>
+							<div class="form-group"
+								style="text-align: -webkit-center; color: red">
+								<div th:text="${#request.getAttribute('errormsgname')}"></div>
+							</div>
+							<div style="text-align: -webkit-center;">
+								<button id="login-button" type="submit"
+									class="login100-form-btn"
+									style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;">
+									<b>Login</b>
+								</button>
+							</div>
+						</form>
+
+
+						<div
+							style="text-align: center; font-size: small; margin-top: 10px;">
+							<a href="/member/find_Id.do"> <span class="_find">아이디
+									찾기</span>
+							</a> &nbsp;&nbsp;<b style="color: #c5c5c5;">|</b>&nbsp;&nbsp; <a
+								href="/member/find_Passward.do"> <span class="_find">비밀번호
+									찾기</span>
+							</a>
+						</div>
+
+						<br />
+
+						<div style="margin-bottom: 5px; text-align: -webkit-center;">
+
+							<button type="button" class="btn-google btn-light _other_login"
+								style="border: 1.5px solid #DA5A4A;">
+								<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
+
+								<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
+								<!-- 								style="margin: 0 23px 0 10px"></i>  -->
+								<i class="fa fa-google" aria-hidden="true"
+									style="margin: 0 23px 0 12px"></i> <a
+									th:href="@{${google_url}}"> <span class="_google_span"
+									style="font-size: small; font-weight: bold; position: absolute; transform: translate3d(17px, -7px, 10px);">구글
+										계정으로 로그인 하기</span></a>
+							</button>
+						</div>
+
+
+						<div style="margin-bottom: 5px; text-align: -webkit-center;">
+							<a th:href="@{${naver_url}}">
+								<button type="button" class="btn-naver btn-light _other_login"
+									style="border: 1.5px solid #1CB863;">
+
+
+									<i class="xi-naver-square xi-x" aria-hidden="true"
+										style="margin: 0 19px 0 10px"></i>&nbsp; <span
+										style="font-size: small; font-weight: bold; transform: translateX(6px);"
+										id="naver_id_login">네이버 계정으로 로그인 하기</span>
+								</button>
+							</a>
+						</div>
+
+
+						<div style="margin-bottom: 5px; text-align: -webkit-center;">
+							<a th:href="@{${kakao_url}}">
+								<button type="button" class="btn-kakao btn-light _other_login"
+									style="border: 1.5px solid #FFC71C;">
+									<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
+									<i class="xi-kakaotalk xi-x" aria-hidden="true"
+										style="margin: 0 11px 0 10px">&nbsp;</i> <span
+										style="font-size: small; font-weight: bold; transform: translateX(6px);">카카오톡
+										계정으로 로그인 하기</span>
+								</button>
+						</div>
 					</div>
 
-					<br />
-
-					<div style="margin-bottom: 5px; text-align: -webkit-center;">
-
-						<button type="button" class="btn-google btn-light _other_login"
-							style="border: 1.5px solid #DA5A4A;">
-							<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
-
-<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
-<!-- 								style="margin: 0 23px 0 10px"></i>  -->
-							<i class="fa fa-google" aria-hidden="true" style="margin: 0 23px 0 12px"></i>
-								<a th:href="@{${google_url}}">
-								<span class="_google_span"
-								style="font-size: small;font-weight:bold;position: absolute;transform: translate3d(17px, -7px, 10px);">구글 계정으로 로그인 하기</span></a>
-						</button>
-					</div>
-
-
-					<div style="margin-bottom: 5px; text-align: -webkit-center;">
-					<a th:href="@{${naver_url}}">
-						<button type="button" class="btn-naver btn-light _other_login"
-							style="border: 1.5px solid #1CB863;">
-
-
-							<i class="xi-naver-square xi-x" aria-hidden="true"
-								style="margin: 0 19px 0 10px"></i>&nbsp; 
-								
-								<span
-								style="font-size: small;font-weight:bold;transform:translateX(6px);" id="naver_id_login">네이버 계정으로 로그인 하기</span>
-						</button>
-						</a>
-					</div>
-
-
-					<div style="margin-bottom: 5px; text-align: -webkit-center;">
-					<a th:href="@{${kakao_url}}">
-						<button type="button" class="btn-kakao btn-light _other_login"
-							style="border: 1.5px solid #FFC71C;">
-							<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
-							<i class="xi-kakaotalk xi-x" aria-hidden="true"style="margin: 0 11px 0 10px">&nbsp;</i>
-								<span
-								style="font-size: small;font-weight:bold;transform:translateX(6px);">카카오톡 계정으로 로그인 하기</span>
-						</button>
-						
-					</div>
 				</div>
 
 			</div>
-
 		</div>
-	</div>
-		
-<!-- 	 	<script>
+
+		<!-- 	 	<script>
 			$(function() {
 					$('#login-button').click(function(){
 					let a = $('#kwc').text();
