@@ -529,8 +529,10 @@ keyframes heart-keyframes { 100% {
 								</div>
 								<div th:case="*"
 									style="text-align: center; margin: 10px 0px 10px 0px;">
-									<button id="apply" type="submit" class="btn btn-success"
-										style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
+									<th:block th:if="${study.STATUS == '모집중'}">
+										<button id="apply" type="submit" class="btn btn-success"
+											style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
+									</th:block>
 									<!-- 이거는 사용자 권한 -->
 									<div style="text-align: center; margin: 10px 0px 10px 0px;">
 										<a
