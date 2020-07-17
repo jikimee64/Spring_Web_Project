@@ -72,11 +72,9 @@ public class BoardController {
 
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
 
-		System.out.println("우초리로로리" + onlineInfo);
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
-		System.out.println("어ㅏ으 : " + list);
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
@@ -141,7 +139,6 @@ public class BoardController {
 	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
 	public String registerOnline(Study study, Principal principal, HttpServletRequest request) {
 
-		System.out.println("온라인입니다 고갱님^^");
 		System.out.println("넘어온 데이터 " + study.toString());
 
 		try {

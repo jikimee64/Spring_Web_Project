@@ -195,7 +195,7 @@
 			     and study_board.c_seq = #{studyContent}
 			</if>
 		</where>
-	
+		order by study_board.s_seq desc
 	</select>
 
 
