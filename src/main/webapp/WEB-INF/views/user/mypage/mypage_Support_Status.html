@@ -203,7 +203,7 @@ body {
 
 								<th:block th:switch="${index.index}">
 									<th:block th:case="0">
-
+										모집이 마감 되었습니다.
 									</th:block>
 
 									<th:block th:case="*">
@@ -246,12 +246,13 @@ body {
 					</div>
 				</div>
 			</div>
-			<div class="row"
-				style="align-items: center; margin-top: 50px; margin-bottom: 30px;place-content: center;">
+				<th:block th:if="${writer} == ${id}">
+			<div class="row" style="align-items: center; margin-top: 50px; margin-bottom: 30px;place-content: center;">
 				<button type="button" th:onclick="|javascript:finishh('${s_seq}')|" class="btn btn-secondary btn finishh" id="finishh">
 					 <span style="font-size: smaller;">모집 마감</span>
 				</button>
 			</div>
+			</th:block>
 	 </div>
 
 		<!-- 모집중 첫번째 줄 끝 -->
@@ -283,7 +284,7 @@ console.log(s_seq)
 					
 					$('#wait').empty();
 					swal("완료되었습니다", "", "success");	
-					$('#wait').text('모집 마감 되었습니다.');
+					$('#wait').text('모집이 마감 되었습니다.');
 				
 				},
 				error : function(e) {

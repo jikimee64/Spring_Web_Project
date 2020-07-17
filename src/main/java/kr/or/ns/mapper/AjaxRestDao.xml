@@ -211,5 +211,9 @@
 		set status = '모집완료'
 		where s_seq = #{s_seq}
 	</update>
-
+	
+	<!-- 모집마감으로 변경시 승인대기중 회원목록 삭제 -->
+	<delete id="deleteWaitingUsers" >
+		delete from study_group where s_seq = #{s_seq} and accept_status = '승인대기중' and role_name = '회원'
+	</delete>
 </mapper>

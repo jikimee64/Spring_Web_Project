@@ -74,4 +74,7 @@ public interface AjaxRestDao {
 
 	//모집마감
 	public void finishRecruit(String s_seq);
+
+	//모집마감으로 변경시 승인대기중 회원목록 삭제
+	public void deleteWaitingUsers(String s_seq);
 }

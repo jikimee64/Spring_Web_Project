@@ -348,11 +348,19 @@ public class AjaxServiceImpl implements AjaxService {
 
 		return list;
 	}
-
+	//모집마감
 	@Override
 	public void finishRecruit(String s_seq) {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		dao.finishRecruit(s_seq);
+	}
+
+	//모집마감으로 변경시 승인대기중 회원목록 삭제
+	@Override
+	public void deleteWaitingUsers(String s_seq) {
+		System.out.println("모집마감으로 변경시 승인대기중 회원목록 삭제  서비스 임플왔어요");
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		dao.deleteWaitingUsers(s_seq);
 	}
 
 }
