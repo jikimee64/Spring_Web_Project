@@ -403,7 +403,7 @@ group+group {
 											<p class="card-text _margin_0" th:text="${list2.L_WRITER}"
 												style="color: gray; font-size: small;"></p>
 											<a href="/board/writing_Course_Study_Detail.do"
-												class="stretched-link"></a>  <img
+												class="stretched-link"></a> <img
 												src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
 												alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
 										</div>
@@ -665,19 +665,25 @@ group+group {
 			processData : false,
 			contentType : "application/json",
 			cache : false,
-			type : 'POST',
+			 type : 'POST', 
 			data : JSON.stringify(data),
 			success : function(data) {
 				
 				$('.studyFilter').empty();
+				$('.studyPaging').empty(); 
+				
 				$.each(data, function (index, item) {
-					
+					console.log('ss' + index)
 					var list_length = data[0].length;
 					var onlineInfo_length = data[1].length;
 					
-					let html = "";
-				
-					for(var i = 0 ; i < list_length; i++) {				
+					
+				if(index === 0){
+					console.log('한ㅂ넘나타라')
+					console.log('천재 데이터 개수 : ' + list_length)
+					for(var i = 0 ; i < list_length; i++) {	
+						let html = "";
+					console.log('두번나와야됨')
 					 var write_date = new Date(data[0][i].WRITE_DATE);
 					 var deadline = new Date(data[0][i].DEADLINE);
 					html +="<div class='row'>"
@@ -691,27 +697,29 @@ group+group {
 					html +="<span class='badge badge-pill badge-light'>"+data[0][i].CONTENT_KIND+"</span></div></div>"	
 					html +="<div class='row'>"
 					if(data[0][i].CONTENT_KIND == "일반"){
-					html +="<div class='col-md-3 align-self-center'>"
-					html +="<div class='card' style='width: 100%'>"
-					html +="<img class='card-img-top' src='/studyboard/upload/"+data[0][i].IMAGE+"' alt='Card image' style='width: 100%;'>"
-					html +="</div></div>"
+						html +="<div class='col-md-3 align-self-center'>"
+						html +="<div class='card' style='width: 100%'>"
+						html +="<img class='card-img-top' src='/studyboard/upload/"+data[0][i].IMAGE+"' alt='Card image' style='width: 100%;'>"
+						html +="</div></div>"
 					}else{ //온라인
+						console.log('호호' + data[0][i].S_SEQ)
+						console.log('히히' + onlineInfo_length)
 						for(var j = 0; j < onlineInfo_length; j++){
-						switch(data[1][j].S_SEQ){
-							
-						case data[0][i].S_SEQ:
-							html +="<div class='col-md-3'>"
-							html +="<div class='card' style='width: 100%'>"
-							html +="<img class='card-img-top' src='"+data[1][j].L_IMAGE+"' alt='Card image'style='width:100%;'>"
-							html +="<div class='card-body'>"
-							html +="<h6 class='card-title _margin_0'>"+data[1][j].L_TITLE+"</h6>"
-							html +="<p class='card-text _margin_0' style='color: gray; font-size: small;'>"+data[1][j].L_WRITER+"</p>"//여기원래 L_WRITER였음
-							html +="<a href='/board/writing_Course_Study_Detail.do' class='stretched-link'></a>"
-							html +="<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 30px;'>"
-							html +="<span>(6)</span>" //여기에 수강평 개수?
-							html +="<b>₩44,000</b></div></div></div>"  //여기에 가격 데이터
+							console.log('하하 ' + data[1][j].S_SEQ)
+							if(data[1][j].S_SEQ === data[0][i].S_SEQ){
+								console.log('크크' + data[1][j].S_SEQ)
+								html +="<div class='col-md-3'>"
+								html +="<div class='card' style='width: 100%'>"
+								html +="<img class='card-img-top' src='"+data[1][j].L_IMAGE+"' alt='Card image'style='width:100%;'>"
+								html +="<div class='card-body'>"
+								html +="<h6 class='card-title _margin_0'>"+data[1][j].L_TITLE+"</h6>"
+								html +="<p class='card-text _margin_0' style='color: gray; font-size: small;'>"+data[1][j].L_WRITER+"</p>"//여기원래 L_WRITER였음
+								html +="<a href='/board/writing_Course_Study_Detail.do' class='stretched-link'></a>"
+								html +="<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 30px;'>"
+								html +="<span>(6)</span>" //여기에 수강평 개수?
+								html +="<b>₩44,000</b></div></div></div>"  //여기에 가격 데이터
+							}
 						}
-					}
 							
 					}
 					html +="<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
@@ -742,7 +750,42 @@ group+group {
 					
 					$('.studyFilter').append(html);
 				}
+				}
 				})
+				
+				//페이지 each
+				 $.each(data, function (index, item) {
+					let page = "";
+					console.log('*****************데이터개수 : ' + data[0].length)
+ 					if(index === 2){	
+						console.log('안녕' + data[2].prev)
+						console.log('안녕' + data[2].startPage)
+						console.log('안녕' + data[2].endPage)
+						console.log('안녕' + data[2].cri_b.perPageNum)
+
+				page += "<ul class='pager d-flex studyPaging' style='place-content: center; margin-top: 35px; margin-bottom: 140px;'>"
+				if(data[2].prev === true){
+					page+="<li><a href='study_FilterList.do?page="+data[2].startPage-1+"&perPageNum="+data[2].cri_b.perPageNum+" class='page-link'>&laquo;Previous</a></li>"
+				}
+				
+				for(var i = data[2].startPage; i <= data[2].endPage; i++){
+					if(data[2].cri_b.page === i){
+						page+="<li class='page-item active'>"
+						page+="<a class='page-link' href='study_FilterList.do?page="+i+"&perPageNum="+data[2].cri_b.perPageNum+"'>"+i+"</a></li>" 
+					}else{
+						page+="<li class='page-item'>"
+						page+="<a class='page-link' href='study_FilterList.do?page="+i+"&perPageNum="+data[2].cri_b.perPageNum+"'>"+i+"</a></li>"
+					}			
+				}
+				if(data[2].next === true && data[2].endPage>0){
+					page+="<li><a href='study_FilterList.do?page="+data[2].endPage+1+"&perPageNum="+data[2].cri_b.perPageNum+" class='page-link'>&raquo;Next</a></li></ul>"
+
+				}
+						
+					} //if문
+				$('.studyPaging').append(page);
+				}) 
+				
 				console.log("=============================")			
 			}, //success
 			error : function(e) {

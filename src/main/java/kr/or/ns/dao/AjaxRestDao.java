@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Users;
 
 import kr.or.ns.vo.Users;
@@ -68,6 +69,9 @@ public interface AjaxRestDao {
 	
 	//스터디게시판 필터
 	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params);
+	
+	//스터디게시판 필터후 사이즈만 반환역할
+	public List<HashMap<String, Object>> studyBoardFilterSize(HashMap<String, Object> params);
 	
 	//마이페이지 내가 쓴 댓글
 	public List<HashMap<String, Object>> commentList(String user_id);

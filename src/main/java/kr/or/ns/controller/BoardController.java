@@ -35,6 +35,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.sun.media.jfxmedia.logging.Logger;
 
 import kr.or.ns.page.PageMaker_Board;
+import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
@@ -55,6 +56,9 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	
+	@Autowired
+	private AjaxService aservice;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
@@ -75,6 +79,32 @@ public class BoardController {
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
+		model.addAttribute("list", list); // view까지 전달(forward)
+		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
+		model.addAttribute("pageMakerb", pageMakerb);
+
+		return "user/board/study_List"; // study_List.html
+	}
+
+	@RequestMapping("study_FilterList.do")
+	public String studyListFilterPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
+
+		PageMaker_Board pageMakerb = new PageMaker_Board();
+		pageMakerb.setCri_b(cri_b);
+
+		// 서비스를 안가는ㄴㄴㄴ구먼........................
+
+		// study_board_online에있는 모든정보도 보내야하나?
+
+		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
+
+		HashMap<String, Object> map = AjaxRestController.paramsTemp;
+
+		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
+		List<HashMap<String, Object>> list = aservice.studyBoardFilter(map, cri_b);
+		
+		pageMakerb.setTotalCount(list.size());
+		
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
@@ -202,9 +232,8 @@ public class BoardController {
 			model.addAttribute("heart", heart);
 			model.addAttribute("commentList", commentList);
 			System.out.println("목록 -> 일반 ************: " + study);
-			
-			
-			System.out.println("1.컨트롤러 댓글:"+commentList.toString());
+
+			System.out.println("1.컨트롤러 댓글:" + commentList.toString());
 
 			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
@@ -341,12 +370,11 @@ public class BoardController {
 	public List<Map<String, Object>> getCommentList(@RequestBody Map<String, Object> params, Principal principal)
 			throws IOException {
 		String s_seq = (String) params.get("s_seq");
-		
-		
-		List<Map<String,Object>> commentList = service.getComment(s_seq); 
-		System.out.println("----commentList 찍어보기----"+commentList);
-		System.out.println("0. 코멘트리스트 찍어보기:"+commentList);
-		
+
+		List<Map<String, Object>> commentList = service.getComment(s_seq);
+		System.out.println("----commentList 찍어보기----" + commentList);
+		System.out.println("0. 코멘트리스트 찍어보기:" + commentList);
+
 		return commentList;
 
 	}
@@ -447,28 +475,29 @@ public class BoardController {
 
 		return "user/board/writing_Common_Study_Detail";
 	}
-	
+
 	// 썸머노트 이미지 넣는 함수
 	@RequestMapping(value = "ProfileImage.do", method = RequestMethod.POST)
 	@ResponseBody
-	public void  profileUpload(MultipartFile file, 
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+	public void profileUpload(MultipartFile file, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
 		PrintWriter out = response.getWriter();
-		//PrintWriter out = response.getWriter();
+		// PrintWriter out = response.getWriter();
 		// 업로드할 폴더 경로
 		String realFolder = "C:\\summernote\\";
-		//String realFolder = request.getServletContext().getRealPath("/summernote/upload/");
-		
+		// String realFolder =
+		// request.getServletContext().getRealPath("/summernote/upload/");
+
 		System.out.println("업로드할 폴더경로 찍어봅니다.");
 		System.out.println(realFolder);
 		UUID uuid = UUID.randomUUID(); // 랜덤한키 생성해주는 객체
 
-		
 		String fileExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 		String storedFileName = uuid.toString().replaceAll("-", "") + fileExtension;
 		System.out.println("우철 : " + storedFileName);
-		//String filePath = "C:\\Users\\ksks7\\OneDrive\\바탕 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\";
+		// String filePath = "C:\\Users\\ksks7\\OneDrive\\바탕
+		// 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\";
 		// String filePath = "file:\\C:\\Users\\ksks7\\OneDrive\\바탕
 		// 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\";
 
@@ -482,23 +511,21 @@ public class BoardController {
 		Boolean b = f.canExecute();
 		System.out.println(b);
 
-		
 		// FileOutputStream fs = new FileOutputStream(filePath + "\\"+
 		// file.getOriginalFilename());//
 		// fs.write(file.getBytes());//
 
 		file.transferTo(f);
-		//out.println(filePath + storedFileName);
+		// out.println(filePath + storedFileName);
 		// out.println("profileUpload/"+email+"/"+str_filename);
-		
-		
+
 		int as = storedFileName.lastIndexOf(".");
 		String bs = storedFileName.substring(0, as);
-		System.out.println("아오 : " +bs);
-		
+		System.out.println("아오 : " + bs);
+
 		response.setContentType("text/html;charset=utf-8");
 		System.out.println("sss");
-		out.println("/filepath/"+storedFileName);
+		out.println("/filepath/" + storedFileName);
 		out.close();
 	}
 

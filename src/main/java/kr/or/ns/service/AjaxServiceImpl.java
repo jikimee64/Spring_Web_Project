@@ -17,6 +17,7 @@ import kr.or.ns.dao.AjaxRestDao;
 import kr.or.ns.util.Mail;
 import kr.or.ns.util.Mailer;
 import kr.or.ns.util.Tempkey;
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Users;
 
 @Service
@@ -327,11 +328,21 @@ public class AjaxServiceImpl implements AjaxService {
 	}
 	
 	//스터디 게시판 필터
-	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params){
-		
+	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params, Criteria_Board cri_b){
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		System.out.println("유저정보:" + params);
+		params.put("pageStart", cri_b.getPageStart());
+		params.put("perPageNum", cri_b.getPerPageNum());
 		List<HashMap<String, Object>> result = dao.studyBoardFilter(params);
+		/* System.out.println("필터 결과 : " + result); */
+		return result;
+	}
+	
+	//스터디 게시판 필터 사이즈 체크용
+	public List<HashMap<String, Object>> studyBoardFilterSize(HashMap<String, Object> params){
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		System.out.println("유저정보:" + params);
+		List<HashMap<String, Object>> result = dao.studyBoardFilterSize(params);
 		/* System.out.println("필터 결과 : " + result); */
 		return result;
 	}

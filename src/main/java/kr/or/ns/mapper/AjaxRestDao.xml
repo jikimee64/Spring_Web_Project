@@ -169,6 +169,38 @@
        limit 10
 	</select>
 	
+	<select id="studyBoardFilterSize" resultType="hashMap">
+		select * from study_board
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+		<where>
+			<if test="ingOrDone != null">
+				study_board.status= #{ingOrDone}
+			</if>
+			<if test="level != null">
+				 and study_board.level = #{level}
+			</if>
+			 <if test="language.size != 0">
+			     and study_board.lan_seq in
+			     <foreach collection="language" item="item" index="index" separator="," open="(" close=")">
+			      	#{item}
+			     </foreach>
+			</if> 
+			<if test="local != null">
+			     and study_board.loc_seq = #{local}
+			</if>
+			<if test="studyContent != null">
+			     and study_board.c_seq = #{studyContent}
+			</if>
+		</where>
+		order by study_board.s_seq desc
+	</select>
+	
+	
 	<select id="studyBoardFilter" resultType="hashMap">
 		select * from study_board
 		left outer join language_category
@@ -198,6 +230,7 @@
 			</if>
 		</where>
 		order by study_board.s_seq desc
+			LIMIT #{pageStart}, #{perPageNum}
 	</select>
 
 
