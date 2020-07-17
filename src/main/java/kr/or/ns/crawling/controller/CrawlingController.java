@@ -209,7 +209,7 @@ public class CrawlingController {
 				return titleMap;
 			}
 	
-	// 다뽑아보기 우철
+	// 우철이가 인프런 뽑음
 	@RequestMapping("CrawlingInflearn2.do")
 	public List<Map<String, Object>> CrawlingInflearn2() {
 
@@ -246,20 +246,34 @@ public class CrawlingController {
 				Map<String, Object> map = new HashMap();
 				Elements files = element.get(j).getElementsByTag("img");
 				
-				String href = files.attr("src");
-				System.out.println("아오 : " + href);
-				map.put("href", href);
+				String src = files.attr("src");
+				map.put("src", src);
 
 //		// Iterator을 사용하여 하나씩 값 가져오기
 				Elements titles = element.get(j).getElementsByClass("course_title");
-				System.out.println("titles : " + titles.text());
 				map.put("titles", titles.text());
+				
 				Elements instructors = element.get(j).getElementsByClass("instructor");
-				System.out.println("instructors : " + instructors.text());
 				map.put("instructors", instructors.text());
+				
+				Elements stars =element.get(j).getElementsByClass("star_solid");
+				map.put("stars", stars.attr("style"));
+				
+				Elements review_cnt =element.get(j).getElementsByClass("review_cnt");
+				map.put("review_cnt", review_cnt.text());
+				
 				Elements prices =element.get(j).getElementsByClass("price");
-				System.out.println("prices : " + prices.text());
 				map.put("prices", prices.text());
+				
+				Elements course_card_back =element.get(j).getElementsByClass("course_card_control");
+				map.put("href", "https://www.inflearn.com" + course_card_back.prev().attr("href"));
+				
+				Elements level =element.get(j).getElementsByClass("course_level");
+				map.put("level", level.text());
+				
+				Elements skills =element.get(j).getElementsByClass("course_skills");
+				map.put("skills", skills.text());
+				
 				titleList.add(map);
 			}
 
