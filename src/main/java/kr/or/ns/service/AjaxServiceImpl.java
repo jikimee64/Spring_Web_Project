@@ -157,15 +157,30 @@ public class AjaxServiceImpl implements AjaxService {
 	public int applyNomalStudy(String s_seq, String user_id) {
 		System.out.println("지원하기: " + user_id);
 		System.out.println("번호: " + s_seq);
+		
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		//insert 정보넘길 맵생성
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("s_seq", s_seq);
+				map.put("user_id", user_id);
 
-		int result = 0;
-
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("s_seq", s_seq);
-		map.put("user_id", user_id);
-		result = dao.insertStudyGroup(map);
-		return result;
+		
+		
+		int a_staCount = dao.checkA_staCount(s_seq);
+		System.out.println(a_staCount + " 명 이 " + s_seq + " 번 글에 승인완료 되었습니다." );
+		int people = dao.checkPeople(s_seq);
+		System.out.println(people+ ": 모집정원");
+		
+		if(a_staCount < people) {
+			System.out.println("-------insert 하러 갑니다.----------");
+			//insert 하러 간다 
+			int insertResult = dao.insertStudyGroup(map);
+			return insertResult;
+		}else {
+			System.out.println("-------인서트 안해요----------");
+			return 2;
+		}
+		
 	}
 
 	// 신고하기

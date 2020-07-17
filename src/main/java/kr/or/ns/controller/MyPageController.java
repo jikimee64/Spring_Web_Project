@@ -162,15 +162,18 @@ public class MyPageController {
 		map.put("s_seq", s_seq);
 		HashMap<String, Object> writer = service.getRole(map);
 		String a = (String)writer.get("user_id");
+		String s_board_staus = service.getStatus(s_seq);
 		model.addAttribute("id" , user_id);
 		model.addAttribute("status", status);
 		model.addAttribute("writer", a);
 		model.addAttribute("s_seq", s_seq);
-		
+		model.addAttribute("s_board_staus", s_board_staus);
+		System.out.println("뭐뭐 찍히나 봅니다");
 		System.out.println(user_id);
 		System.out.println(status);
 		System.out.println(a);
 		System.out.println(s_seq);
+		System.out.println(s_board_staus);
 		return "user/mypage/mypage_Support_Status.html";
 
 	}

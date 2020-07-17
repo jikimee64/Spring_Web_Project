@@ -238,4 +238,12 @@ public class MyPageServiceImpl implements MyPageService {
 		return count;
 	}
 
+	//글 번호로 알아보는 모집 상태
+	@Override
+	public String getStatus(String s_seq) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		String result = dao.getStatus(s_seq);
+		return result;
+	}
+
 }

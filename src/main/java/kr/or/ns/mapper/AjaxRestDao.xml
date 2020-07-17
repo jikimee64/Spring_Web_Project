@@ -251,4 +251,15 @@
 	<delete id="deleteWaitingUsers" >
 		delete from study_group where s_seq = #{s_seq} and accept_status = '승인대기중' and role_name = '회원'
 	</delete>
+	
+	<!-- 스터디 그룹테이블에서 [승인완료, 회원, 글번호] 로 몇명 모였는지 확인 -->
+	<select id="checkA_staCount" resultType="int">
+		select count(*) from study_group 
+        where s_seq = #{s_seq} and accept_status = '승인완료' 
+	</select>
+	
+	<!-- 해당글의 모집정원 확인 -->
+	<select id="checkPeople" resultType="int">
+		select people from study_board where s_seq = #{s_seq}
+	</select>
 </mapper>
