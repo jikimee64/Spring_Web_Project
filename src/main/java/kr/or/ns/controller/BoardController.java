@@ -82,6 +82,9 @@ public class BoardController {
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
+		
+		System.out.println("시작131223 : " + pageMakerb.getStartPage());
+		System.out.println("213213끝 : " + pageMakerb.getEndPage());
 
 		return "user/board/study_List"; // study_List.html
 	}
@@ -89,6 +92,9 @@ public class BoardController {
 	@RequestMapping("study_FilterList.do")
 	public String studyListFilterPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
 
+		System.out.println("받은 page :" + cri_b.getPage());
+		System.out.println("받은 perpagenum :" + cri_b.getPerPageNum());
+		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
 
@@ -99,15 +105,30 @@ public class BoardController {
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
 
 		HashMap<String, Object> map = AjaxRestController.paramsTemp;
+		int filterSize = AjaxRestController.filterSize;
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<HashMap<String, Object>> list = aservice.studyBoardFilter(map, cri_b);
 		
-		pageMakerb.setTotalCount(list.size());
+		System.out.println("전체필터개수 : " + list.size());
+		
+		pageMakerb.setTotalCount(filterSize);
 		
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
+		
+		model.addAttribute("ingOrDone", map.get("ingOrDone"));
+		model.addAttribute("level", map.get("level"));
+		model.addAttribute("language", map.get("language"));
+		model.addAttribute("local", map.get("local"));
+		model.addAttribute("studyContent", map.get("studyContent"));
+		
+		System.out.println("시작 : " + pageMakerb.getStartPage());
+		System.out.println("끝 : " + pageMakerb.getEndPage());
+		
+		model.addAttribute("type", "filter");
+		
 
 		return "user/board/study_List"; // study_List.html
 	}
