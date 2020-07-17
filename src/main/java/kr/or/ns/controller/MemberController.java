@@ -6,14 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.http.client.HttpClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,20 +65,19 @@ public class MemberController {
 	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
 		this.naverLoginBO = naverLoginBO;
 	}
-	
+
 	/* GoogleLogin */
 	@Inject
 	private AuthInfo authInfo;
-	
+
 	@Autowired
 	private GoogleConnectionFactory googleConnectionFactory;
-	
+
 	@Autowired
-    private GoogleOAuth2Template googleOAuth2Template;
+	private GoogleOAuth2Template googleOAuth2Template;
 
 	@Autowired
 	private OAuth2Parameters googleOAuth2Parameters;
-	
 
 	@Autowired
 	MemberService service;
@@ -90,8 +87,6 @@ public class MemberController {
 
 	@Autowired
 	MyPageService mypageservice;
-	
-	
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -115,8 +110,8 @@ public class MemberController {
 
 		// 카카오 로그인 인증을 위한 url 생성
 		String kakaoUrl = KakaoController.getAuthorizationUri(session);
-		
-		//구글 로그인 인증을 위한 url 생성
+
+		// 구글 로그인 인증을 위한 url 생성
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String googleurl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 		// 메인이외의 페이지에서 로그인했을시 해당 페이지로 return시켜주기위한 url
@@ -128,8 +123,8 @@ public class MemberController {
 		// url 전달
 		model.addAttribute("naver_url", naverUrl); // 네이버 url
 		model.addAttribute("kakao_url", kakaoUrl); // 카카오 url
-		model.addAttribute("google_url", googleurl); //구글 url
-		
+		model.addAttribute("google_url", googleurl); // 구글 url
+
 		// 확인용 출력문
 		System.out.println("네이버:" + naverUrl);
 		System.out.println("구글" + googleurl);
@@ -139,7 +134,7 @@ public class MemberController {
 	}
 
 	// 네이버 callback호출 메소드
-	@RequestMapping(value = "naverlogin.do", method = {RequestMethod.GET , RequestMethod.POST })
+	@RequestMapping(value = "naverlogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String naverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session,
 			HttpServletRequest request, Users user) throws SQLException, Exception {
 		System.out.println("여기는 네이버 callback");
@@ -180,7 +175,7 @@ public class MemberController {
 			System.out.println("naver회원가입으로 이동");
 
 			model.addAttribute("uemail", email);
-			model.addAttribute("snsType", "naver");
+			model.addAttribute("snstype", "naver");
 			return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 
 		}
@@ -219,6 +214,7 @@ public class MemberController {
 
 		// 결과값을 node에 담아줌
 		JsonNode node = KakaoController.getAccessToken(code);
+		System.out.println("코드값 존재?" + code);
 		// accessToken에 사용자의 로그인한 모든 정보가 들어있다
 		JsonNode accessToken = node.get("access_token");
 		System.out.println("카카오토큰" + accessToken);
@@ -231,8 +227,10 @@ public class MemberController {
 		// 유저정보 카카오에서 가져오기
 		JsonNode properties = KaKaouserInfo.path("properties");
 		JsonNode kakao_account = KaKaouserInfo.path("kakao_account");
+		JsonNode has_email = KaKaouserInfo.path("kakao_account.has_email");
 		email = kakao_account.path("email").asText();
 		System.out.println(email + "이메일///");
+		System.out.println("이메일여부" + has_email);
 
 		/* 메인이외의 페이지에서 로그인했을시 해당 페이지로 return시켜주기위한 url */
 		String returnUrl = (String) session.getAttribute("returnUrl");
@@ -278,124 +276,128 @@ public class MemberController {
 
 		return "redirect:../user/main.do";
 	}
-	
-	//구글 콜백함수
+
+	// 구글 콜백함수
 	@RequestMapping(value = "googlelogin.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String googleLogin(Model model, @RequestParam(required=false, defaultValue="0") String code, HttpSession session, 
-	HttpServletRequest request, RedirectAttributes redirectAttributes, HttpServletResponse response) throws IOException {	
-		
+	public String googleLogin(Model model, @RequestParam(required = false, defaultValue = "0") String code,
+			HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttributes,
+			HttpServletResponse response) throws IOException {
+
 		String Googlecode = request.getParameter("code");
-        System.out.println(Googlecode);
-        
-        //RestTemplate을 사용하여 Access Token 및 profile을 요청한다.
-        RestTemplate restTemplate = new RestTemplate();
-        MultiValueMap<String, String> parameters = new LinkedMultiValueMap();
-        parameters.add("code", Googlecode);
-        parameters.add("client_id", authInfo.getClientId());
-        parameters.add("client_secret", authInfo.getClientSecret());
-        parameters.add("redirect_uri", googleOAuth2Parameters.getRedirectUri());
-        parameters.add("grant_type", "authorization_code");
- 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(parameters, headers);
-        ResponseEntity<Map> responseEntity = restTemplate.exchange("https://www.googleapis.com/oauth2/v4/token", HttpMethod.POST, requestEntity, Map.class);
-        Map<String, Object> responseMap = responseEntity.getBody();
- 
-        // id_token 라는 키에 사용자가 정보가 존재
-        // 받아온 결과는 JWT (Json Web Token) 형식으로 받아옴
-        // Base 64로 인코딩 되어 있으므로 디코딩
- 
-        String[] tokens = ((String)responseMap.get("id_token")).split("\\.");
-        Base64 base64 = new Base64(true);
-        String body = new String(base64.decode(tokens[1]));
-        String tokenInfo = new String(Base64.decodeBase64(tokens[1]), "utf-8");
-        
-        System.out.println(tokens.length);
-        System.out.println(new String(Base64.decodeBase64(tokens[0]), "utf-8"));
-        System.out.println(new String(Base64.decodeBase64(tokens[1]), "utf-8"));
- 
-        //Jackson을 사용한 JSON을 자바 Map 형식으로 변환
+		System.out.println(Googlecode);
+
+		// RestTemplate을 사용하여 Access Token 및 profile을 요청한다.
+		RestTemplate restTemplate = new RestTemplate();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap();
+		parameters.add("code", Googlecode);
+		parameters.add("client_id", authInfo.getClientId());
+		parameters.add("client_secret", authInfo.getClientSecret());
+		parameters.add("redirect_uri", googleOAuth2Parameters.getRedirectUri());
+		parameters.add("grant_type", "authorization_code");
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(
+				parameters, headers);
+		ResponseEntity<Map> responseEntity = restTemplate.exchange("https://www.googleapis.com/oauth2/v4/token",
+				HttpMethod.POST, requestEntity, Map.class);
+		Map<String, Object> responseMap = responseEntity.getBody();
+
+		// id_token 라는 키에 사용자가 정보가 존재
+		// 받아온 결과는 JWT (Json Web Token) 형식으로 받아옴
+		// Base 64로 인코딩 되어 있으므로 디코딩
+
+		String[] tokens = ((String) responseMap.get("id_token")).split("\\.");
+		Base64 base64 = new Base64(true);
+		String body = new String(base64.decode(tokens[1]));
+		String tokenInfo = new String(Base64.decodeBase64(tokens[1]), "utf-8");
+
+		System.out.println(tokens.length);
+		System.out.println(new String(Base64.decodeBase64(tokens[0]), "utf-8"));
+		System.out.println(new String(Base64.decodeBase64(tokens[1]), "utf-8"));
+
+		// Jackson을 사용한 JSON을 자바 Map 형식으로 변환
 		ObjectMapper temp = new ObjectMapper();
 		Map<String, String> googleUserInfo = temp.readValue(tokenInfo, Map.class);
 //      ObjectMapper mapper = new ObjectMapper();
 //      Map<String, String> result = mapper.readValue(body, Map.class);
-        System.out.println(googleUserInfo.get("email"));
-        System.out.println(googleUserInfo.get("name"));
-        
-        String email = googleUserInfo.get("email");
-        /* 메인이외의 페이지에서 로그인했을시 해당 페이지로 return시켜주기위한 url */
-		String returnUrl = (String)session.getAttribute("returnUrl");
+		System.out.println(googleUserInfo.get("email"));
+
+		String email = googleUserInfo.get("email");
+		/* 메인이외의 페이지에서 로그인했을시 해당 페이지로 return시켜주기위한 url */
+		System.out.println("email 받아와라ㅏㅏㅏㅏ" + email);
+		String returnUrl = (String) session.getAttribute("returnUrl");
 		System.out.println("구글 로그인한 페이지 : " + returnUrl);
-        
-     // DB에 등록된 이메일인지 확인
-     		int check = 0;
-     		try {
-     			check = ajaxservice.idcheck(email);
-     		} catch (ClassNotFoundException e) {
-     			e.printStackTrace();
-     		}
-     		if (check == 0) {
-     			System.out.println("DB에 등록되지 않은 이메일");
-     			System.out.println("구글 회원가입으로 이동");
 
-     			model.addAttribute("uemail", email);
-     			model.addAttribute("snsType", "naver");
-     			
-     			return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
+		// DB에 등록된 이메일인지 확인
+		int check = 0;
+		try {
+			check = ajaxservice.idcheck(email);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (check == 0) {
+			System.out.println("DB에 등록되지 않은 이메일");
+			System.out.println("구글 회원가입으로 이동");
 
-     		}
+			model.addAttribute("uemail", email);
+			model.addAttribute("snstype", "google");
 
-     		// 스프링 시큐리티 수동 로그인을 위한 작업//
-     		// 로그인 세션에 들어갈 권한을 설정
-     		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-     		list.add(new SimpleGrantedAuthority("ROLE_USER"));
+			return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 
-     		SecurityContext sc = SecurityContextHolder.getContext();
-     		// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-     		// 패스워드는 null로 하여도 값이 생성.
-     		sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
-     		session = request.getSession(true);
-
-     		// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-     		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-     		// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
-
-     		System.out.println("이미 가입된 회원");
-     		Users users = new Users();
-     		users = mypageservice.getUsers(email);
-     		session = request.getSession();
-     		session.setAttribute("currentUser", users);
-     		System.out.println("이미 가입된 회원의 정보" + users);
-
-     		return "redirect:../user/main.do";
-     	}
-  
-	
-	//소셜 회원가입 처음
-		@RequestMapping(value = "menujoin.do", method = { RequestMethod.GET, RequestMethod.POST })
-		public String menujoin(HttpSession session, Model model) {
-			System.out.println("소셜 회원가입처음 이동 페이지(연규가씀)");
-			String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-			String kakaoUrl = KakaoController.getAuthorizationUri(session);
-			
-
-			model.addAttribute("url", naverAuthUrl);
-			model.addAttribute("kakao_url", kakaoUrl);
-			
-			System.out.println("naverAuthUrl" + naverAuthUrl);
-			System.out.println("kakao_url" + kakaoUrl);
-
-			return "user/member/menujoin";
 		}
 
-	
-	
+		// 스프링 시큐리티 수동 로그인을 위한 작업//
+		// 로그인 세션에 들어갈 권한을 설정
+		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+		list.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+		SecurityContext sc = SecurityContextHolder.getContext();
+		// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
+		// 패스워드는 null로 하여도 값이 생성.
+		sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
+		session = request.getSession(true);
+
+		// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
+		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+		// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
+
+		System.out.println("이미 가입된 회원");
+		Users users = new Users();
+		users = mypageservice.getUsers(email);
+		session = request.getSession();
+		session.setAttribute("currentUser", users);
+		System.out.println("이미 가입된 회원의 정보" + users);
+
+		return "redirect:../user/main.do";
+	}
+
+	// 소셜 회원가입 처음
+	@RequestMapping(value = "menujoin.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String menujoin(HttpSession session, Model model) {
+
+		System.out.println("소셜 회원가입처음 이동 페이지(연규가씀)");
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		String kakaoUrl = KakaoController.getAuthorizationUri(session);
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String googleurl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+
+		model.addAttribute("url", naverAuthUrl);
+		model.addAttribute("kakao_url", kakaoUrl);
+		model.addAttribute("google_url", googleurl);
+
+		System.out.println("naverAuthUrl" + naverAuthUrl);
+		System.out.println("kakao_url" + kakaoUrl);
+		System.out.println("google_url" + googleurl);
+
+		return "user/member/menujoin";
+	}
+
 	// 소셜회원가입처리
 	@RequestMapping(value = "join.do", method = RequestMethod.POST)
 	public String socialJoin(@RequestParam(value = "file", required = false) MultipartFile ipload, Users users,
 			HttpServletRequest request, HttpSession session) throws SQLException, Exception {
-		
+
 		int loginusers = service.socialjoininsert(users, request);
 		System.out.println("유저네임: " + users.getUser_id());
 
@@ -407,7 +409,6 @@ public class MemberController {
 		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
 	}
 
-	
 	@RequestMapping("normaljoin.do")
 	public String joinPage() {
 		System.out.println("회원가입으로dddd 이동이동(연규가씀)");
@@ -445,7 +446,6 @@ public class MemberController {
 		return "redirect:/member/login.do";
 	}
 
-	
 	@RequestMapping("find_Id.do")
 	public String findIdPage() {
 		System.out.println("아이디 찾기로 이동이동(연규가씀)");
@@ -458,4 +458,14 @@ public class MemberController {
 		return "user/member/find_Passward";
 	}
 
+	// 로그아웃
+	@RequestMapping(value = "logout.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String logout(HttpSession session) throws IOException {
+		System.out.println("여기는 logout");
+		session.invalidate();
+		return "redirect:../user/main.do";
+	}
+
+
+	
 }

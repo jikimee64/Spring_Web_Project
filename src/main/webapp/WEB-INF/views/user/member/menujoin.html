@@ -2,7 +2,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LOGIN</title>
@@ -398,7 +399,7 @@ button:focus {
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
-	
+
 	<main id="main">
 
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -406,18 +407,20 @@ button:focus {
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
-					<h2> </h2>
+					<h2></h2>
 				</div>
 
 			</div>
-		</section><!-- Breadcrumbs Section -->
+		</section>
+		<!-- Breadcrumbs Section -->
 
-	</main><!-- End #main -->
+	</main>
+	<!-- End #main -->
 
 	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
 	<input type="hidden" th:value="${param.error}" id="error" />
-	
- <!-- 	<div th:if="${param.error!=null}">
+
+	<!-- 	<div th:if="${param.error!=null}">
 		로그인 실패 <br />
 		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
 			<c:if test="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
@@ -426,10 +429,10 @@ button:focus {
 		</th:block>
 		</c:if>
 	</div>    -->
-	
+
 	<input type="hidden" th:value="${snstype}" id='snstype' />
-	<div class="limiter" style="height:834px;">
-		<div class="container-login100" style="position:inherit;">
+	<div class="limiter" style="height: 834px;">
+		<div class="container-login100" style="position: inherit;">
 
 			<!-- 로그인 작업시작 -->
 			<div class="_border_box_shadow2" style="transform: translateY(-83px)">
@@ -443,27 +446,25 @@ button:focus {
 					<br />
 
 					<div style="margin-bottom: 5px; text-align: -webkit-center;">
-							
-						<a href="/member/normaljoin.do">
-							일반회원가입
-						</a>
-						
-						
-						<a th:href="@{${url}}">
-							네이버회원가입
-						</a>
+
+						<a href="/member/normaljoin.do"> 일반회원가입 </a> <a
+							th:href="@{${url}}"> 네이버회원가입 </a>
 					</div>
-						<a th:href="@{${kakao_url}}">
-							카카오회원가입
-						</a>
+					<a th:href="@{${kakao_url}}"> 카카오회원가입 </a>
 				</div>
+				<a th:href="@{${google_url}}"> 구글 회원가입 </a>
+
+				<a href="/member/logout.do"> 카카오계정 로그아웃 </a>
+			
+
+
 
 			</div>
 
 		</div>
 	</div>
-		
-<!-- 	 	<script>
+
+	<!-- 	 	<script>
 			$(function() {
 					$('#login-button').click(function(){
 					let a = $('#kwc').text();
@@ -475,9 +476,9 @@ button:focus {
 			});
 		</script>
  -->
-		<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/footer :: footer"></div>
 
-		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 </body>
 
 </html>

@@ -296,8 +296,7 @@ body {
 
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
-	
-	<input type="hidden" th:value="${snstype}" id='snstype' />
+
 
 
 	<form action="login.do" method="post" class="joinform" id="joinform"
@@ -363,39 +362,41 @@ body {
 
 				<div class="value">
 					<div class="row" style="place-content: center; padding-left: 100px">
-					
-					<!-- 	<div class="col-2 _label_center"
+
+						<!-- 	<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
 							<label class="label-input100" for="pwd"
 								style="place-self: center">아이디</label>
 						</div> -->
 
-		
-					<th:block th:if="${uemail != null}">
-						<input type="hidden" th:value="${uemail}" name="user_id" id="user_id"/>
-					</th:block>
-					
-					<!-- 일반 회원가입  -->
-					<th:block th:if="${uemail == null}">
-						<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="place-self: center">아이디</label>
-						</div>
-					
-						<div class="col-7">
-							<input type="text" class="input--style-6" id="user_id"
-								placeholder="아이디를 입력해주세요." name="user_id" required /> <span
-								class="idcheck hide"></span>
-						</div>
 
-						<div class="col-3" style="align-self: center; padding-left: 0px">
-							<button class="login100-form-btn" id="IdCheck"
-								style="border: 1px solid #18d26e; height: 40px; width: 78px; transform: translateX(-13px);">중복체크</button>
-						</div>
-					</th:block>
-						
-						
+						<th:block th:if="${uemail != null}">
+							<input type="hidden" th:value="${uemail}" name="user_id"
+								id="user_id" />
+							<input type="hidden" th:value="${snstype}"name="snstype" id="snstype" />
+						</th:block>
+
+						<!-- 일반 회원가입  -->
+						<th:block th:if="${uemail == null}">
+							<div class="col-2 _label_center"
+								style="align-self: center; padding-top: 10px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="place-self: center">아이디</label>
+							</div>
+
+							<div class="col-7">
+								<input type="text" class="input--style-6" id="user_id"
+									placeholder="아이디를 입력해주세요." name="user_id" required /> <span
+									class="idcheck hide"></span>
+							</div>
+
+							<div class="col-3" style="align-self: center; padding-left: 0px">
+								<button class="login100-form-btn" id="IdCheck"
+									style="border: 1px solid #18d26e; height: 40px; width: 78px; transform: translateX(-13px);">중복체크</button>
+							</div>
+						</th:block>
+
+
 					</div>
 				</div>
 
@@ -425,59 +426,61 @@ body {
 				</div>
 				&nbsp;&nbsp;
 
-			<th:block th:if="${uemail == null}">
-				<div class="value">
-					<div class="row" style="place-content: center; padding-left: 100px">
-						<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center">비밀번호</label>
+				<th:block th:if="${uemail == null}">
+					<div class="value">
+						<div class="row"
+							style="place-content: center; padding-left: 100px">
+							<div class="col-2 _label_center"
+								style="align-self: center; padding-top: 10px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="align-self: center">비밀번호</label>
+							</div>
+
+							<div class="col-8">
+								<input type="password" class="input--style-6" id="user_pwd"
+									placeholder="비밀번호를 입력해주세요." name="user_pwd" required> <span
+									class="password hide"></span>
+
+							</div>
+
+							<div class="col-2"></div>
 						</div>
-
-						<div class="col-8">
-							<input type="password" class="input--style-6" id="user_pwd"
-								placeholder="비밀번호를 입력해주세요." name="user_pwd" required> <span
-								class="password hide"></span>
-
-						</div>
-
-						<div class="col-2"></div>
 					</div>
-				</div>
-			</th:block>
-			
-			<th:block th:if="${uemail != null}">
-			
-			</th:block>
+				</th:block>
+
+				<th:block th:if="${uemail != null}">
+
+				</th:block>
 
 
 				&nbsp;&nbsp;
 
-			
-			<th:block th:if="${uemail == null}">
-				<div class="value">
-					<div class="row" style="place-content: center; padding-left: 100px">
-						<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center">비밀번호 확인</label>
+
+				<th:block th:if="${uemail == null}">
+					<div class="value">
+						<div class="row"
+							style="place-content: center; padding-left: 100px">
+							<div class="col-2 _label_center"
+								style="align-self: center; padding-top: 10px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="align-self: center">비밀번호 확인</label>
+							</div>
+
+							<div class="col-8">
+								<input type="password" class="input--style-6" id="re-password"
+									placeholder="비밀번호를 입력해주세요. " name="re-password" required>
+								<div id="message" name="message"></div>
+
+							</div>
+
+							<div class="col-2"></div>
 						</div>
-
-						<div class="col-8">
-							<input type="password" class="input--style-6" id="re-password"
-								placeholder="비밀번호를 입력해주세요. " name="re-password" required>
-							<div id="message" name="message"></div>
-
-						</div>
-
-						<div class="col-2"></div>
 					</div>
-				</div>
-			</th:block>
-			
-			<th:block th:if="${uemail != null}">
-				
-			</th:block>
+				</th:block>
+
+				<th:block th:if="${uemail != null}">
+
+				</th:block>
 
 				&nbsp;&nbsp;
 
@@ -677,14 +680,14 @@ body {
 
 	<!-- 일반 회원가입 jS -->
 	<th:block th:if="${uemail == null}">
-    	<script src="../../../../resources/js/normaljoin.js"></script>
+		<script src="../../../../resources/js/normaljoin.js"></script>
 	</th:block>
-	
+
 	<!-- 소셜 회원가입 jS -->
 	<th:block th:if="${uemail != null}">
 		<script src="../../../../resources/js/socialjoin.js"></script>
 	</th:block>
-	
+
 </body>
 
 

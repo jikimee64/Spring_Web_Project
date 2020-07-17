@@ -177,7 +177,6 @@
 			<version>2.9.8</version>
 		</dependency>
 
-
 		<!-- json-simple -->
 		<dependency>
 			<groupId>com.googlecode.json-simple</groupId>
