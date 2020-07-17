@@ -350,6 +350,12 @@ button:focus {
 	margin-right: 10px;
 	padding-bottom: 1px;
 }
+._google_span{
+	color:#DA5A4A;
+}
+.btn-google:hover ._google_span {
+	color:white;
+}
 
 
 .btn-naver {
@@ -486,8 +492,8 @@ button:focus {
 <!-- 								style="margin: 0 23px 0 10px"></i>  -->
 							<i class="fa fa-google" aria-hidden="true" style="margin: 0 23px 0 12px"></i>
 								<a th:href="@{${google_url}}">
-								<span
-								style="font-size: small;font-weight:bold;transform: translateX(15px);">구글 계정으로 로그인 하기</span></a>
+								<span class="_google_span"
+								style="font-size: small;font-weight:bold;position: absolute;transform: translate3d(17px, -7px, 10px);">구글 계정으로 로그인 하기</span></a>
 						</button>
 					</div>
 
