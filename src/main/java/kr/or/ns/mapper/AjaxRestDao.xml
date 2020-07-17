@@ -100,6 +100,7 @@
 		left outer join study_group
 		on study_board.s_seq = study_group.s_seq 
 		WHERE study_board.user_id=#{user_id} and study_group.role_name = '방장'
+		order by study_board.s_seq desc
 			]]>
 	</select>
 	<select id="inStudy" resultType="hashMap">
@@ -114,7 +115,8 @@
 		on study_board.c_seq = study_content_category.c_seq
 		left outer join study_group
 		on study_board.s_seq = study_group.s_seq 
-		WHERE study_group.user_id= #{user_id} and study_group.role_name  = '회원'     
+		WHERE study_group.user_id= #{user_id} and study_group.role_name  = '회원'    
+		order by study_board.s_seq desc 
 			]]>
 
 	</select>
