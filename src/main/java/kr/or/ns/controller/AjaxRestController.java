@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
@@ -25,7 +26,7 @@ public class AjaxRestController {
 
 	@Autowired
 	private AjaxService service;
-	
+
 	@Autowired
 	private BoardService bservice;
 
@@ -294,47 +295,83 @@ public class AjaxRestController {
 		return bookmark;
 	}
 
+	public static HashMap<String, Object> paramsTemp = null;
+
 	// 스터디게시판 필터
-	@RequestMapping(value = "studyBoardFilter.do", method = RequestMethod.POST)
-	public List studyBoardFilter(
-			@RequestBody HashMap<String, Object> params,
-			Criteria_Board cri_b) {
-		
-		 PageMaker_Board pageMakerb = new PageMaker_Board();
-		 pageMakerb.setCri_b(cri_b);
-		
+	@RequestMapping(value = "studyBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public List studyBoardFilter(@RequestBody HashMap<String, Object> params, Criteria_Board cri_b) {
+		System.out.println("테스트1");
+
+		paramsTemp = params;
+
+		PageMaker_Board pageMakerb = new PageMaker_Board();
+		pageMakerb.setCri_b(cri_b);
+
 		List temp = new ArrayList();
-		List<HashMap<String, Object>> list = service.studyBoardFilter(params);
+		// 필터 개수
+		List<HashMap<String,Object>> listSize = service.studyBoardFilterSize(params);
+		List<HashMap<String, Object>> list = service.studyBoardFilter(params, cri_b);
 		List<Map<String, Object>> onlineInfo = bservice.getOnlineStudyBoard();
-		
-		pageMakerb.setTotalCount(list.size());
-		
+
+		pageMakerb.setTotalCount(listSize.size());
+		System.out.println("제발.." + listSize);
+		System.out.println("이거제발맞아라 : " + listSize.size());
+
 		temp.add(list);
 		temp.add(onlineInfo);
 		temp.add(pageMakerb);
-		
+
+		System.out.println("우철 : " + temp);
+
 		return temp;
 	}
-	
-	
-	
+
+	// 스터디게시판 필터
+	/*
+	 * @RequestMapping(value = "studyBoardFilter22.do", method = RequestMethod.GET)
+	 * public String studyBoardFilter( Criteria_Board cri_b, RedirectAttributes
+	 * redirect) {
+	 * 
+	 * System.out.println("ㅎㅇ"); System.out.println("ㄴㄴ" + cri_b.getPage());
+	 * System.out.println("ㄴㄴ" + cri_b.getPageStart()); System.out.println("ㄴㄴ" +
+	 * cri_b.getPerPageNum());
+	 * 
+	 * PageMaker_Board pageMakerb = new PageMaker_Board();
+	 * pageMakerb.setCri_b(cri_b);
+	 * 
+	 * redirect.addAttribute("cri_b", cri_b); //필터 개수
+	 * 
+	 * List<HashMap<String, Object>> listSize =
+	 * service.studyBoardFilterSize(params); List<HashMap<String, Object>> list =
+	 * service.studyBoardFilter(params, cri_b); List<Map<String, Object>> onlineInfo
+	 * = bservice.getOnlineStudyBoard();
+	 * 
+	 * pageMakerb.setTotalCount(listSize.size()); System.out.println("이거제발맞아라 : " +
+	 * listSize.size());
+	 * 
+	 * temp.add(list); temp.add(onlineInfo); temp.add(pageMakerb);
+	 * 
+	 * return "redirect:/ajax/studyBoardFilter.do"; }
+	 */
+
 	// 마이페이지 내가쓴 댓글 비동기
-		@RequestMapping(value = "commentList.do", method = RequestMethod.POST)
-		List<HashMap<String, Object>> commentList(@RequestBody HashMap<String, Object> params) {
-			System.out.println(params + " : 댓글리스트  컨트롤러");
-			List<HashMap<String, Object>> list = null;
+	@RequestMapping(value = "commentList.do", method = RequestMethod.POST)
+	List<HashMap<String, Object>> commentList(@RequestBody HashMap<String, Object> params) {
+		System.out.println(params + " : 댓글리스트  컨트롤러");
+		List<HashMap<String, Object>> list = null;
 
-			list = service.commentList(params);
-			return list;
+		list = service.commentList(params);
+		return list;
 
-		}
-		// 마이페이지 내가쓴 댓글 비동기
-		@RequestMapping(value = "finishRecruit.do", method = RequestMethod.POST)
-		public void finishRecruit(@RequestBody HashMap<String, Object> params) {
-			String s_seq = (String) params.get("s_seq");
-			System.out.println(s_seq);
-			service.deleteWaitingUsers(s_seq);
-			service.finishRecruit(s_seq);
-		}
+	}
+
+	// 마이페이지 내가쓴 댓글 비동기
+	@RequestMapping(value = "finishRecruit.do", method = RequestMethod.POST)
+	public void finishRecruit(@RequestBody HashMap<String, Object> params) {
+		String s_seq = (String) params.get("s_seq");
+		System.out.println(s_seq);
+		service.deleteWaitingUsers(s_seq);
+		service.finishRecruit(s_seq);
+	}
 
 }

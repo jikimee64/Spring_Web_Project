@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import kr.or.ns.vo.Blame;
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
@@ -72,7 +73,11 @@ public interface AjaxService {
 	public int deleteBookMark(HashMap<String, Object> params);
 		
 	//스터디게시판 필터
-	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params, Criteria_Board cri_b);
+	
+	//스터디게시판 필터사이즈체크용
+	public List<HashMap<String, Object>> studyBoardFilterSize(HashMap<String, Object> params);
+		
 	
 	//마이페이지 내가 쓴 댓글 비동기
 	public List<HashMap<String, Object>> commentList(HashMap<String, Object> params);
