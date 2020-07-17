@@ -1,8 +1,11 @@
 package kr.or.ns.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
+import kr.or.ns.service.BoardService;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Message;
@@ -21,6 +25,9 @@ public class AjaxRestController {
 
 	@Autowired
 	private AjaxService service;
+	
+	@Autowired
+	private BoardService bservice;
 
 	@Autowired
 	private MessageService mservice;
@@ -289,12 +296,27 @@ public class AjaxRestController {
 
 	// 스터디게시판 필터
 	@RequestMapping(value = "studyBoardFilter.do", method = RequestMethod.POST)
-	public List<HashMap<String, Object>> studyBoardFilter(@RequestBody HashMap<String, Object> params) {
-		service.studyBoardFilter(params);
+	public List studyBoardFilter(
+			@RequestBody HashMap<String, Object> params,
+			Criteria_Board cri_b) {
+		
+		 PageMaker_Board pageMakerb = new PageMaker_Board();
+		 pageMakerb.setCri_b(cri_b);
+		
+		List temp = new ArrayList();
 		List<HashMap<String, Object>> list = service.studyBoardFilter(params);
-		System.out.println("받긴받니?"+ list);
-		return list;
+		List<Map<String, Object>> onlineInfo = bservice.getOnlineStudyBoard();
+		
+		pageMakerb.setTotalCount(list.size());
+		
+		temp.add(list);
+		temp.add(onlineInfo);
+		temp.add(pageMakerb);
+		
+		return temp;
 	}
+	
+	
 	
 	// 마이페이지 내가쓴 댓글 비동기
 		@RequestMapping(value = "commentList.do", method = RequestMethod.POST)
