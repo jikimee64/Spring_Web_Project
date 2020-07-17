@@ -1,4 +1,4 @@
-package kr.or.ns.crawling;
+package kr.or.ns.crawling.controller;
 
 import java.io.IOException;
 import java.net.URI;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import kr.or.ns.crawlingvo.UdemyResponse;
-import kr.or.ns.crawlingvo.UdemyUnit;
+import kr.or.ns.crawling.vo.UdemyResponse;
+import kr.or.ns.crawling.vo.UdemyUnit;
 
 @RestController
 @RequestMapping("/Crawling/")

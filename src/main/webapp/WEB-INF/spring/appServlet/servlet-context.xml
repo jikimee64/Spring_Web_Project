@@ -38,11 +38,13 @@
 		base-package="kr.or.ns.controller">
 		</context:component-scan>
 	<context:component-scan
-		base-package="kr.or.ns.crawling" />
+		base-package="kr.or.ns.crawling.controller" />
 	<context:component-scan
 		base-package="kr.or.ns.dao" />
 	<context:component-scan
 		base-package="kr.or.ns.service" />
+			<context:component-scan
+		base-package="kr.or.ns.crawling.service" />
 	<context:component-scan
 		base-package="kr.or.ns.websocket" />
 	<context:component-scan
