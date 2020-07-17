@@ -450,61 +450,7 @@ public class BoardController {
 
 		return "user/board/writing_Common_Study_Detail";
 	}
-
-	/*
-	 * //썸머노트 이미지 넣는 함수
-	 * 
-	 * @RequestMapping(value = "ProfileImage.do" , method = RequestMethod.POST)
-	 * 
-	 * @ResponseBody public String profileUpload(String email, MultipartFile file,
-	 * HttpServletRequest request, HttpServletResponse response) throws Exception {
-	 * response.setContentType("text/html;charset=utf-8"); PrintWriter out =
-	 * response.getWriter(); // 업로드할 폴더 경로 String realFolder =
-	 * request.getSession().getServletContext().getRealPath("board/profileUpload/");
-	 * System.out.println("업로드할 폴더경로 찍어봅니다."); System.out.println(realFolder); UUID
-	 * uuid = UUID.randomUUID(); //랜덤한키 생성해주는 객체
-	 * /////////////////////////////////////////////////////////////////// // 업로드할
-	 * 파일 이름
-	 * 
-	 * String org_filename = file.getOriginalFilename(); String str_filename =
-	 * uuid.toString() + org_filename;
-	 * 
-	 * System.out.println("원본 파일명 : " + org_filename);
-	 * System.out.println("저장할 파일명 : " + str_filename);
-	 * System.out.println(realFolder); String filepath = realFolder +
-	 * "\\" + email + "\\" + str_filename; System.out.println("파일경로 : " + filepath);
-	 * 
-	 * 
-	 * String fileExtension =
-	 * file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(
-	 * ".")); String storedFileName = uuid.toString().replaceAll("-", "") +
-	 * fileExtension; System.out.println("우철 : " + storedFileName); String filePath
-	 * =
-	 * "C:\\Users\\ksks7\\OneDrive\\바탕 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\"
-	 * ; //String filePath =
-	 * "file:\\C:\\Users\\ksks7\\OneDrive\\바탕 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\"
-	 * ;
-	 * 
-	 * 
-	 * File f = new File(filePath + storedFileName); //File f = new File(filepath);
-	 * if (!f.exists()) { f.mkdirs(); //존재하지 않으면 경로에 폴더를 생성해서 만들어준다. } Boolean a =
-	 * f.isAbsolute(); System.out.println(a); Boolean b = f.canExecute();
-	 * System.out.println(b);
-	 * 
-	 * //FileOutputStream fs = new FileOutputStream(filePath + "\\"+
-	 * file.getOriginalFilename());// //fs.write(file.getBytes());//
-	 * 
-	 * 
-	 * file.transferTo(f); out.println(filePath + storedFileName);
-	 * //out.println("profileUpload/"+email+"/"+str_filename);
-	 * System.out.println("-----------------------------------------");
-	 * System.out.println(filePath + file.getOriginalFilename());
-	 * System.out.println("-----------------------------------------"); out.close();
-	 * //fs.close();// return null; }
-	 */
-
 	
-	//우철 커스텀
 	// 썸머노트 이미지 넣는 함수
 	@RequestMapping(value = "ProfileImage.do", method = RequestMethod.POST)
 	@ResponseBody
@@ -514,7 +460,9 @@ public class BoardController {
 		PrintWriter out = response.getWriter();
 		//PrintWriter out = response.getWriter();
 		// 업로드할 폴더 경로
-		String realFolder = "C:\\kwc\\";
+		String realFolder = "C:\\summernote\\";
+		//String realFolder = request.getServletContext().getRealPath("/summernote/upload/");
+		
 		System.out.println("업로드할 폴더경로 찍어봅니다.");
 		System.out.println(realFolder);
 		UUID uuid = UUID.randomUUID(); // 랜덤한키 생성해주는 객체
@@ -545,6 +493,11 @@ public class BoardController {
 		file.transferTo(f);
 		//out.println(filePath + storedFileName);
 		// out.println("profileUpload/"+email+"/"+str_filename);
+		
+		
+		int as = storedFileName.lastIndexOf(".");
+		String bs = storedFileName.substring(0, as);
+		System.out.println("아오 : " +bs);
 		
 		response.setContentType("text/html;charset=utf-8");
 		System.out.println("sss");

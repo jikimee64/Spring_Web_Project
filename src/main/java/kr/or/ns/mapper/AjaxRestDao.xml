@@ -169,6 +169,12 @@
 	
 	<select id="studyBoardFilter" resultType="hashMap">
 		select * from study_board
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
 		<where>
 			<if test="ingOrDone != null">
 				status= #{ingOrDone}
@@ -200,13 +206,6 @@
 	</select>
 	
 	
-	
-	<!-- 마이페이지 내가 쓴 댓글의 대댓글 카운트 -->
-<!-- 	<select id="commentList" resultType="hashMap"> -->
-<!-- 		select r_refer, count(r_step) from comment where  -->
-<!-- 		r_name != #{r_name} and r_exists = 'Y' and R_DEPTH = 1 and r_refer=#{r_refer} -->
-<!-- 		group by r_refer -->
-<!-- 		order by r_seq desc -->
-<!-- 	</select> -->
+
 
 </mapper>

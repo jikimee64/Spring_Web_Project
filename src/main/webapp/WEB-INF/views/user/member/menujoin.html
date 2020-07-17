@@ -306,7 +306,7 @@ button:focus {
 
 /*------------------------------------------------------------------
 [ Button sign in with ]*/
-.btn-face, .btn-naver, .btn-kakao {
+.btn-face, .btn-naver, .btn-google, .btn-kakao, ._btn_normal {
 	font-family: Raleway-Bold;
 	font-size: 16px;
 	line-height: 1.2;
@@ -317,10 +317,10 @@ button:focus {
 	display: flex;
 	align-items: center;
 	/* 	width: calc((100% - 10px)/2); */
-	width: 70%;
-	height: 42px;
+	width: 90%;
+	height: 50px;
 	border-radius: 3px;
-	border: 1px solid #e6e6e6;
+	border: 2px solid #e6e6e6;
 	background-color: #fff;
 	-webkit-transition: all 0.4s;
 	-o-transition: all 0.4s;
@@ -329,7 +329,7 @@ button:focus {
 }
 
 .btn-face {
-	color: #3b5998;
+	background-color: #3b5998;
 	width: 70%;
 	height: 42px;
 }
@@ -340,12 +340,34 @@ button:focus {
 	padding-bottom: 1px;
 }
 
+.btn-google {
+	background-color: #DA5A4A;
+	width: 90%;
+	height: 50px;
+}
+
+.btn-google i {
+	font-size: 35px;
+	padding-bottom: 1px;
+	color: white;
+}
+
 .btn-naver {
-	color: #1CB863;
+	background-color: #1CB863;
+}
+
+.btn-naver i {
+	font-size: 35px;
+	color: white;
 }
 
 .btn-kakao {
-	color: #FFC71C;
+	background-color: #FFC71C;
+}
+
+.btn-kakao i {
+	font-size: 35px;
+	color: white;
 }
 
 .btn-google img {
@@ -355,17 +377,54 @@ button:focus {
 }
 
 .btn-face:hover {
-	background: #3b5998;
-	color: white;
+	background: white;
+	color: #3b5998;
 }
 
 .btn-naver:hover {
-	background: #1CB863;
-	color: white;
+	background: white;
+	color: #1CB863;
+}
+
+.btn-naver:hover ._naver_span {
+	color: #1CB863;
+}
+
+.btn-naver:hover ._naver_icon {
+	color: #1CB863;
 }
 
 .btn-kakao:hover {
-	background: #FFC71C;
+	background: white;
+	color: #FFC71C;
+}
+
+.btn-kakao:hover ._kakao_span {
+	color: #FFC71C;
+}
+
+.btn-kakao:hover ._kakao_icon {
+	color: #FFC71C;
+}
+
+.btn-google:hover {
+	background: white;
+	color: #DA5A4A;
+}
+
+.btn-google:hover ._google_span {
+	color: #DA5A4A;
+}
+
+.btn-google:hover ._google_icon {
+	color: #DA5A4A;
+}
+
+#naver_id_login:hover {
+	color: #1CB863;
+}
+
+._color_white {
 	color: white;
 }
 
@@ -394,6 +453,23 @@ button:focus {
 	padding: 30px;
 	width: 460px;
 	height: 535px;
+}
+
+._place_center {
+	place-content: center;
+}
+
+._btn_normal {
+	border: 4px solid #00aa44;
+}
+
+._btn_normal:hover {
+	background-color: #18A04A;
+	border: 5px solid #00752b;
+}
+
+._btn_normal:hover ._normal_span {
+	color: white;
 }
 </style>
 
@@ -430,35 +506,95 @@ button:focus {
 		</c:if>
 	</div>    -->
 
-	<input type="hidden" th:value="${snstype}" id='snstype' />
+
 	<div class="limiter" style="height: 834px;">
 		<div class="container-login100" style="position: inherit;">
-
+			<input type="hidden" th:value="${snstype}" id='snstype' />
 			<!-- 로그인 작업시작 -->
 			<div class="_border_box_shadow2" style="transform: translateY(-83px)">
 				<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30"
 					style="margin-top: -11px;">
 					<h2 style="text-align: center;">
-						<b style="font-size: 26px">LOGIN</b>
+						<b style="font-size: 26px">JOIN</b>
 					</h2>
 					<hr style="width: 80%; margin-bottom: 11px;" />
 
 					<br />
 
-					<div style="margin-bottom: 5px; text-align: -webkit-center;">
+					<div style="margin-bottom: 8px; text-align: -webkit-center;">
 
-						<a href="/member/normaljoin.do"> 일반회원가입 </a> <a
-							th:href="@{${url}}"> 네이버회원가입 </a>
+
+
+						<div style="margin-bottom: 50px; text-align: -webkit-center;">
+							<a href="/member/normaljoin.do">
+								<button type="button" class="_btn_normal btn-light _other_login"
+									style="place-content: center; height: 75px; width: 93%;">
+									<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
+									<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
+									<!-- 								style="margin: 0 23px 0 10px"></i>  -->
+									<span class="_normal_span" style="font-size: x-large;">
+										<b>일반 회원가입</b>
+									</span>
+								</button>
+							</a>
+						</div>
+
+						<div class="row _place_center" style="margin-bottom: 20px">
+							<b style="font-size: larger;">간편가입</b>
+						</div>
+
+						<div style="margin-bottom: 8px; text-align: -webkit-center;">
+							<a th:href="@{${google_url}}">
+								<button type="button" class="btn-google btn-light _other_login"
+									style="border: 2.5px solid #DA5A4A;">
+									<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
+									<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
+									<!-- 								style="margin: 0 23px 0 10px"></i>  -->
+									<i class="fa fa-google _google_icon" aria-hidden="true"
+										style="margin: 0 23px 0 12px;"></i> <span
+										class="_color_white _google_span"
+										style="font-size: large; font-weight: bold; transform: translateX(12px);">
+										구글 계정으로 회원가입 하기</span>
+								</button>
+							</a>
+						</div>
+
+						<div style="margin-bottom: 8px; text-align: -webkit-center;">
+							<a th:href="@{${url}}">
+								<button type="button" class="btn-naver btn-light _other_login"
+									style="border: 2.5px solid #1CB863;">
+
+
+									<i class="xi-naver-square xi-x _naver_icon" aria-hidden="true"
+										style="margin: 0 19px 0 10px"></i>&nbsp; <span
+										class="_color_white _naver_span"
+										style="font-size: large; font-weight: bold; transform: translateX(-1px);"
+										id="naver_id_login">네이버 계정으로 회원가입 하기</span>
+								</button>
+							</a>
+						</div>
+
+						<div style="margin-bottom: 5px; text-align: -webkit-center;">
+							<a th:href="@{${kakao_url}}">
+								<button type="button" class="btn-kakao btn-light _other_login"
+									style="border: 2.5px solid #FFC71C;">
+
+
+									<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
+									<i class="xi-kakaotalk xi-x _kakao_icon" aria-hidden="true"
+										style="margin: 0 11px 0 10px"></i>&nbsp; <span
+										class="_color_white _kakao_span"
+										style="font-size: large; font-weight: bold; transform: translateX(-3px);">카카오톡
+										계정으로 회원가입 하기</span>
+								</button>
+							</a> <a href="/member/logout.do"> 카카오계정 로그아웃 </a>
+
+						</div>
+
+
 					</div>
-					<a th:href="@{${kakao_url}}"> 카카오회원가입 </a>
+					<a th:href="@{${kakao_url}}"> 카카오회원가입(임시) </a>
 				</div>
-				<a th:href="@{${google_url}}"> 구글 회원가입 </a>
-
-				<a href="/member/logout.do"> 카카오계정 로그아웃 </a>
-			
-
-
-
 			</div>
 
 		</div>
