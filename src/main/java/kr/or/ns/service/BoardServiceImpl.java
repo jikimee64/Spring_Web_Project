@@ -475,8 +475,14 @@ public class BoardServiceImpl implements BoardService {
 		dao.updateR_exists(cm);
 	}
 
+	@Override
+	public int checkApply(HashMap<String, String> map) {
+		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+		int result = dao.checkApply(map);
+		return result;
+	}
 
-	/*************************************    댓글   끝  **********************************************/
+
 	
 	
 	

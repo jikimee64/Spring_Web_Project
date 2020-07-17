@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Users;
 
 import kr.or.ns.vo.Users;
@@ -69,6 +70,9 @@ public interface AjaxRestDao {
 	//스터디게시판 필터
 	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params);
 	
+	//스터디게시판 필터후 사이즈만 반환역할
+	public List<HashMap<String, Object>> studyBoardFilterSize(HashMap<String, Object> params);
+	
 	//마이페이지 내가 쓴 댓글
 	public List<HashMap<String, Object>> commentList(String user_id);
 
@@ -77,4 +81,13 @@ public interface AjaxRestDao {
 
 	//모집마감으로 변경시 승인대기중 회원목록 삭제
 	public void deleteWaitingUsers(String s_seq);
+
+	//스터디 그룹테이블에서 [승인완료, 회원, 글번호] 로 몇명 모였는지 확인
+	public int checkA_staCount(String s_seq);
+
+	//해당글의 모집정원 확인 
+	public int checkPeople(String s_seq);
+
+	//지원한 스터디 모임 지원취소하기 
+	public void applycancelNomalStudy(String s_seq, String user_id);
 }

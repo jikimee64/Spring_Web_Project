@@ -17,6 +17,7 @@ import kr.or.ns.dao.AjaxRestDao;
 import kr.or.ns.util.Mail;
 import kr.or.ns.util.Mailer;
 import kr.or.ns.util.Tempkey;
+import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Users;
 
 @Service
@@ -156,15 +157,30 @@ public class AjaxServiceImpl implements AjaxService {
 	public int applyNomalStudy(String s_seq, String user_id) {
 		System.out.println("지원하기: " + user_id);
 		System.out.println("번호: " + s_seq);
+		
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		//insert 정보넘길 맵생성
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("s_seq", s_seq);
+				map.put("user_id", user_id);
 
-		int result = 0;
-
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("s_seq", s_seq);
-		map.put("user_id", user_id);
-		result = dao.insertStudyGroup(map);
-		return result;
+		
+		
+		int a_staCount = dao.checkA_staCount(s_seq);
+		System.out.println(a_staCount + " 명 이 " + s_seq + " 번 글에 승인완료 되었습니다." );
+		int people = dao.checkPeople(s_seq);
+		System.out.println(people+ ": 모집정원");
+		
+		if(a_staCount < people) {
+			System.out.println("-------insert 하러 갑니다.----------");
+			//insert 하러 간다 
+			int insertResult = dao.insertStudyGroup(map);
+			return insertResult;
+		}else {
+			System.out.println("-------인서트 안해요----------");
+			return 2;
+		}
+		
 	}
 
 	// 신고하기
@@ -327,11 +343,21 @@ public class AjaxServiceImpl implements AjaxService {
 	}
 	
 	//스터디 게시판 필터
-	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params){
-		
+	public List<HashMap<String, Object>> studyBoardFilter(HashMap<String, Object> params, Criteria_Board cri_b){
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		System.out.println("유저정보:" + params);
+		params.put("pageStart", cri_b.getPageStart());
+		params.put("perPageNum", cri_b.getPerPageNum());
 		List<HashMap<String, Object>> result = dao.studyBoardFilter(params);
+		/* System.out.println("필터 결과 : " + result); */
+		return result;
+	}
+	
+	//스터디 게시판 필터 사이즈 체크용
+	public List<HashMap<String, Object>> studyBoardFilterSize(HashMap<String, Object> params){
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		System.out.println("유저정보:" + params);
+		List<HashMap<String, Object>> result = dao.studyBoardFilterSize(params);
 		/* System.out.println("필터 결과 : " + result); */
 		return result;
 	}
@@ -361,6 +387,13 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("모집마감으로 변경시 승인대기중 회원목록 삭제  서비스 임플왔어요");
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		dao.deleteWaitingUsers(s_seq);
+	}
+
+	//스터디 지원한거 취소하기 
+	@Override
+	public void applycancelNomalStudy(String s_seq, String user_id) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		dao.applycancelNomalStudy(s_seq,user_id);
 	}
 
 }

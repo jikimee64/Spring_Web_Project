@@ -122,5 +122,11 @@
 	     select user_id from study_group where role_name = #{role_name} and s_seq = #{s_seq} 
 	</select>
 	
+	<select id="getStatus" resultType="string">
+	     select status from study_board where s_seq = #{s_seq} 
+	</select>
+	
+	
+	
 
 </mapper>

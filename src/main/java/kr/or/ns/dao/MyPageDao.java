@@ -50,5 +50,8 @@ public interface MyPageDao {
 
 	public HashMap<String,Object> getRole(HashMap<String, Object> map);
 
+	//글 번호로 알아오는 모집 상태
+	public String getStatus(String s_seq);
+
 
 }
