@@ -86,9 +86,12 @@ public class MessageHandler extends TextWebSocketHandler {
 
 			//System.out.println("아나!! : " + userid);
 
+			System.out.println("userid" + userid);
 			int result = service.getmsgcount(userid);
 
 			// 내가 받은 메시지 개수 추출
+			
+			System.out.println("resasdasdasdasdult : "  +result);
 
 			// 사용자 아이디값이 소켓 접속시 users에 넣은 아이디값이 존재하는지 비교
 			if (users.containsKey(userid)) {
@@ -114,6 +117,7 @@ public class MessageHandler extends TextWebSocketHandler {
 				
 				int result = service.getmsgcount(receptionid);
 				// 수신인이 받은 문자 개수 추출
+			
 
 				if (users.containsKey(receptionid)) {
 					TextMessage msg = new TextMessage("" + result + "");

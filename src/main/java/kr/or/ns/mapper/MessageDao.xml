@@ -6,7 +6,7 @@
 	<!-- 읽지 않은것만 표시  -->
 	<select id="getmsgcount" resultType="int">
 		select count(*) from message
-		where opendate is null and receptionid = #{user_id}
+		where opendate = '9999-12-31' and receptionid = #{user_id}
 	</select>
 
 	<!-- public int insertMessage(Message message) -->

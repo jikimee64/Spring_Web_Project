@@ -443,7 +443,7 @@ public class MemberController {
 	public String loginFailPage(HttpServletRequest request, RedirectAttributes redirect) {
 		Object errormsg = request.getAttribute("errormsgname");
 		redirect.addAttribute("errormsg", errormsg);
-		return "redirect:/member/login.do";
+		return "redirect:/member/normallogin.do";
 	}
 
 	@RequestMapping("find_Id.do")
