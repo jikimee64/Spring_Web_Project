@@ -356,6 +356,8 @@ group+group {
 					<a href="/board/board_Select.do" class="btn btn-outline-danger">스터디
 						모집하기</a>
 				</div>
+				
+				
 			</div>
 		</div>
 		<div class="_border_box_shadow2 studyFilter"
@@ -389,6 +391,7 @@ group+group {
 									style="width: 100%;">
 							</div>
 						</div>
+						
 						<div th:case="1" class="col-md-3">
 							<th:block th:each="list2 : ${onlineInfo}">
 								 <th:block th:switch="${list2.S_SEQ}">
@@ -663,10 +666,14 @@ group+group {
 			type : 'POST',
 			data : JSON.stringify(data),
 			success : function(data) {
+				$('.studyFilter').empty();
 				$.each(data, function (index, item) {
 					let html = "";
-					console.log(data)
-					$('.studyFilter').empty();
+				 	console.log(data) 
+				 	
+				 	var write_date = new Date(data[index].WRITE_DATE);
+				 	var deadline = new Date(data[index].DEADLINE);
+				
 					
 					html +="<div class='row'>"
 					html +="<div class='col-md-3'></div>"
@@ -674,14 +681,14 @@ group+group {
 					html +="<span class='badge badge-pill badge-primary'>"+data[index].STATUS+"</span>"
 					html +="<span class='badge badge-pill badge-info'>"+data[index].LEVEL+"</span>"
 					html +="<span class='badge badge-pill badge-secondary'>"+data[index].CATE_LANGUAGE+"</span>" 
-					html +="<span class='badge badge-pill badge-success'>"+data[index].PEOPLE+"</span>"
+					html +="<span class='badge badge-pill badge-success'>"+data[index].PEOPLE+"명</span>"
 					html +="<span class='badge badge-pill badge-warning'>"+data[index].LOC+"</span>"
-					html +="<span class='badge badge-pill badge-light'>"+data[index].CONTENT_KINE+"</span></div></div>"	
+					html +="<span class='badge badge-pill badge-light'>"+data[index].CONTENT_KIND+"</span></div></div>"	
 					html +="<div class='row'>"
 					if(data[index].CONTENT_KIND == "일반"){
 					html +="<div class='col-md-3 align-self-center'>"
 					html +="<div class='card' style='width: 100%'>"
-					html +="<img class='card-img-top' src='/studyboard/upload/'"+data[index].IMAGE+"'alt='Card image' style='width: 100%;'>"
+					html +="<img class='card-img-top' src='/studyboard/upload/"+data[index].IMAGE+"' alt='Card image' style='width: 100%;'>"
 					html +="</div></div>"
 					}else{
 					html +="<div class='col-md-3'>"
@@ -703,9 +710,17 @@ group+group {
 							+data[index].S_SEQ+'") data-toggle="modal" data-target="#userInfoModal">'
 					html +="<b style='color: black; margin-right: 10px;'>작성자 :</b>"+data[index].USER_ID+"</a></div>"
 					html +="<div class='col-md-3' style='text-align: center; padding-right: 0px;'>"
-					html +="<b>'등록일 :'+data[index].WRITE_DATE+'</b></div>"
+					
+					
+					html +="<b>등록일 : "+getDateFormet(write_date)+"</b></div>"
+					
+					
 					html +="<div class='col-md-3' style='text-align: center; padding-left: 0px;'>"
-					html +="<b>마감일 :"+data[index].DEADLINE+"</b></div></div>"
+					
+					
+					html +="<b>마감일 : "+getDateFormet(deadline)+"</b></div></div>";
+					
+					
 					html +="<div class='row'>"
 					//다시 html +="<a href='/board/writing_Common_Study_Detail.do?s_seq='"+data[index].S_SEQ+"'&'"'page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">"
 					html +="<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"+data[index].TITLE+"</h2></a></div>"

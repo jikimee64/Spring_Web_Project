@@ -177,22 +177,22 @@
 		on study_board.c_seq = study_content_category.c_seq
 		<where>
 			<if test="ingOrDone != null">
-				status= #{ingOrDone}
+				study_board.status= #{ingOrDone}
 			</if>
 			<if test="level != null">
-				 and level = #{level}
+				 and study_board.level = #{level}
 			</if>
 			 <if test="language.size != 0">
-			     and lan_seq in
+			     and study_board.lan_seq in
 			     <foreach collection="language" item="item" index="index" separator="," open="(" close=")">
 			      	#{item}
 			     </foreach>
 			</if> 
 			<if test="local != null">
-			     and loc_seq = #{local}
+			     and study_board.loc_seq = #{local}
 			</if>
 			<if test="studyContent != null">
-			     and c_seq = #{studyContent}
+			     and study_board.c_seq = #{studyContent}
 			</if>
 		</where>
 	

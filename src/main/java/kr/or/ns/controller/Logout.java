@@ -1,47 +1,56 @@
 package kr.or.ns.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public JsonNode Logout(String autorize_code) {
-	final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
+public class Logout {
 
-	final HttpClient client = HttpClientBuilder.create().build();
+	public JsonNode Logout(String autorize_code) {
+		final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
 
-	final HttpPost post = new HttpPost(RequestUrl);
+		final HttpClient client = HttpClientBuilder.create().build();
 
-	post.addHeader("Authorization", "Bearer " + autorize_code);
+		final HttpPost post = new HttpPost(RequestUrl);
 
-	JsonNode returnNode = null;
+		post.addHeader("Authorization", "Bearer " + autorize_code);
 
-	try {
+		JsonNode returnNode = null;
 
-		final HttpResponse response = client.execute(post);
+		try {
 
-		ObjectMapper mapper = new ObjectMapper();
+			final HttpResponse response = client.execute(post);
 
-		returnNode = mapper.readTree(response.getEntity().getContent());
+			ObjectMapper mapper = new ObjectMapper();
 
-	} catch (UnsupportedEncodingException e) {
+			returnNode = mapper.readTree(response.getEntity().getContent());
 
-		e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
 
-	} catch (ClientProtocolException e) {
+			e.printStackTrace();
 
-		e.printStackTrace();
+		} catch (ClientProtocolException e) {
 
-	} catch (IOException e) {
+			e.printStackTrace();
 
-		e.printStackTrace();
+		} catch (IOException e) {
 
-	} finally {
+			e.printStackTrace();
+
+		} finally {
+
+		}
+
+		return returnNode;
 
 	}
-
-	return returnNode;
-
 }
