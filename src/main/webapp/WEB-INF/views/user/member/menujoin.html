@@ -463,10 +463,11 @@ button:focus {
 	border: 4px solid #00aa44;
 }
 
-._btn_normal:hover{
+._btn_normal:hover {
 	background-color: #18A04A;
-	border:5px solid #00752b;
+	border: 5px solid #00752b;
 }
+
 ._btn_normal:hover ._normal_span {
 	color: white;
 }
@@ -508,7 +509,7 @@ button:focus {
 
 	<div class="limiter" style="height: 834px;">
 		<div class="container-login100" style="position: inherit;">
-
+			<input type="hidden" th:value="${snstype}" id='snstype' />
 			<!-- 로그인 작업시작 -->
 			<div class="_border_box_shadow2" style="transform: translateY(-83px)">
 				<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30"
@@ -527,32 +528,35 @@ button:focus {
 						<div style="margin-bottom: 50px; text-align: -webkit-center;">
 							<a href="/member/normaljoin.do">
 								<button type="button" class="_btn_normal btn-light _other_login"
-									style="place-content: center; height:75px;width:93%;">
+									style="place-content: center; height: 75px; width: 93%;">
 									<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
 									<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
 									<!-- 								style="margin: 0 23px 0 10px"></i>  -->
-									<span class="_normal_span" style="font-size: x-large;"> <b>일반
-											회원가입</b></span>
+									<span class="_normal_span" style="font-size: x-large;">
+										<b>일반 회원가입</b>
+									</span>
 								</button>
 							</a>
 						</div>
 
-
-						<div class="row _place_center" style="margin-bottom:20px"><b style="font-size:larger;">간편가입</b></div>
+						<div class="row _place_center" style="margin-bottom: 20px">
+							<b style="font-size: larger;">간편가입</b>
+						</div>
 
 						<div style="margin-bottom: 8px; text-align: -webkit-center;">
-
-							<button type="button" class="btn-google btn-light _other_login"
-								style="border: 2.5px solid #DA5A4A;">
-								<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
-								<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
-								<!-- 								style="margin: 0 23px 0 10px"></i>  -->
-								<i class="fa fa-google _google_icon" aria-hidden="true"
-									style="margin: 0 23px 0 12px;"></i> <span
-									class="_color_white _google_span"
-									style="font-size: large;font-weight:bold; transform: translateX(12px);">
-									구글 계정으로 회원가입 하기</span>
-							</button>
+							<a th:href="@{${google_url}}">
+								<button type="button" class="btn-google btn-light _other_login"
+									style="border: 2.5px solid #DA5A4A;">
+									<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
+									<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
+									<!-- 								style="margin: 0 23px 0 10px"></i>  -->
+									<i class="fa fa-google _google_icon" aria-hidden="true"
+										style="margin: 0 23px 0 12px;"></i> <span
+										class="_color_white _google_span"
+										style="font-size: large; font-weight: bold; transform: translateX(12px);">
+										구글 계정으로 회원가입 하기</span>
+								</button>
+							</a>
 						</div>
 
 						<div style="margin-bottom: 8px; text-align: -webkit-center;">
@@ -564,34 +568,33 @@ button:focus {
 									<i class="xi-naver-square xi-x _naver_icon" aria-hidden="true"
 										style="margin: 0 19px 0 10px"></i>&nbsp; <span
 										class="_color_white _naver_span"
-										style="font-size: large;font-weight:bold; transform: translateX(-1px);"
+										style="font-size: large; font-weight: bold; transform: translateX(-1px);"
 										id="naver_id_login">네이버 계정으로 회원가입 하기</span>
 								</button>
 							</a>
 						</div>
 
 						<div style="margin-bottom: 5px; text-align: -webkit-center;">
-							<button type="button" class="btn-kakao btn-light _other_login"
-								style="border: 2.5px solid #FFC71C;">
+							<a th:href="@{${kakao_url}}">
+								<button type="button" class="btn-kakao btn-light _other_login"
+									style="border: 2.5px solid #FFC71C;">
 
 
-								<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
-								<i class="xi-kakaotalk xi-x _kakao_icon" aria-hidden="true"
-									style="margin: 0 11px 0 10px"></i>&nbsp; <span
-									class="_color_white _kakao_span"
-									style="font-size: large; font-weight:bold;transform: translateX(-3px);">카카오톡
-									계정으로 회원가입 하기</span>
-							</button>
-
+									<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
+									<i class="xi-kakaotalk xi-x _kakao_icon" aria-hidden="true"
+										style="margin: 0 11px 0 10px"></i>&nbsp; <span
+										class="_color_white _kakao_span"
+										style="font-size: large; font-weight: bold; transform: translateX(-3px);">카카오톡
+										계정으로 회원가입 하기</span>
+								</button>
+							</a> <a href="/member/logout.do"> 카카오계정 로그아웃 </a>
 
 						</div>
 
 
-
-
 					</div>
+					<a th:href="@{${kakao_url}}"> 카카오회원가입(임시) </a>
 				</div>
-
 			</div>
 
 		</div>

@@ -1,12 +1,15 @@
 package kr.or.ns.dao;
 
 import java.sql.SQLException;
+
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import kr.or.ns.vo.Users;
+import org.springframework.stereotype.Repository;
 
+import kr.or.ns.vo.Users;
+@Repository
 public interface MemberDao {
 
 	// 회원가입

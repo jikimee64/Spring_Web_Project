@@ -438,7 +438,6 @@ button:focus {
 
 	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
 	<input type="hidden" th:value="${param.error}" id="error" />
-	
  <!-- 	<div th:if="${param.error!=null}">
 		로그인 실패 <br />
 		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
@@ -462,34 +461,7 @@ button:focus {
 					</h2>
 					<hr style="width: 80%; margin-bottom: 11px;" />
 
-					<form th:action="@{/login}" method="post" class="">
-
-
-						<div class="form-group" style="text-align: -webkit-center;">
-							<label for="uname"><b style="margin-right: 260px">ID</b></label>
-
-							<input class="input--style-6" type="text" id="user_id"
-								placeholder="Enter userid" name="user_id" required>
-						</div>
-
-
-						<div class="form-group" style="text-align: -webkit-center;">
-							<label for="pwd"><b style="margin-right: 208px">Password</b></label>
-							<input class="input--style-6" type="password" id="user_pwd"
-								placeholder="Enter password" name="user_pwd" required>
-						</div>
-						
-						<div class="form-group" style="text-align: -webkit-center; color:red">
-							<div th:text="${#request.getAttribute('errormsgname')}"></div>
-						</div>   
-						
-						<div style="text-align: -webkit-center;">
-							<button id="login-button" type="submit" class="login100-form-btn"
-								style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;">
-								<b>Login</b>
-							</button>
-						</div>
-					</form>
+					<form th:action="@{/login}" method="post" class=""><div class="form-group" style="text-align: -webkit-center;"><label for="uname"><b style="margin-right: 260px">ID</b></label><input class="input--style-6" type="text" id="user_id"placeholder="Enter userid" name="user_id" required></div><div class="form-group" style="text-align: -webkit-center;"><label for="pwd"><b style="margin-right: 208px">Password</b></label><input class="input--style-6" type="password" id="user_pwd"placeholder="Enter password" name="user_pwd" required></div><div class="form-group" style="text-align: -webkit-center; color:red"><div th:text="${#request.getAttribute('errormsgname')}"></div></div> <div style="text-align: -webkit-center;"><button id="login-button" type="submit" class="login100-form-btn"style="border: 1.5px solid #18d26e; background-color: #18d26e; text-align: -webkit-center;"><b>Login</b></button></div></form>
 
 
 					<div
@@ -509,11 +481,13 @@ button:focus {
 						<button type="button" class="btn-google btn-light _other_login"
 							style="border: 1.5px solid #DA5A4A;">
 							<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
+
 <!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
 <!-- 								style="margin: 0 23px 0 10px"></i>  -->
 							<i class="fa fa-google" aria-hidden="true" style="margin: 0 23px 0 12px"></i>
+								<a th:href="@{${google_url}}">
 								<span
-								style="font-size: small;font-weight:bold;transform: translateX(15px);">구글 계정으로 로그인 하기</span>
+								style="font-size: small;font-weight:bold;transform: translateX(15px);">구글 계정으로 로그인 하기</span></a>
 						</button>
 					</div>
 
@@ -535,13 +509,12 @@ button:focus {
 
 
 					<div style="margin-bottom: 5px; text-align: -webkit-center;">
+					<a th:href="@{${kakao_url}}">
 						<button type="button" class="btn-kakao btn-light _other_login"
 							style="border: 1.5px solid #FFC71C;">
-
-
 							<!-- <img src="/resources/images/img/kakao.png" alt="" style="height: 25px; float: left;">  -->
-							<i class="xi-kakaotalk xi-x" aria-hidden="true"
-								style="margin: 0 11px 0 10px"></i>&nbsp; <span
+							<i class="xi-kakaotalk xi-x" aria-hidden="true"style="margin: 0 11px 0 10px">&nbsp;</i>
+								<span
 								style="font-size: small;font-weight:bold;transform:translateX(6px);">카카오톡 계정으로 로그인 하기</span>
 						</button>
 						
