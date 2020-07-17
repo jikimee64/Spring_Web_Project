@@ -190,4 +190,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{s_seq}, #{l_seq})
 	</insert>
 	
+	<!-- 스터디 모임 지원여부 확인  -->
+	<select id="checkApply" parameterType="hashMap" resultType="int">
+		select count(*) from study_group where s_seq = #{s_seq} and user_id = #{user_id}
+	</select>
+	
 </mapper>

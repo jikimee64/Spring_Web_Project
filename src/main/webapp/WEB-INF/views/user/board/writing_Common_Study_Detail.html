@@ -527,22 +527,29 @@ keyframes heart-keyframes { 100% {
 
 
 								</div>
-								<div th:case="*"
-									style="text-align: center; margin: 10px 0px 10px 0px;">
-									<th:block th:if="${study.STATUS == '모집중'}">
-										<button id="apply" type="submit" class="btn btn-success"
-											style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
-									</th:block>
-									<!-- 이거는 사용자 권한 -->
-									<div style="text-align: center; margin: 10px 0px 10px 0px;">
-										<a
-											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"
-											class="_to_the_list_a_tag">
-											<button type="button"
-												class="btn btn-warning _to_the_list_button"
-												style="width: 100%;">목록으로</button>
-										</a>
-									</div>
+								<div th:case="*" style="text-align: center; margin: 10px 0px 10px 0px;">
+									<th:block th:switch="${apply}">
+										<th:block th:case="0">
+											<th:block th:if="${study.STATUS == '모집중'}">
+												<button id="apply" type="submit" class="btn btn-success"
+													style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
+											</th:block>
+										</th:block>
+										<th:block th:case="1">
+												<button id="applycancel" type="submit" class="btn btn-warning"
+													style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원취소하기</button>
+										</th:block>
+									</th:block>		
+											<!-- 이거는 사용자 권한 -->
+											<div style="text-align: center; margin: 10px 0px 10px 0px;">
+												<a
+													th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"
+													class="_to_the_list_a_tag">
+													<button type="button"
+														class="btn btn-warning _to_the_list_button"
+														style="width: 100%;">목록으로</button>
+												</a>
+											</div>
 								</div>
 							</th:block>
 							<!-- <th:block th:switch="${sessionid}">

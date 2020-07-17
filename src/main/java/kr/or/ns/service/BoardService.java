@@ -2,6 +2,7 @@ package kr.or.ns.service;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -91,4 +92,7 @@ public interface BoardService {
 
 	//r_exists 컬럼을 n으로 업데이트 
 	public void updateR_exists(Comment cm);
+
+	//스터지에 지원했는지 여부 알아냄  
+	public int checkApply(HashMap<String, String> map);
 }
