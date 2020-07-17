@@ -51,14 +51,10 @@
 		base-package="kr.or.ns.interceptor" />
 	<context:component-scan
 		base-package="kr.or.ns.export" />
-<<<<<<< HEAD
-		<context:component-scan
-		base-package="kr.or.ns.vo" />
-=======
+
 	<context:component-scan
 		base-package="kr.or.ns.aop" />
-	
->>>>>>> ecaa67361f24677b26ecd8f137fb8bdeb208e436
+
 
 
 

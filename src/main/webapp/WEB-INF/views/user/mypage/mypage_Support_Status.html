@@ -246,13 +246,49 @@ body {
 					</div>
 				</div>
 			</div>
+			<div class="row"
+				style="align-items: center; margin-top: 50px; margin-bottom: 30px;place-content: center;">
+				<button type="button" th:onclick="|javascript:finishh('${s_seq}')|" class="btn btn-secondary btn finishh" id="finishh">
+					 <span style="font-size: smaller;">모집 마감</span>
+				</button>
+			</div>
 	 </div>
 
 		<!-- 모집중 첫번째 줄 끝 -->
 
 		<div th:replace="/user/includes/footer :: footer"></div>
 		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+<script>
+//모집마감
+function finishh(s_seq) {
+console.log("finishh 입성")
+console.log(s_seq)
+
+	let data = {
+		"s_seq" : s_seq
+	}
+
+	$
+			.ajax({
+				url : '/ajax/finishRecruit.do',
+				processData : false,
+				contentType : "application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+					swal("완료되었습니다", "", "success");	
+				
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			});
+}
+</script>
 
 		<script>
 			function accept(user_id, s_seq) {
@@ -477,6 +513,11 @@ body {
 						$(document).on("click", "#reject",function(user_id, s_seq){
 							reject(user_id, s_seq);
 						});  */
+						
+						
+						
+
+									
 		</script>
 
 		<script>

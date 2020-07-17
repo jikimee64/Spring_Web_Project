@@ -306,5 +306,14 @@ public class AjaxRestController {
 			return list;
 
 		}
+		// 마이페이지 내가쓴 댓글 비동기
+		@RequestMapping(value = "finishRecruit.do", method = RequestMethod.POST)
+		public void finishRecruit(@RequestBody HashMap<String, Object> params) {
+			String s_seq = (String) params.get("s_seq");
+			System.out.println(s_seq);
+			System.out.println("기분좋은 하루가 될거임");
+			
+			service.finishRecruit(s_seq);
+		}
 
 }
