@@ -526,6 +526,7 @@ group+group {
 	//내용에 이미지 뜨는거 막기 시작
 		$(function() {
 			$('p > img').remove();
+			$('iframe').remove();
 		});
 		//내용에 이미지 뜨는거 막기 끝
 	</script>
@@ -565,7 +566,7 @@ group+group {
 				$.each(contentTag, function(index,item){
 				contentText = contentTag[index].innerHTML;
 				if(contentText.length > 540){
-					contentText = contentText.substring(0,540)+"...";
+					contentText = contentText.substring(0,350)+"...";
 				}
 				contentTag[index].innerHTML = contentText;
 			})

@@ -349,4 +349,10 @@ public class AjaxServiceImpl implements AjaxService {
 		return list;
 	}
 
+	@Override
+	public void finishRecruit(String s_seq) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		dao.finishRecruit(s_seq);
+	}
+
 }

@@ -227,33 +227,39 @@ body {
 													html += "<p style='font-size: xx-large; font-weight: bold;'>"
 															+ data[index].S_SEQ
 															+ "</p></div>";
+															
 													html += "<div class='col-md-8'>";
-													html += "<span class='badge badge-pill badge-primary'>"
+													html += "<div class='row' style='padding-left:15px; padding-right:15px;'>"
+													html += "<span class='badge badge-pill badge-primary' style='height:20px;'>"
 															+ data[index].STATUS
 															+ "</span>";
-													html += "<span class='badge badge-pill badge-info'>"
+													html += "<span class='badge badge-pill badge-info' style='height:20px;'>"
 															+ data[index].LEVEL
 															+ "</span>";
-													html += "<span class='badge badge-pill badge-secondary'>"
+													html += "<span class='badge badge-pill badge-secondary' style='height:20px;'>"
 															+ data[index].CATE_LANGUAGE
 															+ "</span>";
-													html += "<span class='badge badge-pill badge-warning'>"
+													html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
 															+ data[index].PEOPLE
 															+ "명</span>";
-													html += "<span class='badge badge-pill badge-warning'>"
+													html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
 															+ data[index].LOC
 															+ "</span>"
-													html += "<span class='badge badge-pill badge-light'>"
+													html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
 															+ data[index].CONTENT_KIND
 															+ "</span>";
-													html += "<span class='badge badge-pill badge-light'>"
+													html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
 															+ data[index].ACCEPT_STATUS
 															+ "</span>";
-													html += "<a class='_message_hover' href='/mypage/SupportStatus.do?s_seq="
+													html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
 															+ data[index].S_SEQ
 															+ "'>";
+													
 													/* html += "<a href = '/board/board.Support_Status.do'>"; */
-													html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
+													html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;'></a>";
+													
+													html += "작성일";
+													html += "</div>";	
 													html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
 													/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 													html += "<b><span style='font-size:xx-large;'>"

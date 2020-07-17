@@ -426,13 +426,17 @@
                      }
                      swal(selectAlert + "를 선택해주세요", "", "error");
                   } else {
-                     if (selectBox6 == "") {
-                        swal("글 제목을 입력해주세요", "", "error");
-                     } else {
-                        //swal("작성이 완료되었습니다", "", "success");         
-                        $('._submit').unbind();
-                        $(this).click();
-                     }
+                	  if (selectBox6 == "") {
+							swal("글 제목을 입력해주세요", "", "error");
+						}else if(selectBox6.length > 40){
+							swal("글 제목을 40자 이하로 입력해주세요", "", "error");
+						}else if($('.note-editable').html().length > 798){	
+							swal("글 내용을 800자 이하로 입력해주세요", "", "error");
+						} else {
+							//swal("작성이 완료되었습니다", "", "success");			
+							$('._submit').unbind();
+							$(this).click();
+						}
 
                   }
 

@@ -303,7 +303,7 @@
   
 	
 	</script>	 -->
-
+	
 
 
 	<!-- mysql이랑 맞출것  -->
@@ -369,6 +369,7 @@
 			$('._submit').click(
 					function(evt) {
 						evt.preventDefault();
+						
 						var selectBox1 = $('.selectpicker option:selected').eq(
 								0).val();
 						var selectBox2 = $('.selectpicker option:selected').eq(
@@ -412,6 +413,8 @@
 								swal("글 제목을 입력해주세요", "", "error");
 							}else if(selectBox6.length > 40){
 								swal("글 제목을 40자 이하로 입력해주세요", "", "error");
+							}else if($('.note-editable').html().length > 798){	
+								swal("글 내용을 800자 이하로 입력해주세요", "", "error");
 							} else {
 								//swal("작성이 완료되었습니다", "", "success");			
 								$('._submit').unbind();

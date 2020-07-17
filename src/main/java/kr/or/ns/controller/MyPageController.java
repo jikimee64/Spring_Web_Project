@@ -165,10 +165,12 @@ public class MyPageController {
 		model.addAttribute("id" , user_id);
 		model.addAttribute("status", status);
 		model.addAttribute("writer", a);
+		model.addAttribute("s_seq", s_seq);
 		
 		System.out.println(user_id);
 		System.out.println(status);
 		System.out.println(a);
+		System.out.println(s_seq);
 		return "user/mypage/mypage_Support_Status.html";
 
 	}
