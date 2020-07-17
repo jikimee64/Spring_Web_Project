@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+    
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>C:\logs\logback\logback-%d{yyyy-MM-dd}.%i.log.zip</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%-5level] - %msg%n</Pattern>
+        </layout>
+    </appender>
+    
+    <!-- Loggers -->
+    <logger name="org.apache.catalina" additivity="false" level="ERROR">
+    </logger>
+    
+    <logger name="org.apache.commons" additivity="false" level="ERROR">
+    </logger>
+    
+    <logger name="org.springframework" additivity="false" level="DEBUG" >
+    </logger>
+    
+    <logger name="egovframework.*" additivity="false" level="DEBUG">
+    </logger>
+    
+    <logger name="java.sql" additivity="false"  level="DEBUG">
+    </logger>
+    
+    <logger name="org.mybatis.spring" additivity="false" level="DEBUG">
+    </logger>
+    
+    <logger name="egovframework.sqlmappers" additivity="false" level="TRACE">
+    </logger>
+   
+    <root level="warn">
+       <appender-ref ref="ROLLING"/>
+       <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
