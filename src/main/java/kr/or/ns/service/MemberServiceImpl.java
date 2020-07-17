@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
@@ -15,6 +16,7 @@ import kr.or.ns.dao.MemberDao;
 import kr.or.ns.vo.Users;
 
 @Service
+@Repository
 public class MemberServiceImpl implements MemberService {
 
 	private SqlSession sqlsession;

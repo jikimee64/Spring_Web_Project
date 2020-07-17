@@ -205,7 +205,11 @@
 		order by r_seq desc
 	</select>
 	
-	
-
+	<!-- 모집마감 -->
+	<update id="finishRecruit">
+		update study_board
+		set status = '모집완료'
+		where s_seq = #{s_seq}
+	</update>
 
 </mapper>

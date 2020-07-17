@@ -76,6 +76,9 @@ public interface AjaxService {
 	
 	//마이페이지 내가 쓴 댓글 비동기
 	public List<HashMap<String, Object>> commentList(HashMap<String, Object> params);
+
+	//모집마감
+	public void finishRecruit(String s_seq);
 	
 
 }

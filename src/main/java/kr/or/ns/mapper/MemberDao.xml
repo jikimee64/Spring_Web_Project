@@ -5,11 +5,11 @@
 	<!-- 회원가입 -->
 	<insert id="joininsert" parameterType="kr.or.ns.vo.Users">
 		insert into users(user_id, user_pwd, enabled, user_name, user_email,
-		profile_img, nickname, introduce, blame_count)
+		profile_img, nickname, introduce, blame_count, snstype)
 		values(#{user_id},
 		#{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img},
 		#{nickname},
-		#{introduce}, #{blame_count})
+		#{introduce}, #{blame_count}, #{snstype})
 	</insert>
 	
 	
@@ -29,11 +29,11 @@
 	
 		<insert id="socialjoininsert" parameterType="kr.or.ns.vo.Users">
 		insert into users(user_id, user_pwd, enabled, user_name, user_email,
-		profile_img, nickname, introduce, blame_count)
+		profile_img, nickname, introduce, blame_count, snstype)
 		values(#{user_id},
 		#{user_pwd}, 1, #{user_name}, #{user_email}, #{profile_img},
 		#{nickname},
-		#{introduce}, #{blame_count})
+		#{introduce}, #{blame_count}, #{snstype})
 		</insert>
 	
 	<!-- 소셜 로그인 시 DB에 있는 데이터인지 확인 -->

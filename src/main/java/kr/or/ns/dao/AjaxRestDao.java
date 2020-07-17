@@ -71,4 +71,7 @@ public interface AjaxRestDao {
 	
 	//마이페이지 내가 쓴 댓글
 	public List<HashMap<String, Object>> commentList(String user_id);
+
+	//모집마감
+	public void finishRecruit(String s_seq);
 }
