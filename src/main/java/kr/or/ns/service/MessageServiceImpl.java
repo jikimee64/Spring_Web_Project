@@ -163,13 +163,13 @@ public class MessageServiceImpl implements MessageService {
 		return list;
 	}
 
-	//쪽지상세페이지서 쪽지 하나 삭제
+	//쪽지 상세페이지(보낸편지함)서 쪽지 하나 삭제
 	@Override
-	public int deleteMessageOne(String m_seq) {
+	public int deleteSendMessageOne(String m_seq) {
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
 		int result = 0;
 		try {
-			result = dao.deleteMessageOne(m_seq);
+			result = dao.deleteSendMessageOne(m_seq);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -177,6 +177,21 @@ public class MessageServiceImpl implements MessageService {
 		System.out.println("일단 여긴옴2");
 		return result;
 	}
+	
+		//쪽지 상세페이지(받은편지함)서 쪽지 하나 삭제
+		@Override
+		public int deleteFromMessageOne(String m_seq) {
+			MessageDao dao = sqlsession.getMapper(MessageDao.class);
+			int result = 0;
+			try {
+				result = dao.deleteFromMessageOne(m_seq);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			System.out.println("일단 여긴옴2");
+			return result;
+		}
 
 	
 

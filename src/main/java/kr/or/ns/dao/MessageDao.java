@@ -21,7 +21,10 @@ public interface MessageDao {
 	public List<Message> sendListMessage(String userid);
 	
 	//상세페이지서 쪽지 삭제
-	public int deleteMessageOne(String m_seq);
+	public int deleteSendMessageOne(String m_seq);
+	
+	//상세페이지서 쪽지 삭제
+	public int deleteFromMessageOne(String m_seq);
 
 	//쪽지확인update
 	public int updateMessage(String m_seq);

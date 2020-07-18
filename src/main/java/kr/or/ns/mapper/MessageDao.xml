@@ -84,8 +84,12 @@
 		select * from message where senderid = #{userid} and type = '발신' ORDER BY m_seq desc
 	</select>
 	
-	<delete id="deleteMessageOne">
-		delete from message where m_seq = #{m_seq}
+	<delete id="deleteSendMessageOne">
+		delete from message where m_seq = #{m_seq} and type = '발신'
+	</delete>
+	
+	<delete id="deleteFromMessageOne">
+		delete from message where m_seq = #{m_seq} and type = '수신'
 	</delete>
 	
 	<update id="updateMessage">
