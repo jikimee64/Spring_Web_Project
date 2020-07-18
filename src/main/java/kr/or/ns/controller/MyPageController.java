@@ -104,7 +104,9 @@ public class MyPageController {
 		service.MyPageUserEdit(user, request);
 
 		System.out.println("컨트롤러2");
-		return "user/mypage/mypage.html";
+		
+		return "redirect:mypage.do";
+//		return "user/mypage/mypage.html";
 
 	}
 
