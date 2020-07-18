@@ -16,7 +16,13 @@
 <div th:replace="/manager/includes/head :: head"></div>
 
 </head>
-
+<style>
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+</style>
 <body>
 
 
@@ -109,9 +115,22 @@
 			<div class="col-xl-12">
 				<div class="card">
 					<div class="card-body" style="height: 800px;">
+						<!-- 위의 막대 차트 -->
 						<div class="chart-wrapper mt-4">
 							<canvas id="myChart" height="100"></canvas>
 						</div>
+
+
+						<!-- 밑에꺼 동그라미 차트 -->
+						<div>
+							<div id="canvas-holder" style="width: 40%">
+								<canvas id="chart-area"></canvas>
+							</div>
+							<button id="randomizeData">Randomize Data</button>
+							<button id="addDataset">Add Dataset</button>
+							<button id="removeDataset">Remove Dataset</button>
+						</div>
+
 					</div>
 				</div>
 			</div>
@@ -217,6 +236,8 @@
 				});
 	});
 </script>
+
+<!-- 밑에 동그라미 차트 -->
 
 </body>
 
