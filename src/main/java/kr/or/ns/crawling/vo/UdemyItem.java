@@ -16,11 +16,17 @@ import lombok.ToString;
 @Setter
 @ToString
 public class UdemyItem {
+	private int id;
 	private String title;
-	private String image_125_H;
+	private String url;
+	private String is_paid;
+	private String image_750x422;
 	private float rating;
 	private int num_reviews;
+	private String instructional_level;
+	private String instructional_level_simple;
 	private List<UdemyvsibleInstructors> visible_instructors;
+	private UdemyContextInfo context_info; 
 	
 	
 	//author는 작성자가 2명이상 배열로 출력될때 나올때 배열에 있는 값을 한문자열로 뽑을려고 만듬
