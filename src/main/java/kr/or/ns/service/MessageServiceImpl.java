@@ -29,11 +29,14 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
+	@Transactional
 	public int insertMessage(Message message) {
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
 		int result = 0;
+		
 		try {
-			result = dao.insertMessage(message);
+			dao.insertReceptionMessage(message);
+			result = dao.insertSendMessage(message);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
