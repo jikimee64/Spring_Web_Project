@@ -1099,8 +1099,15 @@ keyframes heart-keyframes { 100% {
 	<script>
 	/*        지원하기         */
    $(function() {
+	   
+	   
+	   let s_seq =  $('#s_seq').val();
+	   let page =  $('#page').val();
+	   let perPageNum =  $('#perPageNum').val();
+	   
+	   
+	   
    $('#apply').click(function(){
-       let s_seq =  $('#s_seq').val();
        let obj = {"s_seq" : s_seq}; 
       swal({
            title: "스터디를 지원하시겠습니까?",
@@ -1126,10 +1133,14 @@ keyframes heart-keyframes { 100% {
 	                             icon: "warning",
 	                             buttons: true
 	                           })
-	                     }else if(data == 1){
-	                     swal({title:"지원이 완료되었습니다.",
-	                        icon: "success"})
-	   
+	                       }else if(data == 1){
+	                    	swal({title:"지원이 완료되었습니다.",
+	                       		  icon: "success"})
+	                       		 
+	                       				
+	                       		  location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
+	                       			
+	                       		             
 				           }else{
 				        	   swal({title:"모집인원이 꽉 찼읍니다.",
 				                   icon: "warning"})
@@ -1154,7 +1165,6 @@ keyframes heart-keyframes { 100% {
    /*                지원 취소하기              */
    
    $('#applycancel').click(function(){
-       let s_seq =  $('#s_seq').val();
        let obj = {"s_seq" : s_seq}; 
       swal({
            title: "스터디지원을 취소하시겠습니까?",
@@ -1174,9 +1184,9 @@ keyframes heart-keyframes { 100% {
                   success : function(data) {
                      swal({
                          title: "지원이 취소되었습니다. ",
-                           icon: "success",
-                           buttons: true
+                           icon: "success"
                          })
+                         location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
                   },
                   error: function(request, status, error){
                      console.log("code:" + request.status + "\n"
