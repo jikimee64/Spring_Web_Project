@@ -18,6 +18,7 @@ import kr.or.ns.util.Mail;
 import kr.or.ns.util.Mailer;
 import kr.or.ns.util.Tempkey;
 import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Study;
 import kr.or.ns.vo.Users;
 
 @Service
@@ -395,5 +396,6 @@ public class AjaxServiceImpl implements AjaxService {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		dao.applycancelNomalStudy(s_seq,user_id);
 	}
+
 
 }

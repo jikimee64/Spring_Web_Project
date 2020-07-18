@@ -384,7 +384,22 @@ group+group {
 								th:classappend="${studyContent} == '1' ? filter-active : null">온라인
 								강의</li> &nbsp;
 							<li data-filter="2"
-								th:classappend="${studyContent} == '2' ? filter-active : null">일반</li>
+								th:classappend="${studyContent} == '2' ? filter-active : null"
+								style="margin-right: 200px;">일반</li>
+								
+							<div class="form-inline" style="display: inline-flex;">
+								<select class="custom-select-sm" id="searchType" name="searchType">
+									<option value="">검색조건</option>
+									<option value="t">제목</option>
+									<option value="c">내용</option>
+									<option value="w">작성자</option>
+									<option value="tc">제목+내용</option>
+									<option value="all">전체조건</option>
+								</select> <input class="form-control" type="text" id="keyword"
+									name="keyword" value="${pageMaker.cri.keyword}"
+									placeholder="검색어를 입력하세요" />
+								<button id="searchBtn" class="btn btn-primary">Search</button>
+							</div>
 						</ul>
 					</div>
 				</div>
@@ -1023,7 +1038,7 @@ group+group {
 			}
 		}
 	</script>
-	
+
 </body>
 
 

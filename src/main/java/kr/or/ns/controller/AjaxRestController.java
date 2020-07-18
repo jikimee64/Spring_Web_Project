@@ -11,14 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.vo.Criteria_Board;
-import kr.or.ns.vo.Message;
 
 @RestController // controller + responsebody
 @RequestMapping("/ajax/")
@@ -391,4 +389,6 @@ public class AjaxRestController {
 			service.applycancelNomalStudy(s_seq, user_id);
 
 		}
+		
+		
 }
