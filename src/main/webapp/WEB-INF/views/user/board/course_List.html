@@ -349,9 +349,9 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-level">
 							&nbsp;
-							<li data-filter=".filter-level">입문</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">초급</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">중급 이상</li>
+							<li data-filter="입문">입문</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="초급">초급</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="중급이상">중급 이상</li>
 						</ul>
 					</div>
 				</div>
@@ -363,11 +363,11 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-price">
 							&nbsp;
-							<li data-filter=".filter-price">무료</li> &nbsp;
-							<li data-filter=".filter-price">3만원 이하</li> &nbsp;
-							<li data-filter=".filter-price">3-5 만원</li> &nbsp;
-							<li data-filter=".filter-price">5-10 만원</li> &nbsp;
-							<li data-filter=".filter-price">10만원 이상</li>
+							<li data-filter="무료">무료</li> &nbsp;
+							<li data-filter="30000" >3만원 이하</li> &nbsp;
+							<li data-filter="30000~50000" >3-5 만원</li> &nbsp;
+							<li data-filter="50000~100000">5-10 만원</li> &nbsp;
+							<li data-filter="100000">10만원 이상</li>
 						</ul>
 					</div>
 				</div>
@@ -386,7 +386,6 @@ keyframes heart-keyframes { 100% {
 							<li data-filter=".filter-lan">Javascript</li> &nbsp;
 							<li data-filter=".filter-lan">HTML/CSS</li> &nbsp;
 							<li data-filter=".filter-lan">Spring</li> &nbsp;
-							<li data-filter=".filter-lan">DataBase</li> &nbsp;
 							<li data-filter=".filter-lan">Python</li> &nbsp;
 							<li data-filter=".filter-lan">Vue.js</li> &nbsp;
 							<li data-filter=".filter-lan">React</li>
@@ -408,9 +407,9 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-site">
 							&nbsp;
-							<li data-filter=".filter-site">인프런</li> &nbsp;
-							<li data-filter=".filter-site">구름EDU</li> &nbsp;
-							<li data-filter=".filter-site">Udemy</li>
+							<li data-filter="인프런">인프런</li> &nbsp;
+							<li data-filter="구름EDU">구름EDU</li> &nbsp;
+							<li data-filter="Udemy">Udemy</li>
 						</ul>
 					</div>
 				</div>
@@ -495,118 +494,7 @@ keyframes heart-keyframes { 100% {
 
 		<input class="_bookmark_l_seq" th:value="${seqlist}" type="hidden" />
 
-		<!-- 		<div class="row" -->
-		<!-- 			style="width: 100%; margin: auto; margin-bottom: 20px;"> -->
-		<!-- 			<div class="col"> -->
-		<!-- 				<div class="card" style="width: 100%"> -->
-		<!-- 					<img class="card-img-top" -->
-		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
-		<!-- 				" -->
-		<!-- 						alt="Card image" style="width: 100%"> -->
-		<!-- 					<div class="card-body"> -->
-		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
-		<!-- 						<p class="card-text _margin_0" -->
-		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
-		<!-- 						<a href="#" class="stretched-link"></a> <img -->
-		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
-		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
-		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
-		<!-- 						</span> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 			<!-- 여기까지 카드 하나 끝 -->
-
-		<!-- 			<div class="col"> -->
-		<!-- 				<div class="card" style="width: 100%"> -->
-		<!-- 					<img class="card-img-top" -->
-		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
-		<!-- 				" -->
-		<!-- 						alt="Card image" style="width: 100%"> -->
-		<!-- 					<div class="card-body"> -->
-		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
-		<!-- 						<p class="card-text _margin_0" -->
-		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
-		<!-- 						<a href="#" class="stretched-link"></a> <img -->
-		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
-		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
-		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
-		<!-- 						</span> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 			<div class="col"> -->
-		<!-- 				<div class="card" style="width: 100%"> -->
-		<!-- 					<img class="card-img-top" -->
-		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
-		<!-- 				" -->
-		<!-- 						alt="Card image" style="width: 100%"> -->
-		<!-- 					<div class="card-body"> -->
-		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
-		<!-- 						<p class="card-text _margin_0" -->
-		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
-		<!-- 						<a href="#" class="stretched-link"></a> <img -->
-		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
-		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
-		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
-		<!-- 						</span> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 			<div class="col"> -->
-		<!-- 				<div class="card" style="width: 100%"> -->
-		<!-- 					<img class="card-img-top" -->
-		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
-		<!-- 				" -->
-		<!-- 						alt="Card image" style="width: 100%"> -->
-		<!-- 					<div class="card-body"> -->
-		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
-		<!-- 						<p class="card-text _margin_0" -->
-		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
-		<!-- 						<a href="#" class="stretched-link"></a> <img -->
-		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
-		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
-		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
-		<!-- 						</span> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 			<div class="col"> -->
-		<!-- 				<div class="card" style="width: 100%"> -->
-		<!-- 					<img class="card-img-top" -->
-		<!-- 						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg -->
-		<!-- 				" -->
-		<!-- 						alt="Card image" style="width: 100%"> -->
-		<!-- 					<div class="card-body"> -->
-		<!-- 						<h6 class="card-title _margin_0">Do it! Node.js 프로그래밍(개정판)</h6> -->
-		<!-- 						<p class="card-text _margin_0" -->
-		<!-- 							style="color: gray; font-size: small;">이지스 퍼블리싱</p> -->
-		<!-- 						<a href="#" class="stretched-link"></a> <img -->
-		<!-- 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png" -->
-		<!-- 							alt="" style="height: 40px;"> <span>(6)</span> <span -->
-		<!-- 							style="color: rgb(23, 92, 190)"> <b>₩44,000</b> -->
-		<!-- 						</span> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
-		<!-- 			</div> -->
-		<!-- 		</div> -->
-		<!-- 페이징 버튼 시작-->
-
-		<!-- 페이징 버튼 끝 -->
-
-
 		<br />
-		<!--//////////////////////////////  페이징 디자인
-		<div class="row" style="place-content: center;">
-			<ul class="pager d-flex"> 
-				<li><a class="page-link" href="#">PREV</a></li>
-				<li class="page-item"><a class="page-link" href="#">1</a></li>
-				<li class="page-item active"><a class="page-link" href="#">2</a></li>
-				<li class="page-item"><a class="page-link" href="#">3</a></li>
-				<li><a class="page-link" href="#">NEXT</a></li>
-			</ul>
-		</div>
-		//////////////////////////////-->
 
 		<!-- 페이징 부트스트랩 버튼 생성하기  -->
 		<ul class="pager d-flex" style="place-content: center;">
@@ -681,76 +569,116 @@ keyframes heart-keyframes { 100% {
 			var courseTitleTag = $('._course_title');
 
 			var courseTitleName = "";
-
-			$.each(courseTitleTag,
-					function(index, item) {
-
-						courseTitleName = courseTitleTag[index].innerText;
-
-						/* if문 그냥 대충 짜름 나중에 재수정 필요 */
-						if (courseTitleName.length > 17) {
-							courseTitleName = courseTitleName.substring(0, 17)
-									+ "...";
-						}
-						if (courseTitleName.length >= 8
-								&& courseTitleName.length <= 15) {
-							courseTitleName = courseTitleName
-									+ "\0\0\0\0\0\0\0\0\0\0";
-						}
-						if (courseTitleName.length < 8) {
-							courseTitleName = courseTitleName + "\n\n";
-						}
-						courseTitleTag[index].innerText = courseTitleName;
-					})
-
-			/* 강의 글자수 자르기  끝*/
-
-			/* 페이지 0 뜨는거 없애기 시작 */
-			var _page_button0 = $('.page-item').children().last().text();
-
-			if (_page_button0 == 0) {
-				$('.page-item').children().last().remove();
-			}
-			/*  페이지 0 뜨는거 없애기 끝 */
-
-			/* 이거는 하트 클릭시 alert창 띄우는거*/
-			$('._bookMark').click(
-					function(evt) {
-						var lectureTitle = $(evt.target).parent('div').parent(
-								'div').prev().prev().prev().prev().prev()
-								.text();
-						var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
-
-						console.warn(L_seq);
-
-						if ($(this).is(":checked")) {
-							swal("북마크에 추가되었습니다", "", "success");
-							// 				    console.log($(this).is(":checked"));
-						} else {
-							swal("북마크에서 삭제되었습니다", "", "info");
-							// 				  console.log($(this).is(":checked"));
-						}
-
-						var obj = {
-							"l_seq" : L_seq
-						};
-
-						$.ajax({
-							url : "/lecture/heart.do",
-							type : 'POST',
-							contentType : "application/json",
-							data : JSON.stringify(obj),
-							success : function(data) {
-							},
-							error : function(e) {
-								console.log("error:", e);
-							}
-						})
-
-					});
-			/* 하트 클릭시  alert창 띄우기 끝 */
-
+		
+			$.each(courseTitleTag, function(index,item){
+				
+				courseTitleName = courseTitleTag[index].innerText;
+				
+				
+				/* if문 그냥 대충 짜름 나중에 재수정 필요 */
+				if(courseTitleName.length > 17){
+					courseTitleName = courseTitleName.substring(0,17)+"...";
+				}
+				if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
+					courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
+				}
+				if(courseTitleName.length < 8){
+					courseTitleName = courseTitleName+"\n\n";
+				}
+				courseTitleTag[index].innerText = courseTitleName;
+			})
+		
+		/* 강의 글자수 자르기  끝*/	
+		
+		
+		/* 페이지 0 뜨는거 없애기 시작 */
+		var _page_button0 = $('.page-item').children().last().text();
+		
+		if(_page_button0 == 0){
+			$('.page-item').children().last().remove();
+		}
+		/*  페이지 0 뜨는거 없애기 끝 */
+	
+		
+		/* 이거는 하트 클릭시 alert창 띄우는거*/
+		  $('._bookMark').click(function(evt){
+			  var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
+			  var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
+			  
+			  console.warn(L_seq);
+			  
+			  
+			   if($(this).is(":checked")){
+				    swal("북마크에 추가되었습니다", "", "success");
+			  }else{
+				  swal("북마크에서 삭제되었습니다", "", "info");
+			  } 
+			  
+			  var obj = {"l_seq" : L_seq};
+			  
+			  
+			  $.ajax({
+					url : "/lecture/heart.do",
+					type : 'POST',
+				    contentType:"application/json",
+					data : JSON.stringify(obj),
+					success : function(data) {
+					},
+					error : function(e) {
+						console.log("error:", e);
+					}
+				})
+			  
+			  
+		  });
+		/* 하트 클릭시  alert창 띄우기 끝 */
+		
 		});
+	</script>
+
+	<script>
+		$("li").on(
+				"click",
+				function() {
+					var price = $('#portfolio-flters-price').children(
+							'.filter-active').attr('data-filter');
+					var level = $('#portfolio-flters-level').children(
+							'.filter-active').attr('data-filter');
+					var language = new Array();
+					$.each($('#portfolio-flters-lan').find('.filter-active'),
+							function(index, item) {
+								language[index] = item
+										.getAttribute('data-filter');
+								console.log(item.getAttribute('data-filter'))
+							});
+					var site = $('#portfolio-flters-site')
+							.children('.filter-active').attr('data-filter');
+
+					let data = {
+						"price" : price,
+						"level" : level,
+						"language" : language,
+						"site" : site
+					}
+					
+					$
+					.ajax({
+						url : '/Crawling/CrawlingInflearn9.do',
+						processData : false,
+						contentType : "application/json",
+						cache : false,
+						type : 'POST',
+						data : JSON.stringify(data),
+						success : function(data) {
+							
+						},
+						error : function(e) {
+							console.log("error:", e);
+						}
+					
+
+				});
+			});
 	</script>
 </body>
 

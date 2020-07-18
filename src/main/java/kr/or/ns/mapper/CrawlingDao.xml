@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ns.dao.CrawlingDao">
+
+	
+
+	<!-- 크롤링 데이터 인서트 -->
+	<insert id="insertStudy" parameterType="hashMap">
+			insert IGNORE into lecture_board(l_key,cate_level,p_seq,site_seq,lan_seq,l_image,l_title,l_writer,l_star,l_review,l_address)
+			values
+			<foreach collection="onlineStudyList" item="item" separator=",">
+				(
+				#{item.l_key},
+				#{item.cate_level},
+				#{item.p_seq},
+				#{item.site_seq}, 
+				#{item.lan_seq},
+				#{item.l_image},
+				#{item.l_title},
+				#{item.l_writer},
+				#{item.l_star},
+				#{item.l_review},
+				#{item.l_address})
+				</foreach>
+	</insert>
+
+			
+	
+</mapper>
