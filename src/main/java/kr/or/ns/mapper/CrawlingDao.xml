@@ -6,7 +6,7 @@
 
 	<!-- 크롤링 데이터 인서트 -->
 	<insert id="insertStudy" parameterType="hashMap">
-			insert IGNORE into lecture_board(l_key,cate_level,p_seq,site_seq,lan_seq,l_image,l_title,l_writer,l_star,l_review,l_address)
+			insert into lecture_board(l_key,cate_level,p_seq,site_seq,lan_seq,l_image,l_title,l_writer,l_star,l_review,l_address)
 			values
 			<foreach collection="onlineStudyList" item="item" separator=",">
 				(
