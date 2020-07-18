@@ -209,7 +209,7 @@ public class MessageController {
 
 		System.out.println("쪽지 번호 : " + m_seq);
 
-		int result = mservice.deleteMessageOne(m_seq);
+		int result = mservice.deleteFromMessageOne(m_seq);
 
 		return "redirect:mypage_Message_From_Board.do";
 	}
@@ -220,7 +220,7 @@ public class MessageController {
 
 		System.out.println("쪽지 번호asdasd : " + m_seq);
 
-		int result = mservice.deleteMessageOne(m_seq);
+		int result = mservice.deleteSendMessageOne(m_seq);
 		
 		System.out.println("삭제결과asdsad : " + result);
 

@@ -10,7 +10,19 @@
 	</select>
 
 	<!-- public int insertMessage(Message message) -->
-	<insert id="insertMessage" parameterType="kr.or.ns.vo.Message">
+	<insert id="insertSendMessage" parameterType="kr.or.ns.vo.Message">
+		insert into
+		message(receptionid, senderid, content, opendate, senddate, type)
+		values(
+		#{receptionid},
+		#{senderid},
+		#{content},
+		DATE_SUB(now(), INTERVAL 9 HOUR),
+		DATE_SUB(now(), INTERVAL 9 HOUR),
+		'발신'
+		)
+	</insert>
+	<insert id="insertReceptionMessage" parameterType="kr.or.ns.vo.Message">
 		insert into
 		message(receptionid, senderid, content, senddate)
 		values(
@@ -20,6 +32,7 @@
 		DATE_SUB(now(), INTERVAL 9 HOUR)
 		)
 	</insert>
+	
 
 
 
@@ -43,7 +56,7 @@
 	<select id="getMessageList" resultType="hashmap" parameterType="hashmap" >
 	   <![CDATA[
 		select * from message 
-		where receptionid = #{user_id} 
+		where receptionid = #{user_id}  and type = '수신'
 		ORDER BY m_seq desc 
 		limit #{pageStart}, #{perPageNum}
 		]]>
@@ -53,7 +66,7 @@
 	<select id="getSendMessageList" resultType="hashmap" parameterType="hashmap" >
 	   <![CDATA[
 		select * from message 
-		where senderid = #{user_id} 
+		where senderid = #{user_id}  and type = '발신'
 		ORDER BY m_seq desc 
 		limit #{pageStart}, #{perPageNum}
 		]]>
@@ -68,11 +81,15 @@
 
 	<select id="sendListMessage" parameterType="String"
 		resultType="kr.or.ns.vo.Message">
-		select * from message where senderid = #{userid} ORDER BY m_seq desc
+		select * from message where senderid = #{userid} and type = '발신' ORDER BY m_seq desc
 	</select>
 	
-	<delete id="deleteMessageOne">
-		delete from message where m_seq = #{m_seq}
+	<delete id="deleteSendMessageOne">
+		delete from message where m_seq = #{m_seq} and type = '발신'
+	</delete>
+	
+	<delete id="deleteFromMessageOne">
+		delete from message where m_seq = #{m_seq} and type = '수신'
 	</delete>
 	
 	<update id="updateMessage">

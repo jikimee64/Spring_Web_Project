@@ -1,20 +1,9 @@
 package kr.or.ns.service;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Criteria_Board;
-import kr.or.ns.vo.Message;
-import kr.or.ns.vo.Users;
 
 public interface AjaxService {
 	

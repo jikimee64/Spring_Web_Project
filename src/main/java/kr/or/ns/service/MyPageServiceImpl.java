@@ -75,6 +75,9 @@ public class MyPageServiceImpl implements MyPageService {
 		FileOutputStream fs = null;
 
 		CommonsMultipartFile imagefile = users.getFile();
+		
+		
+		
 		if (!imagefile.isEmpty()) {
 			System.out.println("받아온 이미지파일이름" + imagefile);
 			filename = users.getFile().getOriginalFilename();
@@ -97,6 +100,8 @@ public class MyPageServiceImpl implements MyPageService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			
+			
 		} else {
 			users.setProfile_img("member.png");
 		}

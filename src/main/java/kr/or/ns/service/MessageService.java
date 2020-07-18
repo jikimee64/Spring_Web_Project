@@ -15,7 +15,9 @@ public interface MessageService {
 	//보낸목록
 	public List<Message> sendListMessage(String userid);
 	
-	public int deleteMessageOne(String m_seq);
+	public int deleteSendMessageOne(String m_seq);
+	
+	public int deleteFromMessageOne(String m_seq);
 	
 	//목록
 	public List<Message> getListMessage(String userid);
