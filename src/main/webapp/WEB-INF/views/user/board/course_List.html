@@ -350,9 +350,9 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-level">
 							&nbsp;
-							<li data-filter=".filter-level">입문</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">초급</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter=".filter-level">중급 이상</li>
+							<li data-filter="입문">입문</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="초급">초급</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="중급이상">중급 이상</li>
 						</ul>
 					</div>
 				</div>
@@ -364,11 +364,11 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-price">
 							&nbsp;
-							<li data-filter=".filter-price">무료</li> &nbsp;
-							<li data-filter=".filter-price">3만원 이하</li> &nbsp;
-							<li data-filter=".filter-price">3-5 만원</li> &nbsp;
-							<li data-filter=".filter-price">5-10 만원</li> &nbsp;
-							<li data-filter=".filter-price">10만원 이상</li>
+							<li data-filter="무료">무료</li> &nbsp;
+							<li data-filter="30000" >3만원 이하</li> &nbsp;
+							<li data-filter="30000~50000" >3-5 만원</li> &nbsp;
+							<li data-filter="50000~100000">5-10 만원</li> &nbsp;
+							<li data-filter="100000">10만원 이상</li>
 						</ul>
 					</div>
 				</div>
@@ -383,21 +383,18 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">JAVA</li> &nbsp;
-							<li data-filter=".filter-lan">Javascript</li> &nbsp;
-							<li data-filter=".filter-lan">HTML/CSS</li> &nbsp;
-							<li data-filter=".filter-lan">Spring</li> &nbsp;
-							<li data-filter=".filter-lan">DataBase</li> &nbsp;
-							<li data-filter=".filter-lan">Python</li> &nbsp;
-							<li data-filter=".filter-lan">Vue.js</li> &nbsp;
-							<li data-filter=".filter-lan">React</li>
-						</ul>
-						<ul id="portfolio-flters-lan">
-							&nbsp;
-							<li data-filter=".filter-lan">JSP</li> &nbsp;
-							<li data-filter=".filter-lan">Jquery</li> &nbsp;
-							<li data-filter=".filter-lan">BootStrap</li> &nbsp;
-							<li data-filter=".filter-lan">JPA</li>
+							<li data-filter="java">JAVA</li> &nbsp;
+							<li data-filter="Javascript">Javascript</li> &nbsp;
+							<li data-filter="HTML/CSS">HTML/CSS</li> &nbsp;
+							<li data-filter="Spring">Spring</li> &nbsp;
+							<li data-filter="DataBase">DataBase</li> &nbsp;
+							<li data-filter="Python">Python</li> &nbsp;
+							<li data-filter="Vue.js">Vue.js</li> &nbsp;
+							<li data-filter="React">React</li>
+							<li data-filter="JSP">JSP</li> &nbsp;
+							<li data-filter="Jquery">Jquery</li> &nbsp;
+							<li data-filter="BootStrap">BootStrap</li> &nbsp;
+							<li data-filter="JPA">JPA</li>
 						</ul>
 					</div>
 				</div>
@@ -409,9 +406,9 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-site">
 							&nbsp;
-							<li data-filter=".filter-site">인프런</li> &nbsp;
-							<li data-filter=".filter-site">구름EDU</li> &nbsp;
-							<li data-filter=".filter-site">Udemy</li>
+							<li data-filter="인프런">인프런</li> &nbsp;
+							<li data-filter="구름EDU">구름EDU</li> &nbsp;
+							<li data-filter="Udemy">Udemy</li>
 						</ul>
 					</div>
 				</div>
@@ -735,11 +732,54 @@ keyframes heart-keyframes { 100% {
 			  
 		  });
 		/* 하트 클릭시  alert창 띄우기 끝 */
-			
-			
 		
 		});
 	
+	</script>
+
+	<script>
+		$("li").on(
+				"click",
+				function() {
+					var price = $('#portfolio-flters-price').children(
+							'.filter-active').attr('data-filter');
+					var level = $('#portfolio-flters-level').children(
+							'.filter-active').attr('data-filter');
+					var language = new Array();
+					$.each($('#portfolio-flters-lan').find('.filter-active'),
+							function(index, item) {
+								language[index] = item
+										.getAttribute('data-filter');
+								console.log(item.getAttribute('data-filter'))
+							});
+					var site = $('#portfolio-flters-site')
+							.children('.filter-active').attr('data-filter');
+
+					let data = {
+						"price" : price,
+						"level" : level,
+						"language" : language,
+						"site" : site
+					}
+					
+					$
+					.ajax({
+						url : '/Crawling/CrawlingInflearn9.do',
+						processData : false,
+						contentType : "application/json",
+						cache : false,
+						type : 'POST',
+						data : JSON.stringify(data),
+						success : function(data) {
+							
+						},
+						error : function(e) {
+							console.log("error:", e);
+						}
+					
+
+				});
+			});
 	</script>
 </body>
 
