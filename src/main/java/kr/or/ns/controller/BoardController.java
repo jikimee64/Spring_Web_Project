@@ -62,9 +62,13 @@ public class BoardController {
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
-	public String studyListPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
+	public String studyListPage(Criteria_Board cri_b, Model model, @RequestParam(value="searchType",required = false) String searchType, @RequestParam(value="keyword",required=false) String keyword) throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 
+		
+		System.out.println("searchType:"+searchType);
+		System.out.println("keyword:"+keyword);
+		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
 
