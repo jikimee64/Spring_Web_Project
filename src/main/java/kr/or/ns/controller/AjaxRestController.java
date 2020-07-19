@@ -259,6 +259,7 @@ public class AjaxRestController {
 		System.out.println("차트데이터");
 		List<HashMap<String, Object>> list = null;
 		list = service.mainChart();
+		System.out.println("차트 데이터 : " + list);
 		return list;
 	}
 

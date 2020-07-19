@@ -155,37 +155,33 @@ canvas {
 					url : "/ajax/mainChart.do",
 					dataType : "json", //POINT
 					success : function(data) {
-						console.log(data);
-						console.log(data[0].l_title);
-						console.log(data[0].count);
+						console.log('data사이즈 : ' + data.length);
+						
 						var barChartData = {
-							labels : [ data[0].l_title, data[1].l_title,
-									data[2].l_title, data[3].l_title,
-									data[4].l_title, data[5].l_title,
-									data[6].l_title, data[7].l_title,
-									data[8].l_title, data[9].l_title ],
-							//type: 'bar',
-							datasets : [ {
-								data : [ data[0].count, data[1].count,
-										data[2].count, data[3].count,
-										data[4].count, data[5].count,
-										data[6].count, data[7].count,
-										data[8].count, data[9].count ],
-								backgroundColor : [ 'rgba(244,99,132,0.2)',
-										'rgba(54,162,235,0.2)',
-										'rgba(255,206,86,0.2)',
-										'rgba(75,192,192,0.2)',
-										'rgba(244,99,132,0.2)',
-										'rgba(153,102,255,0.2)',
-										'rgba(54,162,235,0.2)',
-										'rgba(255,206,86,0.2)',
-										'rgba(75,192,192,0.2)',
-										'rgba(244,99,132,0.2)' ],
-								label : '총 북마크 개수'
-
-							} ]
-						};
-
+								labels : [  ],
+								//type: 'bar',
+								datasets : [ {
+									data : [ ],
+									backgroundColor : [ 'rgba(244,99,132,0.2)',
+											'rgba(54,162,235,0.2)',
+											'rgba(255,206,86,0.2)',
+											'rgba(75,192,192,0.2)',
+											'rgba(244,99,132,0.2)',
+											'rgba(153,102,255,0.2)',
+											'rgba(54,162,235,0.2)',
+											'rgba(255,206,86,0.2)',
+											'rgba(75,192,192,0.2)',
+											'rgba(244,99,132,0.2)' ],
+									label : '총 북마크 개수'
+								} ]
+							};
+						if(data.length < 11){
+							for(var i = 0; i < data.length; i++){
+								barChartData.labels.push(data[i].l_title)
+								barChartData.datasets[0].data.push(data[i].count)
+							} //for문
+						}
+						
 						var ctx = $('#myChart').get(0).getContext("2d");
 						window.theChart = new Chart(ctx, {
 							type : 'bar',
