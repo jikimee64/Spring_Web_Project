@@ -306,6 +306,36 @@ keyframes heart-keyframes { 100% {
 	background-color: #18d26e;
 	border-color: #18d26e;
 }
+
+._course_title{
+ display: inline-block; width: 200px;
+  white-space: nowrap; overflow: hidden;
+   text-overflow: ellipsis; 
+ white-space: normal;
+  line-height: 1.2; 
+  height: 2.4em; 
+  text-align: left;
+   word-wrap: break-word;
+    display: -webkit-box; 
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    max-inline-size: fit-content;
+
+}
+._course_author{
+	display: inline-block; width: 200px;
+  white-space: nowrap; overflow: hidden;
+   text-overflow: ellipsis; 
+ white-space: normal;
+  line-height: 1.2; 
+  height: 1.2em; 
+  text-align: left;
+   word-wrap: break-word;
+    display: -webkit-box; 
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    max-inline-size: fit-content;
+}
 /* 하트 체크박스 끝 */
 </style>
 
@@ -364,8 +394,8 @@ keyframes heart-keyframes { 100% {
 						<ul id="portfolio-flters-price">
 							&nbsp;
 							<li data-filter="무료">무료</li> &nbsp;
-							<li data-filter="30000" >3만원 이하</li> &nbsp;
-							<li data-filter="30000~50000" >3-5 만원</li> &nbsp;
+							<li data-filter="30000">3만원 이하</li> &nbsp;
+							<li data-filter="30000~50000">3-5 만원</li> &nbsp;
 							<li data-filter="50000~100000">5-10 만원</li> &nbsp;
 							<li data-filter="100000">10만원 이상</li>
 						</ul>
@@ -441,10 +471,14 @@ keyframes heart-keyframes { 100% {
 						alt="Card image" style="width: 100%">
 
 					<div class="card-body">
-						<h6 class="card-title _margin_0 _course_title"
-							th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
+						<div style="height:39px;" class="_course_title">
+							<h6 class="card-title _margin_0 " 
+								th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
+						</div>
+						<div class="_course_author">
 						<p class="card-text _margin_0"
 							style="color: gray; font-size: small;">이지스 퍼블리싱</p>
+							</div>
 						<a href="" class="stretched-link"></a>
 						<div
 							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
@@ -566,73 +600,68 @@ keyframes heart-keyframes { 100% {
 			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
 
 			/* 강의 글자수 자르기  시작*/
-			var courseTitleTag = $('._course_title');
+			// 			var courseTitleTag = $('._course_title');
+			// 			var courseTitleName = "";
+			// 			$.each(courseTitleTag, function(index,item){
+			// 				courseTitleName = courseTitleTag[index].innerText;
 
-			var courseTitleName = "";
-		
-			$.each(courseTitleTag, function(index,item){
-				
-				courseTitleName = courseTitleTag[index].innerText;
-				
-				
-				/* if문 그냥 대충 짜름 나중에 재수정 필요 */
-				if(courseTitleName.length > 17){
-					courseTitleName = courseTitleName.substring(0,17)+"...";
-				}
-				if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
-					courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
-				}
-				if(courseTitleName.length < 8){
-					courseTitleName = courseTitleName+"\n\n";
-				}
-				courseTitleTag[index].innerText = courseTitleName;
-			})
-		
-		/* 강의 글자수 자르기  끝*/	
-		
-		
-		/* 페이지 0 뜨는거 없애기 시작 */
-		var _page_button0 = $('.page-item').children().last().text();
-		
-		if(_page_button0 == 0){
-			$('.page-item').children().last().remove();
-		}
-		/*  페이지 0 뜨는거 없애기 끝 */
-	
-		
-		/* 이거는 하트 클릭시 alert창 띄우는거*/
-		  $('._bookMark').click(function(evt){
-			  var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
-			  var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
-			  
-			  console.warn(L_seq);
-			  
-			  
-			   if($(this).is(":checked")){
-				    swal("북마크에 추가되었습니다", "", "success");
-			  }else{
-				  swal("북마크에서 삭제되었습니다", "", "info");
-			  } 
-			  
-			  var obj = {"l_seq" : L_seq};
-			  
-			  
-			  $.ajax({
-					url : "/lecture/heart.do",
-					type : 'POST',
-				    contentType:"application/json",
-					data : JSON.stringify(obj),
-					success : function(data) {
-					},
-					error : function(e) {
-						console.log("error:", e);
-					}
-				})
-			  
-			  
-		  });
-		/* 하트 클릭시  alert창 띄우기 끝 */
-		
+			// 				/* if문 그냥 대충 짜름 나중에 재수정 필요 */
+			// 				if(courseTitleName.length > 17){
+			// 					courseTitleName = courseTitleName.substring(0,17)+"...";
+			// 				}
+			// 				if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
+			// 					courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
+			// 				}
+			// 				if(courseTitleName.length < 8){
+			// 					courseTitleName = courseTitleName+"\n\n";
+			// 				}
+			// 				courseTitleTag[index].innerText = courseTitleName;
+			// 			})
+			/* 강의 글자수 자르기  끝*/
+
+			/* 페이지 0 뜨는거 없애기 시작 */
+			var _page_button0 = $('.page-item').children().last().text();
+
+			if (_page_button0 == 0) {
+				$('.page-item').children().last().remove();
+			}
+			/*  페이지 0 뜨는거 없애기 끝 */
+
+			/* 이거는 하트 클릭시 alert창 띄우는거*/
+			$('._bookMark').click(
+					function(evt) {
+						var lectureTitle = $(evt.target).parent('div').parent(
+								'div').prev().prev().prev().prev().prev()
+								.text();
+						var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
+
+						console.warn(L_seq);
+
+						if ($(this).is(":checked")) {
+							swal("북마크에 추가되었습니다", "", "success");
+						} else {
+							swal("북마크에서 삭제되었습니다", "", "info");
+						}
+
+						var obj = {
+							"l_seq" : L_seq
+						};
+
+						$.ajax({
+							url : "/lecture/heart.do",
+							type : 'POST',
+							contentType : "application/json",
+							data : JSON.stringify(obj),
+							success : function(data) {
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
+						})
+
+					});
+			/* 하트 클릭시  alert창 띄우기 끝 */
+
 		});
 	</script>
 
@@ -651,8 +680,8 @@ keyframes heart-keyframes { 100% {
 										.getAttribute('data-filter');
 								console.log(item.getAttribute('data-filter'))
 							});
-					var site = $('#portfolio-flters-site')
-							.children('.filter-active').attr('data-filter');
+					var site = $('#portfolio-flters-site').children(
+							'.filter-active').attr('data-filter');
 
 					let data = {
 						"price" : price,
@@ -660,9 +689,8 @@ keyframes heart-keyframes { 100% {
 						"language" : language,
 						"site" : site
 					}
-					
-					$
-					.ajax({
+
+					$.ajax({
 						url : '/Crawling/CrawlingInflearn9.do',
 						processData : false,
 						contentType : "application/json",
@@ -670,15 +698,14 @@ keyframes heart-keyframes { 100% {
 						type : 'POST',
 						data : JSON.stringify(data),
 						success : function(data) {
-							
+
 						},
 						error : function(e) {
 							console.log("error:", e);
 						}
-					
 
+					});
 				});
-			});
 	</script>
 </body>
 

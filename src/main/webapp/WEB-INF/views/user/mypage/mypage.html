@@ -47,6 +47,20 @@ body {
 	fill: #E8336D;
 	width: 30px;
 }
+._title{
+ display: inline-block; width: 800px;
+  white-space: nowrap; overflow: hidden;
+   text-overflow: ellipsis; 
+ white-space: normal;
+  line-height: 1.2; 
+  height: 2.4em; 
+  text-align: left;
+   word-wrap: break-word;
+    display: -webkit-box; 
+    -webkit-line-clamp: 1; 
+    -webkit-box-orient: vertical;
+      inline-size: -webkit-fill-available;
+}
 </style>
 
 <body>
@@ -194,10 +208,11 @@ body {
 										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"> <img
 										src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
 										class="mb-1 _message_hover" alt="" style="height: 27px;">
-
-										<br /> <b><span th:text="${studylist.TITLE}"
-											style="font-size: xx-large;"></span></b>
-									</a> 
+										</a>
+										<br /> 
+										<div class="_title"><b><span th:text="${studylist.TITLE}"
+											style="font-size: xx-large;"></span></b></div>
+									
 
 
 
@@ -206,10 +221,10 @@ body {
 
 									<th:block th:switch="${studylist.CONTENT_KIND}">
 										<img th:case="온라인강의" th:src="${studylist.IMAGE}"
-											alt='이미지가 없습니다' style='height: 140px; width: 140px;'>
+											alt='이미지가 없습니다' style='height: 140px; width: 92%;'>
 										<img th:case="일반"
 											th:src="'/studyboard/upload/' + ${studylist.IMAGE}"
-											alt='이미지가 없습니다' style='height: 140px; width: 140px;'>
+											alt='이미지가 없습니다' style='height: 140px; width: 92%;'>
 									</th:block>
 									<!-- <img th:src="${studylist.IMAGE}" alt=""
 									style="height: 140px; width: 140px;"> -->
@@ -257,7 +272,7 @@ body {
 									</div>
 									<div class="col-md-2" style="text-align: center;">
 										<img th:src="${list.L_IMAGE}" alt=""
-											style="height: 140px; width: 140px;">
+											style="height: 140px; width: 92%;">
 									</div>
 									<div class="col-md-7"
 										style="padding-left: 50px; padding-right: 0px; padding-top: 10px;">
@@ -359,20 +374,20 @@ body {
 															console
 																	.log(item.S_SEQ);
 															/*  제목이랑 내용 문자열 자르기 시작 */
-															if (data[index].TITLE.length > 18) {
-																data[index].TITLE = data[index].TITLE
-																		.substr(
-																				0,
-																				18)
-																		+ "...";
-															}
-															if (data[index].CONTENT.length > 335) {
-																data[index].CONTENT = data[index].CONTENT
-																		.substr(
-																				0,
-																				335)
-																		+ "...";
-															}
+// 															if (data[index].TITLE.length > 18) {
+// 																data[index].TITLE = data[index].TITLE
+// 																		.substr(
+// 																				0,
+// 																				18)
+// 																		+ "...";
+// 															}
+// 															if (data[index].CONTENT.length > 335) {
+// 																data[index].CONTENT = data[index].CONTENT
+// 																		.substr(
+// 																				0,
+// 																				335)
+// 																		+ "...";
+// 															}
 															
 															 var write_date = new Date(data[index].WRITE_DATE);
 															 var deadline = new Date(data[index].DEADLINE);
@@ -425,15 +440,15 @@ body {
 															html += "</div>";
 															html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
 															/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-															html += "<b><span style='font-size:xx-large;'>"
+															html += "<div class='_title'><b><span style='font-size:xx-large;'>"
 																	+ data[index].TITLE
-																	+ "</span></b><br/></a>";
+																	+ "</span></b></div><br/></a>";
 															html += "</div>";
 															html += "<div class='col-md-3' style='text-align: right;'>";
 															if (data[index].CONTENT_KIND === '온라인강의') {
-																html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>"
+																html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
 															} else {
-																html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>"
+																html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
 															}
 															/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
 															html += "</div>";
@@ -531,18 +546,18 @@ body {
 																			+ data[index].S_SEQ
 																			+ "'>";
 																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
-																	html += "<a href = '/board/board.Support_Status.do'>";
+																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
 																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-																	html += "<b><span style='font-size:xx-large;' class='_title2'>"
+																	html += "<div class='_title'><b><span style='font-size:xx-large;' class='_title2'>"
 																			+ data[index].TITLE
-																			+ "</span></b><br/><a/>";
+																			+ "</span></b></div><br/><a/>";
 																
 																	html += "</div>";
 																	html += "<div class='col-md-3' style='text-align: right;'>";
 																	if (data[index].CONTENT_KIND === '온라인강의') {
-																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>"
+																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
 																	} else {
-																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>"
+																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
 																	}
 
 																	html += "</div>";
