@@ -387,19 +387,71 @@ group+group {
 								th:classappend="${studyContent} == '2' ? filter-active : null"
 								style="margin-right: 200px;">일반</li>
 								
+								
+								
+								
+								
+								
+								
+								<!-- 검색 form -->
+								
+								
 							<div class="form-inline" style="display: inline-flex;">
-								<select class="custom-select-sm" id="searchType" name="searchType">
-									<option value="">검색조건</option>
-									<option value="t">제목</option>
-									<option value="c">내용</option>
-									<option value="w">작성자</option>
-									<option value="tc">제목+내용</option>
-									<option value="all">전체조건</option>
-								</select> <input class="form-control" type="text" id="keyword"
-									name="keyword" value="${pageMaker.cri.keyword}"
-									placeholder="검색어를 입력하세요" />
+<!-- 								<form id ="searchForm" action="study_List.do" method="get"> -->
+							
+								<select class="custom-select-sm" id="searchTypeSel" name="searchType">
+									<option value="" >검색조건</option>
+									<option value="t" >제목</option>
+									<option value="c" >내용</option>
+									<option value="w" >작성자</option>
+									<option value="tc" >제목+내용</option>
+									<option value="all"  >전체조건</option>
+
+<!-- 				<option value="" <c:out value="${paging.cri.type == null?'selected':'' }" />>선택</option> -->
+<!-- 				<option value="T" <c:out value="${paging.cri.type eq 'T'?'selected':'' }" />>제목</option> -->
+<!-- 				<option value="C" <c:out value="${paging.cri.type eq 'C'?'selected':'' }" />>내용</option> -->
+<!-- 				<option value="W" <c:out value="${paging.cri.type eq 'W'?'selected':'' }" />>작성자</option> -->
+<!-- 				<option value="TC" <c:out value="${paging.cri.type eq 'TC'?'selected':'' }" />>제목 + 내용</option> -->
+<!-- 				<option value="TW" <c:out value="${paging.cri.type eq 'TW'?'selected':'' }" />>제목 + 작성자</option> -->
+<!-- 				<option value="TCW" <c:out value="${paging.cri.type eq 'TCW'?'selected':'' }" />>제목 + 내용 + 작성자</option> -->
+
+
+<!-- 							<option value="" th:if="${pageMakerb.cri_b.searchType == null? 'selected':''}">검색조건</option> -->
+<!-- 									<option value="t" th:if="${pageMakerb.cri_b.searchType == 't'? 'selected':''}">제목</option> -->
+<!-- 									<option value="c" th:if="${pageMakerb.cri_b.searchType == 'c'? 'selected':''}">내용</option> -->
+<!-- 									<option value="w" th:if="${pageMakerb.cri_b.searchType == 'w'? 'selected':''}">작성자</option> -->
+<!-- 									<option value="tc" th:if="${pageMakerb.cri_b.searchType == 'tc'? 'selected':''}">제목+내용</option> -->
+<!-- 									<option value="all" th:if="${pageMakerb.cri_b.searchType == 'all'? 'selected':''}">전체조건</option> -->
+
+
+
+
+								</select> 
+								
+								<input class="form-control" type="text" id="keyword" name="keyword" 
+								th:value="${pageMakerb.cri_b.keyword}" placeholder="검색어를 입력하세요" />
+<!-- 								value="${pageMakerb.cri_b.keyword}" placeholder="검색어를 입력하세요" /> -->
+								
+								<!-- value가 왜필요해? -->		
+									
 								<button id="searchBtn" class="btn btn-primary">Search</button>
+							
+<!-- 								</form> -->
 							</div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 						</ul>
 					</div>
 				</div>
@@ -719,6 +771,64 @@ group+group {
 
 		}
 	</script>
+
+	<script th:inline="javascript">
+	$(function(){
+		
+		//searchType select 박스 설정
+		setSearchTypeSelect();
+		
+	function setSearchTypeSelect(){
+		var $searchTypeSel = $('#searchTypeSel');
+		var $keyword = $('#keyword');
+// 		$searchTypeSel.val('${pageMakerb.cri_b.searchType}').prop("selected",true);
+
+		
+		
+    /* <![CDATA[ */
+  		var pcs = /*[[${pageMakerb.cri_b.searchType}]]*/;
+    /* ]]> */
+
+		
+		
+		$searchTypeSel.val(pcs).prop("selected",true);
+		
+		//검색 버튼이 눌리면
+		$('#searchBtn').on('click',function(){
+			searchTypeVal = $searchTypeSel.val();
+			keywordVal = $keyword.val();
+			
+			//검색 조건 입력 안했으면 경고창 
+			if(!searchTypeVal){
+				alert("검색 조건을 선택하세요!");
+				$searchTypeSel.focus();
+				return;
+				
+			//검색어 입력 안했으면 검색창
+			}else if(!keywordVal){
+				alert("검색어를 입력하세요!");
+				$('#keyword').focus();
+				return;
+			}
+			
+			var url = "study_List.do?searchType=" + searchTypeVal
+				+ "&keyword=" + encodeURIComponent(keywordVal);
+			window.location.href = url;
+			
+		/* 	var url = "study_List.do?page=1&perPageNum="+pageMakerb.cri_b.perPageNum+"&searchType="+searchTypeVal+"&keyword="+encodeURIComponent(keywordVal);
+				window.location.href = url; */
+			
+			
+		})
+		
+	}//searchType
+	
+	
+	})//func
+	</script>
+
+
+
 
 	<script>
 		$("li")
