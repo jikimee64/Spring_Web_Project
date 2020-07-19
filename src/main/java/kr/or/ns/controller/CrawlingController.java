@@ -372,7 +372,6 @@ public class CrawlingController {
 		System.out.println("온라인 삽입 결과 : " + result);
 	}
 
-	// ------------------------------------------------ 구름에듀 크롤링하기
 	@RequestMapping("CrawlingGoormEdu.do")
 	public void CrawlingGoormEdu() {
 
@@ -381,8 +380,8 @@ public class CrawlingController {
 		languagelist.add("자바스크립트");
 		languagelist.add("html");
 		languagelist.add("css");
-		languagelist.add("spring");
-		languagelist.add("파이썬");
+		languagelist.add("spring"); 
+		languagelist.add("파이썬"); //40개?
 		languagelist.add("vue.js");
 		languagelist.add("react");
 		languagelist.add("jQuery");
@@ -392,8 +391,7 @@ public class CrawlingController {
 
 		// 크롤링할 url지정
 		for (int i = 0; i < languagelist.size(); i++) {
-			String url = "https://edu.goorm.io/category/programming?page=&sort=newest&classification="
-					+ languagelist.get(i);
+			String url = "https://edu.goorm.io/category/programming?page=1&sort=newest&classification="+languagelist.get(i);
 			List<Map<String, Object>> titleList = new ArrayList<>();
 
 			Connection conn = Jsoup.connect(url);
@@ -420,47 +418,53 @@ public class CrawlingController {
 
 			System.out.println("페이지네이션" + end);
 			// System.out.println("페이지 갯수" + pagination2);
+			
+			Elements element = html.getElementsByClass("_1xnzzp");
 
 			if (end > 1) {
-				for (int z = 0; z < end; z++) {
-					url = "https://edu.goorm.io/category/programming?page=" + z + "&sort=newest&classification="
-							+ languagelist.get(i);
+				for (int z = 1; z <= end; z++) {
+					url = "https://edu.goorm.io/category/programming?page="+z+"&sort=newest&classification="+languagelist.get(i);
 
-					Elements element = html.getElementsByClass("_1xnzzp");
+					System.out.println("page : " + z);
+					
+					Connection conn2 = Jsoup.connect(url);
+
+	                Document html2 = null;
+	                try {
+	                    html2 = conn2.get();
+	                } catch (IOException e) {
+	                    e.printStackTrace();
+	                }
+					
+					element = html2.getElementsByClass("_1xnzzp");
+					
 					for (int j = 0; j < element.size(); j++) {
 						Map<String, Object> map = new HashMap();
 						// 키값
-						Elements originalKey = element.get(z).getElementsByClass("_1xnzzp");
+						Elements originalKey = element.get(j).getElementsByClass("_1xnzzp");
 						String prekey = originalKey.attr("href");
-
-						System.out.println("가공전!!! : " + prekey);
+						//System.out.println("가공전!!! : " + prekey);
 						String arr[] = prekey.split("/");
-						System.out.println("@@이거다 : " + arr[2]);
-						/*
-						 * System.out.println("가공 전 " + prekey); String key = prekey.substring(9, 14);
-						 * System.out.println("가공 후 " + key);
-						 * 
-						 * 
-						 * 
-						 * map.put("l_key", key);
-						 */
+						//System.out.println("@@이거다 : " + arr[2]);
+						map.put("l_key", arr[2]);
 
 						// 난이도
 						Elements level = element.get(j).getElementsByClass("_4lV4wq").eq(0).tagName("span");
 						String cate = level.text();
-						switch (cate) {
-						case "쉬움":
-							map.put("입문", "입문");
-						case "보통":
-							map.put("초급", "초급");
-						case "어려움":
-							map.put("중급이상", "중급이상");
+						//System.out.println("카테고리" + cate);
+
+						if (cate.equals("쉬움")) {
+							map.put("cate_level", "입문");
+						} else if (cate.equals("보통")) {
+							map.put("cate_level", "초급");
+						} else {
+							map.put("cate_level", "중급이상");
 						}
 
 						// 가격
 						Elements pricesData = element.get(j).getElementsByClass("_3vh60A");
 						String pricesData2 = pricesData.text();
-						System.out.println("가격 가공 전" + pricesData2);
+						//System.out.println("가격 가공 전" + pricesData2);
 						// String prices1 = pricesData2.replaceAll(",", "");
 						// System.out.println("1단계 가공" + prices1);
 						// String prices22 = prices1.substring(1);
@@ -470,9 +474,9 @@ public class CrawlingController {
 							map.put("p_seq", 1);
 						} else {
 							String prices1 = pricesData2.replaceAll(",", "");
-							System.out.println("가격1단계" + prices1);
+							//System.out.println("가격1단계" + prices1);
 							String prices22 = prices1.substring(1);
-							System.out.println("가격2단계" + prices22);
+							//System.out.println("가격2단계" + prices22);
 							int prices_insert = Integer.parseInt(prices22);
 							if (prices_insert < 30000) {
 								map.put("p_seq", 2);
@@ -527,8 +531,8 @@ public class CrawlingController {
 						Elements files = element.get(j).getElementsByTag("img");
 						String src = files.attr("data-src");
 						map.put("l_image", src);
-						System.out.println("받아온 이미지" + files);
-						System.out.println("받아온 이미지2 " + src);
+						//System.out.println("받아온 이미지" + files);
+						//System.out.println("받아온 이미지2 " + src);
 
 						// 강의제목
 						Elements title = element.get(j).getElementsByClass("kV2LiJ");
@@ -542,7 +546,7 @@ public class CrawlingController {
 						Elements starsData = element.get(j).getElementsByClass("_2KWt9f _3SwFuE");
 						String starsText = starsData.text();
 						double stars = Double.parseDouble(starsText);
-						System.out.println("stars" + stars);
+						//System.out.println("stars" + stars);
 						if (stars < 1.0) {
 							map.put("l_star", "0.5");
 						} else if (stars < 1.1) {
@@ -564,7 +568,7 @@ public class CrawlingController {
 						} else {
 							map.put("l_star", "5.0");
 						}
-						System.out.println("별점" + stars);
+						//System.out.println("별점" + stars);
 
 						// 리뷰 수
 						Elements review_cnt = element.get(j).getElementsByClass("_1kTxrO").tagName("span");
@@ -581,38 +585,36 @@ public class CrawlingController {
 				}
 
 			} else {
-				Elements element = html.getElementsByClass("_1xnzzp");
+				
+				
+				//Elements element = html.getElementsByClass("_1xnzzp");
 				for (int j = 0; j < element.size(); j++) {
 					Map<String, Object> map = new HashMap();
 					// 키값
 					Elements originalKey = element.get(j).getElementsByClass("_1xnzzp");
 					String prekey = originalKey.attr("href");
-
-					System.out.println("가공전!!! : " + prekey);
+					//System.out.println("가공전!!! : " + prekey);
 					String arr[] = prekey.split("/");
-					System.out.println("@@이거다 : " + arr[2]);
-
-					/*
-					 * System.out.println("가공 전 " + prekey); String key = prekey.substring(9, 14);
-					 * System.out.println("가공 후 " + key); map.put("l_key", key);
-					 */
-
+					//System.out.println("@@이거다 : " + arr[2]);
+					map.put("l_key", arr[2]);
+					
 					// 난이도
 					Elements level = element.get(j).getElementsByClass("_4lV4wq").eq(0).tagName("span");
 					String cate = level.text();
-					switch (cate) {
-					case "쉬움":
-						map.put("입문", "입문");
-					case "보통":
-						map.put("초급", "초급");
-					case "어려움":
-						map.put("중급이상", "중급이상");
+					System.out.println("(페이징1)카테고리" + cate);
+
+					if (cate.equals("쉬움")) {
+						map.put("cate_level", "입문");
+					} else if (cate.equals("보통")) {
+						map.put("cate_level", "초급");
+					} else {
+						map.put("cate_level", "중급이상");
 					}
 
 					// 가격
 					Elements pricesData = element.get(j).getElementsByClass("_3vh60A");
 					String pricesData2 = pricesData.text();
-					System.out.println("가격 가공 전" + pricesData2);
+					//System.out.println("가격 가공 전" + pricesData2);
 					// String prices1 = pricesData2.replaceAll(",", "");
 					// System.out.println("1단계 가공" + prices1);
 					// String prices22 = prices1.substring(1);
@@ -622,9 +624,9 @@ public class CrawlingController {
 						map.put("p_seq", 1);
 					} else {
 						String prices1 = pricesData2.replaceAll(",", "");
-						System.out.println("가격1단계" + prices1);
+						//System.out.println("가격1단계" + prices1);
 						String prices22 = prices1.substring(1);
-						System.out.println("가격2단계" + prices22);
+						//System.out.println("가격2단계" + prices22);
 						int prices_insert = Integer.parseInt(prices22);
 						if (prices_insert < 30000) {
 							map.put("p_seq", 2);
@@ -679,8 +681,8 @@ public class CrawlingController {
 					Elements files = element.get(j).getElementsByTag("img");
 					String src = files.attr("data-src");
 					map.put("l_image", src);
-					System.out.println("받아온 이미지" + files);
-					System.out.println("받아온 이미지2 " + src);
+					//System.out.println("받아온 이미지" + files);
+					//System.out.println("받아온 이미지2 " + src);
 
 					// 강의제목
 					Elements title = element.get(j).getElementsByClass("kV2LiJ");
@@ -694,7 +696,7 @@ public class CrawlingController {
 					Elements starsData = element.get(j).getElementsByClass("_2KWt9f _3SwFuE");
 					String starsText = starsData.text();
 					double stars = Double.parseDouble(starsText);
-					System.out.println("stars" + stars);
+					//System.out.println("stars" + stars);
 					if (stars < 1.0) {
 						map.put("l_star", "0.5");
 					} else if (stars < 1.1) {
@@ -716,7 +718,7 @@ public class CrawlingController {
 					} else {
 						map.put("l_star", "5.0");
 					}
-					System.out.println("별점" + stars);
+					//System.out.println("별점" + stars);
 
 					// 리뷰 수
 					Elements review_cnt = element.get(j).getElementsByClass("_1kTxrO").tagName("span");
@@ -732,9 +734,9 @@ public class CrawlingController {
 
 			}
 			int result = service.insertStudy(titleList);
-			System.out.println("구름에듀 인서트 결과" + result);
+			//System.out.println("구름에듀 인서트 결과" + result);
 			// 페이지 갯수 뽑기
-			System.out.println("============================================================");
+			//System.out.println("============================================================");
 		}
 	}
 
@@ -742,16 +744,18 @@ public class CrawlingController {
 	@RequestMapping("CrawlingUdemy.do")
 	public List<UdemyResponse> CrawlingUdemy() {
 
+		// 서비스에 넘길 리스트맵
+		List<Map<String, Object>> listMap = new ArrayList();
+
+		// 강의 아이디만 보관
+		List<String> idList = new ArrayList();
+
+		// 강의정보 보관
 		List<UdemyResponse> list = new ArrayList();
+
 		String course[] = { "6148", "4820", "7380", "4308", "6368", "6404", "7450" };
 		// html, 부트스트랩, 파이썬, vue.js, javascript, jquery, react,
-		
-		
-		/*URI uri2 = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/pricing/")
-				.queryParam("", "1").queryParam("lang", "ko")
-				.queryParam("sos", "ps").queryParam("fl", "scat").build().toUri();*/
-		
-		
+
 		for (int i = 0; i < course.length; i++) {
 			UdemyResponse returnTypeData = new UdemyResponse();
 			URI uri = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/discovery-units/all_courses/")
@@ -766,7 +770,8 @@ public class CrawlingController {
 
 		for (int j = 0; j < list.size(); j++) {
 			for (int z = 0; z < list.get(j).getUnit().getItems().size(); z++) {
-				int id = list.get(j).getUnit().getItems().get(z).getId();
+				String id = Integer.toString(list.get(j).getUnit().getItems().get(z).getId());
+				idList.add(id);
 				System.out.println("id : " + id);
 				String title = list.get(j).getUnit().getItems().get(z).getTitle();
 				System.out.println("title : " + title);
@@ -786,6 +791,12 @@ public class CrawlingController {
 				System.out.println("label_title : " + label_title);
 				System.out.println("-----구분선-------");
 			}
+		}
+
+		for (int z = 0; z < idList.size(); z++) {
+			URI uri2 = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/pricing/")
+					.queryParam("course_ids", idList.get(z)).build().toUri();
+			// returnTypeData2 = restTemplate.getForObject(uri2, UdemyResponse.class);
 		}
 
 		return list;
