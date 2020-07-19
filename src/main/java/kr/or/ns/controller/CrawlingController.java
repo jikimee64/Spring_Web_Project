@@ -17,6 +17,8 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kr.or.ns.crawling.vo.UdemyCourses;
 import kr.or.ns.crawling.vo.UdemyKey;
 import kr.or.ns.crawling.vo.UdemyPrice;
 import kr.or.ns.crawling.vo.UdemyResponse;
@@ -748,7 +754,7 @@ public class CrawlingController {
 
 	// 유데미 크롤링하기
 	@RequestMapping("CrawlingUdemy.do")
-	public List<UdemyResponsePrice> CrawlingUdemy() {
+	public List<UdemyResponsePrice> CrawlingUdemy() throws JsonProcessingException {
 
 		// 서비스에 넘길 리스트맵
 		List<Map<String, Object>> listMap = new ArrayList();
@@ -809,21 +815,46 @@ public class CrawlingController {
 		for (int z = 0; z < idList.size(); z++) {
 			UdemyResponsePrice returnTypeData2 = new UdemyResponsePrice();
 			URI uri2 = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/pricing/")
-					.queryParam("course_ids", idList.get(0))
-					.queryParam("fields[pricing_result]", "price").build().toUri();
+					.queryParam("course_ids", idList.get(z))
+					.queryParam("fields[pricing_result]", "price,discount_price,list_price,price_detail,price_serve_tracking_id").build().toUri();
 			System.out.println("uri2 : " + uri2);
 			
+			returnTypeData2 = restTemplate.getForObject(uri2, UdemyResponsePrice.class);
+			
+			HttpHeaders headers = new HttpHeaders();
+			HttpEntity entity = new HttpEntity(headers);
+			
 			ResponseEntity<Map<String, Object>> rateResponse =
-					restTemplate.exchange(uri2, HttpMethod.GET, null, 
+					restTemplate.exchange(uri2, HttpMethod.GET, entity, 
 							new ParameterizedTypeReference<Map<String, Object>>() {});
 			
-			System.out.println("오예 : " + rateResponse.getBody().get(idList.get(0)));
+			System.out.println("getBody : " + rateResponse.getBody());
+            
+			System.out.println("courses : " + rateResponse.getBody().get("courses"));
+			
+			Map<String, Object> map = (Map<String, Object>) rateResponse.getBody().get("courses");
+			
+			System.out.println("제발 : " + map.get(idList.get(z)));
+			
+			//System.out.println("제발.. : " + map.get(idList.get(z)));
+			
+			//System.out.println("제발222 : " + map.get(idList.get(z)).getPrice().getAmount());
+			
+			Map<String, Object> map2 = (Map<String, Object>) map.get(idList.get(z));
+			
+			Map<String, Object> map3 = (Map<String, Object>) map2.get("price");
+			System.out.println("amount : " + map3.get("amount"));
+			
+			
+			/*esponseEntity<Map<String, Object>> rateResponse2 =
+					restTemplate.exchange(uri2, HttpMethod.GET, null, 
+							new ParameterizedTypeReference<Map<String, Object>>() {});*/
+			
+			 
+			//System.out.println("getAmount : " + rateResponse.getBody().get("course"));
+			
 			//rateResponse
 			
-			/*
-			 * returnTypeData2 = restTemplate.exchange(uri2, HttpMethod.GET, null, new
-			 * ParameterizedTypeReference<Map<String, Object>>() {});
-			 */
 
 			 //System.out.println("가격 : " + returnTypeData2);
 			 UdemyKey uk = new UdemyKey();
