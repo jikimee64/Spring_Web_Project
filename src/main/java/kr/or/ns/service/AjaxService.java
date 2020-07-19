@@ -3,6 +3,7 @@ package kr.or.ns.service;
 import java.util.HashMap;
 import java.util.List;
 
+import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 
 public interface AjaxService {
@@ -66,7 +67,13 @@ public interface AjaxService {
 	
 	//스터디게시판 필터사이즈체크용
 	public List<HashMap<String, Object>> studyBoardFilterSize(HashMap<String, Object> params);
-		
+	
+	//강의게시판 필터
+	
+	public List<HashMap<String, Object>> courseBoardFilter(HashMap<String, Object> params, Criteria cri_b);
+	
+	//강의게시판 필터사이즈체크용
+	public List<HashMap<String, Object>> courseBoardFilterSize(HashMap<String, Object> params);
 	
 	//마이페이지 내가 쓴 댓글 비동기
 	public List<HashMap<String, Object>> commentList(HashMap<String, Object> params);

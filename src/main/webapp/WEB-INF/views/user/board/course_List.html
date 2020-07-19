@@ -323,7 +323,7 @@ keyframes heart-keyframes { 100% {
 
 }
 ._course_author{
-	display: inline-block; width: 200px;
+   display: inline-block; width: 200px;
   white-space: nowrap; overflow: hidden;
    text-overflow: ellipsis; 
  white-space: normal;
@@ -477,49 +477,47 @@ keyframes heart-keyframes { 100% {
             <div class="card _card_hover_effect"
                style="width: 100%; padding: 4px; margin: 10px;">
                <img class="card-img-top"
-                  th:src="${list.L_IMAGE}"
-                  alt="Card image" style="height:126px;">
-
+                 th:src="${list.L_IMAGE}"
+                 alt="Card image" style="height:126px;">
+   
                <div class="card-body">
-                  <h6 class="card-title _margin_0 _course_title"
-                     th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
-                  <p class="card-text _margin_0"
-                     style="color: gray; font-size: small;" th:text="${list.CATE_SITE}">이지스 퍼블리싱</p>
-                  <a href="" class="stretched-link"></a> <div
-							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
-							<p class="_star"
-								th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
-							</p>
-						</div> (<span th:text="${list.L_REVIEW}">(6)</span>)
-                  <div class="row">
-
-                     <div class="col-9">
-                        <span style="color: rgb(23, 92, 190);">₩&nbsp;<b
-                           th:text="${list.L_PRICE}"></b>
-                        </span>
-                     </div>
-                     <div class="col-3">
-                        <!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
-                        <input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
-                        <label th:for="${list.L_SEQ}"> <!--                         <input type="checkbox" id="heart" /> <label for="heart"> -->
-                           <svg xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 56.69 51.02">
-                         <path
-                                 d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
-                     </svg>
-                        </label> <input type="hidden" class="_list_l_seq"
-                           th:value="${list.L_SEQ}" />
-
-                     </div>
-                  </div>
-                  <!-- 하트 체크박스 끝 -->
+                 <h6 class="card-title _margin_0 _course_title"
+                   th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
+                 <p class="card-text _margin_0"
+                   style="color: gray; font-size: small;" th:text="${list.CATE_SITE}">이지스 퍼블리싱</p>
+                 <a href="" class="stretched-link"></a> <div
+                   style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+                   <p class="_star"
+                     th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+                   </p>
+                 </div> (<span th:text="${list.L_REVIEW}">(6)</span>)
+                 <div class="row">
+   
+                   <div class="col-9">
+                     <span style="color: rgb(23, 92, 190);">₩&nbsp;<b
+                        th:text="${list.L_PRICE}"></b>
+                     </span>
+                   </div>
+                   <div class="col-3">
+                     <!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
+                     <input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
+                     <label th:for="${list.L_SEQ}"> <!--                         <input type="checkbox" id="heart" /> <label for="heart"> -->
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 56.69 51.02">
+                      <path
+                            d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+                   </svg>
+                     </label> <input type="hidden" class="_list_l_seq"
+                        th:value="${list.L_SEQ}" />
+   
+                   </div>
+                 </div>
+                 <!-- 하트 체크박스 끝 -->
 
                </div>
             </div>
          </div>
          <th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
-
-
 
       </th:block>
 
@@ -604,27 +602,27 @@ keyframes heart-keyframes { 100% {
          /* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
 
          /* 강의 글자수 자르기  시작*/
-//          var courseTitleTag = $('._course_title');
+        //  var courseTitleTag = $('._course_title');
 
-//          var courseTitleName = "";
+        //  var courseTitleName = "";
       
-//          $.each(courseTitleTag, function(index,item){
+        //  $.each(courseTitleTag, function(index,item){
             
-//             courseTitleName = courseTitleTag[index].innerText;
+        //     courseTitleName = courseTitleTag[index].innerText;
             
             
-            /* if문 그냥 대충 짜름 나중에 재수정 필요 */
-//             if(courseTitleName.length > 17){
-//                courseTitleName = courseTitleName.substring(0,17)+"...";
-//             }
-//             if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
-//                courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
-//             }
-//             if(courseTitleName.length < 8){
-//                courseTitleName = courseTitleName+"\n\n";
-//             }
-//             courseTitleTag[index].innerText = courseTitleName;
-//          })
+        //     /* if문 그냥 대충 짜름 나중에 재수정 필요 */
+        //     if(courseTitleName.length > 17){
+        //        courseTitleName = courseTitleName.substring(0,17)+"...";
+        //     }
+        //     if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
+        //        courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
+        //     }
+        //     if(courseTitleName.length < 8){
+        //        courseTitleName = courseTitleName+"\n\n";
+        //     }
+        //     courseTitleTag[index].innerText = courseTitleName;
+        //  })
       
       /* 강의 글자수 자르기  끝*/   
       
@@ -640,6 +638,7 @@ keyframes heart-keyframes { 100% {
       
       /* 이거는 하트 클릭시 alert창 띄우는거*/
         $('._bookMark').click(function(evt){
+           console.log('여긴오냐북마크')
            var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
            var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
            
@@ -709,10 +708,155 @@ keyframes heart-keyframes { 100% {
                   data : JSON.stringify(data),
                   success : function(data) {
                      console.log("되는거니마는거니정말");
-                     console.log("강의리스트data" + data);
+                     //console.log("강의리스트data" + data);
                      $('.courseFilter').empty();
                      
+                     $.each(data, function(index, item) {
+                        var list_length = data[0].length;
+                        
+                        if(index === 0){
+                           for(var i = 0; i < list_length; i++){
+                              let html = "";
+                              if(i%4 === 0){
+                                 console.log('여긴타냐')
+                                 html += "<div class='row row"+i+"' style= 'width:100%; margin: auto; margin-bottom:20px;'>"
+                              }
+                              html += "<div class='col-md-3'>"   
+                              html +=   "<div class='card _card_hover_effect' style='width: 100%; padding: 4px; margin: 10px;'>"
+                              html +=   "<img class='card-img-top'src="+data[0][i].L_IMAGE+" alt='Card image' style='width: 100%'>"
+                              html +=   "<div class='card-body'>"
+                              html += "<h6 class='card-title _margin_0 _course_title'>"+data[0][i].L_TITLE+"</h6>"      
+                              html += "<p class='card-text _margin_0' style='color: gray; font-size: small;'>"+data[0][i].CATE_SITE+"</p>"         
+                              html += "<a href='"+data[0][i].L_ADDRESS+"' class='stretched-link'></a>"
+                              html +=   "<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 40px;'>"      
+                              html += "(<span>"+data[0][i].L_REVIEW+"</span>)"            
+                              html +=   "<div class='row'>"
+                              html += "<div class='col-9'>"
+                              html +=   "<span style='color: rgb(23, 92, 190);'>₩&nbsp;<b>"+data[0][i].L_PRICE+"</b></span></div>"         
+                              html += "<div class='col-3'>"               
+                              html += "<input type='checkbox' class='_bookMark' id='"+data[0][i].L_SEQ+"'>"
+                              html += '<label for="'+data[0][i].L_SEQ+'">'               
+                              html += "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56.69 51.02'>"      
+                              html += "<path d='M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z' /></svg></label>"               
+                              html += "<input type='hidden' class='_list_l_seq' value="+data[0][i].L_SEQ+"/></div></div>"                  
+                              html += "</div></div></div>"                     
+                              if(i%4 === 0){
+                                 console.log('row만들고 닫음')
+                                 html +="</div>"   
+                                 $('.courseFilter').append(html);
+                              }else if(i%4 === 1){
+                                 $(".row"+(i-1)).append(html);   
+                              }else if(i%4 === 2){
+                                 $(".row"+(i-2)).append(html);   
+                              }else if(i%4 === 3){
+                                 $(".row"+(i-3)).append(html);   
+                              }
+                              
+                           }
+                        } 
+                        
+                     })//each문 끝
+                  
                      
+                     //정적으로 만든거에 js적용시키기 위한 것들..(중복 Damn!!)
+                     
+                      $('._bookMark').click(function(evt){
+                          console.log('여긴오냐북마크')
+                          var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
+                          var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
+                          
+                          console.warn(L_seq);
+                          
+                          
+                           if($(this).is(":checked")){
+                               swal("북마크에 추가되었습니다", "", "success");
+                          }else{
+                             swal("북마크에서 삭제되었습니다", "", "info");
+                          } 
+                          
+                          var obj = {"l_seq" : L_seq};
+                          
+                          
+                          $.ajax({
+                              url : "/lecture/heart.do",
+                              type : 'POST',
+                               contentType:"application/json",
+                              data : JSON.stringify(obj),
+                              success : function(data) {
+                              },
+                              error : function(e) {
+                                 console.log("error:", e);
+                              }
+                           })
+                          
+                       }); //북마크 끝
+                      
+                      var courseTitleTag = $('._course_title');
+
+                        var courseTitleName = "";
+                     
+                        $.each(courseTitleTag, function(index,item){
+                           
+                           courseTitleName = courseTitleTag[index].innerText;
+                           
+                           
+                           /* if문 그냥 대충 짜름 나중에 재수정 필요 */
+                           if(courseTitleName.length > 17){
+                              courseTitleName = courseTitleName.substring(0,17)+"...";
+                           }
+                           if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
+                              courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
+                           }
+                           if(courseTitleName.length < 8){
+                              courseTitleName = courseTitleName+"\n\n";
+                           }
+                           courseTitleTag[index].innerText = courseTitleName;
+                        })
+                        
+                        
+                        
+         /* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
+         var bookmarkCheckedListArray = $('._bookmark_l_seq').val().replace(
+               '[', '').replace(']', '');
+         var bookmarkCheckedListString = bookmarkCheckedListArray;
+         var bookmarkCheckedListString1 = bookmarkCheckedListString
+               .split(',');
+
+         $('._list_l_seq')
+               .each(
+                     function(index, item) {
+
+                        var list_l_seqIndex = $('._list_l_seq')[index].value;
+
+                        $(bookmarkCheckedListString1)
+                              .each(
+                                    function(index2, item2) {
+
+                                       var bookmarkCheckedListIndex = bookmarkCheckedListString1[index2];
+
+                                       if (list_l_seqIndex == bookmarkCheckedListIndex
+                                             .trim()) {
+                                          $('._list_l_seq')[index]
+                                                .closest('div').children[0].checked = true;
+                                       }
+                                    })
+
+                     })
+
+                     
+                     
+                     /* 페이지 0 뜨는거 없애기 시작 */
+                     var _page_button0 = $('.page-item').children().last().text();
+                     
+                     if(_page_button0 == 0){
+                        $('.page-item').children().last().remove();
+                     }
+                     /*  페이지 0 뜨는거 없애기 끝 */
+                     
+                     //damn 끝
+                        
+                        
+                  
                   },
                   error : function(e) {
                      console.log("error:", e);
@@ -720,16 +864,10 @@ keyframes heart-keyframes { 100% {
             
             });
          });
+      
+      
    </script>
    
-   <script>
-   	$(function(){
-   			
-   		
-   		console.warn($('._star').eq(0).width());
-   		$('._star').eq(0).width() = $('._star').eq(0).width()*20;
-   	});
-   </script>
    
    
    
