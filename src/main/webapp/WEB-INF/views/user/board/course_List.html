@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="shortcut icon"
-   href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>course_list</title>
@@ -17,860 +17,896 @@
 
 <style>
 ._category {
-   text-align: center;
-   align-self: center;
+	text-align: center;
+	align-self: center;
 }
 
 ._category_button {
-   place-self: center;
+	place-self: center;
 }
 
 ._button_color {
-   background-color: #BCF1D3;
-   color: black;
-   border-color: darkseagreen;
+	background-color: #BCF1D3;
+	color: black;
+	border-color: darkseagreen;
 }
 
 ._margin_0 {
-   margin: 0;
+	margin: 0;
 }
 
 .verticalLine {
-   border-left: solid 0.5px #979696;
+	border-left: solid 0.5px #979696;
 }
 
 @media ( min-width : 992px) {
-   .col-md-15 {
-      width: 20%;
-      float: left;
-   }
+	.col-md-15 {
+		width: 20%;
+		float: left;
+	}
 }
 
 #portfolio #portfolio-flters-level li, #portfolio #portfolio-flters-site li,
-   #portfolio #portfolio-flters-price li, #portfolio #portfolio-flters-lan li
-   {
-   cursor: pointer;
-   margin: 0;
-   display: inline-block;
-   padding: 10px 20px;
-   font-size: 12px;
-   line-height: 20px;
-   color: #666666;
-   border-radius: 4px;
-   text-transform: uppercase;
-   background: #fff;
-   margin-bottom: 5px;
-   transition: all 0.3s ease-in-out;
+	#portfolio #portfolio-flters-price li, #portfolio #portfolio-flters-lan li
+	{
+	cursor: pointer;
+	margin: 0;
+	display: inline-block;
+	padding: 10px 20px;
+	font-size: 12px;
+	line-height: 20px;
+	color: #666666;
+	border-radius: 4px;
+	text-transform: uppercase;
+	background: #fff;
+	margin-bottom: 5px;
+	transition: all 0.3s ease-in-out;
 }
 
 #portfolio #portfolio-flters-level li:hover, #portfolio #portfolio-flters-level li.filter-active,
-   #portfolio #portfolio-flters-site li:hover, #portfolio #portfolio-flters-site li.filter-active,
-   #portfolio #portfolio-flters-price li:hover, #portfolio #portfolio-flters-price li.filter-active,
-   #portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active
-   {
-   background: #18d26e;
-   color: #fff;
+	#portfolio #portfolio-flters-site li:hover, #portfolio #portfolio-flters-site li.filter-active,
+	#portfolio #portfolio-flters-price li:hover, #portfolio #portfolio-flters-price li.filter-active,
+	#portfolio #portfolio-flters-lan li:hover, #portfolio #portfolio-flters-lan li.filter-active
+	{
+	background: #18d26e;
+	color: #fff;
 }
 
 #portfolio #portfolio-flters-level, #portfolio #portfolio-flters-site,
-   #portfolio #portfolio-flters-price, #portfolio #portfolio-flters-lan {
-   padding: 0;
-   margin: 5px 0 0 0;
-   list-style: none;
-   text-align: left;
+	#portfolio #portfolio-flters-price, #portfolio #portfolio-flters-lan {
+	padding: 0;
+	margin: 5px 0 0 0;
+	list-style: none;
+	text-align: left;
 }
 
 #portfolio #portfolio-flters-lan li {
-   background: rgb(240, 238, 238);
+	background: rgb(240, 238, 238);
 }
 
 ._card_hover_effect {
-   margin-bottom: 10px !important;
+	margin-bottom: 10px !important;
 }
 
 ._card_hover_effect:hover {
-   margin-bottom: 5px !important;
-   text-decoration: none !important;
-   padding: 8px !important;
-   border-radius: 10px;
-   border: 2px solid #02db63;
+	margin-bottom: 5px !important;
+	text-decoration: none !important;
+	padding: 8px !important;
+	border-radius: 10px;
+	border: 2px solid #02db63;
 }
 
 .pager li>a, .pager li>span {
-   border: white;
-   background-color: #fff;
+	border: white;
+	background-color: #fff;
 }
 
 .pager li>a, .pager li>span {
-   display: inline-block;
-   padding: 5px 14px;
-   border-radius: 5px;
+	display: inline-block;
+	padding: 5px 14px;
+	border-radius: 5px;
 }
 
 .page-link {
-   color: #18d26e;
+	color: #18d26e;
 }
 
 .page-link {
-   position: relative;
-   margin-left: -1px;
-   line-height: 1.25;
+	position: relative;
+	margin-left: -1px;
+	line-height: 1.25;
 }
 
 a {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 a {
-   transition: 0.5s;
+	transition: 0.5s;
 }
 
 * {
-   box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 a:-webkit-any-link {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 li {
-   text-align: -webkit-match-parent;
+	text-align: -webkit-match-parent;
 }
 
 .pager {
-   padding-left: 0;
-   margin: 20px 0;
-   list-style: none;
+	padding-left: 0;
+	margin: 20px 0;
+	list-style: none;
 }
 
 body {
-   font-size: 14px;
-   background-color: #fff;
-   background: #fff;
-   margin: 0;
+	font-size: 14px;
+	background-color: #fff;
+	background: #fff;
+	margin: 0;
 }
 
 .page-item.active .page-link {
-   z-index: 3;
-   color: #fff;
-   background-color: #18d26e;
-   border-color: #18d26e;
+	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
 }
 
 /* 하트 체크박스 스타일 시작 */
 input[type=checkbox] {
-   clear: both;
-   display: none;
+	clear: both;
+	display: none;
 }
 
 input[type="checkbox"] {
-   display: none;
+	display: none;
 }
 
 input[type="checkbox"]+label {
-   position: absolute;
-   z-index: 100;
-   overflow: hidden;
-   height: 60px;
-   width: 50px;
-   display: block;
-   text-align: center;
-   line-height: 60px;
-   cursor: pointer;
-   border-radius: 50%;
-   transform: translate3d(-3px, -7px, 10px);
+	position: absolute;
+	z-index: 100;
+	overflow: hidden;
+	height: 60px;
+	width: 50px;
+	display: block;
+	text-align: center;
+	line-height: 60px;
+	cursor: pointer;
+	border-radius: 50%;
+	transform: translate3d(-3px, -7px, 10px);
 }
 
 input[type="checkbox"]+label svg {
-   -webkit-transition: all 100ms ease-in-out;
-   transition: all 100ms ease-in-out;
+	-webkit-transition: all 100ms ease-in-out;
+	transition: all 100ms ease-in-out;
 }
 
 input[type="checkbox"]+label:before {
-   content: '';
-   z-index: -1;
-   position: absolute;
-   background: #E8336D;
-   width: 60px;
-   height: 60px;
-   border-radius: 50%;
-   top: 0;
-   left: 0;
-   transform: scale(0);
-   -webkit-transform: scale(0);
+	content: '';
+	z-index: -1;
+	position: absolute;
+	background: #E8336D;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	top: 0;
+	left: 0;
+	transform: scale(0);
+	-webkit-transform: scale(0);
 }
 
 input[type="checkbox"]+label:after {
-   content: '';
-   z-index: -1;
-   position: absolute;
-   background: white;
-   width: 60px;
-   height: 60px;
-   border-radius: 50%;
-   top: 0;
-   left: 0;
-   transform: scale(0);
-   -webkit-transform: scale(0);
+	content: '';
+	z-index: -1;
+	position: absolute;
+	background: white;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	top: 0;
+	left: 0;
+	transform: scale(0);
+	-webkit-transform: scale(0);
 }
 /* 호버는 연규가넣음  */
 input[type="checkbox"]:hover+label svg {
-   -webkit-transition: all 400ms ease-in-out;
-   transition: all 400ms ease-in-out;
-   fill: rgb(255, 188, 188);
-   transform: scale(1.3);
-   -webkit-transform: scale(1.3);
+	-webkit-transition: all 400ms ease-in-out;
+	transition: all 400ms ease-in-out;
+	fill: rgb(255, 188, 188);
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
 }
 /* 호버는 연규가 넣음 끝 */
 input[type="checkbox"]:checked+label svg {
-   -webkit-transition: all 400ms ease-in-out;
-   transition: all 400ms ease-in-out;
-   fill: rgb(220, 72, 127);
-   transform: scale(1.3);
-   -webkit-transform: scale(1.3);
+	-webkit-transition: all 400ms ease-in-out;
+	transition: all 400ms ease-in-out;
+	fill: rgb(220, 72, 127);
+	transform: scale(1.3);
+	-webkit-transform: scale(1.3);
 }
 
 input[type="checkbox"]:checked+label:after {
-   -webkit-animation: heart-keyframes 0.3s 0.2s forwards;
-   -moz-animation: heart-keyframes 0.3s 0.2s forwards;
-   animation: heart-keyframes 0.3s 0.2s forwards;
+	-webkit-animation: heart-keyframes 0.3s 0.2s forwards;
+	-moz-animation: heart-keyframes 0.3s 0.2s forwards;
+	animation: heart-keyframes 0.3s 0.2s forwards;
 }
 
 input[type="checkbox"]:checked+label:before {
-   -webkit-animation: heart-keyframes 0.5s 0s forwards;
-   -moz-animation: heart-keyframes 0.5s 0s forwards;
-   animation: heart-keyframes 0.5s 0s forwards;
+	-webkit-animation: heart-keyframes 0.5s 0s forwards;
+	-moz-animation: heart-keyframes 0.5s 0s forwards;
+	animation: heart-keyframes 0.5s 0s forwards;
 }
 
 label svg {
-   display: inline-flex;
-   vertical-align: middle;
-   width: 25px;
-   fill: #ddd;
+	display: inline-flex;
+	vertical-align: middle;
+	width: 25px;
+	fill: #ddd;
 }
 
 @
 -webkit-keyframes heart-keyframes { 75% {
-   -webkit-transform: scale(1.025);
-   transform: scale(1.025);
-   -moz-transform: scale(1.025);
+	-webkit-transform: scale(1.025);
+	transform: scale(1.025);
+	-moz-transform: scale(1.025);
 }
 
 }
 @
 -webkit-keyframes heart-keyframes { 100% {
-   background: transparent;
-   -webkit-transform: scale(1.03);
-   transform: scale(1.03);
-   -moz-transform: scale(1.03);
+	background: transparent;
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+	-moz-transform: scale(1.03);
 }
 
 }
 @
 -moz-keyframes heart-keyframes { 75% {
-   -webkit-transform: scale(1.025);
-   transform: scale(1.025);
-   -moz-transform: scale(1.025);
+	-webkit-transform: scale(1.025);
+	transform: scale(1.025);
+	-moz-transform: scale(1.025);
 }
 
 }
 @
 -moz-keyframes heart-keyframes { 100% {
-   background: transparent;
-   -webkit-transform: scale(1.03);
-   transform: scale(1.03);
-   -moz-transform: scale(1.03);
+	background: transparent;
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+	-moz-transform: scale(1.03);
 }
 
 }
 @
 keyframes heart-keyframes { 75% {
-   -webkit-transform: scale(1.025);
-   transform: scale(1.025);
-   -moz-transform: scale(1.025);
+	-webkit-transform: scale(1.025);
+	transform: scale(1.025);
+	-moz-transform: scale(1.025);
 }
 
 }
 @
 keyframes heart-keyframes { 100% {
-   background: transparent;
-   -webkit-transform: scale(1.03);
-   transform: scale(1.03);
-   -moz-transform: scale(1.03);
+	background: transparent;
+	-webkit-transform: scale(1.03);
+	transform: scale(1.03);
+	-moz-transform: scale(1.03);
 }
 
 }
 .page-item.active .page-link {
-   z-index: 3;
-   color: #fff;
-   background-color: #18d26e;
-   border-color: #18d26e;
+	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
 }
 /* 하트 체크박스 끝 */
-._course_title{
- display: inline-block; width: 200px;
-  white-space: nowrap; overflow: hidden;
-   text-overflow: ellipsis; 
- white-space: normal;
-  line-height: 1.2; 
-  height: 2.4em; 
-  text-align: left;
-   word-wrap: break-word;
-    display: -webkit-box; 
-    -webkit-line-clamp: 2; 
-    -webkit-box-orient: vertical;
-    max-inline-size: -webkit-fill-available;
-
+._course_title {
+	display: inline-block;
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 2.4em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	max-inline-size: -webkit-fill-available;
 }
-._course_author{
-   display: inline-block; width: 200px;
-  white-space: nowrap; overflow: hidden;
-   text-overflow: ellipsis; 
- white-space: normal;
-  line-height: 1.2; 
-  height: 1.2em; 
-  text-align: left;
-   word-wrap: break-word;
-    display: -webkit-box; 
-    -webkit-line-clamp: 1; 
-    -webkit-box-orient: vertical;
-    max-inline-size: -webkit-fill-available;
+
+._course_author {
+	display: inline-block;
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 1.2em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	max-inline-size: -webkit-fill-available;
 }
 </style>
 
 <body>
-   <div th:replace="/user/includes/header :: header"></div>
+	<div th:replace="/user/includes/header :: header"></div>
 
 
-   <main id="main">
-      <!-- ======= Breadcrumbs Section ======= -->
-      <section class="breadcrumbs" style="margin-top: 70px;">
-         <div class="container">
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs" style="margin-top: 70px;">
+			<div class="container">
 
-            <div class="d-flex justify-content-between align-items-center">
-               <h2>
-                  찾고 싶은 <b style="color: #18d26e">키워드</b>를 선택해 주세요.
-               </h2>
-            </div>
+				<div class="d-flex justify-content-between align-items-center">
+					<h2>
+						찾고 싶은 <b style="color: #18d26e">키워드</b>를 선택해 주세요.
+					</h2>
+				</div>
 
-         </div>
-      </section>
-      <!-- Breadcrumbs Section -->
+			</div>
+		</section>
+		<!-- Breadcrumbs Section -->
 
-   </main>
-   <!-- End #main -->
-
-
-
-   <!--포트폴리오 section 으로 감싸줘야 css가 입혀짐-->
-   <section id="portfolio" class="section-bg"
-      style="margin-bottom: 60px; padding: 20px 0px 20px 0px;">
-
-      <!-- course란 강좌라는 뜻이에염~ -->
-      <!--class="filter-active"  주면 선택된상태로 만들수 있음-->
-      <div class="container">
-         <div class="row">
-            <div class="row" style="width: 100%; margin-bottom: 0px;">
-               <div class="col-md-3 _category box aos-init aos-animate"
-                  data-aos="fade-up" data-aos-delay="300">
-                  <span class="title _category_list">난이도</span>
-               </div>
-               <div class="col-md-9 _category_button verticalLine">
-                  <ul id="portfolio-flters-level">
-                     &nbsp;
-                     <li data-filter="입문"
-                        th:classappend="${level} == '입문' ? filter-active : null">입문</li> &nbsp;&nbsp;&nbsp;
-                     <li data-filter="초급"
-                        th:classappend="${level} == '초급' ? filter-active : null">초급</li> &nbsp;&nbsp;&nbsp;
-                     <li data-filter="중급이상"
-                        th:classappend="${level} == '중급이상' ? filter-active : null">중급 이상</li>
-                  </ul>
-               </div>
-            </div>
-            <div class="row" style="width: 100%; margin-bottom: 0px;">
-               <div class="col-md-3 _category box aos-init aos-animate"
-                  data-aos="fade-up" data-aos-delay="300">
-                  <span class="title _category_list">가격</span>
-               </div>
-               <div class="col-md-9 _category_button verticalLine">
-         
-                  <ul id="portfolio-flters-price">
-                     &nbsp;
-                     <li data-filter="1">무료</li> &nbsp;
-                     <li data-filter="2" >3만원 이하</li> &nbsp;
-                     <li data-filter="3" >3-5 만원</li> &nbsp;
-                     <li data-filter="4">5-10 만원</li> &nbsp;
-                     <li data-filter="5">10만원 이상</li>
-                  </ul>
-            
-               </div>
-            </div>
-
-            <div class="row" style="width: 100%; margin-bottom: 0px;">
-               <div class="col-md-3 _category box aos-init aos-animate"
-                  data-aos="fade-up" data-aos-delay="300">
-                  <div>
-                     <span class="title _category_list">언어</span>
-                  </div>
-               </div>
-               <div class="col-md-9 _category_button verticalLine">
-                  <ul id="portfolio-flters-lan">
-                     &nbsp;
-                     <li data-filter="1">JAVA</li> &nbsp;
-                     <li data-filter="2">Javascript</li> &nbsp;
-                     <li data-filter="3">HTML/CSS</li> &nbsp;
-                     <li data-filter="4">Spring</li> &nbsp;
-                     <li data-filter="5">Python</li> &nbsp;
-                     <li data-filter="6">Vue.js</li> &nbsp;
-                     <li data-filter="7">React</li>
-                  </ul>
-                  <ul id="portfolio-flters-lan">
-                     &nbsp;
-                     <li data-filter="8">Jquery</li> &nbsp;
-                     <li data-filter="9">JSP</li> &nbsp;
-                     <li data-filter="10">BootStrap</li> &nbsp;
-                     <li data-filter="11">JPA</li>
-                  </ul>
-               </div>
-            </div>
-            <div class="row" style="width: 100%; margin-bottom: 0px;">
-               <div class="col-md-3 _category box aos-init aos-animate"
-                  data-aos="fade-up" data-aos-delay="300">
-                  <span class="title _category_list">사이트</span>
-               </div>
-               <div class="col-md-9 _category_button verticalLine">
-                  <ul id="portfolio-flters-site">
-                     &nbsp;
-                     <li data-filter="1"
-                     th:classappend="${site} == '1' ? filter-active : null"
-                     >인프런</li> &nbsp;
-                     <li data-filter="2"
-                     th:classappend="${site} == '2' ? filter-active : null"
-                     >구름EDU</li> &nbsp;
-                     <li data-filter="3"
-                     th:classappend="${site} == '3' ? filter-active : null"
-                     >Udemy</li>
-                  </ul>
-               </div>
-            </div>
-         </div>
-      </div>
-   </section>
+	</main>
+	<!-- End #main -->
 
 
 
-   <!-- ddddddddd -->
+	<!--포트폴리오 section 으로 감싸줘야 css가 입혀짐-->
+	<section id="portfolio" class="section-bg"
+		style="margin-bottom: 60px; padding: 20px 0px 20px 0px;">
 
-   <!-- 여기부터 강의 목록 -->
-   <!--    th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}" -->
-   <div class="container courseFilter"
-      style="margin-top: 50px; margin-bottom: 25px; padding-bottom: 100px;">
+		<!-- course란 강좌라는 뜻이에염~ -->
+		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
+		<div class="container">
+			<div class="row">
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
+						<span class="title _category_list">난이도</span>
+					</div>
+					<div class="col-md-9 _category_button verticalLine">
+						<ul id="portfolio-flters-level">
+							&nbsp;
+							<li data-filter="입문"
+								th:classappend="${level} == '입문' ? filter-active : null">입문</li>
+							&nbsp;&nbsp;&nbsp;
+							<li data-filter="초급"
+								th:classappend="${level} == '초급' ? filter-active : null">초급</li>
+							&nbsp;&nbsp;&nbsp;
+							<li data-filter="중급이상"
+								th:classappend="${level} == '중급이상' ? filter-active : null">중급
+								이상</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
+						<span class="title _category_list">가격</span>
+					</div>
+					<div class="col-md-9 _category_button verticalLine">
+
+						<ul id="portfolio-flters-price">
+							&nbsp;
+							<li data-filter="1">무료</li> &nbsp;
+							<li data-filter="2">3만원 이하</li> &nbsp;
+							<li data-filter="3">3-5 만원</li> &nbsp;
+							<li data-filter="4">5-10 만원</li> &nbsp;
+							<li data-filter="5">10만원 이상</li>
+						</ul>
+
+					</div>
+				</div>
+
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
+						<div>
+							<span class="title _category_list">언어</span>
+						</div>
+					</div>
+					<div class="col-md-9 _category_button verticalLine">
+						<ul id="portfolio-flters-lan">
+							&nbsp;
+							<li data-filter="1">JAVA</li> &nbsp;
+							<li data-filter="2">Javascript</li> &nbsp;
+							<li data-filter="3">HTML/CSS</li> &nbsp;
+							<li data-filter="4">Spring</li> &nbsp;
+							<li data-filter="5">Python</li> &nbsp;
+							<li data-filter="6">Vue.js</li> &nbsp;
+							<li data-filter="7">React</li>
+						</ul>
+						<ul id="portfolio-flters-lan">
+							&nbsp;
+							<li data-filter="8">Jquery</li> &nbsp;
+							<li data-filter="9">JSP</li> &nbsp;
+							<li data-filter="10">BootStrap</li> &nbsp;
+							<li data-filter="11">JPA</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row" style="width: 100%; margin-bottom: 0px;">
+					<div class="col-md-3 _category box aos-init aos-animate"
+						data-aos="fade-up" data-aos-delay="300">
+						<span class="title _category_list">사이트</span>
+					</div>
+					<div class="col-md-9 _category_button verticalLine">
+						<ul id="portfolio-flters-site">
+							&nbsp;
+							<li data-filter="1"
+								th:classappend="${site} == '1' ? filter-active : null">인프런</li>
+							&nbsp;
+							<li data-filter="2"
+								th:classappend="${site} == '2' ? filter-active : null">구름EDU</li>
+							&nbsp;
+							<li data-filter="3"
+								th:classappend="${site} == '3' ? filter-active : null">Udemy</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 
 
-      <!--<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
+	<!-- ddddddddd -->
 
-      <th:block th:each="list,index : ${list}">
-         <th:block th:if="${index.index%4==0}"
-            th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
-         <div class="col-md-3">
-            <div class="card _card_hover_effect"
-               style="width: 100%; padding: 4px; margin: 10px;">
-               <img class="card-img-top"
-                 th:src="${list.L_IMAGE}"
-                 alt="Card image" style="height:126px;">
-   
-               <div class="card-body">
-                 <h6 class="card-title _margin_0 _course_title"
-                   th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
-                 <p class="card-text _margin_0"
-                   style="color: gray; font-size: small;" th:text="${list.CATE_SITE}">이지스 퍼블리싱</p>
-                 <a href="" class="stretched-link"></a> <div
-                   style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
-                   <p class="_star"
-                     th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
-                   </p>
-                 </div> (<span th:text="${list.L_REVIEW}">(6)</span>)
-                 <div class="row">
-   
-                   <div class="col-9">
-                     <span style="color: rgb(23, 92, 190);">₩&nbsp;<b
-                        th:text="${list.L_PRICE}"></b>
-                     </span>
-                   </div>
-                   <div class="col-3">
-                     <!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
-                     <input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
-                     <label th:for="${list.L_SEQ}"> <!--                         <input type="checkbox" id="heart" /> <label for="heart"> -->
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 56.69 51.02">
+	<!-- 여기부터 강의 목록 -->
+	<!--    th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}" -->
+	<div class="container courseFilter"
+		style="margin-top: 50px; margin-bottom: 25px; padding-bottom: 100px;">
+
+
+
+		<!--<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
+
+		<th:block th:each="list,index : ${list}">
+			<th:block th:if="${index.index%4==0}"
+				th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
+			<div class="col-md-3">
+				<div class="card _card_hover_effect"
+					style="width: 100%; padding: 4px; margin: 10px;">
+					<div style="height: 155px;">
+						<img class="card-img-top" th:src="${list.L_IMAGE}"
+							alt="Card image" style="width: 100%;">
+					</div>
+					<div class="card-body">
+						<h6 class="card-title _margin_0 _course_title"
+							th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
+						<p class="card-text _margin_0"
+							style="color: gray;margin-bottom:10px; font-size: small;" th:text="${list.L_WRITER}">이지스
+							퍼블리싱</p>
+						<a href="" class="stretched-link"></a>
+						<div
+							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px;margin-bottom:5px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+							<p class="_star"
+								th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+							</p>
+						</div>
+						(<span th:text="${list.L_REVIEW}">(6)</span>)
+						<div class="row">
+
+							<div class="col-9">
+								<span style="color: rgb(23, 92, 190);">₩&nbsp;<b
+									th:text="${list.L_PRICE}"></b>
+								</span>
+							</div>
+							<div class="col-3">
+								<!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
+								<input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
+								<label th:for="${list.L_SEQ}"> <!--                         <input type="checkbox" id="heart" /> <label for="heart"> -->
+									<svg xmlns="http://www.w3.org/2000/svg"
+										viewBox="0 0 56.69 51.02">
                       <path
-                            d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+											d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
                    </svg>
-                     </label> <input type="hidden" class="_list_l_seq"
-                        th:value="${list.L_SEQ}" />
-   
-                   </div>
-                 </div>
-                 <!-- 하트 체크박스 끝 -->
+								</label> <input type="hidden" class="_list_l_seq"
+									th:value="${list.L_SEQ}" />
 
-               </div>
-            </div>
-         </div>
-         <th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
+							</div>
+						</div>
+						<!-- 하트 체크박스 끝 -->
 
-      </th:block>
+					</div>
+				</div>
+			</div>
+			<th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
 
-      <!-- 여기까지 카드 하나 끝 -->
+		</th:block>
 
-      <th:block th:unless="${#lists.size(list)%4==0}"
-         th:utext="'&lt;/div&gt;'" />
-      <!-- 여기서 문제가 터질지 몰라 감안하세요 -->
+		<!-- 여기까지 카드 하나 끝 -->
 
-
-      <input class="_bookmark_l_seq" th:value="${seqlist}" type="hidden" />
-
-      <br />
-
-      <!-- 페이징 부트스트랩 버튼 생성하기  -->
-      <ul class="pager d-flex" style="place-content: center;">
-
-         <!-- 이전버튼 생성여부-->
-         <li th:if="${pageMaker.prev} == true"><a
-            th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
-            class="page-link"> Previous </a></li>
+		<th:block th:unless="${#lists.size(list)%4==0}"
+			th:utext="'&lt;/div&gt;'" />
+		<!-- 여기서 문제가 터질지 몰라 감안하세요 -->
 
 
-         <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-         <li class="page-item"
-            th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
-            th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
-            <a class="page-link"
-            th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
-            th:text="${idx}">1 </a>
-         </li>
+		<input class="_bookmark_l_seq" th:value="${seqlist}" type="hidden" />
+
+		<br />
+
+		<!-- 페이징 부트스트랩 버튼 생성하기  -->
+		<ul class="pager d-flex" style="place-content: center;">
+
+			<!-- 이전버튼 생성여부-->
+			<li th:if="${pageMaker.prev} == true"><a
+				th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
+				class="page-link"> Previous </a></li>
 
 
-         <!-- 다음버튼 생성여부 -->
-         <li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
-            <a
-            th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}"
-            class="page-link"> Next</a> <!--                                    <a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
-         </li>
+			<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+			<li class="page-item"
+				th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
+				th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+				<a class="page-link"
+				th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
+				th:text="${idx}">1 </a>
+			</li>
 
 
-      </ul>
-      <!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
+			<!-- 다음버튼 생성여부 -->
+			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
+				<a
+				th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}"
+				class="page-link"> Next</a> <!--                                    <a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+			</li>
 
-   </div>
+
+		</ul>
+		<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
+
+	</div>
 
 
-   <div th:replace="/user/includes/footer :: footer"></div>
-   <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
-   <script>
-      $(function() {
+	<script>
+		$(function() {
 
-         /* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
-         var bookmarkCheckedListArray = $('._bookmark_l_seq').val().replace(
-               '[', '').replace(']', '');
-         var bookmarkCheckedListString = bookmarkCheckedListArray;
-         var bookmarkCheckedListString1 = bookmarkCheckedListString
-               .split(',');
+			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
+			var bookmarkCheckedListArray = $('._bookmark_l_seq').val().replace(
+					'[', '').replace(']', '');
+			var bookmarkCheckedListString = bookmarkCheckedListArray;
+			var bookmarkCheckedListString1 = bookmarkCheckedListString
+					.split(',');
 
-         $('._list_l_seq')
-               .each(
-                     function(index, item) {
+			$('._list_l_seq')
+					.each(
+							function(index, item) {
 
-                        var list_l_seqIndex = $('._list_l_seq')[index].value;
+								var list_l_seqIndex = $('._list_l_seq')[index].value;
 
-                        $(bookmarkCheckedListString1)
-                              .each(
-                                    function(index2, item2) {
+								$(bookmarkCheckedListString1)
+										.each(
+												function(index2, item2) {
 
-                                       var bookmarkCheckedListIndex = bookmarkCheckedListString1[index2];
+													var bookmarkCheckedListIndex = bookmarkCheckedListString1[index2];
 
-                                       if (list_l_seqIndex == bookmarkCheckedListIndex
-                                             .trim()) {
-                                          $('._list_l_seq')[index]
-                                                .closest('div').children[0].checked = true;
-                                       }
-                                    })
+													if (list_l_seqIndex == bookmarkCheckedListIndex
+															.trim()) {
+														$('._list_l_seq')[index]
+																.closest('div').children[0].checked = true;
+													}
+												})
 
-                     })
+							})
 
-         /* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
+			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
 
-         /* 강의 글자수 자르기  시작*/
-        //  var courseTitleTag = $('._course_title');
+			/* 페이지 0 뜨는거 없애기 시작 */
+			var _page_button0 = $('.page-item').children().last().text();
 
-        //  var courseTitleName = "";
-      
-        //  $.each(courseTitleTag, function(index,item){
-            
-        //     courseTitleName = courseTitleTag[index].innerText;
-            
-            
-        //     /* if문 그냥 대충 짜름 나중에 재수정 필요 */
-        //     if(courseTitleName.length > 17){
-        //        courseTitleName = courseTitleName.substring(0,17)+"...";
-        //     }
-        //     if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
-        //        courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
-        //     }
-        //     if(courseTitleName.length < 8){
-        //        courseTitleName = courseTitleName+"\n\n";
-        //     }
-        //     courseTitleTag[index].innerText = courseTitleName;
-        //  })
-      
-      /* 강의 글자수 자르기  끝*/   
-      
-      
-      /* 페이지 0 뜨는거 없애기 시작 */
-      var _page_button0 = $('.page-item').children().last().text();
-      
-      if(_page_button0 == 0){
-         $('.page-item').children().last().remove();
-      }
-      /*  페이지 0 뜨는거 없애기 끝 */
-   
-      
-      /* 이거는 하트 클릭시 alert창 띄우는거*/
-        $('._bookMark').click(function(evt){
-           console.log('여긴오냐북마크')
-           var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
-           var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
-           
-           console.warn(L_seq);
-           
-           
-            if($(this).is(":checked")){
-                swal("북마크에 추가되었습니다", "", "success");
-           }else{
-              swal("북마크에서 삭제되었습니다", "", "info");
-           } 
-           
-           var obj = {"l_seq" : L_seq};
-           
-           
-           $.ajax({
-               url : "/lecture/heart.do",
-               type : 'POST',
-                contentType:"application/json",
-               data : JSON.stringify(obj),
-               success : function(data) {
-               },
-               error : function(e) {
-                  console.log("error:", e);
-               }
-            })
-           
-           
-        });
-      /* 하트 클릭시  alert창 띄우기 끝 */
-      
-      });
-   </script>
+			if (_page_button0 == 0) {
+				$('.page-item').children().last().remove();
+			}
+			/*  페이지 0 뜨는거 없애기 끝 */
 
-   <script>
-      $("li").on(
-            "click",
-            function() {
-               var price = $('#portfolio-flters-price').children(
-                     '.filter-active').attr('data-filter');
-               var level = $('#portfolio-flters-level').children(
-                     '.filter-active').attr('data-filter');
-               var language = new Array();
-               $.each($('#portfolio-flters-lan').find('.filter-active'),
-                     function(index, item) {
-                        language[index] = item
-                              .getAttribute('data-filter');
-                        console.log(item.getAttribute('data-filter'))
-                     });
-               var site = $('#portfolio-flters-site')
-                     .children('.filter-active').attr('data-filter');
+			/* 이거는 하트 클릭시 alert창 띄우는거*/
+			$('._bookMark').click(
+					function(evt) {
+						console.log('여긴오냐북마크')
+						var lectureTitle = $(evt.target).parent('div').parent(
+								'div').prev().prev().prev().prev().prev()
+								.text();
+						var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
 
-               let data = {
-                  "price" : price,
-                  "level" : level,
-                  "language" : language,
-                  "site" : site
-               }
-            console.log("선택data" + data.level);               
-               $
-               .ajax({
-                  url : '/ajax/courseBoardFilter.do',
-                  processData : false,
-                  contentType : "application/json",
-                  cache : false,
-                  type : 'POST',
-                  data : JSON.stringify(data),
-                  success : function(data) {
-                     console.log("되는거니마는거니정말");
-                     //console.log("강의리스트data" + data);
-                     $('.courseFilter').empty();
-                     
-                     $.each(data, function(index, item) {
-                        var list_length = data[0].length;
-                        
-                        if(index === 0){
-                           for(var i = 0; i < list_length; i++){
-                              let html = "";
-                              if(i%4 === 0){
-                                 console.log('여긴타냐')
-                                 html += "<div class='row row"+i+"' style= 'width:100%; margin: auto; margin-bottom:20px;'>"
-                              }
-                              html += "<div class='col-md-3'>"   
-                              html +=   "<div class='card _card_hover_effect' style='width: 100%; padding: 4px; margin: 10px;'>"
-                              html +=   "<img class='card-img-top'src="+data[0][i].L_IMAGE+" alt='Card image' style='width: 100%'>"
-                              html +=   "<div class='card-body'>"
-                              html += "<h6 class='card-title _margin_0 _course_title'>"+data[0][i].L_TITLE+"</h6>"      
-                              html += "<p class='card-text _margin_0' style='color: gray; font-size: small;'>"+data[0][i].CATE_SITE+"</p>"         
-                              html += "<a href='"+data[0][i].L_ADDRESS+"' class='stretched-link'></a>"
-                              html +=   "<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 40px;'>"      
-                              html += "(<span>"+data[0][i].L_REVIEW+"</span>)"            
-                              html +=   "<div class='row'>"
-                              html += "<div class='col-9'>"
-                              html +=   "<span style='color: rgb(23, 92, 190);'>₩&nbsp;<b>"+data[0][i].L_PRICE+"</b></span></div>"         
-                              html += "<div class='col-3'>"               
-                              html += "<input type='checkbox' class='_bookMark' id='"+data[0][i].L_SEQ+"'>"
-                              html += '<label for="'+data[0][i].L_SEQ+'">'               
-                              html += "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56.69 51.02'>"      
-                              html += "<path d='M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z' /></svg></label>"               
-                              html += "<input type='hidden' class='_list_l_seq' value="+data[0][i].L_SEQ+"/></div></div>"                  
-                              html += "</div></div></div>"                     
-                              if(i%4 === 0){
-                                 console.log('row만들고 닫음')
-                                 html +="</div>"   
-                                 $('.courseFilter').append(html);
-                              }else if(i%4 === 1){
-                                 $(".row"+(i-1)).append(html);   
-                              }else if(i%4 === 2){
-                                 $(".row"+(i-2)).append(html);   
-                              }else if(i%4 === 3){
-                                 $(".row"+(i-3)).append(html);   
-                              }
-                              
-                           }
-                        } 
-                        
-                     })//each문 끝
-                  
-                     
-                     //정적으로 만든거에 js적용시키기 위한 것들..(중복 Damn!!)
-                     
-                      $('._bookMark').click(function(evt){
-                          console.log('여긴오냐북마크')
-                          var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
-                          var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
-                          
-                          console.warn(L_seq);
-                          
-                          
-                           if($(this).is(":checked")){
-                               swal("북마크에 추가되었습니다", "", "success");
-                          }else{
-                             swal("북마크에서 삭제되었습니다", "", "info");
-                          } 
-                          
-                          var obj = {"l_seq" : L_seq};
-                          
-                          
-                          $.ajax({
-                              url : "/lecture/heart.do",
-                              type : 'POST',
-                               contentType:"application/json",
-                              data : JSON.stringify(obj),
-                              success : function(data) {
-                              },
-                              error : function(e) {
-                                 console.log("error:", e);
-                              }
-                           })
-                          
-                       }); //북마크 끝
-                      
-                      var courseTitleTag = $('._course_title');
+						console.warn(L_seq);
 
-                        var courseTitleName = "";
-                     
-                        $.each(courseTitleTag, function(index,item){
-                           
-                           courseTitleName = courseTitleTag[index].innerText;
-                           
-                           
-                           /* if문 그냥 대충 짜름 나중에 재수정 필요 */
-                           if(courseTitleName.length > 17){
-                              courseTitleName = courseTitleName.substring(0,17)+"...";
-                           }
-                           if(courseTitleName.length >= 8 && courseTitleName.length <= 15){
-                              courseTitleName = courseTitleName+"\0\0\0\0\0\0\0\0\0\0";
-                           }
-                           if(courseTitleName.length < 8){
-                              courseTitleName = courseTitleName+"\n\n";
-                           }
-                           courseTitleTag[index].innerText = courseTitleName;
-                        })
-                        
-                        
-                        
-         /* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
-         var bookmarkCheckedListArray = $('._bookmark_l_seq').val().replace(
-               '[', '').replace(']', '');
-         var bookmarkCheckedListString = bookmarkCheckedListArray;
-         var bookmarkCheckedListString1 = bookmarkCheckedListString
-               .split(',');
+						if ($(this).is(":checked")) {
+							swal("북마크에 추가되었습니다", "", "success");
+						} else {
+							swal("북마크에서 삭제되었습니다", "", "info");
+						}
 
-         $('._list_l_seq')
-               .each(
-                     function(index, item) {
+						var obj = {
+							"l_seq" : L_seq
+						};
 
-                        var list_l_seqIndex = $('._list_l_seq')[index].value;
+						$.ajax({
+							url : "/lecture/heart.do",
+							type : 'POST',
+							contentType : "application/json",
+							data : JSON.stringify(obj),
+							success : function(data) {
+							},
+							error : function(e) {
+								console.log("error:", e);
+							}
+						})
 
-                        $(bookmarkCheckedListString1)
-                              .each(
-                                    function(index2, item2) {
+					});
+			/* 하트 클릭시  alert창 띄우기 끝 */
 
-                                       var bookmarkCheckedListIndex = bookmarkCheckedListString1[index2];
+		});
+	</script>
 
-                                       if (list_l_seqIndex == bookmarkCheckedListIndex
-                                             .trim()) {
-                                          $('._list_l_seq')[index]
-                                                .closest('div').children[0].checked = true;
-                                       }
-                                    })
+	<script>
+		$("li")
+				.on(
+						"click",
+						function() {
+							var price = $('#portfolio-flters-price').children(
+									'.filter-active').attr('data-filter');
+							var level = $('#portfolio-flters-level').children(
+									'.filter-active').attr('data-filter');
+							var language = new Array();
+							$.each($('#portfolio-flters-lan').find(
+									'.filter-active'), function(index, item) {
+								language[index] = item
+										.getAttribute('data-filter');
+								console.log(item.getAttribute('data-filter'))
+							});
+							var site = $('#portfolio-flters-site').children(
+									'.filter-active').attr('data-filter');
 
-                     })
+							let data = {
+								"price" : price,
+								"level" : level,
+								"language" : language,
+								"site" : site
+							}
+							console.log("선택data" + data.level);
+							$
+									.ajax({
+										url : '/ajax/courseBoardFilter.do',
+										processData : false,
+										contentType : "application/json",
+										cache : false,
+										type : 'POST',
+										data : JSON.stringify(data),
+										success : function(data) {
+											console.log("되는거니마는거니정말");
+											//console.log("강의리스트data" + data);
+											$('.courseFilter').empty();
 
-                     
-                     
-                     /* 페이지 0 뜨는거 없애기 시작 */
-                     var _page_button0 = $('.page-item').children().last().text();
-                     
-                     if(_page_button0 == 0){
-                        $('.page-item').children().last().remove();
-                     }
-                     /*  페이지 0 뜨는거 없애기 끝 */
-                     
-                     //damn 끝
-                        
-                        
-                  
-                  },
-                  error : function(e) {
-                     console.log("error:", e);
-                  }
-            
-            });
-         });
-      
-      
-   </script>
-   
-   
-   
-   
+											$
+													.each(
+															data,
+															function(index,
+																	item) {
+																var list_length = data[0].length;
+
+																if (index === 0) {
+																	for (var i = 0; i < list_length; i++) {
+																		let html = "";
+																		if (i % 4 === 0) {
+																			console
+																					.log('여긴타냐')
+																			html += "<div class='row row"
+																					+ i
+																					+ "' style= 'width:100%; margin: auto; margin-bottom:20px;'>"
+																		}
+																		html += "<div class='col-md-3'>"
+																		html += "<div class='card _card_hover_effect' style='width: 100%; padding: 4px; margin: 10px;'>"
+																		html += 	'<div style="height: 155px;">'
+																		html += "<img class='card-img-top'src="
+																				+ data[0][i].L_IMAGE
+																				+ " alt='Card image' style='width: 100%'>"
+																		html += '</div>'		
+																		html += "<div class='card-body'>"
+																		html += "<h6 class='card-title _margin_0 _course_title'>"
+																				+ data[0][i].L_TITLE
+																				+ "</h6>"
+																		html += "<p class='card-text _margin_0' style='color: gray; margin-bottom:10px;font-size: small;'>"
+																				+ data[0][i].L_WRITER
+																				+ "</p>"
+																		html += "<a href='"+data[0][i].L_ADDRESS+"' class='stretched-link'></a>"
+																		html += '<div style=  "CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px;margin-bottom:5px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif\') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+																		html += '<p class="_star" style="WIDTH: '+data[0][i].L_STAR*20+'%;  PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif\') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+																		html +=	'</p>'
+																		html +=	'</div>'
+																		
+																		html += "(<span>"
+																				+ data[0][i].L_REVIEW
+																				+ "</span>)"
+																		html += "<div class='row'>"
+																		html += "<div class='col-9'>"
+																		html += "<span style='color: rgb(23, 92, 190);'>₩&nbsp;<b>"
+																				+ data[0][i].L_PRICE
+																				+ "</b></span></div>"
+																		html += "<div class='col-3'>"
+																		html += "<input type='checkbox' class='_bookMark' id='"+data[0][i].L_SEQ+"'>"
+																		html += '<label for="'+data[0][i].L_SEQ+'">'
+																		html += "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56.69 51.02'>"
+																		html += "<path d='M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z' /></svg></label>"
+																		html += "<input type='hidden' class='_list_l_seq' value="+data[0][i].L_SEQ+"/></div></div>"
+																		html += "</div></div></div>"
+																		if (i % 4 === 0) {
+																			console
+																					.log('row만들고 닫음')
+																			html += "</div>"
+																			$(
+																					'.courseFilter')
+																					.append(
+																							html);
+																		} else if (i % 4 === 1) {
+																			$(
+																					".row"
+																							+ (i - 1))
+																					.append(
+																							html);
+																		} else if (i % 4 === 2) {
+																			$(
+																					".row"
+																							+ (i - 2))
+																					.append(
+																							html);
+																		} else if (i % 4 === 3) {
+																			$(
+																					".row"
+																							+ (i - 3))
+																					.append(
+																							html);
+																		}
+																	
+
+																	}
+																	
+																}
+
+															})//each문 끝
+
+											//정적으로 만든거에 js적용시키기 위한 것들..(중복 Damn!!)
+
+											$('._bookMark')
+													.click(
+															function(evt) {
+																console
+																		.log('여긴오냐북마크')
+																var lectureTitle = $(
+																		evt.target)
+																		.parent(
+																				'div')
+																		.parent(
+																				'div')
+																		.prev()
+																		.prev()
+																		.prev()
+																		.prev()
+																		.prev()
+																		.text();
+																var L_seq = $(
+																		this)
+																		.attr(
+																				'id');//input 태그안의 id 밸류값 가져오기 
+
+																console
+																		.warn(L_seq);
+
+																if ($(this)
+																		.is(
+																				":checked")) {
+																	swal(
+																			"북마크에 추가되었습니다",
+																			"",
+																			"success");
+																} else {
+																	swal(
+																			"북마크에서 삭제되었습니다",
+																			"",
+																			"info");
+																}
+
+																var obj = {
+																	"l_seq" : L_seq
+																};
+
+																$
+																		.ajax({
+																			url : "/lecture/heart.do",
+																			type : 'POST',
+																			contentType : "application/json",
+																			data : JSON
+																					.stringify(obj),
+																			success : function(
+																					data) {
+																			},
+																			error : function(
+																					e) {
+																				console
+																						.log(
+																								"error:",
+																								e);
+																			}
+																		})
+
+															}); //북마크 끝
+
+											/* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
+											var bookmarkCheckedListArray = $(
+													'._bookmark_l_seq').val()
+													.replace('[', '').replace(
+															']', '');
+											var bookmarkCheckedListString = bookmarkCheckedListArray;
+											var bookmarkCheckedListString1 = bookmarkCheckedListString
+													.split(',');
+
+											$('._list_l_seq')
+													.each(
+															function(index,
+																	item) {
+
+																var list_l_seqIndex = $('._list_l_seq')[index].value;
+
+																$(
+																		bookmarkCheckedListString1)
+																		.each(
+																				function(
+																						index2,
+																						item2) {
+
+																					var bookmarkCheckedListIndex = bookmarkCheckedListString1[index2];
+
+																					if (list_l_seqIndex == bookmarkCheckedListIndex
+																							.trim()) {
+																						$('._list_l_seq')[index]
+																								.closest('div').children[0].checked = true;
+																					}
+																				})
+
+															})
+
+											/* 페이지 0 뜨는거 없애기 시작 */
+											var _page_button0 = $('.page-item')
+													.children().last().text();
+
+											if (_page_button0 == 0) {
+												$('.page-item').children()
+														.last().remove();
+											}
+											/*  페이지 0 뜨는거 없애기 끝 */
+
+											//damn 끝
+
+										},
+										error : function(e) {
+											console.log("error:", e);
+										}
+
+									});
+						});
+	</script>
+
+
+
+
 </body>
 
 
