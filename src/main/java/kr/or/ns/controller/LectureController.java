@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.or.ns.page.PageMaker;
 import kr.or.ns.page.PageMaker_Select;
+import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.service.LectureService;
 import kr.or.ns.service.MyPageService;
@@ -38,6 +39,9 @@ public class LectureController {
 
 	@Autowired
 	private BoardService service2;
+
+	@Autowired
+	private AjaxService aservice;
 	
 	@Autowired
 	private MyPageService service3;
@@ -67,10 +71,59 @@ public class LectureController {
 		//서비스, dao
 		List<Integer> seqlist = new ArrayList<Integer>();
 		seqlist = service.getCheckedL_seq(user_id);
-		System.out.println("--------------seqlist 찍어보기 -----------");
-		System.out.println(seqlist );
-		System.out.println(seqlist.toString());
-		System.out.println("--------------seqlist 찍어보기 -----------");
+		/*
+		 * System.out.println("--------------seqlist 찍어보기 -----------");
+		 * System.out.println(seqlist ); System.out.println(seqlist.toString());
+		 * System.out.println("--------------seqlist 찍어보기 -----------");
+		 */
+		model.addAttribute("seqlist", seqlist); // view까지 전달(forward)
+		
+		return "user/board/course_List"; // study_List.html
+	}
+	
+	
+	// 스터디목록 + 페이징
+	@RequestMapping("course_FilterList.do")
+	public String courseListFilterPage(Criteria cri, Model model,Principal principal) {
+		System.out.println("강좌페이지로 이동이동(연규가씀)");
+		System.out.println(cri.getPage());
+		PageMaker pageMaker = new PageMaker();
+		String user_id = principal.getName();
+		pageMaker.setCri(cri);
+		
+		HashMap<String, Object> map = AjaxRestController.paramsTemp2;
+		int filterSize2 = AjaxRestController.filterSize2;
+		
+		pageMaker.setTotalCount(filterSize2);
+
+		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
+		System.out.println(cri.getPage());
+		System.out.println(cri.getPageStart());
+		System.out.println(cri.getPerPageNum());
+		List<HashMap<String, Object>> list = null;
+		list = aservice.courseBoardFilter(map, cri);
+		model.addAttribute("list", list); // view까지 전달(forward)
+		model.addAttribute("pageMaker", pageMaker);
+		
+		model.addAttribute("price", map.get("price"));
+		model.addAttribute("level", map.get("level"));
+		model.addAttribute("language", map.get("language"));
+		model.addAttribute("site", map.get("site"));
+		
+		System.out.println("우철이는 : " + list);
+
+		model.addAttribute("type", "filter");
+		
+		System.out.println(list.toString());
+
+		//서비스, dao
+		List<Integer> seqlist = new ArrayList<Integer>();
+		seqlist = service.getCheckedL_seq(user_id);
+		/*
+		 * System.out.println("--------------seqlist 찍어보기 -----------");
+		 * System.out.println(seqlist ); System.out.println(seqlist.toString());
+		 * System.out.println("--------------seqlist 찍어보기 -----------");
+		 */
 		model.addAttribute("seqlist", seqlist); // view까지 전달(forward)
 		
 		return "user/board/course_List"; // study_List.html

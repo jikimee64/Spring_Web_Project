@@ -374,17 +374,23 @@ public class AjaxRestController {
 
 		}
 		
+		public static HashMap<String, Object> paramsTemp2 = null;
+		public static int filterSize2 = 0;
+		
+		
 	//강의 게시판 필터
 		@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b) {
-			System.out.println("강의게시판");
+			/*
+			 * System.out.println("강의게시판");
+			 * 
+			 * System.out.println("강의게시판_가격" + params.get("price"));
+			 * System.out.println("강의게시판_레벨" + params.get("level"));
+			 * System.out.println("강의게시판_언어" + params.get("language"));
+			 * System.out.println("강의게시판_사이트" + params.get("site"));
+			 */
 			
-			System.out.println("강의게시판_가격" + params.get("price"));
-			System.out.println("강의게시판_레벨" + params.get("level"));
-			System.out.println("강의게시판_언어" + params.get("language"));
-			System.out.println("강의게시판_사이트" + params.get("site"));
-			
-			paramsTemp = params;
+			paramsTemp2 = params;
 
 			PageMaker pageMakerb = new PageMaker();
 			pageMakerb.setCri(cri_b);
@@ -395,7 +401,7 @@ public class AjaxRestController {
 			List<HashMap<String,Object>> listSize = service.courseBoardFilterSize(params);
 			List<HashMap<String, Object>> list = service.courseBoardFilter(params, cri_b);
 
-			filterSize = listSize.size();
+			filterSize2 = listSize.size();
 			
 			pageMakerb.setTotalCount(listSize.size());
 			

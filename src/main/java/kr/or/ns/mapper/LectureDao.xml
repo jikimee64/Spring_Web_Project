@@ -40,8 +40,9 @@
         on lecture_board.site_seq = site_category.site_seq
 		left outer join price_category
 		on lecture_board.p_seq = price_category.p_seq
-			ORDER BY L_SEQ DESC
-			LIMIT #{pageStart}, #{perPageNum}     
+		group by l_key
+		ORDER BY L_SEQ DESC
+		LIMIT #{pageStart}, #{perPageNum}     
 		]]>
 	</select>
 	
