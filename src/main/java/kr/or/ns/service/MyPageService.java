@@ -61,7 +61,6 @@ public interface MyPageService {
 	//글번호로 알아보는 모집상태 
 	public String getStatus(String s_seq);
 
-	// 모집완료된 사람 수 알아오는 거 
-	public List<Integer> getAllowed(String users);
+
 
 }

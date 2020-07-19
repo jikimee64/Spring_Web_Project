@@ -52,12 +52,8 @@ public class MyPageController {
 		int rs = service.recruit_study(users); // 모집중 스터디 개수
 
 		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
-		List<Integer> allowedNum = service.getAllowed(users);
-
-		for (int i = 0; i < studylist.size(); i++) {
-			System.out.println(allowedNum.get(i));
-			studylist.get(i).put("accept", allowedNum.get(i));
-		}
+		System.out.println(studylist + "찍어보기");
+		
 
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
@@ -67,7 +63,6 @@ public class MyPageController {
 		model.addAttribute("js", js);
 		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
-		//model.addAttribute("allowedNum", allowedNum);
 		System.out.println("받아온 스터디리스트" + studylist);
 		System.out.println("받아온 북마크리스트" + list);
 
