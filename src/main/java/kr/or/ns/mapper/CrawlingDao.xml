@@ -23,6 +23,19 @@
 				#{item.l_address},
 				#{item.l_price})
 				</foreach>
+			ON DUPLICATE KEY UPDATE 
+			l_key=values(l_key),
+			cate_level=values(cate_level),
+			p_seq=values(p_seq),
+			site_seq=values(site_seq),
+			lan_seq=values(lan_seq),
+			l_image=values(l_image),
+			l_title=values(l_title),
+			l_writer=values(l_writer),
+			l_star=values(l_star),
+			l_review=values(l_review),
+			l_address=values(l_address),
+			l_price=values(l_price)
 	</insert>
 
 			

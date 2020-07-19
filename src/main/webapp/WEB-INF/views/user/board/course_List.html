@@ -536,12 +536,13 @@ keyframes heart-keyframes { 100% {
       <ul class="pager d-flex coursePaging" style="place-content: center;">
 
          <!-- 이전버튼 생성여부-->
-  		<li th:if="${pageMaker.prev} == true"><th:block
+  		<li th:if="${pageMaker.prev} == true">
+  		<th:block
 						th:if="${type == null}">
 						<a
 							th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
 							class="page-link" th:text="Previous">&laquo; </a>
-					</th:block> <th:block th:if="${type == null}">
+					</th:block> <th:block th:if="${type != null}">
 						<a
 							th:href="@{course_FilterList.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
 							class="page-link" th:text="Previous">&laquo; </a>
