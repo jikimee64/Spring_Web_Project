@@ -17,6 +17,7 @@ import kr.or.ns.dao.AjaxRestDao;
 import kr.or.ns.util.Mail;
 import kr.or.ns.util.Mailer;
 import kr.or.ns.util.Tempkey;
+import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Study;
 import kr.or.ns.vo.Users;
@@ -362,6 +363,29 @@ public class AjaxServiceImpl implements AjaxService {
 		/* System.out.println("필터 결과 : " + result); */
 		return result;
 	}
+	
+	//강의 게시판 필터
+	public List<HashMap<String, Object>> courseBoardFilter(HashMap<String, Object> params, Criteria cri_b){
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		System.out.println("강의게시판 유저정보:" + params);
+		params.put("pageStart", cri_b.getPageStart());
+		params.put("perPageNum", cri_b.getPerPageNum());
+		List<HashMap<String, Object>> result = dao.courseBoardFilter(params);
+		//System.out.println("강의게시판 셀렉트 결과" + result);
+		/* System.out.println("필터 결과 : " + result); */
+		return result;
+	}
+	
+	//스터디 게시판 필터 사이즈 체크용
+		public List<HashMap<String, Object>> courseBoardFilterSize(HashMap<String, Object> params){
+			AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+			System.out.println("유저정보:" + params);
+			List<HashMap<String, Object>> result = dao.courseBoardFilterSize(params);
+			/* System.out.println("필터 결과 : " + result); */
+			return result;
+		}
+	
+	
 
 	
 	//내가 쓴 댓글 리스트

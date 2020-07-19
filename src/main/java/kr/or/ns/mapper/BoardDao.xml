@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="studyReg" parameterType="kr.or.ns.vo.Study">
 		insert into study_board(user_id, c_seq, loc_seq, lan_seq, people, deadline, title, content, write_date, level, image, filesrc, filesrc2) 
-		values(#{user_id}, #{c_seq},#{loc_seq},#{lan_seq},#{people},DATE_SUB(now(),INTERVAL 9 HOUR),#{title},#{content},DATE_SUB(now(),INTERVAL 9 HOUR), #{level}, #{image}, #{filesrc}, #{filesrc2})
+		values(#{user_id}, #{c_seq},#{loc_seq},#{lan_seq},#{people},#{selectend},#{title},#{content},DATE_SUB(now(),INTERVAL 9 HOUR), #{level}, #{image}, #{filesrc}, #{filesrc2})
 	</insert>
 	
 	<update id="studyEdit">

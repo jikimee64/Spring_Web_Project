@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import kr.or.ns.page.PageMaker;
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.service.MessageService;
+import kr.or.ns.service.MyPageService;
+import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 
 @RestController // controller + responsebody
@@ -30,6 +33,9 @@ public class AjaxRestController {
 
 	@Autowired
 	private MessageService mservice;
+	
+	@Autowired
+	MyPageService myservice;
 
 	// 아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
 	@RequestMapping(value = "emailCheck.do", method = RequestMethod.POST)
@@ -233,11 +239,16 @@ public class AjaxRestController {
 
 	// 마이페이지 참여중 스터디 비동기
 	@RequestMapping(value = "inStudy.do", method = RequestMethod.POST)
-	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params) {
+	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params, Principal principal) {
 		System.out.println(params + " : 참여중 컨트롤러");
 		List<HashMap<String, Object>> list = null;
-
+		String user_id = principal.getName();
+		List<Integer> allowedNum = myservice.getAllowed(user_id);
 		list = service.inStudy(params);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(allowedNum.get(i));
+			list.get(i).put("accept", allowedNum.get(i));
+		}
 		return list;
 
 	}
@@ -329,33 +340,6 @@ public class AjaxRestController {
 		return temp;
 	}
 
-	// 스터디게시판 필터
-	/*
-	 * @RequestMapping(value = "studyBoardFilter22.do", method = RequestMethod.GET)
-	 * public String studyBoardFilter( Criteria_Board cri_b, RedirectAttributes
-	 * redirect) {
-	 * 
-	 * System.out.println("ㅎㅇ"); System.out.println("ㄴㄴ" + cri_b.getPage());
-	 * System.out.println("ㄴㄴ" + cri_b.getPageStart()); System.out.println("ㄴㄴ" +
-	 * cri_b.getPerPageNum());
-	 * 
-	 * PageMaker_Board pageMakerb = new PageMaker_Board();
-	 * pageMakerb.setCri_b(cri_b);
-	 * 
-	 * redirect.addAttribute("cri_b", cri_b); //필터 개수
-	 * 
-	 * List<HashMap<String, Object>> listSize =
-	 * service.studyBoardFilterSize(params); List<HashMap<String, Object>> list =
-	 * service.studyBoardFilter(params, cri_b); List<Map<String, Object>> onlineInfo
-	 * = bservice.getOnlineStudyBoard();
-	 * 
-	 * pageMakerb.setTotalCount(listSize.size()); System.out.println("이거제발맞아라 : " +
-	 * listSize.size());
-	 * 
-	 * temp.add(list); temp.add(onlineInfo); temp.add(pageMakerb);
-	 * 
-	 * return "redirect:/ajax/studyBoardFilter.do"; }
-	 */
 
 	// 마이페이지 내가쓴 댓글 비동기
 	@RequestMapping(value = "commentList.do", method = RequestMethod.POST)
@@ -389,6 +373,46 @@ public class AjaxRestController {
 			service.applycancelNomalStudy(s_seq, user_id);
 
 		}
+		
+	//강의 게시판 필터
+		@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b) {
+			System.out.println("강의게시판");
+			
+			System.out.println("강의게시판_가격" + params.get("price"));
+			System.out.println("강의게시판_레벨" + params.get("level"));
+			System.out.println("강의게시판_언어" + params.get("language"));
+			System.out.println("강의게시판_사이트" + params.get("site"));
+			
+			paramsTemp = params;
+
+			PageMaker pageMakerb = new PageMaker();
+			pageMakerb.setCri(cri_b);
+
+			List temp = new ArrayList();
+			
+			// 필터 개수
+			List<HashMap<String,Object>> listSize = service.courseBoardFilterSize(params);
+			List<HashMap<String, Object>> list = service.courseBoardFilter(params, cri_b);
+
+			filterSize = listSize.size();
+			
+			pageMakerb.setTotalCount(listSize.size());
+			
+			//System.out.println("이게 되는건지 모르겠군" + listSize);
+			System.out.println("필터링 개수 :  : " + listSize.size());
+			System.out.println("20개떠야됨 : " + list.size());
+			System.out.println("강의리스트" + list);
+
+			temp.add(list);
+			temp.add(pageMakerb);
+
+			//System.out.println("우철 : " + temp);
+
+			return temp;
+		}	
+		
+		
 		
 		
 }

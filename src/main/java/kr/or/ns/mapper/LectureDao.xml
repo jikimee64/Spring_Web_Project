@@ -32,7 +32,14 @@
 	<!-- 강의 리스트 -->
 	<select id="getLectureList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria">
 	   <![CDATA[
-			SELECT * FROM LECTURE_BOARD
+			
+		select * from lecture_board
+		left outer join language_category
+		on lecture_board.lan_seq = language_category.lan_seq
+        left outer join site_category
+        on lecture_board.site_seq = site_category.site_seq
+		left outer join price_category
+		on lecture_board.p_seq = price_category.p_seq
 			ORDER BY L_SEQ DESC
 			LIMIT #{pageStart}, #{perPageNum}     
 		]]>

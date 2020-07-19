@@ -1,4 +1,6 @@
 package kr.or.ns.crawling.vo;
+
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -6,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UdemyvsibleInstructors {
-	private String display_name; //강사
-	
+public class UdemyKey {
+	private UdemyPrice price;
+
 }

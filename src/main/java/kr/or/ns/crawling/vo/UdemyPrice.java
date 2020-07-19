@@ -1,4 +1,7 @@
 package kr.or.ns.crawling.vo;
+
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -6,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UdemyvsibleInstructors {
-	private String display_name; //강사
-	
+public class UdemyPrice {
+	private String _class;
+	private UdemyAmount price;
 }
