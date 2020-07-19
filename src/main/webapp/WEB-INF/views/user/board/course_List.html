@@ -349,9 +349,12 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-level">
 							&nbsp;
-							<li data-filter="입문">입문</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter="초급">초급</li> &nbsp;&nbsp;&nbsp;
-							<li data-filter="중급이상">중급 이상</li>
+							<li data-filter="입문"
+								th:classappend="${level} == '입문' ? filter-active : null">입문</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="초급"
+								th:classappend="${level} == '초급' ? filter-active : null">초급</li> &nbsp;&nbsp;&nbsp;
+							<li data-filter="중급이상"
+								th:classappend="${level} == '중급이상' ? filter-active : null">중급 이상</li>
 						</ul>
 					</div>
 				</div>
@@ -361,14 +364,16 @@ keyframes heart-keyframes { 100% {
 						<span class="title _category_list">가격</span>
 					</div>
 					<div class="col-md-9 _category_button verticalLine">
+			
 						<ul id="portfolio-flters-price">
 							&nbsp;
-							<li data-filter="무료">무료</li> &nbsp;
-							<li data-filter="30000" >3만원 이하</li> &nbsp;
-							<li data-filter="30000~50000" >3-5 만원</li> &nbsp;
-							<li data-filter="50000~100000">5-10 만원</li> &nbsp;
-							<li data-filter="100000">10만원 이상</li>
+							<li data-filter="1">무료</li> &nbsp;
+							<li data-filter="2" >3만원 이하</li> &nbsp;
+							<li data-filter="3" >3-5 만원</li> &nbsp;
+							<li data-filter="4">5-10 만원</li> &nbsp;
+							<li data-filter="5">10만원 이상</li>
 						</ul>
+				
 					</div>
 				</div>
 
@@ -382,20 +387,20 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">JAVA</li> &nbsp;
-							<li data-filter=".filter-lan">Javascript</li> &nbsp;
-							<li data-filter=".filter-lan">HTML/CSS</li> &nbsp;
-							<li data-filter=".filter-lan">Spring</li> &nbsp;
-							<li data-filter=".filter-lan">Python</li> &nbsp;
-							<li data-filter=".filter-lan">Vue.js</li> &nbsp;
-							<li data-filter=".filter-lan">React</li>
+							<li data-filter="1">JAVA</li> &nbsp;
+							<li data-filter="2">Javascript</li> &nbsp;
+							<li data-filter="3">HTML/CSS</li> &nbsp;
+							<li data-filter="4">Spring</li> &nbsp;
+							<li data-filter="5">Python</li> &nbsp;
+							<li data-filter="6">Vue.js</li> &nbsp;
+							<li data-filter="7">React</li>
 						</ul>
 						<ul id="portfolio-flters-lan">
 							&nbsp;
-							<li data-filter=".filter-lan">JSP</li> &nbsp;
-							<li data-filter=".filter-lan">Jquery</li> &nbsp;
-							<li data-filter=".filter-lan">BootStrap</li> &nbsp;
-							<li data-filter=".filter-lan">JPA</li>
+							<li data-filter="8">Jquery</li> &nbsp;
+							<li data-filter="9">JSP</li> &nbsp;
+							<li data-filter="10">BootStrap</li> &nbsp;
+							<li data-filter="11">JPA</li>
 						</ul>
 					</div>
 				</div>
@@ -407,9 +412,15 @@ keyframes heart-keyframes { 100% {
 					<div class="col-md-9 _category_button verticalLine">
 						<ul id="portfolio-flters-site">
 							&nbsp;
-							<li data-filter="인프런">인프런</li> &nbsp;
-							<li data-filter="구름EDU">구름EDU</li> &nbsp;
-							<li data-filter="Udemy">Udemy</li>
+							<li data-filter="1"
+							th:classappend="${site} == '1' ? filter-active : null"
+							>인프런</li> &nbsp;
+							<li data-filter="2"
+							th:classappend="${site} == '2' ? filter-active : null"
+							>구름EDU</li> &nbsp;
+							<li data-filter="3"
+							th:classappend="${site} == '3' ? filter-active : null"
+							>Udemy</li>
 						</ul>
 					</div>
 				</div>
@@ -423,7 +434,7 @@ keyframes heart-keyframes { 100% {
 
 	<!-- 여기부터 강의 목록 -->
 	<!-- 	th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}" -->
-	<div class="container"
+	<div class="container courseFilter"
 		style="margin-top: 50px; margin-bottom: 25px; padding-bottom: 100px;">
 
 
@@ -437,27 +448,23 @@ keyframes heart-keyframes { 100% {
 				<div class="card _card_hover_effect"
 					style="width: 100%; padding: 4px; margin: 10px;">
 					<img class="card-img-top"
-						src="https://cdn.inflearn.com/wp-content/uploads/doit_node.jpg"
+						th:src="${list.L_IMAGE}"
 						alt="Card image" style="width: 100%">
 
 					<div class="card-body">
 						<h6 class="card-title _margin_0 _course_title"
 							th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
 						<p class="card-text _margin_0"
-							style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-						<a href="" class="stretched-link"></a>
-						<div
-							style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
-							<p
-								style="WIDTH: 50%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">
-							</p>
-						</div>
-						<span>(6)</span>
+							style="color: gray; font-size: small;" th:text="${list.CATE_SITE}">이지스 퍼블리싱</p>
+						<a href="" class="stretched-link"></a> <img
+							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+							alt="" style="height: 40px;"> (<span th:text="${list.L_REVIEW}">(6)</span>)
+
 						<div class="row">
 
 							<div class="col-9">
-								<span style="color: rgb(23, 92, 190);"> <b
-									th:text="${list.P_SEQ}">₩44,000</b>
+								<span style="color: rgb(23, 92, 190);">₩&nbsp;<b
+									th:text="${list.L_PRICE}"></b>
 								</span>
 							</div>
 							<div class="col-3">
@@ -660,26 +667,33 @@ keyframes heart-keyframes { 100% {
 						"language" : language,
 						"site" : site
 					}
-					
+				console.log("선택data" + data.level);					
 					$
 					.ajax({
-						url : '/Crawling/CrawlingInflearn9.do',
+						url : '/ajax/courseBoardFilter.do',
 						processData : false,
 						contentType : "application/json",
 						cache : false,
 						type : 'POST',
 						data : JSON.stringify(data),
 						success : function(data) {
+							console.log("되는거니마는거니정말");
+							console.log("강의리스트data" + data);
+							$('.courseFilter').empty();
+							
 							
 						},
 						error : function(e) {
 							console.log("error:", e);
 						}
-					
-
+				
 				});
 			});
 	</script>
+	
+	
+	
+	
 </body>
 
 

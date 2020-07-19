@@ -362,6 +362,18 @@ public class AjaxServiceImpl implements AjaxService {
 		/* System.out.println("필터 결과 : " + result); */
 		return result;
 	}
+	
+	//강의 게시판 필터
+	public List<HashMap<String, Object>> courseBoardFilter(HashMap<String, Object> params, Criteria_Board cri_b){
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		System.out.println("강의게시판 유저정보:" + params);
+		params.put("pageStart", cri_b.getPageStart());
+		params.put("perPageNum", cri_b.getPerPageNum());
+		List<HashMap<String, Object>> result = dao.courseBoardFilter(params);
+		System.out.println("강의게시판 셀렉트 결과" + result);
+		/* System.out.println("필터 결과 : " + result); */
+		return result;
+	}
 
 	
 	//내가 쓴 댓글 리스트
