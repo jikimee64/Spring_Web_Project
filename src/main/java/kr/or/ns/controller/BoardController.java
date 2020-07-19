@@ -66,17 +66,19 @@ public class BoardController {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 
 		
-		System.out.println("searchType:"+searchType);
-		System.out.println("keyword:"+keyword);
+		System.out.println("컨트롤러-searchType입니다:"+searchType);
+		System.out.println("컨트롤러-keyword입니다:"+keyword);
+		
 		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
-
+		System.out.println("컨트롤러-cri_b: "+pageMakerb.getCri_b().toString());
 		
-		//파라미터가 추가되었다
+		//파라미터가 추가되었으나 상관없지않나..?그냥 파라미터없는 구버전쓴다!
 //		pageMakerb.setTotalCount(service.getStudyBoardCount(cri_b));
-		pageMakerb.setTotalCount(service.getStudyBoardCount());
-
+		pageMakerb.setTotalCount(service.getStudyBoardCount());  //얘가바로 구버전
+		System.out.println("총게시글 수-컨트롤러-서비스 갔다왔음:"+pageMakerb.getTotalCount());
+		
 		// study_board_online에있는 모든정보도 보내야하나?
 
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
@@ -88,9 +90,14 @@ public class BoardController {
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
 		
-		System.out.println("시작131223 : " + pageMakerb.getStartPage());
-		System.out.println("213213끝 : " + pageMakerb.getEndPage());
-
+		System.out.println("시작페이지 : " + pageMakerb.getStartPage());
+		System.out.println("끝페이지 : " + pageMakerb.getEndPage());
+		System.out.println("뭘로 검색할거냐:"+pageMakerb.getCri_b().getSearchType());
+		System.out.println("키워드 뭔데"+pageMakerb.getCri_b().getKeyword());
+		
+		System.out.println("제대로 들고왔니?:"+list.toString());
+		System.out.println("------컨트롤러 끝~뷰로 보낼게요");
+		
 		return "user/board/study_List"; // study_List.html
 	}
 

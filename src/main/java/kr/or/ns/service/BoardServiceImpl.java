@@ -43,6 +43,8 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		List<Map<String, Object>> list = dao.getStudyBoardList(cri_b);
+		
+		
 
 		return list;
 	}
@@ -75,14 +77,14 @@ public class BoardServiceImpl implements BoardService {
 
 	// 총 스터디게시글 수
 	public int getStudyBoardCount() throws ClassNotFoundException, SQLException {
-		System.out.println("serviceImpl오냐");
+		System.out.println("총 게시글수임-serviceImpl오냐");
 
 		// 여기까지는 오네
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		System.out.println("매퍼갔다오냐");
+		System.out.println("총게시글 수임-매퍼갔다오냐");
 
 		int cnt = dao.getStudyBoardCount();
-		System.out.println(cnt + "cnt찍냐");
+		System.out.println(cnt + ":총게시글수임-cnt찍냐");
 		return cnt;
 	}
 	

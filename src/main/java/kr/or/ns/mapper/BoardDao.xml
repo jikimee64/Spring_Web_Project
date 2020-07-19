@@ -48,7 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					<if test="searchType == 'all'.toString()">
 						and (title like CONCAT('%', #{keyword}, '%')
 							or content like CONCAT('%', #{keyword}, '%')
-							or writer like CONCAT('%', #{keyword}, '%'))
+							or user_id like CONCAT('%', #{keyword}, '%'))
 					</if>
 				</if>
 	
