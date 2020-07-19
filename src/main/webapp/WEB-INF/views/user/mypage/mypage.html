@@ -189,7 +189,7 @@ body {
 										th:text="${studylist.CONTENT_KIND}"></span> <span
 										class="badge badge-pill badge-danger"
 										th:text="|마감일 : ${#dates.format(studylist.DEADLINE,'yyyy/MM/dd HH:mm')}|"></span>
-									<span class="badge badge-pill badge-danger"
+									<span class="badge badge-pill "
 										th:text="|${studylist.ACCEPT_STATUS}|"></span> <a
 										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"> <img
 										src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
@@ -406,9 +406,9 @@ body {
 															html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
 																	+ data[index].CONTENT_KIND
 																	+ "</span>";
-															html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
+															/* html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
 																	+ data[index].ACCEPT_STATUS
-																	+ "</span>";
+																	+ "</span>"; */
 															html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
 																	+ data[index].S_SEQ
 																	+ "'>";
