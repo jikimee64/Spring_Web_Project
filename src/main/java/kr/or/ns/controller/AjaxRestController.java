@@ -17,6 +17,7 @@ import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.service.MessageService;
+import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 
@@ -32,6 +33,9 @@ public class AjaxRestController {
 
 	@Autowired
 	private MessageService mservice;
+	
+	@Autowired
+	MyPageService myservice;
 
 	// 아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
 	@RequestMapping(value = "emailCheck.do", method = RequestMethod.POST)
@@ -235,11 +239,16 @@ public class AjaxRestController {
 
 	// 마이페이지 참여중 스터디 비동기
 	@RequestMapping(value = "inStudy.do", method = RequestMethod.POST)
-	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params) {
+	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params, Principal principal) {
 		System.out.println(params + " : 참여중 컨트롤러");
 		List<HashMap<String, Object>> list = null;
-
+		String user_id = principal.getName();
+		List<Integer> allowedNum = myservice.getAllowed(user_id);
 		list = service.inStudy(params);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(allowedNum.get(i));
+			list.get(i).put("accept", allowedNum.get(i));
+		}
 		return list;
 
 	}

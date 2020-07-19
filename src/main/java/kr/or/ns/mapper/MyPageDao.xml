@@ -126,6 +126,15 @@
 	     select status from study_board where s_seq = #{s_seq} 
 	</select>
 	
+	<!-- 승인완료된 회원 수 알아옴 -->
+	<select id="getAllowed" resultType="int">
+	    select count(s_seq) 
+		from study_group 
+		where s_seq = any(select s_seq from study_group where user_id= #{user_id} and role_name = '회원' ) and accept_status = '승인완료' 
+		group by s_seq
+
+	</select>
+	
 	
 	
 

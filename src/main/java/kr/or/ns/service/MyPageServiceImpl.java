@@ -201,12 +201,13 @@ public class MyPageServiceImpl implements MyPageService {
 
 	// 마이페이지(스터디리스트)
 	@Override
-	public List<HashMap<String, Object>> myPageStudyList(String userid) {
+	public List<HashMap<String, Object>> myPageStudyList(String user_id) {
 		System.out.println("불러와야 한다");
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
-		List<HashMap<String, Object>> myPageStudyList = dao.myPageStudyList(userid);
+		List<HashMap<String, Object>> myPageStudyList = dao.myPageStudyList(user_id);
 		System.out.println("이거 되는거니...?" + myPageStudyList);
-
+		
+		
 		return myPageStudyList;
 	}
 
@@ -249,6 +250,14 @@ public class MyPageServiceImpl implements MyPageService {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		String result = dao.getStatus(s_seq);
 		return result;
+	}
+
+	@Override
+	public List<Integer> getAllowed(String users) {
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
+		List<Integer> allowedNum = dao.getAllowed(users);
+		System.out.println(allowedNum);
+		return allowedNum;
 	}
 
 }
