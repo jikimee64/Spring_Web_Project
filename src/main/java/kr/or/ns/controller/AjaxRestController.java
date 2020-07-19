@@ -390,5 +390,44 @@ public class AjaxRestController {
 
 		}
 		
+	//강의 게시판 필터
+		@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
+		public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria_Board cri_b) {
+			System.out.println("강의게시판");
+			
+			System.out.println("강의게시판리스트" + params.get("price"));
+			System.out.println("강의게시판리스트" + params.get("level"));
+			System.out.println("강의게시판리스트" + params.get("language"));
+			System.out.println("강의게시판리스트" + params.get("site"));
+			
+			paramsTemp = params;
+
+			PageMaker_Board pageMakerb = new PageMaker_Board();
+			pageMakerb.setCri_b(cri_b);
+
+			List temp = new ArrayList();
+			
+			// 필터 개수
+			List<HashMap<String,Object>> listSize = service.studyBoardFilterSize(params);
+			List<HashMap<String, Object>> list = service.studyBoardFilter(params, cri_b);
+			List<Map<String, Object>> onlineInfo = bservice.getOnlineStudyBoard();
+
+			filterSize = listSize.size();
+			
+			pageMakerb.setTotalCount(listSize.size());
+			System.out.println("이게 되는건지 모르겠군" + listSize);
+			System.out.println("강의게시판??? : " + listSize.size());
+
+			temp.add(list);
+			temp.add(onlineInfo);
+			temp.add(pageMakerb);
+
+			System.out.println("우철 : " + temp);
+
+			return temp;
+		}	
+		
+		
+		
 		
 }
