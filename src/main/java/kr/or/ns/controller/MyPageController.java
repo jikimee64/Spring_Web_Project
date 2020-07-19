@@ -48,10 +48,17 @@ public class MyPageController {
 		int bk = service.bookmarkCount(users); // 북마크갯수
 		int cm = service.commentCount(users); // 댓글 갯수
 		int sb = service.s_boardCount(users); // 스터디게시판 게시글 갯수
-		int js = service.join_study(users); //참여중 스터디 개수
-		int rs = service.recruit_study(users); //모집중 스터디 개수
-		
+		int js = service.join_study(users); // 참여중 스터디 개수
+		int rs = service.recruit_study(users); // 모집중 스터디 개수
+
 		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
+		List<Integer> allowedNum = service.getAllowed(users);
+
+		for (int i = 0; i < studylist.size(); i++) {
+			System.out.println(allowedNum.get(i));
+			studylist.get(i).put("accept", allowedNum.get(i));
+		}
+
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
 		model.addAttribute("bk", bk);
@@ -60,6 +67,7 @@ public class MyPageController {
 		model.addAttribute("js", js);
 		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
+		//model.addAttribute("allowedNum", allowedNum);
 		System.out.println("받아온 스터디리스트" + studylist);
 		System.out.println("받아온 북마크리스트" + list);
 
@@ -104,7 +112,7 @@ public class MyPageController {
 		service.MyPageUserEdit(user, request);
 
 		System.out.println("컨트롤러2");
-		
+
 		return "redirect:mypage.do";
 //		return "user/mypage/mypage.html";
 
@@ -132,9 +140,9 @@ public class MyPageController {
 		int bk = service.bookmarkCount(users); // 북마크갯수
 		int cm = service.commentCount(users); // 댓글 갯수
 		int sb = service.s_boardCount(users); // 스터디게시판 게시글 갯수
-		int js = service.join_study(users); //참여중 스터디 개수
-		int rs = service.recruit_study(users); //모집중 스터디 개수
-		
+		int js = service.join_study(users); // 참여중 스터디 개수
+		int rs = service.recruit_study(users); // 모집중 스터디 개수
+
 		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
@@ -163,9 +171,9 @@ public class MyPageController {
 		map.put("role_name", "방장");
 		map.put("s_seq", s_seq);
 		HashMap<String, Object> writer = service.getRole(map);
-		String a = (String)writer.get("user_id");
+		String a = (String) writer.get("user_id");
 		String s_board_staus = service.getStatus(s_seq);
-		model.addAttribute("id" , user_id);
+		model.addAttribute("id", user_id);
 		model.addAttribute("status", status);
 		model.addAttribute("writer", a);
 		model.addAttribute("s_seq", s_seq);
@@ -180,11 +188,9 @@ public class MyPageController {
 
 	}
 
-	
-	
 //	이건 지워야됨
-		@RequestMapping(value = "mypage_Mycomment.do")
-		public String MycommentPage() {
+	@RequestMapping(value = "mypage_Mycomment.do")
+	public String MycommentPage() {
 		return "user/mypage/mypage_Mycomment.html";
 	}
 }
