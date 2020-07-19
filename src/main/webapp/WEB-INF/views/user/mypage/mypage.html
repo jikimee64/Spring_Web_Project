@@ -161,7 +161,7 @@ body {
 					style="padding: 9px; overflow-y: auto; border: 3px solid lightskyblue;">
 					<div style="overflow-x: hidden; width: 100%; height: 400px;"
 						id="recruting_study">
-						<div th:each="studylist: ${studylist}">
+						<div th:each="studylist,index: ${studylist}">
 
 							<hr style="border: solid 1px; margin-top: 0px;margin-bottom:0px;" />
 							<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
@@ -180,10 +180,16 @@ body {
 										class="badge badge-pill badge-info"
 										th:text="${studylist.LEVEL}"></span> <span
 										class="badge badge-pill badge-secondary"
-										th:text="${studylist.CATE_LANGUAGE}"></span> <span
+										th:text="${studylist.CATE_LANGUAGE}"></span> 
+										
+										<span
 										class="badge badge-pill badge-warning"
-										th:text="|${studylist.PEOPLE}명|" id="recruting_people">모집인원
-										4/6</span> <span class="badge badge-pill badge-warning"
+										th:text="|${studylist.accept}/${studylist.PEOPLE}명|" id="recruting_people">모집인원
+										4/6</span> 
+										
+										
+										
+										<span class="badge badge-pill badge-warning"
 										th:text="${studylist.LOC}"></span> <span
 										class="badge badge-pill badge-light"
 										th:text="${studylist.CONTENT_KIND}"></span> <span
