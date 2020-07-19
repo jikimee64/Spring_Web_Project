@@ -244,7 +244,7 @@
 		on lecture_board.p_seq = price_category.p_seq
 		<where>
 		<if test="price != null">
-			and lecture_board.cate_price = #{price}
+			and lecture_board.p_seq = #{price}
 		</if>
 		<if test="level != null">
 				 and lecture_board.cate_level = #{level}
@@ -255,8 +255,8 @@
 			      	#{item}
 			</foreach>
 		</if>
-		<if test="cite != null">
-			and lecture_board.cate_site = #{site}
+		<if test="site != null">
+			and lecture_board.site_seq = #{site}
 		</if> 
 		</where>
 		order by lecture_board.l_seq desc
@@ -274,7 +274,7 @@
 		on lecture_board.p_seq = price_category.p_seq
 		<where>
 		<if test="price != null">
-			and lecture_board.cate_price = #{price}
+			and lecture_board.p_seq = #{price}
 		</if>
 		<if test="level != null">
 				 and lecture_board.cate_level = #{level}

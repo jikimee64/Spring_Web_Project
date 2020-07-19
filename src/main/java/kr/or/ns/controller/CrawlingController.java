@@ -49,11 +49,13 @@ public class CrawlingController {
 	@Qualifier("restTemplate")
 	public RestTemplate restTemplate;
 
-	String array[] = new String[] { "java", "javascript", "html-css", "spring", "python", "vuejs", "react", "jquery",
-			"jsp", "bootstrap", "java-persistence-api" };
 
 	@RequestMapping("CrawlingInflearn9.do")
 	public void CrawlingInflearn222() {
+
+		String array[] = new String[] { "java", "javascript", "html-css", "spring", "python", "vuejs", "react", "jquery",
+				"jsp", "bootstrap", "java-persistence-api" };
+		
 		List<Map<String, Object>> titleList = new ArrayList<>();
 
 		for (int i = 0; i < array.length; i++) {
@@ -620,9 +622,8 @@ public class CrawlingController {
 						// 상세보기용 주소
 						Elements course_card_back = element.get(j).getElementsByClass("_1xnzzp");
 						map.put("l_address", "https://edu.goorm.io" + course_card_back.attr("href"));
-				
-						
-						//가격 보여주기
+
+						// 가격 보여주기
 						if (pricesData2.equals("무료") || pricesData2.equals("\0")) {
 							map.put("l_price", pricesData2);
 						} else {
@@ -778,9 +779,8 @@ public class CrawlingController {
 					// 상세보기용 주소
 					Elements course_card_back = element.get(j).getElementsByClass("_1xnzzp");
 					map.put("l_address", "https://edu.goorm.io" + course_card_back.attr("href"));
-				
-					
-					//가격 보여주기
+
+					// 가격 보여주기
 					if (pricesData2.equals("무료") || pricesData2.equals("\0")) {
 						map.put("l_price", pricesData2);
 					} else {
@@ -801,19 +801,14 @@ public class CrawlingController {
 
 	// 유데미 크롤링하기
 	@RequestMapping("CrawlingUdemy.do")
-	public List<UdemyResponsePrice> CrawlingUdemy() throws JsonProcessingException {
+	public void CrawlingUdemy() throws JsonProcessingException {
 
 		// 서비스에 넘길 리스트맵
 		List<Map<String, Object>> listMap = new ArrayList();
-
 		// 강의 아이디만 보관
-		List<String> idList = new ArrayList();
-
+		// List<String> idList = new ArrayList();
 		// 강의정보 보관
 		List<UdemyResponse> list = new ArrayList();
-
-		// 강의정보 보관
-		List<UdemyResponsePrice> priceList = new ArrayList();
 
 		String course[] = { "6148", "4820", "7380", "4308", "6368", "6404", "7450" };
 		// html, 부트스트랩, 파이썬, vue.js, javascript, jquery, react,
@@ -832,85 +827,139 @@ public class CrawlingController {
 
 		for (int j = 0; j < list.size(); j++) {
 			for (int z = 0; z < list.get(j).getUnit().getItems().size(); z++) {
+				Map<String, Object> map = new HashMap();
+
 				String id = Integer.toString(list.get(j).getUnit().getItems().get(z).getId());
-				idList.add(id);
+				// idList.add(id);
+				map.put("l_key", id);
 				System.out.println("id : " + id);
 				String title = list.get(j).getUnit().getItems().get(z).getTitle();
+				map.put("l_title", title);
 				System.out.println("title : " + title);
 				String url = list.get(j).getUnit().getItems().get(z).getUrl();
 				String l_address = "https://www.udemy.com" + url;
+				map.put("l_address", l_address);
 				System.out.println(l_address);
-				String image_750x422 = list.get(j).getUnit().getItems().get(z).getImage_750x422();
-				System.out.println("image_750x422 : " + image_750x422);
-				float rating = list.get(j).getUnit().getItems().get(z).getRating();
-				System.out.println("rating : " + rating);
+				String l_image = list.get(j).getUnit().getItems().get(z).getImage_750x422();
+				System.out.println("l_image : " + l_image);
+				map.put("l_image", l_image);
+				float stars = list.get(j).getUnit().getItems().get(z).getRating();
+
+				if (stars < (float) 1.0) {
+					map.put("l_star", "0.5");
+				} else if (stars < (float) 1.1) {
+					map.put("l_star", "1.0");
+				} else if (stars < (float) 1.6) {
+					map.put("l_star", "1.5");
+				} else if (stars < (float) 2.1) {
+					map.put("l_stars", "2.0");
+				} else if (stars < (float) 2.6) {
+					map.put("l_star", "2.5");
+				} else if (stars < (float) 3.1) {
+					map.put("l_star", "3.0");
+				} else if (stars < (float) 3.6) {
+					map.put("l_star", "3.5");
+				} else if (stars < (float) 4.1) {
+					map.put("l_star", "4.0");
+				} else if (stars < (float) 4.6) {
+					map.put("l_star", "4.5");
+				} else {
+					map.put("l_star", "5.0");
+				}
+				System.out.println("stars : " + stars);
+
 				int num_reviews = list.get(j).getUnit().getItems().get(z).getNum_reviews();
 				System.out.println("num_reviews : " + num_reviews);
-				String instructional_level = list.get(j).getUnit().getItems().get(z).getInstructional_level();
+				map.put("l_review", num_reviews);
+				String instructional_level = list.get(j).getUnit().getItems().get(z).getInstructional_level_simple();
 				System.out.println("instructional_level : " + instructional_level);
+
+				if (instructional_level.equals("모든 수준")) {
+					map.put("cate_level", "입문");
+				} else if (instructional_level.equals("초급")) {
+					map.put("cate_level", "초급");
+				} else {
+					map.put("cate_level", "중급이상");
+				}
+
 				String author = list.get(j).getUnit().getItems().get(z).getAuthor();
 				System.out.println("author : " + author);
-				String label_title = list.get(j).getUnit().getItems().get(z).getContext_info().getLabel().getTitle();
-				System.out.println("label_title : " + label_title);
+				map.put("l_writer", author);
+				// String label_title =
+				// list.get(j).getUnit().getItems().get(z).getContext_info().getLabel().getTitle();
+				// System.out.println("label_title : " + label_title);
+
+				switch (j) {
+				case 0:
+					map.put("lan_seq", 3);
+					break;
+				case 1:
+					map.put("lan_seq", 10);
+					break;
+				case 2:
+					map.put("lan_seq", 5);
+					break;
+				case 3:
+					map.put("lan_seq", 6);
+					break;
+				case 4:
+					map.put("lan_seq", 2);
+					break;
+				case 5:
+					map.put("lan_seq", 8);
+					break;
+				case 6:
+					map.put("lan_seq", 7);
+					break;
+				}
 				System.out.println("-----구분선-------");
+
+				URI uri2 = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/pricing/")
+						.queryParam("course_ids", id).queryParam("fields[pricing_result]",
+								"price,discount_price,list_price,price_detail,price_serve_tracking_id")
+						.build().toUri();
+				System.out.println("uri2 : " + uri2);
+
+				HttpHeaders headers = new HttpHeaders();
+				HttpEntity entity = new HttpEntity(headers);
+
+				ResponseEntity<Map<String, Object>> rateResponse = restTemplate.exchange(uri2, HttpMethod.GET, entity,
+						new ParameterizedTypeReference<Map<String, Object>>() {
+						});
+				// System.out.println("getBody : " + rateResponse.getBody());
+				// System.out.println("courses : " + rateResponse.getBody().get("courses"));
+				Map<String, Object> map5 = (Map<String, Object>) rateResponse.getBody().get("courses");
+				// System.out.println("제발 : " + map.get(idList.get(z)));
+				Map<String, Object> map2 = (Map<String, Object>) map5.get(id);
+				Map<String, Object> map3 = (Map<String, Object>) map2.get("price");
+				// System.out.println("amount : " + map3.get("amount"));
+				Double double_price = (Double) map3.get("amount");
+				String price_string = (String) map3.get("price_string");
+				if(price_string.equals("Free")) {
+					map.put("l_price", "무료");
+				}else {
+					map.put("l_price", price_string);
+				}
+				
+			
+				//무료인것은 amount 0 
+					if(double_price == (double)0) {
+						map.put("p_seq", 1);
+					}else if (double_price < (double)30000) {
+						map.put("p_seq", 2);
+					} else if (double_price < (double)50000) {
+						map.put("p_seq", 3);
+					} else if (double_price < (double)100000) {
+						map.put("p_seq", 4);
+					} else {
+						map.put("p_seq", 5);
+					}
+					
+					map.put("site_seq", 3);
+
+				listMap.add(map);
 			}
 		}
-
-		System.out.println("idList.size() : " + idList.size());
-		for (int z = 0; z < idList.size(); z++) {
-			UdemyResponsePrice returnTypeData2 = new UdemyResponsePrice();
-			URI uri2 = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/pricing/")
-					.queryParam("course_ids", idList.get(z))
-					.queryParam("fields[pricing_result]", "price,discount_price,list_price,price_detail,price_serve_tracking_id").build().toUri();
-			System.out.println("uri2 : " + uri2);
-			
-			returnTypeData2 = restTemplate.getForObject(uri2, UdemyResponsePrice.class);
-			
-			HttpHeaders headers = new HttpHeaders();
-			HttpEntity entity = new HttpEntity(headers);
-			
-			ResponseEntity<Map<String, Object>> rateResponse =
-					restTemplate.exchange(uri2, HttpMethod.GET, entity, 
-							new ParameterizedTypeReference<Map<String, Object>>() {});
-			
-			System.out.println("getBody : " + rateResponse.getBody());
-            
-			System.out.println("courses : " + rateResponse.getBody().get("courses"));
-			
-			Map<String, Object> map = (Map<String, Object>) rateResponse.getBody().get("courses");
-			
-			System.out.println("제발 : " + map.get(idList.get(z)));
-			
-			//System.out.println("제발.. : " + map.get(idList.get(z)));
-			
-			//System.out.println("제발222 : " + map.get(idList.get(z)).getPrice().getAmount());
-			
-			Map<String, Object> map2 = (Map<String, Object>) map.get(idList.get(z));
-			
-			Map<String, Object> map3 = (Map<String, Object>) map2.get("price");
-			System.out.println("amount : " + map3.get("amount"));
-			
-			
-			/*esponseEntity<Map<String, Object>> rateResponse2 =
-					restTemplate.exchange(uri2, HttpMethod.GET, null, 
-							new ParameterizedTypeReference<Map<String, Object>>() {});*/
-			
-			 
-			//System.out.println("getAmount : " + rateResponse.getBody().get("course"));
-			
-			//rateResponse
-
-			// System.out.println("가격 : " + returnTypeData2);
-			UdemyKey uk = new UdemyKey();
-			// returnTypeData2.getCourses().setMap(idList.get(z),uk);
-			// returnTypeData2.getCourses().getMap().get(idList.get(z)).getAmount();
-			// System.out.println("amount : " +
-			// returnTypeData2.getCourses().getMap().get(idList.get(z)).getPrice().getAmount());
-			// System.out.println("amount : " + map.get(idList.get(z)).getAmount());
-			// priceList.add(returnTypeData2);
-		}
-
-		return priceList;
+		int result = service.insertStudy(listMap);
 	}
-
 }

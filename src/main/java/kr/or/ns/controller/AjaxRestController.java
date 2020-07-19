@@ -370,10 +370,10 @@ public class AjaxRestController {
 		public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b) {
 			System.out.println("강의게시판");
 			
-			System.out.println("강의게시판리스트" + params.get("price"));
-			System.out.println("강의게시판리스트" + params.get("level"));
-			System.out.println("강의게시판리스트" + params.get("language"));
-			System.out.println("강의게시판리스트" + params.get("site"));
+			System.out.println("강의게시판_가격" + params.get("price"));
+			System.out.println("강의게시판_레벨" + params.get("level"));
+			System.out.println("강의게시판_언어" + params.get("language"));
+			System.out.println("강의게시판_사이트" + params.get("site"));
 			
 			paramsTemp = params;
 
@@ -393,6 +393,7 @@ public class AjaxRestController {
 			//System.out.println("이게 되는건지 모르겠군" + listSize);
 			System.out.println("필터링 개수 :  : " + listSize.size());
 			System.out.println("20개떠야됨 : " + list.size());
+			System.out.println("강의리스트" + list);
 
 			temp.add(list);
 			temp.add(pageMakerb);
