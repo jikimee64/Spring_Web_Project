@@ -488,8 +488,6 @@ keyframes heart-keyframes { 100% {
 			</div>
 			<th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
 
-
-
 		</th:block>
 
 		<!-- 여기까지 카드 하나 끝 -->
@@ -680,6 +678,17 @@ keyframes heart-keyframes { 100% {
 							console.log("되는거니마는거니정말");
 							console.log("강의리스트data" + data);
 							$('.courseFilter').empty();
+							
+							$.each(data, function(index, item) {
+								let html = "";
+								if(index%4 == 0)}{
+									
+								}
+								
+							})
+							
+							
+							
 							
 							
 						},
