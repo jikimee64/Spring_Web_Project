@@ -54,7 +54,6 @@ public class MyPageController {
 		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
 		List<Integer> allowedNum = service.getAllowed(users);
 
-		HashMap<String, Object> maap = new HashMap<String, Object>();
 		for (int i = 0; i < studylist.size(); i++) {
 			System.out.println(allowedNum.get(i));
 			studylist.get(i).put("accept", allowedNum.get(i));
