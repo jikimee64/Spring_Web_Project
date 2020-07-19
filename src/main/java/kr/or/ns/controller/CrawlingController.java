@@ -32,6 +32,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.or.ns.crawling.vo.UdemyCourses;
 import kr.or.ns.crawling.vo.UdemyKey;
+import kr.or.ns.crawling.vo.UdemyPage;
 import kr.or.ns.crawling.vo.UdemyPrice;
 import kr.or.ns.crawling.vo.UdemyResponse;
 import kr.or.ns.crawling.vo.UdemyResponsePrice;
@@ -113,7 +114,8 @@ public class CrawlingController {
 						Map<String, Object> map = new HashMap();
 
 						String key = element.get(j).attr("fxd-data");
-						String key_insert = key.substring(13, 19);
+						String arr_key[] = key.split(",");
+						String key_insert = arr_key[0].substring(13);
 						map.put("l_key", key_insert);
 
 						Elements level = element.get(j).getElementsByClass("course_level");
@@ -264,7 +266,8 @@ public class CrawlingController {
 					Map<String, Object> map = new HashMap();
 
 					String key = element.get(j).attr("fxd-data");
-					String key_insert = key.substring(13, 19);
+					String arr_key[] = key.split(",");
+					String key_insert = arr_key[0].substring(13);
 					map.put("l_key", key_insert);
 
 					Elements level = element.get(j).getElementsByClass("course_level");
@@ -822,6 +825,8 @@ public class CrawlingController {
 					.queryParam("navigation_locale", "ko_KR").queryParam("course_label", course[i])
 					.queryParam("sos", "ps").queryParam("fl", "scat").build().toUri();
 			returnTypeData = restTemplate.getForObject(uri, UdemyResponse.class);
+			int page = returnTypeData.getUnit().getPagination().getTotal_page();
+			System.out.println("page : " + page);
 			list.add(returnTypeData);
 		}
 
@@ -934,11 +939,12 @@ public class CrawlingController {
 				Map<String, Object> map3 = (Map<String, Object>) map2.get("price");
 				// System.out.println("amount : " + map3.get("amount"));
 				Double double_price = (Double) map3.get("amount");
+				System.out.println("uri2의 amount : " + double_price);
 				String price_string = (String) map3.get("price_string");
 				if(price_string.equals("Free")) {
 					map.put("l_price", "무료");
 				}else {
-					map.put("l_price", price_string);
+					map.put("l_price", price_string.substring(1));
 				}
 				
 			
