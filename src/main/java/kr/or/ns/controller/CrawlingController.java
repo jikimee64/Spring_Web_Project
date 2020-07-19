@@ -16,13 +16,19 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import kr.or.ns.crawling.vo.UdemyKey;
+import kr.or.ns.crawling.vo.UdemyPrice;
 import kr.or.ns.crawling.vo.UdemyResponse;
+import kr.or.ns.crawling.vo.UdemyResponsePrice;
 import kr.or.ns.crawling.vo.UdemyUnit;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.service.CrawlingService;
@@ -742,7 +748,7 @@ public class CrawlingController {
 
 	// 유데미 크롤링하기
 	@RequestMapping("CrawlingUdemy.do")
-	public List<UdemyResponse> CrawlingUdemy() {
+	public List<UdemyResponsePrice> CrawlingUdemy() {
 
 		// 서비스에 넘길 리스트맵
 		List<Map<String, Object>> listMap = new ArrayList();
@@ -752,6 +758,9 @@ public class CrawlingController {
 
 		// 강의정보 보관
 		List<UdemyResponse> list = new ArrayList();
+		
+		// 강의정보 보관
+		List<UdemyResponsePrice> priceList = new ArrayList();
 
 		String course[] = { "6148", "4820", "7380", "4308", "6368", "6404", "7450" };
 		// html, 부트스트랩, 파이썬, vue.js, javascript, jquery, react,
@@ -768,6 +777,8 @@ public class CrawlingController {
 			list.add(returnTypeData);
 		}
 
+		
+		
 		for (int j = 0; j < list.size(); j++) {
 			for (int z = 0; z < list.get(j).getUnit().getItems().size(); z++) {
 				String id = Integer.toString(list.get(j).getUnit().getItems().get(z).getId());
@@ -776,14 +787,15 @@ public class CrawlingController {
 				String title = list.get(j).getUnit().getItems().get(z).getTitle();
 				System.out.println("title : " + title);
 				String url = list.get(j).getUnit().getItems().get(z).getUrl();
-				System.out.println(url);
-				String image_750x422 = list.get(j).getUnit().getItems().get(z).getTitle();
+				String l_address = "https://www.udemy.com" + url;
+				System.out.println(l_address);
+				String image_750x422 = list.get(j).getUnit().getItems().get(z).getImage_750x422();
 				System.out.println("image_750x422 : " + image_750x422);
-				String rating = list.get(j).getUnit().getItems().get(z).getTitle();
+				float rating = list.get(j).getUnit().getItems().get(z).getRating();
 				System.out.println("rating : " + rating);
-				String num_reviews = list.get(j).getUnit().getItems().get(z).getTitle();
+				int num_reviews = list.get(j).getUnit().getItems().get(z).getNum_reviews();
 				System.out.println("num_reviews : " + num_reviews);
-				String instructional_level = list.get(j).getUnit().getItems().get(z).getTitle();
+				String instructional_level = list.get(j).getUnit().getItems().get(z).getInstructional_level();
 				System.out.println("instructional_level : " + instructional_level);
 				String author = list.get(j).getUnit().getItems().get(z).getAuthor();
 				System.out.println("author : " + author);
@@ -793,13 +805,36 @@ public class CrawlingController {
 			}
 		}
 
+		System.out.println("idList.size() : " + idList.size());
 		for (int z = 0; z < idList.size(); z++) {
+			UdemyResponsePrice returnTypeData2 = new UdemyResponsePrice();
 			URI uri2 = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/pricing/")
-					.queryParam("course_ids", idList.get(z)).build().toUri();
-			// returnTypeData2 = restTemplate.getForObject(uri2, UdemyResponse.class);
+					.queryParam("course_ids", idList.get(0))
+					.queryParam("fields[pricing_result]", "price").build().toUri();
+			System.out.println("uri2 : " + uri2);
+			
+			ResponseEntity<Map<String, Object>> rateResponse =
+					restTemplate.exchange(uri2, HttpMethod.GET, null, 
+							new ParameterizedTypeReference<Map<String, Object>>() {});
+			
+			System.out.println("오예 : " + rateResponse.getBody().get(idList.get(0)));
+			//rateResponse
+			
+			/*
+			 * returnTypeData2 = restTemplate.exchange(uri2, HttpMethod.GET, null, new
+			 * ParameterizedTypeReference<Map<String, Object>>() {});
+			 */
+
+			 //System.out.println("가격 : " + returnTypeData2);
+			 UdemyKey uk = new UdemyKey();
+			 //returnTypeData2.getCourses().setMap(idList.get(z),uk);
+			 //returnTypeData2.getCourses().getMap().get(idList.get(z)).getAmount();
+			 //System.out.println("amount : " +  returnTypeData2.getCourses().getMap().get(idList.get(z)).getPrice().getAmount());
+			 //System.out.println("amount : " + map.get(idList.get(z)).getAmount());
+			 //priceList.add(returnTypeData2);
 		}
 
-		return list;
+		return priceList;
 	}
 
 }

@@ -7,6 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UdemyContextInfo {
-	private UdemyLabel label; //강사
+public class UdemyKey {
+	private UdemyPrice price;
+
 }
