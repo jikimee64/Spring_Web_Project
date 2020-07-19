@@ -2,7 +2,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>course_list</title>
@@ -82,18 +83,18 @@
 #portfolio #portfolio-flters-lan li {
 	background: rgb(240, 238, 238);
 }
-._card_hover_effect{
-	margin-bottom:10px !important;
+
+._card_hover_effect {
+	margin-bottom: 10px !important;
 }
 
 ._card_hover_effect:hover {
-	margin-bottom:5px !important;
+	margin-bottom: 5px !important;
 	text-decoration: none !important;
 	padding: 8px !important;
 	border-radius: 10px;
 	border: 2px solid #02db63;
 }
-
 
 .pager li>a, .pager li>span {
 	border: white;
@@ -157,7 +158,6 @@ body {
 }
 
 /* 하트 체크박스 스타일 시작 */
-
 input[type=checkbox] {
 	clear: both;
 	display: none;
@@ -178,7 +178,7 @@ input[type="checkbox"]+label {
 	line-height: 60px;
 	cursor: pointer;
 	border-radius: 50%;
-	transform:translate3d(-3px, -7px, 10px);
+	transform: translate3d(-3px, -7px, 10px);
 }
 
 input[type="checkbox"]+label svg {
@@ -229,8 +229,6 @@ input[type="checkbox"]:checked+label svg {
 	transform: scale(1.3);
 	-webkit-transform: scale(1.3);
 }
-
-
 
 input[type="checkbox"]:checked+label:after {
 	-webkit-animation: heart-keyframes 0.3s 0.2s forwards;
@@ -300,13 +298,14 @@ keyframes heart-keyframes { 100% {
 	transform: scale(1.03);
 	-moz-transform: scale(1.03);
 }
+
 }
-      .page-item.active .page-link {
-                z-index: 3;
-                color: #fff;
-                background-color: #18d26e;
-                border-color: #18d26e;
-            }
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: #18d26e;
+	border-color: #18d26e;
+}
 /* 하트 체크박스 끝 */
 </style>
 
@@ -453,13 +452,14 @@ keyframes heart-keyframes { 100% {
 						alt="Card image" style="width: 100%">
 
 					<div class="card-body">
-						<h6 class="card-title _margin_0 _course_title" th:text="${list.L_TITLE}">Do
-							it! Node.js 프로그래밍(개정판)</h6>
+						<h6 class="card-title _margin_0 _course_title"
+							th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
 						<p class="card-text _margin_0"
 							style="color: gray; font-size: small;" th:text="${list.CATE_SITE}">이지스 퍼블리싱</p>
 						<a href="" class="stretched-link"></a> <img
 							src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
 							alt="" style="height: 40px;"> (<span th:text="${list.L_REVIEW}">(6)</span>)
+
 						<div class="row">
 
 							<div class="col-9">
@@ -469,16 +469,16 @@ keyframes heart-keyframes { 100% {
 							</div>
 							<div class="col-3">
 								<!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
-								<input type="checkbox" class="_bookMark"th:id="${list.L_SEQ}" /> <label th:for="${list.L_SEQ}">
-<!-- 								<input type="checkbox" id="heart" /> <label for="heart"> -->
+								<input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
+								<label th:for="${list.L_SEQ}"> <!-- 								<input type="checkbox" id="heart" /> <label for="heart"> -->
 									<svg xmlns="http://www.w3.org/2000/svg"
 										viewBox="0 0 56.69 51.02">
 							    <path
 											d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
 							</svg>
-								</label>
-									<input type="hidden" class="_list_l_seq"th:value="${list.L_SEQ}" />
-									
+								</label> <input type="hidden" class="_list_l_seq"
+									th:value="${list.L_SEQ}" />
+
 							</div>
 						</div>
 						<!-- 하트 체크박스 끝 -->
@@ -488,18 +488,18 @@ keyframes heart-keyframes { 100% {
 			</div>
 			<th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
 
-		
+
 
 		</th:block>
-	
+
 		<!-- 여기까지 카드 하나 끝 -->
-	
+
 		<th:block th:unless="${#lists.size(list)%4==0}"
 			th:utext="'&lt;/div&gt;'" />
 		<!-- 여기서 문제가 터질지 몰라 감안하세요 -->
 
 
-	<input class="_bookmark_l_seq" th:value="${seqlist}" type="hidden" />
+		<input class="_bookmark_l_seq" th:value="${seqlist}" type="hidden" />
 
 		<br />
 
@@ -540,34 +540,41 @@ keyframes heart-keyframes { 100% {
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 	<script>
-	$(function(){
-		
-		/* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
-		var bookmarkCheckedListArray = $('._bookmark_l_seq').val().replace('[','').replace(']','');
-		var bookmarkCheckedListString = bookmarkCheckedListArray;
-		var bookmarkCheckedListString1 = bookmarkCheckedListString.split(',');
-		
-		$('._list_l_seq').each(function(index, item){
-			
-			var list_l_seqIndex = $('._list_l_seq')[index].value;
-			
-			$(bookmarkCheckedListString1).each(function(index2, item2){
-				
-				var bookmarkCheckedListIndex = bookmarkCheckedListString1[index2];
-				
-				
-				if(list_l_seqIndex == bookmarkCheckedListIndex.trim()){
-					$('._list_l_seq')[index].closest('div').children[0].checked = true;
-				}
-			})
-			
-		})
+		$(function() {
 
-	/* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */		
-		
-		/* 강의 글자수 자르기  시작*/	
+			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
+			var bookmarkCheckedListArray = $('._bookmark_l_seq').val().replace(
+					'[', '').replace(']', '');
+			var bookmarkCheckedListString = bookmarkCheckedListArray;
+			var bookmarkCheckedListString1 = bookmarkCheckedListString
+					.split(',');
+
+			$('._list_l_seq')
+					.each(
+							function(index, item) {
+
+								var list_l_seqIndex = $('._list_l_seq')[index].value;
+
+								$(bookmarkCheckedListString1)
+										.each(
+												function(index2, item2) {
+
+													var bookmarkCheckedListIndex = bookmarkCheckedListString1[index2];
+
+													if (list_l_seqIndex == bookmarkCheckedListIndex
+															.trim()) {
+														$('._list_l_seq')[index]
+																.closest('div').children[0].checked = true;
+													}
+												})
+
+							})
+
+			/* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
+
+			/* 강의 글자수 자르기  시작*/
 			var courseTitleTag = $('._course_title');
-			
+
 			var courseTitleName = "";
 		
 			$.each(courseTitleTag, function(index,item){
@@ -634,7 +641,6 @@ keyframes heart-keyframes { 100% {
 		/* 하트 클릭시  alert창 띄우기 끝 */
 		
 		});
-	
 	</script>
 
 	<script>

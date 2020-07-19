@@ -650,7 +650,7 @@ group+group {
 
 			$.each(contentTag, function(index, item) {
 				contentText = contentTag[index].innerHTML;
-				if (contentText.length > 540) {
+				if (contentText.length > 350) {
 					contentText = contentText.substring(0, 350) + "...";
 				}
 				contentTag[index].innerHTML = contentText;
@@ -884,15 +884,24 @@ group+group {
 																				+ data[0][i].TITLE
 																				+ "</h2></a></div>"
 																		html += "<div class='row _content' style='margin: 0px 5px 0px 28px; height: 150px;'>"
-																		html += "<span>"
+																		html += "<xmp-line class='_xmp'>"
 																				+ data[0][i].CONTENT
-																				+ "</span></div></div></div>"
+																				+ "</xmp-line></div></div></div>"
 																		html += "<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"
 
 																		$(
 																				'.studyFilter')
 																				.append(
 																						html);
+																	/* 문자열 태그 그대로 출력하게 하는 함수== */	
+																	$('._xmp').eq(i)[0].innerText= $('._xmp').eq(
+																			index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
+																	/*== 문자열 태그 그대로 출력하게 하는 함수 */
+																	/* 문자열 자르는 함수 */
+																		if ($('._xmp').eq(i)[0].innerText.length > 350) {
+																			$('._xmp').eq(i)[0].innerText = $('._xmp').eq(i)[0].innerText.substring(0, 350) + "...";
+																				}
+																	/* 문자열 자르는 함수 */
 																	}
 																}
 															})
@@ -973,6 +982,8 @@ group+group {
 
 											console
 													.log("=============================")
+											
+													
 										}, //success
 										error : function(e) {
 											console.log("error:", e);
@@ -1010,8 +1021,7 @@ group+group {
 
 				});
 	</script>
-
-
+	
 	<script>
 		$(function() {
 			a = $('#language').val();
