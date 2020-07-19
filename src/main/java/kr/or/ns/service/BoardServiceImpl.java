@@ -95,12 +95,18 @@ public class BoardServiceImpl implements BoardService {
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
 		System.out.println("?? " + files);
+		System.out.println("-------- 1 ----------");
 		int count = 0;
-		
+		System.out.println("-------- 2 ----------");
+		String deadline = study.getSelectend();
+		System.out.println("-------- 3 ----------");
+		System.out.println(deadline);
+		System.out.println("-------- 4 ----------");
 		if (files != null && files.size() > 0) { // 최소 1개의 업로드가 있다면
 			for (CommonsMultipartFile multifile : files) {
 				String filename = multifile.getOriginalFilename();
 				System.out.println("파일업로드 : " + filename);
+				
 				String path = request.getServletContext().getRealPath("/studyboard/upload");
 
 				String fpath = path + "\\" + filename;
