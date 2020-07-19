@@ -5,16 +5,69 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.or.ns.dao.BoardDao">
 
-	<!-- 총 스터디게시글 수 -->
+	<!-- 총 스터디게시글 수 --> 
+<!-- 	<select id="getStudyBoardCount" resultType="Integer"> -->
+<!-- 	SELECT COUNT(*) FROM STUDY_BOARD -->
+<!-- 	</select> -->
+	
+	
+	<!-- 페이징 스터디 글목록 --> 
+ <!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> --> 
+<!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board"> -->
+<!-- 		<![CDATA[ -->
+<!-- 			SELECT * -->
+<!-- 			FROM STUDY_BOARD -->
+<!-- 			left outer join language_category -->
+<!-- 			on study_board.lan_seq = language_category.lan_seq -->
+<!-- 			left outer join location -->
+<!-- 			on study_board.loc_seq = location.loc_seq -->
+<!-- 			left outer join study_content_category -->
+<!-- 			on study_board.c_seq = study_content_category.c_seq -->
+<!-- 			ORDER BY S_SEQ DESC -->
+<!-- 			LIMIT #{pageStart}, #{perPageNum} -->
+<!-- 		]]> -->
+<!-- 	</select> -->
+	
+	
+	<sql id = "searchCondition">
+	
+			<if test="searchType != null">
+						<if test = "searchType == 't'.toString()">
+							and title like CONCAT('%',#{keyword},'%')
+					</if>	
+					<if test="searchType == 'c'.toString()">
+						and content like CONCAT('%', #{keyword}, '%')
+					</if>
+					<if test="searchType == 'w'.toString()">
+						and writer like CONCAT('%', #{keyword}, '%')
+					</if>
+					<if test="searchType == 'tc'.toString()">
+						and (title like CONCAT('%', #{keyword}, '%')
+							or content like CONCAT('%', #{keyword}, '%'))
+					</if>
+					<if test="searchType == 'all'.toString()">
+						and (title like CONCAT('%', #{keyword}, '%')
+							or content like CONCAT('%', #{keyword}, '%')
+							or writer like CONCAT('%', #{keyword}, '%'))
+					</if>
+				</if>
+	
+	</sql>
+	
+	
+	
+	
+		<!-- 총 스터디게시글 수 -->
 	<select id="getStudyBoardCount" resultType="Integer">
 	SELECT COUNT(*) FROM STUDY_BOARD
+	<include refid="searchCondition"></include>
 	</select>
 	
 	
 	<!-- 페이징 스터디 글목록 -->
 <!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
 	<select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board">
-		<![CDATA[
+	
 			SELECT *
 			FROM STUDY_BOARD
 			left outer join language_category
@@ -23,10 +76,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			on study_board.loc_seq = location.loc_seq
 			left outer join study_content_category
 			on study_board.c_seq = study_content_category.c_seq
+				<include refid="searchCondition"></include>
 			ORDER BY S_SEQ DESC
 			LIMIT #{pageStart}, #{perPageNum}
-		]]>
+	
 	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<select id="getL_SEQ" resultType="String">
 		select l_seq from

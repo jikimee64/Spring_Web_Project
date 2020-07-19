@@ -85,6 +85,24 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println(cnt + "cnt찍냐");
 		return cnt;
 	}
+	
+	
+	
+	
+	// 총 스터디게시글 수
+//	public int getStudyBoardCount(Criteria_Board cri_b) throws ClassNotFoundException, SQLException {
+//		System.out.println("serviceImpl오냐");
+//
+//		// 여기까지는 오네
+//		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+//		System.out.println("매퍼갔다오냐");
+//
+//		int cnt = dao.getStudyBoardCount(cri_b);
+//		System.out.println(cnt + "cnt찍냐");
+//		return cnt;
+//	}
+	
+	
 
 	// 스터디 글 등록(일반 컨텐츠)
 	public int studyReg(Study study, HttpServletRequest request, Principal principal) {

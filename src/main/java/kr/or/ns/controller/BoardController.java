@@ -68,8 +68,9 @@ public class BoardController {
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
 
-		// 서비스를 안가는ㄴㄴㄴ구먼........................
-
+		
+		//파라미터가 추가되었다
+//		pageMakerb.setTotalCount(service.getStudyBoardCount(cri_b));
 		pageMakerb.setTotalCount(service.getStudyBoardCount());
 
 		// study_board_online에있는 모든정보도 보내야하나?
@@ -313,6 +314,9 @@ public class BoardController {
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
 
+		
+		//여기도 잠시 수정...삭제가 될랑가?
+//		pageMakerb.setTotalCount(service.getStudyBoardCount(cri_b));
 		pageMakerb.setTotalCount(service.getStudyBoardCount());
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
