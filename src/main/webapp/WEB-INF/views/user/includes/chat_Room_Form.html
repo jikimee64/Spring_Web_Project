@@ -32,7 +32,8 @@
 							<img src="../../../../resources/images/img/chatroom.png"
 								style="width: 40px; height: 40px;">
 							<h5 class="modal-title" id="exampleModalCenterTitle"
-								style="padding-left: 10px; padding-top: 5px; color:black;">채팅방 만들기</h5>
+								style="padding-left: 10px; padding-top: 5px; color: black;">채팅방
+								만들기</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
@@ -40,35 +41,41 @@
 						</div>
 						<div class="modal-body container" style="padding-bottom: 0px;">
 							<div class="row">
-								<div class="col-md-2" style="color:black;">채팅방 이름</div>
+								<div class="col-md-3" style="color: black;">채팅방 이름</div>
 								<input type="text" name="ch_title"
 									class="form-control form-control-sm">
 							</div>
 
 							<div class="row">
-								<div class="col-md-2" style="padding-top: 10px; color:black;">채팅방 설명</div>
+								<div class="col-md-3" style="padding-top: 10px; color: black;">채팅방
+									설명</div>
 								<input type="text" name="ch_description"
 									class="form-control form-control-sm">
 							</div>
 							<div class="row">
 								<div class="col-6">
 									<div class="row">
-										<div class="col-md-2" style="padding-top: 10px; color:black;">
-											비밀방 개설하기 <input type="checkbox" onclick="onClickHandler()"
+										<img src="../../../../resources/images/img/lock.png"
+											style="width: 20px; height: 20px; margin-left: 20px; margin-top: 10px;">
+										<div class="col-md-7"
+											style="padding-top: 10px; padding-left:5px; color: black;">
+											비밀방 설정<input type="checkbox" onclick="onClickHandler()"
 												id="flag" name="flag" value="HTML" style="width: 20px;" />
 										</div>
 									</div>
 									<div class="row">
-										<div class="col-md-2"></div>
+										<div class="col-md-2" style="padding-top: 5px;"></div>
 										<input class="form-control form-control-sm"
 											placeholder="비밀번호를 입력해주세요" type="password" name="ch_pw"
 											id="ch_pw" />
 									</div>
 								</div>
-								<div class="col-6" style="text-align-last: center; display: grid; padding-top:20px;">
-										<button type="submit" id="room-btn"
-											class="btn btn-outline-success btn-sm" value="방 생성" >
- 									<b>방 생성하기</b></button>
+								<div class="col-6"
+									style="text-align-last: center; display: grid; padding-top: 20px;">
+									<button type="submit" id="room-btn"
+										class="btn btn-outline-success btn-sm" value="방 생성">
+										<b>방 생성하기</b>
+									</button>
 								</div>
 							</div>
 							<br> <br>
