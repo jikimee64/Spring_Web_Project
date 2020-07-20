@@ -33,22 +33,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 			<if test="searchType != null">
 						<if test = "searchType == 't'.toString()">
-							and title like CONCAT('%',#{keyword},'%')
+							where study_board.title like CONCAT('%',#{keyword},'%')
 					</if>	
 					<if test="searchType == 'c'.toString()">
-						and content like CONCAT('%', #{keyword}, '%')
+						where study_board.content like CONCAT('%', #{keyword}, '%')
 					</if>
 					<if test="searchType == 'w'.toString()">
-						and writer like CONCAT('%', #{keyword}, '%')
+						where study_board.user_id like CONCAT('%', #{keyword}, '%')
 					</if>
 					<if test="searchType == 'tc'.toString()">
-						and (title like CONCAT('%', #{keyword}, '%')
-							or content like CONCAT('%', #{keyword}, '%'))
+						where (title like CONCAT('%', #{keyword}, '%')
+							or study_board.content like CONCAT('%', #{keyword}, '%'))
 					</if>
 					<if test="searchType == 'all'.toString()">
-						and (title like CONCAT('%', #{keyword}, '%')
-							or content like CONCAT('%', #{keyword}, '%')
-							or writer like CONCAT('%', #{keyword}, '%'))
+						where (title like CONCAT('%', #{keyword}, '%')
+							or study_board.content like CONCAT('%', #{keyword}, '%')
+							or study_board.user_id like CONCAT('%', #{keyword}, '%'))
 					</if>
 				</if>
 	

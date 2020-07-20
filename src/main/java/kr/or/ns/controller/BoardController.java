@@ -66,30 +66,22 @@ public class BoardController {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 
 		
-		System.out.println("searchType:"+searchType);
-		System.out.println("keyword:"+keyword);
 		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
-
-		
-		//파라미터가 추가되었다
-//		pageMakerb.setTotalCount(service.getStudyBoardCount(cri_b));
 		pageMakerb.setTotalCount(service.getStudyBoardCount());
-
-		// study_board_online에있는 모든정보도 보내야하나?
-
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
+		System.out.println(cri_b+"여기는 컨트롤러 ---------------");
+		cri_b.setKeyword(keyword);
+		cri_b.setSearchType(searchType);
 		list = service.getStudyBoardList(cri_b);
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
 		
-		System.out.println("시작131223 : " + pageMakerb.getStartPage());
-		System.out.println("213213끝 : " + pageMakerb.getEndPage());
 
 		return "user/board/study_List"; // study_List.html
 	}

@@ -98,4 +98,6 @@ public interface BoardService {
 
 	//스터지에 지원했는지 여부 알아냄  
 	public int checkApply(HashMap<String, String> map);
+
+	
 }
