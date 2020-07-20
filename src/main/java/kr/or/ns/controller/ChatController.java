@@ -37,6 +37,12 @@ public class ChatController {
 			System.out.println("방제목 : " + params.get("ch_title"));
 			System.out.println("방설명 : " + params.get("ch_description"));
 			System.out.println("방비번 : " + params.get("ch_pw"));
+			if(params.get("ch_pw") != null) {
+				params.put("ch_pw_check", 1);
+			}else {
+				params.put("ch_pw_check", 0);
+			}
+			params.put("user_id", principal.getName());
 			
 			List<ChatRoom> roomList = null;
 			
