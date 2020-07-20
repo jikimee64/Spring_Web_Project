@@ -95,7 +95,14 @@
 												sec:authentication="principal.username"></span>님 환영합니다</b></li>
 										<li class="_pageactive"><a th:href="@{/manager/index.do}"
 											style="padding-bottom: 0px;">관리자 페이지</a></li>
+										<li class="_pageactive"><a
+											href="/message/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
+									<li class="_pageactive">
+										<!-- <a target="_blank" th:href="@{/chat/roomlist.do}">채팅방</a> -->
+									<a href="" target="_blank" onclick="window.open('/chat/roomlist.do', '채팅방','width=500, height=700'); return false">채팅방</a>
+									
+									</li>
 									<li class="_pageactive"><a th:href="@{/logout}">로그아웃</a></li>
 								</ul></li>
 
@@ -111,15 +118,6 @@
 							<li><a href="/member/menujoin.do">회원가입</a></li>
 						</th:block>
 
-						<!-- <th:block sec:authorize="!hasRole('ROLE_USER')">
-							<li><a href="/member/login.do">로그인</a></li>
-							<li><a href="/member/join.do">회원가입</a></li>
-						</th:block> -->
-							
-					<!-- 	<th:block sec:authorize="!hasRole('ROLE_USER')">
-							<li><a href="/member/login.do">로그인</a></li>
-							<li><a href="/member/join.do">회원가입</a></li>
-						</th:block> -->
 
 					</ul>
 
