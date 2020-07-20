@@ -296,10 +296,12 @@ $(function() {
 				url : "/ajax/wordCloud.do",
 				dataType : "json", //POINT
 				success : function(data) {
-						
-					var text = data[4].cate_language;
-					//var lines = text.split(/[,\. ]+/g),
-					console.log(text);
+						$.each(data,function(index,item){
+							//var text = data[4].cate_language;
+							 let lan_list = data[index];
+						})
+
+					console.log(lan_list);
 						  data = Highcharts.reduce(text, function (arr, word) {
 						    var obj = Highcharts.find(arr, function (obj) {
 						      return obj.name === word;
