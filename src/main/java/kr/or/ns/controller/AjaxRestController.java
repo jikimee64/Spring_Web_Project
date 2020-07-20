@@ -253,7 +253,7 @@ public class AjaxRestController {
 
 	}
 
-	// 차트
+	// 차트JS
 	@RequestMapping(value = "mainChart.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> mainChart() {
 		System.out.println("차트데이터");
@@ -261,6 +261,17 @@ public class AjaxRestController {
 		list = service.mainChart();
 		return list;
 	}
+	
+	//워드클라우드 차트
+	@RequestMapping(value = "wordCloud.do", method = RequestMethod.POST)
+	List<HashMap<String, Object>> wordCloud() {
+		System.out.println("차트데이터");
+		List<HashMap<String, Object>> list = null;
+		list = service.wordCloud();
+		return list;
+	}
+	
+	
 
 	// 지원현황 승인 후 승인완료 데이터 반환
 	@RequestMapping(value = "accept.do", method = RequestMethod.POST)
@@ -412,6 +423,7 @@ public class AjaxRestController {
 			return temp;
 		}	
 		
+		//워드클라우드 차트
 		
 		
 		

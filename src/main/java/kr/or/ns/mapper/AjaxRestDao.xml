@@ -169,6 +169,13 @@
        limit 10
 	</select>
 	
+	<select id="wordCloud" resultType="hashMap">
+		select cate_language from study_board s
+		left outer join language_category l
+		on s.lan_seq = l.lan_seq
+	
+	</select>
+	
 	<select id="studyBoardFilterSize" resultType="hashMap">
 		select * from study_board
 		left outer join language_category
@@ -277,7 +284,7 @@
 			and lecture_board.p_seq = #{price}
 		</if>
 		<if test="level != null">
-				 and lecture_board.cate_level = #{level}
+			and lecture_board.cate_level = #{level}
 		</if>
 		<if test="language.size != 0">
 			     and lecture_board.lan_seq in

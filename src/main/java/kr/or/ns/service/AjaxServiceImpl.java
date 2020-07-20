@@ -420,6 +420,13 @@ public class AjaxServiceImpl implements AjaxService {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		dao.applycancelNomalStudy(s_seq,user_id);
 	}
-
+	
+	//워드클라우드 차트
+	@Override
+	public List<HashMap<String, Object>> wordCloud() {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		List<HashMap<String, Object>> list = dao.wordCloud();
+		return list;
+	}
 
 }
