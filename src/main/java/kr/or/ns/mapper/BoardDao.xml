@@ -5,30 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.or.ns.dao.BoardDao">
 
-	<!-- 총 스터디게시글 수 -->
-	<!-- <select id="getStudyBoardCount" resultType="Integer"> -->
-	<!-- SELECT COUNT(*) FROM STUDY_BOARD -->
-	<!-- </select> -->
-
-
-	<!-- 페이징 스터디 글목록 -->
-	<!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
-	<!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board"> -->
-	<!-- <![CDATA[ -->
-	<!-- SELECT * -->
-	<!-- FROM STUDY_BOARD -->
-	<!-- left outer join language_category -->
-	<!-- on study_board.lan_seq = language_category.lan_seq -->
-	<!-- left outer join location -->
-	<!-- on study_board.loc_seq = location.loc_seq -->
-	<!-- left outer join study_content_category -->
-	<!-- on study_board.c_seq = study_content_category.c_seq -->
-	<!-- ORDER BY S_SEQ DESC -->
-	<!-- LIMIT #{pageStart}, #{perPageNum} -->
-	<!-- ]]> -->
-	<!-- </select> -->
-
-
 	<sql id="searchCondition">
 
 		<if test="searchType != null">
@@ -53,17 +29,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 
 	</sql>
-
-	<!-- <sql id="filterCondition"> <where> <if test="ingOrDone != null"> study_board.status= 
-		#{ingOrDone} </if> <if test="level != null"> and study_board.level = #{level} 
-		</if> <if test="language.size != 0"> and study_board.lan_seq in <foreach 
-		collection="language" item="item" index="index" separator="," open="(" close=")"> 
-		#{item} </foreach> </if> <if test="local != null"> and study_board.loc_seq 
-		= #{local} </if> <if test="studyContent != null"> and study_board.c_seq = 
-		#{studyContent} </if> </where> </sql> -->
-
-
-
 
 	<!-- 총 스터디게시글 수 -->
 	<select id="getStudyBoardCount" resultType="Integer">
@@ -127,7 +92,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and study_board.c_seq = #{studyContent}
 			</if>
 
-
 		ORDER BY S_SEQ DESC
 		LIMIT #{pageStart}, #{perPageNum}
 
@@ -149,16 +113,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		LIMIT #{pageStart}, #{perPageNum}
 
 	</select>
-
-
-
-
-
-
-
-
-
-
 
 
 	<select id="getL_SEQ" resultType="String">

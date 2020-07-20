@@ -6,58 +6,71 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>방 리스트</title>
 
-
-<div th:replace="/manager/includes/head :: head"></div>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 </head>
 <body>
-
-
-
-	<div class="row" style="background-color: green; height: 50px;">
-		<div class="col-9" style="background-color: red;">ss</div>
-		<div class="col-3" style="background-color: yellow;">
-			<a href="" data-toggle="modal" data-target="#chatRoomFormlModal"
-				style="color: black;"> <img
-				src="../../../../resources/images/img/siren.png"
-				style="width: 30px; height: 30px;">
-			</a>
+	<div class="warpper">
+		<div class="row"
+			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px;">
+			<div class="col-12"
+				style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
+				<b style="margin-left:30px;">채팅</b>
+				<div style="float: right; margin-right:20px;"> <a href="" data-toggle="modal"
+					data-target="#chatRoomFormlModal" style="margin-left: 0px;"><img
+						src="../../../../resources/images/img/plus.png"
+						style="width: 20px; height: 20px;"> </a> 
+			</div>
+			</div>
 		</div>
-	</div>
-
-	<div class="row">
-		<label for="">내 채팅</label>
-	</div>
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-3" style="color: black; padding: 0px;">
+				<h5 style="margin-top: 20px;">채팅방 목록</h5>
+			</div>
+		</div>
+		<!-- 1번째 채팅룸 -->
+		<div class="row">
+			<div class="col-1"></div>
+			<div class="col-8" style="color: black; padding: 0px;">
+				<span><b style="font-size: xx-large;">1</b></span> <img
+					src="../../../../resources/images/img/chatroom.png"
+					style="width: 45px; height: 45px; margin-left: 10px;"> 
+					<a href=""><span>&nbsp;&nbsp;어서오세요sdfsdfsdfsdfsdfsdf</span></a></div>
+					<div class="col-1">
+					<img src="../../../../resources/images/img/lock.png"
+					style="width: 20px; height: 20px; margin-left: 10px; float:light; margin-top:20px;"> 
+					</div>
+		
+		</div>
+			<hr style="width:90%;">
+		<!-- 여기까지 한셋트 -->	
+			<div class="row">
+			<div class="col-1"></div>
+			<div class="col-11" style="color: black; padding: 0px;">
+				<span><b style="font-size: xx-large;">1</b></span>
+				<span>&nbsp;어서오세요</span>
+			</div>
+		</div>
+			<hr style="width:90%;">	
 	
-	<div class="row">
-		<div class="col-3" style="background-color: red;">
-			2213132
-		</div>
-		<div class="col-6" style="background-color: red;">
-		213123321
-		</div>
-		<div class="col-3" style="background-color: red;">
-			 <img
-				src="../../../../resources/images/img/siren.png"
-				style="width: 30px; height: 30px;">
-		</div>
+		
+
 	</div>
 
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-	<div th:replace="/user/includes/chat_Room_Form :: chat_Room_Form">
-	</div>
+
 </body>
+<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+<div th:replace="/user/includes/chat_Room_Form :: chat_Room_Form">
+	<script>
+	$("#room-btn").click(function(e) {
 
-<script>
-$("#room-btn").click(function(e) {
-    
-    $('#chatRoomFormlModal').modal('hide');
-    
-});
+		$('#chatRoomFormlModal').modal('hide');
 
+	});
 </script>
 
 
-<script>
+	<script>
 	function onClickHandler() {
 		if ($("input:checkbox[id='flag']").is(":checked") == true) {
 			$('#ch_pw').attr('disabled', false);
@@ -68,7 +81,7 @@ $("#room-btn").click(function(e) {
 </script>
 
 
-<script language="JavaScript">
+	<script language="JavaScript">
 	$(function() {
 		$("#room-btn").click(function(e) {
 			$('##chatRoomFormlModal').modal('hide');
@@ -121,5 +134,4 @@ $("#room-btn").click(function(e) {
 
 	});
 </script>
-
 </html>
