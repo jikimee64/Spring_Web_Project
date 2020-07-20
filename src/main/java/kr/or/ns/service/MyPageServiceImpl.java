@@ -64,7 +64,7 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	@Transactional
 	public int MyPageUserEdit(Users users, HttpServletRequest request) {
-
+		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		System.out.println("서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
 		System.out.println("기타 : " + users.getIntroduce());
@@ -74,10 +74,12 @@ public class MyPageServiceImpl implements MyPageService {
 		String fpath = null;
 		FileOutputStream fs = null;
 
+		Users user = dao.getUsers(users.getUser_id());
+		String origin_profile = user.getProfile_img();
+		System.out.println("origin_profile : " + origin_profile);
+
 		CommonsMultipartFile imagefile = users.getFile();
-		
-		
-		
+
 		if (!imagefile.isEmpty()) {
 			System.out.println("받아온 이미지파일이름" + imagefile);
 			filename = users.getFile().getOriginalFilename();
@@ -100,10 +102,11 @@ public class MyPageServiceImpl implements MyPageService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
-			
+
 		} else {
-			users.setProfile_img("member.png");
+			if (!origin_profile.equals("member.png")) {
+				users.setProfile_img(origin_profile);
+			}
 		}
 
 		// true일시 세션이 있으면 기존꺼 사용 아니면 세션을새로 만듬
@@ -112,8 +115,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 		int result = 0;
 		int result2 = 0;
-
-		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 
 		HashMap<String, String> map = new HashMap();
 		map.put("user_id", users.getUser_id());
@@ -206,8 +207,7 @@ public class MyPageServiceImpl implements MyPageService {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<HashMap<String, Object>> myPageStudyList = dao.myPageStudyList(user_id);
 		System.out.println("이거 되는거니...?" + myPageStudyList);
-		
-		
+
 		return myPageStudyList;
 	}
 
@@ -244,15 +244,12 @@ public class MyPageServiceImpl implements MyPageService {
 		return count;
 	}
 
-	//글 번호로 알아보는 모집 상태
+	// 글 번호로 알아보는 모집 상태
 	@Override
 	public String getStatus(String s_seq) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		String result = dao.getStatus(s_seq);
 		return result;
 	}
-
-
-	
 
 }

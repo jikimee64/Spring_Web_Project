@@ -1,7 +1,9 @@
-package kr.or.ns.dao;
+package kr.or.ns.service;
 
 import java.util.Map;
 
-public interface ChatDao {
+public interface ChatService {
+	
 	public int registerRoom(Map<String, Object> params);
+
 }
