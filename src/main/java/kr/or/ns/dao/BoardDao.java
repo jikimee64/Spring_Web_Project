@@ -26,17 +26,25 @@ study_List 목록뿌리기 작업
 
 public interface BoardDao {
 	
+	//페이징 스터디 글목록(필터 적용)
+	public List<Map<String, Object>> getStudyBoardListFilter(HashMap<String, Object> params);
+
 	//페이징 스터디 글목록
 	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
 
+	
 	//study_board_online 게시판 정보 가져오기
 	public List<Map<String, Object>> getOnlineStudyBoard();
 	
 	//강의글 번호 select 
 	public String getL_SEQ(String s_seq);
 	
+	
 	//총 스터디게시글 수
 	public int getStudyBoardCount();
+	
+	//총 스터디게시글 수
+//	public int getStudyBoardCount(Criteria_Board cri_b);
 	
 	//스터디 글 등록(공통)
 	public int studyReg(Study study);

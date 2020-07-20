@@ -39,13 +39,27 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private SqlSession sqlsession;
 
-	// 페이징 스터디 글목록
-	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b) {
+	// 페이징 스터디 글목록(필터)
+	public List<Map<String, Object>> getStudyBoardListFilter(Criteria_Board cri_b, HashMap<String, Object> params) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
-		List<Map<String, Object>> list = dao.getStudyBoardList(cri_b);
-
+		System.out.println("여기는 서비스 임플(필터입니다)!!!");
+		System.out.println("params : " + params);
+		params.put("cri", cri_b);
+		List<Map<String, Object>> list = dao.getStudyBoardListFilter(params);
+		System.out.println(" 서비스에서 리턴갑니다.");
+		System.out.println(list);
 		return list;
 	}
+	
+	// 페이징 스터디 글목록
+		public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			System.out.println("여기는 서비스 임플!!!");
+			List<Map<String, Object>> list = dao.getStudyBoardList(cri_b);
+			System.out.println(" 서비스에서 리턴갑니다.");
+			System.out.println(list);
+			return list;
+		}
 	
 	//study_board_online 게시판 정보 가져오기(목록에서 온라인강의 컨텐츠 정보 부려줄용)
 	public List<Map<String, Object>> getOnlineStudyBoard(){
@@ -85,6 +99,24 @@ public class BoardServiceImpl implements BoardService {
 		System.out.println(cnt + "cnt찍냐");
 		return cnt;
 	}
+	
+	
+	
+	
+	// 총 스터디게시글 수
+//	public int getStudyBoardCount(Criteria_Board cri_b) throws ClassNotFoundException, SQLException {
+//		System.out.println("serviceImpl오냐");
+//
+//		// 여기까지는 오네
+//		BoardDao dao = sqlsession.getMapper(BoardDao.class);
+//		System.out.println("매퍼갔다오냐");
+//
+//		int cnt = dao.getStudyBoardCount(cri_b);
+//		System.out.println(cnt + "cnt찍냐");
+//		return cnt;
+//	}
+	
+	
 
 	// 스터디 글 등록(일반 컨텐츠)
 	public int studyReg(Study study, HttpServletRequest request, Principal principal) {
@@ -164,7 +196,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		System.out.println("스터디 일반 편집");
-		System.out.println("철이는 나빠ㅣ용" + study.getImage());
 		
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
@@ -487,6 +518,8 @@ public class BoardServiceImpl implements BoardService {
 		int result = dao.checkApply(map);
 		return result;
 	}
+
+	
 
 
 	

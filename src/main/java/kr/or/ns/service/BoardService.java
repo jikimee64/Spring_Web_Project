@@ -30,8 +30,12 @@ study_List 목록뿌리기 작업
 
 public interface BoardService {
 	
+	//페이징 스터디 글목록(필터링)
+	public List<Map<String, Object>> getStudyBoardListFilter(Criteria_Board cri_b, HashMap<String, Object> params);
+	
 	//페이징 스터디 글목록
 	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
+	
 	
 	//study_board_online 게시판 정보 가져오기(목록에서 온라인강의 컨텐츠 정보 부려줄용)
 	public List<Map<String, Object>> getOnlineStudyBoard();
@@ -39,8 +43,11 @@ public interface BoardService {
 	//상세페이지에 뿌려줄 강의 정보
 	public Map<String, Object> onlineDetailInfo(String s_seq);
 	
-	//총 스터디게시글 수
+//	//총 스터디게시글 수
 	public int getStudyBoardCount() throws ClassNotFoundException, SQLException;
+	
+	//총 스터디게시글 수
+//	public int getStudyBoardCount(Criteria_Board cri_b) throws ClassNotFoundException, SQLException;
 	
 	//스터디 모집 글 작성하기
 	public int studyReg(Study study, HttpServletRequest request, Principal principal);
@@ -95,4 +102,6 @@ public interface BoardService {
 
 	//스터지에 지원했는지 여부 알아냄  
 	public int checkApply(HashMap<String, String> map);
+
+	
 }

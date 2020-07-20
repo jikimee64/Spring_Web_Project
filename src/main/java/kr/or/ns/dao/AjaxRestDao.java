@@ -96,4 +96,7 @@ public interface AjaxRestDao {
 
 	//지원한 스터디 모임 지원취소하기 
 	public void applycancelNomalStudy(String s_seq, String user_id);
+	
+	//워드클라우드 차트
+	public List<HashMap<String, Object>> wordCloud();
 }

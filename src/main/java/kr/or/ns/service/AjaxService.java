@@ -87,5 +87,8 @@ public interface AjaxService {
 	//스터디 지원한거 취소하기 
 	public void applycancelNomalStudy(String s_seq, String user_id);
 	
+	//워드클라우드 차트
+	public List<HashMap<String, Object>> wordCloud();
+	
 
 }
