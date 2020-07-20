@@ -276,7 +276,7 @@ group+group {
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
 		<div class="container">
 
-			<div class="row">
+			<div class="row filterRow">
 				<div class="row " style="width: 100%; margin-bottom: 0px;">
 					<div class="col-md-3 _category box aos-init aos-animate"
 						data-aos="fade-up" data-aos-delay="300">
@@ -813,7 +813,7 @@ group+group {
 
 
 	<script>
-		$("li")
+		$('.filterRow li')
 				.on(
 						"click",
 						function() {
@@ -855,6 +855,7 @@ group+group {
 										type : 'POST',
 										data : JSON.stringify(data),
 										success : function(data) {
+											console.log('이게 나오면 절대 안됨')
 
 											$('.studyFilter').empty();
 											$('.studyPaging').empty();
@@ -869,6 +870,7 @@ group+group {
 																				+ index)
 																var list_length = data[0].length;
 																var onlineInfo_length = data[1].length;
+																console.log('onlineInfo_length : '  + onlineInfo_length)
 
 																if (index === 0) {
 																	console
@@ -914,6 +916,7 @@ group+group {
 																					+ "' alt='Card image' style='width: 100%;'>"
 																			html += "</div></div>"
 																		} else { //온라인
+																			console.log('온라인')
 																			console
 																					.log('호호'
 																							+ data[0][i].S_SEQ)
@@ -947,7 +950,7 @@ group+group {
 																				}
 																			}
 
-																		}
+																		} //else 끝
 																		html += "<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
 																		html += "<div class='row' style='margin-top: 10px;'>"
 																		html += "<b style='margin-left: 35px;'>작성자:</b>"

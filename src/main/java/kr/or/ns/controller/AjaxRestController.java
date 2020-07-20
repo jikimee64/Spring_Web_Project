@@ -319,7 +319,6 @@ public class AjaxRestController {
 	@RequestMapping(value = "studyBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public List studyBoardFilter(@RequestBody HashMap<String, Object> params, Criteria_Board cri_b) {
 		System.out.println("테스트1");
-
 		System.out.println("이건떠야됨 " + params.get("language"));
 
 		paramsTemp = params;
