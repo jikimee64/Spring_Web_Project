@@ -69,7 +69,7 @@ public class BoardController {
 		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
-		pageMakerb.setTotalCount(service.getStudyBoardCount());
+	
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
@@ -78,6 +78,7 @@ public class BoardController {
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
 		list = service.getStudyBoardList(cri_b);
+		pageMakerb.setTotalCount(list.size());
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
