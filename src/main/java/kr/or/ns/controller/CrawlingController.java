@@ -21,6 +21,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.or.ns.crawling.vo.UdemyCourses;
 import kr.or.ns.crawling.vo.UdemyKey;
+import kr.or.ns.crawling.vo.UdemyPage;
 import kr.or.ns.crawling.vo.UdemyPrice;
 import kr.or.ns.crawling.vo.UdemyResponse;
 import kr.or.ns.crawling.vo.UdemyResponsePrice;
@@ -50,8 +52,9 @@ public class CrawlingController {
 	public RestTemplate restTemplate;
 
 
-	@RequestMapping("CrawlingInflearn9.do")
-	public void CrawlingInflearn222() {
+	@RequestMapping("CrawlingInflearn.do")
+	@Scheduled(cron="0 45 22 * * * ")
+	public void CrawlingInflearn() {
 
 		String array[] = new String[] { "java", "javascript", "html-css", "spring", "python", "vuejs", "react", "jquery",
 				"jsp", "bootstrap", "java-persistence-api" };
@@ -113,7 +116,8 @@ public class CrawlingController {
 						Map<String, Object> map = new HashMap();
 
 						String key = element.get(j).attr("fxd-data");
-						String key_insert = key.substring(13, 19);
+						String arr_key[] = key.split(",");
+						String key_insert = arr_key[0].substring(13);
 						map.put("l_key", key_insert);
 
 						Elements level = element.get(j).getElementsByClass("course_level");
@@ -264,7 +268,8 @@ public class CrawlingController {
 					Map<String, Object> map = new HashMap();
 
 					String key = element.get(j).attr("fxd-data");
-					String key_insert = key.substring(13, 19);
+					String arr_key[] = key.split(",");
+					String key_insert = arr_key[0].substring(13);
 					map.put("l_key", key_insert);
 
 					Elements level = element.get(j).getElementsByClass("course_level");
@@ -415,6 +420,7 @@ public class CrawlingController {
 	}
 
 	@RequestMapping("CrawlingGoormEdu.do")
+	@Scheduled(cron="0 45 22 * * * ")
 	public void CrawlingGoormEdu() {
 
 		List languagelist = new ArrayList();
@@ -454,12 +460,12 @@ public class CrawlingController {
 			int end = 0;
 			while (pagesize.hasNext()) {
 				String ps = pagesize.next().text();
-				System.out.println("ps : " + ps);
+				//System.out.println("ps : " + ps);
 				count++;
 			}
 			end = count - 2;
 
-			System.out.println("페이지네이션" + end);
+			//System.out.println("페이지네이션" + end);
 			// System.out.println("페이지 갯수" + pagination2);
 
 			Elements element = html.getElementsByClass("_1xnzzp");
@@ -469,7 +475,7 @@ public class CrawlingController {
 					url = "https://edu.goorm.io/category/programming?page=" + z + "&sort=newest&classification="
 							+ languagelist.get(i);
 
-					System.out.println("page : " + z);
+					//System.out.println("page : " + z);
 
 					Connection conn2 = Jsoup.connect(url);
 
@@ -587,8 +593,10 @@ public class CrawlingController {
 						map.put("l_writer", instructors.text());
 
 						// 별점
-						Elements starsData = element.get(j).getElementsByClass("_2KWt9f _3SwFuE");
+						//Elements starsData = element.get(j).getElementsByClass("_2KWt9f _3SwFuE");
+						Elements starsData = element.get(j).getElementsByClass("_3SwFuE");
 						String starsText = starsData.text();
+						System.out.println("널왜뜨냐 : " + starsText);
 						double stars = Double.parseDouble(starsText);
 						// System.out.println("stars" + stars);
 						if (stars < 1.0) {
@@ -598,7 +606,7 @@ public class CrawlingController {
 						} else if (stars < 1.6) {
 							map.put("l_star", "1.5");
 						} else if (stars < 2.1) {
-							map.put("l_stars", "2.0");
+							map.put("l_star", "2.0");
 						} else if (stars < 2.6) {
 							map.put("l_star", "2.5");
 						} else if (stars < 3.1) {
@@ -652,7 +660,7 @@ public class CrawlingController {
 					// 난이도
 					Elements level = element.get(j).getElementsByClass("_4lV4wq").eq(0).tagName("span");
 					String cate = level.text();
-					System.out.println("(페이징1)카테고리" + cate);
+					//System.out.println("(페이징1)카테고리" + cate);
 
 					if (cate.equals("쉬움")) {
 						map.put("cate_level", "입문");
@@ -746,6 +754,7 @@ public class CrawlingController {
 					// 별점
 					Elements starsData = element.get(j).getElementsByClass("_2KWt9f _3SwFuE");
 					String starsText = starsData.text();
+					System.out.println("널어디여 : " + starsText);
 					double stars = Double.parseDouble(starsText);
 					// System.out.println("stars" + stars);
 					if (stars < 1.0) {
@@ -755,7 +764,7 @@ public class CrawlingController {
 					} else if (stars < 1.6) {
 						map.put("l_star", "1.5");
 					} else if (stars < 2.1) {
-						map.put("l_stars", "2.0");
+						map.put("l_star", "2.0");
 					} else if (stars < 2.6) {
 						map.put("l_star", "2.5");
 					} else if (stars < 3.1) {
@@ -801,6 +810,7 @@ public class CrawlingController {
 
 	// 유데미 크롤링하기
 	@RequestMapping("CrawlingUdemy.do")
+	@Scheduled(cron="0 45 22 * * * ")
 	public void CrawlingUdemy() throws JsonProcessingException {
 
 		// 서비스에 넘길 리스트맵
@@ -822,6 +832,8 @@ public class CrawlingController {
 					.queryParam("navigation_locale", "ko_KR").queryParam("course_label", course[i])
 					.queryParam("sos", "ps").queryParam("fl", "scat").build().toUri();
 			returnTypeData = restTemplate.getForObject(uri, UdemyResponse.class);
+			int page = returnTypeData.getUnit().getPagination().getTotal_page();
+			System.out.println("page : " + page);
 			list.add(returnTypeData);
 		}
 
@@ -934,11 +946,12 @@ public class CrawlingController {
 				Map<String, Object> map3 = (Map<String, Object>) map2.get("price");
 				// System.out.println("amount : " + map3.get("amount"));
 				Double double_price = (Double) map3.get("amount");
+				System.out.println("uri2의 amount : " + double_price);
 				String price_string = (String) map3.get("price_string");
 				if(price_string.equals("Free")) {
 					map.put("l_price", "무료");
 				}else {
-					map.put("l_price", price_string);
+					map.put("l_price", price_string.substring(1));
 				}
 				
 			

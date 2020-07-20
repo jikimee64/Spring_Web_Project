@@ -252,12 +252,7 @@ public class MyPageServiceImpl implements MyPageService {
 		return result;
 	}
 
-	@Override
-	public List<Integer> getAllowed(String users) {
-		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
-		List<Integer> allowedNum = dao.getAllowed(users);
-		System.out.println(allowedNum);
-		return allowedNum;
-	}
+
+	
 
 }

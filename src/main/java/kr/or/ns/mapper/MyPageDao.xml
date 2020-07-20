@@ -98,7 +98,7 @@
 	<!-- 스터디 목록 가져오기 -->
 	<select id="myPageStudyList" resultType="hashMap">
 			<![CDATA[
-		select *
+		select * ,(select count(*) from study_group where accept_status = '승인완료' and s_seq= study_board.s_seq) as 'accept' 
 		from study_board
 		left outer join language_category
 		on study_board.lan_seq = language_category.lan_seq
@@ -107,7 +107,7 @@
 		left outer join study_content_category
 		on study_board.c_seq = study_content_category.c_seq
 		left outer join study_group
-		on study_board.s_seq = study_group.s_seq 
+		on study_board.s_seq = study_group.s_seq                              
 		WHERE study_group.user_id= #{user_id} and study_group.role_name  = '회원' 
 		order by study_board.s_seq desc
 			]]>
@@ -126,14 +126,7 @@
 	     select status from study_board where s_seq = #{s_seq} 
 	</select>
 	
-	<!-- 승인완료된 회원 수 알아옴 -->
-	<select id="getAllowed" resultType="int">
-	    select count(s_seq) 
-		from study_group 
-		where s_seq = any(select s_seq from study_group where user_id= #{user_id} and role_name = '회원' ) and accept_status = '승인완료' 
-		group by s_seq
-
-	</select>
+	
 	
 	
 	

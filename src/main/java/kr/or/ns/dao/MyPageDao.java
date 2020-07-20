@@ -53,8 +53,6 @@ public interface MyPageDao {
 	//글 번호로 알아오는 모집 상태
 	public String getStatus(String s_seq);
 
-	//승인 완료된 회원수 알아옴 
-	public List<Integer> getAllowed(String user_id);
 
 
 }

@@ -34,8 +34,6 @@ public class AjaxRestController {
 	@Autowired
 	private MessageService mservice;
 	
-	@Autowired
-	MyPageService myservice;
 
 	// 아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
 	@RequestMapping(value = "emailCheck.do", method = RequestMethod.POST)
@@ -239,16 +237,12 @@ public class AjaxRestController {
 
 	// 마이페이지 참여중 스터디 비동기
 	@RequestMapping(value = "inStudy.do", method = RequestMethod.POST)
-	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params, Principal principal) {
+	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params) {
 		System.out.println(params + " : 참여중 컨트롤러");
 		List<HashMap<String, Object>> list = null;
-		String user_id = principal.getName();
-		List<Integer> allowedNum = myservice.getAllowed(user_id);
+		
 		list = service.inStudy(params);
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println(allowedNum.get(i));
-			list.get(i).put("accept", allowedNum.get(i));
-		}
+		
 		return list;
 
 	}
@@ -259,6 +253,7 @@ public class AjaxRestController {
 		System.out.println("차트데이터");
 		List<HashMap<String, Object>> list = null;
 		list = service.mainChart();
+		System.out.println("차트 데이터 : " + list);
 		return list;
 	}
 	
@@ -385,17 +380,23 @@ public class AjaxRestController {
 
 		}
 		
+		public static HashMap<String, Object> paramsTemp2 = null;
+		public static int filterSize2 = 0;
+		
+		
 	//강의 게시판 필터
 		@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
 		public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b) {
-			System.out.println("강의게시판");
+			/*
+			 * System.out.println("강의게시판");
+			 * 
+			 * System.out.println("강의게시판_가격" + params.get("price"));
+			 * System.out.println("강의게시판_레벨" + params.get("level"));
+			 * System.out.println("강의게시판_언어" + params.get("language"));
+			 * System.out.println("강의게시판_사이트" + params.get("site"));
+			 */
 			
-			System.out.println("강의게시판_가격" + params.get("price"));
-			System.out.println("강의게시판_레벨" + params.get("level"));
-			System.out.println("강의게시판_언어" + params.get("language"));
-			System.out.println("강의게시판_사이트" + params.get("site"));
-			
-			paramsTemp = params;
+			paramsTemp2 = params;
 
 			PageMaker pageMakerb = new PageMaker();
 			pageMakerb.setCri(cri_b);
@@ -406,7 +407,7 @@ public class AjaxRestController {
 			List<HashMap<String,Object>> listSize = service.courseBoardFilterSize(params);
 			List<HashMap<String, Object>> list = service.courseBoardFilter(params, cri_b);
 
-			filterSize = listSize.size();
+			filterSize2 = listSize.size();
 			
 			pageMakerb.setTotalCount(listSize.size());
 			
