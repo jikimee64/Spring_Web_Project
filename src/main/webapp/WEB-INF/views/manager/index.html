@@ -37,13 +37,13 @@ canvas {
 }
 
 .highcharts-data-table table {
-	font-family: Verdana, sans-serif;
 	border-collapse: collapse;
 	border: 1px solid #EBEBEB;
 	margin: 10px auto;
 	text-align: center;
 	width: 100%;
 	max-width: 500px;
+
 }
 
 .highcharts-data-table caption {
@@ -69,6 +69,9 @@ canvas {
 
 .highcharts-data-table tr:hover {
 	background: #f1f7ff;
+}
+tspan{
+	font-family: 'Nanum Gothic', sans-serif; 
 }
 </style>
 <body>
@@ -117,13 +120,13 @@ canvas {
 			<div class="col-lg-3 col-md-6">
 				<div class="card">
 
-					<div class="card-body">
+					<div class="card-body" style="height: 144px;">
 						<p style="align-self: center; margin-left: 5px; height: 30px;">
 							<b>스터디 최다 개설 지역</b>
 						</p>
 						<img src="/resources/admin_assets/images/map.png"
 							style="width: 50px;"> <span th:text="${bestLocation}"
-							style="font-size: xx-large; padding-left: 65px; font-weight: bolder;"></span>
+							style="font-size: x-large; padding-left: 65px; font-weight: bolder;"></span>
 						<div id="chart2" class="stat-digit"></div>
 					</div>
 				</div>
@@ -159,25 +162,25 @@ canvas {
 				</div>
 			</div>
 
-			<!-- 차트 시작 -->
-			<div class="col-xl-12">
+			<!-- 차트JS  -->
+			<div class="col-xl-6">
 				<div class="card">
-					<div class="card-body" style="height: 800px;">
-						<!-- 위의 막대 차트 -->
-						<div class="chart-wrapper mt-4">
-							<canvas id="myChart" height="100"></canvas>
-						</div>
-
-
-						<!--  밑에꺼 동그라미 차트  -->
-						<div>
-							<div id="highchart" style="width: 40%">
-								<canvas id="chart-area"></canvas>
-							</div>
-						</div>
-
+					<div class="card-body" style="height: 600px; position: relative;">
+						<!-- 차트JS-->
+						<canvas id="myChart" style="height: 600vh;"></canvas>
 					</div>
 				</div>
+			</div>
+			<!--   하이차트 -->
+			<div class="col-xl-6">
+				<div class="card">
+					<div class="card-body" id="container" style="height: 600px;">
+						<div id="highchart">
+							<canvas id="chart-area"></canvas>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -195,155 +198,135 @@ canvas {
 
 
 <script>
-   $(function() {
-      $
-            .ajax({
-               type : "post",
-               url : "/ajax/mainChart.do",
-               dataType : "json", //POINT
-               success : function(data) {
-                  console.log('data사이즈 : ' + data.length);
-                  
-                  var barChartData = {
-                        labels : [  ],
-                        //type: 'bar',
-                        datasets : [ {
-                           data : [ ],
-                           backgroundColor : [ 'rgba(244,99,132,0.2)',
-                                 'rgba(54,162,235,0.2)',
-                                 'rgba(255,206,86,0.2)',
-                                 'rgba(75,192,192,0.2)',
-                                 'rgba(244,99,132,0.2)',
-                                 'rgba(153,102,255,0.2)',
-                                 'rgba(54,162,235,0.2)',
-                                 'rgba(255,206,86,0.2)',
-                                 'rgba(75,192,192,0.2)',
-                                 'rgba(244,99,132,0.2)' ],
-                           label : '총 북마크 개수'
-                        } ]
-                     };
-                  if(data.length < 11){
-                     for(var i = 0; i < data.length; i++){
-                        barChartData.labels.push(data[i].l_title)
-                        barChartData.datasets[0].data.push(data[i].count)
-                     } //for문
-                  }
-                  
-                  var ctx = $('#myChart').get(0).getContext("2d");
-                  window.theChart = new Chart(ctx, {
-                     type : 'bar',
-                     data : barChartData,
-                     options : {
-                        title : {
-                           display : true,
-                           text : "북마크 순위 TOP 10",
-                           position : 'top',
-                           fontSize : 20,
-                           lineHeight : 1.2,
-                           padding : 0,
-                        },
-                        legend : {
-                           display : true,
-                           labels : {
-                              fontSize : 13,
-                           },
-                        },
-                        scales : {
-                           xAxes : [ {
-                              ticks : {
-                                 fontColor : 'rgba(12, 13, 13, 1)',
-                                 fontSize : 13
-                              },
-                              barPercentage : 0.9,
-                              categoryPercentage : 0.9,
-                           } ],
-                           yAxes : [ {
-                              ticks : {
-                                 min : 0,
-                                 max : 10,
-                                 stepSize : 2
-                              },
-                           } ],
-                        }
+	$(function() {
+		$.ajax({
+			type : "post",
+			url : "/ajax/mainChart.do",
+			dataType : "json", //POINT
+			success : function(data) {
+				console.log('data사이즈 : ' + data.length);
+				var barChartData = {
+					labels : [],
+					//type: 'bar',
+					datasets : [ {
+						data : [],
+						backgroundColor : [ 'rgb(255, 99, 132)',
+								'rgb(54,162,235)', 'rgb(255,206,86)',
+								'rgb(75,192,192)', 'rgb(137, 89, 168)' ],
+						label : '총 북마크 개수',
+						weight : 300,
+					} ]
+				};
+				if (data.length < 6) {
+					for (var i = 0; i < data.length; i++) {
+						barChartData.labels.push(data[i].l_title)
+						barChartData.datasets[0].data.push(data[i].count)
+					} //for문
+				}
 
-                     }
-                  });
+				var ctx = $('#myChart').get(0).getContext("2d");
+				window.theChart = new Chart(ctx, {
+					type : 'doughnut',
+					data : barChartData,
+					options : {
+						title : {
+							display : true,
+							text : "북마크 순위 TOP 5",
+							position : 'top',
+							fontSize : 20,
+							lineHeight : 1.2,
+							padding : 0,
+						},
+						legend : {
+							display : true,
+							labels : {
+								fontSize : 11,
+							},
 
-               },
-               error : function(request, status, error) {
-                  console.log("code:" + request.status + "\n"
-                        + "message:" + request.responseText + "\n"
-                        + "error:" + error);
-               }
+						},
+						maintainAspectRatio : false,
+					}
+				});
 
-            });
-   });
+			},
+			error : function(request, status, error) {
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
+
+		});
+	});
 </script>
 
 
-<!-- 밑에 동그라미 차트 -->
+<!-- 하이차트 -->
 <figure class="highcharts-figure">
 	<div id="container"></div>
 </figure>
 
 <script>
+	$(function() {
+		$.ajax({
+			type : "post",
+			url : "/ajax/wordCloud.do",
+			dataType : "json", //POINT
+			success : function(data) {
+				var text = "";
+				console.log('데이터 사이즈 ' + data.length);
+				console.log('00 ' + data[0].count);
+				console.log('11 ' + data[1].count);
+				for (var i = 0; i < data.length; i++) {
+					for (var z = 0; z < data[i].count; z++) {
+						console.log('흠...')
+						text += data[i].cate_language + ' ';
+					}
+				}
+				console.log('text : ' + text);
+				var lines = text.split(/[,\. ]+/g)
+				data = Highcharts.reduce(lines, function(arr, word) {
+					var obj = Highcharts.find(arr, function(obj) {
+						return obj.name === word;
+					});
+					if (obj) {
+						obj.weight += 1;
+					} else {
+						obj = {
+							name : word,
+							weight : 0.5
+						};
+						arr.push(obj);
+					}
+					return arr;
+				}, []);
 
-$(function() {
-	$.ajax({
-				type : "post",
-				url : "/ajax/wordCloud.do",
-				dataType : "json", //POINT
-				success : function(data) {
-						$.each(data,function(index,item){
-							//var text = data[4].cate_language;
-							 let lan_list = data[index];
-						})
-
-					console.log(lan_list);
-						  data = Highcharts.reduce(text, function (arr, word) {
-						    var obj = Highcharts.find(arr, function (obj) {
-						      return obj.name === word;
-						    });
-						    if (obj) {
-						      obj.weight += 1;
-						    } else {
-						      obj = {
-						        name: word,
-						        weight: 1
-						      };
-						      arr.push(obj);
-						    }
-						    return arr;
-						  }, []);
-
-						Highcharts.chart('container', {
-						  accessibility: {
-						    screenReaderSection: {
-						      beforeChartFormat: '<h5>{chartTitle}</h5>' +
-						        '<div>{chartSubtitle}</div>' +
-						        '<div>{chartLongdesc}</div>' +
-						        '<div>{viewTableButton}</div>'
-						    }
-						  },
-						  series: [{
-						    type: 'wordcloud',
-						    data: data,
-						    name: '가가'
-						  }],
-						  title: {
-						    text: '가장 많은 스터디가 개설된 언어'
-						  }
-						});
-						
+				Highcharts.chart('container', {
+					accessibility : {
+						screenReaderSection : {
+							beforeChartFormat : '<h5>{chartTitle}</h5>'
+									+ '<div>{chartSubtitle}</div>'
+									+ '<div>{chartLongdesc}</div>'
+									+ '<div>{viewTableButton}</div>'
+						}
+					},
+					series : [ {
+						type : 'wordcloud',
+						data : data,
+						name : '언어'
+					} ],
+					title : {
+						text : '스터디가 개설된 언어'
+					}
+				});
 			}
-			});
-});
+		});
+	});
+</script>
 
-
-
-
-
-
+<script>
+	$(function(){
+		$('figure').hide();
+		$('text').css('color','red');
+	});
 </script>
 
 
