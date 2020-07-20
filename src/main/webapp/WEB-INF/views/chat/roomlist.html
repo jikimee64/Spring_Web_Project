@@ -7,118 +7,119 @@
 <title>방 리스트</title>
 
 
-<style>
-* {
-	margin: 0;
-	padding: 0;
-}
-
-.container {
-	width: 500px;
-	margin: 0 auto;
-	padding: 25px
-}
-
-.container h1 {
-	text-align: left;
-	padding: 5px 5px 5px 15px;
-	color: #FFBB00;
-	border-left: 3px solid #FFBB00;
-	margin-bottom: 20px;
-}
-
-.roomContainer {
-	background-color: #F6F6F6;
-	width: 500px;
-	height: 500px;
-	overflow: auto;
-}
-
-.roomList {
-	border: none;
-}
-
-.roomList th {
-	border: 1px solid #FFBB00;
-	background-color: #fff;
-	color: #FFBB00;
-}
-
-.roomList td {
-	border: 1px solid #FFBB00;
-	background-color: #fff;
-	text-align: left;
-	color: #FFBB00;
-}
-
-.roomList .num {
-	width: 75px;
-	text-align: center;
-}
-
-.roomList .room {
-	width: 350px;
-}
-
-.roomList .go {
-	width: 71px;
-	text-align: center;
-}
-
-button {
-	background-color: #FFBB00;
-	font-size: 14px;
-	color: #000;
-	border: 1px solid #000;
-	border-radius: 5px;
-	padding: 3px;
-	margin: 3px;
-}
-
-.inputTable th {
-	padding: 5px;
-}
-
-.inputTable input {
-	width: 330px;
-	height: 25px;
-}
-</style>
-
+<div th:replace="/manager/includes/head :: head"></div>
 </head>
 <body>
-		
-		
-	<div class="container">
-		<h1>채팅방</h1>
-		<div id="roomContainer" class="roomContainer">
-			<table id="roomList" class="roomList">
-			</table>
-		</div>
-		<div>
-			<table class="inputTable">
-				<tr>
-					<th><input placeholder="방이름" type="text" name="roomName"
-						id="roomName" style="width: 200px;" /></th>
-					<th><input placeholder="방비번" type="text" name="roomPw"
-						id="roomPw" style="width: 200px;" disabled="true" /></th>
-					<th><button id="createRoom" style="width: 80px;">방 생성</button></th>
-					<th><input type="checkbox" onclick="onClickHandler()"
-						id="flag" name="flag" value="HTML" style="width: 80px;" />비밀방</th>
-				</tr>
-			</table>
+
+
+
+	<div class="row" style="background-color: green; height: 50px;">
+		<div class="col-9" style="background-color: red;">ss</div>
+		<div class="col-3" style="background-color: yellow;">
+			<a href="" data-toggle="modal" data-target="#chatRoomFormlModal"
+				style="color: black;"> <img
+				src="../../../../resources/images/img/siren.png"
+				style="width: 30px; height: 30px;">
+			</a>
 		</div>
 	</div>
+
+	<div class="row">
+		<label for="">내 채팅</label>
+	</div>
 	
-		
+	<div class="row">
+		<div class="col-3" style="background-color: red;">
+			2213132
+		</div>
+		<div class="col-6" style="background-color: red;">
+		213123321
+		</div>
+		<div class="col-3" style="background-color: red;">
+			 <img
+				src="../../../../resources/images/img/siren.png"
+				style="width: 30px; height: 30px;">
+		</div>
+	</div>
+
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<div th:replace="/user/includes/chat_Room_Form :: chat_Room_Form">
+	</div>
 </body>
+
+<script>
+$("#room-btn").click(function(e) {
+    
+    $('#chatRoomFormlModal').modal('hide');
+    
+});
+
+</script>
+
+
+<script>
+	function onClickHandler() {
+		if ($("input:checkbox[id='flag']").is(":checked") == true) {
+			$('#ch_pw').attr('disabled', false);
+		} else {
+			$('#ch_pw').attr('disabled', true);
+		}
+	}
+</script>
 
 
 <script language="JavaScript">
+	$(function() {
+		$("#room-btn").click(function(e) {
+			$('##chatRoomFormlModal').modal('hide');
+		});
 
+		$(".chatRoomForm").submit(function(e) {
+			e.preventDefault();
+			var formData = new FormData(this);
 
+			console.log("방 제목 : " + formData.get("ch_title"))
+			console.log("방 설명 : " + formData.get("ch_description"))
+			console.log("방 비밀방 : " + formData.get("ch_pw"))
 
+			let data = {
+				"ch_title" : formData.get("ch_title"), //신고유형
+				"ch_description" : formData.get("ch_description"), //신고제목
+				"ch_pw" : formData.get("ch_pw")
+			//신고내용
+			}
 
+			$.ajax({
+				url : '/chat/chatroominsert.do',
+				processData : false,
+				contentType : "application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+					console.log('반환받음.. : ' + data)
+					/* if (data == 0) {
+						swal({
+							title : "이미 신고한 게시글입니다.",
+							icon : "warning",
+							buttons : true
+						})
+						100
+					} else {
+						swal({
+							title : "신고 접수가 완료되었습니다.",
+							icon : "success"
+						})
+
+					} */
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			})
+		})
+
+	});
 </script>
 
 </html>
