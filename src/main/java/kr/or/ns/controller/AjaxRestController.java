@@ -311,6 +311,7 @@ public class AjaxRestController {
 	}
 
 	public static HashMap<String, Object> paramsTemp = null;
+	
 	public static int filterSize = 0;
 	
 	// 스터디게시판 필터

@@ -75,9 +75,23 @@ public class BoardController {
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		System.out.println(cri_b+"여기는 컨트롤러 ---------------");
+		
+		HashMap<String, Object> map = null;
+		
+		
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
-		list = service.getStudyBoardList(cri_b);
+		if(AjaxRestController.paramsTemp != null) {
+			map = AjaxRestController.paramsTemp;
+			list = service.getStudyBoardListFilter(cri_b, map);
+			model.addAttribute("ingOrDone", map.get("ingOrDone"));
+			model.addAttribute("level", map.get("level"));
+			model.addAttribute("language", map.get("language"));
+			model.addAttribute("local", map.get("local"));
+			model.addAttribute("studyContent", map.get("studyContent"));
+		}else {
+			list = service.getStudyBoardList(cri_b);
+		}
 		pageMakerb.setTotalCount(list.size());
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
@@ -305,6 +319,8 @@ public class BoardController {
 			throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 
+		HashMap<String, Object> map = AjaxRestController.paramsTemp;
+		
 		// 게시글 삭제
 		int result = service.delete(s_seq);
 

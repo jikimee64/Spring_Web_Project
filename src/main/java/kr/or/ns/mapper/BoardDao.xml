@@ -5,259 +5,363 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="kr.or.ns.dao.BoardDao">
 
-	<!-- 총 스터디게시글 수 --> 
-<!-- 	<select id="getStudyBoardCount" resultType="Integer"> -->
-<!-- 	SELECT COUNT(*) FROM STUDY_BOARD -->
-<!-- 	</select> -->
-	
-	
-	<!-- 페이징 스터디 글목록 --> 
- <!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> --> 
-<!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board"> -->
-<!-- 		<![CDATA[ -->
-<!-- 			SELECT * -->
-<!-- 			FROM STUDY_BOARD -->
-<!-- 			left outer join language_category -->
-<!-- 			on study_board.lan_seq = language_category.lan_seq -->
-<!-- 			left outer join location -->
-<!-- 			on study_board.loc_seq = location.loc_seq -->
-<!-- 			left outer join study_content_category -->
-<!-- 			on study_board.c_seq = study_content_category.c_seq -->
-<!-- 			ORDER BY S_SEQ DESC -->
-<!-- 			LIMIT #{pageStart}, #{perPageNum} -->
-<!-- 		]]> -->
-<!-- 	</select> -->
-	
-	
-	<sql id = "searchCondition">
-	
-			<if test="searchType != null">
-						<if test = "searchType == 't'.toString()">
-							where study_board.title like CONCAT('%',#{keyword},'%')
-					</if>	
-					<if test="searchType == 'c'.toString()">
-						where study_board.content like CONCAT('%', #{keyword}, '%')
-					</if>
-					<if test="searchType == 'w'.toString()">
-						where study_board.user_id like CONCAT('%', #{keyword}, '%')
-					</if>
-					<if test="searchType == 'tc'.toString()">
-						where (title like CONCAT('%', #{keyword}, '%')
-							or study_board.content like CONCAT('%', #{keyword}, '%'))
-					</if>
-					<if test="searchType == 'all'.toString()">
-						where (title like CONCAT('%', #{keyword}, '%')
-							or study_board.content like CONCAT('%', #{keyword}, '%')
-							or study_board.user_id like CONCAT('%', #{keyword}, '%'))
-					</if>
-				</if>
-	
-	</sql>
-	
-	
-	
-	
-		<!-- 총 스터디게시글 수 -->
-	<select id="getStudyBoardCount" resultType="Integer">
-	SELECT COUNT(*) FROM STUDY_BOARD
-	<include refid="searchCondition"></include>
-	</select>
-	
-	
+	<!-- 총 스터디게시글 수 -->
+	<!-- <select id="getStudyBoardCount" resultType="Integer"> -->
+	<!-- SELECT COUNT(*) FROM STUDY_BOARD -->
+	<!-- </select> -->
+
+
 	<!-- 페이징 스터디 글목록 -->
-<!-- 	<select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
-	<select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board">
-	
-			SELECT *
-			FROM STUDY_BOARD
-			left outer join language_category
-			on study_board.lan_seq = language_category.lan_seq
-			left outer join location
-			on study_board.loc_seq = location.loc_seq
-			left outer join study_content_category
-			on study_board.c_seq = study_content_category.c_seq
-				<include refid="searchCondition"></include>
-			ORDER BY S_SEQ DESC
-			LIMIT #{pageStart}, #{perPageNum}
-	
-	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<select id="getL_SEQ" resultType="String">
-		select l_seq from
-		study_board_online
-		where s_seq = #{s_seq}
-	</select>
-	
-	<!--   -->
-	<select id="getOnlineStudyBoard" resultType="hashmap">
-		SELECT *
-		FROM STUDY_BOARD_ONLINE
-		left outer join lecture_board
-		on STUDY_BOARD_ONLINE.l_seq = lecture_board.l_seq
+	<!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
+	<!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria_Board"> -->
+	<!-- <![CDATA[ -->
+	<!-- SELECT * -->
+	<!-- FROM STUDY_BOARD -->
+	<!-- left outer join language_category -->
+	<!-- on study_board.lan_seq = language_category.lan_seq -->
+	<!-- left outer join location -->
+	<!-- on study_board.loc_seq = location.loc_seq -->
+	<!-- left outer join study_content_category -->
+	<!-- on study_board.c_seq = study_content_category.c_seq -->
+	<!-- ORDER BY S_SEQ DESC -->
+	<!-- LIMIT #{pageStart}, #{perPageNum} -->
+	<!-- ]]> -->
+	<!-- </select> -->
+
+
+	<sql id="searchCondition">
+
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				where study_board.title like CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				where study_board.content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				where study_board.user_id like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				where (title like CONCAT('%', #{keyword}, '%')
+				or study_board.content like CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'all'.toString()">
+				where (title like CONCAT('%', #{keyword}, '%')
+				or study_board.content like CONCAT('%', #{keyword}, '%')
+				or study_board.user_id like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+
+	</sql>
+
+	<!-- <sql id="filterCondition"> <where> <if test="ingOrDone != null"> study_board.status= 
+		#{ingOrDone} </if> <if test="level != null"> and study_board.level = #{level} 
+		</if> <if test="language.size != 0"> and study_board.lan_seq in <foreach 
+		collection="language" item="item" index="index" separator="," open="(" close=")"> 
+		#{item} </foreach> </if> <if test="local != null"> and study_board.loc_seq 
+		= #{local} </if> <if test="studyContent != null"> and study_board.c_seq = 
+		#{studyContent} </if> </where> </sql> -->
+
+
+
+
+	<!-- 총 스터디게시글 수 -->
+	<select id="getStudyBoardCount" resultType="Integer">
+		SELECT COUNT(*) FROM STUDY_BOARD
+		<include refid="searchCondition"></include>
 	</select>
 
-	<insert id="studyReg" parameterType="kr.or.ns.vo.Study">
-		insert into study_board(user_id, c_seq, loc_seq, lan_seq, people, deadline, title, content, write_date, level, image, filesrc, filesrc2) 
-		values(#{user_id}, #{c_seq},#{loc_seq},#{lan_seq},#{people},#{selectend},#{title},#{content},DATE_SUB(now(),INTERVAL 9 HOUR), #{level}, #{image}, #{filesrc}, #{filesrc2})
-	</insert>
-	
-	<update id="studyEdit">
-		update study_board
-		set loc_seq = #{loc_seq},
-		lan_seq = #{lan_seq},
-		people = #{people},
-		deadline = DATE_SUB(now(), INTERVAL 9 HOUR),
-		title = #{title},
-		content = #{content},
-		level = #{level},
-		image = #{image},
-		filesrc = #{filesrc},
-		filesrc2 = #{filesrc2}
-		where s_seq = #{s_seq}
-	</update>
-	
-	
-	<!-- 스터디 글 상세보기 -->
-	<select id="getStudy" resultType="hashmap">
-		select *
-		from study_board
+
+	<!-- 페이징 스터디 글목록 -->
+	<!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
+	<select id="getStudyBoardListFilter" resultType="hashmap"
+		parameterType="kr.or.ns.vo.Criteria_Board">
+
+		SELECT *
+		FROM STUDY_BOARD
 		left outer join language_category
 		on study_board.lan_seq = language_category.lan_seq
 		left outer join location
 		on study_board.loc_seq = location.loc_seq
 		left outer join study_content_category
 		on study_board.c_seq = study_content_category.c_seq
-		WHERE study_board.S_SEQ=#{S_SEQ}
-	</select>
-	
-	
-	<update id="updateReadNum">
-	   update study_board set readnum = readnum+1
-       where s_seq=#{s_seq}
-	</update>
-	
 
-	
-	<!-- 댓글 개수  -->
-	<select id="getReplyCnt" resultType="Integer">
-		select count(*) 
-		from comment
-		WHERE s_seq=#{S_SEQ} and r_exists = 'Y'
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == 't'.toString()">
+				where study_board.title like CONCAT('%',#{cri.keyword},'%')
+			</if>
+			<if test="cri.searchType == 'c'.toString()">
+				where study_board.content like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'w'.toString()">
+				where study_board.user_id like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'tc'.toString()">
+				where (title like CONCAT('%', #{keyword}, '%')
+				or study_board.content like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+			<if test="cri.searchType == 'all'.toString()">
+				where (title like CONCAT('%', #{keyword}, '%')
+				or study_board.content like CONCAT('%', #{cri.keyword}, '%')
+				or study_board.user_id like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+		</if>
+
+			<if test="ingOrDone != null">
+				and study_board.status= #{ingOrDone}
+			</if>
+			<if test="level != null">
+				and study_board.level = #{level}
+			</if>
+			<if test="language.size != 0">
+				and study_board.lan_seq in
+				<foreach collection="language" item="item" index="index"
+					separator="," open="(" close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="local != null">
+				and study_board.loc_seq = #{local}
+			</if>
+			<if test="studyContent != null">
+				and study_board.c_seq = #{studyContent}
+			</if>
+
+
+		ORDER BY S_SEQ DESC
+		LIMIT #{pageStart}, #{perPageNum}
+
 	</select>
-	
-	<delete id="delete">
-		  DELETE from study_board WHERE S_SEQ=#{S_SEQ}
-	</delete>
-	
-	
-	<!-- 좋아요 추가 -->
-	<insert id="heartinsert" parameterType="kr.or.ns.vo.Likes">
-		INSERT INTO likes(user_id,s_seq,like_check) values(#{user_id},#{s_seq},1)
-	</insert>
-	
-	<!-- 존재하는 좋아요인지 확인 -->
-	<select id="heartcheck" parameterType="kr.or.ns.vo.Likes" resultType="int">
-		select count(*) from likes
-		where user_id = #{user_id} and s_seq = #{s_seq}
+
+	<select id="getStudyBoardList" resultType="hashmap"
+		parameterType="kr.or.ns.vo.Criteria_Board">
+
+		SELECT *
+		FROM STUDY_BOARD
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+		<include refid="searchCondition"></include>
+		ORDER BY S_SEQ DESC
+		LIMIT #{pageStart}, #{perPageNum}
+
 	</select>
-	
-	<!-- 좋아요의 체크유무번호 확인 -->
-	<select id="heartnum" parameterType="kr.or.ns.vo.Likes" resultType="int">
-		select like_check from likes
-		where user_id = #{user_id} and s_seq = #{s_seq}
-	</select>
-	
-	<!-- 기존 좋아요테이블에 업데이트 하러갑니다 -->
-	<update id="heartupdate" parameterType="kr.or.ns.vo.Likes">
-		update likes set like_check = #{like_check} 
-		where user_id = #{user_id} and s_seq = #{s_seq}
-	</update>
-	
-	<!-- 좋아요 총갯수 -->
-	<select id="getLikeCnt"  resultType="int">
-		select like_cnt from study_board
+
+
+
+
+
+
+
+
+
+
+
+
+	<select id="getL_SEQ" resultType="String">
+		select l_seq from
+		study_board_online
 		where s_seq = #{s_seq}
 	</select>
 
-	<!-- 댓글 등록하기  -->
-	<insert id="commentInsert" parameterType="kr.or.ns.vo.Comment" >
-		insert into comment(s_seq, r_content,r_name,r_date,r_refer,r_depth,r_step)
-		values(#{s_seq},#{r_content},#{r_name},DATE_SUB(now(), INTERVAL 9 HOUR),#{r_refer},#{r_depth},#{r_step})
-	</insert> 
-	
+	<!-- -->
+	<select id="getOnlineStudyBoard" resultType="hashmap">
+		SELECT *
+		FROM
+		STUDY_BOARD_ONLINE
+		left outer join lecture_board
+		on
+		STUDY_BOARD_ONLINE.l_seq = lecture_board.l_seq
+	</select>
+
+	<insert id="studyReg" parameterType="kr.or.ns.vo.Study">
+		insert into
+		study_board(user_id, c_seq, loc_seq, lan_seq, people, deadline, title,
+		content, write_date, level, image, filesrc, filesrc2)
+		values(#{user_id},
+		#{c_seq},#{loc_seq},#{lan_seq},#{people},#{selectend},#{title},#{content},DATE_SUB(now(),INTERVAL
+		9 HOUR), #{level}, #{image}, #{filesrc}, #{filesrc2})
+	</insert>
+
+	<update id="studyEdit">
+		update study_board
+		set loc_seq = #{loc_seq},
+		lan_seq =
+		#{lan_seq},
+		people = #{people},
+		deadline = DATE_SUB(now(), INTERVAL 9
+		HOUR),
+		title = #{title},
+		content = #{content},
+		level = #{level},
+		image =
+		#{image},
+		filesrc = #{filesrc},
+		filesrc2 = #{filesrc2}
+		where s_seq =
+		#{s_seq}
+	</update>
+
+
+	<!-- 스터디 글 상세보기 -->
+	<select id="getStudy" resultType="hashmap">
+		select *
+		from study_board
+		left
+		outer join language_category
+		on study_board.lan_seq =
+		language_category.lan_seq
+		left outer join location
+		on
+		study_board.loc_seq = location.loc_seq
+		left outer join
+		study_content_category
+		on study_board.c_seq =
+		study_content_category.c_seq
+		WHERE study_board.S_SEQ=#{S_SEQ}
+	</select>
+
+
+	<update id="updateReadNum">
+		update study_board set readnum = readnum+1
+		where s_seq=#{s_seq}
+	</update>
+
+
+
+	<!-- 댓글 개수 -->
+	<select id="getReplyCnt" resultType="Integer">
+		select count(*)
+		from comment
+		WHERE s_seq=#{S_SEQ} and r_exists = 'Y'
+	</select>
+
+	<delete id="delete">
+		DELETE from study_board WHERE S_SEQ=#{S_SEQ}
+	</delete>
+
+
+	<!-- 좋아요 추가 -->
+	<insert id="heartinsert" parameterType="kr.or.ns.vo.Likes">
+		INSERT INTO
+		likes(user_id,s_seq,like_check) values(#{user_id},#{s_seq},1)
+	</insert>
+
+	<!-- 존재하는 좋아요인지 확인 -->
+	<select id="heartcheck" parameterType="kr.or.ns.vo.Likes"
+		resultType="int">
+		select count(*) from likes
+		where user_id = #{user_id} and
+		s_seq = #{s_seq}
+	</select>
+
+	<!-- 좋아요의 체크유무번호 확인 -->
+	<select id="heartnum" parameterType="kr.or.ns.vo.Likes"
+		resultType="int">
+		select like_check from likes
+		where user_id = #{user_id} and
+		s_seq = #{s_seq}
+	</select>
+
+	<!-- 기존 좋아요테이블에 업데이트 하러갑니다 -->
+	<update id="heartupdate" parameterType="kr.or.ns.vo.Likes">
+		update likes set
+		like_check = #{like_check}
+		where user_id = #{user_id} and s_seq = #{s_seq}
+	</update>
+
+	<!-- 좋아요 총갯수 -->
+	<select id="getLikeCnt" resultType="int">
+		select like_cnt from
+		study_board
+		where s_seq = #{s_seq}
+	</select>
+
+	<!-- 댓글 등록하기 -->
+	<insert id="commentInsert" parameterType="kr.or.ns.vo.Comment">
+		insert into comment(s_seq,
+		r_content,r_name,r_date,r_refer,r_depth,r_step)
+		values(#{s_seq},#{r_content},#{r_name},DATE_SUB(now(), INTERVAL 9
+		HOUR),#{r_refer},#{r_depth},#{r_step})
+	</insert>
+
 	<!-- 댓글 조회 -->
 	<select id="getComment" resultType="hashmap">
-		select * from comment 
+		select * from comment
 		WHERE S_SEQ = #{S_SEQ} order by r_refer asc, r_step asc
 	</select>
-	
-	
+
+
 	<!-- 댓글 삭제하기 -->
-	<delete id="commentDelete" parameterType="kr.or.ns.vo.Comment" >
-		  delete from comment where r_seq = #{r_seq} and s_seq = #{s_seq}
+	<delete id="commentDelete" parameterType="kr.or.ns.vo.Comment">
+		delete from comment where r_seq = #{r_seq} and s_seq = #{s_seq}
 	</delete>
-	
+
 	<!-- 댓글 수정하기 -->
 	<update id="commentUpdate" parameterType="kr.or.ns.vo.Comment">
-		update comment set r_content = #{r_content} 
+		update comment set
+		r_content = #{r_content}
 		where s_seq = #{s_seq} and r_seq = #{r_seq}
 	</update>
-	
+
 	<!-- 댓글 갯수 -->
-	<select id="countComment" parameterType="kr.or.ns.vo.Comment" resultType="int">
+	<select id="countComment" parameterType="kr.or.ns.vo.Comment"
+		resultType="int">
 		select count(*) from comment
-		where s_seq = #{s_seq} and r_exists = 'Y'
+		where s_seq = #{s_seq} and
+		r_exists = 'Y'
 	</select>
-	
-	<!-- 댓글 등록하기(대댓글)  -->
-	<insert id="reCommentInsert" parameterType="kr.or.ns.vo.Comment" >
-		insert into comment(s_seq, r_content,r_name,r_date,r_refer,r_depth,r_step)
-		values(#{s_seq},#{r_content},#{r_name},DATE_SUB(now(), INTERVAL 9 HOUR),#{r_refer},#{r_depth},#{r_step})
-	</insert> 
-	
-	<!-- MaxStep 조회  -->
-	<select id="getMaxStep" parameterType="kr.or.ns.vo.Comment" resultType="int">
-		select ifnull(max(r_step),0) from comment where r_depth=#{r_depth} and r_refer=#{r_refer}
+
+	<!-- 댓글 등록하기(대댓글) -->
+	<insert id="reCommentInsert" parameterType="kr.or.ns.vo.Comment">
+		insert into comment(s_seq,
+		r_content,r_name,r_date,r_refer,r_depth,r_step)
+		values(#{s_seq},#{r_content},#{r_name},DATE_SUB(now(), INTERVAL 9
+		HOUR),#{r_refer},#{r_depth},#{r_step})
+	</insert>
+
+	<!-- MaxStep 조회 -->
+	<select id="getMaxStep" parameterType="kr.or.ns.vo.Comment"
+		resultType="int">
+		select ifnull(max(r_step),0) from comment where
+		r_depth=#{r_depth} and r_refer=#{r_refer}
 	</select>
-	
-	<!-- MaxStep 조회  -->
-	<select id="getMaxRefer" parameterType="kr.or.ns.vo.Comment" resultType="int">
+
+	<!-- MaxStep 조회 -->
+	<select id="getMaxRefer" parameterType="kr.or.ns.vo.Comment"
+		resultType="int">
 		select ifnull(max(r_refer),0) r_refer from comment
 	</select>
-	
-	<!-- MaxStep 조회  -->
+
+	<!-- MaxStep 조회 -->
 	<select id="getP_refer" resultType="int">
-		select r_refer from comment where r_seq = #{r_seq}
+		select r_refer from comment
+		where r_seq = #{r_seq}
 	</select>
-	
+
 	<!-- r_exists 컬럼을 n으로 업데이트 -->
 	<update id="updateR_exists" parameterType="kr.or.ns.vo.Comment">
-		update comment set r_exists = 'N'
+		update comment set
+		r_exists = 'N'
 		where r_seq = #{r_seq} and s_seq = #{s_seq}
 	</update>
-	
+
 	<insert id="insertStudyBoardOnline" parameterType="hashmap">
-	    <selectKey resultType="int" keyProperty="s_seq" order="BEFORE">
-        	SELECT MAX(s_seq) FROM study_board        
-    	</selectKey>  
+		<selectKey resultType="int" keyProperty="s_seq"
+			order="BEFORE">
+			SELECT MAX(s_seq) FROM study_board
+		</selectKey>
 		insert into study_board_online(s_seq, l_seq)
 		values(#{s_seq}, #{l_seq})
 	</insert>
-	
-	<!-- 스터디 모임 지원여부 확인  -->
+
+	<!-- 스터디 모임 지원여부 확인 -->
 	<select id="checkApply" parameterType="hashMap" resultType="int">
-		select count(*) from study_group where s_seq = #{s_seq} and user_id = #{user_id}
+		select count(*) from study_group where s_seq = #{s_seq} and user_id =
+		#{user_id}
 	</select>
-	
+
 </mapper>
