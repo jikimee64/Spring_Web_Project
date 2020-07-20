@@ -485,7 +485,7 @@ keyframes heart-keyframes { 100% {
 	               style="width: 100%; padding: 4px; margin: 10px;">
 	               <img class="card-img-top"
 	                 th:src="${list.L_IMAGE}"
-	                 alt="Card image" style="height:126px;">
+	                 alt="Card image" style="height:155px;">
 	   
 	               <div class="card-body">
 	                 <h6 class="card-title _margin_0 _course_title"
@@ -733,7 +733,7 @@ keyframes heart-keyframes { 100% {
 								/* html += 	'<div style="height: 155px;">' */
 								html += "<img class='card-img-top'src="
 										+ data[0][i].L_IMAGE
-										+ " alt='Card image' style='height: 126px'>"
+										+ " alt='Card image' style='height: 155px'>"
 								/* html += '</div>'		 */
 								html += "<div class='card-body'>"
 								html += "<h6 class='card-title _margin_0 _course_title'>"
@@ -757,7 +757,13 @@ keyframes heart-keyframes { 100% {
 										+ data[0][i].L_PRICE
 										+ "</b></span></div>"
 								html += "<div class='col-3'>"
-								html += "<input type='checkbox' class='_bookMark' id='"+data[0][i].L_SEQ+"'>"
+								html += "<input type='checkbox' class='_bookMark' id='"+data[0][i].L_SEQ+"'"
+								 for(var j= 0; j < data[2].length; j++){
+			                           if(data[2][j] == data[0][i].L_SEQ){
+			                              html += "checked"
+			                           }
+			                        }
+								html += ">"
 								html += '<label for="'+data[0][i].L_SEQ+'">'
 								html += "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56.69 51.02'>"
 								html += "<path d='M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z' /></svg></label>"
