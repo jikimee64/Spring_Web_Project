@@ -269,31 +269,34 @@ body {
 							<div th:each="list: ${list}">
 								<!-- 여기부터 데이터 하나 넣기 시작 -->
 								<!-- 타임리프 for문 -->
-								<div class="row" th:classappend="|bookmark${list.L_SEQ}|"
-									style="padding: 24px;">
-									<div class="col-md-1" style="text-align: center;">
-										<!-- 스터디 글 번호 -->
-										<p style="font-size: xx-large; font-weight: bold;"
-											th:text="${list.L_SEQ}"></p>
-									</div>
-									<div class="col-md-2" style="text-align: center;">
+								<div class="row" th:classappend="|bookmark${list.L_SEQ}|">
+									
+<!-- 									<div class="col-md-1" style="text-align: center;"> -->
+<!-- 										스터디 글 번호 -->
+<!-- 										<p style="font-size: xx-large; font-weight: bold;" -->
+<!-- 											th:text="${list.L_SEQ}"></p> -->
+<!-- 									</div> -->
+									<div class="col-md-3" style="text-align: center;">
 										<img th:src="${list.L_IMAGE}" alt=""
 											style="height: 140px; width: 92%;">
 									</div>
 									<div class="col-md-7"
-										style="padding-left: 50px; padding-right: 0px; padding-top: 10px;">
+										style="padding-left: 22px; padding-right: 0px; padding-top: 10px;">
 
 										<h4 style="font-weight: bold; color: black;"
 											th:text="${list.L_TITLE}"></h4>
-										<br /> <br /> <img
-											src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-											alt="" style="height: 40px;">
-										<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
-										&nbsp; <span> <b th:text="${list.CATE_PRICE}"></b>
+										<br /> <br />
+										<div
+												style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+												<p class="_star"
+													th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+												</p>
+											</div>
+										&nbsp; <span> <b th:text="${list.L_PRICE}"></b>
 										</span> <br />
 
 									</div>
-									<div class="col-md-1" style="padding-right: 0px;">
+									<div class="col-md-1" style="padding-right: 0px; left:55px;">
 										<button type="button" class="btn btn-danger"
 											th:onclick="|javascript:deleteBookMark('${list.L_SEQ}')|"
 											style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;">
@@ -435,7 +438,7 @@ body {
 																	+ "'>";
 															
 															/* html += "<a href = '/board/board.Support_Status.do'>"; */
-															html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;'></a>";
+															html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;transform:translateY(-10px);'></a>";
 															html += " ";
 															html += "<div style='font-size:small; font-weight:bold;'>";
 															html += " 등록일 : ";
