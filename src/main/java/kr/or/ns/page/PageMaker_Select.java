@@ -1,5 +1,7 @@
 package kr.or.ns.page;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Select;
 
@@ -22,6 +24,7 @@ public class PageMaker_Select {
 	private boolean next; //다음
 	private int displayPageNum = 5;  //5개씩 보여준다
 	
+
 	
 	
 	
