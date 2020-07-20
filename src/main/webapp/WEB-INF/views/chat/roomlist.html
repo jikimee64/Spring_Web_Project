@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>방 리스트</title>
+
+
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 500px;
+	margin: 0 auto;
+	padding: 25px
+}
+
+.container h1 {
+	text-align: left;
+	padding: 5px 5px 5px 15px;
+	color: #FFBB00;
+	border-left: 3px solid #FFBB00;
+	margin-bottom: 20px;
+}
+
+.roomContainer {
+	background-color: #F6F6F6;
+	width: 500px;
+	height: 500px;
+	overflow: auto;
+}
+
+.roomList {
+	border: none;
+}
+
+.roomList th {
+	border: 1px solid #FFBB00;
+	background-color: #fff;
+	color: #FFBB00;
+}
+
+.roomList td {
+	border: 1px solid #FFBB00;
+	background-color: #fff;
+	text-align: left;
+	color: #FFBB00;
+}
+
+.roomList .num {
+	width: 75px;
+	text-align: center;
+}
+
+.roomList .room {
+	width: 350px;
+}
+
+.roomList .go {
+	width: 71px;
+	text-align: center;
+}
+
+button {
+	background-color: #FFBB00;
+	font-size: 14px;
+	color: #000;
+	border: 1px solid #000;
+	border-radius: 5px;
+	padding: 3px;
+	margin: 3px;
+}
+
+.inputTable th {
+	padding: 5px;
+}
+
+.inputTable input {
+	width: 330px;
+	height: 25px;
+}
+</style>
+
+</head>
+<body>
+		
+		
+	<div class="container">
+		<h1>채팅방</h1>
+		<div id="roomContainer" class="roomContainer">
+			<table id="roomList" class="roomList">
+			</table>
+		</div>
+		<div>
+			<table class="inputTable">
+				<tr>
+					<th><input placeholder="방이름" type="text" name="roomName"
+						id="roomName" style="width: 200px;" /></th>
+					<th><input placeholder="방비번" type="text" name="roomPw"
+						id="roomPw" style="width: 200px;" disabled="true" /></th>
+					<th><button id="createRoom" style="width: 80px;">방 생성</button></th>
+					<th><input type="checkbox" onclick="onClickHandler()"
+						id="flag" name="flag" value="HTML" style="width: 80px;" />비밀방</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+	
+		
+</body>
+
+
+<script language="JavaScript">
+
+
+
+
+</script>
+
+</html>
