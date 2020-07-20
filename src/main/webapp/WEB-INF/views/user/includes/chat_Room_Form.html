@@ -5,7 +5,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>신고페이지</title>
+<title>채팅방 만들기</title>
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 <script
@@ -13,7 +13,7 @@
 </head>
 
 
-<body>
+<body style="color: black;">
 
 	<!--여기서부터 화면코드-->
 	<!-- Button trigger modal -->
@@ -24,54 +24,54 @@
 			aria-hidden="true">
 
 			<form action="" method="post" class="chatRoomForm"
-				name="chatRoomForm" id="blameform">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
+				name="chatRoomForm">
+
+				<div class="modal-dialog">
+					<div class="container modal-content">
 						<div class="modal-header">
 							<img src="../../../../resources/images/img/chatroom.png"
 								style="width: 40px; height: 40px;">
 							<h5 class="modal-title" id="exampleModalCenterTitle"
-								style="padding-left: 10px;">공개 채팅방 만들기</h5>
+								style="padding-left: 10px; padding-top: 5px; color:black;">채팅방 만들기</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body container"
-							style="padding: 30px; padding-bottom: 0px;">
+						<div class="modal-body container" style="padding-bottom: 0px;">
 							<div class="row">
-								<div class="col-md-2">채팅방 제목 :</div>
-								<div class="col-md-9" style="padding-left: 0px;">
-									<input type="text" name="ch_title"
-										class="form-control form-control-sm">
-								</div>
+								<div class="col-md-2" style="color:black;">채팅방 이름</div>
+								<input type="text" name="ch_title"
+									class="form-control form-control-sm">
 							</div>
+
 							<div class="row">
-								<div class="col-md-2">채팅방 설명 :</div>
-								<div class="col-md-9" style="padding-left: 0px;">
-									<input type="text" name="ch_description"
-										class="form-control form-control-sm">
-								</div>
+								<div class="col-md-2" style="padding-top: 10px; color:black;">채팅방 설명</div>
+								<input type="text" name="ch_description"
+									class="form-control form-control-sm">
 							</div>
 							<div class="row">
-								<div class="col-md-2">채팅방 비번 :</div>
-								<div class="col-md-9" style="padding-left: 0px;">
-									<input placeholder="방비번" type="text" name="ch_pw" id="ch_pw"
-										style="width: 200px;" disabled="true" /> <input
-										type="checkbox" onclick="onClickHandler()" id="flag"
-										name="flag" value="HTML" style="width: 80px;" />
+								<div class="col-6">
+									<div class="row">
+										<div class="col-md-2" style="padding-top: 10px; color:black;">
+											비밀방 개설하기 <input type="checkbox" onclick="onClickHandler()"
+												id="flag" name="flag" value="HTML" style="width: 20px;" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-2"></div>
+										<input class="form-control form-control-sm"
+											placeholder="비밀번호를 입력해주세요" type="password" name="ch_pw"
+											id="ch_pw" />
+									</div>
+								</div>
+								<div class="col-6" style="text-align-last: center; display: grid; padding-top:20px;">
+										<button type="submit" id="room-btn"
+											class="btn btn-outline-success btn-sm" value="방 생성" >
+ 									<b>방 생성하기</b></button>
 								</div>
 							</div>
-							<br />
-							<div class="row" style="text-align: center; margin: 0 auto;">
-								<div class="col-4" style="padding: 0px;"></div>
-								<div class="col-4"
-									style="padding: 0px; margin-left: 8px; text-align: left;">
-									<button type="submit" id="room-btn"
-										class="btn btn-outline-danger" value="방 생성">방 생성</button>
-								</div>
-								<div class="col-4" style="padding: 0px;"></div>
-							</div>
+							<br> <br>
 						</div>
 					</div>
 				</div>
