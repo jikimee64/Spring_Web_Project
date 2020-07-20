@@ -16,6 +16,7 @@ import kr.or.ns.page.PageMaker;
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.BoardService;
+import kr.or.ns.service.LectureService;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.Criteria;
@@ -32,8 +33,10 @@ public class AjaxRestController {
 	private BoardService bservice;
 
 	@Autowired
+	private LectureService lservice;
+
+	@Autowired
 	private MessageService mservice;
-	
 
 	// 아이디 찾기 -> 아이디,이메일 입력 후 인증받기 -> 존재하는 회원이면 이메일로 보내기 / 인증번호 생성후 전송
 	@RequestMapping(value = "emailCheck.do", method = RequestMethod.POST)
@@ -240,9 +243,9 @@ public class AjaxRestController {
 	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params) {
 		System.out.println(params + " : 참여중 컨트롤러");
 		List<HashMap<String, Object>> list = null;
-		
+
 		list = service.inStudy(params);
-		
+
 		return list;
 
 	}
@@ -256,8 +259,8 @@ public class AjaxRestController {
 		System.out.println("차트 데이터 : " + list);
 		return list;
 	}
-	
-	//워드클라우드 차트
+
+	// 워드클라우드 차트
 	@RequestMapping(value = "wordCloud.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> wordCloud() {
 		System.out.println("차트데이터");
@@ -265,8 +268,6 @@ public class AjaxRestController {
 		list = service.wordCloud();
 		return list;
 	}
-	
-	
 
 	// 지원현황 승인 후 승인완료 데이터 반환
 	@RequestMapping(value = "accept.do", method = RequestMethod.POST)
@@ -311,16 +312,16 @@ public class AjaxRestController {
 	}
 
 	public static HashMap<String, Object> paramsTemp = null;
-	
+
 	public static int filterSize = 0;
-	
+
 	// 스터디게시판 필터
 	@RequestMapping(value = "studyBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public List studyBoardFilter(@RequestBody HashMap<String, Object> params, Criteria_Board cri_b) {
 		System.out.println("테스트1");
 
 		System.out.println("이건떠야됨 " + params.get("language"));
-		
+
 		paramsTemp = params;
 
 		PageMaker_Board pageMakerb = new PageMaker_Board();
@@ -328,12 +329,12 @@ public class AjaxRestController {
 
 		List temp = new ArrayList();
 		// 필터 개수
-		List<HashMap<String,Object>> listSize = service.studyBoardFilterSize(params);
+		List<HashMap<String, Object>> listSize = service.studyBoardFilterSize(params);
 		List<HashMap<String, Object>> list = service.studyBoardFilter(params, cri_b);
 		List<Map<String, Object>> onlineInfo = bservice.getOnlineStudyBoard();
 
 		filterSize = listSize.size();
-		
+
 		pageMakerb.setTotalCount(listSize.size());
 		System.out.println("제발.." + listSize);
 		System.out.println("이거제발맞아라 : " + listSize.size());
@@ -346,7 +347,6 @@ public class AjaxRestController {
 
 		return temp;
 	}
-
 
 	// 마이페이지 내가쓴 댓글 비동기
 	@RequestMapping(value = "commentList.do", method = RequestMethod.POST)
@@ -369,64 +369,60 @@ public class AjaxRestController {
 	}
 
 	// 일반스터디 지원취소하기
-		@RequestMapping(value = "applycancel.do", method = RequestMethod.POST)
-		public void applycancelNomalStudy(@RequestBody HashMap<String, Object> params, Principal principal) {
+	@RequestMapping(value = "applycancel.do", method = RequestMethod.POST)
+	public void applycancelNomalStudy(@RequestBody HashMap<String, Object> params, Principal principal) {
 
-			// 아이디와 강의 글번호 받기
-			String user_id = principal.getName();
-			String s_seq = (String) params.get("s_seq");
-			System.out.println("여기까지 잘 왔으면 쏘리질러!!!!!!!!");
-			
-			service.applycancelNomalStudy(s_seq, user_id);
+		// 아이디와 강의 글번호 받기
+		String user_id = principal.getName();
+		String s_seq = (String) params.get("s_seq");
+		System.out.println("여기까지 잘 왔으면 쏘리질러!!!!!!!!");
 
-		}
-		
-		public static HashMap<String, Object> paramsTemp2 = null;
-		public static int filterSize2 = 0;
-		
-		
-	//강의 게시판 필터
-		@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
-		public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b) {
-			/*
-			 * System.out.println("강의게시판");
-			 * 
-			 * System.out.println("강의게시판_가격" + params.get("price"));
-			 * System.out.println("강의게시판_레벨" + params.get("level"));
-			 * System.out.println("강의게시판_언어" + params.get("language"));
-			 * System.out.println("강의게시판_사이트" + params.get("site"));
-			 */
-			
-			paramsTemp2 = params;
+		service.applycancelNomalStudy(s_seq, user_id);
 
-			PageMaker pageMakerb = new PageMaker();
-			pageMakerb.setCri(cri_b);
+	}
 
-			List temp = new ArrayList();
-			
-			// 필터 개수
-			List<HashMap<String,Object>> listSize = service.courseBoardFilterSize(params);
-			List<HashMap<String, Object>> list = service.courseBoardFilter(params, cri_b);
+	public static HashMap<String, Object> paramsTemp2 = null;
+	public static int filterSize2 = 0;
 
-			filterSize2 = listSize.size();
-			
-			pageMakerb.setTotalCount(listSize.size());
-			
-			//System.out.println("이게 되는건지 모르겠군" + listSize);
-			System.out.println("필터링 개수 :  : " + listSize.size());
-			System.out.println("20개떠야됨 : " + list.size());
-			System.out.println("강의리스트" + list);
+	// 강의 게시판 필터
+	@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b, Principal principal) {
+		/*
+		 * System.out.println("강의게시판");
+		 * 
+		 * System.out.println("강의게시판_가격" + params.get("price"));
+		 * System.out.println("강의게시판_레벨" + params.get("level"));
+		 * System.out.println("강의게시판_언어" + params.get("language"));
+		 * System.out.println("강의게시판_사이트" + params.get("site"));
+		 */
 
-			temp.add(list);
-			temp.add(pageMakerb);
+		paramsTemp2 = params;
 
-			//System.out.println("우철 : " + temp);
+		PageMaker pageMakerb = new PageMaker();
+		pageMakerb.setCri(cri_b);
 
-			return temp;
-		}	
-		
-		//워드클라우드 차트
-		
-		
-		
+		List temp = new ArrayList();
+
+		// 필터 개수
+		List<HashMap<String, Object>> listSize = service.courseBoardFilterSize(params);
+		List<HashMap<String, Object>> list = service.courseBoardFilter(params, cri_b);
+
+		filterSize2 = listSize.size();
+
+		pageMakerb.setTotalCount(listSize.size());
+
+		String user_id = principal.getName();
+		List<Integer> seqlist = new ArrayList<Integer>();
+		seqlist = lservice.getCheckedL_seq(user_id);
+		temp.add(list);
+		temp.add(pageMakerb);
+		temp.add(seqlist);
+
+		// System.out.println("우철 : " + temp);
+
+		return temp;
+	}
+
+	// 워드클라우드 차트
+
 }

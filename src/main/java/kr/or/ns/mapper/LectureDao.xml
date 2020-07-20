@@ -127,7 +127,7 @@
 			    where study_board.user_id=#{user_id} and
 			    l_seq is not null 
 			)
-			order by bookmark.l_seq desc
+			order by bookmark.bk_seq desc
             limit #{pageStart}, #{perPageNum} 
 		]]>
 
