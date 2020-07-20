@@ -302,16 +302,13 @@ public class MemberController {
 
 		System.out.println("소셜 회원가입처음 이동 페이지(연규가씀)");
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		String kakaoUrl = KakaoController.getAuthorizationUri(session);
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String googleurl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 
 		model.addAttribute("url", naverAuthUrl);
-		model.addAttribute("kakao_url", kakaoUrl);
 		model.addAttribute("google_url", googleurl);
 
 		System.out.println("naverAuthUrl" + naverAuthUrl);
-		System.out.println("kakao_url" + kakaoUrl);
 		System.out.println("google_url" + googleurl);
 
 		return "user/member/menujoin";
