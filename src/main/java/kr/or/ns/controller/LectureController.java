@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -48,23 +49,38 @@ public class LectureController {
 
 	// 스터디목록 + 페이징
 	@RequestMapping("course_List.do")
-	public String courseListPage(Criteria cri, Model model,Principal principal) {
+	public String courseListPage(Criteria cri, Model model,Principal principal, @RequestParam(value="searchType",required = false) String searchType, @RequestParam(value="keyword",required=false) String keyword) {
 		System.out.println("강좌페이지로 이동이동(연규가씀)");
 		System.out.println(cri.getPage());
 		PageMaker pageMaker = new PageMaker();
 		String user_id = principal.getName();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(service.getLectureCount());
-
+		
+		System.out.println(keyword);
+		System.out.println(searchType);
+		cri.setKeyword(keyword);
+		cri.setSearchType(searchType);
+		
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
-		System.out.println(cri.getPage());
-		System.out.println(cri.getPageStart());
-		System.out.println(cri.getPerPageNum());
 		List<Map<String, Object>> list = null;
-		list = service.getLectureList(cri);
+		System.out.println(cri+"여기는 컨트롤러 ---------------");
+		HashMap<String, Object> map = null;
+		if(AjaxRestController.paramsTemp != null) {
+			map = AjaxRestController.paramsTemp;
+			list = service.getLectureListFilter(cri, map);
+			model.addAttribute("ingOrDone", map.get("ingOrDone"));
+			model.addAttribute("level", map.get("level"));
+			model.addAttribute("language", map.get("language"));
+			model.addAttribute("local", map.get("local"));
+			model.addAttribute("studyContent", map.get("studyContent"));
+		}else {
+			list = service.getLectureList(cri);
+		}
+		pageMaker.setTotalCount(list.size());
+		
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("pageMaker", pageMaker);
-		System.out.println("우철이는 : " + list);
 
 		System.out.println(list.toString());
 

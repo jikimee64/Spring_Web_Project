@@ -31,7 +31,6 @@
 	
 	<!-- 강의 리스트 -->
 	<select id="getLectureList" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria">
-	   <![CDATA[
 			
 		select * from lecture_board
 		left outer join language_category
@@ -40,10 +39,87 @@
         on lecture_board.site_seq = site_category.site_seq
 		left outer join price_category
 		on lecture_board.p_seq = price_category.p_seq
+		<include refid="searchCondition"></include>
 		group by l_key
 		ORDER BY L_SEQ DESC
 		LIMIT #{pageStart}, #{perPageNum}     
-		]]>
+	</select>
+	
+	<sql id="searchCondition">
+
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == 't'.toString()">
+				where lecture_board.l_title like CONCAT('%',#{cri.keyword},'%')
+			</if>
+			<if test="cri.searchType == 'c'.toString()">
+				where lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'w'.toString()">
+				where lecture_board.l_writer like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'tc'.toString()">
+				where (l_title like CONCAT('%', #{keyword}, '%')
+				or lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+			<if test="cri.searchType == 'all'.toString()">
+				where (l_title like CONCAT('%', #{keyword}, '%')
+				or lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')
+				or lecture_board.l_writer like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+		</if>
+
+	</sql>
+
+	<!-- 강의 리스트(필터링합니다) -->
+	<select id="getLectureListFilter" resultType="hashmap" parameterType="kr.or.ns.vo.Criteria">
+			
+		select * 
+		from lecture_board
+		left outer join language_category
+		on lecture_board.lan_seq = language_category.lan_seq
+        left outer join site_category
+        on lecture_board.site_seq = site_category.site_seq
+		left outer join price_category
+		on lecture_board.p_seq = price_category.p_seq
+		
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == 't'.toString()">
+				where lecture_board.l_title like CONCAT('%',#{cri.keyword},'%')
+			</if>
+			<if test="cri.searchType == 'c'.toString()">
+				where lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'w'.toString()">
+				where lecture_board.l_writer like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'tc'.toString()">
+				where (l_title like CONCAT('%', #{keyword}, '%')
+				or lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+			<if test="cri.searchType == 'all'.toString()">
+				where (l_title like CONCAT('%', #{keyword}, '%')
+				or lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')
+				or lecture_board.l_writer like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+		</if>
+		<if test="price != null">
+			and lecture_board.p_seq = #{price}
+		</if>
+		<if test="level != null">
+				 and lecture_board.cate_level = #{level}
+		</if>
+		<if test="language.size != 0">
+			     and lecture_board.lan_seq in
+			<foreach collection="language" item="item" index="index" separator="," open="(" close=")">
+			      	#{item}
+			</foreach>
+		</if>
+		<if test="site != null">
+			and lecture_board.site_seq = #{site}
+		</if> 
+		group by l_key
+		ORDER BY L_SEQ DESC
+		LIMIT #{pageStart}, #{perPageNum}     
 	</select>
 	
 	<!-- 강의 상세 내용-->

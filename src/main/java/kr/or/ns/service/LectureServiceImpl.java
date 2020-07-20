@@ -43,6 +43,20 @@ public class LectureServiceImpl implements LectureService{
 		return list;
 	}
 	
+	//게시글 목록(필터)
+	@Override
+	public List<Map<String, Object>> getLectureListFilter(Criteria cri, HashMap<String, Object> params) {
+		LectureDao dao = sqlsession.getMapper(LectureDao.class);
+		System.out.println("여기는 서비스 임플(필터입니다)!!!");
+		System.out.println("params : " + params);
+		params.put("cri", cri);
+		List<Map<String, Object>> list = dao.getLectureListFilter(cri,params);
+		System.out.println(" 서비스에서 리턴갑니다.");
+		System.out.println(list);
+		return null;
+	}
+
+	
 	public HashMap<String, Object> getLecture(String l_seq){
 		LectureDao dao = sqlsession.getMapper(LectureDao.class);
 		System.out.println("아나!!");
@@ -208,6 +222,7 @@ public class LectureServiceImpl implements LectureService{
 		seqlist = dao.getCheckedL_seq(user_id);
 		return seqlist;
 	}
+
 
 
 

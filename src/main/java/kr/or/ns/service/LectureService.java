@@ -19,6 +19,9 @@ public interface LectureService {
 	//온라인 게시글 페이징 목록
 	public List<Map<String, Object>> getLectureList(Criteria cri);
 	
+	//온라인 게시글 페이징 목록(필터링)
+	public List<Map<String, Object>> getLectureListFilter(Criteria cri, HashMap<String, Object> map);
+	
 	//온라인 컨텐츠(스터디 게시판 글 편집)
 	public int studyOnlineEdit(Study study, HttpServletRequest request, Principal principal);
 	
@@ -36,6 +39,7 @@ public interface LectureService {
 
 	//l_seq 를 가져오는 함수
 	public List<Integer> getCheckedL_seq(String user_id);
+
 	
 	
 }
