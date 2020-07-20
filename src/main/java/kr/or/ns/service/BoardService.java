@@ -39,8 +39,11 @@ public interface BoardService {
 	//상세페이지에 뿌려줄 강의 정보
 	public Map<String, Object> onlineDetailInfo(String s_seq);
 	
-	//총 스터디게시글 수
+//	//총 스터디게시글 수
 	public int getStudyBoardCount() throws ClassNotFoundException, SQLException;
+	
+	//총 스터디게시글 수
+//	public int getStudyBoardCount(Criteria_Board cri_b) throws ClassNotFoundException, SQLException;
 	
 	//스터디 모집 글 작성하기
 	public int studyReg(Study study, HttpServletRequest request, Principal principal);
@@ -95,4 +98,6 @@ public interface BoardService {
 
 	//스터지에 지원했는지 여부 알아냄  
 	public int checkApply(HashMap<String, String> map);
+
+	
 }
