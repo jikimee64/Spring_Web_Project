@@ -1,5 +1,7 @@
 package kr.or.ns.page;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import kr.or.ns.vo.Criteria;
 
 
@@ -21,7 +23,23 @@ public class PageMaker {
 	private boolean next; //다음
 	private int displayPageNum = 5;  //5개씩 보여준다
 	
-	
+	////////////////////////////////////////////////////////
+	public String makeQuery(int page, boolean needSearch) {
+		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().queryParam("page", page)
+				.queryParam("perPageNum", this.cri.getPerPageNum());
+
+		// 검색한 경우
+		if (this.cri.getSearchType() != null) {
+			uriComponentsBuilder
+			.queryParam("searchType", this.cri.getSearchType())
+			.queryParam("keyword", this.cri.getKeyword());
+
+		}
+
+		return uriComponentsBuilder.build().encode().toString();
+
+	}
+
 	
 	
 	//VO

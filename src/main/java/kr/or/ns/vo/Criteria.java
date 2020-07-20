@@ -11,7 +11,9 @@ public class Criteria {
 	private int page;
 	private int perPageNum;
 //	private int pageStart; 이렇게 원래 써야 한다 이거 안써도 되지만 그건 직관적이 아니다 일종의 꼼수일뿐..
-	
+	//속성 searchType, keyword 추가
+	private String searchType;
+	private String keyword;
 	
 	//생성자(최초로 게시판 목록에 들어왔을 때를 위한 기본세팅)
 	public Criteria() {
@@ -62,4 +64,54 @@ public class Criteria {
 			this.perPageNum = pageCount;
 		}
 	}
+	
+	
+
+	
+	public String getSearchType() {
+		return searchType;
+	}
+
+
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+/////////////////////////////////////////////////////////////////////////
+	
+	
+public String[] getTypeArr() {
+return searchType == null? new String[] {}: searchType.split("");
+}
+
+
+
+@Override
+public String toString() {
+	return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", keyword="
+			+ keyword + "]";
+}
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+	
 }

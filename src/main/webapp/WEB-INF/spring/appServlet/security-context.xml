@@ -27,11 +27,16 @@
 		<security:logout logout-success-url="/user/main.do" />
 		
 		<!-- 비로그인 막는 페이지..   -->
-	<!-- 온라인 게시판 게시글 등록  -->
+	
+	<!-- 채팅방  -->
+	 <security:intercept-url
+			pattern="/chat/**.do" access="hasRole('ROLE_USER')" />  	
+		
+	<!-- 온라인 게시판  -->
  	<security:intercept-url
 			pattern="/lecture/**.do" access="hasRole('ROLE_USER')" />  
 			
-	<!-- 스터디 게시판 게시글 등록  -->
+	<!-- 스터디 게시판   -->
  	<security:intercept-url
 			pattern="/board/**.do" access="hasRole('ROLE_USER')" />  
 	<!-- 마이페이지 -->
