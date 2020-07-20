@@ -426,6 +426,7 @@ public class AjaxServiceImpl implements AjaxService {
 	public List<HashMap<String, Object>> wordCloud() {
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 		List<HashMap<String, Object>> list = dao.wordCloud();
+		System.out.println("워드클라우드:" + list);
 		return list;
 	}
 

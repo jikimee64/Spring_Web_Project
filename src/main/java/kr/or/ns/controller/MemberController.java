@@ -108,9 +108,6 @@ public class MemberController {
 		// 네이버 로그인 인증을 위한 url 생성
 		String naverUrl = naverLoginBO.getAuthorizationUrl(session);
 
-		// 카카오 로그인 인증을 위한 url 생성
-		String kakaoUrl = KakaoController.getAuthorizationUri(session);
-
 		// 구글 로그인 인증을 위한 url 생성
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String googleurl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
@@ -122,13 +119,11 @@ public class MemberController {
 
 		// url 전달
 		model.addAttribute("naver_url", naverUrl); // 네이버 url
-		model.addAttribute("kakao_url", kakaoUrl); // 카카오 url
 		model.addAttribute("google_url", googleurl); // 구글 url
 
 		// 확인용 출력문
 		System.out.println("네이버:" + naverUrl);
 		System.out.println("구글" + googleurl);
-		System.out.println("카카오" + kakaoUrl);
 
 		return "user/member/login";
 	}
@@ -205,77 +200,6 @@ public class MemberController {
 		return "redirect:../user/main.do";
 	}
 
-	// 카카오 callback호출 메소드
-	@RequestMapping(value = "kakaologin.do", produces = "application/json", method = { RequestMethod.GET,
-			RequestMethod.POST })
-	public String kakaoLogin(@RequestParam("code") String code, HttpServletRequest request,
-			HttpServletResponse response, HttpSession session, Model model, RedirectAttributes redirectAttributes)
-			throws Exception {
-
-		// 결과값을 node에 담아줌
-		JsonNode node = KakaoController.getAccessToken(code);
-		System.out.println("코드값 존재?" + code);
-		// accessToken에 사용자의 로그인한 모든 정보가 들어있다
-		JsonNode accessToken = node.get("access_token");
-		System.out.println("카카오토큰" + accessToken);
-		// 사용자의 정보
-		JsonNode KaKaouserInfo = KakaoController.getKaKaoUserInfo(accessToken);
-		// DB에 맞게 받을 정보이름 수정
-		String email = null;
-		System.out.println("정보뽑아내기" + KaKaouserInfo);
-
-		// 유저정보 카카오에서 가져오기
-		JsonNode properties = KaKaouserInfo.path("properties");
-		JsonNode kakao_account = KaKaouserInfo.path("kakao_account");
-		JsonNode has_email = KaKaouserInfo.path("kakao_account.has_email");
-		email = kakao_account.path("email").asText();
-		System.out.println(email + "이메일///");
-		System.out.println("이메일여부" + has_email);
-
-		/* 메인이외의 페이지에서 로그인했을시 해당 페이지로 return시켜주기위한 url */
-		String returnUrl = (String) session.getAttribute("returnUrl");
-		System.out.println("카카오 로그인한 페이지 : " + returnUrl);
-
-		// DB에 등록된 이메일인지 확인
-		int check = 0;
-		try {
-			check = ajaxservice.idcheck(email);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		if (check == 0) {
-			System.out.println("DB에 등록되지 않은 이메일");
-			System.out.println("카카오 회원가입으로 이동");
-
-			model.addAttribute("uemail", email);
-			model.addAttribute("snstype", "kakao");
-			return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
-
-		}
-		// 스프링 시큐리티 수동 로그인을 위한 작업//
-		// 로그인 세션에 들어갈 권한을 설정
-		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-		list.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-		SecurityContext sc = SecurityContextHolder.getContext();
-		// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-		// 패스워드는 null로 하여도 값이 생성.
-		sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
-		session = request.getSession(true);
-
-		// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-		// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
-
-		System.out.println("이미 가입된 회원");
-		Users users = new Users();
-		users = mypageservice.getUsers(email);
-		session = request.getSession();
-		session.setAttribute("currentUser", users);
-		System.out.println("이미 가입된 회원의 정보" + users);
-
-		return "redirect:../user/main.do";
-	}
 
 	// 구글 콜백함수
 	@RequestMapping(value = "googlelogin.do", method = { RequestMethod.GET, RequestMethod.POST })

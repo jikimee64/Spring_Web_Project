@@ -166,14 +166,14 @@
 		on b.l_seq = l.l_seq
 		group by l.l_seq
        order by count(b.l_seq) desc
-       limit 10
+       limit 5
 	</select>
 	
 	<select id="wordCloud" resultType="hashMap">
-		select cate_language from study_board s
+		select cate_language, count(*) as count from study_board s
 		left outer join language_category l
 		on s.lan_seq = l.lan_seq
-	
+        group by cate_language
 	</select>
 	
 	<select id="studyBoardFilterSize" resultType="hashMap">
