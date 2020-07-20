@@ -54,10 +54,9 @@ public class BoardServiceImpl implements BoardService {
 	// 페이징 스터디 글목록
 		public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
-			System.out.println("여기는 서비스 임플!!!");
+			System.out.println("Criteria_Board : " + cri_b);
 			List<Map<String, Object>> list = dao.getStudyBoardList(cri_b);
 			System.out.println(" 서비스에서 리턴갑니다.");
-			System.out.println(list);
 			return list;
 		}
 	

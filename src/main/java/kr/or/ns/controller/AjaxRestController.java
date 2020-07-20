@@ -312,7 +312,6 @@ public class AjaxRestController {
 	}
 
 	public static HashMap<String, Object> paramsTemp = null;
-
 	public static int filterSize = 0;
 
 	// 스터디게시판 필터
@@ -407,6 +406,7 @@ public class AjaxRestController {
 		List<HashMap<String, Object>> list = service.courseBoardFilter(params, cri_b);
 
 		filterSize2 = listSize.size();
+		System.out.println("필터링된 개수(온라인) : " + listSize.size());
 
 		pageMakerb.setTotalCount(listSize.size());
 

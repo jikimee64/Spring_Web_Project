@@ -373,7 +373,7 @@ keyframes heart-keyframes { 100% {
 		<!-- course란 강좌라는 뜻이에염~ -->
 		<!--class="filter-active"  주면 선택된상태로 만들수 있음-->
 		<div class="container">
-			<div class="row">
+			<div class="row filterRow">
 				<div class="row" style="width: 100%; margin-bottom: 0px;">
 					<div class="col-md-3 _category box aos-init aos-animate"
 						data-aos="fade-up" data-aos-delay="300">
@@ -706,9 +706,10 @@ keyframes heart-keyframes { 100% {
    </script>
 
 	<script>
-      $("li").on(
+	$('.filterRow li').on(
             "click",
             function() {
+            	console.warn('찍어야함')
                var price = $('#portfolio-flters-price').children(
                      '.filter-active').attr('data-filter');
                var level = $('#portfolio-flters-level').children(

@@ -39,6 +39,7 @@ public class LectureServiceImpl implements LectureService{
 	//게시글 목록
 	public List<Map<String, Object>> getLectureList(Criteria cri) {
 		LectureDao dao = sqlsession.getMapper(LectureDao.class);
+		System.out.println("getLectureList : " + cri);
 		List<Map<String, Object>> list = dao.getLectureList(cri);
 		return list;
 	}
@@ -50,10 +51,9 @@ public class LectureServiceImpl implements LectureService{
 		System.out.println("여기는 서비스 임플(필터입니다)!!!");
 		System.out.println("params : " + params);
 		params.put("cri", cri);
-		List<Map<String, Object>> list = dao.getLectureListFilter(cri,params);
-		System.out.println(" 서비스에서 리턴갑니다.");
-		System.out.println(list);
-		return null;
+		List<Map<String, Object>> list = dao.getLectureListFilter(params);
+		System.out.println(" 서비스에서 리턴갑니다.(1단계)");
+		return list;
 	}
 
 	

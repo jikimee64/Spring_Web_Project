@@ -50,34 +50,39 @@ public class LectureController {
 	// 스터디목록 + 페이징
 	@RequestMapping("course_List.do")
 	public String courseListPage(Criteria cri, Model model,Principal principal, @RequestParam(value="searchType",required = false) String searchType, @RequestParam(value="keyword",required=false) String keyword) {
-		System.out.println("강좌페이지로 이동이동(연규가씀)");
-		System.out.println(cri.getPage());
+		
 		PageMaker pageMaker = new PageMaker();
 		String user_id = principal.getName();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.getLectureCount());
-		
-		System.out.println(keyword);
-		System.out.println(searchType);
-		cri.setKeyword(keyword);
-		cri.setSearchType(searchType);
 		
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
-		System.out.println(cri+"여기는 컨트롤러 ---------------");
 		HashMap<String, Object> map = null;
-		if(AjaxRestController.paramsTemp != null) {
-			map = AjaxRestController.paramsTemp;
+		
+		//AjaxRestController.filterSize2 = 0;
+		
+		cri.setKeyword(keyword);
+		cri.setSearchType(searchType);
+		if(AjaxRestController.filterSize2 != 0) {
+			System.out.println("filterSize2: " + AjaxRestController.filterSize2);
+			System.out.println("paramsTemp2 : " + AjaxRestController.paramsTemp2);
+			System.out.println("필터된 후엔 여길..");
+			map = AjaxRestController.paramsTemp2;
 			list = service.getLectureListFilter(cri, map);
-			model.addAttribute("ingOrDone", map.get("ingOrDone"));
+			model.addAttribute("price", map.get("price"));
 			model.addAttribute("level", map.get("level"));
 			model.addAttribute("language", map.get("language"));
-			model.addAttribute("local", map.get("local"));
-			model.addAttribute("studyContent", map.get("studyContent"));
+			model.addAttribute("site", map.get("site"));
+			System.out.println("잘왔을텐데..? " + list);
+			System.out.println("필터링+검색 사이즈 : " + list.size());
+			pageMaker.setTotalCount(list.size());
+			AjaxRestController.filterSize2 = 0;
 		}else {
+			System.out.println("동기");
 			list = service.getLectureList(cri);
+			pageMaker.setTotalCount(service.getLectureCount());
 		}
-		pageMaker.setTotalCount(list.size());
+	
 		
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("pageMaker", pageMaker);

@@ -70,11 +70,7 @@ public class BoardController {
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
-		System.out.println(cri_b+"여기는 컨트롤러 ---------------");
-		
 		HashMap<String, Object> map = null;
-		
-		AjaxRestController.filterSize = 0;
 		
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
@@ -89,7 +85,9 @@ public class BoardController {
 			model.addAttribute("language", map.get("language"));
 			model.addAttribute("local", map.get("local"));
 			model.addAttribute("studyContent", map.get("studyContent"));
+			System.out.println("필터링+검색 사이즈 : " + list.size());
 			pageMakerb.setTotalCount(list.size());
+			AjaxRestController.filterSize = 0;
 		}else {
 			System.out.println("처음엔 여길..");
 			list = service.getStudyBoardList(cri_b);

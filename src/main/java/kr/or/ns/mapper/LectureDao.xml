@@ -45,26 +45,27 @@
 		LIMIT #{pageStart}, #{perPageNum}     
 	</select>
 	
+	
 	<sql id="searchCondition">
 
-		<if test="cri.searchType != null">
-			<if test="cri.searchType == 't'.toString()">
-				where lecture_board.l_title like CONCAT('%',#{cri.keyword},'%')
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				where lecture_board.l_title like CONCAT('%',#{keyword},'%')
 			</if>
-			<if test="cri.searchType == 'c'.toString()">
-				where lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')
+			<if test="searchType == 'c'.toString()">
+				where lecture_board.l_address like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="cri.searchType == 'w'.toString()">
-				where lecture_board.l_writer like CONCAT('%', #{cri.keyword}, '%')
+			<if test="searchType == 'w'.toString()">
+				where lecture_board.l_writer like CONCAT('%', #{keyword}, '%')
 			</if>
-			<if test="cri.searchType == 'tc'.toString()">
+			<if test="searchType == 'tc'.toString()">
 				where (l_title like CONCAT('%', #{keyword}, '%')
-				or lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%'))
+				or lecture_board.l_address like CONCAT('%', #{keyword}, '%'))
 			</if>
-			<if test="cri.searchType == 'all'.toString()">
+			<if test="searchType == 'all'.toString()">
 				where (l_title like CONCAT('%', #{keyword}, '%')
-				or lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')
-				or lecture_board.l_writer like CONCAT('%', #{cri.keyword}, '%'))
+				or lecture_board.l_address like CONCAT('%', #{keyword}, '%')
+				or lecture_board.l_writer like CONCAT('%', #{keyword}, '%'))
 			</if>
 		</if>
 
@@ -102,6 +103,8 @@
 				or lecture_board.l_writer like CONCAT('%', #{cri.keyword}, '%'))
 			</if>
 		</if>
+		
+		
 		<if test="price != null">
 			and lecture_board.p_seq = #{price}
 		</if>
