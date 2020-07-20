@@ -544,16 +544,19 @@ group+group {
 								미네미네
 							</b>
 						</div> -->
-							<b style="margin-left: 35px;">작성자:</b>
+							<!-- <b style="margin-left: 35px;">작성자:</b> -->
 							<div class="col-md-4"
 								style="padding-right: 0px; font-size: medium;">
+								<b style="color: black; margin-right: 10px;"> 작성자 : 
+								</b>
 								<a href="" th:classappend="|InfoModal${list.S_SEQ}|"
 									th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
-									data-toggle="modal" data-target="#userInfoModal"><b
+									data-toggle="modal" data-target="#userInfoModal">
+									<b
 									th:text="${list.USER_ID}"
-									style="color: black; margin-right: 10px;"> 작성자 : <!-- 여기에 닉네임 -->
-										미네미네
+									style="color: black; margin-right: 10px;"> 
 								</b> </a>
+								
 							</div>
 							<div class="col-md-3"
 								style="text-align: center; padding-right: 0px;">
@@ -634,7 +637,8 @@ group+group {
 						<a class="page-link"
 							th:href="@{study_FilterList.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							th:text="${idx}"></a>
-					</th:block> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+					</th:block> 
+					<!-- <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
 
 				<!-- 다음버튼 생성여부 -->
@@ -847,11 +851,13 @@ group+group {
 										type : 'POST',
 										data : JSON.stringify(data),
 										success : function(data) {
-											console.log('이게 나오면 절대 안됨')
 
 											$('.studyFilter').empty();
 											$('.studyPaging').empty();
 
+											var perPageNum = data[2].cri_b.perPageNum;
+											var page = data[2].cri_b.page;
+											
 											$
 													.each(
 															data,
@@ -945,16 +951,15 @@ group+group {
 																		} //else 끝
 																		html += "<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
 																		html += "<div class='row' style='margin-top: 10px;'>"
-																		html += "<b style='margin-left: 35px;'>작성자:</b>"
+																		//html += "<b style='margin-left: 35px;'>작성자:</b>" 
 																		html += "<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
-																		html += '<a href="" class="InfoModal"'
-																				+ data[0][i].S_SEQ
-																				+ 'onclick=InfoModal("'
-																				+ data[index].S_SEQ
-																				+ '") data-toggle="modal" data-target="#userInfoModal">'
 																		html += "<b style='color: black; margin-right: 10px;'>작성자 :</b>"
-																				+ data[0][i].USER_ID
-																				+ "</a></div>"
+																		html += '<a href="" class="InfoModal'
+																				+ data[0][i].S_SEQ
+																				+ '" onclick=InfoModal("'
+																				+ data[0][i].S_SEQ
+																				+ '") data-toggle="modal" data-target="#userInfoModal">'
+																		html += "<b style='color: black; margin-right: 10px;'>"+data[0][i].USER_ID +"</b></a></div>"
 																		html += "<div class='col-md-3' style='text-align: center; padding-right: 0px;'>"
 
 																		html += "<b>등록일 : "
@@ -968,7 +973,7 @@ group+group {
 																				+ "</b></div></div>";
 
 																		html += "<div class='row'>"
-																		//다시 html +="<a href='/board/writing_Common_Study_Detail.do?s_seq='"+data[index].S_SEQ+"'&'"'page=${pageMakerb.cri_b.page},perPageNum=${pageMakerb.cri_b.perPageNum} )}">"
+																		html +="<a href='/board/writing_Common_Study_Detail.do?s_seq="+data[0][index].S_SEQ+"&page="+page+"&perPageNum="+perPageNum+"'>"
 																		html += "<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"
 																				+ data[0][i].TITLE
 																				+ "</h2></a></div>"
