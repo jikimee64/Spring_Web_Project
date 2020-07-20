@@ -10,13 +10,6 @@
 
 <title>mypage_message_from_detail_board</title>
 
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous">
-
 <style>
 .pager li>a, .pager li>span {
 	border: white;
@@ -220,7 +213,7 @@ group+group {
 					<button type="button" class="btn btn-warning" id="deletemessage"
 						name="deletemessage"
 						style="width: 100px; color: white; margin-top: 30px;">삭제
-						하기</button>
+						</button>
 
 				</div>
 
@@ -244,10 +237,6 @@ group+group {
 			</div>
 
 
-
-
-
-			<!-- 			<th:block th:each="list,index : ${messageList}"> -->
 			<th:block th:each="list : ${messageList}">
 			<div class="row"></div>
 				<!-- th(부모태그) -->
@@ -273,7 +262,6 @@ group+group {
 
 					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
 					<!-- td3(내용) -->
-<!-- 										<div th:if="${list[index.index].opendate} != null" class="col-md-6" -->
 					   <div th:if="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
                   style="place-self: center; text-align: center;">
                   
@@ -286,24 +274,14 @@ group+group {
 
 
                <!-- td3(내용) -->
-<!--                               <div th:if="${list[index.index].opendate} == null" class="col-md-6" -->
                <div th:unless="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
                   style="place-self: center; text-align: center;">
-<!--                   <a style="color: green;" -->
                      <a style="color: #636e72;"
                      th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
                      <span th:text="${list.CONTENT}"></span>
                   </a>
                </div>
 
-					<!--                <div class="col-md-6"
-                  style="place-self: center; text-align: center;">
-                  <a style="color: black;"
-                     th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.m_seq})}">
-                     <span th:text="${list.content}"></span>
-                  </a>
-               </div> -->
-<!-- ${#dates.format(study.WRITE_DATE, 'yyyy/MM/dd HH:mm')} -->
 					<!-- td4(받은시간) -->
 					<div class="col-md-3"
 						style="place-self: center; text-align: center;">
@@ -316,21 +294,7 @@ group+group {
 						style="color: #dfe4ea; border: solid 0.5px; margin-bottom: 0px; margin-top: 0px; width: 97%">
 				
 				</div>
-				<!-- 					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" /> -->
-
-				<!-- 					<hr -->
-				<!-- 						style="color: #dfe4ea; border: solid 0.5px;  margin:0px 0px 4px 0px; width: 97%"> -->
-
-				<!-- <div class="row" th:classappend="|success${list.USER_ID}|" -->
-<!-- 
-				 <div class="row" th:classappend="|hr${list.M_SEQ}|"
-					style="position: relative; top: -90px; padding: 0px 30px 0px 30px; justify-content: center;">
-					<input type="hidden" id="m_seq" th:value="${list.M_SEQ}" />
-
-					<hr
-						style="color: #dfe4ea; border: solid 0.5px; margin: 0px 0px 4px 0px; width: 97%">
-				</div>  -->
-
+	
 			</th:block>
 
 
@@ -365,45 +329,12 @@ group+group {
 						class="page-link"> Next</a> 
 					</li>
 
-
 				</ul>
 				<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
 			</div>
 
-
-
-
-
-
-
-			<!-- 			<div class="row" style="place-content: center;"> -->
-			<!-- 				<ul class="pager d-flex"> -->
-			<!-- 					<li><a class="page-link" href="#">PREV</a></li> -->
-			<!-- 					<li class="page-item"><a class="page-link" href="#">1</a></li> -->
-			<!-- 					<li class="page-item active"><a class="page-link" href="#">2</a></li> -->
-			<!-- 					<li class="page-item"><a class="page-link" href="#">3</a></li> -->
-			<!-- 					<li><a class="page-link" href="#">NEXT</a></li> -->
-			<!-- 				</ul> -->
-			<!-- 			</div> -->
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
@@ -429,19 +360,12 @@ group+group {
 		});
 	</script>
 
-	<!-- 신고ajax -->
+	<!-- 메세지 삭제 -->
 	<script>
 		$(function() {
 			$('#deletemessage')
 					.click(
-							function(e) {
-								
-								
-								
-								
-								
-								
-								
+							function(e) {					
 								console.log("여기왓냐");
 								//체크된 체크박스의 개수 구하기
 								console
@@ -464,41 +388,18 @@ group+group {
 									
 									console.log(check); //row
 									console.log(check2);
-									
-									/* 
-									 let sender1 = check2.eq(1).text().trim();
-									 console.log("sender:" + sender1); //발신자
-									 let content1 = check2.eq(2).text().trim();
-									 console.log("content:" + content1); //내용
-									 let time1 = check2.eq(3).text().trim();
-									 console.log("time:" + time1); //시간 */
 									 
 									let m_seq1 = check2.eq(4).val(); //쪽지번호
-									
-									
-									
-// 									let m_seq1 = check2.eq(4).val().trim(); //쪽지번호
-
-									console.log('s')
 									console.log(check2.eq(4));
 									console.log('sss')
 
 									console.log("m_seq:" + m_seq1)
 
 									let data = {
-										/* 		"sender": sender1,
-												"content" : content1,
-												"time" : time1, */
-												
-												
 										"m_seq" : m_seq1
-
 									}
-									
-									
-									console.log(data);
-									
-									
+														
+									console.log(data);					
 									$.ajax({
 										url : '/ajax/deleteMessage.do',
 										processData : false,
@@ -517,17 +418,7 @@ group+group {
 										}
 
 									});/* ajax */
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
+																
 								})/*check each */
 							}); /* click+func */
 		});/* func */
