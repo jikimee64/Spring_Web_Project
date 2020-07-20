@@ -125,22 +125,21 @@ td:focus {
 									</thead>
 
 									<tbody>
-											<th:block th:each="blameList : ${blameList}">
-												<tr onmouseover="this.style.backgroundColor='#cecece'"
-													onmouseout="this.style.backgroundColor='white'">
-													<td align="center"><a 
-														th:onclick="|javascript:declareModal('${blameList.BL_SEQ}')|"
-														data-toggle="modal"
-														data-target="#declationPageModal" href="#"
-														th:text="${blameList.BL_SEQ}"></a></td>
-													<td align="center" th:text="${blameList.PLACE}"></td>
-													<td align="center" th:text="${blameList.BOARD_SEQ}"></td>
-													<td align="center" th:text="${blameList.BL_ID}"></td>
-													<td align="center" th:text="${blameList.BL_TARGET_ID}"></td>
-													<td align="center" th:text="${blameList.BL_STATUS}"></td>
-													<!-- <td align="center">${list.phone}</td> -->
-												</tr>
-											</th:block>
+										<th:block th:each="blameList : ${blameList}">
+											<tr onmouseover="this.style.backgroundColor='#cecece'"
+												onmouseout="this.style.backgroundColor='white'">
+												<td align="center"><a
+													th:onclick="|javascript:declareModal('${blameList.BL_SEQ}')|"
+													data-toggle="modal" data-target="#declationPageModal"
+													href="#" th:text="${blameList.BL_SEQ}"></a></td>
+												<td align="center" th:text="${blameList.PLACE}"></td>
+												<td align="center" th:text="${blameList.BOARD_SEQ}"></td>
+												<td align="center" th:text="${blameList.BL_ID}"></td>
+												<td align="center" th:text="${blameList.BL_TARGET_ID}"></td>
+												<td align="center" th:text="${blameList.BL_STATUS}"></td>
+												<!-- <td align="center">${list.phone}</td> -->
+											</tr>
+										</th:block>
 									</tbody>
 
 								</table>
@@ -171,6 +170,8 @@ td:focus {
 		src="../../../../resources/admin_assets/assets/dataTable/js/buttons.html5.min.js"></script>
 	<script
 		src="../../../../resources/admin_assets/assets/dataTable/js/report.js"></script>
+	<script
+		src="../../../../resources/js/dateformat.js"></script>
 	<!-- dataTaBle end -->
 
 	<div
@@ -201,15 +202,15 @@ td:focus {
 		
 		});
 	</script>
-	
- 	<script>
+
+	<script>
 	$(function() {
 		function declareYes() {
 			console.log("sss")
 		}
 	});
-	</script> 
-	
+	</script>
+
 	<script>
 	function declareModal(bl_seq) {
 
@@ -231,9 +232,11 @@ td:focus {
 				$('#declareButtons').empty();
 			/* 	$('#message').empty(); */
 				console.log(data);
+				var write_date = new Date(data.WRITE_DATE);
+						
 				let html = "";
 				let html2 = "";
-				$('#write_date').text(data.WRITE_DATE);
+				$('#write_date').text(getDateFormet(write_date));
 				$('#bl_title').val(data.BL_TITLE);
 				$('#type').text(data.TYPE);
 				$('#bl_content').text(data.BL_CONTENT);
@@ -424,7 +427,7 @@ td:focus {
 		
 	
 	</script>
-	
+
 	</script>
 
 </body>
