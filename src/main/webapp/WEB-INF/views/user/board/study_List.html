@@ -485,7 +485,7 @@ group+group {
 			<div th:each="list : ${list}">
 				<div class="row">
 					<div class="col-md-3"></div>
-					<div class="col-md-4" style="padding: 0px;">
+					<div class="col-md-4">
 						<!-- 여기에 뱃지 -->
 						<span class="badge badge-pill badge-primary"
 							th:text="${list.STATUS}"></span> <span
@@ -537,7 +537,7 @@ group+group {
 					</th:block>
 
 
-					<div class="col-md-9" style="padding: 3Cpx 30px 30px 30px;">
+					<div class="col-md-9" style="padding: 3px 30px 30px 30px;">
 						<div class="row" style="margin-top: 10px;">
 							<!-- <div class="col-md-2">
 							<b th:text="${list.USER_ID}">
@@ -855,7 +855,7 @@ group+group {
 
 											$('.studyFilter').empty();
 											$('.studyPaging').empty();
-
+											
 											var perPageNum = data[2].cri_b.perPageNum;
 											var page = data[2].cri_b.page;
 											
@@ -885,9 +885,10 @@ group+group {
 																				data[0][i].WRITE_DATE);
 																		var deadline = new Date(
 																				data[0][i].DEADLINE);
+																		html += "<div>"
 																		html += "<div class='row'>"
 																		html += "<div class='col-md-3'></div>"
-																		html += "<div class='col-md-4' style='padding: 0px; text-align: center;'>"
+																		html += "<div class='col-md-4'>"
 																		html += "<span class='badge badge-pill badge-primary'>"
 																				+ data[0][i].STATUS
 																				+ "</span>"
