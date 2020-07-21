@@ -81,7 +81,7 @@ public class BoardController {
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
 		
-		if(root.equals("header")) {
+		if(root != null) {
 			System.out.println("처음엔 여길..");
 			list = service.getStudyBoardList(cri_b);
 			pageMakerb.setTotalCount(service.getStudyBoardCount());

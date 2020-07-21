@@ -66,7 +66,7 @@ public class LectureController {
 		cri.setKeyword(keyword);
 		cri.setSearchType(searchType);
 		
-		if(root.equals("header")) {
+		if(root != null) {
 			System.out.println("동기");
 			list = service.getLectureList(cri);
 			pageMaker.setTotalCount(service.getLectureCount());
