@@ -248,6 +248,14 @@ group+group {
 	-webkit-box-orient: vertical;
 	inline-size: -webkit-fill-available;
 }
+
+.custom-select-sm {
+    height: calc(1.5em + .5rem + 8px);
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    font-size: .875rem;
+}
 </style>
 
 
@@ -266,6 +274,12 @@ group+group {
 					<h2>
 						찾고 싶은 <b style="color: #18d26e">키워드</b>를 선택해 주세요.
 					</h2>
+					<div>
+				<div class="text-center" style="text-align-last: end;">
+					<a href="/board/board_Select.do" class="btn btn-outline-danger"
+						style="border: 3px solid; font-weight: bold;">스터디 모집하기</a>
+				</div>
+			</div>
 				</div>
 			</div>
 		</section>
@@ -446,10 +460,7 @@ group+group {
 
 		<!--  버튼-->
 		<div class="row">
-
-			
-			<div class="col-md-9">
-			<div style="text-align: center; width: 50%;">
+			<div class="col-5" style="margin-left:730px;">
 			<div class="form-inline" style="display: inline-flex;">
 				<select class="custom-select-sm" id="searchTypeSel"
 					name="searchType">
@@ -461,22 +472,12 @@ group+group {
 					<option value="all">전체조건</option>
 
 				</select> <input class="form-control" type="text" id="keyword" name="keyword" 
-					th:value="${pageMakerb.cri_b.keyword}" placeholder="검색어를 입력하세요"style="width:228px;" />
+					th:value="${pageMakerb.cri_b.keyword}" placeholder="검색어를 입력하세요" style="width:228px;" />
 
-				<button id="searchBtn" class="btn btn-primary">Search</button>
-
+				<button type= "button" id="searchBtn" class="btn btn-outline-success">Search</button>
+			</div>		
 			</div>
-		</div>
-			
-			</div>
-			<div class="col-md-3">
-				<div class="text-center" style="text-align-last: end;">
-					<a href="/board/board_Select.do" class="btn btn-outline-danger"
-						style="border: 3px solid; font-weight: bold;">스터디 모집하기</a>
-				</div>
 
-
-			</div>
 		</div>
 		<div class="_border_box_shadow2 studyFilter"
 			style="border: 10px solid gainsboro; padding: 30px 30px 0px 30px;">
