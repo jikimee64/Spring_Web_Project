@@ -196,6 +196,19 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		System.out.println("스터디 일반 편집");
 		
+		String user_id = principal.getName();
+		int s_seq = study.getS_seq();
+				
+		Study originalstudy = dao.getInfos(user_id,s_seq);
+		System.out.println("가져온 기존글정보 찍어봅니다."+originalstudy);
+		String originalImage = originalstudy.getImage();
+		String originalfilesrc = originalstudy.getFilesrc();
+		String originalfilesrc2 = originalstudy.getFilesrc2();
+		String newImage = study.getImage();
+		System.out.println("================================");
+		System.out.println(originalImage + newImage);
+		System.out.println("================================");
+		
 		List<CommonsMultipartFile> files = study.getFiles();
 		List<String> filenames = new ArrayList<String>(); // 파일명관리
 		System.out.println("?? " + files);
@@ -220,11 +233,11 @@ public class BoardServiceImpl implements BoardService {
 				}else { //filename이 공백일시넘 어옴 
 					for(int i = count; i < count+1; i++) {
 						if(i==0) {
-							filename = "study_board_default.jpg"; 
+							filename = originalImage; 
 						}else if(i==1) {
-							filename = "defaultfile"; 
+							filename = originalfilesrc; 
 						}else {
-							filename = "defaultfile2"; 
+							filename = originalfilesrc2; 
 						}
 					}
 				}
@@ -236,6 +249,7 @@ public class BoardServiceImpl implements BoardService {
 		study.setUser_id(principal.getName());
 		study.setC_seq(2); //일반강의 등록폼이니까 일반 컨텐츠 정적 부여
 		study.setImage(filenames.get(0));  
+		
 		System.out.println("1: " + study.getImage());
 		study.setFilesrc(filenames.get(1));
 		System.out.println("1: " + study.getFilesrc());
