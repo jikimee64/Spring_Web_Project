@@ -90,5 +90,8 @@ public interface AjaxService {
 	//워드클라우드 차트
 	public List<HashMap<String, Object>> wordCloud();
 	
+	//권한 체크
+	public int enabledcheck(String user_id);
+	
 
 }

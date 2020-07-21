@@ -433,5 +433,14 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("워드클라우드:" + list);
 		return list;
 	}
+	
+	//소셜계정용 권한체크
+	@Override
+	public int enabledcheck(String user_id) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		int enabled = dao.enabledcheck(user_id);
+		System.out.println("권한체크용 서비스" + enabled);
+		return enabled;
+	}
 
 }

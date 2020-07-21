@@ -118,7 +118,8 @@ public class MemberController {
 
 		// 넘어온 페이지
 		session.setAttribute("returnUrl", (String) request.getHeader("REFERER"));
-
+		
+		
 		// url 전달
 		model.addAttribute("naver_url", naverUrl); // 네이버 url
 		model.addAttribute("google_url", googleurl); // 구글 url
@@ -133,7 +134,7 @@ public class MemberController {
 	// 네이버 callback호출 메소드
 	@RequestMapping(value = "naverlogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String naverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session,
-			HttpServletRequest request, Users user) throws SQLException, Exception {
+			HttpServletRequest request, Users user, RedirectAttributes redirect) throws SQLException, Exception {
 		System.out.println("여기는 네이버 callback");
 		OAuth2AccessToken oauthToken;
 
@@ -162,21 +163,28 @@ public class MemberController {
 
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
+		int enabled = 0;
 		try {
-			check = ajaxservice.idcheck(email);
+			enabled = ajaxservice.enabledcheck(email);
+			check = ajaxservice.idcheck(email);		
+			if (check == 0) {
+				System.out.println("DB에 등록되지 않은 이메일");
+				System.out.println("naver회원가입으로 이동");
+			}else if(check ==1 && enabled == 0) {
+				System.out.println("권한확인" + enabled);
+				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
+				redirect.addAttribute("errormsg",msg);
+				return "redirect:/member/normallogin.do";
+					}
+				model.addAttribute("uemail", email);
+				model.addAttribute("snstype", "naver");
+				return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		if (check == 0) {
-			System.out.println("DB에 등록되지 않은 이메일");
-			System.out.println("naver회원가입으로 이동");
+		
 
-			model.addAttribute("uemail", email);
-			model.addAttribute("snstype", "naver");
-			return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
-
-		}
-
+	
 		// 스프링 시큐리티 수동 로그인을 위한 작업//
 		// 로그인 세션에 들어갈 권한을 설정
 		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
@@ -207,7 +215,7 @@ public class MemberController {
 	@RequestMapping(value = "googlelogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleLogin(Model model, @RequestParam(required = false, defaultValue = "0") String code,
 			HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttributes,
-			HttpServletResponse response) throws IOException {
+			HttpServletResponse response, RedirectAttributes redirect) throws IOException {
 
 		String Googlecode = request.getParameter("code");
 		System.out.println(Googlecode);
@@ -224,7 +232,7 @@ public class MemberController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(
-				parameters, headers);
+				parameters, headers );
 		ResponseEntity<Map> responseEntity = restTemplate.exchange("https://www.googleapis.com/oauth2/v4/token",
 				HttpMethod.POST, requestEntity, Map.class);
 		Map<String, Object> responseMap = responseEntity.getBody();
@@ -257,21 +265,30 @@ public class MemberController {
 
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
+		int enabled = 0;
 		try {
+			enabled = ajaxservice.enabledcheck(email);
 			check = ajaxservice.idcheck(email);
+			if (check == 0) {
+				System.out.println("DB에 등록되지 않은 이메일");
+				System.out.println("구글 회원가입으로 이동");
+			}else if(check ==1 && enabled == 0) {
+				System.out.println("권한확인" + enabled);
+				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
+				redirect.addAttribute("errormsg",msg);
+				return "redirect:/member/normallogin.do";
+				//return "user/403";
+				}
+
+				model.addAttribute("uemail", email);
+				model.addAttribute("snstype", "google");
+
+				return "user/member/join"; 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		if (check == 0) {
-			System.out.println("DB에 등록되지 않은 이메일");
-			System.out.println("구글 회원가입으로 이동");
-
-			model.addAttribute("uemail", email);
-			model.addAttribute("snstype", "google");
-
-			return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
-
-		}
+		// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
+		
 
 		// 스프링 시큐리티 수동 로그인을 위한 작업//
 		// 로그인 세션에 들어갈 권한을 설정

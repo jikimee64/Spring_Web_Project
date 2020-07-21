@@ -99,4 +99,8 @@ public interface AjaxRestDao {
 	
 	//워드클라우드 차트
 	public List<HashMap<String, Object>> wordCloud();
+	
+	//소셜계정 권한확인용
+	public int enabledcheck(String user_id);
+
 }
