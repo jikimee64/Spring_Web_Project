@@ -49,8 +49,11 @@ public class LectureController {
 
 	// 스터디목록 + 페이징
 	@RequestMapping("course_List.do")
-	public String courseListPage(Criteria cri, Model model,Principal principal, @RequestParam(value="searchType",required = false) String searchType, @RequestParam(value="keyword",required=false) String keyword) {
-		
+	public String courseListPage(Criteria cri, Model model,Principal principal,
+			@RequestParam(value="searchType",required = false) String searchType,
+			@RequestParam(value="keyword",required=false) String keyword,
+			@RequestParam(value="root",required=false) String root
+			) {
 		PageMaker pageMaker = new PageMaker();
 		String user_id = principal.getName();
 		pageMaker.setCri(cri);
@@ -59,11 +62,15 @@ public class LectureController {
 		List<Map<String, Object>> list = null;
 		HashMap<String, Object> map = null;
 		
-		//AjaxRestController.filterSize2 = 0;
 		
 		cri.setKeyword(keyword);
 		cri.setSearchType(searchType);
-		if(AjaxRestController.filterSize2 != 0) {
+		
+		if(root != null) {
+			System.out.println("동기");
+			list = service.getLectureList(cri);
+			pageMaker.setTotalCount(service.getLectureCount());
+		}else {
 			System.out.println("filterSize2: " + AjaxRestController.filterSize2);
 			System.out.println("paramsTemp2 : " + AjaxRestController.paramsTemp2);
 			System.out.println("필터된 후엔 여길..");
@@ -77,11 +84,23 @@ public class LectureController {
 			System.out.println("필터링+검색 사이즈 : " + list.size());
 			pageMaker.setTotalCount(list.size());
 			AjaxRestController.filterSize2 = 0;
-		}else {
-			System.out.println("동기");
-			list = service.getLectureList(cri);
-			pageMaker.setTotalCount(service.getLectureCount());
 		}
+		
+		
+		/*
+		 * if(AjaxRestController.filterSize2 != 0) { System.out.println("filterSize2: "
+		 * + AjaxRestController.filterSize2); System.out.println("paramsTemp2 : " +
+		 * AjaxRestController.paramsTemp2); System.out.println("필터된 후엔 여길.."); map =
+		 * AjaxRestController.paramsTemp2; list = service.getLectureListFilter(cri,
+		 * map); model.addAttribute("price", map.get("price"));
+		 * model.addAttribute("level", map.get("level")); model.addAttribute("language",
+		 * map.get("language")); model.addAttribute("site", map.get("site"));
+		 * System.out.println("잘왔을텐데..? " + list); System.out.println("필터링+검색 사이즈 : " +
+		 * list.size()); pageMaker.setTotalCount(list.size());
+		 * AjaxRestController.filterSize2 = 0; }else if(root.equals("header")) {
+		 * System.out.println("동기"); list = service.getLectureList(cri);
+		 * pageMaker.setTotalCount(service.getLectureCount()); }
+		 */
 	
 		
 		model.addAttribute("list", list); // view까지 전달(forward)
@@ -92,12 +111,8 @@ public class LectureController {
 		//서비스, dao
 		List<Integer> seqlist = new ArrayList<Integer>();
 		seqlist = service.getCheckedL_seq(user_id);
-		/*
-		 * System.out.println("--------------seqlist 찍어보기 -----------");
-		 * System.out.println(seqlist ); System.out.println(seqlist.toString());
-		 * System.out.println("--------------seqlist 찍어보기 -----------");
-		 */
 		model.addAttribute("seqlist", seqlist); // view까지 전달(forward)
+		
 		
 		return "user/board/course_List"; // study_List.html
 	}

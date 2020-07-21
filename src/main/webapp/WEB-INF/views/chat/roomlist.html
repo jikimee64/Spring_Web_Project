@@ -29,16 +29,15 @@
 				<h5 style="margin-top: 20px;">채팅방 목록</h5>
 			</div>
 		</div>
-		
+
 		<div class="row chatList" th:each="list : ${roomList}">
 			<div class="col-1"></div>
 			<div class="col-8" style="color: black; padding: 0px;">
 				<span> <b style="font-size: xx-large;"
 					th:text="${list.ch_seq}"></b>
 				</span> <img src="../../../../resources/images/img/chatroom.png"
-					style="width: 45px; height: 45px; margin-left: 10px;"> 
-					<a
-				 	href="#" th:onclick="|javascript:goRoom('${list.ch_seq}')|"> <span
+					style="width: 45px; height: 45px; margin-left: 10px;"> <a
+					href="#" th:onclick="|javascript:goRoom('${list.ch_seq}')|"> <span
 					th:text="|&nbsp;&nbsp;${list.ch_title}|"></span>
 				</a>
 
@@ -138,58 +137,12 @@ $(function() {
 			
 		}else{
 			location.href="/chat/entrance.do?ch_seq="+ch_seq
-			
-			
 		}
-		
-		
-		/* console.log(pw_room_status.is('img')); */
-		
 
-		//var status = $("#"+number).parent().next().text()
-		
-		//비밀방 접속
-		/* if(status === 'O'){
-		$.ajax({
-			url : "pwGet.ajax",
-			data : {
-				roomNumber : number
-			},
-			type : 'POST',
-			success : function(res) {
-				if($('#userid').val()){ //로그인한 사용자
-					var jbResult = prompt('방 비밀번호를 입력해주세요.', '');
-					
-					if(res.pw === jbResult){
-						location.href = "moveChating.htm?roomName=" + name + "&"
-						+ "roomNumber=" + number;
-					}else{
-						alert('방 비밀번호가 틀렸습니다.');
-					}
-				}else{ //로그인하지 않은 사용자
-					location.href = "moveChating.htm?roomName=" + name + "&"
-					+ "roomNumber=" + number;
-				}
-			},
-			error:function(request,status,error){
-		        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		       }
-		});
-	} else { //오픈방 접속
-		location.href = "moveChating.htm?roomName=" + name + "&"
-				+ "roomNumber=" + number;
-	} */
-
-/* 	location.href = "moveChating.htm?roomName=" + name + "&"
-			+ "roomNumber=" + number; */
-	//]]>
 }
 
 
 	$(function() {
-		/* $("#room-btn").click(function(e) {
-			$('#chatRoomFormlModal').modal('hide');
-		}); */
 
 		$(".chatRoomForm").submit(function(e) {
 			
@@ -234,29 +187,29 @@ $(function() {
 						html += "<div class='col-1'></div>"
 						html += "<div class='col-8' style='color: black; padding: 0px;'>"
 						html +=	"<span><b style='font-size: xx-large;'>"
-								+ ${list.ch_seq}
+								+ data.ch_seq
 						html +=	"</b</span>" 
-						html +=	"<img src='../../../../resources/images/img/chatroom.png' style='width: 45px; height: 45px; margin-left: 10px;'> 
-						html +=	'<a href="#" onclick=goRoom("'${list.ch_seq}'")>' 
-								+ "<span>"
-								+ &nbsp;&nbsp;${list.ch_title}
+						html +=	"<img src='../../../../resources/images/img/chatroom.png' style='width: 45px; height: 45px; margin-left: 10px;'>"; 
+						html +=	'<a href="#" onclick=goRoom("'
+								+ data.ch_seq
+								+ '")>' 
+								+ "<span>&nbsp;&nbsp;"
+								+ data.ch_title
 								"</span></a></div>"
 						
-						if(${list.ch_pw_check} === 1){
-							html +=  "<div class='col-1 pwStatus
-									+ ${list.ch_seq}
-									+ '>" 
+						if(data.ch_pw_check === 1){
+							html +=  "<div class='col-1 pwStatus"
+									+ data.ch_seq
+									+ ">" 
 									+ "<img src='../../../../resources/images/img/lock.png' style='width:20px; height:20px; margin-left:10px; float:light; margin-top:20px;'>"
 									+ "</div>"
-									
-									
 						}else{
-							html += "<div class='col-1 pwStatus
-									+ ${list.ch_seq}
-									+ '></div>"
+							html += "<div class='col-1 pwStatus"
+									+ data.ch_seq
+									+ "></div>"
 						}
 							html += "<hr style='width: 90%;'>"
-						
+						$('.chatList').append(html);
 					});
 				
 				

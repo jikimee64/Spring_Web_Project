@@ -62,7 +62,13 @@ public class BoardController {
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
-	public String studyListPage(Criteria_Board cri_b, Model model, @RequestParam(value="searchType",required = false) String searchType, @RequestParam(value="keyword",required=false) String keyword) throws ClassNotFoundException, SQLException {
+	public String studyListPage(Criteria_Board cri_b, Model model, 
+			@RequestParam(value="searchType",required = false) String searchType,
+			@RequestParam(value="keyword",required=false) String keyword,
+			@RequestParam(value="root",required=false) String root
+			) throws ClassNotFoundException, SQLException {
+		
+		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
 	
@@ -74,7 +80,12 @@ public class BoardController {
 		
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
-		if(AjaxRestController.filterSize != 0) {
+		
+		if(root != null) {
+			System.out.println("처음엔 여길..");
+			list = service.getStudyBoardList(cri_b);
+			pageMakerb.setTotalCount(service.getStudyBoardCount());
+		}else {
 			System.out.println("filterSize: " + AjaxRestController.filterSize);
 			System.out.println("paramsTemp : " + AjaxRestController.paramsTemp);
 			System.out.println("필터된 후엔 여길..");
@@ -88,17 +99,30 @@ public class BoardController {
 			System.out.println("필터링+검색 사이즈 : " + list.size());
 			pageMakerb.setTotalCount(list.size());
 			AjaxRestController.filterSize = 0;
-		}else {
-			System.out.println("처음엔 여길..");
-			list = service.getStudyBoardList(cri_b);
-			pageMakerb.setTotalCount(service.getStudyBoardCount());
 		}
+		
+		
+		/*
+		 * if(AjaxRestController.filterSize != 0) { System.out.println("filterSize: " +
+		 * AjaxRestController.filterSize); System.out.println("paramsTemp : " +
+		 * AjaxRestController.paramsTemp); System.out.println("필터된 후엔 여길.."); map =
+		 * AjaxRestController.paramsTemp; list = service.getStudyBoardListFilter(cri_b,
+		 * map); model.addAttribute("ingOrDone", map.get("ingOrDone"));
+		 * model.addAttribute("level", map.get("level")); model.addAttribute("language",
+		 * map.get("language")); model.addAttribute("local", map.get("local"));
+		 * model.addAttribute("studyContent", map.get("studyContent"));
+		 * System.out.println("필터링+검색 사이즈 : " + list.size());
+		 * pageMakerb.setTotalCount(list.size()); AjaxRestController.filterSize = 0;
+		 * }else { System.out.println("처음엔 여길.."); list =
+		 * service.getStudyBoardList(cri_b);
+		 * pageMakerb.setTotalCount(service.getStudyBoardCount()); }
+		 */
+		
 		/* pageMakerb.setTotalCount(list.size()); */
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
 		
-
 		return "user/board/study_List"; // study_List.html
 	}
 
@@ -327,7 +351,7 @@ public class BoardController {
 		//Criteria_Board cri_b = new Criteria_Board();
 		// 게시글 삭제
 		int result = service.delete(s_seq);
-
+		System.out.println(result + "개가 되었습니다.");
 		//PageMaker_Board pageMakerb = new PageMaker_Board();
 		//pageMakerb.setCri_b(cri_b);
 
@@ -341,6 +365,12 @@ public class BoardController {
 		//list = service.getStudyBoardList(cri_b);
 		//model.addAttribute("list", list); // view까지 전달(forward)
 		//model.addAttribute("pageMakerb", pageMakerb);
+		if(result%10==0) {
+			int ksk = Integer.parseInt(page);
+			ksk--;
+			page = Integer.toString(ksk);
+		}
+		
 
 		redirect.addAttribute("page", page);    
 		redirect.addAttribute("perPageNum", perPageNum);  
