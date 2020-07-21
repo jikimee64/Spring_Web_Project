@@ -505,7 +505,16 @@
 			<artifactId>logback-core</artifactId>
 			<version>1.2.3</version>
 		</dependency>
-
+		
+<!-- 스프링 시큐리티 소셜로그인 
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-oauth2-client</artifactId>
+		    <version>5.3.2.RELEASE</version>
+		</dependency>-->
+		
+		
+		
 
 	</dependencies>
 	<build>
