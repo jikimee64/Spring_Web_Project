@@ -31,9 +31,12 @@
 	<!-- 채팅방 입장시 멤버추가 -->
 	<insert id="memberInsert" parameterType="kr.or.ns.vo.ChatRoomMember">
 		insert into chatmember(user_id, ch_seq)
-		values(#{user_id}, #{ch_seq})
-		on duplicate key update user_id=values(user_id),
-								ch_seq=values(ch_seq)
+		select #{user_id}, #{ch_seq} from dual where not exists(select user_id from chatmember where user_id=#{user_id})
 	</insert>
+	
+	<delete id="chatRoomOut" parameterType="kr.or.ns.vo.ChatRoomMember">
+		delete from chatmember
+		where ch_seq=#{ch_seq} and user_id=#{user_id}
+	</delete>
 
 </mapper>

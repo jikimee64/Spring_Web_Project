@@ -53,13 +53,17 @@
 	resize: none;
 	background-color: #f5f6f8;
 	width: 100%;
-	padding-top:10px;
+	padding-top: 10px;
 	color:
 }
 </style>
 
 </head>
 <body>
+
+		<input type="hidden" id="ch_seq" th:value="${ch_seq}" />
+		<input type="hidden" id="user_id" th:value="${user_id}" />
+
 	<div class="warpper">
 		<div class="row"
 			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px;">
@@ -67,7 +71,8 @@
 				style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
 				<b style="margin-left: 30px;">채팅방 이름</b>
 				<div style="float: right; margin-right: 20px;">
-					<a href="/chat/roomlist.do" style="margin-left: 0px;"><img
+					<a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
+						style="margin-left: 0px;"><img
 						src="../../../../resources/images/img/out.png"
 						style="width: 25px; height: 25px;"> </a>
 				</div>
@@ -99,31 +104,214 @@
 		</div>
 	</div>
 	<div class="row talk_write"
-		style="margin-left:0px; min-height: 40px; padding: 7px 100px 7px 16px; background-color: #fff;">
+		style="margin-left: 0px; min-height: 40px; padding: 7px 100px 7px 16px; background-color: #fff;">
 		<div class="col-11 innerWrap"
-			style="border-radius: 10px; height: 40px; background-color: #f5f6f8;">		
-				<textarea id="msgInputArea" placeholder="메시지를 입력하세요." rows="2" 
-					class="msg_input"></textarea></div>
-		
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-				
+			style="border-radius: 10px; height: 40px; background-color: #f5f6f8;">
+			<textarea id="msgInputArea" placeholder="메시지를 입력하세요." rows="2"
+				class="msg_input"></textarea>
+		</div>
+
+		<br> <br> <br> <br> <br> <br> <br>
+		<br> <br>
+
 		<div class="col-1">
-		<button type="submit" id="sendmessage" class="btn btn-outline-success btn" style="position:fixed; padding:6px 30px; ">
-		<b>전송</b></button>
+			<button type="submit" id="sendmessage"
+				class="btn btn-outline-success btn"
+				style="position: fixed; padding: 6px 30px;">
+				<b>전송</b>
+			</button>
 		</div>
 
 	</div>
 
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<script type="text/javascript">
+		let Socket = null;
+		var loginId = null;
+
+		window.onload = function() {
+
+			/* $("#chat").hide(); */
+
+			/* 		 Socket = new WebSocket(
+							"ws://localhost:8001/WebSocket_Memory2/test01.do");  */
+			//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
+			/* 	Socket = new WebSocket("ws://" + location.host + "/WebSocket_DB2"
+						+ "/test01.htm/" + $("#roomNumber").val()); */
+
+			console.log("userid: " + $("#userid").val())
+
+			//<![CDATA[
+			//HTML5가 제공하는 WebSocket 객체를 통해 서버 연결을 수행
+			Socket = new WebSocket("ws://" + location.host + "/"
+					+ "/chatSocket.do?ch_seq=" + $("#ch_seq").val()
+					+ "&user_id=" + $("#user_id").val());
+			//]]>
+
+			/* /"+$("#roomNumber").val() */
+			Socket.onopen = function(message) {
+
+			};
+
+			/**
+			 * 웹소켓 메시지(From Server) 수신하는 경우 호출
+			 */
+			Socket.onmessage = function(message) {
+				var msg = message.data;
+				//<![CDATA[
+				if (msg != null && msg.trim() != '') {
+
+					var d = JSON.parse(msg);
+					if (d.type == "getId") {
+						var si = d.sessionId != null ? d.sessionId : "";
+						if (si != '') {
+							$("#sessionId").val(si);
+						}
+					} else if (d.type == "message") {
+						if (d.sessionId == $("#sessionId").val()) {
+							$("#chatBoxArea").append(
+									"<p class='me'>나 : " + d.msg + "</p>");
+							$("#chatBoxArea").scrollTop(
+									$("#chatBoxArea")[0].scrollHeight);
+						} else {
+							$("#chatBoxArea").append(
+									"<p class='others'>" + d.sessionId + " :"
+											+ d.msg + "</p>");
+							$("#chatBoxArea").scrollTop(
+									$("#chatBoxArea")[0].scrollHeight);
+						}
+					} else {
+						console.warn("unknown type!")
+					}
+				}
+				//]]>
+			};
+
+			/**
+			 * 웹소켓 사용자 연결 해제하는 경우 호출
+			 */
+			Socket.onclose = function(message) {
+				$("#chatBoxArea").append("Server is disconnected!!.");
+			};
+
+			/**
+			 * 웹소켓 에러 발생하는 경우 호출
+			 */
+			Socket.onerror = function(message) {
+				/* addLineToChatBox("Error!"); */
+			};
+		}
+
+		//ajax
+		/* $('#loginBtn').click(function() {
+			$.ajax({
+				url : "login.htm",
+				type : "POST",
+				data : {
+					id : $("#id").val(),
+				}
+			}).done(function(result) {
+				loginId = $("#id").val();
+				$("#chat > span").text(loginId);
+				$("#id").val("");
+				$("#loginBox, #chat").toggle();
+			});
+		}); */
+
+		$('#logoutBtn').click(function() {
+			$.ajax({
+				url : "logout.htm",
+			}).done(function(result) {
+				var option = {
+					type : "message",
+					sessionId : $("#sessionId").val(),
+					userName : $("#userid").val(),
+					msg : "로그아웃"
+				}
+
+				Socket.send(JSON.stringify(option));
+				$("#chat, #loginBox").toggle();
+				loginId = null;
+				$("#chatBoxArea").val("");
+			});
+		});
+
+		/**
+		 * 채팅 박스영역에 내용 한 줄 추가
+		 */
+		/* function addLineToChatBox(_line) {
+			if (_line == null) {
+				_line = "";
+			}
+
+			var chatBoxArea = document.getElementById("chatBoxArea");
+			chatBoxArea.value += _line + "\n";
+			chatBoxArea.scrollTop = chatBoxArea.scrollHeight;
+		} */
+
+		/**
+		 * Send 버튼 클릭하는 경우 호출 (서버로 메시지 전송)
+		 */
+		function sendButton_onclick() {
+			var inputMsgBox = document.getElementById("inputMsgBox");
+			if (inputMsgBox == null || inputMsgBox.value == null
+					|| inputMsgBox.value.length == 0) {
+				return false;
+			}
+
+			var chatBoxArea = document.getElementById("chatBoxArea");
+
+			if (Socket == null || Socket.readyState == 3) {
+				chatBoxArea.value += "Server is disconnected.\n";
+				return false;
+			}
+
+			/* 단순 String데이터가 아닌 obj값으로 값을 세팅하고 
+			   JSON형태로 발신처리로 변경
+			     메시지를 보낼땐 type값을 message로 구분하여 발송 */
+			var option = {
+				type : "message",
+				roomNumber : $("#roomNumber").val(),
+				sessionId : $("#sessionId").val(),
+				/* 				userName : $("#userid").val(), */
+				msg : inputMsgBox.value
+			}
+
+			// 서버로 메시지 전송
+			Socket.send(JSON.stringify(option));
+			inputMsgBox.value = "";
+			inputMsgBox.focus();
+
+			return true;
+		}
+
+		/**
+		 * Disconnect 버튼 클릭하는 경우 호출
+		 */
+		/* function disconnectButton_onclick() {
+			if (Socket != null) {
+				Socket.close();
+			}
+		} */
+
+		/**
+		 * inputMsgBox 키입력하는 경우 호출
+		 */
+		function inputMsgBox_onkeypress() {
+			if (event == null) {
+				return false;
+			}
+
+			// 엔터키 누를 경우 서버로 메시지 전송
+			var keyCode = event.keyCode || event.which;
+			if (keyCode == 13) {
+				sendButton_onclick();
+			}
+		}
+	</script>
+
 
 </body>
-<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+
 
 </html>

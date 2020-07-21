@@ -11,13 +11,16 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 
-public class HandShakeInterceptor extends HttpSessionHandshakeInterceptor{
+public class ChatInterceptor extends HttpSessionHandshakeInterceptor{
 	  
     @Override
     public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
     	System.out.println("Before Handshake");
     	ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
     	HttpServletRequest req= ssreq.getServletRequest();
+    	
+    	String roomNumber  = req.getParameter("roomNumber");
+    	String user_id  = req.getParameter("user_id");
     	
     	//HttpServletReques를 이용하여 파라미터 추출
     	//파라미터로 받은 roomNumber와 userid 추출

@@ -27,10 +27,16 @@
 	
 	<websocket:handlers>
 		<websocket:mapping handler="messageHandler" path="/messageSocket.do" />
-		<websocket:mapping handler="chatHandler" path="/chatSocket.do" />
 	</websocket:handlers>
 	
-	<default-servlet-handler />
+	<websocket:handlers>
+		<websocket:mapping handler="chatHandler" path="/chatSocket.do" />
+		 <websocket:handshake-interceptors>
+	       	<beans:bean class="kr.or.ns.interceptor.ChatInterceptor"/>
+		 </websocket:handshake-interceptors> 	
+	</websocket:handlers>
+	
+<!-- 	<default-servlet-handler /> -->
 
 	<!-- <bean
 		class="org.springframework.web.socket.server.standard.ServletServerContainerFactoryBean">
@@ -38,4 +44,5 @@
 		<property name="maxBinaryMessageBufferSize" value="819200" />
 	</bean>
 	<mvc:annotation-driven /> -->
+	
 </beans:beans>

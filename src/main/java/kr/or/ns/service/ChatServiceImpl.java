@@ -42,9 +42,7 @@ public class ChatServiceImpl implements ChatService {
 
 	public int memberInsert(ChatRoomMember cm) {
 		ChatDao dao = sqlsession.getMapper(ChatDao.class);
-		System.out.println("여기서뻥?");
 		int result = dao.memberInsert(cm);
-		System.out.println("여기서뻥@@@");
 		return result;
 	}
 
@@ -52,7 +50,12 @@ public class ChatServiceImpl implements ChatService {
 		ChatDao dao = sqlsession.getMapper(ChatDao.class);
 		ChatRoom chatroom = dao.getChatRoom(ch_seq);
 		return chatroom;
-
+	}
+	
+	public int chatRoomOut(ChatRoomMember cm) {
+		ChatDao dao = sqlsession.getMapper(ChatDao.class);
+		int result = dao.chatRoomOut(cm);
+		return result;
 	}
 
 }

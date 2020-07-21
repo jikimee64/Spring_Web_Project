@@ -40,6 +40,8 @@ public class ChatController {
 
 		return "chat/roomlist";
 	}
+	
+	
 
 	@RequestMapping("chatroominsert.do")
 	@ResponseBody
@@ -76,8 +78,26 @@ public class ChatController {
 		System.out.println("삽입 결과 : " + result);
 		
 		model.addAttribute("chatroom", chatroom);
+		model.addAttribute("user_id", user_id );
 		
 		return "chat/chatroom";
+	}
+	
+	
+	@RequestMapping("chatRoomOut.do")
+	public String chatRoomOut(String ch_seq, Model model, Principal principal) throws ClassNotFoundException, SQLException {
+		
+		String user_id = principal.getName();
+		
+		ChatRoomMember cm = new ChatRoomMember();
+		cm.setCh_seq(Integer.parseInt(ch_seq));
+		cm.setUser_id(user_id);
+		int result = service.chatRoomOut(cm);
+		List<ChatRoom> roomList = service.getListChatRoom();
+		model.addAttribute("roomList", roomList);
+		System.out.println("roomList : " + roomList);
+		
+		return "chat/roomlist";
 	}
 
 	// 비밀방의 방번호를 받아서 패스워드 넘겨줌
@@ -91,7 +111,6 @@ public class ChatController {
 			pw = service.roomPw(ch_seq);
 			map.put("pw", pw);
 		}
-
 		return map;
 	}
 

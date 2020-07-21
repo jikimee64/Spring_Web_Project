@@ -21,5 +21,7 @@ public interface ChatService {
 	public int memberInsert(ChatRoomMember cm);
 	
 	public ChatRoom getChatRoom(String ch_seq);
+	
+	public int chatRoomOut(ChatRoomMember cm);
 
 }

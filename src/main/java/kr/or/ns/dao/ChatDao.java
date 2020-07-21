@@ -18,6 +18,8 @@ public interface ChatDao {
 	public String roomPw(String ch_seq);
 	
 	public int memberInsert(ChatRoomMember cm);
+	
+	public int chatRoomOut(ChatRoomMember cm);
 
 
 }
