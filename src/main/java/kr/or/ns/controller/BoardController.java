@@ -324,28 +324,28 @@ public class BoardController {
 	public String writingNormalStudyDelete(String page, String perPageNum, Model model, String s_seq, RedirectAttributes redirect)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
-		Criteria_Board cri_b = new Criteria_Board();
+		//Criteria_Board cri_b = new Criteria_Board();
 		// 게시글 삭제
 		int result = service.delete(s_seq);
 
-		PageMaker_Board pageMakerb = new PageMaker_Board();
-		pageMakerb.setCri_b(cri_b);
+		//PageMaker_Board pageMakerb = new PageMaker_Board();
+		//pageMakerb.setCri_b(cri_b);
 
 		
 		//여기도 잠시 수정...삭제가 될랑가?
 //		pageMakerb.setTotalCount(service.getStudyBoardCount(cri_b));
-		pageMakerb.setTotalCount(service.getStudyBoardCount());
+		//pageMakerb.setTotalCount(service.getStudyBoardCount());
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
-		List<Map<String, Object>> list = null;
-		list = service.getStudyBoardList(cri_b);
+		//List<Map<String, Object>> list = null;
+		//list = service.getStudyBoardList(cri_b);
 		//model.addAttribute("list", list); // view까지 전달(forward)
 		//model.addAttribute("pageMakerb", pageMakerb);
 
 		redirect.addAttribute("page", page);    
 		redirect.addAttribute("perPageNum", perPageNum);  
-		redirect.addAttribute("list", list);  
-		redirect.addAttribute("pageMakerb", pageMakerb);
+		//redirect.addAttribute("list", list);  
+		//redirect.addAttribute("pageMakerb", pageMakerb);
 
 		return "redirect:/board/study_List.do";
 		
