@@ -56,6 +56,7 @@ public class ChatController {
 		params.put("user_id", principal.getName());
 		service.registerRoom(params);
 		List<ChatRoom> list = service.getListChatRoom();
+		System.out.println("채팅룸list" + list);
 		return list;
 	}
 
