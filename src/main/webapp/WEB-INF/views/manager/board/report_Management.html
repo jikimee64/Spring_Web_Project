@@ -240,8 +240,11 @@ td:focus {
 				$('#bl_title').val(data.BL_TITLE);
 				$('#type').text(data.TYPE);
 				$('#bl_content').text(data.BL_CONTENT);
+				$('#blamed_content').text(data.BLAMED_CONTENT);
+				
 				
 				if(data.PLACE ==='쪽지 게시판'){
+					$('#study_blamed_title').hide();
 					console.log('이오 : ' + data.BOARD_SEQ)
 					$('#m_seq').val(data.BOARD_SEQ);
 					$('#bl_seq').val(data.BL_SEQ);
@@ -279,8 +282,11 @@ td:focus {
 					html2 += "</div>";
 					html2 += "</div>"; */
 				}else{
+					$('#study_blamed_title').show();
 					$('#bl_seq').val(data.BL_SEQ);
 					$('#target').val(data.BL_TARGET_ID);
+					$('#blamed_title').text(data.BLAMED_TITLE)
+					$('#blamed_content').text(data.BLAMED_CONTENT);
 					$('#message').hide();
 					$('#study').show();
 					
@@ -295,9 +301,9 @@ td:focus {
 					}
 					
 					//html += "<div class='col-4' style='padding: 0px;' text-align: center;'>";
-					html += "<a href='/board/writing_Common_Study_Detail.do?s_seq="+ data.BOARD_SEQ +"'>";
-					html += "<button id='board' type='button' class='btn btn-outline-success'>게시글 이동</button>";
-					html += "</a>";
+					/* html += "<a href='/board/writing_Common_Study_Detail.do?s_seq="+ data.BOARD_SEQ +"'>"; */
+					//html += "<button id='board' type='button' class='btn btn-outline-success' data-dismiss='modal'>내용 확인</button>";
+					//html += "</a>";
 					//html += "</div>";
 				/* 	html += "<div class='col-4' style='padding:0px;'>";
 					html += "<button th:onclick='|javascript:declareYess()|' id='declareYes' type='button' class='btn btn-outline-danger'>신고정상</button>";
@@ -307,7 +313,7 @@ td:focus {
 					html += "</div>"; */
 				}
 				
-				$('#declareButtons').append(html);
+				//$('#declareButtons').append(html);
 				/* $('#message').append(html2); */
 			},
 			error : function(e) {
