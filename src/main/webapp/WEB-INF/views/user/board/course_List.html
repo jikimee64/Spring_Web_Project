@@ -340,6 +340,15 @@ keyframes heart-keyframes { 100% {
 	-webkit-box-orient: vertical;
 	max-inline-size: -webkit-fill-available;
 }
+
+.custom-select-sm {
+    height: calc(1.5em + .5rem + 8px);
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    font-size: .875rem;
+}
+
 </style>
 
 <body>
@@ -441,7 +450,7 @@ keyframes heart-keyframes { 100% {
 							<li data-filter="6" class="lan6">Vue.js</li> &nbsp;
 							<li data-filter="7" class="lan7">React</li>
 							<li data-filter="8" class="lan8">Jquery</li> &nbsp;
-							<li data-filter="9" class="lan9">JSP</li> &nbsp;
+							<li data-filter="9" class="lan9" style="margin-left:7px;">JSP</li> &nbsp;
 							<li data-filter="10" class="lan10">BootStrap</li> &nbsp;
 							<li data-filter="11" class="lan11">JPA</li>
 						</ul>
@@ -478,7 +487,8 @@ keyframes heart-keyframes { 100% {
 	<div class="container">
 
 		<div class="row" style="margin-top: 50px;">
-
+		<div class="col-9" style="margin-right:33px;"></div>
+		<div class="col-2">
 			<div
 				style="display: inline-flex; width: 44%; justify-content: center;">
 				<select class="custom-select-sm" id="searchTypeSel"
@@ -492,8 +502,9 @@ keyframes heart-keyframes { 100% {
 				</select> <input class="form-control" type="text" id="keyword" name="keyword"
 					th:value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요"
 					style="width: 228px;" />
-				<button id="searchBtn" class="btn btn-primary">Search</button>
+				<button type="button" id="searchBtn" class="btn btn-outline-success">Search</button>
 
+			</div>
 			</div>
 		</div>
 	</div>
