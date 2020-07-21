@@ -100,24 +100,6 @@ public class BoardController {
 			pageMakerb.setTotalCount(list.size());
 			AjaxRestController.filterSize = 0;
 		}
-		
-		
-		/*
-		 * if(AjaxRestController.filterSize != 0) { System.out.println("filterSize: " +
-		 * AjaxRestController.filterSize); System.out.println("paramsTemp : " +
-		 * AjaxRestController.paramsTemp); System.out.println("필터된 후엔 여길.."); map =
-		 * AjaxRestController.paramsTemp; list = service.getStudyBoardListFilter(cri_b,
-		 * map); model.addAttribute("ingOrDone", map.get("ingOrDone"));
-		 * model.addAttribute("level", map.get("level")); model.addAttribute("language",
-		 * map.get("language")); model.addAttribute("local", map.get("local"));
-		 * model.addAttribute("studyContent", map.get("studyContent"));
-		 * System.out.println("필터링+검색 사이즈 : " + list.size());
-		 * pageMakerb.setTotalCount(list.size()); AjaxRestController.filterSize = 0;
-		 * }else { System.out.println("처음엔 여길.."); list =
-		 * service.getStudyBoardList(cri_b);
-		 * pageMakerb.setTotalCount(service.getStudyBoardCount()); }
-		 */
-		
 		/* pageMakerb.setTotalCount(list.size()); */
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)

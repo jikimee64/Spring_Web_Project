@@ -182,24 +182,25 @@ $(function() {
 					console.log('반환받음.. : ' + data)
 					
 					$.each(data, function(index, item) {
+					
 						console.log("data.length:::"+data.length);
 						for(var i = 0; i < data.length; i++){
 							let html = "";
 								
 						html +="<div class='row chatList'>"
 						html +="<div class='col-1'></div>"
-						html +="<div class='col-8' style='color: black; padding: 0px;'>"+data.ch_seq+"<span>"
-						html +="<b style='font-size: xx-large;'>"+data.ch_seq+"</b></span> "
+						html +="<div class='col-8' style='color: black; padding: 0px;'>"+data[i].ch_seq+"<span>"
+						html +="<b style='font-size: xx-large;'>"+data[i].ch_seq+"</b></span> "
 						html +="<img src='../../../../resources/images/img/chatroom.png' style='width: 45px; height: 45px; margin-left: 10px;'>"
-						html +='<a href="#" onclick="goRoom('+data.ch_seq+')">'
-						html +="<span>&nbsp;&nbsp;"+data.ch_title+"</span></a></div>"
+						html +='<a href="#" onclick="goRoom('+data[i].ch_seq+')">'
+						html +="<span>&nbsp;&nbsp;"+data[i].ch_title+"</span></a></div>"
 							
-						if(data.ch_pw_check === 1){
-							html+= "<div class='col-1 pwStatus'"+data.ch_seq+">"
+						if(data[i].ch_pw_check === 1){
+							html+= "<div class='col-1 pwStatus'"+data[i].ch_seq+">"
 							html+= "<img src='../../../../resources/images/img/lock.png' style='width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;'>"
 							html+="</div>"
 						}else{
-							html +="<div class='col-1 pwStatus'"+data.ch_seq+"></div>"					
+							html +="<div class='col-1 pwStatus'"+data[i].ch_seq+"></div>"					
 						}
 						
 						}

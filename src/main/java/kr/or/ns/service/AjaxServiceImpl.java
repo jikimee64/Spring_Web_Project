@@ -390,8 +390,6 @@ public class AjaxServiceImpl implements AjaxService {
 			/* System.out.println("필터 결과 : " + result); */
 			return result;
 		}
-	
-	
 
 	
 	//내가 쓴 댓글 리스트

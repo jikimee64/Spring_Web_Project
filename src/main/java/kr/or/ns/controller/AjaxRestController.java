@@ -383,7 +383,6 @@ public class AjaxRestController {
 
 	public static HashMap<String, Object> paramsTemp2 = null;
 	public static int filterSize2 = 0;
-	public static int course_flag2 = 0;
 
 	// 강의 게시판 필터
 	@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
