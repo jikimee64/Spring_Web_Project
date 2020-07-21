@@ -51,6 +51,8 @@ public class AjaxRestController {
 		System.out.println("-----------------------------------------------");
 		// 결과값 확인
 		int flag = service.emailCheck(username, useremail);
+		
+		System.out.println("asdasdasdssdaasdasdssssda");
 
 		return flag;
 

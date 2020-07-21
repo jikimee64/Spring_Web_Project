@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -51,14 +52,13 @@ public class CrawlingController {
 	@Qualifier("restTemplate")
 	public RestTemplate restTemplate;
 
-
 	@RequestMapping("CrawlingInflearn.do")
-	@Scheduled(cron="0 45 22 * * * ")
+	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingInflearn() {
 
-		String array[] = new String[] { "java", "javascript", "html-css", "spring", "python", "vuejs", "react", "jquery",
-				"jsp", "bootstrap", "java-persistence-api" };
-		
+		String array[] = new String[] { "java", "javascript", "html-css", "spring", "python", "vuejs", "react",
+				"jquery", "jsp", "bootstrap", "java-persistence-api" };
+
 		List<Map<String, Object>> titleList = new ArrayList<>();
 
 		for (int i = 0; i < array.length; i++) {
@@ -420,7 +420,7 @@ public class CrawlingController {
 	}
 
 	@RequestMapping("CrawlingGoormEdu.do")
-	@Scheduled(cron="0 45 22 * * * ")
+	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingGoormEdu() {
 
 		List languagelist = new ArrayList();
@@ -460,12 +460,12 @@ public class CrawlingController {
 			int end = 0;
 			while (pagesize.hasNext()) {
 				String ps = pagesize.next().text();
-				//System.out.println("ps : " + ps);
+				// System.out.println("ps : " + ps);
 				count++;
 			}
 			end = count - 2;
 
-			//System.out.println("페이지네이션" + end);
+			// System.out.println("페이지네이션" + end);
 			// System.out.println("페이지 갯수" + pagination2);
 
 			Elements element = html.getElementsByClass("_1xnzzp");
@@ -475,7 +475,7 @@ public class CrawlingController {
 					url = "https://edu.goorm.io/category/programming?page=" + z + "&sort=newest&classification="
 							+ languagelist.get(i);
 
-					//System.out.println("page : " + z);
+					// System.out.println("page : " + z);
 
 					Connection conn2 = Jsoup.connect(url);
 
@@ -593,7 +593,7 @@ public class CrawlingController {
 						map.put("l_writer", instructors.text());
 
 						// 별점
-						//Elements starsData = element.get(j).getElementsByClass("_2KWt9f _3SwFuE");
+						// Elements starsData = element.get(j).getElementsByClass("_2KWt9f _3SwFuE");
 						Elements starsData = element.get(j).getElementsByClass("_3SwFuE");
 						String starsText = starsData.text();
 						System.out.println("널왜뜨냐 : " + starsText);
@@ -660,7 +660,7 @@ public class CrawlingController {
 					// 난이도
 					Elements level = element.get(j).getElementsByClass("_4lV4wq").eq(0).tagName("span");
 					String cate = level.text();
-					//System.out.println("(페이징1)카테고리" + cate);
+					// System.out.println("(페이징1)카테고리" + cate);
 
 					if (cate.equals("쉬움")) {
 						map.put("cate_level", "입문");
@@ -810,7 +810,7 @@ public class CrawlingController {
 
 	// 유데미 크롤링하기
 	@RequestMapping("CrawlingUdemy.do")
-	@Scheduled(cron="0 45 22 * * * ")
+	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingUdemy() throws JsonProcessingException {
 
 		// 서비스에 넘길 리스트맵
@@ -935,40 +935,42 @@ public class CrawlingController {
 				HttpHeaders headers = new HttpHeaders();
 				HttpEntity entity = new HttpEntity(headers);
 
-				ResponseEntity<Map<String, Object>> rateResponse = restTemplate.exchange(uri2, HttpMethod.GET, entity,
-						new ParameterizedTypeReference<Map<String, Object>>() {
-						});
-				// System.out.println("getBody : " + rateResponse.getBody());
-				// System.out.println("courses : " + rateResponse.getBody().get("courses"));
-				Map<String, Object> map5 = (Map<String, Object>) rateResponse.getBody().get("courses");
-				// System.out.println("제발 : " + map.get(idList.get(z)));
-				Map<String, Object> map2 = (Map<String, Object>) map5.get(id);
-				Map<String, Object> map3 = (Map<String, Object>) map2.get("price");
-				// System.out.println("amount : " + map3.get("amount"));
-				Double double_price = (Double) map3.get("amount");
-				System.out.println("uri2의 amount : " + double_price);
-				String price_string = (String) map3.get("price_string");
-				if(price_string.equals("Free")) {
+				JSONObject rateResponse = restTemplate.getForObject(uri2, JSONObject.class);
+				Map<String, Map> coursesResponse = (Map<String, Map>) rateResponse.get("courses");
+
+				UdemyPrice udemyPrice = new UdemyPrice();
+				coursesResponse.keySet().forEach(key -> {
+					Map<String, Map<String, Object>> object = coursesResponse.get(key);
+					Map<String, Object> price = object.get("price");
+
+					udemyPrice.setAmount((double) price.get("amount"));
+					udemyPrice.setCurrency((String) price.get("currency"));
+					udemyPrice.setPriceString((String) price.get("price_string"));
+				});
+
+				String price_string = udemyPrice.getPriceString();
+				Double double_price = udemyPrice.getAmount();
+
+				if (price_string.equals("Free")) {
 					map.put("l_price", "무료");
-				}else {
+				} else {
 					map.put("l_price", price_string.substring(1));
 				}
-				
-			
-				//무료인것은 amount 0 
-					if(double_price == (double)0) {
-						map.put("p_seq", 1);
-					}else if (double_price < (double)30000) {
-						map.put("p_seq", 2);
-					} else if (double_price < (double)50000) {
-						map.put("p_seq", 3);
-					} else if (double_price < (double)100000) {
-						map.put("p_seq", 4);
-					} else {
-						map.put("p_seq", 5);
-					}
-					
-					map.put("site_seq", 3);
+
+				// 무료인것은 amount 0
+				if (double_price == (double) 0) {
+					map.put("p_seq", 1);
+				} else if (double_price < (double) 30000) {
+					map.put("p_seq", 2);
+				} else if (double_price < (double) 50000) {
+					map.put("p_seq", 3);
+				} else if (double_price < (double) 100000) {
+					map.put("p_seq", 4);
+				} else {
+					map.put("p_seq", 5);
+				}
+
+				map.put("site_seq", 3);
 
 				listMap.add(map);
 			}

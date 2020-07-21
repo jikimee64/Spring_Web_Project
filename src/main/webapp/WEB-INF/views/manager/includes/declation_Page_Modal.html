@@ -78,9 +78,30 @@
 								<label id="type" for="1"></label><br>
 								<div class="form-group">
 									<textarea class="form-control" rows="3" id="bl_content"
-										readonly name="comment" placeholder="추가 내용"></textarea>
+										readonly name="comment" style="resize:none;"></textarea>
 								</div>
 							</div>
+								
+							<hr>
+						
+							
+							<h5>
+								<b>[신고된 상세내용]</b>
+							</h5>
+							<br>
+								<div id="study_blamed_title"  style="padding-left:30px;">글 제목:
+								<span id="blamed_title"></span>
+								<!-- <input id="blamed_title" readonly type="text" class="form-control form-control-sm"> -->
+							</div>
+							<div style="padding-left: 30px;">
+								<label for="1"></label><br>
+								<div class="form-group">
+									<textarea class="form-control" rows="3" id="blamed_content"
+										readonly style="resize:none;"></textarea>
+								</div>
+							</div>
+							
+							
 							
 							<input type="hidden" id="bl_seq" value="" />
 							<input type="hidden" id="target" value="" />
@@ -88,42 +109,43 @@
 							
 							
 							<div id="message">
-								<div class='col-4' id="declareMessageButtons" style='padding: 0px; text-align: center;'>
+								<!--< div class='col-4' id="declareMessageButtons" style='padding: 0px; text-align: center;'>
 									<button id='message' th:onclick="|javascript:messageCheck()|" type='button'
 										class='btn btn-outline-success' >쪽지내용</button>
-								</div>
+								</div> -->
 
-								<div class='col-4' id="messageOk"
+								<div class='col-6' id="messageOk"
 									style='padding: 0px; text-align: center; margin: 0 auto;'>
 									<button th:onclick="|javascript:declareYes()|" type='button'
-										class='btn btn-outline-danger'>신고정상</button>
+										class='btn btn-outline-danger'>경고처리</button>
 								</div>
 
-								<div class='col-4' id="messageNo"
+								<div class='col-6' id="messageNo"
 									style='padding: 0px; text-align: center; margin: 0 auto;'>
 									<button th:onclick="|javascript:declareNo()|" type='button'
-										class='btn btn-outline-danger'>신고비정상</button>
+										class='btn btn-outline-danger'>경고취소</button>
 								</div>
 
 							</div>
 
 
 							<div id="study">
-								<div class="col-4" id="declareButtons"
+								<!-- <div class="col-4" id="declareButtons"
 									style='padding: 0px; text-align: center; margin: 0 auto;'>
+								</div> -->
+								
+								
 
-								</div>
-
-								<div class='col-4' id="studyOk"
+								<div class='col-6' id="studyOk"
 									style='padding: 0px; text-align: center; margin: 0 auto;'>
 									<button th:onclick="|javascript:declareYes()|" type='button'
-										class='btn btn-outline-danger'>신고정상</button>
+										class='btn btn-outline-danger'>경고처리</button>
 								</div>
 
-								<div class='col-4' id="studyNo"
+								<div class='col-6' id="studyNo"
 									style='padding: 0px; text-align: center; margin: 0 auto;'>
 									<button th:onclick="|javascript:declareNo()|" type='button'
-										class='btn btn-outline-danger'>신고비정상</button>
+										class='btn btn-outline-danger'>경고취소</button>
 								</div>
 							</div>
 						</div>

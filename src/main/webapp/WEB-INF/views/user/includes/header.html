@@ -79,8 +79,10 @@
 									<th:block
 										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
 										<!--  <th:block th:if="${principal != null}"> -->
-										<!-- <li style="margin-left: 21px;"><b><span
-													th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b></li>  -->
+										
+										
+										 <!-- <li style="margin-left: 21px;"><b><span
+													th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b></li>   -->
 					
 										<!-- </th:block> -->
 										<li class="_pageactive"><a th:href="@{/mypage/mypage.do}">마이페이지</a></li>

@@ -179,7 +179,7 @@ public class BoardController {
 
 	// 일반컨텐츠(스터디 게시판 글 편집)
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit(RedirectAttributes redirect, Study study, Principal principal,
+	public String writingNormalStudyEdit(String page, String perPageNum, RedirectAttributes redirect, Study study, Principal principal,
 			HttpServletRequest request) {
 		System.out.println("일반게시글수정@@");
 		System.out.println("넘어온 데이터22 " + study.toString());
@@ -192,8 +192,11 @@ public class BoardController {
 			System.out.println("컨트롤러 에러");
 			System.out.println(e.getMessage());
 		}
+
 		System.out.println("리턴 전ㄴㄴㄴㄴ...");
 
+		redirect.addAttribute("page", page);    
+		redirect.addAttribute("perPageNum", perPageNum);  
 		redirect.addAttribute("s_seq", study.getS_seq());
 
 		return "redirect:writing_Common_Study_Detail.do";
@@ -305,10 +308,12 @@ public class BoardController {
 
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
-	public String writingNormalStudyEditPage(String s_seq, Model model) {
+	public String writingNormalStudyEditPage(String s_seq, String page, String perPageNum, Model model) {
 		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
+		model.addAttribute("page", page);
+		model.addAttribute("perPageNum", perPageNum);
 		System.out.println("study" + study);
 
 		return "user/board/writing_Normal_Study_Edit";
@@ -316,31 +321,35 @@ public class BoardController {
 
 	// 스터디 게시판 글 삭제
 	@RequestMapping("writing_Common_Study_Delete.do")
-	public String writingNormalStudyDelete(Criteria_Board cri_b, Model model, String s_seq)
+	public String writingNormalStudyDelete(String page, String perPageNum, Model model, String s_seq, RedirectAttributes redirect)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
-		System.out.println("delete controller 에서 찍어보기");
-		System.out.println(cri_b + s_seq);
-		HashMap<String, Object> map = AjaxRestController.paramsTemp;
-		
+		//Criteria_Board cri_b = new Criteria_Board();
 		// 게시글 삭제
 		int result = service.delete(s_seq);
 
-		PageMaker_Board pageMakerb = new PageMaker_Board();
-		pageMakerb.setCri_b(cri_b);
+		//PageMaker_Board pageMakerb = new PageMaker_Board();
+		//pageMakerb.setCri_b(cri_b);
 
 		
 		//여기도 잠시 수정...삭제가 될랑가?
 //		pageMakerb.setTotalCount(service.getStudyBoardCount(cri_b));
-		pageMakerb.setTotalCount(service.getStudyBoardCount());
+		//pageMakerb.setTotalCount(service.getStudyBoardCount());
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
-		List<Map<String, Object>> list = null;
-		list = service.getStudyBoardList(cri_b);
-		model.addAttribute("list", list); // view까지 전달(forward)
-		model.addAttribute("pageMakerb", pageMakerb);
+		//List<Map<String, Object>> list = null;
+		//list = service.getStudyBoardList(cri_b);
+		//model.addAttribute("list", list); // view까지 전달(forward)
+		//model.addAttribute("pageMakerb", pageMakerb);
 
-		return "user/board/study_List";
+		redirect.addAttribute("page", page);    
+		redirect.addAttribute("perPageNum", perPageNum);  
+		//redirect.addAttribute("list", list);  
+		//redirect.addAttribute("pageMakerb", pageMakerb);
+
+		return "redirect:/board/study_List.do";
+		
+		//return "user/board/study_List";
 	}
 
 	@RequestMapping("board_Support_Status.do")

@@ -2,11 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ns.dao.ChatDao">
 
+	<select id="getListChatRoom" resultType="kr.or.ns.vo.ChatRoom">
+		select * from chatroom
+	</select>
+	
 
    <!-- 방개설 -->
    <insert id="registerRoom" parameterType="hashmap">
      insert into chatroom(user_id, ch_title, ch_description, ch_write, ch_pw_check, ch_pw)
      values(#{user_id}, #{ch_title}, #{ch_description}, now(), #{ch_pw_check}, #{ch_pw})
    </insert>
+   
+   <select id="roomPw" parameterType="String" resultType="String">
+   		select ch_pw from chatroom where ch_seq=#{ch_seq}
+   </select>
 
 </mapper>
