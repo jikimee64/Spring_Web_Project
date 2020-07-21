@@ -51,6 +51,7 @@ public class LectureController {
 	@RequestMapping("course_List.do")
 	public String courseListPage(Criteria cri, Model model,Principal principal, @RequestParam(value="searchType",required = false) String searchType, @RequestParam(value="keyword",required=false) String keyword) {
 		
+		
 		PageMaker pageMaker = new PageMaker();
 		String user_id = principal.getName();
 		pageMaker.setCri(cri);
@@ -59,7 +60,7 @@ public class LectureController {
 		List<Map<String, Object>> list = null;
 		HashMap<String, Object> map = null;
 		
-		//AjaxRestController.filterSize2 = 0;
+		
 		
 		cri.setKeyword(keyword);
 		cri.setSearchType(searchType);
