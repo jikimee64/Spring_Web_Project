@@ -12,5 +12,9 @@
      insert into chatroom(user_id, ch_title, ch_description, ch_write, ch_pw_check, ch_pw)
      values(#{user_id}, #{ch_title}, #{ch_description}, now(), #{ch_pw_check}, #{ch_pw})
    </insert>
+   
+   <select id="roomPw" parameterType="String" resultType="String">
+   		select ch_pw from chatroom where ch_seq=#{ch_seq}
+   </select>
 
 </mapper>

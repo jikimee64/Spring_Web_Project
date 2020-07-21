@@ -391,12 +391,12 @@ keyframes heart-keyframes { 100% {
 									<span th:case="${study.USER_ID}"> <th:block
 											th:switch="${study.C_SEQ}">
 											<a th:case="1"
-												th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ})}">
+												th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
 												<button type="button" class="btn btn-warning"
 													style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
 											</a>
 											<a th:case="2"
-												th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ})}">
+												th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
 												<button type="button" class="btn btn-warning"
 													style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
 											</a>
@@ -679,15 +679,6 @@ keyframes heart-keyframes { 100% {
 //         	 var s1 = yyyy+'/'+mm+'/'+dd+' '+m+':'+s;
 //         	 return s1;
 //          }
-         
-         
-         
-         
-         
-         
-         
-         
-         
 
             
             //댓글 틀 만들어주는 함수@!

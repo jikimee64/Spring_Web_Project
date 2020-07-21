@@ -179,7 +179,7 @@ public class BoardController {
 
 	// 일반컨텐츠(스터디 게시판 글 편집)
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit(RedirectAttributes redirect, Study study, Principal principal,
+	public String writingNormalStudyEdit(String page, String perPageNum, RedirectAttributes redirect, Study study, Principal principal,
 			HttpServletRequest request) {
 		System.out.println("일반게시글수정@@");
 		System.out.println("넘어온 데이터22 " + study.toString());
@@ -192,8 +192,11 @@ public class BoardController {
 			System.out.println("컨트롤러 에러");
 			System.out.println(e.getMessage());
 		}
+
 		System.out.println("리턴 전ㄴㄴㄴㄴ...");
 
+		redirect.addAttribute("page", page);    
+		redirect.addAttribute("perPageNum", perPageNum);  
 		redirect.addAttribute("s_seq", study.getS_seq());
 
 		return "redirect:writing_Common_Study_Detail.do";
@@ -305,10 +308,12 @@ public class BoardController {
 
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
-	public String writingNormalStudyEditPage(String s_seq, Model model) {
+	public String writingNormalStudyEditPage(String s_seq, String page, String perPageNum, Model model) {
 		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
+		model.addAttribute("page", page);
+		model.addAttribute("perPageNum", perPageNum);
 		System.out.println("study" + study);
 
 		return "user/board/writing_Normal_Study_Edit";

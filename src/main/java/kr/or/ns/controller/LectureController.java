@@ -256,12 +256,13 @@ public class LectureController {
 
 
 	@RequestMapping("writing_Course_Study_Edit.do")
-	public String writingCourseStudyEditPage(String s_seq, Model model) {
+	public String writingCourseStudyEditPage(String s_seq, String page, String perPageNum, Model model) {
 		System.out.println("강의게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 		Map<String, Object> study = service2.getStudy(s_seq);
 		Map<String, Object> onlineInfo = service2.onlineDetailInfo(s_seq);
 		
-		
+		model.addAttribute("page", page);
+		model.addAttribute("perPageNum", perPageNum);
 		model.addAttribute("study", study);
 		model.addAttribute("onlineInfo", onlineInfo);
 		System.out.println("온라인편집.. : " + study);
@@ -273,7 +274,7 @@ public class LectureController {
 	
 	
 	@RequestMapping(value = "writing_Course_Study_Edit.do", method = RequestMethod.POST)
-	public String writingCourseStudyEdit(RedirectAttributes redirect, Study study, Principal principal, HttpServletRequest request) {
+	public String writingCourseStudyEdit(String page, String perPageNum, RedirectAttributes redirect, Study study, Principal principal, HttpServletRequest request) {
 
 		System.out.println("온라인게시글수정@@");
 		System.out.println("넘어온 데이터(온라인0 " + study.toString());
@@ -288,6 +289,8 @@ public class LectureController {
 		}
 		System.out.println("리턴 전ㄴㄴㄴㄴ...");
 		
+		redirect.addAttribute("page", page);    
+		redirect.addAttribute("perPageNum", perPageNum);    
 		redirect.addAttribute("s_seq", study.getS_seq());    
 		
 		return "redirect:../board/writing_Common_Study_Detail.do";

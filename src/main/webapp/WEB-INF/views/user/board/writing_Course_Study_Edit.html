@@ -92,6 +92,8 @@
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 	<input type="hidden" id="s_seq" th:value="${study.S_SEQ}" />
+	<input id="page" type="hidden" th:value="${page}" />
+	<input id="perPageNum" type="hidden" th:value="${perPageNum}" />
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -362,13 +364,17 @@
 
 	<script>
 		$(function() {
+			
+			var page = $('#page').val()
+			var perPageNum = $('#perPageNum').val()
+			
 			$("#registerform").submit(function(e) {
 				var formData = new FormData(this);
 				console.log(formData)
 				formData.append("s_seq", $('#s_seq').val());
 				console.log("데이터 : " + formData)
 				$.ajax({
-					url : "/lecture/writing_Course_Study_Edit.do",
+					url : "/lecture/writing_Course_Study_Edit.do?page="+page+"&perPageNum="+perPageNum,",
 					processData : false,
 					contentType : false,
 					cache : false,

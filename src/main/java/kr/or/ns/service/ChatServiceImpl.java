@@ -1,5 +1,6 @@
 package kr.or.ns.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,13 @@ public class ChatServiceImpl implements ChatService {
 		ChatDao dao = sqlsession.getMapper(ChatDao.class);
 		dao.registerRoom(params);
 		return 0;
+	}
+
+	@Override
+	public String roomPw(String ch_seq) {
+		ChatDao dao = sqlsession.getMapper(ChatDao.class);
+		String password = dao.roomPw(ch_seq);
+		return password;
 	}
 
 }
