@@ -47,19 +47,22 @@ body {
 	fill: #E8336D;
 	width: 30px;
 }
-._title{
- display: inline-block; width: 800px;
-  white-space: nowrap; overflow: hidden;
-   text-overflow: ellipsis; 
- white-space: normal;
-  line-height: 1.2; 
-  height: 2.4em; 
-  text-align: left;
-   word-wrap: break-word;
-    display: -webkit-box; 
-    -webkit-line-clamp: 1; 
-    -webkit-box-orient: vertical;
-      inline-size: -webkit-fill-available;
+
+._title {
+	display: inline-block;
+	width: 800px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 2.4em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	inline-size: -webkit-fill-available;
 }
 </style>
 
@@ -94,7 +97,7 @@ body {
 					style="align-self: center; text-align: center; left: 15px;">
 					<p>
 						<img th:src="'/userboard/upload/' + ${user.profile_img}" alt=""
-							style="height: 165px;border-radius: 32%;border: 2px solid black;">
+							style="height: 165px; border-radius: 32%; border: 2px solid black;">
 					</p>
 				</div>
 
@@ -177,7 +180,8 @@ body {
 						id="recruting_study">
 						<div th:each="studylist,index: ${studylist}">
 
-							<hr style="border: solid 1px; margin-top: 0px;margin-bottom:0px;" />
+							<hr
+								style="border: solid 1px; margin-top: 0px; margin-bottom: 0px;" />
 							<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
 
 							<div class="row p-3">
@@ -194,16 +198,11 @@ body {
 										class="badge badge-pill badge-info"
 										th:text="${studylist.LEVEL}"></span> <span
 										class="badge badge-pill badge-secondary"
-										th:text="${studylist.CATE_LANGUAGE}"></span> 
-										
-										<span
+										th:text="${studylist.CATE_LANGUAGE}"></span> <span
 										class="badge badge-pill badge-warning"
-										th:text="|${studylist.accept}/${studylist.PEOPLE}명|" id="recruting_people">모집인원
-										4/6</span> 
-										
-										
-										
-										<span class="badge badge-pill badge-warning"
+										th:text="|${studylist.accept}/${studylist.PEOPLE}명|"
+										id="recruting_people">모집인원 4/6</span> <span
+										class="badge badge-pill badge-warning"
 										th:text="${studylist.LOC}"></span> <span
 										class="badge badge-pill badge-light"
 										th:text="${studylist.CONTENT_KIND}"></span> <span
@@ -214,11 +213,12 @@ body {
 										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"> <img
 										src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
 										class="mb-1 _message_hover" alt="" style="height: 27px;">
-										</a>
-										<br /> 
-										<div class="_title"><b><span th:text="${studylist.TITLE}"
-											style="font-size: xx-large;"></span></b></div>
-									
+									</a> <br />
+									<div class="_title">
+										<b><span th:text="${studylist.TITLE}"
+											style="font-size: xx-large;"></span></b>
+									</div>
+
 
 
 
@@ -265,45 +265,45 @@ body {
 
 						<div
 							style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
-							<hr style="border: solid 1px; margin-top: 0px; width: 98%;" />
-							<div th:each="list: ${list}">
-								<!-- 여기부터 데이터 하나 넣기 시작 -->
-								<!-- 타임리프 for문 -->
-								<div class="row" th:classappend="|bookmark${list.L_SEQ}|"
-									style="padding: 24px;">
-									<div class="col-md-1" style="text-align: center;">
-										<!-- 스터디 글 번호 -->
-										<p style="font-size: xx-large; font-weight: bold;"
-											th:text="${list.L_SEQ}"></p>
-									</div>
-									<div class="col-md-2" style="text-align: center;">
-										<img th:src="${list.L_IMAGE}" alt=""
-											style="height: 140px; width: 92%;">
-									</div>
-									<div class="col-md-7"
-										style="padding-left: 50px; padding-right: 0px; padding-top: 10px;">
+		
+								<div th:each="list: ${list}">
+									<!-- 여기부터 데이터 하나 넣기 시작 -->
+									<!-- 타임리프 for문 -->
+									<div class="row" th:classappend="|bookmark${list.L_SEQ}|"
+										style="padding: 24px;">
+										<div class="col-md-1" style="text-align: center;">
+											<!-- 스터디 글 번호 -->
+											<p style="font-size: xx-large; font-weight: bold;"
+												th:text="${list.L_SEQ}"></p>
+										</div>
+										<div class="col-md-2" style="text-align: center;">
+											<img th:src="${list.L_IMAGE}" alt=""
+												style="height: 140px; width: 92%;">
+										</div>
+										<div class="col-md-7"
+											style="padding-left: 50px; padding-right: 0px; padding-top: 10px;">
 
-										<h4 style="font-weight: bold; color: black;"
-											th:text="${list.L_TITLE}"></h4>
-										<br /> <br /> <img
-											src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-											alt="" style="height: 40px;">
-										<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
-										&nbsp; <span> <b th:text="${list.CATE_PRICE}"></b>
-										</span> <br />
+											<h4 style="font-weight: bold; color: black;"
+												th:text="${list.L_TITLE}"></h4>
+											<br /> <br /> <img
+												src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
+												alt="" style="height: 40px;">
+											<!-- 여기는 별점 /// 이거는 값을 받을수 있게끔 별 하나당 데이터를 받는식으로 수정해야됨 -->
+											&nbsp; <span> <b th:text="${list.CATE_PRICE}"></b>
+											</span> <br />
 
+										</div>
+										<div class="col-md-1" style="padding-right: 0px;">
+											<button type="button" class="btn btn-danger"
+												th:onclick="|javascript:deleteBookMark('${list.L_SEQ}')|"
+												style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;">
+												<b>삭제</b>
+											</button>
+										</div>
+										<hr style="width: -webkit-fill-available; border: solid 1px;" />
 									</div>
-									<div class="col-md-1" style="padding-right: 0px;">
-										<button type="button" class="btn btn-danger"
-											th:onclick="|javascript:deleteBookMark('${list.L_SEQ}')|"
-											style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;">
-											<b>삭제</b>
-										</button>
-									</div>
-									<hr style="width: -webkit-fill-available; border: solid 1px;" />
 								</div>
-
-							</div>
+						
 						</div>
 					</div>
 				</div>

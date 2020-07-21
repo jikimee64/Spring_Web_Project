@@ -28,7 +28,6 @@ public class ChatController {
 			return "chat/roomlist"; 
 		}
 		
-		
 		@RequestMapping("chatroominsert.do")
 		@ResponseBody
 		public List<ChatRoom> chatRoomInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
@@ -50,7 +49,13 @@ public class ChatController {
 			return roomList; 
 		}
 		
+	//채팅방 내부 입장
 		
+		@RequestMapping("entrance.do")
+		public String chatRoomEntrance(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
+			System.out.println("채팅방 내부 페이지로 이동이동(연규가씀)");
 
+			return "chat/chatroom"; 
+		}
 
 }
