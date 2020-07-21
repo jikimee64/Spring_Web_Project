@@ -321,7 +321,7 @@ public class BoardController {
 
 	// 스터디 게시판 글 삭제
 	@RequestMapping("writing_Common_Study_Delete.do")
-	public String writingNormalStudyDelete( Model model, String s_seq)
+	public String writingNormalStudyDelete(String page, String perPageNum, Model model, String s_seq, RedirectAttributes redirect)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 		Criteria_Board cri_b = new Criteria_Board();
@@ -339,10 +339,17 @@ public class BoardController {
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		list = service.getStudyBoardList(cri_b);
-		model.addAttribute("list", list); // view까지 전달(forward)
-		model.addAttribute("pageMakerb", pageMakerb);
+		//model.addAttribute("list", list); // view까지 전달(forward)
+		//model.addAttribute("pageMakerb", pageMakerb);
 
-		return "user/board/study_List";
+		redirect.addAttribute("page", page);    
+		redirect.addAttribute("perPageNum", perPageNum);  
+		redirect.addAttribute("list", list);  
+		redirect.addAttribute("pageMakerb", pageMakerb);
+
+		return "redirect:/board/study_List.do";
+		
+		//return "user/board/study_List";
 	}
 
 	@RequestMapping("board_Support_Status.do")
