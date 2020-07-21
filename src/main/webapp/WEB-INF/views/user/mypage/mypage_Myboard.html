@@ -88,6 +88,39 @@ body {
 #_board_button1, #_board_button2 {
 	border: none;
 }
+._title {
+	display: inline-block;
+	width: 1000px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 1.2em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	max-inline-size: -webkit-fill-available;
+}
+._content {
+	display: inline-block;
+	width: 700px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 3.6em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	max-inline-size: -webkit-fill-available;
+}
+
 </style>
 </head>
 
@@ -205,16 +238,16 @@ body {
 											function(index, item) {
 												console.log(item.S_SEQ);
 												/*  제목이랑 내용 문자열 자르기 시작 */
-												if (data[index].TITLE.length > 18) {
-													data[index].TITLE = data[index].TITLE
-															.substr(0, 18)
-															+ "...";
-												}
-												if (data[index].CONTENT.length > 335) {
-													data[index].CONTENT = data[index].CONTENT
-															.substr(0, 335)
-															+ "...";
-												}
+// 												if (data[index].TITLE.length > 18) {
+// 													data[index].TITLE = data[index].TITLE
+// 															.substr(0, 18)
+// 															+ "...";
+// 												}
+// 												if (data[index].CONTENT.length > 335) {
+// 													data[index].CONTENT = data[index].CONTENT
+// 															.substr(0, 335)
+// 															+ "...";
+// 												}
 
 												var write_date = new Date(
 														data[index].WRITE_DATE);
@@ -224,7 +257,7 @@ body {
 												/*  제목이랑 내용 문자열 자르기 끝  */
 												let html = "";
 												html += "<div>";
-												html += "<div class='row p-3'>";
+												html += "<div class='row p-3' style='height:170px'>";
 												html += "<div class='col-md-1' style='text-align: center;'>";
 												html += "<p style='font-size: xx-large; font-weight: bold;'>"
 														+ data[index].S_SEQ
@@ -275,9 +308,10 @@ body {
 														+ data[index].S_SEQ
 														+ "'>";
 												/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-												html += "<b><span style='font-size:xx-large;'>"
+												html += "<div style='margin-top: 15px;padding-left: 15px;'>"
+												html += "<b><span class='_title' style='font-size:xx-large;'>"
 														+ data[index].TITLE
-														+ "</span></b><br/></a>";
+														+ "</span></b></div><br/></a>";
 												html += "</div>";
 												html += "<div class='col-md-3' style='text-align: right;'>";
 												if (data[index].CONTENT_KIND === '온라인강의') {
@@ -326,20 +360,20 @@ body {
 																	console
 																			.log(item.S_SEQ);
 																	/*  제목이랑 내용 문자열 자르기 시작 */
-																	if (data[index].TITLE.length > 18) {
-																		data[index].TITLE = data[index].TITLE
-																				.substr(
-																						0,
-																						18)
-																				+ "...";
-																	}
-																	if (data[index].CONTENT.length > 335) {
-																		data[index].CONTENT = data[index].CONTENT
-																				.substr(
-																						0,
-																						335)
-																				+ "...";
-																	}
+// 																	if (data[index].TITLE.length > 18) {
+// 																		data[index].TITLE = data[index].TITLE
+// 																				.substr(
+// 																						0,
+// 																						18)
+// 																				+ "...";
+// 																	}
+// 																	if (data[index].CONTENT.length > 335) {
+// 																		data[index].CONTENT = data[index].CONTENT
+// 																				.substr(
+// 																						0,
+// 																						335)
+// 																				+ "...";
+// 																	}
 
 																	var write_date = new Date(
 																			data[index].WRITE_DATE);
@@ -349,7 +383,7 @@ body {
 																	/*  제목이랑 내용 문자열 자르기 끝  */
 																	let html = "";
 																	html += "<div>";
-																	html += "<div class='row p-3'>";
+																	html += "<div class='row p-3' style='height:170px'>";
 																	html += "<div class='col-md-1' style='text-align: center;'>";
 																	html += "<p style='font-size: xx-large; font-weight: bold;'>"
 																			+ data[index].S_SEQ
@@ -400,9 +434,10 @@ body {
 																			+ data[index].S_SEQ
 																			+ "'>";
 																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-																	html += "<b><span style='font-size:xx-large;'>"
+																	html += "<div  style='margin-top: 15px;padding-left: 15px;'>"
+																	html += "<b><span class='_title' style='font-size:xx-large;'>"
 																			+ data[index].TITLE
-																			+ "</span></b><br/></a>";
+																			+ "</span></b></div><br/></a>";
 																	html += "</div>";
 																	html += "<div class='col-md-3' style='text-align: right;'>";
 																	if (data[index].CONTENT_KIND === '온라인강의') {
@@ -496,10 +531,10 @@ body {
 																	html += '</p>';
 																	html += '</div>';
 																	html += '<div class="col-md-5" style="place-self: center; text-align: center;">';
-																	html += '<span style="font-size: large;">';
+																	html += '<span class="_content" style="font-size: large; -webkit-box-pack: center;">';
 																	html += data[index].R_CONTENT;
 																	html += '</span>';
-																	html += '&nbsp; <span style="font-size: large; color: red">';
+																	html += '<span style="font-size: large; color: red">';
 																	html += '<b>';
 																	html += '</span>';
 																	html += '</div>';

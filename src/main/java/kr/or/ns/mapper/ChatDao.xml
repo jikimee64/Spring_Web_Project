@@ -6,15 +6,34 @@
 		select * from chatroom
 	</select>
 	
+	<!-- 방하나에 대한 정보 get  -->
+	<select id="getChatRoom" resultType="kr.or.ns.vo.ChatRoom">
+		select * from chatroom where ch_seq = #{ch_seq}
+	</select>
 
-   <!-- 방개설 -->
-   <insert id="registerRoom" parameterType="hashmap">
-     insert into chatroom(user_id, ch_title, ch_description, ch_write, ch_pw_check, ch_pw)
-     values(#{user_id}, #{ch_title}, #{ch_description}, now(), #{ch_pw_check}, #{ch_pw})
-   </insert>
-   
-   <select id="roomPw" parameterType="String" resultType="String">
-   		select ch_pw from chatroom where ch_seq=#{ch_seq}
-   </select>
+
+	<!-- 방개설 -->
+	<insert id="registerRoom" parameterType="hashmap">
+		insert into
+		chatroom(user_id, ch_title, ch_description, ch_write,
+		ch_pw_check,
+		ch_pw)
+		values(#{user_id}, #{ch_title}, #{ch_description}, now(),
+		#{ch_pw_check}, #{ch_pw})
+	</insert>
+
+	<!-- 방 패스워드 get  -->
+	<select id="roomPw" parameterType="String" resultType="String">
+		select
+		ch_pw from chatroom where ch_seq=#{ch_seq}
+	</select>
+
+	<!-- 채팅방 입장시 멤버추가 -->
+	<insert id="memberInsert" parameterType="kr.or.ns.vo.ChatRoomMember">
+		insert into chatmember(user_id, ch_seq)
+		values(#{user_id}, #{ch_seq})
+		on duplicate key update user_id=values(user_id),
+								ch_seq=values(ch_seq)
+	</insert>
 
 </mapper>
