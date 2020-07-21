@@ -383,20 +383,14 @@ public class AjaxRestController {
 
 	public static HashMap<String, Object> paramsTemp2 = null;
 	public static int filterSize2 = 0;
+	public static int course_flag2 = 0;
 
 	// 강의 게시판 필터
 	@RequestMapping(value = "courseBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b, Principal principal) {
-		/*
-		 * System.out.println("강의게시판");
-		 * 
-		 * System.out.println("강의게시판_가격" + params.get("price"));
-		 * System.out.println("강의게시판_레벨" + params.get("level"));
-		 * System.out.println("강의게시판_언어" + params.get("language"));
-		 * System.out.println("강의게시판_사이트" + params.get("site"));
-		 */
 
 		paramsTemp2 = params;
+		System.out.println("제발 타지마라제발제발제발");
 
 		PageMaker pageMakerb = new PageMaker();
 		pageMakerb.setCri(cri_b);

@@ -22,10 +22,12 @@
 
 	<context:component-scan base-package="kr.or.ns.*" />
 
-	<beans:bean id="chatHandler" class="kr.or.ns.websocket.MessageHandler" />
+	<beans:bean id="messageHandler" class="kr.or.ns.websocket.MessageHandler" />
+	<beans:bean id="chatHandler" class="kr.or.ns.websocket.ChatHandler" />
 	
 	<websocket:handlers>
-		<websocket:mapping handler="chatHandler" path="/messageSocket.do" />
+		<websocket:mapping handler="messageHandler" path="/messageSocket.do" />
+		<websocket:mapping handler="chatHandler" path="/chatSocket.do" />
 	</websocket:handlers>
 	
 	<default-servlet-handler />

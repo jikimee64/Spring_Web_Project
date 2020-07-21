@@ -1060,6 +1060,7 @@ keyframes heart-keyframes { 100% {
 	</script>
 
 	<script th:inline="javascript">
+	//검색기능 !!
 	$(function(){
 		
 		//searchType select 박스 설정
@@ -1147,6 +1148,25 @@ keyframes heart-keyframes { 100% {
    	/* =====처음에 리스트 동기로 뿌려줄때 유데미,인프런,구름에듀 색깔바꾸기 */
    </script>
    
+	<script>
+	/* 필터 적용후 다른페이지로 갓다가 다시 돌아올때 필터가 적용된 상태로 유지되서 
+		온라인강의 페이지로 이동시 한번의 새로고침 ====================*/
+		
+// 	$(function(){    
+// 	    //Check if the current URL contains '#'
+// 	    if(document.URL.indexOf("#")==-1){
+// 	        // Set the URL to whatever it was plus "#".
+// 	        url = document.URL+"#";
+// 	        location = "#";
+
+// 	        //Reload the page
+// 	        location.reload(true);
+// 	    }
+// 	});
+	
+	/*==================== 필터 적용후 다른페이지로 갓다가 다시 돌아올때 
+	필터가 적용된 상태로 유지되서  온라인강의 페이지로 이동시 한번의 새로고침 */
+	</script>
    
 </body>
 
