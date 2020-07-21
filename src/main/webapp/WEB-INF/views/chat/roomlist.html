@@ -16,7 +16,7 @@
 				style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
 				<b style="margin-left: 30px;">채팅</b>
 				<div style="float: right; margin-right: 20px;">
-					<a href="" data-toggle="modal" data-target="#chatRoomFormlModal"
+					<a href="" data-toggle="modal" data-target="#chatRoomFormModal"
 						style="margin-left: 0px;"><img
 						src="../../../../resources/images/img/plus.png"
 						style="width: 20px; height: 20px;"> </a>
@@ -67,13 +67,6 @@
 <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 <div th:replace="/user/includes/chat_Room_Form :: chat_Room_Form"></div>
 
-<script>
-$(function() {
-	$("#room-btn").click(function(e) {
-		$('#chatRoomFormlModal').modal('hide');
-	});
-});
-</script>
 
 
 <script>
@@ -142,6 +135,7 @@ $(function() {
 }
 
 
+
 	$(function() {
 
 		$(".chatRoomForm").submit(function(e) {
@@ -154,6 +148,7 @@ $(function() {
 			} 
 			
 			e.preventDefault();
+		
 			var formData = new FormData(this);
 
 			console.log("방 제목 : " + formData.get("ch_title"))
@@ -215,5 +210,13 @@ $(function() {
 		})
 
 	});
+</script>
+
+<script>
+$(function() {
+	$("#room-btn").click(function(e) {
+		$('#chatRoomFormlModal').modal('hide');
+	});
+});
 </script>
 </html>

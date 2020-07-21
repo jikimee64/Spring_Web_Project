@@ -599,7 +599,10 @@ public class CrawlingController {
 						System.out.println("널왜뜨냐 : " + starsText);
 						double stars = Double.parseDouble(starsText);
 						// System.out.println("stars" + stars);
-						if (stars < 1.0) {
+					
+						if(stars == 0.0) {
+							map.put("l_star", "0");
+						} else if (stars < 1.0) {
 							map.put("l_star", "0.5");
 						} else if (stars < 1.1) {
 							map.put("l_star", "1.0");
