@@ -20,6 +20,10 @@ public interface LectureDao {
 
 	//글목록(필터)
 	public List<Map<String, Object>> getLectureListFilter(HashMap<String, Object> params);
+	
+	//글목록(필터)(사이즈체크용)
+	public List<Map<String, Object>> getLectureListFilterSize(HashMap<String, Object> params);
+	
 	//총 게시글 수
 	public int getLectureCount();
 	
