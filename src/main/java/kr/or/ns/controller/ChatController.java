@@ -31,7 +31,10 @@ public class ChatController {
 	@RequestMapping("roomlist.do")
 	public String studyListPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("채팅 페이지로 이동이동(연규가씀)");
-
+		List<ChatRoom> roomList = service.getListChatRoom();
+		model.addAttribute("roomList", roomList);
+		System.out.println("roomList :" + roomList);
+		
 		return "chat/roomlist";
 	}
 

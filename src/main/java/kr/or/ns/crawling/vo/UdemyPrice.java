@@ -10,6 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class UdemyPrice {
-	private String _class;
-	private UdemyAmount price;
+	 private double amount;
+	 private String currency;
+	 private String priceString;
 }

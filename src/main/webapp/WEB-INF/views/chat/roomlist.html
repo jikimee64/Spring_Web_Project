@@ -29,12 +29,18 @@
 				<h5 style="margin-top: 20px;">채팅방 목록</h5>
 			</div>
 		</div>
+		
+		
+		
 		<!-- 1번째 채팅룸 -->
-		<div class="row">
+		
+		
+		<div class="row" th:each="list : ${roomList}">
 			<div class="col-1"></div>
 			<div class="col-8" style="color: black; padding: 0px;">
 				<span><b style="font-size: xx-large;">1</b></span> <img
 					src="../../../../resources/images/img/chatroom.png"
+<<<<<<< Updated upstream
 					style="width: 45px; height: 45px; margin-left: 10px;"> <a
 					href="" target="_blank" onclick="window.open('/chat/entrance.do', '채팅방','width=500, height=700'); return false" ><span>&nbsp;&nbsp;어서오세요어서오세요어서오세요</span></a>
 								
@@ -42,18 +48,42 @@
 			<div class="col-1">
 				<img src="../../../../resources/images/img/lock.png"
 					style="width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;">
+=======
+					style="width: 45px; height: 45px; margin-left: 10px;">
+					 <a href="">
+						<span th:text="|&nbsp;&nbsp; ${list.ch_title}|"></span>
+					</a>
+>>>>>>> Stashed changes
 			</div>
+			
+			<!-- 비밀방 일때-->
+			<th:block th:switch="${list.ch_pw_check}">
+				<div th:case="1" class="col-1">
+					<img src="../../../../resources/images/img/lock.png"
+						style="width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;">
+				</div>
+				<div th:case="0" class="col-1">
+				
+				</div>
+			</th:block>
 
 		</div>
 		<hr style="width: 90%;">
+		
+		
+		
 		<!-- 여기까지 한셋트 -->
-		<div class="row">
+		
+		
+		
+		
+		<!-- <div class="row">
 			<div class="col-1"></div>
 			<div class="col-11" style="color: black; padding: 0px;">
 				<span><b style="font-size: xx-large;">1</b></span> <span>&nbsp;어서오세요</span>
 			</div>
 		</div>
-		<hr style="width: 90%;">
+		<hr style="width: 90%;"> -->
 
 
 
