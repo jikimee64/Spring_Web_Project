@@ -351,7 +351,7 @@ public class BoardController {
 		//Criteria_Board cri_b = new Criteria_Board();
 		// 게시글 삭제
 		int result = service.delete(s_seq);
-
+		System.out.println(result + "개가 되었습니다.");
 		//PageMaker_Board pageMakerb = new PageMaker_Board();
 		//pageMakerb.setCri_b(cri_b);
 
@@ -365,6 +365,12 @@ public class BoardController {
 		//list = service.getStudyBoardList(cri_b);
 		//model.addAttribute("list", list); // view까지 전달(forward)
 		//model.addAttribute("pageMakerb", pageMakerb);
+		if(result%10==0) {
+			int ksk = Integer.parseInt(page);
+			ksk--;
+			page = Integer.toString(ksk);
+		}
+		
 
 		redirect.addAttribute("page", page);    
 		redirect.addAttribute("perPageNum", perPageNum);  
