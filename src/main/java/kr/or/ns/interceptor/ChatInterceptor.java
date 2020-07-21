@@ -19,7 +19,7 @@ public class ChatInterceptor extends HttpSessionHandshakeInterceptor{
     	ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
     	HttpServletRequest req= ssreq.getServletRequest();
     	
-    	String roomNumber  = req.getParameter("roomNumber");
+    	String ch_seq  = req.getParameter("ch_seq");
     	String user_id  = req.getParameter("user_id");
     	
     	//HttpServletReques를 이용하여 파라미터 추출
@@ -33,6 +33,9 @@ public class ChatInterceptor extends HttpSessionHandshakeInterceptor{
 		/*
 		 * attributes.put("roomNumber", roomNumber); attributes.put("userid", userid);
 		 */
+    	
+    	attributes.put("ch_seq", ch_seq);
+    	attributes.put("user_id", user_id);
     	
         return super.beforeHandshake(request, response, wsHandler, attributes);
     }

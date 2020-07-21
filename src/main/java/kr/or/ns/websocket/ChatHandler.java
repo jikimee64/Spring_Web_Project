@@ -1,11 +1,16 @@
 package kr.or.ns.websocket;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -23,149 +28,150 @@ import kr.or.ns.vo.Users;
 @Configuration
 public class ChatHandler extends TextWebSocketHandler {
 
-	@Autowired
-	private MessageService service;
+	// private Map<String, WebSocketSession> users = new HashMap();
+	List<HashMap<String, Object>> rls = new ArrayList(); // 웹소켓 세션을 담아둘 리스트 ---roomListSessions
 
-	@Autowired
-	private ManagerService mservice;
-	
-	private static Map<String, WebSocketSession> users = new HashMap<String, WebSocketSession>();
-
-	private void log(String msg) {
-		SimpleDateFormat simple = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String date = simple.format(new Date());
-		//System.out.println(date + " : " + msg);
-	}
-
-	// 연결
+	// 클라이언트와 연결 이후에 실행되는 메서드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 
-		//System.out.println("정상연결");
+		if (session != null) {
+			boolean flag = false;
+			
+			 //★★★★
+			 //Map<String, Object> map = session.getAttributes();
+		     //String id = (String)map.get("userId");
+			 //인터셉터에서 attributes.put() 한 모든 데이터를 map에 담은 뒤 필요한 데이터를
+			 //키값을 이용하여 추출
 
-		//System.out.println(session);
-		//System.out.println(session.getPrincipal());
-		// 인증하지 않았으면(로그인 안했으면..) null 발생 -> 멈춤
-		//System.out.println(session.getPrincipal().getName());
 
-		// session : 브라우저가 WebSocket을 접속했을 때의 커넥션 정보(id, uri)
-		//System.out.println(session);
-		//System.out.println(session.getPrincipal());
-		// 인증하지 않았으면(로그인 안했으면..) null 발생 -> 멈춤
-		//System.out.println(session.getPrincipal().getName());
+			//getAttribute라는 private 함수 이용
+			String ch_seq = getAttribute(session, "ch_seq");
+			String user_id = getAttribute(session, "user_id");
+			
+			System.out.println("ch_seq : " + ch_seq);
+			System.out.println("user_id : " + user_id);
 
-		//log(session.getPrincipal().getName() + " 접속");
-		//log(session.toString());
-		users.put(session.getPrincipal().getName(), session); // userid 와 session 저장
-		// 새로 접속(새로 고침)할때마다 세션의 id값이 증가(16진수)
-		//System.out.println("users 데이터 : " + users);
-
-	}
-
-	// 연결해제
-	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-
-		if (session.getPrincipal() != null) {
-			if (users.containsKey(session.getPrincipal().getName())) {
-				users.remove(session.getPrincipal().getName()); // 연결해제된 id 삭제
-				//log(session.getPrincipal().getName() + " 해제");
+			int idx = rls.size(); // 방의 사이즈를 조사한다.
+			System.out.println("idx : " + idx);
+			if (rls.size() > 0) {
+				for (int i = 0; i < rls.size(); i++) {
+					String rN = (String) rls.get(i).get("ch_seq");
+					if (rN.equals(ch_seq)) {
+						flag = true;
+						idx = i;
+						break;
+					}
+				}
 			}
-		}
 
+
+			if (flag) { // 존재하는 방이라면 세션만 추가한다.
+				HashMap<String, Object> map = rls.get(idx);
+				map.put(user_id, session);
+				System.out.println("존재하는 방이면 세션 추가");
+			} else { // 최초 생성하는 방이라면 방번호와 세션을 추가한다.
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("ch_seq", ch_seq);
+				map.put(user_id, session);
+				rls.add(map);
+				System.out.println("최초 생성");
+
+			}
+			// 세션등록이 끝나면 발급받은 세션ID값의 메시지를 발송한다.
+			JSONObject obj = new JSONObject();
+			obj.put("type", "getId");
+			obj.put("user_id", user_id);
+			session.sendMessage(new TextMessage(obj.toJSONString()));
+		} else {
+			System.out.println("afterConnectionEstablished()_session이 null");
+		}
 	}
 
-	// 웹소켓 클라이언트가 텍스트 메시지를 전송할 때 호출
+	// 클라이언트가 서버로 메시지를 전송했을 때 실행되는 메서드
+
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		/*
+		 * 2. 메시지 전송시 JSON파싱을 위해 message.getPayload()를 통해 받은 문자열을 만든 함수,
+		 * jsonToObjectParser에 넣어서 JSONObject값으로 받아서 강제 문자열 형태로 보내주는 부분이 추가
+		 */
 
-		//System.out.println("하이욤 : " + message.getPayload());
-		String userid = session.getPrincipal().getName();
-		// 사용자가 보낸 텍스트 데이터 추출 후 분기 처리
-		if (message.getPayload().equals("login") || message.getPayload().equals("view")) {
-
-			//System.out.println("아나!! : " + userid);
-
-			System.out.println("userid" + userid);
-			int result = service.getmsgcount(userid);
-
-			// 내가 받은 메시지 개수 추출
-			
-			System.out.println("resasdasdasdasdult : "  +result);
-
-			// 사용자 아이디값이 소켓 접속시 users에 넣은 아이디값이 존재하는지 비교
-			if (users.containsKey(userid)) {
-				// TextMessage객체를 생성해서 클라이언트에 전송할 텍스트 생성
-				TextMessage msg = new TextMessage("" + result + "");
-				users.get(userid).sendMessage(msg);
-				// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
-
-				//log(userid + " / " + message.getPayload() + " / " + msg.getPayload());
-			}
-		} else if( message.getPayload().split(",")[0].equals("all")){ //전체쪽지
-			String content = message.getPayload().split(",")[1];
-			List<Users> list = mservice.getMemberList();
-			
-			for(int i = 0; i < list.size(); i++) {
-				String receptionid = list.get(i).getUser_id();
-				System.out.println(list.size());
-				Message savemsg = new Message();
-				savemsg.setSenderid("admin"); //발신인
-				savemsg.setContent(content);
-				savemsg.setReceptionid(receptionid);//수신인
-				int result2 = service.insertMessage(savemsg);
-				
-				int result = service.getmsgcount(receptionid);
-				// 수신인이 받은 문자 개수 추출
-			
-
-				if (users.containsKey(receptionid)) {
-					TextMessage msg = new TextMessage("" + result + "");
-					users.get(receptionid).sendMessage(msg);
-
-					// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
-
-					//log(receptionid + " / " + message.getPayload() + " / " + msg.getPayload());
+		String rcvMsg = message.getPayload();
+		JSONObject obj = JsonToObjectParser(rcvMsg);
+		String rN = (String) obj.get("ch_seq");
+		System.out.println("rN이떠야됨 : " + rN);
+		System.out.println("1단계 ");
+		HashMap<String, Object> temp = new HashMap<String, Object>();
+		if (rls.size() > 0) {
+			System.out.println("1-1단계 ");
+			for (int i = 0; i < rls.size(); i++) {
+				String ch_seq = (String) rls.get(i).get("ch_seq"); // 세션리스트의 저장된 방번호를 가져와서
+				if (ch_seq.equals(rN)) { // 같은값의 방이 존재한다면
+					temp = rls.get(i); // 해당 방번호의 세션리스트의 존재하는 모든 object값을 가져온다.
+					break;
 				}
-				
 			}
-			
-		} else { // 쪽지 보냈을때 탐(message.jsp에서 데이터 전송받음) / 1:1쪽지
-		
-			System.out.println("1:1쪽지입니다ㅏㄻ쥐");
-			String receptionid = message.getPayload().split(",")[0];
-			String content = message.getPayload().split(",")[1];
-			
-			Message savemsg = new Message();
-			savemsg.setReceptionid(receptionid);//수신인
-			savemsg.setSenderid(userid); //발신인
-			savemsg.setContent(content);
-					
-					/*(message.getPayload().split(",")[0], message.getPayload().split(",")[1],
-					message.getPayload().split(",")[2]);*/
-			int result2 = service.insertMessage(savemsg);
-			
-			// ★★★쪽지 테이블에 보낸 쪽지 데이터 삽입
-			int result = service.getmsgcount(receptionid);
-			// 수신인이 받은 문자 개수 추출
+			System.out.println("2단계 ");
+			// 해당 방의 세션들만 찾아서 메시지를 발송해준다.
+			for (String k : temp.keySet()) {
+				if (k.equals("ch_seq")) { // 다만 방번호일 경우에는 건너뛴다.
+					continue;
+				}
 
-			if (users.containsKey(receptionid)) {
-				TextMessage msg = new TextMessage("" + result + "");
-				users.get(receptionid).sendMessage(msg);
-
-				// ★★★ 키값을 통해 사용자한테 부여한 세션값 추출 후 메시지 전송
-
-				//log(receptionid + " / " + message.getPayload() + " / " + msg.getPayload());
+				WebSocketSession wss = (WebSocketSession) temp.get(k);
+				if (wss != null) {
+					try {
+						System.out.println("3단계 ");
+						wss.sendMessage(new TextMessage(obj.toJSONString()));
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
-
-
 		}
+	}
+
+	// 클라이언트와 연결을 끊었을 때 실행되는 메소드
+	@Override
+	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		/*
+		 * sessionList.remove(session); System.out.println(("{} 연결 끊김" +
+		 * session.getId()));
+		 */
+		
+		if (session != null) {
+			if (rls.size() > 0) { // 소켓이 종료되면 해당 세션값들을 찾아서 지운다.
+				for (int i = 0; i < rls.size(); i++) {
+					rls.get(i).remove(session.getId());
+				}
+			}
+		} else {
+			System.out.println("afterConnectionClosed()_session이 null");
+		}
+		 
 
 	}
 
-	// 연결에 문제 발생시
+	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
-		log(session.getPrincipal().getName() + " / " + exception.getMessage());
+		System.out.println(exception.getMessage());
+	}
+
+	// json형태의 문자열을 파라미터로 받아서 SimpleJson의 파서를 활용하여 JSONObject로 파싱처리를 해주는 함수
+	private static JSONObject JsonToObjectParser(String jsonStr) {
+		JSONParser parser = new JSONParser();
+		JSONObject obj = null;
+		try {
+			obj = (JSONObject) parser.parse(jsonStr);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return obj;
+	}
+
+	public String getAttribute(WebSocketSession session, String parameter) {
+		return (String) session.getAttributes().get(parameter);
 	}
 
 }

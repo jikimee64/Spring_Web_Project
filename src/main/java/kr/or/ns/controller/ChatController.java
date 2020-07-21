@@ -3,6 +3,8 @@ package kr.or.ns.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.service.ChatService;
+import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.ChatRoom;
 import kr.or.ns.vo.ChatRoomMember;
 import kr.or.ns.vo.Criteria_Board;
+import kr.or.ns.vo.Users;
 
 @Controller
 @RequestMapping("/chat/")
@@ -29,6 +33,9 @@ public class ChatController {
 
 	@Autowired
 	private ChatService service;
+	
+	@Autowired
+	private MyPageService mservice;
 
 	// 채팅리스트방 입장
 	@RequestMapping("roomlist.do")
@@ -67,6 +74,12 @@ public class ChatController {
 	@RequestMapping("entrance.do")
 	public String chatRoomEntrance(@RequestParam HashMap<Object, Object> params, Model model, Principal principal) throws ClassNotFoundException, SQLException {
 		
+		//현재날짜 포맷팅해서 구하기
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+		String datestr = sdf.format(cal.getTime());
+		System.out.println(datestr);
+		
 		String ch_seq = (String)params.get("ch_seq");
 		String user_id = principal.getName();
 		
@@ -79,6 +92,7 @@ public class ChatController {
 		
 		model.addAttribute("chatroom", chatroom);
 		model.addAttribute("user_id", user_id );
+		model.addAttribute("datestr", datestr);
 		
 		return "chat/chatroom";
 	}
