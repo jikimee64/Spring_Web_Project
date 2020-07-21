@@ -93,7 +93,29 @@
 	text-decoration: none !important;
 	padding: 8px !important;
 	border-radius: 10px;
-	border: 2px solid #02db63;
+	border: 2px solid gray;
+}
+._udemy:hover{
+	margin-bottom: 5px !important;
+	text-decoration: none !important;
+	padding: 5px !important;
+	border-radius: 10px;
+	border: 2px solid #EA5252;
+	
+}
+._goormedu:hover{
+	margin-bottom: 5px !important;
+	text-decoration: none !important;
+	padding: 5px !important;
+	border-radius: 10px;
+	border: 2px solid #3E85E4;
+}
+._inflearn:hover{
+	margin-bottom: 5px !important;
+	text-decoration: none !important;
+	padding: 5px !important;
+	border-radius: 10px;
+	border: 2px solid #1DC078;
 }
 
 .pager li>a, .pager li>span {
@@ -340,6 +362,15 @@ keyframes heart-keyframes { 100% {
 	-webkit-box-orient: vertical;
 	max-inline-size: -webkit-fill-available;
 }
+
+.custom-select-sm {
+    height: calc(1.5em + .5rem + 8px);
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    font-size: .875rem;
+}
+
 </style>
 
 <body>
@@ -441,7 +472,7 @@ keyframes heart-keyframes { 100% {
 							<li data-filter="6" class="lan6">Vue.js</li> &nbsp;
 							<li data-filter="7" class="lan7">React</li>
 							<li data-filter="8" class="lan8">Jquery</li> &nbsp;
-							<li data-filter="9" class="lan9">JSP</li> &nbsp;
+							<li data-filter="9" class="lan9" style="margin-left:7px;">JSP</li> &nbsp;
 							<li data-filter="10" class="lan10">BootStrap</li> &nbsp;
 							<li data-filter="11" class="lan11">JPA</li>
 						</ul>
@@ -478,7 +509,8 @@ keyframes heart-keyframes { 100% {
 	<div class="container">
 
 		<div class="row" style="margin-top: 50px;">
-
+		<div class="col-9" style="margin-right:33px;"></div>
+		<div class="col-2">
 			<div
 				style="display: inline-flex; width: 44%; justify-content: center;">
 				<select class="custom-select-sm" id="searchTypeSel"
@@ -492,8 +524,9 @@ keyframes heart-keyframes { 100% {
 				</select> <input class="form-control" type="text" id="keyword" name="keyword"
 					th:value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요"
 					style="width: 228px;" />
-				<button id="searchBtn" class="btn btn-primary">Search</button>
+				<button type="button" id="searchBtn" class="btn btn-outline-success">Search</button>
 
+			</div>
 			</div>
 		</div>
 	</div>
@@ -507,7 +540,7 @@ keyframes heart-keyframes { 100% {
 			<th:block th:each="list,index : ${list}">
 				<th:block th:if="${index.index%4==0}"
 					th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
-				<div class="col-md-3">
+				<div class="col-md-3 _list_all">
 					<div class="card _card_hover_effect"
 						style="width: 100%; padding: 4px; margin: 10px;">
 						<img class="card-img-top" th:src="${list.L_IMAGE}"
@@ -519,13 +552,15 @@ keyframes heart-keyframes { 100% {
 							<p class="card-text _margin_0"
 								style="color: gray; font-size: small;"
 								th:text="${list.L_WRITER}">이지스 퍼블리싱</p>
-							<a th:href="${list.L_ADDRESS}" class="stretched-link"></a>
+							<a th:href="${list.L_ADDRESS}" class="stretched-link _address"></a>
 							<div
 								style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
 								<p class="_star"
 									th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
 								</p>
 							</div>
+										
+										
 							(<span th:text="${list.L_REVIEW}">(6)</span>)
 							<div class="row">
 
@@ -621,13 +656,13 @@ keyframes heart-keyframes { 100% {
 		</ul>
 		<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
 
-<<<<<<< HEAD
+
    </div>
   <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-=======
+
 	</div>
 
->>>>>>> 9fdee7e2c3fd8665a23ea8c5450e6b4fa77cd7c0
+
 
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
@@ -762,7 +797,7 @@ keyframes heart-keyframes { 100% {
 											+ i
 											+ "' style= 'width:100%; margin: auto; margin-bottom:20px;'>"
 								}
-								html += "<div class='col-md-3'>"
+								html += "<div class='col-md-3 _list_all'>"
 								html += "<div class='card _card_hover_effect' style='width: 100%; padding: 4px; margin: 10px;'>"
 								/* html += 	'<div style="height: 155px;">' */
 								html += "<img class='card-img-top'src="
@@ -830,8 +865,16 @@ keyframes heart-keyframes { 100% {
 											.append(
 													html);
 								}
+							var siteNameFind = data[0][i].L_ADDRESS;
 							
-
+							if(siteNameFind.indexOf('udemy') != -1){
+								$('._list_all').eq(i).eq(0).find('._card_hover_effect').addClass('_udemy');
+							}else if(siteNameFind.indexOf('goorm') != -1){
+								$('._list_all').eq(i).eq(0).find('._card_hover_effect').addClass('_goormedu');
+							}else if(siteNameFind.indexOf('inflearn') != -1){
+								$('._list_all').eq(i).eq(0).find('._card_hover_effect').addClass('_inflearn');
+							}
+							
 							}
 							
 						}
@@ -891,13 +934,10 @@ keyframes heart-keyframes { 100% {
 										}
 
 										if (data[1].next === true && data[1].endPage > 0) {
-											page += "<li><a href='course_FilterList.do?page="
-													+ data[1].endPage
-													+ 1
-													+ "&perPageNum="
-													+ data[1].cri.perPageNum
-													+ " class='page-link'>&raquo;Next</a></li></ul>"
+											page += "<li><a href='course_FilterList.do?page=" + (data[1].endPage + 1)+ "&perPageNum=" 
+											+ data[1].cri.perPageNum + "' class='page-link'>Next</a></li>"	
 										}
+										page+="</ul>"
 
 									} //if문
 									$('.coursePaging').append(page);
@@ -1065,7 +1105,6 @@ keyframes heart-keyframes { 100% {
 	
 	})
 	</script>
-<<<<<<< HEAD
      <script>
  
       //Get the button
@@ -1089,12 +1128,26 @@ keyframes heart-keyframes { 100% {
       }
    </script>
    
+   <script>
+   /* 처음에 리스트 동기로 뿌려줄때 유데미,인프런,구름에듀 색깔바꾸기 ===== */
+   	$(function(){
+   		
+   		$('._address').each(function(index,item){
+   				if($('._address').eq(index).attr('href').indexOf('udemy') != -1){
+   					$('._list_all').find('._card_hover_effect').eq(index).addClass('_udemy');
+			}else if($('._address').eq(index).attr('href').indexOf('goorm') != -1){
+				$('._list_all').find('._card_hover_effect').eq(index).addClass('_goormedu');
+			}else if($('._address').eq(index).attr('href').indexOf('inflearn') != -1){
+				$('._list_all').find('._card_hover_effect').eq(index).addClass('_inflearn');
+			}
+   			
+   		});
+   		
+   	})
+   	/* =====처음에 리스트 동기로 뿌려줄때 유데미,인프런,구름에듀 색깔바꾸기 */
+   </script>
    
-=======
-
-
-
->>>>>>> 9fdee7e2c3fd8665a23ea8c5450e6b4fa77cd7c0
+   
 </body>
 
 

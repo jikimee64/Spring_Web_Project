@@ -248,6 +248,14 @@ group+group {
 	-webkit-box-orient: vertical;
 	inline-size: -webkit-fill-available;
 }
+
+.custom-select-sm {
+    height: calc(1.5em + .5rem + 8px);
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    font-size: .875rem;
+}
 </style>
 
 
@@ -266,6 +274,12 @@ group+group {
 					<h2>
 						찾고 싶은 <b style="color: #18d26e">키워드</b>를 선택해 주세요.
 					</h2>
+					<div>
+				<div class="text-center" style="text-align-last: end;">
+					<a href="/board/board_Select.do" class="btn btn-outline-danger"
+						style="border: 3px solid; font-weight: bold;">스터디 모집하기</a>
+				</div>
+			</div>
 				</div>
 			</div>
 		</section>
@@ -359,7 +373,7 @@ group+group {
 								<li data-filter="6">Vue.js</li> &nbsp;
 								<li data-filter="7">React</li>&nbsp;
 								<li data-filter="8">Jquery</li> &nbsp;
-								<li data-filter="9">JSP</li> &nbsp;
+								<li data-filter="9" style="margin-left:7px;">JSP</li> &nbsp;
 								<li data-filter="10">BootStrap</li> &nbsp;
 								<li data-filter="11">JPA</li>
 							</ul>
@@ -396,7 +410,7 @@ group+group {
 							<li data-filter="9"
 								th:classappend="${local} == '9' ? filter-active : null">세종특별시</li>
 							<li data-filter="10"
-								th:classappend="${local} == '10' ? filter-active : null">서울특별시</li>
+								th:classappend="${local} == '10' ? filter-active : null" style="margin-left:7px;">서울특별시</li>
 							<li data-filter="11"
 								th:classappend="${local} == '11' ? filter-active : null">인천광역시</li>
 							<li data-filter="12"
@@ -446,10 +460,7 @@ group+group {
 
 		<!--  버튼-->
 		<div class="row">
-
-			
-			<div class="col-md-9">
-			<div style="text-align: center; width: 50%;">
+			<div class="col-5" style="margin-left:730px;">
 			<div class="form-inline" style="display: inline-flex;">
 				<select class="custom-select-sm" id="searchTypeSel"
 					name="searchType">
@@ -461,22 +472,12 @@ group+group {
 					<option value="all">전체조건</option>
 
 				</select> <input class="form-control" type="text" id="keyword" name="keyword" 
-					th:value="${pageMakerb.cri_b.keyword}" placeholder="검색어를 입력하세요"style="width:228px;" />
+					th:value="${pageMakerb.cri_b.keyword}" placeholder="검색어를 입력하세요" style="width:228px;" />
 
-				<button id="searchBtn" class="btn btn-primary">Search</button>
-
+				<button type= "button" id="searchBtn" class="btn btn-outline-success">Search</button>
+			</div>		
 			</div>
-		</div>
-			
-			</div>
-			<div class="col-md-3">
-				<div class="text-center" style="text-align-last: end;">
-					<a href="/board/board_Select.do" class="btn btn-outline-danger"
-						style="border: 3px solid; font-weight: bold;">스터디 모집하기</a>
-				</div>
 
-
-			</div>
 		</div>
 		<div class="_border_box_shadow2 studyFilter"
 			style="border: 10px solid gainsboro; padding: 30px 30px 0px 30px;">
@@ -484,7 +485,7 @@ group+group {
 			<div th:each="list : ${list}">
 				<div class="row">
 					<div class="col-md-3"></div>
-					<div class="col-md-4" style="padding: 0px;">
+					<div class="col-md-4">
 						<!-- 여기에 뱃지 -->
 						<span class="badge badge-pill badge-primary"
 							th:text="${list.STATUS}"></span> <span
@@ -536,7 +537,7 @@ group+group {
 					</th:block>
 
 
-					<div class="col-md-9" style="padding: 3Cpx 30px 30px 30px;">
+					<div class="col-md-9" style="padding: 3px 30px 30px 30px;">
 						<div class="row" style="margin-top: 10px;">
 							<!-- <div class="col-md-2">
 							<b th:text="${list.USER_ID}">
@@ -854,7 +855,7 @@ group+group {
 
 											$('.studyFilter').empty();
 											$('.studyPaging').empty();
-
+											
 											var perPageNum = data[2].cri_b.perPageNum;
 											var page = data[2].cri_b.page;
 											
@@ -884,25 +885,26 @@ group+group {
 																				data[0][i].WRITE_DATE);
 																		var deadline = new Date(
 																				data[0][i].DEADLINE);
+																		html += "<div>"
 																		html += "<div class='row'>"
 																		html += "<div class='col-md-3'></div>"
-																		html += "<div class='col-md-4' style='padding: 0px; text-align: center;'>"
-																		html += "<span class='badge badge-pill badge-primary'>"
+																		html += "<div class='col-md-4'>"
+																		html += "<span class='badge badge-pill badge-primary' style='margin-right:4px;'>"
 																				+ data[0][i].STATUS
 																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-info'>"
+																		html += "<span class='badge badge-pill badge-info' style='margin-right:4px;'>"
 																				+ data[0][i].LEVEL
 																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-secondary'>"
+																		html += "<span class='badge badge-pill badge-secondary' style='margin-right:4px;'>"
 																				+ data[0][i].CATE_LANGUAGE
 																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-success'>"
+																		html += "<span class='badge badge-pill badge-success' style='margin-right:4px;'>"
 																				+ data[0][i].PEOPLE
 																				+ "명</span>"
-																		html += "<span class='badge badge-pill badge-warning'>"
+																		html += "<span class='badge badge-pill badge-warning' style='margin-right:4px;'>"
 																				+ data[0][i].LOC
 																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-light'>"
+																		html += "<span class='badge badge-pill badge-light' style='margin-right:4px;'>"
 																				+ data[0][i].CONTENT_KIND
 																				+ "</span></div></div>"
 																		html += "<div class='row'>"
@@ -953,7 +955,7 @@ group+group {
 																		html += "<div class='row' style='margin-top: 10px;'>"
 																		//html += "<b style='margin-left: 35px;'>작성자:</b>" 
 																		html += "<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
-																		html += "<b style='color: black; margin-right: 10px;'>작성자 :</b>"
+																		html += "<b style='color: black; margin-right: 15px;'>작성자 :</b>"
 																		html += '<a href="" class="InfoModal'
 																				+ data[0][i].S_SEQ
 																				+ '" onclick=InfoModal("'

@@ -29,31 +29,34 @@
 				<h5 style="margin-top: 20px;">채팅방 목록</h5>
 			</div>
 		</div>
-		<!-- 1번째 채팅룸 -->
-		<div class="row">
+
+		<div class="row chatList" th:each="list : ${roomList}">
 			<div class="col-1"></div>
 			<div class="col-8" style="color: black; padding: 0px;">
-				<span><b style="font-size: xx-large;">1</b></span> <img
-					src="../../../../resources/images/img/chatroom.png"
+				<span> <b style="font-size: xx-large;"
+					th:text="${list.ch_seq}"></b>
+				</span> <img src="../../../../resources/images/img/chatroom.png"
 					style="width: 45px; height: 45px; margin-left: 10px;"> <a
-					href="" target="_blank" onclick="window.open('/chat/entrance.do', '채팅방','width=500, height=700'); return false" ><span>&nbsp;&nbsp;어서오세요어서오세요어서오세요</span></a>
-								
-			</div>
-			<div class="col-1">
-				<img src="../../../../resources/images/img/lock.png"
-					style="width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;">
+					href="#" th:onclick="|javascript:goRoom('${list.ch_seq}')|"> <span
+					th:text="|&nbsp;&nbsp;${list.ch_title}|"></span>
+				</a>
+
 			</div>
 
+			<!-- 비밀방 일때-->
+			<th:block th:switch="${list.ch_pw_check}">
+				<!-- th:classappend 로 m_seq로 줘서 그안에 img가 있으면 비밀방, 없으면 공개방  -->
+				<div th:case="1" class="col-1"
+					th:classappend="|pwStatus${list.ch_seq}|">
+					<img src="../../../../resources/images/img/lock.png"
+						style="width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;">
+				</div>
+
+				<div th:case="0" class="col-1"
+					th:classappend="|pwStatus${list.ch_seq}|"></div>
+				<hr style="width: 90%;">
+			</th:block>
 		</div>
-		<hr style="width: 90%;">
-		<!-- 여기까지 한셋트 -->
-		<div class="row">
-			<div class="col-1"></div>
-			<div class="col-11" style="color: black; padding: 0px;">
-				<span><b style="font-size: xx-large;">1</b></span> <span>&nbsp;어서오세요</span>
-			</div>
-		</div>
-		<hr style="width: 90%;">
 
 
 
@@ -65,11 +68,11 @@
 <div th:replace="/user/includes/chat_Room_Form :: chat_Room_Form"></div>
 
 <script>
+$(function() {
 	$("#room-btn").click(function(e) {
-	
 		$('#chatRoomFormlModal').modal('hide');
-
 	});
+});
 </script>
 
 
@@ -86,11 +89,60 @@
 </script>
 
 
-<script language="JavaScript">
+<script>
+
+//방 참여버튼 눌렀을 시 호출
+	function goRoom(ch_seq) {
+	//<![CDATA[
+		console.log('ch_seq : ' + ch_seq)
+		
+		var pw_room_status = $('.pwStatus'+ch_seq)
+		
+		console.log(pw_room_status.children('img').length);
+		
+		
+		if(pw_room_status.children('img').length === 1){ //비밀방O
+			$.ajax({
+				url : "roomPw.ajax",
+				data : {
+					ch_seq : ch_seq
+				},
+				type : 'POST',
+				success : function(res) {
+					console.log('비밀번호 : ' + res.pw)
+						
+					swal("방 비밀번호를 입력해주세요:", {
+					  content: "input",
+					})
+					.then((value) => {
+						if(res.pw === value){
+							//링크이동
+							
+							alert('비번 맞음')
+						}else{
+							swal(`방 pw가 틀렸습니다.: 입력한 비밀번호 : ${value}`);
+						}
+					});
+						
+						/* location.href = "moveChating.htm?roomName=" + name + "&"
+						+ "roomNumber=" + number; */
+						
+						
+				},
+				error:function(request,status,error){
+			        console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			       }
+			});
+			
+			
+		}else{
+			location.href="/chat/entrance.do?ch_seq="+ch_seq
+		}
+
+}
+
+
 	$(function() {
-		/* $("#room-btn").click(function(e) {
-			$('#chatRoomFormlModal').modal('hide');
-		}); */
 
 		$(".chatRoomForm").submit(function(e) {
 			
@@ -122,24 +174,45 @@
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
+					$('.chatList').empty();
+					//방목록 비동기로 받아서 뿌려줘야됨
 					$('#ch_title').val('');
 					$('#ch_description').val('');
 					$('#ch_pw').val('');
 					console.log('반환받음.. : ' + data)
-					/* if (data == 0) {
-						swal({
-							title : "이미 신고한 게시글입니다.",
-							icon : "warning",
-							buttons : true
-						})
-						100
-					} else {
-						swal({
-							title : "신고 접수가 완료되었습니다.",
-							icon : "success"
-						})
-
-					} */
+					
+					$.each(data, function(index, item) {
+						let html = "";
+						
+						html += "<div class='col-1'></div>"
+						html += "<div class='col-8' style='color: black; padding: 0px;'>"
+						html +=	"<span><b style='font-size: xx-large;'>"
+								+ data.ch_seq
+						html +=	"</b</span>" 
+						html +=	"<img src='../../../../resources/images/img/chatroom.png' style='width: 45px; height: 45px; margin-left: 10px;'>"; 
+						html +=	'<a href="#" onclick=goRoom("'
+								+ data.ch_seq
+								+ '")>' 
+								+ "<span>&nbsp;&nbsp;"
+								+ data.ch_title
+								"</span></a></div>"
+						
+						if(data.ch_pw_check === 1){
+							html +=  "<div class='col-1 pwStatus"
+									+ data.ch_seq
+									+ ">" 
+									+ "<img src='../../../../resources/images/img/lock.png' style='width:20px; height:20px; margin-left:10px; float:light; margin-top:20px;'>"
+									+ "</div>"
+						}else{
+							html += "<div class='col-1 pwStatus"
+									+ data.ch_seq
+									+ "></div>"
+						}
+							html += "<hr style='width: 90%;'>"
+						$('.chatList').append(html);
+					});
+				
+				
 				},
 				error : function(e) {
 					console.log("error:", e);

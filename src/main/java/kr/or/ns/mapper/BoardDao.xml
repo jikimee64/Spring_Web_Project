@@ -317,5 +317,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from study_group where s_seq = #{s_seq} and user_id =
 		#{user_id}
 	</select>
+	
+	<!-- 아이디와 글 번호로 게시글 정보 가져오기 -->
+	<select id="getInfos" resultType="kr.or.ns.vo.Study" >
+		select * from study_board 
+		where s_seq = #{param2} and user_id = #{param1} 
+	</select>
 
 </mapper>

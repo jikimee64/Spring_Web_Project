@@ -160,18 +160,24 @@ group+group {
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs" style="margin-top: 70px;">
+		
+		<div th:replace="/user/includes/message_header :: message_header"></div>
+		
+		<!-- <section class="breadcrumbs" style="margin-top: 70px;">
 			<div class="container">
 
 				<div class="d-flex justify-content-between align-items-center">
 					<h2 style="color: #666666;">
+					
 						<b><span sec:authentication="principal.username"></span>님의 쪽지함</b>
+						
+						<b><span th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b>
 							
 					</h2>
 				</div>
 
 			</div>
-		</section>
+		</section> -->
 		<!-- Breadcrumbs Section -->
 	</main>
 

@@ -46,9 +46,9 @@
 	<!-- 신고처리(게시판) -->
 	<insert id="insertBlame" parameterType="hashMap">
 		insert into
-		blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
+		blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date,blamed_title,blamed_content)
 		select #{btc_seq}, 1, #{board_seq}, #{current_userid},
-		#{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
+		#{bl_target_id}, #{bl_title}, #{bl_content}, now(), #{blamed_title}, #{blamed_content} from dual
 		where not
 		exists(select * from blame_board where bpc_seq=#{bpc_seq} and
 		board_seq=#{board_seq})
@@ -57,9 +57,9 @@
 	<!-- 신고처리(쪽지) -->
 	<insert id="insertBlame_Message" parameterType="hashMap">
 		insert into
-		blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date)
+		blame_board(btc_seq,bpc_seq,board_seq,bl_id,bl_target_id,bl_title,bl_content,write_date,blamed_content)
 		select #{btc_seq}, 2, #{board_seq}, #{current_userid},
-		#{bl_target_id}, #{bl_title}, #{bl_content}, now() from dual
+		#{bl_target_id}, #{bl_title}, #{bl_content}, now(), #{blamed_content} from dual
 		where not
 		exists(select * from blame_board where bpc_seq=#{bpc_seq} and
 		board_seq=#{board_seq})

@@ -92,6 +92,8 @@
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 	<input type="hidden" id="s_seq" th:value="${study.S_SEQ}" />
+	<input id="page" type="hidden" th:value="${page}" />
+	<input id="perPageNum" type="hidden" th:value="${perPageNum}" />
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -210,8 +212,7 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea th:text="${study.CONTENT}" id="summernote"
-								name="content"></textarea>
+							<textarea class="summernote" id="summernote" name="content" th:text="${study.CONTENT}" ></textarea>
 						</div>
 						<div style="text-align: center; padding-bottom: 30px;">
 							<button type="submit" class="btn btn-primary _submit"
@@ -302,21 +303,53 @@
 	</script>
 
 	<script>
-		$(document).ready(function() {
-			$('#summernote').summernote({
-				tabsize : 2,
-				height : 500,
-				focus : false,
-				minHeight : null,
-				maxHeight : null,
-				placeholder : '글 내용을 입력해주세요'
-			});
-			$("p").each(function() {
-				if (!$(this).text().trim().length) {
-					$(this).remove();
-				}
-			});
-		});
+	$(function() {
+        $('#summernote').summernote({
+           tabsize : 2,
+           height : 500,
+           focus : false,
+           minHeight : null,
+           maxHeight : null,
+           lang : 'ko-KR',
+           placeholder : '글 내용을 입력해주세요',
+           callbacks: {
+              onImageUpload: function(files, editor, welEditable) {
+                    for (var i = files.length - 1; i >= 0; i--) {
+                       sendFile(files[i], this);
+                    }
+                }
+           }
+        });
+        
+        $("p").each(function() {
+           if (!$(this).text().trim().length) {
+              $(this).remove();
+           }
+        });
+        
+        
+     });
+	
+	  
+   //썸머노트 파일 업로드 json데이터 반환
+   function sendFile(file, el) {
+      console.warn("여기 오냐?");
+      var form_data = new FormData();
+         form_data.append('file', file);
+         $.ajax({
+      	   data: form_data,
+             type: "POST",
+             url: "/board/ProfileImage.do",
+             	processData : false,
+				contentType : false,
+				enctype : 'multipart/form-data',
+				cache : false,
+           success: function(data) {
+              console.log(data);
+                $(el).summernote("editor.insertImage", data);
+             }
+         });
+   } 
 	</script>
 
 	<!-- mysql이랑 맞출것  -->
@@ -354,13 +387,17 @@
 
 	<script>
 		$(function() {
+			
+			var page = $('#page').val()
+			var perPageNum = $('#perPageNum').val()
+			
 			$("#registerform").submit(function(e) {
 				var formData = new FormData(this);
 				console.log(formData)
 				formData.append("s_seq", $('#s_seq').val());
 				console.log("데이터 : " + formData)
 				$.ajax({
-					url : "/board/writing_Normal_Study_Edit.do",
+					url : "/board/writing_Normal_Study_Edit.do?page="+page+"&perPageNum="+perPageNum,
 					processData : false,
 					contentType : false,
 					cache : false,
