@@ -528,7 +528,7 @@ group+group {
 													th:style="|WIDTH:| +${list2.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
 												</p>
 											</div>
-											<span>(6)</span> <b>₩44,000</b>
+											<span th:text="|(${list2.L_REVIEW})|">(6)</span> <b th:text="|₩${list2.L_PRICE}|">₩44,000</b>
 										</div>
 									</div>
 								</th:block>
@@ -559,12 +559,12 @@ group+group {
 								</b> </a>
 								
 							</div>
-							<div class="col-md-3"
-								style="text-align: center; padding-right: 0px;">
+							<div class="col-md-4"
+								style="text-align: center; padding-right: 0px; text-align:right">
 								<b
 									th:text="|등록일 : ${#dates.format(list.WRITE_DATE, 'yyyy/MM/dd HH:mm')}|"></b>
 							</div>
-							<div class="col-md-3"
+							<div class="col-md-4"
 								style="text-align: center; padding-left: 0px;">
 								<b
 									th:text="|마감일 : ${#dates.format(list.DEADLINE, 'yyyy/MM/dd HH:mm')}|"></b>
@@ -962,13 +962,13 @@ group+group {
 																				+ data[0][i].S_SEQ
 																				+ '") data-toggle="modal" data-target="#userInfoModal">'
 																		html += "<b style='color: black; margin-right: 10px;'>"+data[0][i].USER_ID +"</b></a></div>"
-																		html += "<div class='col-md-3' style='text-align: center; padding-right: 0px;'>"
+																		html += "<div class='col-md-4' style='text-align: center; padding-right: 0px;text-align:right;'>"
 
 																		html += "<b>등록일 : "
 																				+ getDateFormet(write_date)
 																				+ "</b></div>"
 
-																		html += "<div class='col-md-3' style='text-align: center; padding-left: 0px;'>"
+																		html += "<div class='col-md-4' style='text-align: center; padding-left: 0px;'>"
 
 																		html += "<b>마감일 : "
 																				+ getDateFormet(deadline)

@@ -284,16 +284,18 @@ body {
 									<div class="col-md-7"
 										style="padding-left: 22px; padding-right: 0px; padding-top: 10px;">
 
-										<h4 style="font-weight: bold; color: black;"
+										<h4 style="font-weight: bold; color: black; height:56px;"
 											th:text="${list.L_TITLE}"></h4>
-										<br /> <br />
+										<br /> 
 										<div
-												style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+												style="CLEAR: both;position:relative;transform:translateY(2px); PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
 												<p class="_star"
 													th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
 												</p>
 											</div>
-										&nbsp; <span> <b th:text="${list.L_PRICE}"></b>
+										
+											<span th:text="|(${list.L_REVIEW})|">(6)</span> 
+										 <span> <b th:text="|₩${list.L_PRICE}|"></b>
 										</span> <br />
 
 									</div>
@@ -412,7 +414,7 @@ body {
 																	+ "</p></div>";
 																	
 															html += "<div class='col-md-8'>";
-															html += "<div class='row' style='padding-left:15px; padding-right:15px;'>"
+															html += "<div style='padding-left:15px; padding-right:15px;'>"
 															html += "<span class='badge badge-pill badge-primary' style='height:20px;'>"
 																	+ data[index].STATUS
 																	+ "</span>";
@@ -439,9 +441,10 @@ body {
 																	+ "'>";
 															
 															/* html += "<a href = '/board/board.Support_Status.do'>"; */
-															html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;transform:translateY(-10px);'></a>";
+															html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;transform:translateY(-3px);'></a>";
 															html += " ";
 															html += "<div style='font-size:small; font-weight:bold;'>";
+															html
 															html += " 등록일 : ";
 															html += getDateFormet(write_date)
 															html += " 마감일 : "
@@ -450,7 +453,7 @@ body {
 															html += "</div>";
 															html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
 															/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-															html += "<div class='_title'><b><span style='font-size:xx-large;'>"
+															html += "<div class='_title' style='padding-left: 15px; margin-top:21px;'><b><span style='font-size:xx-large;'>"
 																	+ data[index].TITLE
 																	+ "</span></b></div><br/></a>";
 															html += "</div>";
@@ -465,7 +468,7 @@ body {
 															html += "</div>"
 															html += "</div>";
 															html += "</div>";
-															html += "<hr style='border: solid 1px; margin-top: 0px; width:96%;' />";
+															html += "<hr style='border: solid 1px; margin-top: 0px;margin-bottom:0px; width:96%;' />";
 															$(
 																	'#recruting_study')
 																	.append(

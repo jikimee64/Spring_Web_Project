@@ -234,9 +234,13 @@
 										style="color: gray; font-size: small;"></p>
 									<a href="#" class="stretched-link"></a>
 									<!-- 별 다섯개 이미지  -->
-									<img
-										src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-										alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+										<div
+												style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px; transform:translateY(2px);">
+												<div class="_star"
+													th:style="|WIDTH:| +${onlineInfo.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+												</div>
+											</div>
+				<span th:text="|(${onlineInfo.L_REVIEW})|">(6)</span> <b th:text="${onlineInfo.L_PRICE}">₩44,000</b>
 								</div>
 							</div>
 						</div>
