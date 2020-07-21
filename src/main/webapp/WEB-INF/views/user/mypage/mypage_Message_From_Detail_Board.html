@@ -188,7 +188,8 @@ body {
 				"place":"2", //신고장소(쪽지)	
 				"target": $('#user_id').text(), //신고당하는 사람
 				"bl_title":formData.get("bl_title"),  //신고제목
-				"comment":formData.get("comment") //신고내용
+				"comment":formData.get("comment"), //신고내용
+				"blamed_content": $('#msg').text() //신고당한 글 원문
 			} 
 
 			$.ajax({
