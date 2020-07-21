@@ -245,7 +245,8 @@ $(function() {
 						if(${list.ch_pw_check} === 1){
 							html +=  "<div class='col-1 pwStatus
 									+ ${list.ch_seq}
-									+ '> <img src='../../../../resources/images/img/lock.png' style='width'
+									+ '>" 
+									+ "<img src='../../../../resources/images/img/lock.png' style='width:20px; height:20px; margin-left:10px; float:light; margin-top:20px;'>"
 									+ "</div>"
 									
 									
@@ -255,21 +256,6 @@ $(function() {
 									+ '></div>"
 						}
 							html += "<hr style='width: 90%;'>"
-						
-						<!-- 비밀방 일때-->
-						<th:block th:switch="${list.ch_pw_check}">
-							<!-- th:classappend 로 m_seq로 줘서 그안에 img가 있으면 비밀방, 없으면 공개방  -->
-							<div th:case="1" class="col-1"
-								th:classappend="|pwStatus${list.ch_seq}|">
-								<img src="../../../../resources/images/img/lock.png"
-									style="width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;">
-							</div>
-
-							<div th:case="0" class="col-1"
-								th:classappend="|pwStatus|"></div>
-							<hr style="width: 90%;">
-						</th:block>
-						
 						
 					});
 				

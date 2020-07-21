@@ -1062,6 +1062,10 @@ keyframes heart-keyframes { 100% {
                });
          
          $('#delete').click(function(){
+        	 
+        	 var page = $('#page');
+        	 var perPageNum = $('#perPageNum');
+        	 
             swal({
                  title: "정말 삭제하시겠습니까?",
                  text: "",
@@ -1075,7 +1079,7 @@ keyframes heart-keyframes { 100% {
                    var page = $('#page').val();
                    var perPageNum = $('#perPageNum').val();
                    
-                   location.href="writing_Common_Study_Delete.do?s_seq="+s_seq
+                   location.href="writing_Common_Study_Delete.do?s_seq="+s_seq+"&page="+page+"&perPageNum="+perPageNum
                  } else {
                    swal({
                       title: "삭제가 취소되었습니다."
