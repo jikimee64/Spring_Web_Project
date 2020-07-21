@@ -368,7 +368,8 @@ public class BoardServiceImpl implements BoardService {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		System.out.println("아오 :ㅣ " + s_seq);
 		int count = dao.delete(s_seq);
-		return count;
+		int result = dao.getStudyBoardCount();
+		return result;
 	}
 
 	// 댓글 개수
