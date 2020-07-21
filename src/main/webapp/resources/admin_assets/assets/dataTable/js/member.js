@@ -19,9 +19,11 @@ $(document).ready(function () {
             //'type': 'POST',
             'dataSrc':''
         },*/
-        responsive: true,
-        orderMulti: true,
-        order : [[1, 'desc']],
+        "responsive": true,
+        "orderMulti": true,
+        "ordering": true,
+        "order" : [[0, "desc"]], 
+        "serverSide":false,
         "language": {
             "emptyTable": "데이터가 없어요.",
             "lengthMenu": "페이지당 _MENU_ 개씩 보기",
