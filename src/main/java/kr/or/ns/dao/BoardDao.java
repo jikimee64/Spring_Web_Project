@@ -115,6 +115,9 @@ public interface BoardDao {
 	//스터지모임에 지원했는지 여부 
 	public int checkApply(HashMap<String, String> map);
 
+	//아이디와 글번호로 게시글 정보 가져오기 
+	public Study getInfos(String user_id, int s_seq);
+
 
 
 }
