@@ -20,6 +20,7 @@ import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.BoardService;
 import kr.or.ns.service.ChatService;
 import kr.or.ns.vo.ChatRoom;
+import kr.or.ns.vo.ChatRoomMember;
 import kr.or.ns.vo.Criteria_Board;
 
 @Controller
@@ -60,12 +61,22 @@ public class ChatController {
 		return list;
 	}
 
-	// 채팅방 내부 입장
-
+	//채팅방 내부 입장 / 채팅멤버 테이블에 삽입
 	@RequestMapping("entrance.do")
-	public String chatRoomEntrance(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
-		System.out.println("채팅방 내부 페이지로 이동이동(연규가씀)");
-
+	public String chatRoomEntrance(@RequestParam HashMap<Object, Object> params, Model model, Principal principal) throws ClassNotFoundException, SQLException {
+		
+		String ch_seq = (String)params.get("ch_seq");
+		String user_id = principal.getName();
+		
+		ChatRoomMember cm = new ChatRoomMember();
+		cm.setCh_seq(Integer.parseInt(ch_seq));
+		cm.setUser_id(user_id);
+		int result = service.memberInsert(cm);
+		ChatRoom chatroom = service.getChatRoom(ch_seq);
+		System.out.println("삽입 결과 : " + result);
+		
+		model.addAttribute("chatroom", chatroom);
+		
 		return "chat/chatroom";
 	}
 

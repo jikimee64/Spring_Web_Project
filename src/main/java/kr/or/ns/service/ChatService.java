@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.or.ns.vo.ChatRoom;
+import kr.or.ns.vo.ChatRoomMember;
 
 public interface ChatService {
 	
@@ -16,5 +17,9 @@ public interface ChatService {
 	public int registerRoom(Map<String, Object> params);
 	
 	public String roomPw(String ch_seq);
+	
+	public int memberInsert(ChatRoomMember cm);
+	
+	public ChatRoom getChatRoom(String ch_seq);
 
 }

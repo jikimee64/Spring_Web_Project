@@ -110,16 +110,11 @@
 					.then((value) => {
 						if(res.pw === value){
 							//링크이동
-							
-							alert('비번 맞음')
+							location.href="/chat/entrance.do?ch_seq="+ch_seq
 						}else{
 							swal(`방 pw가 틀렸습니다.: 입력한 비밀번호 : ${value}`);
 						}
 					});
-						
-						/* location.href = "moveChating.htm?roomName=" + name + "&"
-						+ "roomNumber=" + number; */
-						
 						
 				},
 				error:function(request,status,error){
