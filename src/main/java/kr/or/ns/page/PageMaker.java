@@ -89,8 +89,6 @@ public class PageMaker {
 		//다음
 		//다음버튼 생성여부 = 끝페이지 번호 * 한페이지당 보여줄 게시글의 갯수 < 총 게시글의 수? true:false;
 		next = endPage*cri.getPerPageNum() < totalCount? true : false;
-		System.out.println("1ㄴㄴㅇㅁㄴ : "  + endPage*cri.getPerPageNum());
-		System.out.println("미네미네바보 : " + next);
 	}
 	
 	

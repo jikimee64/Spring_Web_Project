@@ -62,34 +62,45 @@
 
 </body>
 <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-<div th:replace="/user/includes/chat_Room_Form :: chat_Room_Form">
-	<script>
-	$("#room-btn").click(function(e) {
+<div th:replace="/user/includes/chat_Room_Form :: chat_Room_Form"></div>
 
+<script>
+	$("#room-btn").click(function(e) {
+	
 		$('#chatRoomFormlModal').modal('hide');
 
 	});
 </script>
 
 
-	<script>
+<script>
 	function onClickHandler() {
-		if ($("input:checkbox[id='flag']").is(":checked") == true) {
+		if ($("input:checkbox[id='flag']").is(":checked") === true) {
+			console.log('true일떄')
 			$('#ch_pw').attr('disabled', false);
 		} else {
+			console.log('false일떄')
 			$('#ch_pw').attr('disabled', true);
 		}
 	}
 </script>
 
 
-	<script language="JavaScript">
+<script language="JavaScript">
 	$(function() {
-		$("#room-btn").click(function(e) {
-			$('##chatRoomFormlModal').modal('hide');
-		});
+		/* $("#room-btn").click(function(e) {
+			$('#chatRoomFormlModal').modal('hide');
+		}); */
 
 		$(".chatRoomForm").submit(function(e) {
+			
+		 	if ($('#ch_title').val() == "") { // 아이디 검사
+				alert('방제목을 입력해주세요.');
+				$('#ch_title').focus();
+				$('#chatRoomFormlModal').modal('show');
+				e.stopImmediatePropagation();
+			} 
+			
 			e.preventDefault();
 			var formData = new FormData(this);
 
@@ -101,7 +112,6 @@
 				"ch_title" : formData.get("ch_title"), //신고유형
 				"ch_description" : formData.get("ch_description"), //신고제목
 				"ch_pw" : formData.get("ch_pw")
-			//신고내용
 			}
 
 			$.ajax({
@@ -112,6 +122,9 @@
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
+					$('#ch_title').val('');
+					$('#ch_description').val('');
+					$('#ch_pw').val('');
 					console.log('반환받음.. : ' + data)
 					/* if (data == 0) {
 						swal({

@@ -6,7 +6,6 @@ package kr.or.ns.vo;
 마지막 업데이트 날짜 : 2020 - 07 - 01
 작업자 : 박민혜
 */
-
 public class Criteria {
 	private int page;
 	private int perPageNum;
