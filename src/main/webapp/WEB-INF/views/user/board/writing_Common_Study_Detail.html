@@ -261,7 +261,7 @@ keyframes heart-keyframes { 100% {
 				th:text="${study.CONTENT_KIND}"></span>
 			<div class="row">
 				<div class="col-md-6">
-					<span style="font-size: x-large;"><b
+					<span style="font-size: x-large;" id="title"><b
 						th:text="${study.TITLE}"></b></span>
 				</div>
 				<div class="col-md-6 d-flex justify-content-between"
@@ -349,7 +349,7 @@ keyframes heart-keyframes { 100% {
 						<br />
 						<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
 						
-								<span th:utext="${study.CONTENT}"><textarea name="" id="" cols="30" rows="10"
+								<span th:utext="${study.CONTENT}" id="content" ><textarea name="" cols="30" rows="10"
 							class="form-control _textarea_readonly" readonly
 							style="background-color: #F5F5F5; resize: none;"></textarea></span>
 						<br />
@@ -1226,6 +1226,9 @@ keyframes heart-keyframes { 100% {
          console.log("데이터2 : " + formData.get("bl_title"))
          console.log("데이터2 : " + formData.get("blame"))
          console.log("데이터3 : " + formData.get("comment"))
+		console.log("타이틀:"+ $('#title').text());
+         console.log("콘텐츠:"+  $('#content').text());
+         
          
          let data = {
             "s_seq":$('#s_seq').val(), //신고당하는 글번호
@@ -1233,7 +1236,9 @@ keyframes heart-keyframes { 100% {
             "place":"1", //신고장소(게시판)   
             "target": $('#user_id').text(), //신고당하는 사람
             "bl_title":formData.get("bl_title"),  //신고제목
-            "comment":formData.get("comment") //신고내용
+            "comment":formData.get("comment"), //신고내용
+            "blamed_title": $('#title').text(),
+            "blamed_content": $('#content').text()
          } 
  
          $.ajax({
@@ -1246,7 +1251,7 @@ keyframes heart-keyframes { 100% {
             success : function(data) {
                if(data == 0){
                   swal({
-                     title: "이미 신고한 게시글입니다.",
+                     title: "이미 신고된 게시글입니다.",
                        icon: "warning",
                        buttons: true
                      })

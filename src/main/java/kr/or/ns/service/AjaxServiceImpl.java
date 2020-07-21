@@ -197,7 +197,10 @@ public class AjaxServiceImpl implements AjaxService {
 		String writer = (String) params.get("target"); // 신고당하는 사람(글작성자,해당 게시글)
 		String title = (String) params.get("bl_title"); // 신고제목
 		String comment = (String) params.get("comment"); // 신고내용
-
+		String blamed_title = (String) params.get("blamed_title");
+		String blamed_content = (String) params.get("blamed_content");
+		
+		
 		HashMap map_board = new HashMap(); // 게시판용 map
 		map_board.put("board_seq", s_seq);// 글번호(글번호)
 		System.out.println("나는 게시판이다 : " + s_seq);
@@ -207,6 +210,8 @@ public class AjaxServiceImpl implements AjaxService {
 		map_board.put("bl_target_id", writer); // 신고당하는사람
 		map_board.put("bl_title", title); // 신고제목
 		map_board.put("bl_content", comment); // 신고내용
+		map_board.put("blamed_title", blamed_title); //신고당한 글 제목
+		map_board.put("blamed_content", blamed_content); //신고당한 글 내용
 
 		HashMap map_message = new HashMap(); // 쪽지용 map
 		map_message.put("board_seq", m_seq); // 글번호(게시판)
@@ -217,6 +222,7 @@ public class AjaxServiceImpl implements AjaxService {
 		map_message.put("bl_target_id", writer); // 신고당하는사람
 		map_message.put("bl_title", title); // 신고제목
 		map_message.put("bl_content", comment); // 신고내용
+		map_message.put("blamed_content", blamed_content); //신고당한 쪽지 내용
 
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
 
