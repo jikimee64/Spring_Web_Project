@@ -316,13 +316,10 @@ public class BoardController {
 
 	// 스터디 게시판 글 삭제
 	@RequestMapping("writing_Common_Study_Delete.do")
-	public String writingNormalStudyDelete(Criteria_Board cri_b, Model model, String s_seq)
+	public String writingNormalStudyDelete( Model model, String s_seq)
 			throws ClassNotFoundException, SQLException {
 		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
-		System.out.println("delete controller 에서 찍어보기");
-		System.out.println(cri_b + s_seq);
-		HashMap<String, Object> map = AjaxRestController.paramsTemp;
-		
+		Criteria_Board cri_b = new Criteria_Board();
 		// 게시글 삭제
 		int result = service.delete(s_seq);
 
