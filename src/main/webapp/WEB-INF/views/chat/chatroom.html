@@ -99,7 +99,7 @@
 		<div class="talk_write row"
 			style="width:100%; height: 100%; margin: 0px; min-height: 40px; background-color: #fff;">
 			<div class="col"
-				style="margin:0px 10px; padding-right:0px;border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
+				style="margin:0px 10px; position:fixed; padding-right:0px;border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
 					class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
 						<button type="submit" id="sendButton"
@@ -186,7 +186,7 @@
 									+ d.msg + "</div><br>"
 							$("#chatBoxArea").append(html);
 						} else { //상대
-
+							console.log('제발!!@@')
 							var data = {}
 							data["user_id"] = d.user_id;
 							$
