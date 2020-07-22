@@ -40,8 +40,6 @@ public interface AjaxRestDao {
 	//유저정보 모달창에 띄우기
 	public List<HashMap<String, Object>> getUserInfo(String user_id);
 	
-	//유저가 쓴 게시판 정보 모달창에 띄우기
-	public List<HashMap<String, Object>> getUserBoardInfo(String user_id);
 
 	//이메일 중복체크
 	public int onlyEmailCheck(String user_email);
@@ -105,7 +103,9 @@ public interface AjaxRestDao {
 	
 	//소셜계정 권한확인용
 	public int enabledcheck(String user_id);
-
 	
+	//유저정보 모달창에 게시판 뿌리기
+	public List<HashMap<String, Object>> getUserBoardInfo(String user_id);
+
 
 }

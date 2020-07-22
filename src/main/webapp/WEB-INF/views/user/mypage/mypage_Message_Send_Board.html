@@ -379,7 +379,78 @@ group+group {
 							}); /* click+func */
 		});/* func */
 	</script>
+	<script>
+		function InfoModal(idx) {
 
+			let id = $('.InfoModal' + idx).children().text();
+			//formData.append("user_id" , this.id);
+
+			console.log("아이디 : " + id);
+			// let obj = {"user_id" : id}; 
+
+			let data = {
+				"user_id" : id
+			}
+
+			$.ajax({
+				url : '/ajax/userInfoModal.do',
+				processData : false,
+				contentType : "application/json",
+				cache : false,
+				type : 'POST',
+				data : JSON.stringify(data),
+				success : function(data) {
+					console.warn('aaaaaaaaaaaaa');
+					console.warn(data[0].USER_NAME);
+					console.warn(data[0][0].USER_NAME);
+					console.warn(data[0][1].USER_NAME);
+					$('.ModalUserName').text(data[0][0].USER_NAME);
+					$('.introduce').text(data[0][0].INTRODUCE)
+					'src','/material/images/jQuery/asimo.png'
+					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+					console.log(data[0][0].INTRODUCE);
+					$.each(data, function (index, item) {
+						if (item.SKILL_LEVEL === '입문') {
+							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
+						} else if (item.SKILL_LEVEL === '초급') {
+							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
+						} else {
+							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
+						}
+					})
+					
+// 						<td>1578</td>
+// 												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+					
+					$('._user_board_list').empty();
+					
+					let userBoardList = "";
+					$.each(data[1],function(index, item){
+						userBoardList += "<tr>";
+						userBoardList += "<td>";
+						userBoardList += data[1][index].S_SEQ;
+						userBoardList += "</td>";
+						userBoardList += "<td>";
+						userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+									+ data[1][index].S_SEQ
+									+ "'>";
+						userBoardList += data[1][index].TITLE;
+						userBoardList += "</a>"	
+						userBoardList += "</td>";
+						userBoardList += "</tr>";
+					});
+					
+					
+					$('._user_board_list').append(userBoardList);
+// 						$('._user_board_list');
+				},
+				error : function(e) {
+					console.log("error:", e);
+				}
+			});
+
+		}
+	</script>
 
 <script>
 	/* 페이지 0 뜨는거 없애기 시작 */

@@ -80,13 +80,12 @@
 		users.user_id=#{user_id}
 	</select>
 	
-	<select  id="getUserBoardInfo" resultType="hashMap">
+	<!-- 유저정보모달창에 게시판 띄우기 -->
+	<select id="getUserBoardInfo"  resultType="hashMap">
 		select * 
 		from study_board 
-		where USER_ID = #{user_id}
+		where USER_ID =#{user_id}
 	</select>
-	
-
 	<!-- 이메일 중복체크 -->
 	<select id="onlyEmailCheck" resultType="int">
 		select count(*) from

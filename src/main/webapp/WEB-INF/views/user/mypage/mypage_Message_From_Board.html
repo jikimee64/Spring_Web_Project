@@ -491,12 +491,15 @@ group+group {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-
-					$('.ModalUserName').text(data[0].USER_NAME);
-					$('.introduce').text(data[0].INTRODUCE)
+					console.warn('aaaaaaaaaaaaa');
+					console.warn(data[0].USER_NAME);
+					console.warn(data[0][0].USER_NAME);
+					console.warn(data[0][1].USER_NAME);
+					$('.ModalUserName').text(data[0][0].USER_NAME);
+					$('.introduce').text(data[0][0].INTRODUCE)
 					'src','/material/images/jQuery/asimo.png'
-					$('#profile_img').attr('src', '/userboard/upload/' + data[0].PROFILE_IMG);
-					console.log(data[0].INTRODUCE);
+					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+					console.log(data[0][0].INTRODUCE);
 					$.each(data, function (index, item) {
 						if (item.SKILL_LEVEL === '입문') {
 							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
@@ -513,17 +516,21 @@ group+group {
 					$('._user_board_list').empty();
 					
 					let userBoardList = "";
-					console.warn(data[0].TITLE);
-					console.warn(data);
-					console.warn(data[0].INTRODUCE);
-					userBoardList += "<tr>";
-					userBoardList += "<td>";
-					userBoardList += "asdf";
-					userBoardList += "</td>";
-					userBoardList += "<td>";
-					userBoardList += "asdf";
-					userBoardList += "</td>";
-					userBoardList += "</tr>";
+					$.each(data[1],function(index, item){
+						userBoardList += "<tr>";
+						userBoardList += "<td>";
+						userBoardList += data[1][index].S_SEQ;
+						userBoardList += "</td>";
+						userBoardList += "<td>";
+						userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+									+ data[1][index].S_SEQ
+									+ "'>";
+						userBoardList += data[1][index].TITLE;
+						userBoardList += "</a>"	
+						userBoardList += "</td>";
+						userBoardList += "</tr>";
+					});
+					
 					
 					$('._user_board_list').append(userBoardList);
 // 						$('._user_board_list');
