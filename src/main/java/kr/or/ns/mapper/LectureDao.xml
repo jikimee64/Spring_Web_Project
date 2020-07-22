@@ -90,14 +90,14 @@
 			</if>
 			<if test="cri.searchType == 'all'.toString()">
 				<if test="keyword.size != 0">
-					     where lecture_board.l_title like CONCAT('%',
+					     where (lecture_board.l_title like CONCAT('%',
 					<foreach collection="keyword" item="item" index="index" separator="," close=")">
 					      	#{item} , '%'
 					</foreach>
 				</if>
 				<if test="keyword.size != 0">
 						or lecture_board.l_writer like CONCAT('%',
-					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
 					      	#{item} , '%'
 					</foreach>
 				</if>
