@@ -17,9 +17,9 @@ public interface LectureService {
 	public int getLectureCount();
 	
 	//온라인 게시글 페이징 목록
-	public List<Map<String, Object>> getLectureList(Criteria cri);
+	public List<Map<String, Object>> getLectureList(Criteria cri, HashMap<String, Object> map4);
 	
-	public List<Map<String, Object>> getLectureListSize(Criteria cri);
+	public List<Map<String, Object>> getLectureListSize(Criteria cri, HashMap<String, Object> map4);
 	
 	//온라인 게시글 페이징 목록(필터링)
 	public List<Map<String, Object>> getLectureListFilter(Criteria cri, HashMap<String, Object> map);

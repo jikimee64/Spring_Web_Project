@@ -41,7 +41,7 @@
 		<include refid="searchCondition"></include>
 		group by l_key
 		ORDER BY L_SEQ DESC
-		LIMIT #{pageStart}, #{perPageNum}     
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}     
 	</select>
 	
 		<!-- 강의 리스트 -->
@@ -64,24 +64,43 @@
 	
 	<sql id="searchCondition">
 
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				where lecture_board.l_title like CONCAT('%',#{keyword},'%')
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == 't'.toString()">
+				<if test="keyword.size != 0">
+					     where lecture_board.l_title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
-			<if test="searchType == 'c'.toString()">
-				where lecture_board.l_address like CONCAT('%', #{keyword}, '%')
+			<if test="cri.searchType == 'c'.toString()">
+				where lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')
 			</if>
-			<if test="searchType == 'w'.toString()">
-				where lecture_board.l_writer like CONCAT('%', #{keyword}, '%')
+			<if test="cri.searchType == 'w'.toString()">
+				<if test="keyword.size != 0">
+						where lecture_board.l_writer like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
-			<if test="searchType == 'tc'.toString()">
+			<if test="cri.searchType == 'tc'.toString()">
 				where (l_title like CONCAT('%', #{keyword}, '%')
-				or lecture_board.l_address like CONCAT('%', #{keyword}, '%'))
+				or lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%'))
 			</if>
-			<if test="searchType == 'all'.toString()">
-				where (l_title like CONCAT('%', #{keyword}, '%')
-				or lecture_board.l_address like CONCAT('%', #{keyword}, '%')
-				or lecture_board.l_writer like CONCAT('%', #{keyword}, '%'))
+			<if test="cri.searchType == 'all'.toString()">
+				<if test="keyword.size != 0">
+					     where lecture_board.l_title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
+				<if test="keyword.size != 0">
+						or lecture_board.l_writer like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 		</if>
 
@@ -125,14 +144,14 @@
 			</if>
 			<if test="cri.searchType == 'all'.toString()">
 				<if test="keyword.size != 0">
-					     where lecture_board.l_title like CONCAT('%',
+					     where (lecture_board.l_title like CONCAT('%',
 					<foreach collection="keyword" item="item" index="index" separator="," close=")">
 					      	#{item} , '%'
 					</foreach>
 				</if>
 				<if test="keyword.size != 0">
 						or lecture_board.l_writer like CONCAT('%',
-					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
 					      	#{item} , '%'
 					</foreach>
 				</if>

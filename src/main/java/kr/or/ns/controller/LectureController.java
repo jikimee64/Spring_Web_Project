@@ -91,6 +91,7 @@ public class LectureController {
 			map2.put("language", arr);
 			map2.put("perPageNum", cri.getPerPageNum());
 			map2.put("pageStart", cri.getPageStart());
+			
 			List<HashMap<String, Object>> list2 = aservice.courseBoardFilter(map2, cri);
 			System.out.println("아오짜짱ㄴㅇㅁ니ㅏㅇㅁ너ㅏㅐㅑㅣㅏ언미 : " + list);
 			listSize = aservice.courseBoardFilterSize(map2);
@@ -104,10 +105,12 @@ public class LectureController {
 			model.addAttribute("pageMaker", pageMaker);
 		} else if (root != null) { //헤더에서 왔을때
 			
+			HashMap<String, Object> map4 = new HashMap();
+			map4.put("keyword",keywordCollec );
 			//language = null;
 			System.out.println("동기");
-			list = service.getLectureList(cri);
-			System.out.println("호호호 : " + service.getLectureListSize(cri).size());
+			list = service.getLectureList(cri, map4);
+			System.out.println("호호호 : " + service.getLectureListSize(cri, map4).size());
 			
 			if(keyword == null) {
 				System.out.println("처음엔 제발 여기");
@@ -122,7 +125,7 @@ public class LectureController {
 				model.addAttribute("type", "Search");
 				model.addAttribute("searchType", cri.getSearchType());
 				model.addAttribute("keyword", cri.getKeyword());
-				pageMaker.setTotalCount(service.getLectureListSize(cri).size());
+				pageMaker.setTotalCount(service.getLectureListSize(cri, map4).size());
 			}
 			
 			//pageMaker.setTotalCount(service.getLectureListSize(cri).size());
@@ -147,7 +150,7 @@ public class LectureController {
 			//
 			model.addAttribute("type", "FS");
 			model.addAttribute("searchType", cri.getSearchType());
-			model.addAttribute("keyword", keywordCollec);
+			model.addAttribute("keyword", keyword);
 			//
 			
 			System.out.println("잘왔을텐데..? " + list);
