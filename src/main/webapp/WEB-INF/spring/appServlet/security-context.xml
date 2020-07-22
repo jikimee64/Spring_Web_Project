@@ -11,53 +11,56 @@
   http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<security:http>
-	
-		<security:access-denied-handler  error-page="/403.do"/>
-	
+
+		<security:access-denied-handler
+			error-page="/403.do" />
+
 		<security:csrf disabled="true" />
-		<!-- default-target-url : 로그인이 성공한 경우 호출할 주소  -->
-		<security:form-login
-			username-parameter="user_id"
-			password-parameter="user_pwd"
-			default-target-url="" 
+		<!-- default-target-url : 로그인이 성공한 경우 호출할 주소 -->
+		<security:form-login username-parameter="user_id"
+			password-parameter="user_pwd" default-target-url=""
 			login-page="/member/normallogin.do"
 			authentication-success-handler-ref="loginSuccessHandler"
-			authentication-failure-handler-ref="loginFailureHandler"
-		/> 
+			authentication-failure-handler-ref="loginFailureHandler" />
 		<security:logout logout-success-url="/user/main.do" />
-		
-		<!-- 비로그인 막는 페이지..   -->
-	
-	<!-- 채팅방  -->
-	 <security:intercept-url
-			pattern="/chat/**.do" access="hasRole('ROLE_USER')" />  	
-		
-	<!-- 온라인 게시판  -->
- 	<security:intercept-url
-			pattern="/lecture/**.do" access="hasRole('ROLE_USER')" />  
-			
-	<!-- 스터디 게시판   -->
- 	<security:intercept-url
-			pattern="/board/**.do" access="hasRole('ROLE_USER')" />  
-	<!-- 마이페이지 -->
-	<security:intercept-url
-			pattern="/mypage/**.do" access="hasRole('ROLE_USER')" /> 
-			
-	<!-- 관리자페이지 -->
-	<security:intercept-url
+
+		<!-- 비로그인 막는 페이지.. -->
+
+		<!-- 채팅방 -->
+		<security:intercept-url pattern="/chat/**.do"
+			access="hasRole('ROLE_USER')" />
+
+		<!-- 온라인 게시판 -->
+		<security:intercept-url
+			pattern="/lecture/**.do" access="hasRole('ROLE_USER')" />
+
+		<!-- 스터디 게시판 -->
+		<security:intercept-url pattern="/board/**.do"
+			access="hasRole('ROLE_USER')" />
+		<!-- 마이페이지 -->
+		<security:intercept-url pattern="/mypage/**.do"
+			access="hasRole('ROLE_USER')" />
+
+		<!-- 관리자페이지 -->
+		<security:intercept-url
 			pattern="/manager/**.do" access="hasRole('ROLE_ADMIN')" />
-			
-			<!-- 스터디모집하기 버튼  -->
-		<!-- <security:intercept-url
-			pattern="/board/*Detail.do" access="hasRole('ROLE_USER')" />
-		<security:intercept-url pattern="/admin/**"
-			access="hasRole('ROLE_ADMIN')" /> -->
-			
-			
-			
-	
+
+		<!-- 스터디모집하기 버튼 -->
+		<!-- <security:intercept-url pattern="/board/*Detail.do" access="hasRole('ROLE_USER')" 
+			/> <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" 
+			/> -->
+
+
+		<security:session-management invalid-session-url="/member/normallogin.do">
+			<security:concurrency-control
+				max-sessions="1" expired-url="/member/normallogin.do" />
+			<!-- 중복 로그인 방지. 만약 두번째 로그인을 막고 싶을 경우 error-if-maximum0exceeded="true"를 
+				추가하여 값이 true일 때 두번째 로그인을 막는다. -->
+		</security:session-management>
+
+
 	</security:http>
-	<!-- enabled가 1인것만 로그인.. 0인 아이디로 로그인할 시 로그인 에러 터짐  -->
+	<!-- enabled가 1인것만 로그인.. 0인 아이디로 로그인할 시 로그인 에러 터짐 -->
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service
@@ -76,17 +79,20 @@
 
 	</security:authentication-manager>
 
-	<bean id="loginSuccessHandler" class="kr.or.ns.interceptor.LoginSuccessHandler">
-	    <!-- <property name="loginEmail" value="user_email"/> -->
-	    <property name="defaultUrl" value="/user/main.do"/> 
+	<bean id="loginSuccessHandler"
+		class="kr.or.ns.interceptor.LoginSuccessHandler">
+		<!-- <property name="loginEmail" value="user_email"/> -->
+		<property name="defaultUrl" value="/user/main.do" />
 	</bean>
-	
-<bean id="loginFailureHandler" class="kr.or.ns.interceptor.LoginFailureHandler">
-	    <property name="loginidname" value="user_id"/>
-	    <property name="loginpwdname" value="user_pwd"/>
-	    <property name="errormsgname" value="ERRORMSG"/>
-	    <property name="defaultFailureUrl" value="/member/loginFail.do"/> 
+
+	<bean id="loginFailureHandler"
+		class="kr.or.ns.interceptor.LoginFailureHandler">
+		<property name="loginidname" value="user_id" />
+		<property name="loginpwdname" value="user_pwd" />
+		<property name="errormsgname" value="ERRORMSG" />
+		<property name="defaultFailureUrl"
+			value="/member/loginFail.do" />
 	</bean>
-	
+
 
 </beans>

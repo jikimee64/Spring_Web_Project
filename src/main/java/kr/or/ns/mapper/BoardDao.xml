@@ -91,15 +91,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="studyContent != null">
 				and study_board.c_seq = #{studyContent}
 			</if>
-
 		ORDER BY S_SEQ DESC
 		LIMIT #{pageStart}, #{perPageNum}
-
 	</select>
 
 	<select id="getStudyBoardList" resultType="hashmap"
 		parameterType="kr.or.ns.vo.Criteria_Board">
-
 		SELECT *
 		FROM STUDY_BOARD
 		left outer join language_category
@@ -111,9 +108,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<include refid="searchCondition"></include>
 		ORDER BY S_SEQ DESC
 		LIMIT #{pageStart}, #{perPageNum}
-
 	</select>
-
+	
+	<select id="getStudyBoardListSize" resultType="hashmap"
+		parameterType="kr.or.ns.vo.Criteria_Board">
+		SELECT *
+		FROM STUDY_BOARD
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+		<include refid="searchCondition"></include>
+		ORDER BY S_SEQ DESC
+	</select>
+	
 
 	<select id="getL_SEQ" resultType="String">
 		select l_seq from
