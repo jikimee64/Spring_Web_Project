@@ -94,6 +94,64 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY S_SEQ DESC
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
+	
+	
+		<!-- 페이징 스터디 글목록 -->
+	<!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
+	<select id="getStudyBoardListFilterSize" resultType="hashmap"
+		parameterType="kr.or.ns.vo.Criteria_Board">
+
+		SELECT *
+		FROM STUDY_BOARD
+		left outer join language_category
+		on study_board.lan_seq = language_category.lan_seq
+		left outer join location
+		on study_board.loc_seq = location.loc_seq
+		left outer join study_content_category
+		on study_board.c_seq = study_content_category.c_seq
+
+		<if test="cri.searchType != null">
+			<if test="cri.searchType == 't'.toString()">
+				where study_board.title like CONCAT('%',#{cri.keyword},'%')
+			</if>
+			<if test="cri.searchType == 'c'.toString()">
+				where study_board.content like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'w'.toString()">
+				where study_board.user_id like CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="cri.searchType == 'tc'.toString()">
+				where (title like CONCAT('%', #{keyword}, '%')
+				or study_board.content like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+			<if test="cri.searchType == 'all'.toString()">
+				where (title like CONCAT('%', #{keyword}, '%')
+				or study_board.content like CONCAT('%', #{cri.keyword}, '%')
+				or study_board.user_id like CONCAT('%', #{cri.keyword}, '%'))
+			</if>
+		</if>
+
+			<if test="ingOrDone != null">
+				and study_board.status= #{ingOrDone}
+			</if>
+			<if test="level != null">
+				and study_board.level = #{level}
+			</if>
+			<if test="language.size != 0">
+				and study_board.lan_seq in
+				<foreach collection="language" item="item" index="index"
+					separator="," open="(" close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="local != null">
+				and study_board.loc_seq = #{local}
+			</if>
+			<if test="studyContent != null">
+				and study_board.c_seq = #{studyContent}
+			</if>
+		ORDER BY S_SEQ DESC
+	</select>
 
 	<select id="getStudyBoardList" resultType="hashmap"
 		parameterType="kr.or.ns.vo.Criteria_Board">

@@ -33,6 +33,10 @@ public interface BoardService {
 	//페이징 스터디 글목록(필터링)
 	public List<Map<String, Object>> getStudyBoardListFilter(Criteria_Board cri_b, HashMap<String, Object> params);
 	
+	//페이징 스터디 글목록(필터링)
+	public List<Map<String, Object>> getStudyBoardListFilterSize(Criteria_Board cri_b, HashMap<String, Object> params);
+		
+	
 	//페이징 스터디 글목록
 	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
 	

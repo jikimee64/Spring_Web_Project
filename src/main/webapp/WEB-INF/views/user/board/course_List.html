@@ -626,7 +626,7 @@ keyframes heart-keyframes { 100% {
 				<th:block
 					th:if="${type == null}">
 					<a
-						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
+						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum},root=header)}"
 						class="page-link" th:text="Previous">&laquo; </a>
 				</th:block> 
 				<th:block th:if="${type == 'filter'}">
@@ -685,7 +685,7 @@ keyframes heart-keyframes { 100% {
 
 				<th:block th:if="${type == null}">
 					<a
-						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}"
+						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum},root=header)}"
 						class="page-link" th:text="Next">&raquo;</a>
 				</th:block> 
 				

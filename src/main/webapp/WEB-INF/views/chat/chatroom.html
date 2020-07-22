@@ -71,12 +71,12 @@ html, body {
 }
 
 .wrapper {
-	overflow-x: hidden;
-	height: 100%;
+	/* overflow-x: hidden;
+	height: 100%; */
 }
 
 .chatBoxArea {
-	height: 60%;
+	height: 82%;
 	/* 	overflow-y: auto;
     overflow-x: hidden; */
 }
@@ -184,10 +184,10 @@ html, body {
 	</div>
 
 
-	<div id="chatBoxArea" class="chatBoxArea">
+	<div id="chatBoxArea" class="chatBoxArea"></div>
 
 		<ul class="talk_write row"
-			style="padding-left: 10px; position: absolute; width: 100%; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
+			style="padding-left: 10px; width: 100%; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
 			<li class="input_msg"
 				style="border-radius: 10px; height: 40px; background-color: #f5f6f8; width: 100%; display: flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
@@ -199,7 +199,7 @@ html, body {
 				</button>
 			</li>
 		</ul>
-	</div>
+	
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/chat_Detail_Modal :: chat_Detail_Modal"></div>

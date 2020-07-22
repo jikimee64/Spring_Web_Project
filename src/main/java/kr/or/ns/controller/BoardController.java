@@ -93,6 +93,8 @@ public class BoardController {
 				List<Map<String, Object>> listSize = service.getStudyBoardListSize(cri_b);
 				pageMakerb.setTotalCount(listSize.size());
 				model.addAttribute("type", "Search");
+				model.addAttribute("searchType", cri_b.getSearchType());
+				model.addAttribute("keyword", cri_b.getKeyword());
 			}
 			
 		}else {
@@ -101,13 +103,17 @@ public class BoardController {
 			System.out.println("필터된 후엔 여길..");
 			map = AjaxRestController.paramsTemp;
 			list = service.getStudyBoardListFilter(cri_b, map);
+			List<Map<String, Object>> listSizeSearch = service.getStudyBoardListFilterSize(cri_b, map);
 			model.addAttribute("ingOrDone", map.get("ingOrDone"));
 			model.addAttribute("level", map.get("level"));
 			model.addAttribute("language", map.get("language"));
 			model.addAttribute("local", map.get("local"));
 			model.addAttribute("studyContent", map.get("studyContent"));
-			System.out.println("필터링+검색 사이즈 : " + list.size());
-			pageMakerb.setTotalCount(list.size());
+			model.addAttribute("type", "FS");
+			model.addAttribute("searchType", cri_b.getSearchType());
+			model.addAttribute("keyword", cri_b.getKeyword());
+			System.out.println("필터링+검색 사이즈 : " + listSizeSearch.size());
+			pageMakerb.setTotalCount(listSizeSearch.size());
 			AjaxRestController.filterSize = 0;
 		}
 		/* pageMakerb.setTotalCount(list.size()); */
@@ -157,6 +163,8 @@ public class BoardController {
 		model.addAttribute("language", map.get("language"));
 		model.addAttribute("local", map.get("local"));
 		model.addAttribute("studyContent", map.get("studyContent"));
+		
+		model.addAttribute("type", "Search");
 		
 		System.out.println("시작 : " + pageMakerb.getStartPage());
 		System.out.println("끝 : " + pageMakerb.getEndPage());

@@ -51,6 +51,18 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 	
+	// 페이징 스터디 글목록(필터)
+		public List<Map<String, Object>> getStudyBoardListFilterSize(Criteria_Board cri_b, HashMap<String, Object> params) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			System.out.println("여기는 서비스 임!!!");
+			System.out.println("params : " + params);
+			params.put("cri", cri_b);
+			List<Map<String, Object>> list = dao.getStudyBoardListFilterSize(params);
+			System.out.println(" 서비스에서 리턴갑@@#@#니다.");
+			System.out.println(list);
+			return list;
+		}
+	
 	// 페이징 스터디 글목록
 		public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);

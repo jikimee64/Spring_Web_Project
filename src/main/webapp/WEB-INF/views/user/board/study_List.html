@@ -250,11 +250,11 @@ group+group {
 }
 
 .custom-select-sm {
-    height: calc(1.5em + .5rem + 8px);
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-    padding-left: .5rem;
-    font-size: .875rem;
+	height: calc(1.5em + .5rem + 8px);
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	padding-left: .5rem;
+	font-size: .875rem;
 }
 </style>
 
@@ -275,11 +275,11 @@ group+group {
 						찾고 싶은 <b style="color: #18d26e">키워드</b>를 선택해 주세요.
 					</h2>
 					<div>
-				<div class="text-center" style="text-align-last: end;">
-					<a href="/board/board_Select.do" class="btn btn-outline-danger"
-						style="border: 3px solid; font-weight: bold;">스터디 모집하기</a>
-				</div>
-			</div>
+						<div class="text-center" style="text-align-last: end;">
+							<a href="/board/board_Select.do" class="btn btn-outline-danger"
+								style="border: 3px solid; font-weight: bold;">스터디 모집하기</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -373,7 +373,7 @@ group+group {
 								<li data-filter="6">Vue.js</li> &nbsp;
 								<li data-filter="7">React</li>&nbsp;
 								<li data-filter="8">Jquery</li> &nbsp;
-								<li data-filter="9" style="margin-left:7px;">JSP</li> &nbsp;
+								<li data-filter="9" style="margin-left: 7px;">JSP</li> &nbsp;
 								<li data-filter="10">BootStrap</li> &nbsp;
 								<li data-filter="11">JPA</li>
 							</ul>
@@ -410,7 +410,8 @@ group+group {
 							<li data-filter="9"
 								th:classappend="${local} == '9' ? filter-active : null">세종특별시</li>
 							<li data-filter="10"
-								th:classappend="${local} == '10' ? filter-active : null" style="margin-left:7px;">서울특별시</li>
+								th:classappend="${local} == '10' ? filter-active : null"
+								style="margin-left: 7px;">서울특별시</li>
 							<li data-filter="11"
 								th:classappend="${local} == '11' ? filter-active : null">인천광역시</li>
 							<li data-filter="12"
@@ -451,7 +452,7 @@ group+group {
 	</section>
 
 
-		
+
 
 
 	<!-- 여기부터 스터디 목록 -->
@@ -460,22 +461,24 @@ group+group {
 
 		<!--  버튼-->
 		<div class="row">
-			<div class="col-5" style="margin-left:730px;">
-			<div class="form-inline" style="display: inline-flex;">
-				<select class="custom-select-sm" id="searchTypeSel"
-					name="searchType">
-					<option value="">검색조건</option>
-					<option value="t">제목</option>
-					<option value="c">내용</option>
-					<option value="w">작성자</option>
-					<option value="tc">제목+내용</option>
-					<option value="all">전체조건</option>
+			<div class="col-5" style="margin-left: 730px;">
+				<div class="form-inline" style="display: inline-flex;">
+					<select class="custom-select-sm" id="searchTypeSel"
+						name="searchType">
+						<option value="">검색조건</option>
+						<option value="t">제목</option>
+						<option value="c">내용</option>
+						<option value="w">작성자</option>
+						<option value="tc">제목+내용</option>
+						<option value="all">전체조건</option>
 
-				</select> <input class="form-control" type="text" id="keyword" name="keyword" 
-					th:value="${pageMakerb.cri_b.keyword}" placeholder="검색어를 입력하세요" style="width:228px;" />
+					</select> <input class="form-control" type="text" id="keyword"
+						name="keyword" th:value="${pageMakerb.cri_b.keyword}"
+						placeholder="검색어를 입력하세요" style="width: 228px;" />
 
-				<button type= "button" id="searchBtn" class="btn btn-outline-success">Search</button>
-			</div>		
+					<button type="button" id="searchBtn"
+						class="btn btn-outline-success">Search</button>
+				</div>
 			</div>
 
 		</div>
@@ -528,7 +531,8 @@ group+group {
 													th:style="|WIDTH:| +${list2.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
 												</p>
 											</div>
-											<span th:text="|(${list2.L_REVIEW})|">(6)</span> <b th:text="|₩${list2.L_PRICE}|">₩44,000</b>
+											<span th:text="|(${list2.L_REVIEW})|">(6)</span> <b
+												th:text="|₩${list2.L_PRICE}|">₩44,000</b>
 										</div>
 									</div>
 								</th:block>
@@ -548,19 +552,17 @@ group+group {
 							<!-- <b style="margin-left: 35px;">작성자:</b> -->
 							<div class="col-md-4"
 								style="padding-right: 0px; font-size: medium;">
-								<b style="color: black; margin-right: 10px;"> 작성자 : 
-								</b>
-								<a href="" th:classappend="|InfoModal${list.S_SEQ}|"
+								<b style="color: black; margin-right: 10px;"> 작성자 : </b> <a
+									href="" th:classappend="|InfoModal${list.S_SEQ}|"
 									th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
-									data-toggle="modal" data-target="#userInfoModal">
-									<b
+									data-toggle="modal" data-target="#userInfoModal"> <b
 									th:text="${list.USER_ID}"
-									style="color: black; margin-right: 10px;"> 
-								</b> </a>
-								
+									style="color: black; margin-right: 10px;"> </b>
+								</a>
+
 							</div>
 							<div class="col-md-4"
-								style="text-align: center; padding-right: 0px; text-align:right">
+								style="text-align: center; padding-right: 0px; text-align: right">
 								<b
 									th:text="|등록일 : ${#dates.format(list.WRITE_DATE, 'yyyy/MM/dd HH:mm')}|"></b>
 							</div>
@@ -610,13 +612,31 @@ group+group {
 				style="place-content: center; margin-top: 35px; margin-bottom: 140px;">
 
 
+
 				<!-- 이전버튼 생성여부 -->
-				<li th:if="${pageMakerb.prev} == true"><th:block
+				<li th:if="${pageMakerb.prev} == true">
+				
+				
+				<th:block th:if="${type == 'FS'}">
+					<a
+						th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
+						class="page-link" th:text="Previous">&laquo; </a>
+				</th:block>
+				
+				
+				<th:block th:if="${type == 'Search'}">
+					<a
+						th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+						class="page-link" th:text="Previous">&laquo; </a>
+				</th:block>
+				
+				<th:block
 						th:if="${type == null}">
 						<a
-							th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
 							class="page-link" th:text="Previous">&laquo; </a>
-					</th:block> <th:block th:if="${type == null}">
+					</th:block> 
+					<th:block th:if="${type == 'filter'}">
 						<a
 							th:href="@{study_FilterList.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							class="page-link" th:text="Previous">&laquo; </a>
@@ -630,27 +650,52 @@ group+group {
 					th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
 					th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
 
+					<th:block th:if="${type == 'FS'}">
+						<a class="page-link"
+							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
+							th:text="${idx}"></a>
+					</th:block> 
+
+					<th:block th:if="${type == 'Search'}">
+						<a class="page-link"
+							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+							th:text="${idx}"></a>
+					</th:block> 
+					
+					
 					<th:block th:if="${type == null}">
 						<a class="page-link"
-							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
 							th:text="${idx}"></a>
-					</th:block> <th:block th:if="${type != null}">
+					</th:block>
+					 <th:block th:if="${type == 'filter'}">
 						<a class="page-link"
 							th:href="@{study_FilterList.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							th:text="${idx}"></a>
-					</th:block> 
-					<!-- <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+					</th:block> <!-- <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
 				</li>
 
 				<!-- 다음버튼 생성여부 -->
 				<!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
 				<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
 
-					<th:block th:if="${type == null}">
+					<th:block th:if="${type == 'FS'}">
 						<a
-							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
+							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
 							class="page-link" th:text="Next">&raquo;</a>
-					</th:block> <th:block th:if="${type != null}">
+					</th:block>
+
+					<th:block th:if="${type == 'Search'}">
+						<a
+							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+							class="page-link" th:text="Next">&raquo;</a>
+					</th:block>
+					 <th:block th:if="${type == null}">
+						<a
+							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
+							class="page-link" th:text="Next">&raquo;</a>
+					</th:block> 
+					<th:block th:if="${type == 'filter'}">
 						<a
 							th:href="@{study_FilterList.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							class="page-link" th:text="Next">&raquo;</a>
@@ -665,7 +710,7 @@ group+group {
 	<!-- 페이징 버튼 끝 -->
 	<!-- 페이징 버튼 끝 -->
 
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 	<!-- 	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div> -->
 	<div th:replace="user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
@@ -1135,7 +1180,7 @@ group+group {
 			}
 		}
 	</script>
-	  <script>
+	<script>
  
       //Get the button
       var mybutton = document.getElementById("myBtn");
