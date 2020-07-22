@@ -104,7 +104,8 @@ html, body {
 		<div class="row">
 		
 			<div class="col-3" style="text-align: center; align-self: center; padding-right: 0px;">
-			<a href="#" role="button"><img src="../../../../resources/images/img/etc_bl.png" style="width: 
+			<a href="#" role="button"  data-toggle="modal" data-target="#chatDetailModal">
+			<img src="../../../../resources/images/img/setup_bl.png" style="width: 
 					25px; height: 25px;"></a>
 			</div>
 			<div class="col-6" style="text-align: center; ">
@@ -112,16 +113,18 @@ html, body {
 					<b>대화중 멤버</b>
 				</h5>
 			</div>
+			
 			<div class="col-2" style="text-align: center;   align-self: center;">
+				<a href=""  role="button">
 				<img src="../../../../resources/images/img/out_bl.png"
-					style="width: 25px; height: 25px; float: left;">
+					style="width: 25px; height: 25px; float: left;"></a>
 			</div>
 
 		</div>
 		<div class="row" style="min-height: 860px;margin-top:35px;margin-right: 40px;margin-left: 0px;">
 			<div class="col" style="text-align: center; height: 100px;">
-				<a href="#" role="button"><img src="../../../../resources/images/img/chatroom.png"
-					style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;"></a>
+				<img src="../../../../resources/images/img/chatroom.png"
+					style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;">
 				<b style="vertical-align: revert;">아이디</b>
 			</div>
 			<div class="col-3" style="height: 100px;">
@@ -199,6 +202,8 @@ html, body {
 	</div>
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	<div th:replace="/user/includes/chat_Detail_Modal :: chat_Detail_Modal"></div>
+	
 
 	<script>
 

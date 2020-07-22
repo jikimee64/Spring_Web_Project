@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>채팅방 만들기</title>
+<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+
+<body style="color: black;">
+
+	<!--여기서부터 화면코드-->
+	<!-- Button trigger modal -->
+	<div th:fragment="chat_Detail_Modal">
+		<!-- Modal -->
+		<div class="modal fade" id="chatDetailModal" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true" data-backdrop="static">
+
+			<form action="" method="post" class="chat_detail" name="chat_detail">
+
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="container modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalCenterTitle"
+								style="padding-top: 5px; color: black;">
+								<img src="../../../../resources/images/img/setup_bl.png"
+									style="width: 25px; height: 25px;"> 채팅방 설정
+							</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body container" style="padding-bottom: 0px;">
+							<div class="row">
+								<div class="col-md-3" style="color: black;">채팅방 이름</div>
+								<input type="text" name="ch_title" id="ch_title"
+									class="form-control form-control-sm">
+							</div>
+
+							<div class="row">
+								<div class="col-md-3" style="padding-top: 10px; color: black;">채팅방
+									설명</div>
+								<input type="text" name="ch_description" id="ch_description"
+									class="form-control form-control-sm">
+							</div>
+							<br>
+							<div class="row modal-footer">
+								<button type="button" class="btn btn-outline-danger">채팅방
+									삭제하기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+
+
+</body>
+
+</html>
