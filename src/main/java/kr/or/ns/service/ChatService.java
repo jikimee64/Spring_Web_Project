@@ -1,9 +1,11 @@
 package kr.or.ns.service;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,5 +25,7 @@ public interface ChatService {
 	public ChatRoom getChatRoom(String ch_seq);
 	
 	public int chatRoomOut(ChatRoomMember cm);
+	
+	public List<HashMap<String, Object>> chatRoomMemberGet(String ch_seq);
 
 }

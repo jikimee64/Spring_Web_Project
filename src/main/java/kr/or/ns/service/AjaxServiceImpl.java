@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import kr.or.ns.dao.AjaxRestDao;
 import kr.or.ns.util.Mail;
@@ -459,6 +460,23 @@ public class AjaxServiceImpl implements AjaxService {
 		int enabled = dao.enabledcheck(user_id);
 		System.out.println("권한체크용 서비스" + enabled);
 		return enabled;
+	}
+	
+	public List<HashMap<String, Object>> userInfoChat(@RequestBody HashMap<String, Object> params) {
+		String user_id = (String) params.get("user_id");
+		System.out.println("너는 잘 가져오니" + user_id);
+		/*
+		 * HashMap map = new HashMap(); map.put("user_id", user_id);
+		 * System.out.println(map + "에는 잘 담기니");
+		 */
+
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		List<HashMap<String, Object>> userChatInfo = dao.getUserInfo(user_id);
+
+		System.out.println("유저정보 잘 가져왔니@@@@" + userChatInfo);
+		return userChatInfo;
+		
+		
 	}
 
 

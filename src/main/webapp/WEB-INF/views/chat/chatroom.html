@@ -16,7 +16,7 @@
 	position: relative;
 	z-index: 0;
 	max-width: 100%;
-	border-radius: 16px 16px 3px;
+	border-radius: 16px 16px;
 	font-size: 15px;
 	line-height: 1.33;
 	background-color: #d9f7e7;
@@ -24,6 +24,7 @@
 	vertical-align: bottom;
 	margin: 10px 15px;
 	padding: 10px;
+	clear: right;
 }
 
 .yourbubble {
@@ -31,17 +32,20 @@
 	text-align: inherit;
 	overflow: hidden;
 	display: flex;
-	position: relative;
+	position: absolute;
 	z-index: 0;
 	max-width: 100%;
-	border-radius: 3px 16px 16px;
+	border-radius: 16px 16px;
 	font-size: 15px;
 	line-height: 1.33;
 	background-color: #f4f4f4;
 	word-break: break-word;
 	vertical-align: bottom;
-	margin: 10px 15px;
+	margin-left:50px;
+	margin-top:25px;
 	padding: 10px;
+	clear: left;
+	
 }
 
 .msg_input {
@@ -56,6 +60,24 @@
 	padding-top: 10px;
 	color:
 }
+
+.chatBoxArea{
+	 /* height: 470px; */
+     overflow-y: auto;
+}
+
+/* #absdiv1 {
+   z-index: 5;
+   position: absolute;
+   width: 150px;
+   height: 350px;
+   top: 10px;
+   left: 10px;
+   border: 1px dashed #990000;
+   background-color: #ffdddd;
+   text-align: center;
+} */
+
 </style>
 
 </head>
@@ -65,6 +87,14 @@
 	<input type="hidden" id="user_id" th:value="${user_id}" />
 
 	<div class="wrapper" >
+	
+	<!-- 	<div id="absdiv1">
+		   <br /><span class="bold">DIV #1</span>
+		   <br />position: absolute;
+		   <br />z-index: 5;
+		</div> -->
+		
+	
 		<div class="row"
 			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px;">
 			<div class="col-12"
@@ -72,7 +102,7 @@
 				<a th:href="@{/chat/chatmemberlist.do}" style="margin-left: 0px;"><img
 					src="../../../../resources/images/img/etc.png"
 					style="width: 25px; height: 25px; float: left; margin-left: 20px;">
-				</a> <b style="margin-left: 30px;">채팅방 이름</b>
+				</a> <b style="margin-left: 30px;" th:text="${chatroom.ch_title}"></b>
 				<div style="float: right; margin-right: 20px;">
 					<a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
 						style="margin-left: 0px;"><img
@@ -92,27 +122,51 @@
 
 
 	</div>
+
 		<div class="talk_write row"
-			style="width:100%; height: 100%; margin: 0px; min-height: 40px; background-color: #fff;">
-			<div class="col-10"
-				style="border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%;">
+			style="width:100%; position:fixed; bottom:0; margin: 0px; min-height: 40px; background-color: #fff;">
+			<div class="col"
+				style="margin:0px 10px;bottom:0; right:0; padding-right:0px; border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
 					class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
-			</div>
-			<div class="col-1">
-			<button type="submit" id="sendButton"
-					class="btn btn-outline-success btn"
-					style="padding: 6px 30px; width:100%;"
-					onclick="sendButton_onclick()">
+						<button type="submit" id="sendButton"
+					class="btn btn-success btn"
+					onclick="sendButton_onclick()" style="width: 100px; background-color:rgb(24, 210, 105); border: thick;">
 					<b>전송</b>
 				</button>
-			
 			</div>
-			<div class="col-1">
-
-							</div>
 		</div>
+
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	
+	<script>
+	  $(function() {
+		  
+		  var data = {
+				ch_seq : $("#ch_seq").val(),
+			}
+		  
+		  
+		  $.ajax({
+              url : "/chat/chatRoomMemberGet.do",
+              type : 'POST',
+              contentType:"application/json",
+              data : JSON.stringify(data),
+              success : function(data) {
+            	  console.log('채팅방멤버' + data)
+            	  
+              },
+              error : function(e) {
+                 console.log("error:", e);
+              }
+           })
+		  
+	  });
+		
+	
+	</script>
+	
+	
 	<script type="text/javascript">
 		let Socket = null;
 		var loginId = null;
@@ -133,6 +187,9 @@
 				//let html = "";
 				//html += "<b>"+d.user_id+"님이 들어옴</b>"  
 				console.log('접속완료')
+				
+				//여기서 현재 현좁
+				
 			};
 
 			/**
@@ -153,21 +210,18 @@
 					} else if (d.type == "message") {
 						let html = "";
 						if (d.user_id == $("#user_id").val()) { //나
-							html += "<div style='display:flex;'>"
-							html += "<div class='col-md-1' style='padding-right:0px; width:70px;'>"
-							html += "<div style='width: 60px; float: left; text-align: center;'>"
-							html += "</div></div><div class='col mybubble'>"
-									+ d.msg + "</div>"
-
+							html += "<div>"	
+							html += "<div style='float: right; text-align: center;'>"
+							html += "</div><div class='mybubble'>"
+									+ d.msg + "</div><br>"
 							$("#chatBoxArea").append(html);
-
 						} else { //상대
-
+							console.log('제발!!@@')
 							var data = {}
 							data["user_id"] = d.user_id;
 							$
 									.ajax({
-										url : '/ajax/userInfoModal.do',
+										url : '/ajax/userInfoChat.do',
 										processData : false,
 										contentType : "application/json",
 										cache : false,
@@ -177,18 +231,18 @@
 											let html = "";
 											console.log('하하 '
 													+ data[1].PROFILE_IMG)
-											html += "<div style='display:flex;'>"
-											html += "<div class='col-md-1' style='padding-right:0px; width:70px;'>"
+										
+											html += "<div style='margin-left:20px;'>"
 											//html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
-											html += "<div style='width: 60px; float: left; text-align: center;'>"
-											html += "<img src='/userboard/upload/"
+											html += "<div style='float: left; text-align: center;'></div>"
+											html += "<div style='margin-top:30px;'><img src='/userboard/upload/"
 													+ data[1].PROFILE_IMG
-													+ "' alt='' style='height: 50px; border-radius: 32%;'>"
-											html += "<b style='display: block;''>"
+													+ "' alt='' style='height: 50px; width:50px; border-radius: 32%;'>"
+											html += "<span style='margin-left:30px;'><b>"
 													+ d.user_id
-													+ "</b></div></div>"
-											html += "<div class='col yourbubble'>"
-													+ d.msg + "</div>"
+													+ "</b></span>"
+											html += "<div class='yourbubble' style='margin-left:70px; margin-top:0px;'>"
+													+ d.msg + "</div></div><br>"
 											$("#chatBoxArea").append(html);
 										},
 										error : function(e) {
@@ -202,11 +256,15 @@
 						console.warn("msg : " + msg);
 						console.warn("d : " + d);
 						let html = "";
-						html +="<b style='display: block; text-align:center; '>"+d.msg+"</b>"
+						html +="<div class='row' style='display:grid;'><b style='display: block; text-align:center; margin:15px 0px; '>"+d.msg+"</b></div>"
 						$("#chatBoxArea").append(html);
 					}
 				}
 				//]]>
+				
+				 $('#chatBoxArea')
+				.stop()
+				.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000); 
 			};
 
 			/**
@@ -256,7 +314,7 @@
 
 			// 서버로 메시지 전송
 			Socket.send(JSON.stringify(option));
-			inputMsgBox.value = "";
+			inputMsgBox.val("")
 			inputMsgBox.focus();
 
 			return true;
@@ -287,28 +345,6 @@
 		}
 	</script>
 
-
-	<!-- 채팅폼 양식(ajax로 그려야됨)  -->
-	<!-- 		<div style="display: flex;">
-			<div class="col-md-1" style="padding-right: 0px; width: 70px;">
-				나중에 참고 <img th:src="'/userboard/upload/' + ${user.profile_img}" alt=""
-						style="height: 165px; border-radius: 32%; border: 2px solid black;">
-				<div style="width: 60px; float: left; text-align: center;">
-					<img src="../../../../resources/images/img/heart.ico" alt=""
-						style="height: 50px; border-radius: 32%;"> <b
-						style="display: block;">이정아</b>
-				</div>
-
-			</div>
-			<div class="col yourbubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-
-		</div>
-		
-		<div style="display: flex;">
-
-			<div class="col mybubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋ
-				ㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-		</div> -->
 
 
 </body>

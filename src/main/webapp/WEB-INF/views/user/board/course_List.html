@@ -520,7 +520,7 @@ keyframes heart-keyframes { 100% {
 					<option value="w">작성자</option>
 					<option value="all">전체조건</option>
 				</select> <input class="form-control" type="text" id="keyword" name="keyword"
-					th:value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요"
+					th:value="${keyword}" placeholder="검색어를 입력하세요"
 					style="width: 228px;" />
 				<button type="button" id="searchBtn" class="btn btn-outline-success">Search</button>
 
@@ -1130,7 +1130,6 @@ keyframes heart-keyframes { 100% {
 		$('#searchBtn').on('click',function(){
 			searchTypeVal = $searchTypeSel.val();
 			keywordVal = $keyword.val().replace(/ /g,"+");
-			
 			//검색 조건 입력 안했으면 경고창 
 			if(!searchTypeVal){
 				alert("검색 조건을 선택해주세요");
@@ -1143,7 +1142,6 @@ keyframes heart-keyframes { 100% {
 				$('#keyword').focus();
 				return;
 			}
-			
 			
 			if($('.filterRow li').hasClass("filter-active")){ //필터중 하나라도 선택했을때
 				var url = "course_List.do?searchType=" + searchTypeVal

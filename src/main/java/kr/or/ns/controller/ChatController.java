@@ -47,8 +47,6 @@ public class ChatController {
 
 		return "chat/roomlist";
 	}
-	
-	
 
 	@RequestMapping("chatroominsert.do")
 	@ResponseBody
@@ -134,6 +132,16 @@ public class ChatController {
 		System.out.println("채팅멤버 리스트 페이지로 이동이동(연규가씀)");
 		
 		return "chat/memberlist";
+	}
+	
+	
+	@RequestMapping("chatRoomMemberGet.do")
+	@ResponseBody
+	public List<HashMap<String, Object>> chatRoomMemberGet(@RequestBody Map<String, Object> params) throws IOException {
+		String ch_seq = (String) params.get("ch_seq");
+		List<HashMap<String, Object>> list = service.chatRoomMemberGet(ch_seq);
+		System.out.println("채팅룸 멤버 list" + list);
+		return list;
 	}
 	
 
