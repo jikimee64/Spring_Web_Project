@@ -9,11 +9,10 @@
 
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <style>
-
-   html, body {
-        height: 100%;
-        margin: 0px;
-    }
+html, body {
+	height: 100%;
+	margin: 0px;
+}
 
 .mybubble {
 	float: right;
@@ -65,23 +64,22 @@
 	padding-top: 10px;
 }
 
-.side{
-background-color: white;
-z-index: 5;
-position:absolute;
+.side {
+	background-color: white;
+	z-index: 5;
+	position: absolute;
 }
 
 .wrapper {
-	overflow-x:hidden;
-	height:100%;
+	overflow-x: hidden;
+	height: 100%;
 }
 
 .chatBoxArea {
-	height:60%; 
-/* 	overflow-y: auto;
+	height: 60%;
+	/* 	overflow-y: auto;
     overflow-x: hidden; */
 }
-
 
 /* #absdiv1 {
    z-index: 5;
@@ -101,79 +99,104 @@ position:absolute;
 
 	<input type="hidden" id="ch_seq" th:value="${chatroom.ch_seq}" />
 	<input type="hidden" id="user_id" th:value="${user_id}" />
-<!-- 사이드 -->
-	<div class="side" style=" width:300px; display:none;">
+	<!-- 사이드 -->
+	<div class="side" style="width: 400px; display: none;">
 		<div class="row">
-			<div class="col" style="text-align: center;">
-				<h5 style="margin-top: 20px;"><b>대화멤버</b></h5>
+		
+			<div class="col-3" style="text-align: center; align-self: center; padding-right: 0px;">
+			<a href="#" role="button"><img src="../../../../resources/images/img/etc_bl.png" style="width: 
+					25px; height: 25px;"></a>
 			</div>
+			<div class="col-6" style="text-align: center; ">
+			<h5 style="margin-top: 20px;">
+					<b>대화중 멤버</b>
+				</h5>
+			</div>
+			<div class="col-2" style="text-align: center;   align-self: center;">
+				<img src="../../../../resources/images/img/out_bl.png"
+					style="width: 25px; height: 25px; float: left;">
+			</div>
+
 		</div>
-		<div class="row" style="min-height: 830px;">
-			<div class="col" style="text-align: center; height:100px;">
-				<img src="../../../../resources/images/img/chatroom.png"
-					style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;">
+		<div class="row" style="min-height: 860px;margin-top:35px;margin-right: 40px;margin-left: 0px;">
+			<div class="col" style="text-align: center; height: 100px;">
+				<a href="#" role="button"><img src="../../../../resources/images/img/chatroom.png"
+					style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;"></a>
 				<b style="vertical-align: revert;">아이디</b>
 			</div>
-			<div class="col-3" style="height:100px;">
-				<h5 style="margin-bottom: 0px; ">
+			<div class="col-3" style="height: 100px;">
+				<h5 style="margin-bottom: 0px;">
 					<span class="badge badge-success"
 						style="background-color: rgb(24, 210, 105); margin-top: 10px;">방장</span>
 				</h5>
-			</div></div>
+			</div>
+		</div>
+		<!-- 			<div class="row" style="display:block;">
 			
-			<ul class="bottom" style="padding:0px; background-color:#f5f6f8; min-height:75px; margin-bottom:0px; display: flex;">대화설정</ul>
-
+			<a href="#" role="button" style="margin-left: 0px;"><img
+					src="../../../../resources/images/img/etc.png" style="width: 25px; height: 25px; float: left;">
+			<div class="col" style="padding:0px;">
+			<ul class="bottom" style="background-color:#f5f6f8; margin:0px; text-align:center; padding:0px;">대화설정</ul></div>
+			</a>
+			<a href="#" role="button" style="margin-left: 0px;"><img
+					src="../../../../resources/images/img/etc.png" style="width: 25px; height: 25px; float: left;">
+			<div class="col" style="padding:0px;">
+			<ul class="bottom2" style="background-color:#f5f6f8; margin:0px; text-align:center; padding:0px;">나가기</ul></div>
+			</a>
+			</div> -->
 	</div>
+
 
 
 
 	<!-- <div class="wrapper" style="position: relative;"> -->
 
-		<!--    <div id="absdiv1">
+	<!--    <div id="absdiv1">
          <br /><span class="bold">DIV #1</span>
          <br />position: absolute;
          <br />z-index: 5;
       </div> -->
 
 
-		<div class="row"
-			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px; position:relative; z-index:3;">
-			<div class="col-12"
-				style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
-				<a href="#" role="button" style="margin-left: 0px;" id="etc"><img
-					src="../../../../resources/images/img/etc.png"
-					style="width: 25px; height: 25px; float: left; margin-left: 20px;">
-				</a> <b style="margin-left: 30px;" th:text="${chatroom.ch_title}"></b>
-				<div style="float: right; margin-right: 20px;">
-					<a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
-						style="margin-left: 0px;"><img
-						src="../../../../resources/images/img/out.png"
-						style="width: 25px; height: 25px;"> </a>
-				</div>
+	<div class="row"
+		style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px; position: relative; z-index: 3;">
+		<div class="col-12"
+			style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
+			<a href="#" role="button" style="margin-left: 0px;" id="etc"><img
+				src="../../../../resources/images/img/etc.png"
+				style="width: 25px; height: 25px; float: left; margin-left: 20px;">
+			</a> <b style="margin-left: 30px;" th:text="${chatroom.ch_title}"></b>
+			<div style="float: right; margin-right: 20px;">
+				<a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
+					style="margin-left: 0px;"><img
+					src="../../../../resources/images/img/out.png"
+					style="width: 25px; height: 25px;"> </a>
 			</div>
 		</div>
+	</div>
 
-		<div class="today"
-			style="margin-top: 20px; text-align: -webkit-center;">
-			<b th:text="${datestr}"></b>
-		</div>
+	<div class="today"
+		style="margin-top: 20px; text-align: -webkit-center;">
+		<b th:text="${datestr}"></b>
+	</div>
 
 
-		<div id="chatBoxArea" class="chatBoxArea">
+	<div id="chatBoxArea" class="chatBoxArea">
 
-			<ul class="talk_write row"
-				style="padding-left: 10px; position:absolute; width: 100%; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
-				<li class="input_msg" style="border-radius: 10px;  height: 40px; background-color: #f5f6f8; width: 100%; display: flex;">
-					<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
-						class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
-					<button type="submit" id="sendButton" class="btn btn-success btn"
-						onclick="sendButton_onclick()"
-						style="width: 100px; background-color: rgb(24, 210, 105); border: thick;">
-						<b>전송</b>
-					</button>
-				</li>
-			</ul>
-		</div>
+		<ul class="talk_write row"
+			style="padding-left: 10px; position: absolute; width: 100%; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
+			<li class="input_msg"
+				style="border-radius: 10px; height: 40px; background-color: #f5f6f8; width: 100%; display: flex;">
+				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
+				class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
+				<button type="submit" id="sendButton" class="btn btn-success btn"
+					onclick="sendButton_onclick()"
+					style="width: 100px; background-color: rgb(24, 210, 105); border: thick;">
+					<b>전송</b>
+				</button>
+			</li>
+		</ul>
+	</div>
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
@@ -386,8 +409,8 @@ position:absolute;
          }
       }
    </script>
-   
-   <script>
+
+	<script>
    $(function() {
 		$('#etc').click(function(){
 			//$('.side').css("display","inline-block");
@@ -398,7 +421,7 @@ position:absolute;
 
    
    </script>
-   
+
 </body>
 
 
