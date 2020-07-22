@@ -218,23 +218,24 @@ keyframes heart-keyframes { 100% {
 		rgba(126, 239, 104, 0.6);
 	outline: 0 none;
 }
+
 .modal {
-        text-align: center;
+	text-align: center;
 }
- 
-@media screen and (min-width: 768px) { 
-        .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 20%;
-        }
+
+@media screen and (min-width: 768px) {
+	.modal:before {
+		display: inline-block;
+		vertical-align: middle;
+		content: " ";
+		height: 20%;
+	}
 }
- 
+
 .modal-dialog {
-        display: inline-block;
-        text-align: left;
-        vertical-align: middle;
+	display: inline-block;
+	text-align: left;
+	vertical-align: middle;
 }
 </style>
 
@@ -366,11 +367,11 @@ keyframes heart-keyframes { 100% {
 						</div>
 						<br />
 						<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
-						
-								<span th:utext="${study.CONTENT}" id="content" ><textarea name="" cols="30" rows="10"
-							class="form-control _textarea_readonly" readonly
-							style="background-color: #F5F5F5; resize: none;"></textarea></span>
-						<br />
+
+						<span th:utext="${study.CONTENT}" id="content"><textarea
+								name="" cols="30" rows="10"
+								class="form-control _textarea_readonly" readonly
+								style="background-color: #F5F5F5; resize: none;"></textarea></span> <br />
 						<div class="row">
 							<div class="col-6" style="text-align: start;">
 
@@ -503,20 +504,26 @@ keyframes heart-keyframes { 100% {
 										alt="Card image" style="width: 100%">
 								</div>
 
-								<div th:case="온라인강의" class="card" style="width: 100%">
+								<div th:case="온라인" class="card" style="width: 100%">
 									<th:block th:if="${onlineInfo != null}">
 										<img class="card-img-top" th:src="${study.IMAGE}"
 											alt="Card image" style="width: 100%">
 										<div class="card-body">
 											<h6 class="card-title _margin_0"
 												th:text="${onlineInfo.L_TITLE}"></h6>
-											<p class="card-text _margin_0"
+											<p class="card-text _margin_0" 
 												th:text="${onlineInfo.L_WRITER}"
-												style="color: gray; font-size: small;">이지스 퍼블리싱</p>
-											<a href="/board/writing_Course_Study_Detail.do"
-												class="stretched-link"></a> <img
-												src="https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png"
-												alt="" style="height: 30px;"> <span>(6)</span> <b>₩44,000</b>
+												style="color: gray; font-size: small;margin-bottom:0px;">이지스 퍼블리싱</p>
+											<a th:href="${onlineInfo.L_ADDRESS}"
+												class="stretched-link"></a>
+											<div
+												style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+												<p class="_star"
+													th:style="|WIDTH:| +${onlineInfo.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+												</p>
+											</div>
+											<span th:text="|(${onlineInfo.L_REVIEW})|">(6)</span> <b
+												th:text="|₩${onlineInfo.L_PRICE}|">₩44,000</b>
 										</div>
 										<th:block>
 								</div>
@@ -545,7 +552,8 @@ keyframes heart-keyframes { 100% {
 
 
 								</div>
-								<div th:case="*" style="text-align: center; margin: 10px 0px 10px 0px;">
+								<div th:case="*"
+									style="text-align: center; margin: 10px 0px 10px 0px;">
 									<th:block th:switch="${apply}">
 										<th:block th:case="0">
 											<th:block th:if="${study.STATUS == '모집중'}">
@@ -554,20 +562,20 @@ keyframes heart-keyframes { 100% {
 											</th:block>
 										</th:block>
 										<th:block th:case="1">
-												<button id="applycancel" type="submit" class="btn"
-													style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원취소하기</button>
+											<button id="applycancel" type="submit" class="btn"
+												style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원취소하기</button>
 										</th:block>
-									</th:block>		
-											<!-- 이거는 사용자 권한 -->
-											<div style="text-align: center; margin: 10px 0px 10px 0px;">
-												<a
-													th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"
-													class="_to_the_list_a_tag">
-													<button type="button"
-														class="btn btn-warning _to_the_list_button"
-														style="width: 100%;">목록으로</button>
-												</a>
-											</div>
+									</th:block>
+									<!-- 이거는 사용자 권한 -->
+									<div style="text-align: center; margin: 10px 0px 10px 0px;">
+										<a
+											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}"
+											class="_to_the_list_a_tag">
+											<button type="button"
+												class="btn btn-warning _to_the_list_button"
+												style="width: 100%;">목록으로</button>
+										</a>
+									</div>
 								</div>
 							</th:block>
 							<!-- <th:block th:switch="${sessionid}">

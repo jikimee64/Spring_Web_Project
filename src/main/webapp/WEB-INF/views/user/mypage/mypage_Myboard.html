@@ -309,15 +309,15 @@ body {
 														+ "'>";
 												/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 												html += "<div style='margin-top: 15px;padding-left: 15px;'>"
-												html += "<b><span class='_title' style='font-size:xx-large;'>"
+												html += "<b><span class='_title' style='font-size:xx-large; padding-top:10px;height:100%;'>"
 														+ data[index].TITLE
 														+ "</span></b></div><br/></a>";
 												html += "</div>";
 												html += "<div class='col-md-3' style='text-align: right;'>";
-												if (data[index].CONTENT_KIND === '온라인강의') {
-													html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;'>"
+												if (data[index].CONTENT_KIND === '온라인') {
+													html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
 												} else {
-													html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;'>"
+													html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
 												}
 												/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
 												html += "</div>";
@@ -435,15 +435,15 @@ body {
 																			+ "'>";
 																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 																	html += "<div  style='margin-top: 15px;padding-left: 15px;'>"
-																	html += "<b><span class='_title' style='font-size:xx-large;'>"
+																	html += "<b><span class='_title' style='font-size:xx-large;padding-top:10px;height:100%;'>"
 																			+ data[index].TITLE
 																			+ "</span></b></div><br/></a>";
 																	html += "</div>";
 																	html += "<div class='col-md-3' style='text-align: right;'>";
-																	if (data[index].CONTENT_KIND === '온라인강의') {
-																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;'>"
+																	if (data[index].CONTENT_KIND === '온라인') {
+																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
 																	} else {
-																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;'>"
+																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
 																	}
 																	/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
 																	html += "</div>";

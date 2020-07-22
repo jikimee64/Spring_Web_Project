@@ -514,7 +514,16 @@ group+group {
 
 		}
 	</script>
+	
+	<script>
+	/* 페이지 0 뜨는거 없애기 시작 */
+	var _page_button0 = $('.page-item').children().last().text();
 
+	if(_page_button0 == 0){
+	   $('.page-item').children().last().remove();
+	}
+	/*  페이지 0 뜨는거 없애기 끝 */
+	</script>
 
 </body>
 
