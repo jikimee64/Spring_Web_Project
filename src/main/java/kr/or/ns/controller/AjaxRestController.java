@@ -418,6 +418,20 @@ public class AjaxRestController {
 
 		return temp;
 	}
+	
+	
+	// 유ㅗ저사진 가져오기
+	@RequestMapping(value = "userInfoChat.do", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> userInfoChat(@RequestBody HashMap<String, Object> params, String user_id) {
+		System.out.println("유저정보 오나요");
+		System.out.println("유저정보:" + params);
+
+		List<HashMap<String, Object>> list = null;
+		
+		list = service.userInfoChat(params);
+		System.out.println("리스트에 유저정보 담기: " + list);
+		return list;
+	}
 
 	// 워드클라우드 차트
 

@@ -3,6 +3,8 @@ package kr.or.ns.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import kr.or.ns.vo.Criteria;
 import kr.or.ns.vo.Criteria_Board;
 
@@ -95,6 +97,9 @@ public interface AjaxService {
 
 	//유저정보 모달 게시판정보 가져오기
 	List<HashMap<String, Object>> userBoardList(HashMap<String, Object> params);
+	
+	
+	public List<HashMap<String, Object>> userInfoChat(@RequestBody HashMap<String, Object> params);
 	
 
 }
