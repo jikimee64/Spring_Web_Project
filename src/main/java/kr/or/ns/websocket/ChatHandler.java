@@ -19,10 +19,12 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import kr.or.ns.service.ChatService;
 import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.service.MemberService;
 import kr.or.ns.service.MessageService;
+import kr.or.ns.vo.ChatRoomMember;
 import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
@@ -30,7 +32,7 @@ import kr.or.ns.vo.Users;
 public class ChatHandler extends TextWebSocketHandler {
 
 	@Autowired
-	private MemberService mservice;
+	private ChatService service;
 	
 	// private Map<String, WebSocketSession> users = new HashMap();
 	List<HashMap<String, Object>> rls = new ArrayList(); // 웹소켓 세션을 담아둘 리스트 ---roomListSessions
@@ -181,6 +183,12 @@ public class ChatHandler extends TextWebSocketHandler {
 		
 		String ch_seq = getAttribute(session, "ch_seq");
 		String user_id = getAttribute(session, "user_id");
+		
+		ChatRoomMember cm = new ChatRoomMember();
+		cm.setCh_seq(Integer.parseInt(ch_seq));
+		cm.setUser_id(user_id);
+		int result = service.chatRoomOut(cm);
+		System.out.println("close시 채팅방 멤버 삭제");
 		
 		
 		if (session != null) {

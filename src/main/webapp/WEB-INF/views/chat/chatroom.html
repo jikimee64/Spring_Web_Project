@@ -62,9 +62,22 @@
 }
 
 .chatBoxArea{
-    height: 470px;
-
+	 /* height: 470px; */
+     overflow-y: auto;
 }
+
+/* #absdiv1 {
+   z-index: 5;
+   position: absolute;
+   width: 150px;
+   height: 350px;
+   top: 10px;
+   left: 10px;
+   border: 1px dashed #990000;
+   background-color: #ffdddd;
+   text-align: center;
+} */
+
 </style>
 
 </head>
@@ -74,6 +87,14 @@
 	<input type="hidden" id="user_id" th:value="${user_id}" />
 
 	<div class="wrapper" >
+	
+	<!-- 	<div id="absdiv1">
+		   <br /><span class="bold">DIV #1</span>
+		   <br />position: absolute;
+		   <br />z-index: 5;
+		</div> -->
+		
+	
 		<div class="row"
 			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px;">
 			<div class="col-12"
@@ -81,7 +102,7 @@
 				<a th:href="@{/chat/chatmemberlist.do}" style="margin-left: 0px;"><img
 					src="../../../../resources/images/img/etc.png"
 					style="width: 25px; height: 25px; float: left; margin-left: 20px;">
-				</a> <b style="margin-left: 30px;">채팅방 이름</b>
+				</a> <b style="margin-left: 30px;" th:text="${chatroom.ch_title}"></b>
 				<div style="float: right; margin-right: 20px;">
 					<a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
 						style="margin-left: 0px;"><img
@@ -166,6 +187,9 @@
 				//let html = "";
 				//html += "<b>"+d.user_id+"님이 들어옴</b>"  
 				console.log('접속완료')
+				
+				//여기서 현재 현좁
+				
 			};
 
 			/**
@@ -208,16 +232,16 @@
 											console.log('하하 '
 													+ data[1].PROFILE_IMG)
 										
-											html += "<div class='row' style='margin-left:20px;'>"
+											html += "<div style='margin-left:20px;'>"
 											//html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
 											html += "<div style='float: left; text-align: center;'></div>"
-											html += "<div><img src='/userboard/upload/"
+											html += "<div style='margin-top:30px;'><img src='/userboard/upload/"
 													+ data[1].PROFILE_IMG
-													+ "' alt='' style='height: 50px; border-radius: 32%;'>"
-											html += "<span><b>"
+													+ "' alt='' style='height: 50px; width:50px; border-radius: 32%;'>"
+											html += "<span style='margin-left:30px;'><b>"
 													+ d.user_id
 													+ "</b></span>"
-											html += "<div class='yourbubble'>"
+											html += "<div class='yourbubble' style='margin-left:70px; margin-top:0px;'>"
 													+ d.msg + "</div></div><br>"
 											$("#chatBoxArea").append(html);
 										},
@@ -232,15 +256,15 @@
 						console.warn("msg : " + msg);
 						console.warn("d : " + d);
 						let html = "";
-						html +="<b style='display: block; text-align:center; margin:15px 0px; '>"+d.msg+"</b>"
+						html +="<div class='row' style='display:grid;'><b style='display: block; text-align:center; margin:15px 0px; '>"+d.msg+"</b></div>"
 						$("#chatBoxArea").append(html);
 					}
 				}
 				//]]>
 				
-				$('#chatBoxArea')
+				 $('#chatBoxArea')
 				.stop()
-				.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000);
+				.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000); 
 			};
 
 			/**
