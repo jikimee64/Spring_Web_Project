@@ -92,6 +92,9 @@ public interface AjaxService {
 	
 	//권한 체크
 	public int enabledcheck(String user_id);
+
+	//유저정보 모달 게시판정보 가져오기
+	List<HashMap<String, Object>> userBoardList(HashMap<String, Object> params);
 	
 
 }

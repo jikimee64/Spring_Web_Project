@@ -506,6 +506,27 @@ group+group {
 							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
 						}
 					})
+					
+// 						<td>1578</td>
+// 												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+					
+					$('._user_board_list').empty();
+					
+					let userBoardList = "";
+					console.warn(data[0].TITLE);
+					console.warn(data);
+					console.warn(data[0].INTRODUCE);
+					userBoardList += "<tr>";
+					userBoardList += "<td>";
+					userBoardList += "asdf";
+					userBoardList += "</td>";
+					userBoardList += "<td>";
+					userBoardList += "asdf";
+					userBoardList += "</td>";
+					userBoardList += "</tr>";
+					
+					$('._user_board_list').append(userBoardList);
+// 						$('._user_board_list');
 				},
 				error : function(e) {
 					console.log("error:", e);

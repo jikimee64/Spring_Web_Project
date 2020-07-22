@@ -79,6 +79,13 @@
 		users.user_id = skill.user_id where
 		users.user_id=#{user_id}
 	</select>
+	
+	<select  id="getUserBoardInfo" resultType="hashMap">
+		select * 
+		from study_board 
+		where USER_ID = #{user_id}
+	</select>
+	
 
 	<!-- 이메일 중복체크 -->
 	<select id="onlyEmailCheck" resultType="int">
