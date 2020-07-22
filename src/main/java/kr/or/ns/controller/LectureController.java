@@ -57,10 +57,17 @@ public class LectureController {
 		PageMaker pageMaker = new PageMaker();
 		String user_id = principal.getName();
 		pageMaker.setCri(cri);
+		/////////////////////////////////////////////////////////////////////////////
 		System.out.println(keyword+"courseListPage  에서 찍어보기 ");
-		
-		
-		
+		List<String> keywordCollec = new ArrayList();
+		if(keyword != null) {
+			String[] ccc = keyword.split("\\+");
+				  for( int i=0; i<ccc.length; i++) {
+					  keywordCollec.add(ccc[i]);
+					  }
+		}
+		System.out.println("keywordCollec    "+keywordCollec+ "  이렇게 나와요");
+		///////////////////////////////////////////////////////////////////////////////
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		List<HashMap<String, Object>> listSize = null;
@@ -79,6 +86,7 @@ public class LectureController {
 
 		if (language != null) { //main에서 왔을 때
 			System.out.println("일로와라제발제발제발!!!!!!!!!!!!@@@");
+			System.out.println("여기로 정해따 너 지금 여기타는 거맞지????    아니!!!!!!!");
 			map2.put("language", arr);
 			map2.put("perPageNum", cri.getPerPageNum());
 			map2.put("pageStart", cri.getPageStart());
@@ -123,6 +131,7 @@ public class LectureController {
 			System.out.println("paramsTemp2 : " + AjaxRestController.paramsTemp2);
 			System.out.println("필터된 후엔 여길..");
 			map = AjaxRestController.paramsTemp2;
+			map.put("keyword",keywordCollec );
 			list = service.getLectureListFilter(cri, map);
 			System.out.println("list : " + list.size());
 			listSizeSearch = service.getLectureListFilterSize(cri, map);
