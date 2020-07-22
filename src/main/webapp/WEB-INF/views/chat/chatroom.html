@@ -192,8 +192,12 @@
 							
 							$("#chatBoxArea").append(html);
 						}
-					} else {
-						console.warn("unknown type!")
+					} else if(d.type == "allMessage") { //all 메시지?
+						console.warn("msg : " + msg);
+						console.warn("d : " + d);
+						let html = "";
+						html +="<b style='display: block; text-align:center; '>"+d.msg+"</b>"
+						$("#chatBoxArea").append(html);
 					}
 				}
 				//]]>

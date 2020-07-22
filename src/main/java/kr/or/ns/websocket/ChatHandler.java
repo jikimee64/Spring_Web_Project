@@ -70,7 +70,8 @@ public class ChatHandler extends TextWebSocketHandler {
 				HashMap<String, Object> map = rls.get(idx);
 				map.put(user_id, session);
 				System.out.println("존재하는 방이면 세션 추가");
-				sendAllSessionToMessage(session, user_id+"님이 접속되었습니다.");
+				sendAllSessionToMessage(map, user_id, user_id+"님이 접속되었습니다."); 
+				//그 방에대한 전체 map / 접속한 사람의 user_id(키값) / 메시지
 			} else { // 최초 생성하는 방이라면 방번호와 세션을 추가한다.
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("ch_seq", ch_seq);
@@ -80,10 +81,10 @@ public class ChatHandler extends TextWebSocketHandler {
 
 			}
 			// 세션등록이 끝나면 발급받은 세션ID값의 메시지를 발송한다.
-			JSONObject obj = new JSONObject();
-			obj.put("type", "getId");
-			obj.put("user_id", user_id);
-			session.sendMessage(new TextMessage(obj.toJSONString()));
+			//JSONObject obj = new JSONObject();
+			//obj.put("type", "getId");
+			//obj.put("user_id", user_id);
+			//session.sendMessage(new TextMessage(obj.toJSONString()));
 			
 			//추가
 			//sendAllSessionToMessage(session, user_id+"님이 접속되었습니다.");
@@ -92,9 +93,42 @@ public class ChatHandler extends TextWebSocketHandler {
 			System.out.println("afterConnectionEstablished()_session이 null");
 		}
 	}
+	
+	//메시지 보낸 자신을 제외한 나머지 연결된 세션에 메시지를 보냄
+	private void sendAllSessionToMessage(HashMap<String, Object> map, String user_id, String message) {
+		try {
+			
+			HashMap<String, Object> temp =new HashMap();
+			temp.put("type", "allMessage");
+			temp.put("msg", message);
+			JSONObject obj = getJsonStringFromMap(temp);
+			
+			// 해당 방의 세션들만 찾아서 메시지를 발송해준다.
+			for (String k : map.keySet()) {
+				if (k.equals("ch_seq")) { // 다만 방번호일 경우에는 건너뛴다.
+					continue;
+				}
+
+				WebSocketSession wss = (WebSocketSession) map.get(k);
+				if (wss != null) {
+					try {
+						if(!k.equals(user_id)) { //key값은 user_id인데 자기자신을 제외한 모든사람들한테 메시지 전송
+							wss.sendMessage(new TextMessage(obj.toJSONString()));
+							System.out.println("나 뺴고 나머지한테 전송");
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}	
+	
+	
 
 	// 클라이언트가 서버로 메시지를 전송했을 때 실행되는 메서드
-
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		/*
@@ -170,25 +204,27 @@ public class ChatHandler extends TextWebSocketHandler {
 		}
 		return obj;
 	}
+	
+    /**
+     * Map을 json으로 변환한다.
+     */
+    public static JSONObject getJsonStringFromMap( HashMap<String, Object> map )
+    {
+        JSONObject jsonObject = new JSONObject();
+        for( Map.Entry<String, Object> entry : map.entrySet() ) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            jsonObject.put(key, value);
+        }
+        
+        return jsonObject;
+    }
+    
 
 	public String getAttribute(WebSocketSession session, String parameter) {
 		return (String) session.getAttributes().get(parameter);
 	}
 	
-	//메시지 보낸 자신을 제외한 나머지 연결된 세션에 메시지를 보냄
-	private void sendAllSessionToMessage(WebSocketSession session, String message) {
-		try {
-			String room = (String) self.getUserProperties().get("roomName");
-			System.out.println("room : " + room);
-			
-			for(Session session : rooms.get(room)) {
-				if(!self.getId().equals(session.getId())) {
-					session.getBasicRemote().sendText(message.split(",")[1] + " : " + message.split(",")[0]);
-				}
-			}
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
+
 
 }
