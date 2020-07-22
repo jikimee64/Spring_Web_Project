@@ -328,8 +328,10 @@ outline:none;
 								<div id="alert2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 							</div>
 						</div>
-						<br /> <br /> <br />
 
+						<div id="alert3" style="margin-bottom:50px;">
+							&nbsp;
+						</div>
 
 
 						<div style="text-align: end;">
@@ -436,14 +438,14 @@ outline:none;
         	var bb = $('#bb').val(); //id
                     
                     if($.trim(uu) != aa){
-                    	$('#alert2').html('인증번호를 다시 입력해주세요 ')
+                    	$('#alert3').html('인증번호를 다시 입력해주세요 ')
 
     		        }else if($.trim(uu)===""){
 
-    		        	$('#alert2').html('인증번호를 입력해주세요')
+    		        	$('#alert3').html('인증번호를 입력해주세요')
 
                     }else{
-                    	$('#alert2').html('<br>회원님의 아이디는 [ <b>'+ bb +'</b> ] 입니다.')
+                    	$('#alert3').html('회원님의 아이디는 [ <b>'+ bb +'</b> ] 입니다.')
     	                        
     	                    
                     }
