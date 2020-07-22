@@ -35,7 +35,7 @@
 	position: relative;
 	z-index: 0;
 	max-width: 100%;
-	border-radius: 3px 16px 16px;
+	border-radius: 16px 16px;
 	font-size: 15px;
 	line-height: 1.33;
 	background-color: #f4f4f4;
@@ -91,15 +91,15 @@
 		</div>
 
 
-		<div id="chatBoxArea" class="chatBoxArea" style="height:470px;"></div>
+		<div id="chatBoxArea" class="chatBoxArea" style="height:470px; overflow:auto;"></div>
 
 
 	</div>
 
 		<div class="talk_write row"
-			style="width:100%; height: 100%; margin: 0px; min-height: 40px; background-color: #fff;">
+			style="width:100%; height: 100%;  position:fixed;  margin: 0px; min-height: 40px; background-color: #fff;">
 			<div class="col"
-				style="margin:0px 10px; position:fixed; padding-right:0px;border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
+				style="margin:0px 10px;bottom:0; right:0; padding-right:0px; border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
 					class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
 						<button type="submit" id="sendButton"
@@ -201,18 +201,18 @@
 											let html = "";
 											console.log('하하 '
 													+ data[1].PROFILE_IMG)
-											html += "<div style='display:flex;'>"
-											html += "<div class='col-md-1' style='padding-right:0px; width:70px;'>"
+										
+											html += "<div>"
 											//html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
-											html += "<div style='width: 60px; float: left; text-align: center;'>"
-											html += "<img src='/userboard/upload/"
+											html += "<div style='float: left; text-align: center;'></div>"
+											html += "<div><img src='/userboard/upload/"
 													+ data[1].PROFILE_IMG
 													+ "' alt='' style='height: 50px; border-radius: 32%;'>"
-											html += "<b style='display: block;''>"
+											html += "<b style='display: block;'>"
 													+ d.user_id
-													+ "</b></div></div>"
-											html += "<div class='col yourbubble'>"
-													+ d.msg + "</div>"
+													+ "</b>"
+											html += "<div class='yourbubble'>"
+													+ d.msg + "</div></div><br>"
 											$("#chatBoxArea").append(html);
 										},
 										error : function(e) {
@@ -310,6 +310,8 @@
 			}
 		}
 	</script>
+
+
 
 </body>
 
