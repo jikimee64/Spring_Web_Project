@@ -191,7 +191,7 @@
 							data["user_id"] = d.user_id;
 							$
 									.ajax({
-										url : '/ajax/userInfoModal.do',
+										url : '/ajax/userInfoChat.do',
 										processData : false,
 										contentType : "application/json",
 										cache : false,
@@ -280,7 +280,7 @@
 
 			// 서버로 메시지 전송
 			Socket.send(JSON.stringify(option));
-			inputMsgBox.value = "";
+			inputMsgBox.val("")
 			inputMsgBox.focus();
 
 			return true;
