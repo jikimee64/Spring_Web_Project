@@ -85,6 +85,7 @@ public class LectureController {
 		cri.setSearchType(searchType);
 
 		if (language != null) { //main에서 왔을 때
+			
 			System.out.println("일로와라제발제발제발!!!!!!!!!!!!@@@");
 			System.out.println("여기로 정해따 너 지금 여기타는 거맞지????    아니!!!!!!!");
 			map2.put("language", arr);
@@ -102,6 +103,7 @@ public class LectureController {
 			model.addAttribute("list", list2); // view까지 전달(forward)
 			model.addAttribute("pageMaker", pageMaker);
 		} else if (root != null) { //헤더에서 왔을때
+			
 			//language = null;
 			System.out.println("동기");
 			list = service.getLectureList(cri);
@@ -127,6 +129,7 @@ public class LectureController {
 			model.addAttribute("list", list); // view까지 전달(forward)
 			model.addAttribute("pageMaker", pageMaker);
 		} else {
+			
 			System.out.println("filterSize2: " + AjaxRestController.filterSize2);
 			System.out.println("paramsTemp2 : " + AjaxRestController.paramsTemp2);
 			System.out.println("필터된 후엔 여길..");
@@ -144,7 +147,7 @@ public class LectureController {
 			//
 			model.addAttribute("type", "FS");
 			model.addAttribute("searchType", cri.getSearchType());
-			model.addAttribute("keyword", cri.getKeyword());
+			model.addAttribute("keyword", keywordCollec);
 			//
 			
 			System.out.println("잘왔을텐데..? " + list);
