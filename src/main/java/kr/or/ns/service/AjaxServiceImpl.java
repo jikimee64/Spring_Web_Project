@@ -266,10 +266,27 @@ public class AjaxServiceImpl implements AjaxService {
 		 */
 
 		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-		List<HashMap<String, Object>> userBoardInfo = dao.getUserBoardInfo(user_id);
+		List<HashMap<String, Object>> userInfo = dao.getUserInfo(user_id);
 
-		System.out.println("유저정보 잘 가져왔니" + userBoardInfo);
-		return userBoardInfo;
+		System.out.println("유저정보 잘 가져왔니" + userInfo);
+		return userInfo;
+	}
+	
+	//유저정보 모달에 게시판뿌리기
+	@Override
+	public List<HashMap<String, Object>> userBoardModal(HashMap<String, Object> params) {
+		String user_id = (String) params.get("user_id");
+		System.out.println("너는 잘 가져오니" + user_id);
+		/*
+		 * HashMap map = new HashMap(); map.put("user_id", user_id);
+		 * System.out.println(map + "에는 잘 담기니");
+		 */
+
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		List<HashMap<String, Object>> userBoard = dao.getUserBoardInfo(user_id);
+
+		System.out.println("유저정보 잘 가져왔니" + userBoard);
+		return userBoard;
 	}
 
 	// 이메일 중복체크
@@ -404,17 +421,6 @@ public class AjaxServiceImpl implements AjaxService {
 		return list;
 	}
 	
-	//모달창 유저가 쓴 게시물 보기
-	@Override
-	public List<HashMap<String, Object>> userBoardList(HashMap<String, Object> params) {
-		String user_id = (String) params.get("user_id");
-		System.out.println("참여중 스터디 비동기 가져오기" + user_id);
-		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
-		List<HashMap<String, Object>> list = dao.commentList(user_id);
-		System.out.println("모집중 스터디 리스트" + list);
-
-		return list;
-	}
 	//모집마감
 	@Override
 	public void finishRecruit(String s_seq) {
@@ -454,5 +460,7 @@ public class AjaxServiceImpl implements AjaxService {
 		System.out.println("권한체크용 서비스" + enabled);
 		return enabled;
 	}
+
+
 
 }
