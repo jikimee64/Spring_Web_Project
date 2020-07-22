@@ -61,10 +61,7 @@
 	color:
 }
 
-.chatBoxArea{
-	 /* height: 470px; */
-     overflow-y: auto;
-}
+
 
 /* #absdiv1 {
    z-index: 5;
@@ -210,10 +207,10 @@
 					} else if (d.type == "message") {
 						let html = "";
 						if (d.user_id == $("#user_id").val()) { //나
-							html += "<div>"	
-							html += "<div style='float: right; text-align: center;'>"
+							//html += "<br><div>"	
+							html += "<div style='text-align: center;'>"
 							html += "</div><div class='mybubble'>"
-									+ d.msg + "</div><br>"
+									+ d.msg + "</div><div></div>"
 							$("#chatBoxArea").append(html);
 						} else { //상대
 							console.log('제발!!@@')
@@ -234,7 +231,7 @@
 										
 											html += "<div style='margin-left:20px;'>"
 											//html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
-											html += "<div style='float: left; text-align: center;'></div>"
+											html += "<div style='text-align: center;'></div>"
 											html += "<div style='margin-top:30px;'><img src='/userboard/upload/"
 													+ data[1].PROFILE_IMG
 													+ "' alt='' style='height: 40px; width:40px; border-radius: 32%;'>"
@@ -242,7 +239,7 @@
 													+ d.user_id
 													+ "</b></span>"
 											html += "<div class='yourbubble' style='margin-left:50px; margin-top:0px;'>"
-													+ d.msg + "</div></div><br>"
+													+ d.msg + "</div></div><div></div>"
 											$("#chatBoxArea").append(html);
 										},
 										error : function(e) {
@@ -262,9 +259,7 @@
 				}
 				//]]>
 				
-				 $('#chatBoxArea')
-				.stop()
-				.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000); 
+				 $(document).scrollTop($(document).height());
 			};
 
 			/**
