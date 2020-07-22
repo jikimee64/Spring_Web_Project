@@ -32,7 +32,7 @@
 	text-align: inherit;
 	overflow: hidden;
 	display: flex;
-	position: relative;
+	position: absolute;
 	z-index: 0;
 	max-width: 100%;
 	border-radius: 16px 16px;
@@ -41,7 +41,8 @@
 	background-color: #f4f4f4;
 	word-break: break-word;
 	vertical-align: bottom;
-	margin: 10px 15px;
+	margin-left:50px;
+	margin-top:25px;
 	padding: 10px;
 	clear: left;
 	
@@ -58,6 +59,11 @@
 	width: 100%;
 	padding-top: 10px;
 	color:
+}
+
+.chatBoxArea{
+    height: 470px;
+
 }
 </style>
 
@@ -91,13 +97,13 @@
 		</div>
 
 
-		<div id="chatBoxArea" class="chatBoxArea" style="height:470px; overflow:auto;"></div>
+		<div id="chatBoxArea" class="chatBoxArea"></div>
 
 
 	</div>
 
 		<div class="talk_write row"
-			style="width:100%; height: 100%;  position:fixed;  margin: 0px; min-height: 40px; background-color: #fff;">
+			style="width:100%; position:fixed; bottom:0; margin: 0px; min-height: 40px; background-color: #fff;">
 			<div class="col"
 				style="margin:0px 10px;bottom:0; right:0; padding-right:0px; border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
@@ -202,15 +208,15 @@
 											console.log('하하 '
 													+ data[1].PROFILE_IMG)
 										
-											html += "<div>"
+											html += "<div class='row' style='margin-left:20px;'>"
 											//html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
 											html += "<div style='float: left; text-align: center;'></div>"
 											html += "<div><img src='/userboard/upload/"
 													+ data[1].PROFILE_IMG
 													+ "' alt='' style='height: 50px; border-radius: 32%;'>"
-											html += "<b style='display: block;'>"
+											html += "<span><b>"
 													+ d.user_id
-													+ "</b>"
+													+ "</b></span>"
 											html += "<div class='yourbubble'>"
 													+ d.msg + "</div></div><br>"
 											$("#chatBoxArea").append(html);
@@ -231,6 +237,10 @@
 					}
 				}
 				//]]>
+				
+				$('#chatBoxArea')
+				.stop()
+				.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000);
 			};
 
 			/**
