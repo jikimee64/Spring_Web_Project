@@ -24,6 +24,7 @@
 	vertical-align: bottom;
 	margin: 10px 15px;
 	padding: 10px;
+	clear: right;
 }
 
 .yourbubble {
@@ -42,6 +43,8 @@
 	vertical-align: bottom;
 	margin: 10px 15px;
 	padding: 10px;
+	clear: left;
+	
 }
 
 .msg_input {
@@ -149,12 +152,10 @@
 						let html = "";
 						if (d.user_id == $("#user_id").val()) { //나
 							html += "<div>"	
-							html += "<div style='width: 60px; float: right; text-align: center;'>"
+							html += "<div style='float: right; text-align: center;'>"
 							html += "</div><div class='mybubble'>"
-									+ d.msg + "</div>"
-
+									+ d.msg + "</div><br>"
 							$("#chatBoxArea").append(html);
-
 						} else { //상대
 
 							var data = {}
