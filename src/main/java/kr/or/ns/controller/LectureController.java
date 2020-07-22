@@ -147,7 +147,7 @@ public class LectureController {
 			//
 			model.addAttribute("type", "FS");
 			model.addAttribute("searchType", cri.getSearchType());
-			model.addAttribute("keyword", cri.getKeyword());
+			model.addAttribute("keyword", keywordCollec);
 			//
 			
 			System.out.println("잘왔을텐데..? " + list);
