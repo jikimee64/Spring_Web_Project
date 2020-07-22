@@ -127,5 +127,14 @@ public class ChatController {
 		}
 		return map;
 	}
+	
+	//채팅방 내부에서 멤버리스트 보는 페이지로 이동
+	@RequestMapping("chatmemberlist.do")
+	public String chatmemberlist(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
+		System.out.println("채팅멤버 리스트 페이지로 이동이동(연규가씀)");
+		
+		return "chat/memberlist";
+	}
+	
 
 }
