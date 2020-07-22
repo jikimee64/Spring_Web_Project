@@ -520,7 +520,7 @@ keyframes heart-keyframes { 100% {
 					<option value="w">작성자</option>
 					<option value="all">전체조건</option>
 				</select> <input class="form-control" type="text" id="keyword" name="keyword"
-					th:value="${keyword}" placeholder="검색어를 입력하세요"
+					  placeholder="검색어를 입력하세요"
 					style="width: 228px;" />
 				<button type="button" id="searchBtn" class="btn btn-outline-success">Search</button>
 
@@ -550,7 +550,7 @@ keyframes heart-keyframes { 100% {
 							<p class="card-text _margin_0"
 								style="color: gray; font-size: small;"
 								th:text="${list.L_WRITER}">이지스 퍼블리싱</p>
-							<a th:href="${list.L_ADDRESS}" class="stretched-link _address"></a>
+							<a target="_blank" th:href="${list.L_ADDRESS}" class="stretched-link _address"></a>
 							<div
 								style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
 								<p class="_star"
@@ -1115,6 +1115,7 @@ keyframes heart-keyframes { 100% {
 		var $searchTypeSel = $('#searchTypeSel');
 		var $keyword = $('#keyword');
 		console.log($keyword);
+		var tempStr = $('#keyword').val();
 		console.log($('#keyword').val())
 		var ke =  $('#keyword').val().replace(/ /g,"+");
 		console.log(ke)

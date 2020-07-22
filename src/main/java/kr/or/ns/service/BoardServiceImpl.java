@@ -56,9 +56,20 @@ public class BoardServiceImpl implements BoardService {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			System.out.println("Criteria_Board : " + cri_b);
 			List<Map<String, Object>> list = dao.getStudyBoardList(cri_b);
-			System.out.println(" 서비스에서 리턴갑니다.");
+			System.out.println(" 서비스에서 리턴갑니다." + list);
 			return list;
 		}
+		
+		// 페이징 스터디 글목록
+		public List<Map<String, Object>> getStudyBoardListSize(Criteria_Board cri_b) {
+			BoardDao dao = sqlsession.getMapper(BoardDao.class);
+			System.out.println("Criteria_Bosadasdarsasdd : " + cri_b);
+			List<Map<String, Object>> list = dao.getStudyBoardListSize(cri_b);
+			System.out.println(" 서비스에서 리턴dsaasdasdasd갑니다." + list);
+			return list;
+		}
+		
+		
 	
 	//study_board_online 게시판 정보 가져오기(목록에서 온라인강의 컨텐츠 정보 부려줄용)
 	public List<Map<String, Object>> getOnlineStudyBoard(){

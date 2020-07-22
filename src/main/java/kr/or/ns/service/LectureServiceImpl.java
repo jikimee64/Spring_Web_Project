@@ -37,18 +37,20 @@ public class LectureServiceImpl implements LectureService {
 	}
 
 	// 게시글 목록
-	public List<Map<String, Object>> getLectureList(Criteria cri) {
+	public List<Map<String, Object>> getLectureList(Criteria cri, HashMap<String, Object> map4) {
 		LectureDao dao = sqlsession.getMapper(LectureDao.class);
-		System.out.println("getLectureList : " + cri);
-		List<Map<String, Object>> list = dao.getLectureList(cri);
+		System.out.println("getLectureLisssst : " + cri);
+		map4.put("cri", cri);
+		List<Map<String, Object>> list = dao.getLectureList(map4);
 		return list;
 	}
 	
 	// 게시글 목록
-		public List<Map<String, Object>> getLectureListSize(Criteria cri) {
+		public List<Map<String, Object>> getLectureListSize(Criteria cri, HashMap<String, Object> map4) {
 			LectureDao dao = sqlsession.getMapper(LectureDao.class);
-			System.out.println("getLectureList : " + cri);
-			List<Map<String, Object>> list = dao.getLectureListSize(cri);
+			System.out.println("getLectureLissssssst : " + cri);
+			map4.put("cri", cri);
+			List<Map<String, Object>> list = dao.getLectureListSize(map4);
 			return list;
 		}
 

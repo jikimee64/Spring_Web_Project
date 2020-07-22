@@ -16,10 +16,10 @@ import kr.or.ns.vo.Study;
 public interface LectureDao {
 
 	//글목록
-	public List<Map<String, Object>> getLectureList(Criteria cri);
+	public List<Map<String, Object>> getLectureList(HashMap<String, Object> params);
 	
 	//글목록
-	public List<Map<String, Object>> getLectureListSize(Criteria cri);
+	public List<Map<String, Object>> getLectureListSize(HashMap<String, Object> params);
 
 	//글목록(필터)
 	public List<Map<String, Object>> getLectureListFilter(HashMap<String, Object> params);

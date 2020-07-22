@@ -794,9 +794,17 @@ group+group {
 				return;
 			}
 			
-			var url = "study_List.do?searchType=" + searchTypeVal
+			if($('.filterRow li').hasClass("filter-active")){ //필터중 하나라도 선택했을때
+				var url = "study_List.do?searchType=" + searchTypeVal
 				+ "&keyword=" + encodeURIComponent(keywordVal);
 			window.location.href = url;
+			}else{
+				var url = "study_List.do?root=search&searchType=" + searchTypeVal
+				+ "&keyword=" + encodeURIComponent(keywordVal);
+			window.location.href = url;
+			}
+			
+			
 			
 		})
 		

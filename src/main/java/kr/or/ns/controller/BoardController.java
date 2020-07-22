@@ -81,10 +81,20 @@ public class BoardController {
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
 		
+		System.out.println("keyword : " + keyword);
+		System.out.println("searchType : " + searchType);
+		list = service.getStudyBoardList(cri_b);
 		if(root != null) {
-			System.out.println("처음엔 여길..");
-			list = service.getStudyBoardList(cri_b);
-			pageMakerb.setTotalCount(service.getStudyBoardCount());
+			if(keyword == null) { //처음동기식으로 왔을때
+				System.out.println("처음엔 여길..");
+				pageMakerb.setTotalCount(service.getStudyBoardCount());
+			}else if(root.equals("search")){ //검색만 했을때(검색결과에 대한 사이즈 필요,리밋X)
+				System.out.println("..");
+				List<Map<String, Object>> listSize = service.getStudyBoardListSize(cri_b);
+				pageMakerb.setTotalCount(listSize.size());
+				model.addAttribute("type", "Search");
+			}
+			
 		}else {
 			System.out.println("filterSize: " + AjaxRestController.filterSize);
 			System.out.println("paramsTemp : " + AjaxRestController.paramsTemp);
@@ -106,6 +116,11 @@ public class BoardController {
 		model.addAttribute("pageMakerb", pageMakerb);
 		
 		return "user/board/study_List"; // study_List.html
+	}
+
+	private List<Map<String, Object>> getStudyBoardListSize(Criteria_Board cri_b) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@RequestMapping("study_FilterList.do")

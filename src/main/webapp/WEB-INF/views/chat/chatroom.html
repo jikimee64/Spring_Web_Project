@@ -9,6 +9,12 @@
 
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <style>
+
+   html, body {
+        height: 100%;
+        margin: 0px;
+    }
+
 .mybubble {
 	float: right;
 	text-align: end;
@@ -64,6 +70,18 @@ background-color: white;
 z-index: 5;
 position:absolute;
 }
+
+.wrapper {
+	overflow-x:hidden;
+	height:100%;
+}
+
+.chatBoxArea {
+	height:60%; 
+/* 	overflow-y: auto;
+    overflow-x: hidden; */
+}
+
 
 /* #absdiv1 {
    z-index: 5;
@@ -160,6 +178,7 @@ position:absolute;
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 	<script>
+
      $(function() {
         
         var data = {
