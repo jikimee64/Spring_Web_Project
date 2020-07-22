@@ -208,13 +208,15 @@ public class AjaxRestController {
 
 	// 쪽지함에서 유저정보 모달 불러오기
 	@RequestMapping(value = "userInfoModal.do", method = RequestMethod.POST)
-	public List<HashMap<String, Object>> userInfoModal(@RequestBody HashMap<String, Object> params) {
+	public List<HashMap<String, Object>> userInfoModal(@RequestBody HashMap<String, Object> params, String user_id) {
 		System.out.println("유저정보 오나요");
 		System.out.println("유저정보:" + params);
 
 		List<HashMap<String, Object>> list = null;
-
+		List<HashMap<String, Object>> userId = null;
+		
 		list = service.userInfoModal(params);
+		list = service.userBoardList(params);
 		System.out.println("리스트에 유저정보 담기: " + list);
 		return list;
 	}
