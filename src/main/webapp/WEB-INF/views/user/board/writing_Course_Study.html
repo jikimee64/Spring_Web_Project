@@ -237,7 +237,7 @@
 											th:style="|WIDTH:| +${lecture.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
 										</div>
 									</div>
-									<span>(6)</span> <b>₩44,000</b>
+									<span th:text="|(${lecture.L_REVIEW})|">(6)</span> <b th:text="${lecture.L_PRICE}">₩44,000</b>
 								</div>
 							</div>
 
