@@ -53,18 +53,13 @@
 	min-height: 40px;
 	font-size: 15px;
 	border: 0 none;
-	overflow-y: auto;
 	resize: none;
 	background-color: #f5f6f8;
 	width: 100%;
 	padding-top: 10px;
-	color:
+	
 }
 
-.chatBoxArea{
-	 /* height: 470px; */
-     overflow-y: auto;
-}
 
 /* #absdiv1 {
    z-index: 5;
@@ -264,9 +259,10 @@
 				}
 				//]]>
 				
-				 $('#chatBoxArea')
-				.stop()
-				.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000); 
+				 //$('#chatBoxArea')
+				//.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000); 
+				 $(document).scrollTop($(document).height());
+				 
 			};
 
 			/**
