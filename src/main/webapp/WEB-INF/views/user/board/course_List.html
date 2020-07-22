@@ -1067,6 +1067,10 @@ keyframes heart-keyframes { 100% {
 	function setSearchTypeSelect(){
 		var $searchTypeSel = $('#searchTypeSel');
 		var $keyword = $('#keyword');
+		console.log($keyword);
+		console.log($('#keyword').val())
+		var ke =  $('#keyword').val().replace(/ /g,"+");
+		console.log(ke)
 
 	    /* <![CDATA[ */
   		var pcs = /*[[${pageMaker.cri.searchType}]]*/;
@@ -1078,7 +1082,7 @@ keyframes heart-keyframes { 100% {
 		//검색 버튼이 눌리면
 		$('#searchBtn').on('click',function(){
 			searchTypeVal = $searchTypeSel.val();
-			keywordVal = $keyword.val();
+			keywordVal = $keyword.val().replace(/ /g,"+");
 			
 			//검색 조건 입력 안했으면 경고창 
 			if(!searchTypeVal){

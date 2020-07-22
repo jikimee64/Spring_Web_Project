@@ -57,7 +57,10 @@ public class LectureController {
 		PageMaker pageMaker = new PageMaker();
 		String user_id = principal.getName();
 		pageMaker.setCri(cri);
-
+		System.out.println(keyword+"courseListPage  에서 찍어보기 ");
+		
+		
+		
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		List<HashMap<String, Object>> listSize = null;
