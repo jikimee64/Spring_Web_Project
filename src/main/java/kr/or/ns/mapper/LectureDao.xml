@@ -101,7 +101,12 @@
 		
 		<if test="cri.searchType != null">
 			<if test="cri.searchType == 't'.toString()">
-				where lecture_board.l_title like CONCAT('%',#{cri.keyword},'%')
+				<if test="keyword.size != 0">
+					     where lecture_board.l_title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'c'.toString()">
 				where lecture_board.l_address like CONCAT('%', #{cri.keyword}, '%')

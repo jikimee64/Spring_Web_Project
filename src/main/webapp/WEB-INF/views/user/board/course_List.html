@@ -1130,7 +1130,6 @@ keyframes heart-keyframes { 100% {
 		$('#searchBtn').on('click',function(){
 			searchTypeVal = $searchTypeSel.val();
 			keywordVal = $keyword.val().replace(/ /g,"+");
-			
 			//검색 조건 입력 안했으면 경고창 
 			if(!searchTypeVal){
 				alert("검색 조건을 선택해주세요");
@@ -1143,7 +1142,6 @@ keyframes heart-keyframes { 100% {
 				$('#keyword').focus();
 				return;
 			}
-			
 			
 			if($('.filterRow li').hasClass("filter-active")){ //필터중 하나라도 선택했을때
 				var url = "course_List.do?searchType=" + searchTypeVal
