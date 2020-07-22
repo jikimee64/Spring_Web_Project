@@ -70,6 +70,7 @@ public class ChatHandler extends TextWebSocketHandler {
 				HashMap<String, Object> map = rls.get(idx);
 				map.put(user_id, session);
 				System.out.println("존재하는 방이면 세션 추가");
+				sendAllSessionToMessage(session, user_id+"님이 접속되었습니다.");
 			} else { // 최초 생성하는 방이라면 방번호와 세션을 추가한다.
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("ch_seq", ch_seq);
@@ -83,6 +84,10 @@ public class ChatHandler extends TextWebSocketHandler {
 			obj.put("type", "getId");
 			obj.put("user_id", user_id);
 			session.sendMessage(new TextMessage(obj.toJSONString()));
+			
+			//추가
+			//sendAllSessionToMessage(session, user_id+"님이 접속되었습니다.");
+			
 		} else {
 			System.out.println("afterConnectionEstablished()_session이 null");
 		}
@@ -100,11 +105,8 @@ public class ChatHandler extends TextWebSocketHandler {
 		String rcvMsg = message.getPayload();
 		JSONObject obj = JsonToObjectParser(rcvMsg);
 		String rN = (String) obj.get("ch_seq");
-		System.out.println("rN이떠야됨 : " + rN);
-		System.out.println("1단계 ");
 		HashMap<String, Object> temp = new HashMap<String, Object>();
 		if (rls.size() > 0) {
-			System.out.println("1-1단계 ");
 			for (int i = 0; i < rls.size(); i++) {
 				String ch_seq = (String) rls.get(i).get("ch_seq"); // 세션리스트의 저장된 방번호를 가져와서
 				if (ch_seq.equals(rN)) { // 같은값의 방이 존재한다면
@@ -112,7 +114,6 @@ public class ChatHandler extends TextWebSocketHandler {
 					break;
 				}
 			}
-			System.out.println("2단계 ");
 			// 해당 방의 세션들만 찾아서 메시지를 발송해준다.
 			for (String k : temp.keySet()) {
 				if (k.equals("ch_seq")) { // 다만 방번호일 경우에는 건너뛴다.
@@ -172,6 +173,22 @@ public class ChatHandler extends TextWebSocketHandler {
 
 	public String getAttribute(WebSocketSession session, String parameter) {
 		return (String) session.getAttributes().get(parameter);
+	}
+	
+	//메시지 보낸 자신을 제외한 나머지 연결된 세션에 메시지를 보냄
+	private void sendAllSessionToMessage(WebSocketSession session, String message) {
+		try {
+			String room = (String) self.getUserProperties().get("roomName");
+			System.out.println("room : " + room);
+			
+			for(Session session : rooms.get(room)) {
+				if(!self.getId().equals(session.getId())) {
+					session.getBasicRemote().sendText(message.split(",")[1] + " : " + message.split(",")[0]);
+				}
+			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }
