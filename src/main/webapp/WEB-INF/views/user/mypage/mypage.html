@@ -64,6 +64,23 @@ body {
 	-webkit-box-orient: vertical;
 	inline-size: -webkit-fill-available;
 }
+
+._introduce {
+	display: inline-block;
+	width: 600px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 7.2em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 6;
+	-webkit-box-orient: vertical;
+	inline-size: -webkit-fill-available;
+}
 </style>
 
 <body>
@@ -113,7 +130,8 @@ body {
 						style="width: 30px; margin-bottom: 5px;" alt=""></a>
 					<hr
 						style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 99%;" />
-					<p style="margin-left: 20px;" th:text="${user.introduce}"></p>
+					<p style="margin-left: 20px;" class="_introduce"
+						th:text="${user.introduce}"></p>
 				</div>
 				<div class="col-md-5">
 					<div class="row" style="height: 10px; margin-bottom: 50px;">
@@ -193,44 +211,44 @@ body {
 
 								<div class="col-md-8">
 									<!-- @{/board/board_Support_Status.do} -->
+									<div>
 									<span class="badge badge-pill badge-primary"
-										th:text="${studylist.STATUS}"></span> <span
+										th:text="${studylist.STATUS}"></span><span
 										class="badge badge-pill badge-info"
-										th:text="${studylist.LEVEL}"></span> <span
+										th:text="${studylist.LEVEL}"></span><span
 										class="badge badge-pill badge-secondary"
-										th:text="${studylist.CATE_LANGUAGE}"></span> <span
+										th:text="${studylist.CATE_LANGUAGE}"></span><span
 										class="badge badge-pill badge-warning"
 										th:text="|${studylist.accept}/${studylist.PEOPLE}명|"
-										id="recruting_people">모집인원 4/6</span> <span
+										id="recruting_people">모집인원 4/6</span><span
 										class="badge badge-pill badge-warning"
-										th:text="${studylist.LOC}"></span> <span
+										th:text="${studylist.LOC}"></span><span
 										class="badge badge-pill badge-light"
-										th:text="${studylist.CONTENT_KIND}"></span> <span
+										th:text="${studylist.CONTENT_KIND}"></span><span
 										class="badge badge-pill badge-danger"
-										th:text="|마감일 : ${#dates.format(studylist.DEADLINE,'yyyy/MM/dd HH:mm')}|"></span>
-									<span class="badge badge-pill "
-										th:text="|${studylist.ACCEPT_STATUS}|"></span> <a
-										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"> <img
+										th:text="|마감일 : ${#dates.format(studylist.DEADLINE,'yyyy/MM/dd HH:mm')}|"></span><span 
+									class="badge badge-pill "
+										th:text="|${studylist.ACCEPT_STATUS}|"></span><a
+										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"><img
 										src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
 										class="mb-1 _message_hover" alt="" style="height: 27px;">
-									</a> <br />
-									<div class="_title">
-										<b><span th:text="${studylist.TITLE}"
-											style="font-size: xx-large;"></span></b>
-									</div>
+									</a></div><br /> <a th:href='@{/board/my_Writing_Common_Study_Detail.do(s_seq=${studylist.S_SEQ})}'>
+										<div class="_title" style="margin-top: 9px;">
+											<b><span th:text="${studylist.TITLE}"
+												style="font-size: xx-large;"></span></b>
 
 
-
-
+										</div>
+									</a>
 								</div>
 								<div class="col-md-3" style="text-align: right;">
 
 									<th:block th:switch="${studylist.CONTENT_KIND}">
-										<img th:case="온라인강의" th:src="${studylist.IMAGE}"
-											alt='이미지가 없습니다' style='height: 140px; width: 92%;'>
+										<img th:case="온라인" th:src="${studylist.IMAGE}" alt='이미지가 없습니다'
+											style='height: 140px; width: 220px;'>
 										<img th:case="일반"
 											th:src="'/studyboard/upload/' + ${studylist.IMAGE}"
-											alt='이미지가 없습니다' style='height: 140px; width: 92%;'>
+											alt='이미지가 없습니다' style='height: 140px; width: 220px;'>
 									</th:block>
 									<!-- <img th:src="${studylist.IMAGE}" alt=""
 									style="height: 140px; width: 140px;"> -->
@@ -266,42 +284,42 @@ body {
 						<div
 							style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
 
-							
+
 							<div th:each="list: ${list}">
 								<!-- 여기부터 데이터 하나 넣기 시작 -->
 								<!-- 타임리프 for문 -->
 								<div class="row" th:classappend="|bookmark${list.L_SEQ}|">
-									
-<!-- 									<div class="col-md-1" style="text-align: center;"> -->
-<!-- 										스터디 글 번호 -->
-<!-- 										<p style="font-size: xx-large; font-weight: bold;" -->
-<!-- 											th:text="${list.L_SEQ}"></p> -->
-<!-- 									</div> -->
+
+									<!-- 									<div class="col-md-1" style="text-align: center;"> -->
+									<!-- 										스터디 글 번호 -->
+									<!-- 										<p style="font-size: xx-large; font-weight: bold;" -->
+									<!-- 											th:text="${list.L_SEQ}"></p> -->
+									<!-- 									</div> -->
 									<div class="col-md-3" style="text-align: center;">
-									<a th:href="${list.L_ADDRESS}" class="stretched-link">
-										<img th:src="${list.L_IMAGE}" alt=""
-											style="height: 140px; width: 92%;">
-											</a>
+										<a th:href="${list.L_ADDRESS}" class="stretched-link"> <img
+											th:src="${list.L_IMAGE}" alt=""
+											style="height: 140px; width: 220px;">
+										</a>
 									</div>
 									<div class="col-md-7"
 										style="padding-left: 22px; padding-right: 0px; padding-top: 10px;">
 
-										<h4 style="font-weight: bold; color: black; height:56px;"
+										<h4 style="font-weight: bold; color: black; height: 56px;"
 											th:text="${list.L_TITLE}"></h4>
-										<br /> 
+										<br />
 										<div
-												style="CLEAR: both;position:relative;transform:translateY(2px); PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
-												<p class="_star"
-													th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
-												</p>
-											</div>
-										
-											<span th:text="|(${list.L_REVIEW})|">(6)</span> 
-										 <span> <b th:text="|₩${list.L_PRICE}|"></b>
+											style="CLEAR: both; position: relative; transform: translateY(2px); PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+											<p class="_star"
+												th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+											</p>
+										</div>
+
+										<span th:text="|(${list.L_REVIEW})|">(6)</span> <span>
+											<b th:text="|₩${list.L_PRICE}|"></b>
 										</span> <br />
 
 									</div>
-									<div class="col-md-1" style="padding-right: 0px; left:55px;">
+									<div class="col-md-1" style="padding-right: 0px; left: 55px;">
 										<button type="button" class="btn btn-danger"
 											th:onclick="|javascript:deleteBookMark('${list.L_SEQ}')|"
 											style="background-color: rgb(231, 76, 60); width: 70px; padding: 7px 0px;">
@@ -310,14 +328,14 @@ body {
 									</div>
 									<hr style="width: -webkit-fill-available; border: solid 1px;" />
 								</div>
-						
+
+							</div>
 						</div>
 					</div>
 				</div>
+				<!-- 여기까지 마지막 부분 끝/// 북마크 -->
 			</div>
-			<!-- 여기까지 마지막 부분 끝/// 북마크 -->
 		</div>
-	</div>
 	</div>
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
@@ -372,115 +390,123 @@ body {
 							function() {
 								console.log("유저아이디(모집중): " + user_id);
 								$
-								$.ajax({
-									url : '/ajax/recrutingStudy.do',
-									processData : false,
-									contentType : "application/json",
-									cache : false,
-									type : 'POST',
-									data : JSON.stringify(data),
-									success : function(data) {
-										$('#recruting_study').empty();
-											$.each(
-														data,
-														function(index,
-																item) {
-															console
-																	.log(item.S_SEQ);
-															/*  제목이랑 내용 문자열 자르기 시작 */
-// 															if (data[index].TITLE.length > 18) {
-// 																data[index].TITLE = data[index].TITLE
-// 																		.substr(
-// 																				0,
-// 																				18)
-// 																		+ "...";
-// 															}
-// 															if (data[index].CONTENT.length > 335) {
-// 																data[index].CONTENT = data[index].CONTENT
-// 																		.substr(
-// 																				0,
-// 																				335)
-// 																		+ "...";
-// 															}
-															
-															 var write_date = new Date(data[index].WRITE_DATE);
-															 var deadline = new Date(data[index].DEADLINE);
-															
-															/*  제목이랑 내용 문자열 자르기 끝  */
-															let html = "";
-															html += "<div>";
-															html += "<div class='row p-3'>";
-															html += "<div class='col-md-1' style='text-align: center;'>";
-															html += "<p style='font-size: xx-large; font-weight: bold;'>"
-																	+ data[index].S_SEQ
-																	+ "</p></div>";
-																	
-															html += "<div class='col-md-8'>";
-															html += "<div style='padding-left:15px; padding-right:15px;'>"
-															html += "<span class='badge badge-pill badge-primary' style='height:20px;'>"
-																	+ data[index].STATUS
-																	+ "</span>";
-															html += "<span class='badge badge-pill badge-info' style='height:20px;'>"
-																	+ data[index].LEVEL
-																	+ "</span>";
-															html += "<span class='badge badge-pill badge-secondary' style='height:20px;'>"
-																	+ data[index].CATE_LANGUAGE
-																	+ "</span>";
-															html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
-																	+ data[index].PEOPLE
-																	+ "명</span>";
-															html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
-																	+ data[index].LOC
-																	+ "</span>"
-															html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
-																	+ data[index].CONTENT_KIND
-																	+ "</span>";
-															/* html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
-																	+ data[index].ACCEPT_STATUS
-																	+ "</span>"; */
-															html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
-																	+ data[index].S_SEQ
-																	+ "'>";
-															
-															/* html += "<a href = '/board/board.Support_Status.do'>"; */
-															html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;transform:translateY(-3px);'></a>";
-															html += " ";
-															html += "<div style='font-size:small; font-weight:bold;'>";
-															html
-															html += " 등록일 : ";
-															html += getDateFormet(write_date)
-															html += " 마감일 : "
-															html += getDateFormet(deadline)
-															html += "</div>";
-															html += "</div>";
-															html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
-															/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-															html += "<div class='_title' style='padding-left: 15px; margin-top:21px;'><b><span style='font-size:xx-large;'>"
-																	+ data[index].TITLE
-																	+ "</span></b></div><br/></a>";
-															html += "</div>";
-															html += "<div class='col-md-3' style='text-align: right;'>";
-															if (data[index].CONTENT_KIND === '온라인강의') {
-																html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
-															} else {
-																html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
-															}
-															/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
-															html += "</div>";
-															html += "</div>"
-															html += "</div>";
-															html += "</div>";
-															html += "<hr style='border: solid 1px; margin-top: 0px;margin-bottom:0px; width:96%;' />";
-															$(
-																	'#recruting_study')
-																	.append(
-																			html);
-														});
-									},
-									error : function(e) {
-										console.log("error:", e);
-									}
-								});
+								$
+										.ajax({
+											url : '/ajax/recrutingStudy.do',
+											processData : false,
+											contentType : "application/json",
+											cache : false,
+											type : 'POST',
+											data : JSON.stringify(data),
+											success : function(data) {
+												$('#recruting_study').empty();
+												$
+														.each(
+																data,
+																function(index,
+																		item) {
+																	console
+																			.log(item.S_SEQ);
+																	/*  제목이랑 내용 문자열 자르기 시작 */
+																	// 															if (data[index].TITLE.length > 18) {
+																	// 																data[index].TITLE = data[index].TITLE
+																	// 																		.substr(
+																	// 																				0,
+																	// 																				18)
+																	// 																		+ "...";
+																	// 															}
+																	// 															if (data[index].CONTENT.length > 335) {
+																	// 																data[index].CONTENT = data[index].CONTENT
+																	// 																		.substr(
+																	// 																				0,
+																	// 																				335)
+																	// 																		+ "...";
+																	// 															}
+																	var write_date = new Date(
+																			data[index].WRITE_DATE);
+																	var deadline = new Date(
+																			data[index].DEADLINE);
+
+																	/*  제목이랑 내용 문자열 자르기 끝  */
+																	let html = "";
+																	html += "<div>";
+																	html += "<div class='row p-3'>";
+																	html += "<div class='col-md-1' style='text-align: center;'>";
+																	html += "<p style='font-size: xx-large; font-weight: bold;'>"
+																			+ data[index].S_SEQ
+																			+ "</p></div>";
+
+																	html += "<div class='col-md-8'>";
+																	html += "<div style='padding-left:15px; padding-right:15px;'>"
+																	html += "<span class='badge badge-pill badge-primary' style='height:20px;'>"
+																			+ data[index].STATUS
+																			+ "</span>";
+																	html += "<span class='badge badge-pill badge-info' style='height:20px;'>"
+																			+ data[index].LEVEL
+																			+ "</span>";
+																	html += "<span class='badge badge-pill badge-secondary' style='height:20px;'>"
+																			+ data[index].CATE_LANGUAGE
+																			+ "</span>";
+																	html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
+																			+ data[index].PEOPLE
+																			+ "명</span>";
+																	html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
+																			+ data[index].LOC
+																			+ "</span>"
+																	html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
+																			+ data[index].CONTENT_KIND
+																			+ "</span>";
+																	/* html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
+																			+ data[index].ACCEPT_STATUS
+																			+ "</span>"; */
+																	html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
+																			+ data[index].S_SEQ
+																			+ "'>";
+
+																	/* html += "<a href = '/board/board.Support_Status.do'>"; */
+																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;transform:translateY(-3px);'></a>";
+																	html += " ";
+																	html += "<div style='font-size:small; font-weight:bold;'>";
+																	html += "<span style='margin-right:15px;'>"
+																	html += " 등록일 : ";
+																	html += getDateFormet(write_date)
+																	html += "</span>"
+																	html += "<span>"
+																	html += " 마감일 : "
+																	html += getDateFormet(deadline)
+																	html += "</span>"
+																	html += "</div>";
+																	html += "</div>";
+																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+																			+ data[index].S_SEQ
+																			+ "'>";
+																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
+																	html += "<div class='_title' style='padding-left: 15px; margin-top:21px;'><b><span style='font-size:xx-large;'>"
+																			+ data[index].TITLE
+																			+ "</span></b></div><br/></a>";
+																	html += "</div>";
+																	html += "<div class='col-md-3' style='text-align: right;'>";
+																	if (data[index].CONTENT_KIND === '온라인') {
+																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
+																	} else {
+																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
+																	}
+																	/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
+																	html += "</div>";
+																	html += "</div>"
+																	html += "</div>";
+																	html += "</div>";
+																	html += "<hr style='border: solid 1px; margin-top: 0px;margin-bottom:0px; width:96%;' />";
+																	$(
+																			'#recruting_study')
+																			.append(
+																					html);
+																});
+											},
+											error : function(e) {
+												console.log("error:", e);
+											}
+										});
 
 							});
 
@@ -520,7 +546,7 @@ body {
 
 																	var date1 = new Date(
 																			data[index].DEADLINE);
-	
+
 																	let html = "";
 
 																	html += "<div>";
@@ -540,8 +566,10 @@ body {
 																	html += "<span class='badge badge-pill badge-secondary'>"
 																			+ data[index].CATE_LANGUAGE
 																			+ "</span>";
-																	html += "<span class='badge badge-pill badge-warning'>" + data[index].accept + "/"+
-																			+ data[index].PEOPLE
+																	html += "<span class='badge badge-pill badge-warning'>"
+																			+ data[index].accept
+																			+ "/"
+																			+ +data[index].PEOPLE
 																			+ "명</span>";
 																	html += "<span class='badge badge-pill badge-warning'>"
 																			+ data[index].LOC
@@ -561,18 +589,20 @@ body {
 																			+ data[index].S_SEQ
 																			+ "'>";
 																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
-																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="+data[index].S_SEQ+"'>";
+																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+																			+ data[index].S_SEQ
+																			+ "'>";
 																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-																	html += "<div class='_title'><b><span style='font-size:xx-large;' class='_title2'>"
+																	html += "<div class='_title' style='margin-top:33px;'><b><span style='font-size:xx-large;' class='_title2'>"
 																			+ data[index].TITLE
 																			+ "</span></b></div><br/><a/>";
-																
+
 																	html += "</div>";
 																	html += "<div class='col-md-3' style='text-align: right;'>";
-																	if (data[index].CONTENT_KIND === '온라인강의') {
-																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
+																	if (data[index].CONTENT_KIND === '온라인') {
+																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
 																	} else {
-																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 92%;'>"
+																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
 																	}
 
 																	html += "</div>";
@@ -584,10 +614,6 @@ body {
 																			.append(
 																					html);
 																});
-												
-	
-																	
-																	
 
 											},
 											error : function(e) {
@@ -627,15 +653,13 @@ body {
 	</script>
 
 	<script>
+		$('._content').each(
+				function(index, item) {
 
-			$('._content').each(
-					function(index, item) {
+					$('._content').eq(index)[0].innerText = $('._content').eq(
+							index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
 
-						$('._content').eq(index)[0].innerText = $('._content')
-								.eq(index)[0].innerText.replace(
-								/(<([^>]+)>)/ig, "");
-
-					});
+				});
 	</script>
 
 </body>

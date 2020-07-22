@@ -64,7 +64,7 @@ white-space:pre-line
 </head>
 <body onresize="parent.resizeTo(500,700)" onload="parent.resizeTo(500,700)">
 
-		<input type="hidden" id="ch_seq" th:value="${ch_seq}" />
+		<input type="hidden" id="ch_seq" th:value="${chatroom.ch_seq}" />
 		<input type="hidden" id="user_id" th:value="${user_id}" />
 
 	<div class="wrapper" style="position:relative; height:600px;">
@@ -88,43 +88,31 @@ white-space:pre-line
 
 		<div class="today"
 			style="margin-top: 20px; text-align: -webkit-center;">
-			<b>2020.07.20(월)</b>
+			<b th:text="${datestr}"></b>
 		</div>
-		<div style="display: flex;">
-			<div class="col-md-1" style="padding-right: 0px; width: 70px;">
-				<!-- 나중에 참고 <img th:src="'/userboard/upload/' + ${user.profile_img}" alt=""
-						style="height: 165px; border-radius: 32%; border: 2px solid black;"> -->
-				<div style="width: 60px; float: left; text-align: center;">
-					<img src="../../../../resources/images/img/heart.ico" alt=""
-						style="height: 50px; border-radius: 32%;"> <b
-						style="display: block;">이정아</b>
-				</div>
-
-			</div>
-			<div class="col yourbubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-
+		
+		
+		<div id="chatBoxArea" class="chatBoxArea">
+		
+		
 		</div>
-		<div style="display: flex;">
 
-			<div class="col mybubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋ
-				ㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-		</div>
+		
+		
 	</div>
 	<div class="row talk_write"
 		style="margin-left: 0px; min-height: 40px; background-color: #fff; padding-left: 30px;padding-right: 50px;">
 		<div class="col-10 innerWrap"
 			style="border-radius: 10px; height: 40px; background-color: #f5f6f8;">
-			<textarea id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
-				class="msg_input"></textarea>	
+			<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
+				class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>	
 				
-				<button type="submit" id="sendmessage"
+				<button type="submit" id="sendButton"
 				class="btn btn-outline-success btn"
-				style="position: absolute; padding: 6px 30px; margin-left:23px;">
+				style="position: absolute; padding: 6px 30px; margin-left:23px; onclick="sendButton_onclick()">
 				<b>전송</b>
 			</button>
 		</div>
-	
-	
 
 	</div>
 
@@ -135,16 +123,6 @@ white-space:pre-line
 
 		window.onload = function() {
 
-			/* $("#chat").hide(); */
-
-			/* 		 Socket = new WebSocket(
-							"ws://localhost:8001/WebSocket_Memory2/test01.do");  */
-			//웹소켓 전송시 현재 방의 번호를 넘겨서 보낸다.
-			/* 	Socket = new WebSocket("ws://" + location.host + "/WebSocket_DB2"
-						+ "/test01.htm/" + $("#roomNumber").val()); */
-
-			console.log("userid: " + $("#userid").val())
-
 			//<![CDATA[
 			//HTML5가 제공하는 WebSocket 객체를 통해 서버 연결을 수행
 			Socket = new WebSocket("ws://" + location.host + "/"
@@ -154,7 +132,11 @@ white-space:pre-line
 
 			/* /"+$("#roomNumber").val() */
 			Socket.onopen = function(message) {
-
+			 	 console.log(message.user_id)
+				//var d = JSON.parse(msg);
+				//let html = "";
+				//html += "<b>"+d.user_id+"님이 들어옴</b>"  
+				console.log('접속완료') 
 			};
 
 			/**
@@ -162,27 +144,56 @@ white-space:pre-line
 			 */
 			Socket.onmessage = function(message) {
 				var msg = message.data;
+				console.log('제발 : ' + msg);
 				//<![CDATA[
 				if (msg != null && msg.trim() != '') {
 
 					var d = JSON.parse(msg);
 					if (d.type == "getId") {
-						var si = d.sessionId != null ? d.sessionId : "";
+						var si = d.user_id != null ? d.user_id : "";
 						if (si != '') {
-							$("#sessionId").val(si);
+							$("#user_id").val(si);
 						}
 					} else if (d.type == "message") {
-						if (d.sessionId == $("#sessionId").val()) {
-							$("#chatBoxArea").append(
-									"<p class='me'>나 : " + d.msg + "</p>");
-							$("#chatBoxArea").scrollTop(
-									$("#chatBoxArea")[0].scrollHeight);
-						} else {
-							$("#chatBoxArea").append(
-									"<p class='others'>" + d.sessionId + " :"
-											+ d.msg + "</p>");
-							$("#chatBoxArea").scrollTop(
-									$("#chatBoxArea")[0].scrollHeight);
+						let html = "";
+						if (d.user_id == $("#user_id").val()) { //나
+							html += "<div style='display:flex;'>"
+							html += "<div class='col-md-1' style='padding-right:0px; width:70px;'>"
+							html += "<div style='width: 60px; float: left; text-align: center;'>"
+							html += "</div></div><div class='col mybubble'>"+d.msg+"</div>" 
+							
+							$("#chatBoxArea").append(html);
+								
+						} else { //상대
+							
+							var data = {}
+							data["user_id"] = d.user_id;
+								$.ajax({
+									url : '/ajax/userInfoModal.do',
+									processData : false,
+									contentType : "application/json",
+									cache : false,
+									type : 'POST',
+									data : JSON.stringify(data),
+									success : function(data) {
+										let html = "";
+										console.log('하하 ' + data[1].PROFILE_IMG)
+										html += "<div style='display:flex;'>"
+										html += "<div class='col-md-1' style='padding-right:0px; width:70px;'>"
+										//html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
+										html += "<div style='width: 60px; float: left; text-align: center;'>"
+										html += "<img src='/userboard/upload/"+data[1].PROFILE_IMG+"' alt='' style='height: 50px; border-radius: 32%;'>"
+										html += "<b style='display: block;''>"+d.user_id+"</b></div></div>"
+										html += "<div class='col yourbubble'>"+d.msg+"</div>"
+										$("#chatBoxArea").append(html);
+									},
+									error : function(e) {
+										console.log("error:", e);
+									}
+								});
+						
+							
+							$("#chatBoxArea").append(html);
 						}
 					} else {
 						console.warn("unknown type!")
@@ -195,7 +206,7 @@ white-space:pre-line
 			 * 웹소켓 사용자 연결 해제하는 경우 호출
 			 */
 			Socket.onclose = function(message) {
-				$("#chatBoxArea").append("Server is disconnected!!.");
+				$("#chatBoxArea").append("Server is disconnd왜해제해!!!!ected!!.");
 			};
 
 			/**
@@ -206,67 +217,22 @@ white-space:pre-line
 			};
 		}
 
-		//ajax
-		/* $('#loginBtn').click(function() {
-			$.ajax({
-				url : "login.htm",
-				type : "POST",
-				data : {
-					id : $("#id").val(),
-				}
-			}).done(function(result) {
-				loginId = $("#id").val();
-				$("#chat > span").text(loginId);
-				$("#id").val("");
-				$("#loginBox, #chat").toggle();
-			});
-		}); */
-
-		$('#logoutBtn').click(function() {
-			$.ajax({
-				url : "logout.htm",
-			}).done(function(result) {
-				var option = {
-					type : "message",
-					sessionId : $("#sessionId").val(),
-					userName : $("#userid").val(),
-					msg : "로그아웃"
-				}
-
-				Socket.send(JSON.stringify(option));
-				$("#chat, #loginBox").toggle();
-				loginId = null;
-				$("#chatBoxArea").val("");
-			});
-		});
-
-		/**
-		 * 채팅 박스영역에 내용 한 줄 추가
-		 */
-		/* function addLineToChatBox(_line) {
-			if (_line == null) {
-				_line = "";
-			}
-
-			var chatBoxArea = document.getElementById("chatBoxArea");
-			chatBoxArea.value += _line + "\n";
-			chatBoxArea.scrollTop = chatBoxArea.scrollHeight;
-		} */
-
 		/**
 		 * Send 버튼 클릭하는 경우 호출 (서버로 메시지 전송)
 		 */
 		function sendButton_onclick() {
-			var inputMsgBox = document.getElementById("inputMsgBox");
-			if (inputMsgBox == null || inputMsgBox.value == null
-					|| inputMsgBox.value.length == 0) {
+			console.log('여긴오냐')
+			var inputMsgBox = $("#inputMsgBox");
+			if (inputMsgBox == null || inputMsgBox.val() == '') {
+				console.warn('오면안되~~!')
 				return false;
 			}
 
 			var chatBoxArea = document.getElementById("chatBoxArea");
 
 			if (Socket == null || Socket.readyState == 3) {
-				chatBoxArea.value += "Server is disconnected.\n";
+				chatBoxArea.value += "Server is disconne으악!!!cted.\n";
+				console.warn('오면안되~~222!')
 				return false;
 			}
 
@@ -275,10 +241,10 @@ white-space:pre-line
 			     메시지를 보낼땐 type값을 message로 구분하여 발송 */
 			var option = {
 				type : "message",
-				roomNumber : $("#roomNumber").val(),
-				sessionId : $("#sessionId").val(),
+				ch_seq : $("#ch_seq").val(),
+				user_id : $("#user_id").val(),
 				/* 				userName : $("#userid").val(), */
-				msg : inputMsgBox.value
+				msg : inputMsgBox.val()
 			}
 
 			// 서버로 메시지 전송
@@ -313,6 +279,29 @@ white-space:pre-line
 			}
 		}
 	</script>
+
+
+<!-- 채팅폼 양식(ajax로 그려야됨)  -->
+<!-- 		<div style="display: flex;">
+			<div class="col-md-1" style="padding-right: 0px; width: 70px;">
+				나중에 참고 <img th:src="'/userboard/upload/' + ${user.profile_img}" alt=""
+						style="height: 165px; border-radius: 32%; border: 2px solid black;">
+				<div style="width: 60px; float: left; text-align: center;">
+					<img src="../../../../resources/images/img/heart.ico" alt=""
+						style="height: 50px; border-radius: 32%;"> <b
+						style="display: block;">이정아</b>
+				</div>
+
+			</div>
+			<div class="col yourbubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
+
+		</div>
+		
+		<div style="display: flex;">
+
+			<div class="col mybubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋ
+				ㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
+		</div> -->
 
 
 </body>

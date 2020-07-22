@@ -606,12 +606,30 @@ keyframes heart-keyframes { 100% {
 		<ul class="pager d-flex coursePaging" style="place-content: center;">
 
 			<!-- 이전버튼 생성여부-->
-			<li th:if="${pageMaker.prev} == true"><th:block
+			<li th:if="${pageMaker.prev} == true">
+				
+				<th:block
+					th:if="${type == 'Search'}">
+					<a
+						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+						class="page-link" th:text="Previous">&laquo; </a>
+				</th:block> 
+				
+				<th:block
+					th:if="${type == 'FS'}">
+					<a
+						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
+						class="page-link" th:text="Previous">&laquo; </a>
+				</th:block> 
+				
+			
+				<th:block
 					th:if="${type == null}">
 					<a
 						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
 						class="page-link" th:text="Previous">&laquo; </a>
-				</th:block> <th:block th:if="${type != null}">
+				</th:block> 
+				<th:block th:if="${type == 'filter'}">
 					<a
 						th:href="@{course_FilterList.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
 						class="page-link" th:text="Previous">&laquo; </a>
@@ -623,11 +641,25 @@ keyframes heart-keyframes { 100% {
 				th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
 				th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
 
+				<th:block th:if="${type == 'Search'}">
+					<a class="page-link"
+						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+						th:text="${idx}"></a>
+				</th:block> 
+				
+				<th:block th:if="${type == 'FS'}">
+					<a class="page-link"
+						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
+						th:text="${idx}"></a>
+				</th:block> 
+
+
 				<th:block th:if="${type == null}">
 					<a class="page-link"
-						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
+						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=header)}"
 						th:text="${idx}"></a>
-				</th:block> <th:block th:if="${type != null}">
+				</th:block> 
+				<th:block th:if="${type == 'filter'}">
 					<a class="page-link"
 						th:href="@{course_FilterList.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
 						th:text="${idx}"></a>
@@ -638,11 +670,26 @@ keyframes heart-keyframes { 100% {
 			<!-- 다음버튼 생성여부 -->
 			<li th:if="${pageMaker.next} == true and ${pageMaker.endPage > 0}">
 
+				<th:block th:if="${type == 'Search'}">
+					<a
+						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+						class="page-link" th:text="Next">&raquo;</a>
+				</th:block> 
+				
+				<th:block th:if="${type == 'FS'}">
+					<a
+						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
+						class="page-link" th:text="Next">&raquo;</a>
+				</th:block> 
+				
+
 				<th:block th:if="${type == null}">
 					<a
 						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}"
 						class="page-link" th:text="Next">&raquo;</a>
-				</th:block> <th:block th:if="${type != null}">
+				</th:block> 
+				
+				<th:block th:if="${type == 'filter'}">
 					<a
 						th:href="@{course_FilterList.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}"
 						class="page-link" th:text="Next">&raquo;</a>
@@ -1067,6 +1114,10 @@ keyframes heart-keyframes { 100% {
 	function setSearchTypeSelect(){
 		var $searchTypeSel = $('#searchTypeSel');
 		var $keyword = $('#keyword');
+		console.log($keyword);
+		console.log($('#keyword').val())
+		var ke =  $('#keyword').val().replace(/ /g,"+");
+		console.log(ke)
 
 	    /* <![CDATA[ */
   		var pcs = /*[[${pageMaker.cri.searchType}]]*/;
@@ -1078,7 +1129,7 @@ keyframes heart-keyframes { 100% {
 		//검색 버튼이 눌리면
 		$('#searchBtn').on('click',function(){
 			searchTypeVal = $searchTypeSel.val();
-			keywordVal = $keyword.val();
+			keywordVal = $keyword.val().replace(/ /g,"+");
 			
 			//검색 조건 입력 안했으면 경고창 
 			if(!searchTypeVal){
@@ -1093,9 +1144,18 @@ keyframes heart-keyframes { 100% {
 				return;
 			}
 			
-			var url = "course_List.do?searchType=" + searchTypeVal
+			
+			if($('.filterRow li').hasClass("filter-active")){ //필터중 하나라도 선택했을때
+				var url = "course_List.do?searchType=" + searchTypeVal
 				+ "&keyword=" + encodeURIComponent(keywordVal);
 			window.location.href = url;
+			}else{
+				var url = "course_List.do?root=search&searchType=" + searchTypeVal
+				+ "&keyword=" + encodeURIComponent(keywordVal);
+			window.location.href = url;
+			}
+			
+			
 			
 		})
 		
