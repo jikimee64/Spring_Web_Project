@@ -8,6 +8,12 @@
 
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <style>
+
+   html, body {
+        height: 100%;
+        margin: 0px;
+    }
+
 .mybubble {
    float: right;
    text-align: end;
@@ -61,6 +67,18 @@
 }
 
 
+.wrapper {
+	overflow-x:hidden;
+	height:100%;
+}
+
+.chatBoxArea {
+	height:60%; 
+/* 	overflow-y: auto;
+    overflow-x: hidden; */
+}
+
+
 /* #absdiv1 {
    z-index: 5;
    position: absolute;
@@ -81,7 +99,7 @@
    <input type="hidden" id="ch_seq" th:value="${chatroom.ch_seq}" />
    <input type="hidden" id="user_id" th:value="${user_id}" />
 
-   <div class="wrapper" >
+   <div class="wrapper" style="" >
    
    <!--    <div id="absdiv1">
          <br /><span class="bold">DIV #1</span>
@@ -111,15 +129,11 @@
          style="margin-top: 20px; text-align: -webkit-center;">
          <b th:text="${datestr}"></b>
       </div>
-
-
+      
       <div id="chatBoxArea" class="chatBoxArea"></div>
-
-
-   </div>
-
-      <div class="talk_write row"
-         style="width:100%; position:fixed; bottom:0; margin: 0px; min-height: 40px; background-color: #fff;">
+    
+      <div class="talk_write row "
+         style="width:100%;  bottom:0; margin: 0px; min-height: 40px; background-color: #fff;">
          <div class="col"
             style="margin:0px 10px;bottom:0; right:0; padding-right:0px; border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
             <input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
@@ -131,6 +145,7 @@
             </button>
          </div>
       </div>
+   </div>
 
    <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
    
