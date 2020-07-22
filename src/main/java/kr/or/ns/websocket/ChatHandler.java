@@ -21,6 +21,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
+import kr.or.ns.service.MemberService;
 import kr.or.ns.service.MessageService;
 import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
@@ -28,6 +29,9 @@ import kr.or.ns.vo.Users;
 @Configuration
 public class ChatHandler extends TextWebSocketHandler {
 
+	@Autowired
+	private MemberService mservice;
+	
 	// private Map<String, WebSocketSession> users = new HashMap();
 	List<HashMap<String, Object>> rls = new ArrayList(); // 웹소켓 세션을 담아둘 리스트 ---roomListSessions
 
@@ -174,6 +178,10 @@ public class ChatHandler extends TextWebSocketHandler {
 		 * sessionList.remove(session); System.out.println(("{} 연결 끊김" +
 		 * session.getId()));
 		 */
+		
+		String ch_seq = getAttribute(session, "ch_seq");
+		String user_id = getAttribute(session, "user_id");
+		
 		
 		if (session != null) {
 			if (rls.size() > 0) { // 소켓이 종료되면 해당 세션값들을 찾아서 지운다.

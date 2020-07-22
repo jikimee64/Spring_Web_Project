@@ -24,6 +24,7 @@
 	vertical-align: bottom;
 	margin: 10px 15px;
 	padding: 10px;
+	clear: right;
 }
 
 .yourbubble {
@@ -42,6 +43,8 @@
 	vertical-align: bottom;
 	margin: 10px 15px;
 	padding: 10px;
+	clear: left;
+	
 }
 
 .msg_input {
@@ -96,7 +99,7 @@
 		<div class="talk_write row"
 			style="width:100%; height: 100%; margin: 0px; min-height: 40px; background-color: #fff;">
 			<div class="col"
-				style="margin:0px 10px; padding-right:0px;border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
+				style="margin:0px 10px; position:fixed; padding-right:0px;border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
 					class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
 						<button type="submit" id="sendButton"
@@ -108,6 +111,35 @@
 		</div>
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	
+	<script>
+	  $(function() {
+		  
+		  var data = {
+				ch_seq : $("#ch_seq").val(),
+			}
+		  
+		  
+		  $.ajax({
+              url : "/chat/chatRoomMemberGet.do",
+              type : 'POST',
+              contentType:"application/json",
+              data : JSON.stringify(data),
+              success : function(data) {
+            	  console.log('채팅방멤버' + data)
+            	  
+              },
+              error : function(e) {
+                 console.log("error:", e);
+              }
+           })
+		  
+	  });
+		
+	
+	</script>
+	
+	
 	<script type="text/javascript">
 		let Socket = null;
 		var loginId = null;
@@ -149,19 +181,17 @@
 						let html = "";
 						if (d.user_id == $("#user_id").val()) { //나
 							html += "<div>"	
-							html += "<div style='width: 60px; float: right; text-align: center;'>"
+							html += "<div style='float: right; text-align: center;'>"
 							html += "</div><div class='mybubble'>"
-									+ d.msg + "</div>"
-
+									+ d.msg + "</div><br>"
 							$("#chatBoxArea").append(html);
-
 						} else { //상대
-
+							console.log('제발!!@@')
 							var data = {}
 							data["user_id"] = d.user_id;
 							$
 									.ajax({
-										url : '/ajax/userInfoModal.do',
+										url : '/ajax/userInfoChat.do',
 										processData : false,
 										contentType : "application/json",
 										cache : false,
@@ -196,7 +226,7 @@
 						console.warn("msg : " + msg);
 						console.warn("d : " + d);
 						let html = "";
-						html +="<b style='display: block; text-align:center; '>"+d.msg+"</b>"
+						html +="<b style='display: block; text-align:center; margin:15px 0px; '>"+d.msg+"</b>"
 						$("#chatBoxArea").append(html);
 					}
 				}
@@ -250,7 +280,7 @@
 
 			// 서버로 메시지 전송
 			Socket.send(JSON.stringify(option));
-			inputMsgBox.value = "";
+			inputMsgBox.val("")
 			inputMsgBox.focus();
 
 			return true;
@@ -280,30 +310,6 @@
 			}
 		}
 	</script>
-
-
-	<!-- 채팅폼 양식(ajax로 그려야됨)  -->
-	<!-- 		<div style="display: flex;">
-			<div class="col-md-1" style="padding-right: 0px; width: 70px;">
-				나중에 참고 <img th:src="'/userboard/upload/' + ${user.profile_img}" alt=""
-						style="height: 165px; border-radius: 32%; border: 2px solid black;">
-				<div style="width: 60px; float: left; text-align: center;">
-					<img src="../../../../resources/images/img/heart.ico" alt=""
-						style="height: 50px; border-radius: 32%;"> <b
-						style="display: block;">이정아</b>
-				</div>
-
-			</div>
-			<div class="col yourbubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-
-		</div>
-		
-		<div style="display: flex;">
-
-			<div class="col mybubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋ
-				ㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-		</div> -->
-
 
 </body>
 

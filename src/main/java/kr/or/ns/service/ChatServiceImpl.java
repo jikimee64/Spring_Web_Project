@@ -57,5 +57,11 @@ public class ChatServiceImpl implements ChatService {
 		int result = dao.chatRoomOut(cm);
 		return result;
 	}
+	
+	public List<HashMap<String, Object>> chatRoomMemberGet(String ch_seq){
+		ChatDao dao = sqlsession.getMapper(ChatDao.class);
+		List<HashMap<String, Object>> list = dao.chatRoomMemberGet(ch_seq);
+		return list;
+	}
 
 }
