@@ -17,6 +17,9 @@ public interface LectureDao {
 
 	//글목록
 	public List<Map<String, Object>> getLectureList(Criteria cri);
+	
+	//글목록
+	public List<Map<String, Object>> getLectureListSize(Criteria cri);
 
 	//글목록(필터)
 	public List<Map<String, Object>> getLectureListFilter(HashMap<String, Object> params);

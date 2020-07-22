@@ -93,7 +93,23 @@ public class LectureController {
 		} else if (root != null) { //헤더에서 왔을때
 			System.out.println("동기");
 			list = service.getLectureList(cri);
-			pageMaker.setTotalCount(service.getLectureCount());
+			System.out.println("호호호 : " + service.getLectureListSize(cri).size());
+			
+			if(keyword == null) {
+				System.out.println("처음엔 제발 여기");
+				pageMaker.setTotalCount(service.getLectureCount());
+			}else {
+				System.out.println("검색했을때만 여기");
+				map = AjaxRestController.paramsTemp2;
+				model.addAttribute("price", map.get("price"));
+				model.addAttribute("level", map.get("level"));
+				model.addAttribute("language", map.get("language"));
+				model.addAttribute("site", map.get("site"));
+				model.addAttribute("type", "filter");
+				pageMaker.setTotalCount(service.getLectureListSize(cri).size());
+			}
+			
+			//pageMaker.setTotalCount(service.getLectureListSize(cri).size());
 			model.addAttribute("list", list); // view까지 전달(forward)
 			model.addAttribute("pageMaker", pageMaker);
 		} else {
