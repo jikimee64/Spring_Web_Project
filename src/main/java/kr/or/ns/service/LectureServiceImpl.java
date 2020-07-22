@@ -57,8 +57,8 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public List<Map<String, Object>> getLectureListFilter(Criteria cri, HashMap<String, Object> params) {
 		LectureDao dao = sqlsession.getMapper(LectureDao.class);
-		System.out.println("여기는 서비스 임플(필터입니다)!!!");
-		System.out.println("language_params : " + params.get("language"));
+		//System.out.println("여기는 서비스 임플(필터입니다)!!!");
+		//System.out.println("language_params : " + params.get("language"));
 		params.put("cri", cri);
 		List<Map<String, Object>> list = dao.getLectureListFilter(params);
 		System.out.println(" 서비스에서 리턴갑니다.(1단계)");
@@ -69,8 +69,7 @@ public class LectureServiceImpl implements LectureService {
 	@Override
 	public List<Map<String, Object>> getLectureListFilterSize(Criteria cri, HashMap<String, Object> params) {
 		LectureDao dao = sqlsession.getMapper(LectureDao.class);
-		System.out.println("여기는 서비스 임플(필터입니다)@@@@@@!!");
-		System.out.println("language_params : " + params.get("language"));
+		System.out.println("language_paramㅡ(우철) : " + params.get("language"));
 		params.put("cri", cri);
 		List<Map<String, Object>> list = dao.getLectureListFilterSize(params);
 		return list;

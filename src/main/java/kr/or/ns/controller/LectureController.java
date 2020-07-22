@@ -91,6 +91,7 @@ public class LectureController {
 			model.addAttribute("list", list2); // view까지 전달(forward)
 			model.addAttribute("pageMaker", pageMaker);
 		} else if (root != null) { //헤더에서 왔을때
+			//language = null;
 			System.out.println("동기");
 			list = service.getLectureList(cri);
 			System.out.println("호호호 : " + service.getLectureListSize(cri).size());
@@ -98,14 +99,16 @@ public class LectureController {
 			if(keyword == null) {
 				System.out.println("처음엔 제발 여기");
 				pageMaker.setTotalCount(service.getLectureCount());
-			}else {
-				System.out.println("검색했을때만 여기");
-				map = AjaxRestController.paramsTemp2;
-				model.addAttribute("price", map.get("price"));
-				model.addAttribute("level", map.get("level"));
-				model.addAttribute("language", map.get("language"));
-				model.addAttribute("site", map.get("site"));
-				model.addAttribute("type", "filter");
+			}else if(root.equals("search")){
+				System.out.println("필터X 검색했을때만 여기");
+				//map = AjaxRestController.paramsTemp2;
+				//model.addAttribute("price", map.get("price"));
+				//model.addAttribute("level", map.get("level"));
+				//model.addAttribute("language", map.get("language"));
+				//model.addAttribute("site", map.get("site"));
+				model.addAttribute("type", "Search");
+				model.addAttribute("searchType", cri.getSearchType());
+				model.addAttribute("keyword", cri.getKeyword());
 				pageMaker.setTotalCount(service.getLectureListSize(cri).size());
 			}
 			
@@ -118,11 +121,20 @@ public class LectureController {
 			System.out.println("필터된 후엔 여길..");
 			map = AjaxRestController.paramsTemp2;
 			list = service.getLectureListFilter(cri, map);
+			System.out.println("list : " + list.size());
 			listSizeSearch = service.getLectureListFilterSize(cri, map);
+			System.out.println("listSizeSearch : " + listSizeSearch.size());
 			model.addAttribute("price", map.get("price"));
 			model.addAttribute("level", map.get("level"));
 			model.addAttribute("language", map.get("language"));
 			model.addAttribute("site", map.get("site"));
+			
+			//
+			model.addAttribute("type", "FS");
+			model.addAttribute("searchType", cri.getSearchType());
+			model.addAttribute("keyword", cri.getKeyword());
+			//
+			
 			System.out.println("잘왔을텐데..? " + list);
 			System.out.println("필터링+검색 사이즈 : " + list.size());
 			pageMaker.setTotalCount(listSizeSearch.size());
@@ -144,6 +156,64 @@ public class LectureController {
 
 		return "user/board/course_List"; // study_List.html
 	}
+	
+	//
+	
+	
+	
+	// 온리 검색
+		@RequestMapping("course_SearchList.do")
+		public String courseSearchPage(Criteria cri, Model model, Principal principal) {
+			System.out.println("강좌페이지로 이동이동(연규가씀)");
+			System.out.println(cri.getPage());
+			PageMaker pageMaker = new PageMaker();
+			String user_id = principal.getName();
+			pageMaker.setCri(cri);
+
+			HashMap<String, Object> map = AjaxRestController.paramsTemp2;
+			int filterSize2 = AjaxRestController.filterSize2;
+
+			pageMaker.setTotalCount(filterSize2);
+
+			// DAO받아오기 + 매퍼를 통한 인터페이스 연결
+			System.out.println(cri.getPage());
+			System.out.println(cri.getPageStart());
+			System.out.println(cri.getPerPageNum());
+			List<HashMap<String, Object>> list = null;
+			list = aservice.courseBoardFilter(map, cri);
+			model.addAttribute("list", list); // view까지 전달(forward)
+			model.addAttribute("pageMaker", pageMaker);
+
+//			model.addAttribute("price", map.get("price"));
+//			model.addAttribute("level", map.get("level"));
+//			model.addAttribute("language", map.get("language"));
+//			model.addAttribute("site", map.get("site"));
+
+			System.out.println("우철이는 : " + list);
+
+			model.addAttribute("type", "Search");
+
+			System.out.println(list.toString());
+
+			// 서비스, dao
+			List<Integer> seqlist = new ArrayList<Integer>();
+			seqlist = service.getCheckedL_seq(user_id);
+			/*
+			 * System.out.println("--------------seqlist 찍어보기 -----------");
+			 * System.out.println(seqlist ); System.out.println(seqlist.toString());
+			 * System.out.println("--------------seqlist 찍어보기 -----------");
+			 */
+			model.addAttribute("seqlist", seqlist); // view까지 전달(forward)
+
+			return "user/board/course_List"; // study_List.html
+		}
+	
+	
+	
+	
+	
+	
+	//
 
 	// 스터디목록 + 페이징
 	@RequestMapping("course_FilterList.do")
