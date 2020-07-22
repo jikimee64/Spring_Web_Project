@@ -38,5 +38,15 @@
 		delete from chatmember
 		where ch_seq=#{ch_seq} and user_id=#{user_id}
 	</delete>
+	
+	<select id="chatRoomMemberGet" resultType="hashmap">
+		SELECT chatmember.user_id, users.profile_img, chatroom.user_id as 'master'
+		FROM chatmember
+		left outer join chatroom
+		on chatmember.ch_seq = chatroom.ch_seq
+		left outer join users
+		on users.user_id = chatroom.user_id
+		where chatmember.ch_seq = #{ch_seq};
+	</select>
 
 </mapper>

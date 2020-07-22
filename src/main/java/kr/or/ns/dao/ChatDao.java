@@ -20,6 +20,8 @@ public interface ChatDao {
 	public int memberInsert(ChatRoomMember cm);
 	
 	public int chatRoomOut(ChatRoomMember cm);
+	
+	public List<HashMap<String, Object>> chatRoomMemberGet(String ch_seq);
 
 
 }

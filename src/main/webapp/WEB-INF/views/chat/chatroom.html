@@ -113,6 +113,35 @@
 	</div>
 </div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+	
+	<script>
+	  $(function() {
+		  
+		  var data = {
+				ch_seq : $("#ch_seq").val(),
+			}
+		  
+		  
+		  $.ajax({
+              url : "/chat/chatRoomMemberGet.do",
+              type : 'POST',
+              contentType:"application/json",
+              data : JSON.stringify(data),
+              success : function(data) {
+            	  console.log('채팅방멤버' + data)
+            	  
+              },
+              error : function(e) {
+                 console.log("error:", e);
+              }
+           })
+		  
+	  });
+		
+	
+	</script>
+	
+	
 	<script type="text/javascript">
 		let Socket = null;
 		var loginId = null;
@@ -195,7 +224,7 @@
 						console.warn("msg : " + msg);
 						console.warn("d : " + d);
 						let html = "";
-						html +="<b style='display: block; text-align:center; '>"+d.msg+"</b>"
+						html +="<b style='display: block; text-align:center; margin:15px 0px; '>"+d.msg+"</b>"
 						$("#chatBoxArea").append(html);
 					}
 				}
@@ -280,28 +309,6 @@
 		}
 	</script>
 
-
-<!-- 채팅폼 양식(ajax로 그려야됨)  -->
-<!-- 		<div style="display: flex;">
-			<div class="col-md-1" style="padding-right: 0px; width: 70px;">
-				나중에 참고 <img th:src="'/userboard/upload/' + ${user.profile_img}" alt=""
-						style="height: 165px; border-radius: 32%; border: 2px solid black;">
-				<div style="width: 60px; float: left; text-align: center;">
-					<img src="../../../../resources/images/img/heart.ico" alt=""
-						style="height: 50px; border-radius: 32%;"> <b
-						style="display: block;">이정아</b>
-				</div>
-
-			</div>
-			<div class="col yourbubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-
-		</div>
-		
-		<div style="display: flex;">
-
-			<div class="col mybubble">하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋ
-				ㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ하이2222ㅋㅋㅋㅋㅋ</div>
-		</div> -->
 
 
 </body>
