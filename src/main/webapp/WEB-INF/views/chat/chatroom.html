@@ -56,19 +56,26 @@
 	padding-top: 10px;
 	color:
 }
+.textarea{
+white-space:pre-line
+}
 </style>
 
 </head>
-<body>
+<body onresize="parent.resizeTo(500,700)" onload="parent.resizeTo(500,700)">
 
 		<input type="hidden" id="ch_seq" th:value="${ch_seq}" />
 		<input type="hidden" id="user_id" th:value="${user_id}" />
 
-	<div class="warpper">
+	<div class="wrapper" style="position:relative; height:600px;">
 		<div class="row"
 			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px;">
 			<div class="col-12"
 				style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
+					<a th:href="@{/chat/chatmemberlist.do}"
+						style="margin-left: 0px;"><img
+						src="../../../../resources/images/img/etc.png"
+						style="width: 25px; height: 25px; float:left; margin-left:20px;"> </a>
 				<b style="margin-left: 30px;">채팅방 이름</b>
 				<div style="float: right; margin-right: 20px;">
 					<a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
@@ -104,23 +111,20 @@
 		</div>
 	</div>
 	<div class="row talk_write"
-		style="margin-left: 0px; min-height: 40px; padding: 7px 100px 7px 16px; background-color: #fff;">
-		<div class="col-11 innerWrap"
+		style="margin-left: 0px; min-height: 40px; background-color: #fff; padding-left: 30px;padding-right: 50px;">
+		<div class="col-10 innerWrap"
 			style="border-radius: 10px; height: 40px; background-color: #f5f6f8;">
-			<textarea id="msgInputArea" placeholder="메시지를 입력하세요." rows="2"
-				class="msg_input"></textarea>
-		</div>
-
-		<br> <br> <br> <br> <br> <br> <br>
-		<br> <br>
-
-		<div class="col-1">
-			<button type="submit" id="sendmessage"
+			<textarea id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
+				class="msg_input"></textarea>	
+				
+				<button type="submit" id="sendmessage"
 				class="btn btn-outline-success btn"
-				style="position: fixed; padding: 6px 30px;">
+				style="position: absolute; padding: 6px 30px; margin-left:23px;">
 				<b>전송</b>
 			</button>
 		</div>
+	
+	
 
 	</div>
 

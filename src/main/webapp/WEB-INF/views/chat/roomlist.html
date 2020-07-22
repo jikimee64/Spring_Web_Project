@@ -8,7 +8,7 @@
 
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 </head>
-<body>
+<body onresize="parent.resizeTo(500,700)" onload="parent.resizeTo(500,700)">
 	<div class="warpper">
 		<div class="row"
 			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px;">
@@ -36,7 +36,7 @@
 				<span> <b style="font-size: xx-large;"
 					th:text="${list.ch_seq}"></b>
 				</span> <img src="../../../../resources/images/img/chatroom.png"
-					style="width: 45px; height: 45px; margin-left: 10px;"> <a
+					style="width: 45px; height: 45px; margin-left: 10px; border-radius:20px;"> <a
 					href="#" th:onclick="|javascript:goRoom('${list.ch_seq}')|"> <span
 					th:text="|&nbsp;&nbsp;${list.ch_title}|"></span>
 				</a>
