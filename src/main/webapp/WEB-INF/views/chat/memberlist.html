@@ -5,15 +5,15 @@
 <title>Insert title here</title>
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 </head>
-<body onresize="parent.resizeTo(500,700)" onload="parent.resizeTo(500,700)">
-	<div class="wrapper" style="position:relative; height:600px;">
+<body>
+	<div class="wrapper" style="position:relative; height:600px; width:280px;">
 		<div class="row"
 			style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px;">
 			<div class="col-12"
 				style="text-align: -webkit-center; align-self: center; color: white;">
 				<b style="vertical-align: revert;">현재 대화에 참여중인 멤버(3)</b>
 						<div style="float: right; margin-right: 20px;">
-					<a href="" style="margin-left: 0px;"><img
+					<a href="" style="margin-left: 0px;" id="out"><img
 						src="../../../../resources/images/img/out.png"
 						style="width: 25px; height: 25px;"> </a>
 				</div>
@@ -22,7 +22,7 @@
 
 		<div class="row">
 			<div class="col-1"></div>
-			<div class="col-3" style="color: black; padding: 0px;">
+			<div class="col-4" style="color: black; padding: 0px;">
 				<h5 style="margin-top: 20px;">멤버리스트</h5>
 			</div>
 		</div>

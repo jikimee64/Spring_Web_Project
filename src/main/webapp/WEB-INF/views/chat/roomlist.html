@@ -38,7 +38,7 @@
 				</span> <img src="../../../../resources/images/img/chatroom.png"
 					style="width: 45px; height: 45px; margin-left: 10px; border-radius:20px;"> <a
 					href="#" th:onclick="|javascript:goRoom('${list.ch_seq}')|"> <span
-					th:text="|&nbsp;&nbsp;${list.ch_title}|"></span>
+					th:text="|&nbsp;&nbsp;${list.ch_title}|" id="list"></span>
 				</a>
 
 			</div>
@@ -183,7 +183,7 @@
 						html +="<b style='font-size: xx-large;'>"+data[i].ch_seq+"</b></span> "
 						html +="<img src='../../../../resources/images/img/chatroom.png' style='width: 45px; height: 45px; margin-left: 10px;'>"
 						html +='<a href="#" onclick="goRoom('+data[i].ch_seq+')">'
-						html +="<span>&nbsp;&nbsp;"+data[i].ch_title+"</span></a></div>"
+						html +="<span id='list'>&nbsp;&nbsp;"+data[i].ch_title+"</span></a></div>"
 							
 						if(data[i].ch_pw_check === 1){
 							html+= "<div class='col-1 pwStatus'"+data[i].ch_seq+">"
@@ -214,5 +214,16 @@ $(function() {
 		$('#chatRoomFormlModal').modal('hide');
 	});
 });
+</script>
+
+<script>
+$(function() {
+	$('#list').click(function(){
+				$('.side').hide();
+				
+})
+});
+
+
 </script>
 </html>
