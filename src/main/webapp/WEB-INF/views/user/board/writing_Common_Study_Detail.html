@@ -371,8 +371,8 @@ keyframes heart-keyframes { 100% {
 						<span th:utext="${study.CONTENT}" id="content"><textarea
 								name="" cols="30" rows="10"
 								class="form-control _textarea_readonly" readonly
-								style="background-color: #F5F5F5; resize: none;"></textarea></span> <br />
-						<div class="row">
+								style="background-color: #F5F5F5; resize: none;"></textarea></span>
+						<div class="row" style="margin-top:45px;">
 							<div class="col-6" style="text-align: start;">
 
 								<!-- <a href="#" style="margin-right: 5px;"> <img
@@ -604,6 +604,9 @@ keyframes heart-keyframes { 100% {
 	<div
 		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
 	</div>
+	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
+	</div>
+	
 	<input th:class="${heart}" type="hidden" id="heartlike">
 	<input th:class="${sessionid}" type="hidden" id="userId">
 	<input th:class="${commentList}" type="hidden" id="commentList">
@@ -611,9 +614,9 @@ keyframes heart-keyframes { 100% {
 	<!-- <input type="hidden" id="commentList" th:value="${commentList}"> -->
 
 
-
 	<!-- alert창 꾸미기 -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
 	<script>
       $(function() {
          
@@ -654,6 +657,7 @@ keyframes heart-keyframes { 100% {
                      html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                      html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
                   }  
+                
                   html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
                });
                $('#com').append(html);
@@ -736,7 +740,13 @@ keyframes heart-keyframes { 100% {
                                quillpen = "";
                            }
                            
-                           html += "<blockquote class='OComment'><b style='"+depthcss+ "'>" + obj.R_NAME + "</b>"  + " ";
+                           html += "<blockquote class='OComment'><a href='' class='InfoModal"
+                                 + obj.S_SEQ
+                                 + "' onclick=InfoModal('"
+                                 + obj.S_SEQ
+                                 +"') data-toggle='modal' data-target='#userInfoModal'>"
+                           html += "<b style='"+depthcss+ "'>" + obj.R_NAME + "</b></a>"  + " ";
+                           console.warn(obj.S_SEQ);
                            if(user_id === obj.R_NAME){
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
@@ -1342,6 +1352,81 @@ keyframes heart-keyframes { 100% {
  	});
  	//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 ... 끝 -->
  </script>
+
+
+<script>
+function InfoModal(idx) {
+
+	let id = $('.InfoModal' + idx).children().text();
+	//formData.append("user_id" , this.id);
+
+	console.log("아이디 : " + id);
+	// let obj = {"user_id" : id}; 
+
+	let data = {
+		"user_id" : id
+	}
+
+	$.ajax({
+		url : '/ajax/userInfoModal.do',
+		processData : false,
+		contentType : "application/json",
+		cache : false,
+		type : 'POST',
+		data : JSON.stringify(data),
+		success : function(data) {
+			console.warn('aaaaaaaaaaaaa');
+			console.warn(data[0].USER_NAME);
+			console.warn(data[0][0].USER_NAME);
+			console.warn(data[0][1].USER_NAME);
+			$('.ModalUserName').text(data[0][0].USER_NAME);
+			$('.introduce').text(data[0][0].INTRODUCE)
+			'src','/material/images/jQuery/asimo.png'
+			$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+			console.log(data[0][0].INTRODUCE);
+			$.each(data, function (index, item) {
+				if (item.SKILL_LEVEL === '입문') {
+					$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
+				} else if (item.SKILL_LEVEL === '초급') {
+					$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
+				} else {
+					$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
+				}
+			})
+			
+//					<td>1578</td>
+//											<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+			
+			$('._user_board_list').empty();
+			
+			let userBoardList = "";
+			$.each(data[1],function(index, item){
+				userBoardList += "<tr>";
+				userBoardList += "<td>";
+				userBoardList += data[1][index].S_SEQ;
+				userBoardList += "</td>";
+				userBoardList += "<td>";
+				userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+							+ data[1][index].S_SEQ
+							+ "'>";
+				userBoardList += data[1][index].TITLE;
+				userBoardList += "</a>"	
+				userBoardList += "</td>";
+				userBoardList += "</tr>";
+			});
+			
+			
+			$('._user_board_list').append(userBoardList);
+//					$('._user_board_list');
+		},
+		error : function(e) {
+			console.log("error:", e);
+		}
+	});
+
+}
+</script>
+	
 
 </body>
 
