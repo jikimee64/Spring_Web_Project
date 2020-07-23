@@ -184,12 +184,18 @@ public class ChatHandler extends TextWebSocketHandler {
 		String ch_seq = getAttribute(session, "ch_seq");
 		String user_id = getAttribute(session, "user_id");
 		
+		List<HashMap<String, Object>> list = service.chatRoomMemberGet(ch_seq);
+		
 		ChatRoomMember cm = new ChatRoomMember();
 		cm.setCh_seq(Integer.parseInt(ch_seq));
 		cm.setUser_id(user_id);
-		int result = service.chatRoomOut(cm);
-		System.out.println("close시 채팅방 멤버 삭제");
 		
+		//System.out.println("마스터 " + list.get(0).get("master"));
+		//System.out.println("유저 아이디 " + user_id);
+		if(!user_id.equals(list.get(0).get("master"))) { //master는 채팅방을 삭제할때 나가기위한 것
+			int result = service.chatRoomOut(cm);
+			System.out.println("close시 채팅방 멤버 삭제");
+		}
 		
 		if (session != null) {
 			if (rls.size() > 0) { // 소켓이 종료되면 해당 세션값들을 찾아서 지운다.

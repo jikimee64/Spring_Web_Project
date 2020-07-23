@@ -184,6 +184,7 @@ body{
 					$.each(data, function(index, item) {
 					
 						console.log("data.length:::"+data.length);
+						
 						for(var i = 0; i < data.length; i++){
 							let html = "";
 								
@@ -202,10 +203,10 @@ body{
 						}else{
 							html +="<div class='col-1 pwStatus'"+data[i].ch_seq+"></div>"					
 						}
-						
-						}
 						html +="<hr style='width: 90%;'></div>"
 							$('.chatList').append(html);
+						}
+						
 					});
 							
 				},
