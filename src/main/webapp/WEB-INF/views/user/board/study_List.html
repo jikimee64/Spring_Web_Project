@@ -1007,10 +1007,13 @@ group+group {
 																					html += "<p class='card-text _margin_0' style='color: gray; font-size: small;'>"
 																							+ data[1][j].L_WRITER
 																							+ "</p>"//여기원래 L_WRITER였음
-																					html += "<a href='/board/writing_Course_Study_Detail.do' class='stretched-link'></a>"
-																					html += "<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 30px;'>"
-																					html += "<span>(6)</span>" //여기에 수강평 개수?
-																					html += "<b>₩44,000</b></div></div></div>" //여기에 가격 데이터
+																					html += "<a href='"+data[1][j].L_ADDRESS+"' class='stretched-link'></a>"
+																					html += '<div style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif\') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+																						
+																					html += '<p class="_star"style="WIDTH: '+data[1][j].L_STAR*20+'%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif\') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+																					html += "</p></div>"	
+																					html += "<span>("+data[1][j].L_REVIEW+")</span>" //여기에 수강평 개수?
+																					html += "<b>₩"+data[1][j].L_PRICE+"</b></div></div></div>" //여기에 가격 데이터
 																				}
 																			}
 
