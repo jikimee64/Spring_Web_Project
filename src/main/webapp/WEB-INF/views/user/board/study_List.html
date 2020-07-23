@@ -474,7 +474,7 @@ group+group {
 
 					</select> <input class="form-control" type="text" id="keyword"
 						name="keyword" th:value="${pageMakerb.cri_b.keyword}"
-						placeholder="검색어를 입력하세요" style="width: 228px;" />
+						placeholder="검색어를 입력하세요" style="width: 228px;"/>
 
 					<button type="button" id="searchBtn"
 						class="btn btn-outline-success">Search</button>
@@ -760,38 +760,49 @@ group+group {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-
-					$('.ModalUserName').text(data[0].USER_NAME);
-					$('.introduce').text(data[0].INTRODUCE)
-					'src', '/material/images/jQuery/asimo.png'
-					$('#profile_img').attr('src',
-							'/userboard/upload/' + data[0].PROFILE_IMG);
-					console.log(data[0].INTRODUCE);
-					$.each(data, function(index, item) {
-						console.log('정아 : ' + item.SKILL_NAME)
-						console.log('우철 : ' + item.SKILL_LEVEL)
-
+					console.warn('aaaaaaaaaaaaa');
+					console.warn(data[0].USER_NAME);
+					console.warn(data[0][0].USER_NAME);
+					console.warn(data[0][1].USER_NAME);
+					$('.ModalUserName').text(data[0][0].USER_NAME);
+					$('.introduce').text(data[0][0].INTRODUCE)
+					'src','/material/images/jQuery/asimo.png'
+					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+					console.log(data[0][0].INTRODUCE);
+					$.each(data, function (index, item) {
 						if (item.SKILL_LEVEL === '입문') {
-							console.log("t333e");
-							$(
-									'input[name=' + item.SKILL_NAME
-											+ ']:radio[value="입문"]').prop(
-									'checked', true);
+							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
 						} else if (item.SKILL_LEVEL === '초급') {
-							console.log("11e");
-							$(
-									'input[name=' + item.SKILL_NAME
-											+ ']:radio[value="초급"]').prop(
-									'checked', true);
+							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
 						} else {
-							console.log("tww2ㄴㄴ2!!");
-							$(
-									'input[name=' + item.SKILL_NAME
-											+ ']:radio[value="중급이상"]').prop(
-									'checked', true);
+							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
 						}
 					})
-
+					
+// 						<td>1578</td>
+// 												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+					
+					$('._user_board_list').empty();
+					
+					let userBoardList = "";
+					$.each(data[1],function(index, item){
+						userBoardList += "<tr>";
+						userBoardList += "<td>";
+						userBoardList += data[1][index].S_SEQ;
+						userBoardList += "</td>";
+						userBoardList += "<td>";
+						userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+									+ data[1][index].S_SEQ
+									+ "'>";
+						userBoardList += data[1][index].TITLE;
+						userBoardList += "</a>"	
+						userBoardList += "</td>";
+						userBoardList += "</tr>";
+					});
+					
+					
+					$('._user_board_list').append(userBoardList);
+// 						$('._user_board_list');
 				},
 				error : function(e) {
 					console.log("error:", e);
@@ -996,10 +1007,13 @@ group+group {
 																					html += "<p class='card-text _margin_0' style='color: gray; font-size: small;'>"
 																							+ data[1][j].L_WRITER
 																							+ "</p>"//여기원래 L_WRITER였음
-																					html += "<a href='/board/writing_Course_Study_Detail.do' class='stretched-link'></a>"
-																					html += "<img src='https://user-images.githubusercontent.com/35126809/53712500-7de3c980-3e8a-11e9-8358-23cd94011aeb.png' alt='' style='height: 30px;'>"
-																					html += "<span>(6)</span>" //여기에 수강평 개수?
-																					html += "<b>₩44,000</b></div></div></div>" //여기에 가격 데이터
+																					html += "<a href='"+data[1][j].L_ADDRESS+"' class='stretched-link'></a>"
+																					html += '<div style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif\') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+																						
+																					html += '<p class="_star"style="WIDTH: '+data[1][j].L_STAR*20+'%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif\') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+																					html += "</p></div>"	
+																					html += "<span>("+data[1][j].L_REVIEW+")</span>" //여기에 수강평 개수?
+																					html += "<b>₩"+data[1][j].L_PRICE+"</b></div></div></div>" //여기에 가격 데이터
 																				}
 																			}
 
@@ -1142,6 +1156,11 @@ group+group {
 						});
 
 	</script>
+	
+	<script>
+		
+	
+	</script>
 
 
 	<script>
@@ -1202,7 +1221,14 @@ group+group {
          document.documentElement.scrollTop = 0;
       }
    </script>
-
+	
+<!-- 	<script>
+	function enterkey(){
+		if(window.event.keyCode == 13){
+			setSearchTypeSelect();
+		}
+	}
+	</script> -->
 </body>
 
 
