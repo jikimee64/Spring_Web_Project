@@ -474,7 +474,7 @@ group+group {
 
 					</select> <input class="form-control" type="text" id="keyword"
 						name="keyword" th:value="${pageMakerb.cri_b.keyword}"
-						placeholder="검색어를 입력하세요" style="width: 228px;" />
+						placeholder="검색어를 입력하세요" style="width: 228px;"/>
 
 					<button type="button" id="searchBtn"
 						class="btn btn-outline-success">Search</button>
@@ -1142,6 +1142,11 @@ group+group {
 						});
 
 	</script>
+	
+	<script>
+		
+	
+	</script>
 
 
 	<script>
@@ -1202,7 +1207,14 @@ group+group {
          document.documentElement.scrollTop = 0;
       }
    </script>
-
+	
+	<script>
+	function enterkey(){
+		if(window.event.keyCode == 13){
+		setSearchTypeSelect();
+		}
+	}
+	</script>
 </body>
 
 
