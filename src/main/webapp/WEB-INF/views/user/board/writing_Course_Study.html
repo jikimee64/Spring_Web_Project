@@ -91,8 +91,8 @@
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
- 	<input type="hidden" id="l_image" th:value="${lecture.L_IMAGE}" />
-	<input type="hidden" id="l_seq" th:value="${lecture.L_SEQ}" /> 
+ <!-- 	 <input type="hidden" name = "l_image" id="l_image" th:value="${lecture.L_IMAGE}" />
+	<input type="hidden" name = "l_seq" id="l_seq" th:value="${lecture.L_SEQ}" />  -->
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -111,12 +111,12 @@
 	</main>
 
 	<div class="_border_box_shadow2" style="width: 1430px;">
-		<form action="" method="post" class="registerform"
+		<form action="" class="registerform"
 			id="registerform" enctype="multipart/form-data">
-			
-				<!-- <input type="hidden" id="l_image" th:value="${lecture.L_IMAGE}" />
-				<input type="hidden" id="l_seq" th:value="${lecture.L_SEQ}" /> -->
-			
+<!-- 
+				<input type="hidden" name= "l_image" id="l_image" th:value="${lecture.L_IMAGE}" />
+				<input type="hidden" name="l_seq" id="l_seq" th:value="${lecture.L_SEQ}" />
+			 -->
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
 				<!-- <br /> -->
