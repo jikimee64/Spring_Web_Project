@@ -29,6 +29,8 @@ public interface BoardDao {
 	//페이징 스터디 글목록(필터 적용)
 	public List<Map<String, Object>> getStudyBoardListFilter(HashMap<String, Object> params);
 
+	public List<Map<String, Object>> getStudyBoardListFilterSize(HashMap<String, Object> params);
+	
 	//페이징 스터디 글목록
 	public List<Map<String, Object>> getStudyBoardList(Criteria_Board cri_b);
 	

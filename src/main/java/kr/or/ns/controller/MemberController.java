@@ -44,6 +44,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -96,9 +97,9 @@ public class MemberController {
 	@RequestMapping(value = "normallogin.do", method = RequestMethod.GET)
 	public String loginPage(@RequestParam(value = "errormsg", required = false) Object errormsg,
 			HttpServletRequest request) {
-
-		if (errormsg != null) {
-			request.setAttribute("errormsgname", (String) errormsg);
+		Map<String, Object> map = (Map<String, Object>) RequestContextUtils.getInputFlashMap(request);
+		if (map != null) {
+			request.setAttribute("errormsgname", (String)map.get("errormsg"));
 		}
 		return "user/member/login";
 	}
@@ -382,7 +383,7 @@ public class MemberController {
 	@RequestMapping("loginFail.do")
 	public String loginFailPage(HttpServletRequest request, RedirectAttributes redirect) {
 		Object errormsg = request.getAttribute("errormsgname");
-		redirect.addAttribute("errormsg", errormsg);
+		redirect.addFlashAttribute("errormsg", errormsg);
 		return "redirect:/member/normallogin.do";
 	}
 

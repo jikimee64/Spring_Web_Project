@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>방 리스트</title>
@@ -10,198 +10,249 @@
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <style>
 html, body {
-	height: 100%;
-	margin: 0px;
+/*    height: 100%;
+   margin: 0px; */
+   /* 가로스크로 없앰 */
+   overflow-y: auto;
+   overflow-x: hidden;
 }
 
 .mybubble {
-	float: right;
-	text-align: end;
-	overflow: hidden;
-	display: flex;
-	position: relative;
-	z-index: 0;
-	max-width: 100%;
-	border-radius: 16px 16px;
-	font-size: 15px;
-	line-height: 1.33;
-	background-color: #d9f7e7;
-	word-break: break-word;
-	vertical-align: bottom;
-	margin: 10px 15px;
-	padding: 10px;
-	clear: right;
+   float: right;
+   text-align: end;
+   overflow: hidden;
+   display: flex;
+   position: relative;
+   z-index: 0;
+   max-width: 80%;
+   border-radius: 16px 16px;
+   font-size: 15px;
+   line-height: 1.33;
+   background-color: #d9f7e7;
+   word-break: break-word;
+   vertical-align: bottom;
+   margin: 10px 15px;
+   padding: 10px;
+   clear: right;
 }
 
 .yourbubble {
-	float: left;
-	text-align: inherit;
-	overflow: hidden;
-	display: flex;
-	position: absolute;
-	z-index: 0;
-	max-width: 100%;
-	border-radius: 16px 16px;
-	font-size: 15px;
-	line-height: 1.33;
-	background-color: #f4f4f4;
-	word-break: break-word;
-	vertical-align: bottom;
-	margin-left: 50px;
-	margin-top: 25px;
-	padding: 10px;
-	clear: left;
+   float: left;
+   text-align: inherit;
+   overflow: hidden;
+   display: flex;
+   position: absolute;
+   z-index: 0;
+   max-width: 80%;
+   border-radius: 16px 16px;
+   font-size: 15px;
+   line-height: 1.33;
+   background-color: #f4f4f4;
+   word-break: break-word;
+   vertical-align: bottom;
+   margin-left: 50px;
+   margin-top: 25px;
+   padding: 10px;
+   clear: left;
 }
 
 .msg_input {
-	height: 10px;
-	min-height: 40px;
-	font-size: 15px;
-	border: 0 none;
-	resize: none;
-	background-color: #f5f6f8;
-	width: 100%;
-	padding-top: 10px;
+   height: 10px;
+   min-height: 40px;
+   font-size: 15px;
+   border: 0 none;
+   resize: none;
+   background-color: #f5f6f8;
+   width: 100%;
+   padding-top: 10px;
 }
 
 .side {
-	background-color: white;
-	z-index: 5;
-	position: absolute;
+   overflow: hidden;
+   background-color: white;
+   z-index: 5;
+   position: absolute;
 }
 
 .wrapper {
-	overflow-x: hidden;
-	height: 100%;
+   /*    overflow-x: hidden; */
+   /* height: 100%; */
+   
 }
 
 .chatBoxArea {
-	height: 60%;
+   /* height: 80%; */
+/*    overflow-y: auto; */
+   /* overflow-y: auto;
+    overflow-x: hidden;  */
 }
 
+/* #absdiv1 {
+   z-index: 5;
+   position: absolute;
+   width: 150px;
+   height: 350px;
+   top: 10px;
+   left: 10px;
+   border: 1px dashed #990000;
+   background-color: #ffdddd;
+   text-align: center;
+} */
 </style>
 
 </head>
-<body>
+<body class="pb-5">
 
-	<input type="hidden" id="ch_seq" th:value="${chatroom.ch_seq}" />
-	<input type="hidden" id="user_id" th:value="${user_id}" />
-	<!-- 사이드 -->
-	<div class="side" style="width: 400px; display: none;">
-		<div class="row">
-		
-			<div class="col-3" style="text-align: center; align-self: center; padding-right: 0px;">
-			<a href="#" role="button"  data-toggle="modal" data-target="#chatDetailModal">
-			<img src="../../../../resources/images/img/setup_bl.png" style="width: 
-					25px; height: 25px;"></a>
-			</div>
-			<div class="col-6" style="text-align: center; ">
-			<h5 style="margin-top: 20px;">
-					<b>대화중 멤버</b>
-				</h5>
-			</div>
-			
-			<div class="col-2" style="text-align: center;   align-self: center;">
-				<a href=""  role="button">
-				<img src="../../../../resources/images/img/out_bl.png"
-					style="width: 25px; height: 25px; float: left;"></a>
-			</div>
+   <input type="hidden" id="ch_seq" th:value="${chatroom.ch_seq}" />
+   <input type="hidden" id="user_id" th:value="${user_id}" />
+   <!-- 사이드 -->
+   <div class="side" style=" width: 350px; height:100%; background-color:yellow; display: none;">
+      <div class="row">
 
-		</div>
-		<div class="row" style="min-height: 860px;margin-top:35px;margin-right: 40px;margin-left: 0px;">
-			<div class="col" style="text-align: center; height: 100px;">
-				<img src="../../../../resources/images/img/chatroom.png"
-					style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;">
-				<b style="vertical-align: revert;">아이디</b>
-			</div>
-			<div class="col-3" style="height: 100px;">
-				<h5 style="margin-bottom: 0px;">
-					<span class="badge badge-success"
-						style="background-color: rgb(24, 210, 105); margin-top: 10px;">방장</span>
-				</h5>
-			</div>
-		</div>
+         <div class="col-3"
+            style="text-align: center; align-self: center; padding-right: 0px;">
+            <a href="#" role="button" data-toggle="modal"
+               data-target="#chatDetailModal"> <img
+               src="../../../../resources/images/img/setup_bl.png"
+               style="width: 25px; height: 25px;"></a>
+         </div>
+         <div class="col-6" style="text-align: center;">
+            <h5 style="margin-top: 20px;">
+               <b>대화중 멤버</b>
+            </h5>
+         </div>
 
-	</div>
+         <div class="col-2" style="text-align: center; align-self: center;">
+            <a href="#" role="button" id="etc_out"> <img
+               src="../../../../resources/images/img/out_bl.png"
+               style="width: 25px; height: 25px; float: left;"></a>
+         </div>
 
-
-
-<div style="overflow-y:auto; overflow-x:hidden;min-height:500px; max-height:890px;" id="msg">
-	<div class="row" 
-		style=" background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px; position: relative; z-index: 3;">
-		<div class="col-12"
-			style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
-			<a href="#" role="button" style="margin-left: 0px;" id="etc"><img
-				src="../../../../resources/images/img/etc.png"
-				style="width: 25px; height: 25px; float: left; margin-left: 20px;">
-			</a> <b style="margin-left: 30px;" th:text="${chatroom.ch_title}"></b>
-			<div style="float: right; margin-right: 20px;">
-				<a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
-					style="margin-left: 0px;"><img
-					src="../../../../resources/images/img/out.png"
-					style="width: 25px; height: 25px;"> </a>
-			</div>
-		</div>
-	</div>
-
-	<div class="today"
-		style="margin-top: 20px; text-align: -webkit-center;">
-		<b th:text="${datestr}"></b>
-	</div>
+      </div>
+      <div class="row"
+         style="min-height: 700px; margin-top: 35px; margin-right: 40px; margin-left: 0px;">
+         <div class="col" style="text-align: center; height: 100px;">
+            <img src="../../../../resources/images/img/chatroom.png"
+               style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;">
+            <b style="vertical-align: revert;">아이디</b>
+         </div>
+         <div class="col-3" style="height: 100px;">
+            <h5 style="margin-bottom: 0px;">
+               <span class="badge badge-success"
+                  style="background-color: rgb(24, 210, 105); margin-top: 10px;">방장</span>
+            </h5>
+         </div>
+      </div>
+      <!--          <div class="row" style="display:block;">
+         
+         <a href="#" role="button" style="margin-left: 0px;"><img
+               src="../../../../resources/images/img/etc.png" style="width: 25px; height: 25px; float: left;">
+         <div class="col" style="padding:0px;">
+         <ul class="bottom" style="background-color:#f5f6f8; margin:0px; text-align:center; padding:0px;">대화설정</ul></div>
+         </a>
+         <a href="#" role="button" style="margin-left: 0px;"><img
+               src="../../../../resources/images/img/etc.png" style="width: 25px; height: 25px; float: left;">
+         <div class="col" style="padding:0px;">
+         <ul class="bottom2" style="background-color:#f5f6f8; margin:0px; text-align:center; padding:0px;">나가기</ul></div>
+         </a>
+         </div> -->
+   </div>
 
 
 
-	<div id="chatBoxArea" class="chatBoxArea">
 
-		<ul class="talk_write row"
-			style="padding-left: 10px; position: fixed; width: 100%; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
-			<li class="input_msg"
-				style="border-radius: 10px; height: 40px; background-color: #f5f6f8; width: 100%; display: flex;">
-				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
-				class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
-				<button type="submit" id="sendButton" class="btn btn-success btn"
-					onclick="sendButton_onclick()"
-					style="width: 100px; background-color: rgb(24, 210, 105); border: thick;">
-					<b>전송</b>
-				</button>
-			</li>
-		</ul>
-		</div>	
-</div>
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-	<div th:replace="/user/includes/chat_Detail_Modal :: chat_Detail_Modal"></div>
-	
+   <!-- <div class="wrapper" style="position: relative;"> -->
 
-	<script>
+   <!--    <div id="absdiv1">
+         <br /><span class="bold">DIV #1</span>
+         <br />position: absolute;
+         <br />z-index: 5;
+      </div> -->
 
-     $(function() {
-        
-        var data = {
+
+   <div class="row"
+      style="background-color: rgb(24, 210, 105); height: 55px; width:100%; margin: 0px;  position: fixed; top:0; z-index: 3;">
+      <div class="col-12"
+         style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
+         <a href="#" role="button" style="margin-left: 0px;" id="etc"><img
+            src="../../../../resources/images/img/etc.png"
+            style="width: 25px; height: 25px; float: left; margin-left: 20px;">
+         </a> <b style="margin-left: 30px;" th:text="${chatroom.ch_title}"></b>
+         <div style="float: right; margin-right: 20px;">
+            <a th:href="@{/chat/chatRoomOut.do(ch_seq=${chatroom.ch_seq})}"
+               style="margin-left: 0px;"><img
+               src="../../../../resources/images/img/out.png"
+               style="width: 25px; height: 25px;"> </a>
+         </div>
+      </div>
+   </div>
+
+   <div class="today pt-5"
+      style="margin-top: 20px; text-align: -webkit-center;">
+      <b th:text="${datestr}"></b>
+   </div>
+
+
+   <div id="chatBoxArea" class="chatBoxArea"></div>
+
+      <div class="talk_write row"
+         style="width:100%; position:fixed; bottom:0; margin: 0px; min-height: 40px; background-color: #fff;">
+         <div class="col"
+            style="margin:0px 10px;bottom:0; right:0; padding-right:0px; border-radius: 10px; height: 40px; background-color: #f5f6f8; width:100%; display:flex;">
+            <input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
+               class="msg_input" onkeypress="inputMsgBox_onkeypress()"></input>
+                  <button type="submit" id="sendButton"
+               class="btn btn-success btn"
+               onclick="sendButton_onclick()" style="width: 100px; background-color:rgb(24, 210, 105); border: thick;">
+               <b>전송</b>
+            </button>
+         </div>
+      </div>
+
+
+   <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+   <div th:replace="/user/includes/chat_Detail_Modal :: chat_Detail_Modal"></div>
+
+
+   <!-- chatBoxArea -->
+    <script>
+
+          $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20);
+          console.log( $('.chatBoxArea').scrollTop);
+
+   </script> 
+   
+
+   <script>
+      $(function() {
+         var data = {
             ch_seq : $("#ch_seq").val(),
          }
-        
-        
-        $.ajax({
-              url : "/chat/chatRoomMemberGet.do",
-              type : 'POST',
-              contentType:"application/json",
-              data : JSON.stringify(data),
-              success : function(data) {
-                 console.log('채팅방멤버' + data)
-                 
-              },
-              error : function(e) {
-                 console.log("error:", e);
-              }
-           })
-        
-     });
-      
-   
+         $.ajax({
+            url : "/chat/chatRoomMemberGet.do",
+            type : 'POST',
+            contentType : "application/json",
+            data : JSON.stringify(data),
+            success : function(data) {
+               console.log('채팅방멤버' + data)
+
+            },
+            error : function(e) {
+               console.log("error:", e);
+            }
+         })
+
+      });
    </script>
 
 
-	<script type="text/javascript">
+
+   <script type="text/javascript">
+       /* function moveScroll() {
+           $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20));
+          console.warn( $('.chatBoxArea')[0].scrollHeight); 
+      }   */
+
       let Socket = null;
       var loginId = null;
 
@@ -221,9 +272,9 @@ html, body {
             //let html = "";
             //html += "<b>"+d.user_id+"님이 들어옴</b>"  
             console.log('접속완료')
-            
+
             //여기서 현재 현좁
-            
+
          };
 
          /**
@@ -244,10 +295,10 @@ html, body {
                } else if (d.type == "message") {
                   let html = "";
                   if (d.user_id == $("#user_id").val()) { //나
-                     html += "<div>"   
+                     html += "<div>"
                      html += "<div style='float: right; text-align: center;'>"
-                     html += "</div><div class='mybubble'>"
-                           + d.msg + "</div><br>"
+                     html += "</div><div class='mybubble'>" + d.msg
+                           + "</div><br>"
                      $("#chatBoxArea").append(html);
                   } else { //상대
                      console.log('제발!!@@')
@@ -265,7 +316,7 @@ html, body {
                                  let html = "";
                                  console.log('하하 '
                                        + data[1].PROFILE_IMG)
-                              
+
                                  html += "<div style='margin-left:20px;'>"
                                  //html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
                                  html += "<div style='float: left; text-align: center;'></div>"
@@ -275,10 +326,10 @@ html, body {
 
                                  html += "<span style='margin-left:20px;'><b>"
 
-                                       + d.user_id
-                                       + "</b></span>"
+                                       + d.user_id + "</b></span>"
                                  html += "<div class='yourbubble' style='margin-left:50px; margin-top:0px;'>"
-                                       + d.msg + "</div></div><br>"
+                                       + d.msg
+                                       + "</div></div><br>"
                                  $("#chatBoxArea").append(html);
                               },
                               error : function(e) {
@@ -288,18 +339,25 @@ html, body {
 
                      $("#chatBoxArea").append(html);
                   }
-               } else if(d.type == "allMessage") { //all 메시지?
+               } else if (d.type == "allMessage") { //all 메시지?
                   console.warn("msg : " + msg);
                   console.warn("d : " + d);
                   let html = "";
-                  html +="<div class='row' style='display:grid;'><b style='display: block; text-align:center; margin:15px 0px; '>"+d.msg+"</b></div>"
+                  html += "<div class='row' style='display:grid;'><b style='display: block; text-align:center; margin:15px 0px; '>"
+                        + d.msg + "</b></div>"
                   $("#chatBoxArea").append(html);
+                        
                }
             }
             //]]>
             
-             $('#msg').scrollTop($('#msg').height());
-             
+            
+              $(document).scrollTop($(document).height());
+            
+            //moveScroll()
+            /*   $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20));
+             console.warn( $('.chatBoxArea')[0].scrollHeight);   */
+
          };
 
          /**
@@ -315,7 +373,7 @@ html, body {
          Socket.onerror = function(message) {
             /* addLineToChatBox("Error!"); */
          };
-      }
+      } //onload
 
       /**
        * Send 버튼 클릭하는 경우 호출 (서버로 메시지 전송)
@@ -352,6 +410,9 @@ html, body {
          inputMsgBox.val("")
          inputMsgBox.focus();
 
+         
+
+         
          return true;
       }
 
@@ -378,18 +439,26 @@ html, body {
             sendButton_onclick();
          }
       }
+      
+/*       function moveScroll() {
+           $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20));
+          console.warn( $('.chatBoxArea')[0].scrollHeight); 
+      }   */
    </script>
 
-	<script>
-   $(function() {
-		$('#etc').click(function(){
-			//$('.side').css("display","inline-block");
-			$('.side').toggle();	
-   })
-   });
-   
+   <script>
+      $(function() {
+         $('#etc').click(function() {
+            //$('.side').css("display","inline-block");
+            $('.side').toggle();
+         })
 
-   
+         $('#etc_out').click(function() {
+            //$('.side').css("display","inline-block");
+            $('.side').toggle();
+         })
+
+      });
    </script>
 
 </body>
