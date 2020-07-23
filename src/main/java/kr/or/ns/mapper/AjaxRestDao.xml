@@ -341,4 +341,8 @@
 		delete from study_group where s_seq = #{param1} and  user_id = #{param2}
 	</delete>
 	
+	<select id="enabledcheck" resultType="int">
+		select enabled from users where user_id = #{user_id}
+	</select>
+	
 </mapper>

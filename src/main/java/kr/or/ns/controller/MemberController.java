@@ -164,51 +164,56 @@ public class MemberController {
 
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
+		//권한확인
 		int enabled = 0;
-		//enabled = ajaxservice.enabledcheck(email);
+		//회원가입 후의 권한확인
+		int after_enabled = 0;
 		check = ajaxservice.idcheck(email);		
 		enabled = user.getEnabled();
-		try {
-			
+		after_enabled = ajaxservice.enabledcheck(email);
+		System.out.println("이게 왜?" + after_enabled);
+		try {	
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
 				System.out.println("naver회원가입으로 이동");
-			}else if(check ==1 && enabled == 0) {
+				model.addAttribute("uemail", email);
+				model.addAttribute("snstype", "naver");
+				return "user/member/join";
+			}else if(check == 1 && after_enabled == 0) {
 				System.out.println("권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
 				redirect.addAttribute("errormsg",msg);
 				return "redirect:/member/normallogin.do";
+					}else if(check==1 && after_enabled == 1){
+						// 스프링 시큐리티 수동 로그인을 위한 작업//
+						// 로그인 세션에 들어갈 권한을 설정
+						List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+						list.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+						SecurityContext sc = SecurityContextHolder.getContext();
+						// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
+						// 패스워드는 null로 하여도 값이 생성.
+						sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
+						session = request.getSession(true);
+
+						// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
+						session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+						// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
+
+						System.out.println("이미 가입된 회원");
+						Users users = new Users();
+						users = mypageservice.getUsers(email);
+						session = request.getSession();
+						session.setAttribute("currentUser", users);
+						System.out.println("이미 가입된 회원의 정보" + users);
+
+				 // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 					}
-				model.addAttribute("uemail", email);
-				model.addAttribute("snstype", "naver");
-				return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
-		
 		} catch (Exception e) {
 			e.getMessage();
 		}
-	
-		// 스프링 시큐리티 수동 로그인을 위한 작업//
-		// 로그인 세션에 들어갈 권한을 설정
-		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-		list.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-		SecurityContext sc = SecurityContextHolder.getContext();
-		// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-		// 패스워드는 null로 하여도 값이 생성.
-		sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
-		session = request.getSession(true);
-
-		// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-		// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
-
-		System.out.println("이미 가입된 회원");
-		Users users = new Users();
-		users = mypageservice.getUsers(email);
-		session = request.getSession();
-		session.setAttribute("currentUser", users);
-		System.out.println("이미 가입된 회원의 정보" + users);
-
+		
+		
 		return "redirect:../user/main.do";
 	}
 
@@ -268,52 +273,51 @@ public class MemberController {
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
 		int enabled = 0;
-		enabled = user.getEnabled();
+		int after_enabled = 0; 
 		check = ajaxservice.idcheck(email);		
+		enabled = user.getEnabled();
+		after_enabled = ajaxservice.enabledcheck(email);
 		try {	
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
-				System.out.println("구글 회원가입으로 이동");
-			}else if(check ==1 && enabled == 0) {
+				System.out.println("google 회원가입으로 이동");
+				model.addAttribute("uemail", email);
+				model.addAttribute("snstype", "naver");
+				return "user/member/join";
+			}else if(check == 1 && after_enabled == 0) {
 				System.out.println("권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
 				redirect.addAttribute("errormsg",msg);
 				return "redirect:/member/normallogin.do";
-				//return "user/403";
-				}
+					}else if(check==1 && after_enabled == 1){
+						// 스프링 시큐리티 수동 로그인을 위한 작업//
+						// 로그인 세션에 들어갈 권한을 설정
+						List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+						list.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-				model.addAttribute("uemail", email);
-				model.addAttribute("snstype", "google");
+						SecurityContext sc = SecurityContextHolder.getContext();
+						// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
+						// 패스워드는 null로 하여도 값이 생성.
+						sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
+						session = request.getSession(true);
 
-				return "user/member/join"; 
+						// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
+						session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+						// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
+
+						System.out.println("이미 가입된 회원");
+						Users users = new Users();
+						users = mypageservice.getUsers(email);
+						session = request.getSession();
+						session.setAttribute("currentUser", users);
+						System.out.println("이미 가입된 회원의 정보" + users);
+
+				 // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
+					}
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 		
-
-		// 스프링 시큐리티 수동 로그인을 위한 작업//
-		// 로그인 세션에 들어갈 권한을 설정
-		List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-		list.add(new SimpleGrantedAuthority("ROLE_USER"));
-
-		SecurityContext sc = SecurityContextHolder.getContext();
-		// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-		// 패스워드는 null로 하여도 값이 생성.
-		sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
-		session = request.getSession(true);
-
-		// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-		// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
-
-		System.out.println("이미 가입된 회원");
-		Users users = new Users();
-		users = mypageservice.getUsers(email);
-		session = request.getSession();
-		session.setAttribute("currentUser", users);
-		System.out.println("이미 가입된 회원의 정보" + users);
-
 		return "redirect:../user/main.do";
 	}
 
