@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.sun.media.jfxmedia.logging.Logger;
 
@@ -63,6 +64,7 @@ public class BoardController {
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
 	public String studyListPage(Criteria_Board cri_b, Model model, 
+			HttpServletRequest request,
 			@RequestParam(value="searchType",required = false) String searchType,
 			@RequestParam(value="keyword",required=false) String keyword,
 			@RequestParam(value="root",required=false) String root
@@ -81,10 +83,19 @@ public class BoardController {
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
 		
+		String redirectStr = "";
+		Map<String, Object> redirect = (Map<String, Object>) RequestContextUtils.getInputFlashMap(request);
+		System.out.println("이게왜널? " + redirect);
+		if(redirect != null) {
+			redirectStr = (String)redirect.get("root");
+			System.out.println("호호ss: " + redirectStr);
+		}
+		
 		System.out.println("keyword : " + keyword);
 		System.out.println("searchType : " + searchType);
 		list = service.getStudyBoardList(cri_b);
 		if(root != null) {
+			System.out.println("호호 : " + redirectStr);
 			if(keyword == null) { //처음동기식으로 왔을때
 				System.out.println("처음엔 여길..");
 				pageMakerb.setTotalCount(service.getStudyBoardCount());
@@ -177,7 +188,8 @@ public class BoardController {
 
 	// 일반컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	public String boardRegister(Study study, HttpServletRequest request, Principal principal) {
+	public String boardRegister(Study study, HttpServletRequest request, Principal principal,
+			RedirectAttributes redirectAttr) {
 
 		System.out.println("넘어온 데이터 " + study.toString());
 
@@ -191,7 +203,8 @@ public class BoardController {
 
 		}
 		System.out.println("리턴 전...");
-
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@");
+		redirectAttr.addAttribute("root","header");
 		// return "user/board/study_List";
 		return "redirect:/board/study_List.do";
 		// /index.htm
@@ -233,7 +246,8 @@ public class BoardController {
 
 	// 온라인컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
-	public String registerOnline(Study study, Principal principal, HttpServletRequest request) {
+	public String registerOnline(RedirectAttributes redirectAttr,
+			Study study, Principal principal, HttpServletRequest request) {
 
 		System.out.println("넘어온 데이터 " + study.toString());
 
@@ -248,6 +262,7 @@ public class BoardController {
 
 		}
 		System.out.println("리턴 전...");
+		redirectAttr.addAttribute("root","header");
 
 		// return "user/board/study_List";
 		return "redirect:/board/study_List.do";
@@ -376,7 +391,7 @@ public class BoardController {
 			page = Integer.toString(ksk);
 		}
 		
-
+		redirect.addAttribute("root", "root"); 
 		redirect.addAttribute("page", page);    
 		redirect.addAttribute("perPageNum", perPageNum);  
 		//redirect.addAttribute("list", list);  
