@@ -1155,8 +1155,8 @@ keyframes heart-keyframes { 100% {
 	                             buttons: true
 	                           })
 	                       }else if(data == 1){
-	                    	swal({title:"지원이 완료되었습니다.",
-	                       		  icon: "success"})
+	                    	/* swal({title:"지원이 완료되었습니다.",
+	                       		  icon: "success"}) */
 	                       		 
 	                       				
 	                       		  location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
@@ -1203,10 +1203,10 @@ keyframes heart-keyframes { 100% {
                   type : 'POST',
                   data : JSON.stringify(obj),
                   success : function(data) {
-                     swal({
+                   /*   swal({
                          title: "지원이 취소되었습니다. ",
                            icon: "success"
-                         })
+                         }) */
                          location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
                   },
                   error: function(request, status, error){
