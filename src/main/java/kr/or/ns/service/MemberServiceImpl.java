@@ -54,6 +54,9 @@ public class MemberServiceImpl implements MemberService {
 			users.setProfile_img("member.png");
 		}
 		
+		if(users.getSnstype() == null) {
+			users.setSnstype("normal");
+		}
 	
 		int result = 0;
 		int result2 = 0;
