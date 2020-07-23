@@ -320,6 +320,31 @@
 	</select> 
 	
 	
+	<!-- 사이즈 체크용  -->
+	<select id="getBookmarkListSize" resultType="hashmap" parameterType="hashmap" >
+	   <![CDATA[
+			select *
+			from lecture_board
+			left outer join price_category
+			on lecture_board.p_seq = price_category.p_seq
+			left outer join bookmark
+			on lecture_board.l_seq = bookmark.l_seq
+			where bookmark.user_id = #{user_id} and
+			bookmark_check = 1 and
+			bookmark.l_seq not in(
+				select l_seq 
+			    from study_board 
+			    left outer join study_board_online
+				on study_board.s_seq = study_board_online.s_seq
+			    where study_board.user_id=#{user_id} and
+			    l_seq is not null 
+			)
+			order by bookmark.bk_seq desc
+		]]>
+
+	</select> 
+	
+	
 
 	<!-- <delete id="deleteLecture"> DELETE NOTICES WHERE SEQ=#{seq} </delete> 
 		<update id="updateLecture" parameterType="vo.Lecture"> UPDATE NOTICES SET 

@@ -111,12 +111,13 @@
 	</main>
 
 	<div class="_border_box_shadow2" style="width: 1430px;">
-		<form action="" class="registerform"
+
+		<form action="/board/registerOnline.do" method="post" class="registerform"
 			id="registerform" enctype="multipart/form-data">
-<!-- 
-				<input type="hidden" name= "l_image" id="l_image" th:value="${lecture.L_IMAGE}" />
-				<input type="hidden" name="l_seq" id="l_seq" th:value="${lecture.L_SEQ}" />
-			 -->
+			
+				<input type="hidden" name=image id="l_image" th:value="${lecture.L_IMAGE}" />
+				<input type="hidden" name="l_seq_temp" id="l_seq" th:value="${lecture.L_SEQ}" /> 
+
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
 				<!-- <br /> -->
@@ -360,7 +361,8 @@
 	console.warn('sss : ' + $('#l_seq').val())
       $(function() {
          $('#date-time').bootstrapMaterialDatePicker({
-            format : 'YYYY-MM-DD HH:mm'
+            format : 'YYYY-MM-DD HH:mm',
+            minDate: moment()
          });
       });
    </script>
@@ -371,26 +373,27 @@
          $("#registerform").submit(function(e) {
             var formData = new FormData(this);
             console.log(formData)
-            formData.append('image', $('#l_image').val());
-            formData.append('l_seq', $('#l_seq').val());
-            
+            //formData.append('image', $('#l_image').val());
+            //formData.append('l_seq', $('#l_seq').val());
 
             console.log("데이터 : " + formData)
             $.ajax({
-               url : "/board/registerOnline.do",
+               url : "",
                processData : false,
                contentType : false,
                cache : false,
                type : 'POST',
                data : formData,
                success : function(data) {
-            	   alert('넘겨받은 데이터 : ' + data)
+            	   //alert('넘겨받은 데이터 : ' + data)
+            	   //지우지말것..
             	   location.href="/board/study_List.do?root=headear"
                },
                error:function(request,status,error){
-            	   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            	   //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                	   ///ㅠㅠ
-               	   //location.href="/board/study_List.do?root=headear"
+               	   //지우지말것..
+               	   location.href="/board/study_List.do?root=headear"
                   console.log("error:", e);
                }
             })

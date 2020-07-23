@@ -35,6 +35,7 @@ public class Study {
 	//private String selectlev;
 	private String selectend;
 	private int l_seq;
+	private String l_seq_temp;
 	private List<CommonsMultipartFile> files;
 	
 }

@@ -225,6 +225,24 @@ public class LectureServiceImpl implements LectureService {
 		List<HashMap<String, Object>> list = dao.getBookmarkList(map);
 		return list;
 	}
+	
+	// 가져온 북마크 목록 페이징
+		@Override
+		public List<HashMap<String, Object>> getBookmarkListSize(HashMap<String, Object> map) {
+			LectureDao dao = sqlsession.getMapper(LectureDao.class);
+
+			Criteria_Select cri_s = (Criteria_Select) map.get("cri_s");
+
+			System.out.println(cri_s.getPage());
+			System.out.println(cri_s.getPageStart());
+			System.out.println(cri_s.getPerPageNum());
+
+			map.put("pageStart", cri_s.getPageStart());
+			map.put("perPageNum", cri_s.getPerPageNum());
+
+			List<HashMap<String, Object>> list = dao.getBookmarkListSize(map);
+			return list;
+		}
 
 	@Override
 	public List<Integer> getCheckedL_seq(String user_id) {

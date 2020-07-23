@@ -185,8 +185,9 @@ html, body {
       </div> -->
 
 	<div class="right_bottom">
+	
 		<div class="row"
-			style="background-color: rgb(24, 210, 105); height: 55px; width: 100%; margin: 0px; position: fixed; top: 0;">
+			style="background-color: rgb(24, 210, 105); height: 55px; width: 100%; z-index:10; margin: 0px; position: fixed; top: 0;">
 			<div class="col-12"
 				style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
 				<a href="#" role="button" style="margin-left: 0px;" id="etc"><img
@@ -362,10 +363,12 @@ html, body {
                } else if (d.type == "message") {
                   let html = "";
                   if (d.user_id == $("#user_id").val()) { //나
-                     html += "<div>"
-                     html += "<div style='float: right; text-align: center;'>"
-                     html += "</div><div class='mybubble'>" + d.msg
-                           + "</div><br>"
+                	   html += "<div style='margin-right:20px;'>" 
+                      html += "<div style='margin-top:30px;'>" 
+                     //html += "<div style='float: right; text-align: center;'></div>"
+                       html += "<span style='margin-left:20px;'><b></b></span>"
+                     html += "<div class='mybubble'>" + d.msg
+                           + "</div></div></div><br>"
                      $("#chatBoxArea").append(html);
                   } else { //상대
                      console.log('제발!!@@')
@@ -386,7 +389,7 @@ html, body {
 
                                  html += "<div style='margin-left:20px;'>"
                                  //html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
-                                 html += "<div style='float: left; text-align: center;'></div>"
+                                 //html += "<div style='float: left; text-align: center;'></div>"
                                  html += "<div style='margin-top:30px;'><img src='/userboard/upload/"
                                        + data[1].PROFILE_IMG
                                        + "' alt='' style='height: 40px; width:40px; border-radius: 32%;'>"
@@ -410,8 +413,8 @@ html, body {
                   console.warn("msg : " + msg);
                   console.warn("d : " + d);
                   let html = "";
-                  html += "<div class='row' style='display:grid;'><b style='display: block; text-align:center; margin:15px 0px; '>"
-                        + d.msg + "</b></div>"
+                  html += "<span style='clear:both;'><b style='display: block; text-align:center; margin:15px 0px; '>"
+                        + d.msg + "</b></span>"
                   $("#chatBoxArea").append(html);
                         
                }

@@ -190,7 +190,7 @@ public class BoardController {
 
 	// 일반컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	@ResponseBody
+	/* @ResponseBody */
 	public String boardRegister(Study study, HttpServletRequest request, Principal principal,
 			RedirectAttributes redirectAttr) {
 
@@ -214,8 +214,8 @@ public class BoardController {
 		//return "sss";
 		
 		// /index.htm
-		// return "redirect:index.do"; // /index.htm
-		 return ""; // /index.htm
+		return "redirect:/board/study_List.do"; // /index.htm
+		 //return ""; // /index.htm
 
 		/*
 		 * return "redirect:/index.do"; // /index.htm
@@ -251,14 +251,16 @@ public class BoardController {
 	}
 
 	// 온라인컨텐츠(스터디 게시판 글 등록)
-	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
-	@ResponseBody
+	@RequestMapping(value = "registerOnline.do", method = {RequestMethod.POST, RequestMethod.GET})
+	 @ResponseBody 
 	public String registerOnline(RedirectAttributes redirectAttr,
 			Study study, Principal principal, HttpServletRequest request) {
 
 		System.out.println("넘어온 데이터 " + study.toString());
-		System.out.println("넘어온 강의번호 " + study.getL_seq());
-
+		System.out.println("넘어온 강의번호 " + study.getL_seq_temp());
+			
+		study.setL_seq(Integer.parseInt(study.getL_seq_temp()));
+		
 		try {
 			// 서비스가서 DB에 등록
 			System.out.println("서비스는 잘가냐 ?");
@@ -271,10 +273,10 @@ public class BoardController {
 		}
 		System.out.println("리턴 전...!!");
 		redirectAttr.addAttribute("root","header");
-
+		return "";
 		// return "user/board/study_List";
 		//return "redirect:/board/study_List.do";
-		 return "";
+		 //return "";
 	}
 	
 	

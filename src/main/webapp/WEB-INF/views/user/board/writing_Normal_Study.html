@@ -356,14 +356,15 @@
 					type : 'POST',
 					data : formData,
 					success : function(data) {
-						   alert('넘겨받은 데이터 : ' + data)
+						  //alert('넘겨받은 데이터 : ' + data)
+						  //지우지말것..
 		            	  location.href="/board/study_List.do?root=header"
 					},
 					error:function(request,status,error){
-		            	   alert("cod!!!e:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		            	   //alert("cod!!!e:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		               	   ///ㅠㅠ
-		               	   //location.href="/board/study_List.do?root=headear"
-		                  console.log("error:", e);
+		               	   //지우지말것..
+		               	   location.href="/board/study_List.do?root=headear"
 		               }
 				})
 			})
