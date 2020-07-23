@@ -75,6 +75,7 @@ public class BoardController {
 		pageMakerb.setCri_b(cri_b);
 	
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
+		System.out.println("온라인 강의 : " + onlineInfo);
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
@@ -130,6 +131,7 @@ public class BoardController {
 		/* pageMakerb.setTotalCount(list.size()); */
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
+		System.out.println("넘기는 onlineInfo : " + onlineInfo);
 		model.addAttribute("pageMakerb", pageMakerb);
 		
 		return "user/board/study_List"; // study_List.html
@@ -188,6 +190,7 @@ public class BoardController {
 
 	// 일반컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
+	/* @ResponseBody */
 	public String boardRegister(Study study, HttpServletRequest request, Principal principal,
 			RedirectAttributes redirectAttr) {
 
@@ -206,10 +209,13 @@ public class BoardController {
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@@");
 		redirectAttr.addAttribute("root","header");
 		// return "user/board/study_List";
-		return "redirect:/board/study_List.do";
+		
+		//return ""
+		//return "sss";
+		
 		// /index.htm
-		// return "redirect:index.do"; // /index.htm
-		// return "redirect:study_List.do"; // /index.htm
+		return "redirect:/board/study_List.do"; // /index.htm
+		 //return ""; // /index.htm
 
 		/*
 		 * return "redirect:/index.do"; // /index.htm
@@ -245,12 +251,16 @@ public class BoardController {
 	}
 
 	// 온라인컨텐츠(스터디 게시판 글 등록)
-	@RequestMapping(value = "registerOnline.do", method = RequestMethod.POST)
+	@RequestMapping(value = "registerOnline.do", method = {RequestMethod.POST, RequestMethod.GET})
+	 @ResponseBody 
 	public String registerOnline(RedirectAttributes redirectAttr,
 			Study study, Principal principal, HttpServletRequest request) {
 
 		System.out.println("넘어온 데이터 " + study.toString());
-
+		System.out.println("넘어온 강의번호 " + study.getL_seq_temp());
+			
+		study.setL_seq(Integer.parseInt(study.getL_seq_temp()));
+		
 		try {
 			// 서비스가서 DB에 등록
 			System.out.println("서비스는 잘가냐 ?");
@@ -261,12 +271,15 @@ public class BoardController {
 			System.out.println(e.getMessage());
 
 		}
-		System.out.println("리턴 전...");
+		System.out.println("리턴 전...!!");
 		redirectAttr.addAttribute("root","header");
-
+		return "";
 		// return "user/board/study_List";
-		return "redirect:/board/study_List.do";
+		//return "redirect:/board/study_List.do";
+		 //return "";
 	}
+	
+	
 
 	@RequestMapping("board_Select.do")
 	public String boardSelectPage() {
