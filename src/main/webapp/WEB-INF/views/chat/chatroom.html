@@ -77,21 +77,8 @@ html, body {
 
 .chatBoxArea {
 	height: 60%;
-	/* 	overflow-y: auto;
-    overflow-x: hidden; */
 }
 
-/* #absdiv1 {
-   z-index: 5;
-   position: absolute;
-   width: 150px;
-   height: 350px;
-   top: 10px;
-   left: 10px;
-   border: 1px dashed #990000;
-   background-color: #ffdddd;
-   text-align: center;
-} */
 </style>
 
 </head>
@@ -134,35 +121,14 @@ html, body {
 				</h5>
 			</div>
 		</div>
-		<!-- 			<div class="row" style="display:block;">
-			
-			<a href="#" role="button" style="margin-left: 0px;"><img
-					src="../../../../resources/images/img/etc.png" style="width: 25px; height: 25px; float: left;">
-			<div class="col" style="padding:0px;">
-			<ul class="bottom" style="background-color:#f5f6f8; margin:0px; text-align:center; padding:0px;">대화설정</ul></div>
-			</a>
-			<a href="#" role="button" style="margin-left: 0px;"><img
-					src="../../../../resources/images/img/etc.png" style="width: 25px; height: 25px; float: left;">
-			<div class="col" style="padding:0px;">
-			<ul class="bottom2" style="background-color:#f5f6f8; margin:0px; text-align:center; padding:0px;">나가기</ul></div>
-			</a>
-			</div> -->
+
 	</div>
 
 
 
-
-	<!-- <div class="wrapper" style="position: relative;"> -->
-
-	<!--    <div id="absdiv1">
-         <br /><span class="bold">DIV #1</span>
-         <br />position: absolute;
-         <br />z-index: 5;
-      </div> -->
-
-
-	<div class="row"
-		style="background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px; position: relative; z-index: 3;">
+<div style="overflow-y:auto; overflow-x:hidden;min-height:500px; max-height:890px;" id="msg">
+	<div class="row" 
+		style=" background-color: rgb(24, 210, 105); height: 55px; magin-top: 10px; position: relative; z-index: 3;">
 		<div class="col-12"
 			style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
 			<a href="#" role="button" style="margin-left: 0px;" id="etc"><img
@@ -184,10 +150,11 @@ html, body {
 	</div>
 
 
+
 	<div id="chatBoxArea" class="chatBoxArea">
 
 		<ul class="talk_write row"
-			style="padding-left: 10px; position: absolute; width: 100%; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
+			style="padding-left: 10px; position: fixed; width: 100%; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
 			<li class="input_msg"
 				style="border-radius: 10px; height: 40px; background-color: #f5f6f8; width: 100%; display: flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
@@ -199,8 +166,8 @@ html, body {
 				</button>
 			</li>
 		</ul>
-	</div>
-
+		</div>	
+</div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/chat_Detail_Modal :: chat_Detail_Modal"></div>
 	
@@ -331,9 +298,7 @@ html, body {
             }
             //]]>
             
-             //$('#chatBoxArea')
-            //.animate({scrollTop: $('#chatBoxArea')[0].scrollHeight}, 1000); 
-             $(document).scrollTop($(document).height());
+             $('#msg').scrollTop($('#msg').height());
              
          };
 
