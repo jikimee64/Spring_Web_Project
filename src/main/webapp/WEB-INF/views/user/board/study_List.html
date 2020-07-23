@@ -474,7 +474,7 @@ group+group {
 
 					</select> <input class="form-control" type="text" id="keyword"
 						name="keyword" th:value="${pageMakerb.cri_b.keyword}"
-						placeholder="검색어를 입력하세요" style="width: 228px;"/>
+						placeholder="검색어를 입력하세요" style="width: 228px;" />
 
 					<button type="button" id="searchBtn"
 						class="btn btn-outline-success">Search</button>
@@ -482,7 +482,7 @@ group+group {
 			</div>
 
 		</div>
-		<div class="_border_box_shadow2 studyFilter"
+		<div class="_border_box_shadow2 studyFilter _main_board_box"
 			style="border: 4px solid gainsboro; padding: 30px 30px 0px 30px;">
 			<!-- 타임리프 반복시작 -->
 			<div th:each="list : ${list}">
@@ -614,29 +614,20 @@ group+group {
 
 
 				<!-- 이전버튼 생성여부 -->
-				<li th:if="${pageMakerb.prev} == true">
-				
-				
-				<th:block th:if="${type == 'FS'}">
-					<a
-						th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
-						class="page-link" th:text="Previous">&laquo; </a>
-				</th:block>
-				
-				
-				<th:block th:if="${type == 'Search'}">
-					<a
-						th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
-						class="page-link" th:text="Previous">&laquo; </a>
-				</th:block>
-				
-				<th:block
-						th:if="${type == null}">
+				<li th:if="${pageMakerb.prev} == true"><th:block
+						th:if="${type == 'FS'}">
+						<a
+							th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
+							class="page-link" th:text="Previous">&laquo; </a>
+					</th:block> <th:block th:if="${type == 'Search'}">
+						<a
+							th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+							class="page-link" th:text="Previous">&laquo; </a>
+					</th:block> <th:block th:if="${type == null}">
 						<a
 							th:href="@{study_List.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
 							class="page-link" th:text="Previous">&laquo; </a>
-					</th:block> 
-					<th:block th:if="${type == 'filter'}">
+					</th:block> <th:block th:if="${type == 'filter'}">
 						<a
 							th:href="@{study_FilterList.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							class="page-link" th:text="Previous">&laquo; </a>
@@ -654,21 +645,15 @@ group+group {
 						<a class="page-link"
 							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
 							th:text="${idx}"></a>
-					</th:block> 
-
-					<th:block th:if="${type == 'Search'}">
+					</th:block> <th:block th:if="${type == 'Search'}">
 						<a class="page-link"
 							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
 							th:text="${idx}"></a>
-					</th:block> 
-					
-					
-					<th:block th:if="${type == null}">
+					</th:block> <th:block th:if="${type == null}">
 						<a class="page-link"
 							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
 							th:text="${idx}"></a>
-					</th:block>
-					 <th:block th:if="${type == 'filter'}">
+					</th:block> <th:block th:if="${type == 'filter'}">
 						<a class="page-link"
 							th:href="@{study_FilterList.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							th:text="${idx}"></a>
@@ -683,19 +668,15 @@ group+group {
 						<a
 							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
 							class="page-link" th:text="Next">&raquo;</a>
-					</th:block>
-
-					<th:block th:if="${type == 'Search'}">
+					</th:block> <th:block th:if="${type == 'Search'}">
 						<a
 							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
 							class="page-link" th:text="Next">&raquo;</a>
-					</th:block>
-					 <th:block th:if="${type == null}">
+					</th:block> <th:block th:if="${type == null}">
 						<a
 							th:href="@{study_List.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
 							class="page-link" th:text="Next">&raquo;</a>
-					</th:block> 
-					<th:block th:if="${type == 'filter'}">
+					</th:block> <th:block th:if="${type == 'filter'}">
 						<a
 							th:href="@{study_FilterList.do(page=${pageMakerb.endPage}+1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							class="page-link" th:text="Next">&raquo;</a>
@@ -1156,7 +1137,7 @@ group+group {
 						});
 
 	</script>
-	
+
 	<script>
 		
 	
@@ -1221,14 +1202,23 @@ group+group {
          document.documentElement.scrollTop = 0;
       }
    </script>
-	
-<!-- 	<script>
+
+	<!-- 	<script>
 	function enterkey(){
 		if(window.event.keyCode == 13){
 			setSearchTypeSelect();
 		}
 	}
 	</script> -->
+	<script>
+		
+// 		$('._main_board_box').bind("DOMSubtreeModified",function(){
+			
+// 			console.warn($.trim( $('._main_board_box').html()).length);
+			
+				
+// 			});
+	</script>
 </body>
 
 
