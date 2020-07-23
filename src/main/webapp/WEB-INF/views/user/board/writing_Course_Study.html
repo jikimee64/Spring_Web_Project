@@ -91,8 +91,8 @@
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
-	<input type="hidden" id="l_image" th:value="${lecture.L_IMAGE}" />
-	<input type="hidden" id="l_seq" th:value="${lecture.L_SEQ}" />
+ 	<input type="hidden" id="l_image" th:value="${lecture.L_IMAGE}" />
+	<input type="hidden" id="l_seq" th:value="${lecture.L_SEQ}" /> 
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -111,8 +111,12 @@
 	</main>
 
 	<div class="_border_box_shadow2" style="width: 1430px;">
-		<form action="/board/study_List.do" class="registerform"
+		<form action="" method="post" class="registerform"
 			id="registerform" enctype="multipart/form-data">
+			
+				<!-- <input type="hidden" id="l_image" th:value="${lecture.L_IMAGE}" />
+				<input type="hidden" id="l_seq" th:value="${lecture.L_SEQ}" /> -->
+			
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
 				<!-- <br /> -->
@@ -220,6 +224,7 @@
 
 					<div class="col-md-3" style="margin-top: 24px;">
 						<div class="form-group" style="margin: 0">
+						<span th:text="${lecture.L_SEQ}"></span>
 							<div class="card"
 								style="width: 100%; margin-bottom: 15px; margin-left: 12px;">
 								<img class="card-img-top" th:src="${lecture.L_IMAGE}"
@@ -352,6 +357,7 @@
 
 	<!-- mysql이랑 맞출것  -->
 	<script>
+	console.warn('sss : ' + $('#l_seq').val())
       $(function() {
          $('#date-time').bootstrapMaterialDatePicker({
             format : 'YYYY-MM-DD HH:mm'
@@ -367,6 +373,7 @@
             console.log(formData)
             formData.append('image', $('#l_image').val());
             formData.append('l_seq', $('#l_seq').val());
+            
 
             console.log("데이터 : " + formData)
             $.ajax({
@@ -377,8 +384,13 @@
                type : 'POST',
                data : formData,
                success : function(data) {
+            	   alert('넘겨받은 데이터 : ' + data)
+            	   location.href="/board/study_List.do?root=headear"
                },
-               error : function(e) {
+               error:function(request,status,error){
+            	   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+               	   ///ㅠㅠ
+               	   //location.href="/board/study_List.do?root=headear"
                   console.log("error:", e);
                }
             })

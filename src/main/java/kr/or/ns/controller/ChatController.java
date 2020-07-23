@@ -88,6 +88,11 @@ public class ChatController {
 		ChatRoom chatroom = service.getChatRoom(ch_seq);
 		System.out.println("삽입 결과 : " + result);
 		
+		List<HashMap<String, Object>> list = service.chatRoomMemberGet(ch_seq);
+		String master = (String) list.get(0).get("master");
+		System.out.println("master : " + master);
+		
+		model.addAttribute("master", master );
 		model.addAttribute("chatroom", chatroom);
 		model.addAttribute("user_id", user_id );
 		model.addAttribute("datestr", datestr);
