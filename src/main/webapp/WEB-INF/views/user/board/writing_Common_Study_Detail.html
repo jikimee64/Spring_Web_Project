@@ -537,7 +537,7 @@ keyframes heart-keyframes { 100% {
 
 									<th:block th:if="${page != null && perPageNum != null}">
 										<a
-											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
+											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}">
 											<button type="button" class="btn btn-warning"
 												style="width: 100%;">목록으로</button>
 										</a>
@@ -1101,6 +1101,7 @@ keyframes heart-keyframes { 100% {
         	 
         	 var page = $('#page');
         	 var perPageNum = $('#perPageNum');
+        	 var root = "back";
         	 
             swal({
                  title: "정말 삭제하시겠습니까?",
@@ -1165,8 +1166,8 @@ keyframes heart-keyframes { 100% {
 	                             buttons: true
 	                           })
 	                       }else if(data == 1){
-	                    	swal({title:"지원이 완료되었습니다.",
-	                       		  icon: "success"})
+	                    	/* swal({title:"지원이 완료되었습니다.",
+	                       		  icon: "success"}) */
 	                       		 
 	                       				
 	                       		  location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
@@ -1213,10 +1214,10 @@ keyframes heart-keyframes { 100% {
                   type : 'POST',
                   data : JSON.stringify(obj),
                   success : function(data) {
-                     swal({
+                   /*   swal({
                          title: "지원이 취소되었습니다. ",
                            icon: "success"
-                         })
+                         }) */
                          location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
                   },
                   error: function(request, status, error){
