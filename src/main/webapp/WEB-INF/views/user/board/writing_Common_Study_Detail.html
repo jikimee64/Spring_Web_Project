@@ -537,7 +537,7 @@ keyframes heart-keyframes { 100% {
 
 									<th:block th:if="${page != null && perPageNum != null}">
 										<a
-											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
+											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}">
 											<button type="button" class="btn btn-warning"
 												style="width: 100%;">목록으로</button>
 										</a>
@@ -1091,6 +1091,7 @@ keyframes heart-keyframes { 100% {
         	 
         	 var page = $('#page');
         	 var perPageNum = $('#perPageNum');
+        	 var root = "back";
         	 
             swal({
                  title: "정말 삭제하시겠습니까?",

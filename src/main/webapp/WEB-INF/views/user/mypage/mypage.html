@@ -191,15 +191,13 @@ body {
 				<input type="hidden" id="user_id" name="user_id"
 					th:value="${user.user_id}">
 				<!-- <span th:text="${user.USER_ID}"></span> -->
-
+				
 				<div class="_border_box_shadow3"
-					style="padding: 9px; overflow-y: auto; border: 3px solid lightskyblue;">
+					style="padding: 9px;  overflow-y: auto; border: 3px solid lightskyblue;">
 					<div style="overflow-x: hidden; width: 100%; height: 400px;"
 						id="recruting_study">
 						<div th:each="studylist,index: ${studylist}">
 
-							<hr
-								style="border: solid 1px; margin-top: 0px; margin-bottom: 0px;" />
 							<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
 
 							<div class="row p-3">
@@ -254,7 +252,11 @@ body {
 									style="height: 140px; width: 140px;"> -->
 								</div>
 							</div>
+								<hr
+								style="border: solid 1px; margin-top: 0px; margin-bottom: 0px;" />
 						</div>
+						
+						
 						<br />
 						<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
 					</div>
@@ -282,13 +284,13 @@ body {
 						style="padding: 9px; border: 3px solid wheat;">
 
 						<div
-							style="overflow-y: auto; overflow-x: hidden; width: 100%; height: 400px;">
+							style="overflow-y: auto; overflow-x: hidden; padding-top:10px;  width: 100%; height: 400px;">
 
 
 							<div th:each="list: ${list}">
 								<!-- 여기부터 데이터 하나 넣기 시작 -->
 								<!-- 타임리프 for문 -->
-								<div class="row" th:classappend="|bookmark${list.L_SEQ}|">
+								<div class="row" th:classappend="|bookmark${list.L_SEQ}|" style="padding-top:20px;">
 
 									<!-- 									<div class="col-md-1" style="text-align: center;"> -->
 									<!-- 										스터디 글 번호 -->

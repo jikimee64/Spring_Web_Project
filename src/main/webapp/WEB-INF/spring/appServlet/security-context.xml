@@ -50,13 +50,13 @@
 			/> <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" 
 			/> -->
 
-
-		<security:session-management invalid-session-url="/member/normallogin.do">
+	<!-- 톰캣에서 세션해제하는게 설정하고 이거설정하기  -->
+		<!-- <security:session-management invalid-session-url="/member/normallogin.do">
 			<security:concurrency-control
 				max-sessions="1" expired-url="/member/normallogin.do" />
-			<!-- 중복 로그인 방지. 만약 두번째 로그인을 막고 싶을 경우 error-if-maximum0exceeded="true"를 
-				추가하여 값이 true일 때 두번째 로그인을 막는다. -->
-		</security:session-management>
+			중복 로그인 방지. 만약 두번째 로그인을 막고 싶을 경우 error-if-maximum0exceeded="true"를 
+				추가하여 값이 true일 때 두번째 로그인을 막는다.
+		</security:session-management> -->
 
 
 	</security:http>
