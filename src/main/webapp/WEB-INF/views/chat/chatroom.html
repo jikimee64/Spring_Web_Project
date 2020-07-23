@@ -6,7 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>방 리스트</title>
-
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <style>
 html, body {
@@ -116,13 +117,14 @@ html, body {
 		style="width: 350px; height: 100%; display: none;">
 		<div class="row">
 
-			<div class="col-3"
+			<div th:if="${user_id == master}"class="col-3"
 				style="text-align: center; align-self: center; padding-right: 0px; z-index:300;">
 				<a href="#" role="button" data-toggle="modal"
 					data-target="#chatDetailModal"> <img
 					src="../../../../resources/images/img/setup_bl.png"
 					style="width: 25px; height: 25px;"></a>
 			</div>
+			
 			<div class="col-6" style="text-align: center;">
 				<h5 style="margin-top: 20px;">
 					<b>대화중 멤버</b>
@@ -136,20 +138,26 @@ html, body {
 			</div>
 
 		</div>
-		<div class="row"
-			style="min-height: 700px; margin-top: 35px; margin-right: 40px; margin-left: 0px;">
-			<div class="col" style="text-align: center; height: 100px;">
-				<img src="../../../../resources/images/img/chatroom.png"
-					style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;">
-				<b style="vertical-align: revert;">아이디</b>
-			</div>
-			<div class="col-3" style="height: 100px;">
-				<h5 style="margin-bottom: 0px;">
-					<span class="badge badge-success"
-						style="background-color: rgb(24, 210, 105); margin-top: 10px;">방장</span>
-				</h5>
+		
+		<div class="nowMember">
+			<div class="row"
+				style="min-height: 700px; margin-top: 35px; margin-right: 40px; margin-left: 0px;">
+				<div class="col" style="text-align: center; height: 100px;">
+					<img src="../../../../resources/images/img/chatroom.png"
+						style="width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;">
+					<b style="vertical-align: revert;">아이디</b>
+				</div>
+				<div class="col-3" style="height: 100px;">
+					<h5 style="margin-bottom: 0px;">
+						<span class="badge badge-success"
+							style="background-color: rgb(24, 210, 105); margin-top: 10px;">방장</span>
+					</h5>
+				</div>
 			</div>
 		</div>
+		
+		
+		
 		<!--          <div class="row" style="display:block;">
          
          <a href="#" role="button" style="margin-left: 0px;"><img
@@ -230,7 +238,7 @@ html, body {
    </script>
 
 
-	<script>
+<!-- 	<script>
       $(function() {
          var data = {
             ch_seq : $("#ch_seq").val(),
@@ -250,11 +258,62 @@ html, body {
          })
 
       });
-   </script>
+   </script> -->
 
 
 
 	<script type="text/javascript">
+	
+	function nowMember(){
+         var data = {
+            ch_seq : $("#ch_seq").val(),
+         }
+         $.ajax({
+            url : "/chat/chatRoomMemberGet.do",
+            type : 'POST',
+            contentType : "application/json",
+            data : JSON.stringify(data),
+            success : function(data) {
+               console.log('채팅방멤버' + data)
+               $('.nowMember').empty();
+               $.each(data, function(index, item) {
+            	   if(index === 0){ //방장
+            		let html = "";
+            	    html += "<div class='row' style='height:50px; margin-top: 35px; margin-right: 40px; margin-left: 0px;'>";
+           			html += "<div class='col' style='text-align: center; height: 50px;'>";
+    				html += "<img src='/userboard/upload/"+data[index].profile_img+"' style='width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;'>";
+    				html += "<b style='vertical-align: revert; margin-left:30px;'>";
+    				html += data[index].user_id
+    				html += "</b></div>"
+	    			html += "<div class='col-3' style='height: 100px;'>";
+	    			html += "<h5 style='margin-bottom: 0px;'>";
+	    			html +=	"<span class='badge badge-success' style='background-color: rgb(24, 210, 105); margin-top: 10px;'>방장</span></h5></div></div>";
+	    			  $('.nowMember').append(html);
+            	   }else{ //회원
+            		   console.log('제발 와라제발!!')
+            		   let html = "";
+            		   html += "<div class='row' style='height:50px; margin-top: 35px; margin-right: 40px; margin-left: 0px;'>";
+              			html += "<div class='col' style='text-align: center; height: 50px;'>";
+        				html += "<img src='/userboard/upload/"+data[index].profile_img+"' style='width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;'>";
+        				html += "<b style='vertical-align: revert; margin-left:30px;'>";
+        				html += data[index].user_id
+        				html += "</b></div>"
+    	    			html += "<div class='col-3' style='height: 100px;'>";
+    	    			html += "<h5 style='margin-bottom: 0px;'>";
+    	    			html +=	"<span class='badge badge-success' style='background-color: rgb(24, 210, 105); margin-top: 10px;'>회원</span></h5></div></div>";
+    	    			$('.nowMember').append(html);
+            	   }
+            	   
+               });
+               
+
+            },
+            error : function(e) {
+               console.log("error:", e);
+            }
+         });
+	}
+	
        /* function moveScroll() {
            $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20));
           console.warn( $('.chatBoxArea')[0].scrollHeight); 
@@ -279,7 +338,8 @@ html, body {
             //let html = "";
             //html += "<b>"+d.user_id+"님이 들어옴</b>"  
             console.log('접속완료')
-
+            nowMember();
+            console.log('제발')
             //여기서 현재 현좁
 
          };

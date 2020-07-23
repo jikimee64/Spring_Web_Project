@@ -40,20 +40,22 @@
 						</div>
 						<div class="modal-body container" style="padding-bottom: 0px;">
 							<div class="row">
-								<div class="col-md-3" style="color: black;">채팅방 이름</div>
-								<input type="text" name="ch_title" id="ch_title"
+								<div class="col-md-3" style="color: black;" >채팅방 이름</div>
+								<input th:value="${chatroom.ch_title}" type="text" name="ch_title" id="ch_title"
 									class="form-control form-control-sm">
 							</div>
 
 							<div class="row">
 								<div class="col-md-3" style="padding-top: 10px; color: black;">채팅방
 									설명</div>
-								<input type="text" name="ch_description" id="ch_description"
+								<input th:value="${chatroom.ch_description}" type="text" name="ch_description" id="ch_description"
 									class="form-control form-control-sm">
 							</div>
 							<br>
 							<div class="row modal-footer">
-								<button type="button" class="btn btn-outline-danger">채팅방
+								<button id="roomUpdate" type="button" class="btn btn-outline-success">채팅방
+									수정하기</button>
+								<button id="roomDelete" type="button" class="btn btn-outline-danger">채팅방
 									삭제하기</button>
 							</div>
 						</div>
