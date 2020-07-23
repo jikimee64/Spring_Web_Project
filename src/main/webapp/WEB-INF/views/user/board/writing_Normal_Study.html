@@ -108,7 +108,7 @@
 		<!-- Breadcrumbs Section -->
 	</main>
 	<div class="_border_box_shadow2" style="width: 1430px;">
-		<form action="/board/study_List.do" class="registerform"
+		<form action="/board/register.do" method="post" class="registerform"
 			id="registerform" enctype="multipart/form-data">
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
@@ -349,17 +349,22 @@
 
 				console.log("데이터 : " + formData)
 				$.ajax({
-					url : "/board/register.do",
+					url : "",
 					processData : false,
 					contentType : false,
 					cache : false,
 					type : 'POST',
 					data : formData,
 					success : function(data) {
+						   alert('넘겨받은 데이터 : ' + data)
+		            	  location.href="/board/study_List.do?root=header"
 					},
-					error : function(e) {
-						console.log("error:", e);
-					}
+					error:function(request,status,error){
+		            	   alert("cod!!!e:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		               	   ///ㅠㅠ
+		               	   //location.href="/board/study_List.do?root=headear"
+		                  console.log("error:", e);
+		               }
 				})
 			})
 		});

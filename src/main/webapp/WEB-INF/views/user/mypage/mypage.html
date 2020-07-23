@@ -242,7 +242,7 @@ body {
 								<div class="col-md-3" style="text-align: right;">
 
 									<th:block th:switch="${studylist.CONTENT_KIND}">
-										<img th:case="온라인" th:src="${studylist.IMAGE}" alt='이미지가 없습니다'
+										<img th:case="온라인강의" th:src="${studylist.IMAGE}" alt='이미지가 없습니다'
 											style='height: 140px; width: 220px;'>
 										<img th:case="일반"
 											th:src="'/studyboard/upload/' + ${studylist.IMAGE}"
@@ -488,7 +488,7 @@ body {
 																			+ "</span></b></div><br/></a>";
 																	html += "</div>";
 																	html += "<div class='col-md-3' style='text-align: right;'>";
-																	if (data[index].CONTENT_KIND === '온라인') {
+																	if (data[index].CONTENT_KIND === '온라인강의') {
 																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
 																	} else {
 																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
@@ -601,7 +601,7 @@ body {
 
 																	html += "</div>";
 																	html += "<div class='col-md-3' style='text-align: right;'>";
-																	if (data[index].CONTENT_KIND === '온라인') {
+																	if (data[index].CONTENT_KIND === '온라인강의') {
 																		html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
 																	} else {
 																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
