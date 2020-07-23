@@ -291,7 +291,12 @@ public class LectureController {
 		// 페이징
 		PageMaker_Select pageMakers = new PageMaker_Select();
 		pageMakers.setCri_s(cri_s);
-		pageMakers.setTotalCount(service.getBookmarkCount(user_id));
+		
+		// 페이징 들고오기
+		List<HashMap<String, Object>> bookMarkList = null;
+		List<HashMap<String, Object>> bookMarkListSize = null;
+		
+	
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
 		// 마이페이지에서 북마크 들고오기
@@ -299,9 +304,7 @@ public class LectureController {
 //			mypageBookmarkList = service3.myPagelist(users);
 //			model.addAttribute("mypageBookmarkList", mypageBookmarkList);
 //			System.out.println("북마크리스트 컨트롤러 잘 받아왔는가" + mypageBookmarkList);
-
-		// 페이징 들고오기
-		List<HashMap<String, Object>> bookMarkList = null;
+	
 
 		HashMap<String, Object> map = new HashMap();
 		map.put("user_id", user_id);
@@ -310,6 +313,10 @@ public class LectureController {
 		bookMarkList = service.getBookmarkList(map);
 		System.out.println("우철이 천재 : " + bookMarkList);
 //			bookMarkList = service.getBookmarkList(cri_s,users);
+		
+		bookMarkListSize = service.getBookmarkListSize(map);
+		pageMakers.setTotalCount(bookMarkListSize.size());
+		
 		model.addAttribute("bookMarkList", bookMarkList); // view까지 전달(forward)
 		model.addAttribute("pageMakers", pageMakers);
 
