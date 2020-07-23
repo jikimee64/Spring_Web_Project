@@ -165,9 +165,11 @@ public class MemberController {
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
 		int enabled = 0;
+		//enabled = ajaxservice.enabledcheck(email);
+		check = ajaxservice.idcheck(email);		
+		enabled = user.getEnabled();
 		try {
-			enabled = ajaxservice.enabledcheck(email);
-			check = ajaxservice.idcheck(email);		
+			
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
 				System.out.println("naver회원가입으로 이동");
@@ -180,11 +182,10 @@ public class MemberController {
 				model.addAttribute("uemail", email);
 				model.addAttribute("snstype", "naver");
 				return "user/member/join"; // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 		
-
+		} catch (Exception e) {
+			e.getMessage();
+		}
 	
 		// 스프링 시큐리티 수동 로그인을 위한 작업//
 		// 로그인 세션에 들어갈 권한을 설정
@@ -215,8 +216,8 @@ public class MemberController {
 	// 구글 콜백함수
 	@RequestMapping(value = "googlelogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleLogin(Model model, @RequestParam(required = false, defaultValue = "0") String code,
-			HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttributes,
-			HttpServletResponse response, RedirectAttributes redirect) throws IOException {
+			HttpSession session, Users user, HttpServletRequest request, RedirectAttributes redirectAttributes,
+			HttpServletResponse response, RedirectAttributes redirect) throws IOException, ClassNotFoundException {
 
 		String Googlecode = request.getParameter("code");
 		System.out.println(Googlecode);
@@ -267,9 +268,9 @@ public class MemberController {
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
 		int enabled = 0;
-		try {
-			enabled = ajaxservice.enabledcheck(email);
-			check = ajaxservice.idcheck(email);
+		enabled = user.getEnabled();
+		check = ajaxservice.idcheck(email);		
+		try {	
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
 				System.out.println("구글 회원가입으로 이동");
@@ -285,8 +286,8 @@ public class MemberController {
 				model.addAttribute("snstype", "google");
 
 				return "user/member/join"; 
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			e.getMessage();
 		}
 		// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 		
