@@ -24,7 +24,8 @@ public class MainController {
 		
 		List<Map<String, Object>> mainList = mainservice.getNewListStudy();
 		model.addAttribute("mainList", mainList);
-	
+		System.out.println("mainList : " + mainList);
+		
 		return "user/main"; 
 	}
 }
