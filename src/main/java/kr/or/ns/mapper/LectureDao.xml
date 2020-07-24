@@ -94,8 +94,6 @@
 					<foreach collection="keyword" item="item" index="index" separator="," close=")">
 					      	#{item} , '%'
 					</foreach>
-				</if>
-				<if test="keyword.size != 0">
 						or lecture_board.l_writer like CONCAT('%',
 					<foreach collection="keyword" item="item" index="index" separator="," close="))">
 					      	#{item} , '%'
@@ -148,8 +146,6 @@
 					<foreach collection="keyword" item="item" index="index" separator="," close=")">
 					      	#{item} , '%'
 					</foreach>
-				</if>
-				<if test="keyword.size != 0">
 						or lecture_board.l_writer like CONCAT('%',
 					<foreach collection="keyword" item="item" index="index" separator="," close="))">
 					      	#{item} , '%'
