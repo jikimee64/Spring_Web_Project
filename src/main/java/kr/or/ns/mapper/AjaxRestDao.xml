@@ -246,6 +246,7 @@
 			LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
+	
 	<!-- 강의리스트 필터 -->
 	<select id="courseBoardFilter" resultType="hashMap">
 		select * from lecture_board

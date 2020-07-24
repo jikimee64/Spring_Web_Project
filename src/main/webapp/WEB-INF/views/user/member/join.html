@@ -207,7 +207,8 @@ textarea {
 }
 
 ._label_center {
-/* 	align-self: center; */
+	/* 	align-self: center; */
+	
 }
 
 *:focus {
@@ -330,8 +331,8 @@ body {
 						<div class="col-2"></div>
 					</div>
 
-					<div class="row" style=" padding-left: 100px; height:63px;">
-						<div class="col-2" style="text-align: right;padding-top:7px;">
+					<div class="row" style="padding-left: 100px; height: 63px;">
+						<div class="col-2" style="text-align: right; padding-top: 7px;">
 							<label class="label-input100" for="pwd"
 								style="place-self: center">프로필 사진</label>
 							<!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
@@ -340,9 +341,10 @@ body {
 						<div class="col-8">
 							<!-- <input type="file" class="form-control" name="file" id="file">  -->
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="file" accept=".gif, .jpg, .png, .jpeg"
-									name="file"> <label class="custom-file-label"
-									for="customFile" style="color: #aaaaaa;">이미지파일을 첨부해주세요</label>
+								<input type="file" class="custom-file-input" id="file"
+									accept=".gif, .jpg, .png, .jpeg" name="file"> <label
+									class="custom-file-label" for="customFile"
+									style="color: #aaaaaa;">이미지파일을 첨부해주세요</label>
 							</div>
 						</div>
 
@@ -358,27 +360,25 @@ body {
 
 				&nbsp;&nbsp;
 
+				<th:block th:if="${uemail != null}">
+					<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
 
-				<div class="value">
-					<div class="row" style=" padding-left: 100px; height:63px; ">
-
-						<!-- 	<div class="col-2 _label_center"
+							<!-- 	<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
 							<label class="label-input100" for="pwd"
 								style="place-self: center">아이디</label>
 						</div> -->
 
 
-						<th:block th:if="${uemail != null}">
-							<input type="hidden" th:value="${uemail}" name="user_id"
-								id="user_id" />
-							<input type="hidden" th:value="${snstype}"name="snstype" id="snstype" />
-						</th:block>
 
-						<!-- 일반 회원가입  -->
-						<th:block th:if="${uemail == null}">
+							<input type="hidden" th:value="${uemail}" name="user_id"
+								id="user_id" /> <input type="hidden" th:value="${snstype}"
+								name="snstype" id="snstype" />
+
+
 							<div class="col-2 _label_center"
-								style=" padding-top: 7px; text-align: right;">
+								style="padding-top: 7px; text-align: right;">
 								<label class="label-input100" for="pwd"
 									style="place-self: center">아이디</label>
 							</div>
@@ -389,48 +389,138 @@ body {
 									class="idcheck hide"></span>
 							</div>
 
-							<div class="col-3" style=" padding-left: 0px">
+							<div class="col-3" style="padding-left: 0px">
 								<button class="login100-form-btn" id="IdCheck"
 									style="border: 1px solid #18d26e; height: 40px; width: 78px; transform: translateX(-13px);">중복체크</button>
 							</div>
-						</th:block>
-
-
+						</div>
 					</div>
-				</div>
+				&nbsp;&nbsp;
 
+
+				<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
+							<div class="col-2 _label_center"
+								style="padding-top: 7px; text-align: right;">
+								<label class="label-input100" style="place-self: center">이메일</label>
+							</div>
+
+							<div class="col-7">
+								<input type="text" class="input--style-6" id="user_email"
+									placeholder="이메일을 입력해주세요." name="user_email" required /> <span
+									class="email hide"></span>
+							</div>
+
+							<div class="col-3" style="padding-left: 0px">
+								<button class="login100-form-btn" id="EmailCheck"
+									style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
+
+							</div>
+						</div>
+					</div>
+				&nbsp;&nbsp;
+
+				<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
+							<div class="col-2 _label_center"
+								style="padding-top: 7px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="align-self: center">이름</label>
+							</div>
+
+							<div class="col-8">
+								<input type="text" class="input--style-6" id="user_name"
+									placeholder="이름을 입력해주세요." name="user_name" required> <span
+									class="name hide"></span>
+
+							</div>
+
+							<div class="col-2"></div>
+						</div>
+					</div>
 
 				&nbsp;&nbsp;
 
 
 				<div class="value">
-					<div class="row" style=" padding-left: 100px; height:63px;">
-						<div class="col-2 _label_center"
-							style=" padding-top: 7px; text-align: right;">
-							<label class="label-input100" style="place-self: center">이메일</label>
-						</div>
+						<div class="row" style="padding-left: 100px; height: 63px;">
+							<div class="col-2 _label_center"
+								style="padding-top: 7px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="align-self: center">닉네임</label>
+							</div>
 
-						<div class="col-7">
-							<input type="text" class="input--style-6" id="user_email"
-								placeholder="이메일을 입력해주세요." name="user_email" required /> <span
-								class="email hide"></span>
-						</div>
+							<div class="col-8">
+								<input type="text" class="input--style-6" id="nickname"
+									placeholder="닉네임을 입력해주세요" name="nickname" required> <span
+									class="nickname hide"></span>
 
-						<div class="col-3" style=" padding-left: 0px">
-							<button class="login100-form-btn" id="EmailCheck"
-								style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
+							</div>
+
+							<div class="col-2"></div>
 
 						</div>
 					</div>
-				</div>
-				&nbsp;&nbsp;
 
+				&nbsp;&nbsp; <br />
+					<br />
+					<br />
+					<hr style="width: 80%;" />
+
+				</th:block>
+
+				<!-- 일반 회원가입  -->
 				<th:block th:if="${uemail == null}">
 					<div class="value">
-						<div class="row"
-							style=" padding-left: 100px; height:63px;">
+						<div class="row" style="padding-left: 100px; height: 63px;">
 							<div class="col-2 _label_center"
-								style=" padding-top: 7px; text-align: right;">
+								style="padding-top: 7px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="place-self: center">아이디</label>
+							</div>
+
+							<div class="col-7">
+								<input type="text" class="input--style-6" id="user_id"
+									placeholder="아이디를 입력해주세요." name="user_id" required /> <span
+									class="idcheck hide"></span>
+							</div>
+
+							<div class="col-3" style="padding-left: 0px">
+								<button class="login100-form-btn" id="IdCheck"
+									style="border: 1px solid #18d26e; height: 40px; width: 78px; transform: translateX(-13px);">중복체크</button>
+							</div>
+						</div>
+					</div>
+		&nbsp;&nbsp;
+
+
+		<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
+							<div class="col-2 _label_center"
+								style="padding-top: 7px; text-align: right;">
+								<label class="label-input100" style="place-self: center">이메일</label>
+							</div>
+
+							<div class="col-7">
+								<input type="text" class="input--style-6" id="user_email"
+									placeholder="이메일을 입력해주세요." name="user_email" required /> <span
+									class="email hide"></span>
+							</div>
+
+							<div class="col-3" style="padding-left: 0px">
+								<button class="login100-form-btn" id="EmailCheck"
+									style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
+
+							</div>
+						</div>
+					</div>
+		&nbsp;&nbsp;
+
+
+		<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
+							<div class="col-2 _label_center"
+								style="padding-top: 7px; text-align: right;">
 								<label class="label-input100" for="pwd"
 									style="align-self: center">비밀번호</label>
 							</div>
@@ -445,22 +535,16 @@ body {
 							<div class="col-2"></div>
 						</div>
 					</div>
-				</th:block>
-
-				<th:block th:if="${uemail != null}">
-
-				</th:block>
 
 
-				&nbsp;&nbsp;
+		&nbsp;&nbsp;
 
 
-				<th:block th:if="${uemail == null}">
-					<div class="value">
-						<div class="row"
-							style=" padding-left: 100px; height:63px;">
+
+		<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
 							<div class="col-2 _label_center"
-								style=" padding-top: 7px; text-align: right;">
+								style="padding-top: 7px; text-align: right;">
 								<label class="label-input100" for="pwd"
 									style="align-self: center">비밀번호 확인</label>
 							</div>
@@ -475,59 +559,56 @@ body {
 							<div class="col-2"></div>
 						</div>
 					</div>
-				</th:block>
 
-				<th:block th:if="${uemail != null}">
 
-				</th:block>
+		&nbsp;&nbsp;
 
-				&nbsp;&nbsp;
+		<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
+							<div class="col-2 _label_center"
+								style="padding-top: 7px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="align-self: center">이름</label>
+							</div>
 
-				<div class="value">
-					<div class="row" style=" padding-left: 100px; height:63px;">
-						<div class="col-2 _label_center"
-							style=" padding-top: 7px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center">이름</label>
+							<div class="col-8">
+								<input type="text" class="input--style-6" id="user_name"
+									placeholder="이름을 입력해주세요." name="user_name" required> <span
+									class="name hide"></span>
+
+							</div>
+
+							<div class="col-2"></div>
 						</div>
-
-						<div class="col-8">
-							<input type="text" class="input--style-6" id="user_name"
-								placeholder="이름을 입력해주세요." name="user_name" required> <span
-								class="name hide"></span>
-
-						</div>
-
-						<div class="col-2"></div>
 					</div>
-				</div>
 
-				&nbsp;&nbsp;
+		&nbsp;&nbsp;
 
 
-				<div class="value">
-					<div class="row" style="padding-left: 100px; height:63px;">
-						<div class="col-2 _label_center"
-							style=" padding-top: 7px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center">닉네임</label>
+		<div class="value">
+						<div class="row" style="padding-left: 100px; height: 63px;">
+							<div class="col-2 _label_center"
+								style="padding-top: 7px; text-align: right;">
+								<label class="label-input100" for="pwd"
+									style="align-self: center">닉네임</label>
+							</div>
+
+							<div class="col-8">
+								<input type="text" class="input--style-6" id="nickname"
+									placeholder="닉네임을 입력해주세요" name="nickname" required> <span
+									class="nickname hide"></span>
+
+							</div>
+
+							<div class="col-2"></div>
+
 						</div>
-
-						<div class="col-8">
-							<input type="text" class="input--style-6" id="nickname"
-								placeholder="닉네임을 입력해주세요" name="nickname" required> <span
-								class="nickname hide"></span>
-
-						</div>
-
-						<div class="col-2"></div>
-
 					</div>
-				</div>
-
-				&nbsp;&nbsp; <br /> <br /> <br />
-				<hr style="width: 80%;" />
-
+		&nbsp;&nbsp; <br />
+					<br />
+					<br />
+					<hr style="width: 80%;" />
+				</th:block>
 
 
 				&nbsp;
@@ -638,7 +719,8 @@ body {
 						</b>
 						<p></p>
 						<textarea class="textarea--style-6" name="introduce"
-							id="introduce" rows="5" maxlength="206" required style="resize: none;" placeholder="ex) 저는 이런것도 할 줄 알아요~"></textarea>
+							id="introduce" rows="5" maxlength="206" required
+							style="resize: none;" placeholder="ex) 저는 이런것도 할 줄 알아요~"></textarea>
 
 						&nbsp;&nbsp;
 					</div>
