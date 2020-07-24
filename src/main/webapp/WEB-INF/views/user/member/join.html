@@ -207,7 +207,7 @@ textarea {
 }
 
 ._label_center {
-	align-self: center;
+/* 	align-self: center; */
 }
 
 *:focus {
@@ -330,8 +330,8 @@ body {
 						<div class="col-2"></div>
 					</div>
 
-					<div class="row" style="place-content: center; padding-left: 100px">
-						<div class="col-2" style="align-self: center; text-align: right;">
+					<div class="row" style=" padding-left: 100px; height:63px;">
+						<div class="col-2" style="text-align: right;padding-top:7px;">
 							<label class="label-input100" for="pwd"
 								style="place-self: center">프로필 사진</label>
 							<!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
@@ -360,7 +360,7 @@ body {
 
 
 				<div class="value">
-					<div class="row" style="place-content: center; padding-left: 100px">
+					<div class="row" style=" padding-left: 100px; height:63px; ">
 
 						<!-- 	<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
@@ -378,7 +378,7 @@ body {
 						<!-- 일반 회원가입  -->
 						<th:block th:if="${uemail == null}">
 							<div class="col-2 _label_center"
-								style="align-self: center; padding-top: 10px; text-align: right;">
+								style=" padding-top: 7px; text-align: right;">
 								<label class="label-input100" for="pwd"
 									style="place-self: center">아이디</label>
 							</div>
@@ -389,7 +389,7 @@ body {
 									class="idcheck hide"></span>
 							</div>
 
-							<div class="col-3" style="align-self: center; padding-left: 0px">
+							<div class="col-3" style=" padding-left: 0px">
 								<button class="login100-form-btn" id="IdCheck"
 									style="border: 1px solid #18d26e; height: 40px; width: 78px; transform: translateX(-13px);">중복체크</button>
 							</div>
@@ -404,9 +404,9 @@ body {
 
 
 				<div class="value">
-					<div class="row" style="place-content: center; padding-left: 100px">
+					<div class="row" style=" padding-left: 100px; height:63px;">
 						<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
+							style=" padding-top: 7px; text-align: right;">
 							<label class="label-input100" style="place-self: center">이메일</label>
 						</div>
 
@@ -416,7 +416,7 @@ body {
 								class="email hide"></span>
 						</div>
 
-						<div class="col-3" style="align-self: center; padding-left: 0px">
+						<div class="col-3" style=" padding-left: 0px">
 							<button class="login100-form-btn" id="EmailCheck"
 								style="border: 1px solid #18d26e; height: 39px; width: 78px; transform: translateX(-13px);">중복체크</button>
 
@@ -428,9 +428,9 @@ body {
 				<th:block th:if="${uemail == null}">
 					<div class="value">
 						<div class="row"
-							style="place-content: center; padding-left: 100px">
+							style=" padding-left: 100px; height:63px;">
 							<div class="col-2 _label_center"
-								style="align-self: center; padding-top: 10px; text-align: right;">
+								style=" padding-top: 7px; text-align: right;">
 								<label class="label-input100" for="pwd"
 									style="align-self: center">비밀번호</label>
 							</div>
@@ -458,9 +458,9 @@ body {
 				<th:block th:if="${uemail == null}">
 					<div class="value">
 						<div class="row"
-							style="place-content: center; padding-left: 100px">
+							style=" padding-left: 100px; height:63px;">
 							<div class="col-2 _label_center"
-								style="align-self: center; padding-top: 10px; text-align: right;">
+								style=" padding-top: 7px; text-align: right;">
 								<label class="label-input100" for="pwd"
 									style="align-self: center">비밀번호 확인</label>
 							</div>
@@ -484,9 +484,9 @@ body {
 				&nbsp;&nbsp;
 
 				<div class="value">
-					<div class="row" style="place-content: center; padding-left: 100px">
+					<div class="row" style=" padding-left: 100px; height:63px;">
 						<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
+							style=" padding-top: 7px; text-align: right;">
 							<label class="label-input100" for="pwd"
 								style="align-self: center">이름</label>
 						</div>
@@ -506,9 +506,9 @@ body {
 
 
 				<div class="value">
-					<div class="row" style="place-content: center; padding-left: 100px">
+					<div class="row" style="padding-left: 100px; height:63px;">
 						<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
+							style=" padding-top: 7px; text-align: right;">
 							<label class="label-input100" for="pwd"
 								style="align-self: center">닉네임</label>
 						</div>
@@ -634,11 +634,11 @@ body {
 					<div class="col-md-8">
 
 						<b style="font-size: larger;"> <i class="xi-emoticon-cool-o"
-							aria-hidden="true"></i> 저는 이런것도 할줄 알아요~
+							aria-hidden="true"></i> 자기소개
 						</b>
 						<p></p>
 						<textarea class="textarea--style-6" name="introduce"
-							id="introduce" rows="5" maxlength="206" required style="resize: none;"  ></textarea>
+							id="introduce" rows="5" maxlength="206" required style="resize: none;" placeholder="ex) 저는 이런것도 할 줄 알아요~"></textarea>
 
 						&nbsp;&nbsp;
 					</div>
