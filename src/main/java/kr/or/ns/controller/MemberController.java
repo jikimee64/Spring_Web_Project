@@ -49,6 +49,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.itextpdf.text.log.SysoCounter;
 
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.MemberService;
@@ -137,6 +138,7 @@ public class MemberController {
 	public String naverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session,
 			HttpServletRequest request, Users user, RedirectAttributes redirect) throws SQLException, Exception {
 		System.out.println("여기는 네이버 callback");
+		System.out.println("userserser" + user);
 		OAuth2AccessToken oauthToken;
 
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -165,13 +167,14 @@ public class MemberController {
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
 		//권한확인
-		int enabled = 0;
+		String enabled = null;
 		//회원가입 후의 권한확인
 		int after_enabled = 0;
 		check = ajaxservice.idcheck(email);		
-		enabled = user.getEnabled();
-		after_enabled = ajaxservice.enabledcheck(email);
+		enabled = Integer.toString(user.getEnabled());
+		
 		System.out.println("이게 왜?" + after_enabled);
+
 		try {	
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
@@ -180,6 +183,7 @@ public class MemberController {
 				model.addAttribute("snstype", "naver");
 				return "user/member/join";
 			}else if(check == 1 && after_enabled == 0) {
+				after_enabled = ajaxservice.enabledcheck(email);
 				System.out.println("권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
 				redirect.addAttribute("errormsg",msg);
@@ -212,7 +216,6 @@ public class MemberController {
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		
 		
 		return "redirect:../user/main.do";
 	}
@@ -276,7 +279,7 @@ public class MemberController {
 		int after_enabled = 0; 
 		check = ajaxservice.idcheck(email);		
 		enabled = user.getEnabled();
-		after_enabled = ajaxservice.enabledcheck(email);
+		
 		try {	
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
@@ -285,6 +288,7 @@ public class MemberController {
 				model.addAttribute("snstype", "naver");
 				return "user/member/join";
 			}else if(check == 1 && after_enabled == 0) {
+				after_enabled = ajaxservice.enabledcheck(email);
 				System.out.println("권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
 				redirect.addAttribute("errormsg",msg);
