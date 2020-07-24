@@ -204,7 +204,7 @@ group+group {
 		</div>
 
 		<div class="nowMember">
-			<div class="row"
+			<!-- <div class="row"
 				style="min-height: 700px; margin-top: 35px; margin-right: 40px; margin-left: 0px;">
 				<div class="col" style="text-align: center; height: 100px;">
 					<img src="../../../../resources/images/img/chatroom.png"
@@ -217,7 +217,7 @@ group+group {
 							style="background-color: rgb(24, 210, 105); margin-top: 10px;">방장</span>
 					</h5>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 
@@ -369,9 +369,14 @@ group+group {
             		   html += "<div class='row' style='height:50px; margin-top: 35px; margin-right: 40px; margin-left: 0px;'>";
               			html += "<div class='col' style='text-align: center; height: 50px;'>";
         				html += "<img src='/userboard/upload/"+data[index].profile_img+"' style='width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;'>";
+        				html += '<a href="" class="InfoModal'
+       					 +  data[index].cm_seq
+       					 + '" onclick=InfoModal("'
+       					 +  data[index].cm_seq
+       					 + '") data-toggle="modal" data-target="#userInfoModal">'
         				html += "<b style='vertical-align: revert; margin-left:30px;'>";
         				html += data[index].user_id
-        				html += "</b></div>"
+        				html += "</b></a></div>"
     	    			html += "<div class='col-3' style='height: 100px;'>";
     	    			html += "<h5 style='margin-bottom: 0px;'>";
     	    			html +=	"<span class='badge badge-success' style='background-color: rgb(24, 210, 105); margin-top: 10px;'>회원</span></h5></div></div>";
@@ -419,10 +424,10 @@ group+group {
 				'src','/material/images/jQuery/asimo.png'
 				$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
 				console.log(data[0][0].INTRODUCE);
-				$.each(data, function (index, item) {
+				$.each(data[0], function (index, item) {
 					if (item.SKILL_LEVEL === '입문') {
 						$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
-					} else if (item.SKILL_LEVEL === '초급') {
+					} else if (data[0][index].SKILL_LEVEL === '초급') {
 						$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
 					} else {
 						$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
