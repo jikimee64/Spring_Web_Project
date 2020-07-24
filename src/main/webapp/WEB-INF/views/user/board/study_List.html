@@ -485,6 +485,7 @@ group+group {
 		<div class="_border_box_shadow2 studyFilter _main_board_box"
 			style="border: 4px solid gainsboro; padding: 30px 30px 0px 30px;">
 			<!-- 타임리프 반복시작 -->
+			<th:block th:if="${list} != null">
 			<div th:each="list : ${list}">
 				<div class="row">
 					<div class="col-md-3"></div>
@@ -591,7 +592,11 @@ group+group {
 				<hr
 					style="border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px" />
 
-
+			</th:block>
+			<th:block th:if="${list} != null">
+			<!-- 연규야 채워라 동기 -->
+				빈값
+			</th:block>
 			</div>
 			<!-- 반복끝 -->
 			<!-- 데이터 한개 넣기 끝~ -->
@@ -898,11 +903,13 @@ group+group {
 										data : JSON.stringify(data),
 										success : function(data) {
 
+											
 											$('.studyFilter').empty();
 											$('.studyPaging').empty();
 											
 											var perPageNum = data[2].cri_b.perPageNum;
 											var page = data[2].cri_b.page;
+												
 											
 											$
 													.each(
@@ -915,8 +922,11 @@ group+group {
 																var list_length = data[0].length;
 																var onlineInfo_length = data[1].length;
 																console.log('onlineInfo_length : '  + onlineInfo_length)
-
+															
+																console.warn('데이터 개수 : ' + list_length)
+															
 																if (index === 0) {
+																	if(list_length != 0){
 																	console
 																			.log('한ㅂ넘나타라')
 																	console
@@ -1047,8 +1057,21 @@ group+group {
 // 																				}
 																	/* 문자열 자르는 함수 */
 																	}
+																}else{
+																	//연규야 채워라 비동기
+																	//빈값일떄
+																	let html = "";
+																	console.warn('데이터 개수 : ' + list_length)
+																	html += "<b>빈값</b>"
+																		$(
+																		'.studyFilter')
+																		.append(
+																				html);
 																}
-															})
+															}
+															}) //each문 끝
+														
+															
 
 											//페이지 each
 											$
