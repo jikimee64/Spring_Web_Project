@@ -44,26 +44,26 @@ body{
 			<div class="col-1"></div>
 			<div class="col-8" style="color: black; padding: 0px;">
 				<span> <b style="font-size: xx-large;"
-					th:text="${list.ch_seq}"></b>
+					th:text="${list.CH_SEQ}"></b>
 				</span> <img src="../../../../resources/images/img/chatroom.png"
 					style="width: 45px; height: 45px; margin-left: 10px; border-radius:20px;"> <a
-					href="#" th:onclick="|javascript:goRoom('${list.ch_seq}')|"> <span
-					th:text="|&nbsp;&nbsp;${list.ch_title}|" id="list"></span>
+					href="#" th:onclick="|javascript:goRoom('${list.CH_SEQ}')|"> <span
+					th:text="|&nbsp;&nbsp;${list.CH_TITLE}|" id="list"></span>
 				</a>
 
 			</div>
 
 			<!-- 비밀방 일때-->
-			<th:block th:switch="${list.ch_pw_check}">
+			<th:block th:switch="${list.CH_PW_CHECK}">
 				<!-- th:classappend 로 m_seq로 줘서 그안에 img가 있으면 비밀방, 없으면 공개방  -->
 				<div th:case="1" class="col-1"
-					th:classappend="|pwStatus${list.ch_seq}|">
+					th:classappend="|pwStatus${list.CH_SEQ}|">
 					<img src="../../../../resources/images/img/lock.png"
 						style="width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;">
 				</div>
 
 				<div th:case="0" class="col-1"
-					th:classappend="|pwStatus${list.ch_seq}|"></div>
+					th:classappend="|pwStatus${list.CH_SEQ}|"></div>
 				<hr style="width: 90%;">
 			</th:block>
 		</div>
@@ -142,9 +142,7 @@ body{
 
 
 	$(function() {
-
 		$(".chatRoomForm").submit(function(e) {
-			
 		 	if ($('#ch_title').val() == "") { // 아이디 검사
 				alert('방제목을 입력해주세요.');
 				$('#ch_title').focus();
@@ -152,7 +150,6 @@ body{
 				e.stopImmediatePropagation();
 				return false;
 			} 
-		
 		
 			var formData = new FormData(this);
 
@@ -165,7 +162,9 @@ body{
 				"ch_description" : formData.get("ch_description"), //신고제목
 				"ch_pw" : formData.get("ch_pw")
 			}
-
+		
+			alert('ajax 타기전..')
+			
 			$.ajax({
 				url : '/chat/chatroominsert.do',
 				processData : false,
@@ -174,45 +173,46 @@ body{
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					$('.chatList').empty();
-					//방목록 비동기로 받아서 뿌려줘야됨
+					
+					location.href="/chat/roomlist.do"
+					
+					//$('.chatList').empty();
 					$('#ch_title').val('');
 					$('#ch_description').val('');
 					$('#ch_pw').val('');
-					console.log('반환받음.. : ' + data)
 					
-					$.each(data, function(index, item) {
+					/* $.each(data, function(index, item) {
 					
 						console.log("data.length:::"+data.length);
 						
-						for(var i = 0; i < data.length; i++){
-							let html = "";
+						let html = "";
 								
 						html +="<div class='row chatList'>"
 						html +="<div class='col-1'></div>"
-						html +="<div class='col-8' style='color: black; padding: 0px;'>"+data[i].ch_seq+"<span>"
-						html +="<b style='font-size: xx-large;'>"+data[i].ch_seq+"</b></span> "
+						html +="<div class='col-8' style='color: black; padding: 0px;'>"+data[index].ch_seq+"<span>"
+						html +="<b style='font-size: xx-large;'>"+data[index].ch_seq+"</b></span> "
 						html +="<img src='../../../../resources/images/img/chatroom.png' style='width: 45px; height: 45px; margin-left: 10px;'>"
-						html +='<a href="#" onclick="goRoom('+data[i].ch_seq+')">'
-						html +="<span id='list'>&nbsp;&nbsp;"+data[i].ch_title+"</span></a></div>"
+						html +='<a href="#" onclick="goRoom('+data[index].ch_seq+')">'
+						html +="<span id='list'>&nbsp;&nbsp;"+data[index].ch_title+"</span></a></div>"
 							
-						if(data[i].ch_pw_check === 1){
-							html+= "<div class='col-1 pwStatus'"+data[i].ch_seq+">"
+						if(data[index].ch_pw_check === 1){
+							html+= "<div class='col-1 pwStatus'"+data[index].ch_seq+">"
 							html+= "<img src='../../../../resources/images/img/lock.png' style='width: 20px; height: 20px; margin-left: 10px; float: light; margin-top: 20px;'>"
 							html+="</div>"
 						}else{
-							html +="<div class='col-1 pwStatus'"+data[i].ch_seq+"></div>"					
+							html +="<div class='col-1 pwStatus'"+data[index].ch_seq+"></div>"					
 						}
 						html +="<hr style='width: 90%;'></div>"
-							$('.chatList').append(html);
-						}
+						$('.chatList').append(html);
+						alert('잘뿌려줌!!')
 						
-					});
+					}); */
 							
 				},
-				error : function(e) {
-					console.log("error:", e);
-				}
+				error:function(request,status,error){
+					alert('실패!!')
+					console.warn("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			     }
 			})
 		})
 

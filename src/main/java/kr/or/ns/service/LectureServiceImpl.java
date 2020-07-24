@@ -40,7 +40,9 @@ public class LectureServiceImpl implements LectureService {
 	public List<Map<String, Object>> getLectureList(Criteria cri, HashMap<String, Object> map4) {
 		LectureDao dao = sqlsession.getMapper(LectureDao.class);
 		System.out.println("getLectureLisssst : " + cri);
+		System.out.println("map4  44번 코드 전: " + map4);
 		map4.put("cri", cri);
+		System.out.println("map4  44번 코드 후: " + map4);
 		List<Map<String, Object>> list = dao.getLectureList(map4);
 		return list;
 	}
@@ -49,7 +51,9 @@ public class LectureServiceImpl implements LectureService {
 		public List<Map<String, Object>> getLectureListSize(Criteria cri, HashMap<String, Object> map4) {
 			LectureDao dao = sqlsession.getMapper(LectureDao.class);
 			System.out.println("getLectureLissssssst : " + cri);
+			System.out.println("map4  55번 코드 전: " + map4);
 			map4.put("cri", cri);
+			System.out.println("map4  55번 코드 후: " + map4);
 			List<Map<String, Object>> list = dao.getLectureListSize(map4);
 			return list;
 		}

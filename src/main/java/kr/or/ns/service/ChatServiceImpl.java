@@ -19,9 +19,9 @@ public class ChatServiceImpl implements ChatService {
 	@Autowired
 	private SqlSession sqlsession;
 
-	public List<ChatRoom> getListChatRoom() {
+	public List<HashMap<String, Object>> getListChatRoom() {
 		ChatDao dao = sqlsession.getMapper(ChatDao.class);
-		List<ChatRoom> list = dao.getListChatRoom();
+		List<HashMap<String, Object>> list = dao.getListChatRoom();
 
 		return list;
 	}

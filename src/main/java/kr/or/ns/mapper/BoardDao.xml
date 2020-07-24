@@ -7,24 +7,58 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<sql id="searchCondition">
 
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				where study_board.title like CONCAT('%',#{keyword},'%')
+		<if test="cri != null">
+			<if test="cri.searchType == 't'.toString()">
+				<if test="keyword.size != 0">
+					     where study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
-			<if test="searchType == 'c'.toString()">
-				where study_board.content like CONCAT('%', #{keyword}, '%')
+			<if test="cri.searchType == 'c'.toString()">
+				<if test="keyword.size != 0">
+					     where study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
-			<if test="searchType == 'w'.toString()">
-				where study_board.user_id like CONCAT('%', #{keyword}, '%')
+			<if test="cri.searchType == 'w'.toString()">
+				<if test="keyword.size != 0">
+					     where study_board.user_id like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
-			<if test="searchType == 'tc'.toString()">
-				where (title like CONCAT('%', #{keyword}, '%')
-				or study_board.content like CONCAT('%', #{keyword}, '%'))
+			<if test="cri.searchType == 'tc'.toString()">
+				<if test="keyword.size != 0">
+					     where (study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
-			<if test="searchType == 'all'.toString()">
-				where (title like CONCAT('%', #{keyword}, '%')
-				or study_board.content like CONCAT('%', #{keyword}, '%')
-				or study_board.user_id like CONCAT('%', #{keyword}, '%'))
+			<if test="cri.searchType == 'all'.toString()">
+				<if test="keyword.size != 0">
+					     where (study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.user_id like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 		</if>
 
@@ -53,22 +87,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		<if test="cri.searchType != null">
 			<if test="cri.searchType == 't'.toString()">
-				where study_board.title like CONCAT('%',#{cri.keyword},'%')
+				<if test="keyword.size != 0">
+					     where study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'c'.toString()">
-				where study_board.content like CONCAT('%', #{cri.keyword}, '%')
+				<if test="keyword.size != 0">
+					     where study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'w'.toString()">
-				where study_board.user_id like CONCAT('%', #{cri.keyword}, '%')
+				<if test="keyword.size != 0">
+					     where study_board.user_id like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'tc'.toString()">
-				where (title like CONCAT('%', #{keyword}, '%')
-				or study_board.content like CONCAT('%', #{cri.keyword}, '%'))
+				<if test="keyword.size != 0">
+					     where (study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'all'.toString()">
-				where (title like CONCAT('%', #{keyword}, '%')
-				or study_board.content like CONCAT('%', #{cri.keyword}, '%')
-				or study_board.user_id like CONCAT('%', #{cri.keyword}, '%'))
+				<if test="keyword.size != 0">
+					     where (study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.user_id like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 		</if>
 
@@ -112,22 +180,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		<if test="cri.searchType != null">
 			<if test="cri.searchType == 't'.toString()">
-				where study_board.title like CONCAT('%',#{cri.keyword},'%')
+				<if test="keyword.size != 0">
+					     where study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'c'.toString()">
-				where study_board.content like CONCAT('%', #{cri.keyword}, '%')
+				<if test="keyword.size != 0">
+					     where study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'w'.toString()">
-				where study_board.user_id like CONCAT('%', #{cri.keyword}, '%')
+				<if test="keyword.size != 0">
+					     where study_board.user_id like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'tc'.toString()">
-				where (title like CONCAT('%', #{keyword}, '%')
-				or study_board.content like CONCAT('%', #{cri.keyword}, '%'))
+				<if test="keyword.size != 0">
+					     where (study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'all'.toString()">
-				where (title like CONCAT('%', #{keyword}, '%')
-				or study_board.content like CONCAT('%', #{cri.keyword}, '%')
-				or study_board.user_id like CONCAT('%', #{cri.keyword}, '%'))
+				<if test="keyword.size != 0">
+					     where (study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.content like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+						or study_board.user_id like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close="))">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 		</if>
 
@@ -165,7 +267,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on study_board.c_seq = study_content_category.c_seq
 		<include refid="searchCondition"></include>
 		ORDER BY S_SEQ DESC
-		LIMIT #{pageStart}, #{perPageNum}
+		LIMIT #{cri.pageStart}, #{cri.perPageNum}
 	</select>
 	
 	<select id="getStudyBoardListSize" resultType="hashmap"

@@ -39,9 +39,9 @@ public class ChatController {
 
 	// 채팅리스트방 입장
 	@RequestMapping("roomlist.do")
-	public String studyListPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
+	public String roomListPage(Model model) throws ClassNotFoundException, SQLException {
 		System.out.println("채팅 페이지로 이동이동(연규가씀)");
-		List<ChatRoom> roomList = service.getListChatRoom();
+		List<HashMap<String, Object>> roomList = service.getListChatRoom();
 		model.addAttribute("roomList", roomList);
 		System.out.println("roomList :" + roomList);
 
@@ -50,7 +50,7 @@ public class ChatController {
 
 	@RequestMapping("chatroominsert.do")
 	@ResponseBody
-	public List<ChatRoom> chatRoomInsert(@RequestBody Map<String, Object> params, Principal principal)
+	public List<HashMap<String, Object>> chatRoomInsert(@RequestBody Map<String, Object> params, Principal principal)
 			throws IOException {
 		System.out.println("(채팅방 생성 후 DB 인서트)");
 
@@ -64,7 +64,7 @@ public class ChatController {
 		}
 		params.put("user_id", principal.getName());
 		service.registerRoom(params);
-		List<ChatRoom> list = service.getListChatRoom();
+		List<HashMap<String, Object>> list = service.getListChatRoom();
 		System.out.println("채팅룸list" + list);
 		return list;
 	}
@@ -121,7 +121,7 @@ public class ChatController {
 			int result = service.chatRoomOut(cm);
 		}
 	
-		List<ChatRoom> roomList = service.getListChatRoom();
+		List<HashMap<String, Object>> roomList = service.getListChatRoom();
 		model.addAttribute("roomList", roomList);
 		System.out.println("roomList : " + roomList);
 

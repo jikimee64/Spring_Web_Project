@@ -197,6 +197,23 @@ public class ChatHandler extends TextWebSocketHandler {
 			System.out.println("close시 채팅방 멤버 삭제");
 		}
 		
+		boolean flag = false;
+		int idx = rls.size(); // 방의 사이즈를 조사한다.
+		if (rls.size() > 0) {
+			for (int i = 0; i < rls.size(); i++) {
+				String rN = (String) rls.get(i).get("ch_seq");
+				if (rN.equals(ch_seq)) {
+					flag = true;
+					idx = i;
+					break;
+				}
+			}
+		}
+		
+		//방에 대한 List중 하나를 가져와야됨
+		HashMap<String, Object> map = rls.get(idx);
+		sendAllSessionToMessage(map, user_id, user_id+"님이 방을 나가셨습니다."); 
+		
 		if (session != null) {
 			if (rls.size() > 0) { // 소켓이 종료되면 해당 세션값들을 찾아서 지운다.
 				for (int i = 0; i < rls.size(); i++) {

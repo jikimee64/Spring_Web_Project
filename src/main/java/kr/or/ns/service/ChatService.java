@@ -14,7 +14,7 @@ import kr.or.ns.vo.ChatRoomMember;
 
 public interface ChatService {
 	
-	public List<ChatRoom> getListChatRoom();
+	public List<HashMap<String, Object>> getListChatRoom();
 
 	public int registerRoom(Map<String, Object> params);
 	
