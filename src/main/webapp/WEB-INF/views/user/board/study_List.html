@@ -772,10 +772,10 @@ group+group {
 					'src','/material/images/jQuery/asimo.png'
 					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
 					console.log(data[0][0].INTRODUCE);
-					$.each(data, function (index, item) {
+					$.each(data[0], function (index, item) {
 						if (item.SKILL_LEVEL === '입문') {
 							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
-						} else if (item.SKILL_LEVEL === '초급') {
+						} else if (data[0][index].SKILL_LEVEL === '초급') {
 							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
 						} else {
 							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
