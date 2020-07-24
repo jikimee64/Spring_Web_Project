@@ -43,8 +43,9 @@ public class BoardServiceImpl implements BoardService {
 	public List<Map<String, Object>> getStudyBoardListFilter(Criteria_Board cri_b, HashMap<String, Object> params) {
 		BoardDao dao = sqlsession.getMapper(BoardDao.class);
 		System.out.println("여기는 서비스 임플(필터입니다)!!!");
-		System.out.println("params : " + params);
+		System.out.println("params  47번 코드 전: " + params);
 		params.put("cri", cri_b);
+		System.out.println("params 47번 코드 후: " + params);
 		List<Map<String, Object>> list = dao.getStudyBoardListFilter(params);
 		System.out.println(" 서비스에서 리턴갑니다.");
 		System.out.println(list);
@@ -55,8 +56,9 @@ public class BoardServiceImpl implements BoardService {
 		public List<Map<String, Object>> getStudyBoardListFilterSize(Criteria_Board cri_b, HashMap<String, Object> params) {
 			BoardDao dao = sqlsession.getMapper(BoardDao.class);
 			System.out.println("여기는 서비스 임!!!");
-			System.out.println("params : " + params);
+			System.out.println("params  59번 코드 전: " + params);
 			params.put("cri", cri_b);
+			System.out.println("params 59번 코드 후: " + params);
 			List<Map<String, Object>> list = dao.getStudyBoardListFilterSize(params);
 			System.out.println(" 서비스에서 리턴갑@@#@#니다.");
 			System.out.println(list);

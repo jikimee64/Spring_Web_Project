@@ -8,6 +8,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,10 +71,22 @@ public class BoardController {
 			@RequestParam(value="root",required=false) String root
 			) throws ClassNotFoundException, SQLException {
 		
-		
+		System.out.println(keyword +"keyword를 보드 컨트롤러에서 찍어봅니다. 룰루랄라");
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
 	
+		/////////////////////////////////////////////////////////////////////////////
+		System.out.println(keyword+"courseListPage  에서 찍어보기 ");
+		List<String> keywordCollec = new ArrayList();
+		if(keyword != null) {
+		String[] ccc = keyword.split("\\+");
+		for( int i=0; i<ccc.length; i++) {
+		keywordCollec.add(ccc[i]);
+		}
+		}
+		System.out.println("keywordCollec    "+keywordCollec+ "  이렇게 나와요");
+		///////////////////////////////////////////////////////////////////////////////
+		
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
 		System.out.println("온라인 강의 : " + onlineInfo);
 
@@ -110,10 +123,12 @@ public class BoardController {
 			}
 			
 		}else {
+			System.out.println("===============나 지금 엘스문 탄다 ===========");
 			System.out.println("filterSize: " + AjaxRestController.filterSize);
 			System.out.println("paramsTemp : " + AjaxRestController.paramsTemp);
 			System.out.println("필터된 후엔 여길..");
 			map = AjaxRestController.paramsTemp;
+			map.put("keyword",keywordCollec );
 			list = service.getStudyBoardListFilter(cri_b, map);
 			List<Map<String, Object>> listSizeSearch = service.getStudyBoardListFilterSize(cri_b, map);
 			model.addAttribute("ingOrDone", map.get("ingOrDone"));
@@ -128,6 +143,7 @@ public class BoardController {
 			pageMakerb.setTotalCount(listSizeSearch.size());
 			AjaxRestController.filterSize = 0;
 		}
+		System.out.println("===============나 지금 리턴하러간다 ===========");
 		/* pageMakerb.setTotalCount(list.size()); */
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
