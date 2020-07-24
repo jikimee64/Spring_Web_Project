@@ -261,7 +261,7 @@ body {
 					style="align-items: center; margin-top: 50px; margin-bottom: 30px; place-content: center;">
 					<button type="button" th:onclick="|javascript:finishh('${s_seq}')|"
 						class="btn btn-secondary btn finishh" id="finishh">
-						<span style="font-size: smaller;">모집 마감</span>
+						<span style="font-size: smaller;font-weight:bold;">모집 마감</span>
 					</button>
 				</div>
 			</th:block>
@@ -349,7 +349,10 @@ body {
 															html += "<span>"
 																	+ data[0].USER_ID
 																	+ "</span></div>";
-															html += "<div class='col-md-6' id='doing_study_col'>이미지";
+															html += "<div class='col-md-6' id='doing_study_col'>";
+															html += '<img
+																src="https://user-images.githubusercontent.com/61257242/87928038-2534c100-cabf-11ea-8099-c5edf44d6126.jpeg"
+																	alt="" style="height:32px;" />';
 															html += "</div></div>";
 														} else {
 															html += "<div class='row left"
