@@ -95,22 +95,24 @@
 	border-radius: 10px;
 	border: 2px solid gray;
 }
-._udemy:hover{
+
+._udemy:hover {
 	margin-bottom: 5px !important;
 	text-decoration: none !important;
 	padding: 5px !important;
 	border-radius: 10px;
 	border: 2px solid #EA5252;
-	
 }
-._goormedu:hover{
+
+._goormedu:hover {
 	margin-bottom: 5px !important;
 	text-decoration: none !important;
 	padding: 5px !important;
 	border-radius: 10px;
 	border: 2px solid #3E85E4;
 }
-._inflearn:hover{
+
+._inflearn:hover {
 	margin-bottom: 5px !important;
 	text-decoration: none !important;
 	padding: 5px !important;
@@ -364,13 +366,12 @@ keyframes heart-keyframes { 100% {
 }
 
 .custom-select-sm {
-    height: calc(1.5em + .5rem + 8px);
-    padding-top: .25rem;
-    padding-bottom: .25rem;
-    padding-left: .5rem;
-    font-size: .875rem;
+	height: calc(1.5em + .5rem + 8px);
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	padding-left: .5rem;
+	font-size: .875rem;
 }
-
 </style>
 
 <body>
@@ -472,7 +473,8 @@ keyframes heart-keyframes { 100% {
 							<li data-filter="6" class="lan6">Vue.js</li> &nbsp;
 							<li data-filter="7" class="lan7">React</li>
 							<li data-filter="8" class="lan8">Jquery</li> &nbsp;
-							<li data-filter="9" class="lan9" style="margin-left:7px;">JSP</li> &nbsp;
+							<li data-filter="9" class="lan9" style="margin-left: 7px;">JSP</li>
+							&nbsp;
 							<li data-filter="10" class="lan10">BootStrap</li> &nbsp;
 							<li data-filter="11" class="lan11">JPA</li>
 						</ul>
@@ -509,22 +511,22 @@ keyframes heart-keyframes { 100% {
 	<div class="container">
 
 		<div class="row" style="margin-top: 50px;">
-		<div class="col-9" style="margin-right:33px;"></div>
-		<div class="col-2">
-			<div
-				style="display: inline-flex; width: 44%; justify-content: center;">
-				<select class="custom-select-sm" id="searchTypeSel"
-					name="searchType" style="align-self: center;">
-					<option value="">검색조건</option>
-					<option value="t">제목</option>
-					<option value="w">작성자</option>
-					<option value="all">전체조건</option>
-				</select> <input class="form-control" type="text" id="keyword" name="keyword"
-					  placeholder="검색어를 입력하세요"
-					style="width: 228px;" />
-				<button type="button" id="searchBtn" class="btn btn-outline-success">Search</button>
+			<div class="col-9" style="margin-right: 33px;"></div>
+			<div class="col-2">
+				<div
+					style="display: inline-flex; width: 44%; justify-content: center;">
+					<select class="custom-select-sm" id="searchTypeSel"
+						name="searchType" style="align-self: center;">
+						<option value="">검색조건</option>
+						<option value="t">제목</option>
+						<option value="w">작성자</option>
+						<option value="all">전체조건</option>
+					</select> <input class="form-control" type="text" id="keyword"
+						name="keyword" placeholder="검색어를 입력하세요" style="width: 228px;" />
+					<button type="button" id="searchBtn"
+						class="btn btn-outline-success">Search</button>
 
-			</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -535,60 +537,61 @@ keyframes heart-keyframes { 100% {
 
 		<!--<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
 		<div class="courseFilter">
-			<th:block th:each="list,index : ${list}">
-				<th:block th:if="${index.index%4==0}"
-					th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
-				<div class="col-md-3 _list_all">
-					<div class="card _card_hover_effect"
-						style="width: 100%; padding: 4px; margin: 10px;">
-						<img class="card-img-top" th:src="${list.L_IMAGE}"
-							alt="Card image" style="height: 155px;">
+				<th:block th:each="list,index : ${list}">
+					<th:block th:if="${index.index%4==0}"
+						th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
+					<div class="col-md-3 _list_all">
+						<div class="card _card_hover_effect"
+							style="width: 100%; padding: 4px; margin: 10px;">
+							<img class="card-img-top" th:src="${list.L_IMAGE}"
+								alt="Card image" style="height: 155px;">
 
-						<div class="card-body">
-							<h6 class="card-title _margin_0 _course_title"
-								th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
-							<p class="card-text _margin_0"
-								style="color: gray; font-size: small;"
-								th:text="${list.L_WRITER}">이지스 퍼블리싱</p>
-							<a target="_blank" th:href="${list.L_ADDRESS}" class="stretched-link _address"></a>
-							<div
-								style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
-								<p class="_star"
-									th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
-								</p>
-							</div>
-										
-										
-							(<span th:text="${list.L_REVIEW}">(6)</span>)
-							<div class="row">
-
-								<div class="col-9">
-									<span style="color: rgb(23, 92, 190);">₩&nbsp;<b
-										th:text="${list.L_PRICE}"></b>
-									</span>
+							<div class="card-body">
+								<h6 class="card-title _margin_0 _course_title"
+									th:text="${list.L_TITLE}">Do it! Node.js 프로그래밍(개정판)</h6>
+								<p class="card-text _margin_0"
+									style="color: gray; font-size: small;"
+									th:text="${list.L_WRITER}">이지스 퍼블리싱</p>
+								<a target="_blank" th:href="${list.L_ADDRESS}"
+									class="stretched-link _address"></a>
+								<div
+									style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+									<p class="_star"
+										th:style="|WIDTH:| +${list.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+									</p>
 								</div>
-								<div class="col-3">
-									<!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
-									<input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
-									<label th:for="${list.L_SEQ}"> <!--                         <input type="checkbox" id="heart" /> <label for="heart"> -->
-										<svg xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 56.69 51.02">
+
+
+								(<span th:text="${list.L_REVIEW}">(6)</span>)
+								<div class="row">
+
+									<div class="col-9">
+										<span style="color: rgb(23, 92, 190);">₩&nbsp;<b
+											th:text="${list.L_PRICE}"></b>
+										</span>
+									</div>
+									<div class="col-3">
+										<!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
+										<input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
+										<label th:for="${list.L_SEQ}"> <!--                         <input type="checkbox" id="heart" /> <label for="heart"> -->
+											<svg xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 56.69 51.02">
 	                      <path
-												d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+													d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
 	                   </svg>
-									</label> <input type="hidden" class="_list_l_seq"
-										th:value="${list.L_SEQ}" />
+										</label> <input type="hidden" class="_list_l_seq"
+											th:value="${list.L_SEQ}" />
 
+									</div>
 								</div>
-							</div>
-							<!-- 하트 체크박스 끝 -->
+								<!-- 하트 체크박스 끝 -->
 
+							</div>
 						</div>
 					</div>
-				</div>
-				<th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
+					<th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
 
-			</th:block>
+				</th:block>
 		</div>
 
 		<!-- 여기까지 카드 하나 끝 -->
@@ -606,30 +609,20 @@ keyframes heart-keyframes { 100% {
 		<ul class="pager d-flex coursePaging" style="place-content: center;">
 
 			<!-- 이전버튼 생성여부-->
-			<li th:if="${pageMaker.prev} == true">
-				
-				<th:block
+			<li th:if="${pageMaker.prev} == true"><th:block
 					th:if="${type == 'Search'}">
 					<a
 						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
 						class="page-link" th:text="Previous">&laquo; </a>
-				</th:block> 
-				
-				<th:block
-					th:if="${type == 'FS'}">
+				</th:block> <th:block th:if="${type == 'FS'}">
 					<a
 						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
 						class="page-link" th:text="Previous">&laquo; </a>
-				</th:block> 
-				
-			
-				<th:block
-					th:if="${type == null}">
+				</th:block> <th:block th:if="${type == null}">
 					<a
 						th:href="@{course_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum},root=header)}"
 						class="page-link" th:text="Previous">&laquo; </a>
-				</th:block> 
-				<th:block th:if="${type == 'filter'}">
+				</th:block> <th:block th:if="${type == 'filter'}">
 					<a
 						th:href="@{course_FilterList.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}"
 						class="page-link" th:text="Previous">&laquo; </a>
@@ -645,21 +638,15 @@ keyframes heart-keyframes { 100% {
 					<a class="page-link"
 						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
 						th:text="${idx}"></a>
-				</th:block> 
-				
-				<th:block th:if="${type == 'FS'}">
+				</th:block> <th:block th:if="${type == 'FS'}">
 					<a class="page-link"
 						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
 						th:text="${idx}"></a>
-				</th:block> 
-
-
-				<th:block th:if="${type == null}">
+				</th:block> <th:block th:if="${type == null}">
 					<a class="page-link"
 						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=header)}"
 						th:text="${idx}"></a>
-				</th:block> 
-				<th:block th:if="${type == 'filter'}">
+				</th:block> <th:block th:if="${type == 'filter'}">
 					<a class="page-link"
 						th:href="@{course_FilterList.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
 						th:text="${idx}"></a>
@@ -674,22 +661,15 @@ keyframes heart-keyframes { 100% {
 					<a
 						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
 						class="page-link" th:text="Next">&raquo;</a>
-				</th:block> 
-				
-				<th:block th:if="${type == 'FS'}">
+				</th:block> <th:block th:if="${type == 'FS'}">
 					<a
 						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
 						class="page-link" th:text="Next">&raquo;</a>
-				</th:block> 
-				
-
-				<th:block th:if="${type == null}">
+				</th:block> <th:block th:if="${type == null}">
 					<a
 						th:href="@{course_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum},root=header)}"
 						class="page-link" th:text="Next">&raquo;</a>
-				</th:block> 
-				
-				<th:block th:if="${type == 'filter'}">
+				</th:block> <th:block th:if="${type == 'filter'}">
 					<a
 						th:href="@{course_FilterList.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}"
 						class="page-link" th:text="Next">&raquo;</a>
@@ -702,8 +682,8 @@ keyframes heart-keyframes { 100% {
 		<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
 
 
-   </div>
-  <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+	</div>
+	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 	</div>
 
@@ -1160,7 +1140,7 @@ keyframes heart-keyframes { 100% {
 	
 	})
 	</script>
-     <script>
+	<script>
  
       //Get the button
       var mybutton = document.getElementById("myBtn");
@@ -1182,8 +1162,8 @@ keyframes heart-keyframes { 100% {
          document.documentElement.scrollTop = 0;
       }
    </script>
-   
-   <script>
+
+	<script>
    /* 처음에 리스트 동기로 뿌려줄때 유데미,인프런,구름에듀 색깔바꾸기 ===== */
    	$(function(){
    		
@@ -1201,7 +1181,7 @@ keyframes heart-keyframes { 100% {
    	})
    	/* =====처음에 리스트 동기로 뿌려줄때 유데미,인프런,구름에듀 색깔바꾸기 */
    </script>
-   
+
 	<script>
 	/* 필터 적용후 다른페이지로 갓다가 다시 돌아올때 필터가 적용된 상태로 유지되서 
 		온라인강의 페이지로 이동시 한번의 새로고침 ====================*/
@@ -1221,7 +1201,7 @@ keyframes heart-keyframes { 100% {
 	/*==================== 필터 적용후 다른페이지로 갓다가 다시 돌아올때 
 	필터가 적용된 상태로 유지되서  온라인강의 페이지로 이동시 한번의 새로고침 */
 	</script>
-   
+
 </body>
 
 
