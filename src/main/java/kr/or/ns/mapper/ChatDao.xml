@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ns.dao.ChatDao">
 
-	<select id="getListChatRoom" resultType="kr.or.ns.vo.ChatRoom">
+	<select id="getListChatRoom" resultType="hashmap">
 		select * from chatroom
 	</select>
 	
@@ -50,17 +50,17 @@
 	
 	<delete id="chatDelete" parameterType="kr.or.ns.vo.ChatRoomMember">
 		delete from chatroom
-		where ch_seq=#{ch_seq};
+		where ch_seq=#{ch_seq}
 	</delete>
 	
+	<!-- 가장 먼저 들어온 데이터는 방장이기 때문에 cm_seq asc를 줘서 가장 첫번쨰로 뽑이는 데이터가 master  -->
 	<select id="chatRoomMemberGet" resultType="hashmap">
-		SELECT chatmember.user_id, users.profile_img, chatroom.user_id as 'master'
+		SELECT chatmember.cm_seq, chatmember.user_id, users.profile_img
 		FROM chatmember
-		left outer join chatroom
-		on chatmember.ch_seq = chatroom.ch_seq
 		left outer join users
-		on users.user_id = chatroom.user_id
-		where chatmember.ch_seq = #{ch_seq};
+		on users.user_id = chatmember.user_id
+		where chatmember.ch_seq = #{ch_seq}
+        order by cm_seq
 	</select>
 	
 	

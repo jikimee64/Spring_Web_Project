@@ -402,7 +402,7 @@ group+group {
 
 				&nbsp;&nbsp;
 
-
+			<th:block th:if="${member.getSnstype().toString()} =='normal'">
 				<div class="value">
 					<div class="row" style=" padding-left: 100px;height:63px;">
 						<div class="col-2 _label_center"
@@ -417,7 +417,7 @@ group+group {
 								class="password hide"></span>
 
 						</div>
-
+					
 						<div class="col-2"></div>
 					</div>
 				</div>
@@ -444,7 +444,8 @@ group+group {
 						<div class="col-2"></div>
 					</div>
 				</div>
-
+			</th:block>
+							
 				&nbsp;&nbsp;
 
 				<div class="value">

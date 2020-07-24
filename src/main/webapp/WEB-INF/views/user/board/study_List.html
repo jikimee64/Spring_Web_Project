@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -653,28 +652,35 @@ group+group {
 
 
 				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-				<li class="page-item"
-					th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
-					th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
-
-					<th:block th:if="${type == 'FS'}">
-						<a class="page-link"
-							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
-							th:text="${idx}"></a>
-					</th:block> <th:block th:if="${type == 'Search'}">
-						<a class="page-link"
-							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
-							th:text="${idx}"></a>
-					</th:block> <th:block th:if="${type == null}">
-						<a class="page-link"
-							th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
-							th:text="${idx}"></a>
-					</th:block> <th:block th:if="${type == 'filter'}">
-						<a class="page-link"
-							th:href="@{study_FilterList.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
-							th:text="${idx}"></a>
-					</th:block> <!-- <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
-				</li>
+				<th:block th:if="${#lists.size(list) != 0}">
+					<li class="page-item"
+						th:each="idx,iterStat : ${#numbers.sequence(pageMakerb.startPage,pageMakerb.endPage)}"
+						th:classappend="${pageMakerb.cri_b.page} == ${idx} ? active : null">
+	
+						<th:block th:if="${type == 'FS'}">
+							<a class="page-link"
+								th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},searchType=${searchType},keyword=${keyword})}"
+								th:text="${idx}"></a>
+						</th:block> 
+						<th:block th:if="${type == 'Search'}">
+							<a class="page-link"
+								th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+								th:text="${idx}"></a>
+						</th:block> 
+						
+						<th:block th:if="${type == null}">
+							<a class="page-link"
+								th:href="@{study_List.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum},root=header)}"
+								th:text="${idx}"></a>
+						</th:block> <th:block th:if="${type == 'filter'}">
+							<a class="page-link"
+								th:href="@{study_FilterList.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
+								th:text="${idx}"></a>
+						</th:block> <!-- <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+					</li>
+				</th:block>
+				
+				
 
 				<!-- 다음버튼 생성여부 -->
 				<!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->

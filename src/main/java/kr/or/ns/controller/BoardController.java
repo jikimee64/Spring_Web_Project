@@ -107,15 +107,17 @@ public class BoardController {
 		
 		System.out.println("keyword : " + keyword);
 		System.out.println("searchType : " + searchType);
-		list = service.getStudyBoardList(cri_b);
 		if(root != null) {
+			HashMap<String, Object> map4 = new HashMap();
+			map4.put("keyword",keywordCollec );
+			list = service.getStudyBoardList(cri_b,map4);
 			System.out.println("호호 : " + redirectStr);
 			if(keyword == null) { //처음동기식으로 왔을때
 				System.out.println("처음엔 여길..");
 				pageMakerb.setTotalCount(service.getStudyBoardCount());
 			}else if(root.equals("search")){ //검색만 했을때(검색결과에 대한 사이즈 필요,리밋X)
 				System.out.println("..");
-				List<Map<String, Object>> listSize = service.getStudyBoardListSize(cri_b);
+				List<Map<String, Object>> listSize = service.getStudyBoardListSize(cri_b,map4);
 				pageMakerb.setTotalCount(listSize.size());
 				model.addAttribute("type", "Search");
 				model.addAttribute("searchType", cri_b.getSearchType());

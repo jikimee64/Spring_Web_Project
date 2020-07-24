@@ -33,6 +33,9 @@
 	.nav-menu .drop-down ul li:hover>a {
 	color: #18d26e;
 }
+
+
+
 </style>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -68,6 +71,13 @@
 					
 						<th:block sec:authorize="hasRole('ROLE_USER')">
 							
+						<!-- <th:block th:if="${session.currentUser.profile_img} != null">
+							<a href="/mypage/mypage.do" style="padding-left: 20px;"> 
+							 <img
+								th:src="'/userboard/upload/' + ${session.currentUser.profile_img}"
+								alt="" style="height: 50px; width:50px; border-radius: 50%; background-color:white;"> 
+							</a> 
+						</th:block> -->
 							
 							<!-- <span sec:authentication="principal"></span> -->
 							<li class="drop-down"
@@ -80,9 +90,10 @@
 										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
 										<!--  <th:block th:if="${principal != null}"> -->
 										
-										
-										  <!-- <li style="margin-left: 21px;"><b><span
-													th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b></li>   --> 
+										<!-- <th:block th:if="${session.currentUser.user_name} != null">
+										   <li style="margin-left: 21px;"><b><span
+													th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b></li> 
+										</th:block> -->
 					
 										<!-- </th:block> -->
 										<li class="_pageactive"><a th:href="@{/mypage/mypage.do}">마이페이지</a></li>
@@ -101,13 +112,12 @@
 											href="/message/mypage_Message_From_Board.do">쪽지함</a></li>
 									</th:block>
 									<li class="_pageactive">
-										<!-- <a target="_blank" th:href="@{/chat/roomlist.do}">채팅방</a> -->
 									<a href="" target="_blank" onclick="window.open('/chat/roomlist.do', '채팅방','width=500, height=700'); return false">채팅방</a>
 									
 									</li>
 									<li class="_pageactive"><a th:href="@{/logout}">로그아웃</a></li>
 								</ul></li>
-
+						
 
 							<a href="/message/mypage_Message_From_Board.do"> <img
 								src="/resources/images/img/message2.png" class="_message"
