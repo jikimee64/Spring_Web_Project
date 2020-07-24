@@ -802,21 +802,17 @@ group+group {
 	function setSearchTypeSelect(){
 		var $searchTypeSel = $('#searchTypeSel');
 		var $keyword = $('#keyword');
-
-		
 		
     /* <![CDATA[ */
   		var pcs = /*[[${pageMakerb.cri_b.searchType}]]*/;
     /* ]]> */
-
-		
 		
 		$searchTypeSel.val(pcs).prop("selected",true);
 		
 		//검색 버튼이 눌리면
 		$('#searchBtn').on('click',function(){
 			searchTypeVal = $searchTypeSel.val();
-			keywordVal = $keyword.val();
+			keywordVal = $keyword.val().replace(/ /g,"+");
 			
 			//검색 조건 입력 안했으면 경고창 
 			if(!searchTypeVal){
@@ -840,9 +836,6 @@ group+group {
 				+ "&keyword=" + encodeURIComponent(keywordVal);
 			window.location.href = url;
 			}
-			
-			
-			
 		})
 		
 	} //searchType

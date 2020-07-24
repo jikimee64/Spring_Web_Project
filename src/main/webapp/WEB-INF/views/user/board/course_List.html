@@ -1107,10 +1107,8 @@ keyframes heart-keyframes { 100% {
 	<script th:inline="javascript">
 	//검색기능 !!
 	$(function(){
-		
 		//searchType select 박스 설정
 		setSearchTypeSelect();
-		
 	function setSearchTypeSelect(){
 		var $searchTypeSel = $('#searchTypeSel');
 		var $keyword = $('#keyword');
@@ -1125,7 +1123,6 @@ keyframes heart-keyframes { 100% {
     /* ]]> */
 		
 			$searchTypeSel.val(pcs).prop("selected",true);
-    
     
 		//검색 버튼이 눌리면
 		$('#searchBtn').on('click',function(){
@@ -1154,10 +1151,7 @@ keyframes heart-keyframes { 100% {
 			window.location.href = url;
 			}
 		})
-		
 	}//searchType
-	
-	
 	})
 	</script>
      <script>

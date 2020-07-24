@@ -53,7 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		<if test="cri.searchType != null">
 			<if test="cri.searchType == 't'.toString()">
-				where study_board.title like CONCAT('%',#{cri.keyword},'%')
+				<if test="keyword.size != 0">
+					     where study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'c'.toString()">
 				where study_board.content like CONCAT('%', #{cri.keyword}, '%')
@@ -112,7 +117,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 		<if test="cri.searchType != null">
 			<if test="cri.searchType == 't'.toString()">
-				where study_board.title like CONCAT('%',#{cri.keyword},'%')
+				<if test="keyword.size != 0">
+					     where study_board.title like CONCAT('%',
+					<foreach collection="keyword" item="item" index="index" separator="," close=")">
+					      	#{item} , '%'
+					</foreach>
+				</if>
 			</if>
 			<if test="cri.searchType == 'c'.toString()">
 				where study_board.content like CONCAT('%', #{cri.keyword}, '%')
