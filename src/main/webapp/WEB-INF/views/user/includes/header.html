@@ -33,6 +33,9 @@
 	.nav-menu .drop-down ul li:hover>a {
 	color: #18d26e;
 }
+
+
+
 </style>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -72,7 +75,7 @@
 							<a href="/mypage/mypage.do" style="padding-left: 20px;"> 
 							 <img
 								th:src="'/userboard/upload/' + ${session.currentUser.profile_img}"
-								alt="" style="height: 50px; width:50px; border-radius: 50%;"> 
+								alt="" style="height: 50px; width:50px; border-radius: 50%; background-color:white;"> 
 							</a> 
 						</th:block>
 							
