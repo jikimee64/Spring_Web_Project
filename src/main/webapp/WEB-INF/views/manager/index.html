@@ -1,13 +1,13 @@
 <!doctype html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<![endif]-->
 <link rel="shortcut icon"
-   href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <link
-   href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap"
-   rel="stylesheet">
+	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap"
+	rel="stylesheet">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,68 +28,69 @@
 </head>
 <style>
 canvas {
-   -moz-user-select: none;
-   -webkit-user-select: none;
-   -ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 .highcharts-figure, .highcharts-data-table table {
-   min-width: 320px;
-   max-width: 800px;
-   margin: 1em auto;
+	min-width: 320px;
+	max-width: 800px;
+	margin: 1em auto;
 }
 
 .highcharts-data-table table {
-   border-collapse: collapse;
-   border: 1px solid #EBEBEB;
-   margin: 10px auto;
-   text-align: center;
-   width: 100%;
-   max-width: 500px;
+	border-collapse: collapse;
+	border: 1px solid #EBEBEB;
+	margin: 10px auto;
+	text-align: center;
+	width: 100%;
+	max-width: 500px;
 }
 
 .highcharts-data-table caption {
-   padding: 1em 0;
-   font-size: 1.2em;
-   color: #555;
+	padding: 1em 0;
+	font-size: 1.2em;
+	color: #555;
 }
 
 .highcharts-data-table th {
-   font-weight: 600;
-   padding: 0.5em;
+	font-weight: 600;
+	padding: 0.5em;
 }
 
 .highcharts-data-table td, .highcharts-data-table th,
-   .highcharts-data-table caption {
-   padding: 0.5em;
+	.highcharts-data-table caption {
+	padding: 0.5em;
 }
 
 .highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even)
-   {
-   background: #f8f8f8;
+	{
+	background: #f8f8f8;
 }
 
 .highcharts-data-table tr:hover {
-   background: #f1f7ff;
+	background: #f1f7ff;
 }
 
 tspan {
-   font-family: 'Nanum Gothic', sans-serif;
-   color: black;
-   fill: black;
-   font-size: 20px;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: black;
+	fill: black;
+	font-size: 20px;
+	margin-top:20px;
 }
 </style>
 <body style="font-family: 'Nanum Gothic', sans-serif;">
 
 
-   <div th:replace="/manager/includes/nav_side :: nav_side"></div>
-   <!-- 이거하면 깨짐...  -->
+	<div th:replace="/manager/includes/nav_side :: nav_side"></div>
+	<!-- 이거하면 깨짐...  -->
 
 
-   <!-- Right Panel -->
+	<!-- Right Panel -->
 
-   <div id="right-panel" class="right-panel">
+	  <div id="right-panel" class="right-panel">
 
       <div th:replace="/manager/includes/nav_top :: nav_top"></div>
 
@@ -167,7 +168,7 @@ tspan {
       <!--   하이차트 -->
       <div class="col-md-6 col-md-6">
          <div class="card">
-            <div class="card-body" id="container" style="height: 350px;">
+            <div class="card-body" id="container" style="position:absolute; padding:0px;">
                <div id="highchart">
                   <canvas id="chart-area"></canvas>
                </div>
@@ -177,9 +178,9 @@ tspan {
       <!-- 차트JS  -->
       <div class="col-md-6 col-md-6">
          <div class="card">
-            <div class="card-body" style="height: 350px; position: relative;">
+            <div class="card-body" style="height: 600px; position: relative;">
                <!-- 차트JS-->
-               <canvas id="myChart" style="height: 350vh;"></canvas>
+               <canvas id="myChart" style="height: 600vh;"></canvas>
             </div>
          </div>
       </div>
@@ -197,147 +198,147 @@ tspan {
 </body>
 
 
+
 <script>
-   $(function() {
-      $.ajax({
-         type : "post",
-         url : "/ajax/mainChart.do",
-         dataType : "json", //POINT
-         success : function(data) {
-            console.log('data사이즈 : ' + data.length);
-            var barChartData = {
-               labels : [],
-               //type: 'bar',
-               datasets : [ {
-                  data : [],
-                  backgroundColor : [ 'rgb(255, 99, 132)',
-                        'rgb(54,162,235)', 'rgb(255,206,86)',
-                        'rgb(75,192,192)', 'rgb(137, 89, 168)' ],
-                  label : '총 북마크 개수',
-                  weight : 300,
-               } ]
-            };
-            if (data.length < 6) {
-               for (var i = 0; i < data.length; i++) {
-                  barChartData.labels.push(data[i].l_title)
-                  barChartData.datasets[0].data.push(data[i].count)
-               } //for문
-            }
+	$(function() {
+		$.ajax({
+			type : "post",
+			url : "/ajax/mainChart.do",
+			dataType : "json", //POINT
+			success : function(data) {
+				console.log('data사이즈 : ' + data.length);
+				var barChartData = {
+					labels : [],
+					//type: 'bar',
+					datasets : [ {
+						data : [],
+						backgroundColor : [ 'rgb(255, 99, 132)',
+								'rgb(54,162,235)', 'rgb(255,206,86)',
+								'rgb(75,192,192)', 'rgb(137, 89, 168)' ],
+						label : '총 북마크 개수',
+						weight : 300,
+					} ]
+				};
+				if (data.length < 6) {
+					for (var i = 0; i < data.length; i++) {
+						barChartData.labels.push(data[i].l_title)
+						barChartData.datasets[0].data.push(data[i].count)
+					} //for문
+				}
 
-            var ctx = $('#myChart').get(0).getContext("2d");
-            window.theChart = new Chart(ctx, {
-               type : 'doughnut',
-               data : barChartData,
-               options : {
-                  title : {
-                     display : true,
-                     text : '[ 북마크된 강의 TOP 5 ]',
-                     position : 'top',
-                     fontSize : 20,
-                     lineHeight : 1.2,
-                     padding : 5,
-                     fontColor : 'black',
-                     fontFamily : 'Nanum Gothic'
-                  },
-                  legend : {
-                     display : true,
-                     labels : {
-                        fontSize : 11,
-                     },
+				var ctx = $('#myChart').get(0).getContext("2d");
+				window.theChart = new Chart(ctx, {
+					type : 'doughnut',
+					data : barChartData,
+					options : {
+						title : {
+							display : true,
+							text : '[ 북마크된 강의 TOP 5 ]',
+							position : 'top',
+							fontSize : 20,
+							lineHeight : 1.2,
+							padding : 5,
+							fontColor : 'black',
+							fontFamily : 'Nanum Gothic'
+						},
+						legend : {
+							display : true,
+							labels : {
+								fontSize : 11,
+							},
 
-                  },
-                  maintainAspectRatio : false,
-                  layout : {
-                     padding : {
-                        left : 50,
-                        right : 0,
-                        top : 50,
-                        bottom : 0
-                     }
-                  }
-               }
-            });
+						},
+						maintainAspectRatio : false,
+						layout : {
+							padding : {
+								left : 50,
+								right : 0,
+								top : 50,
+								bottom : 0
+							}
+						}
+					}
+				});
 
-         },
-         error : function(request, status, error) {
-            console.log("code:" + request.status + "\n" + "message:"
-                  + request.responseText + "\n" + "error:" + error);
-         }
+			},
+			error : function(request, status, error) {
+				console.log("code:" + request.status + "\n" + "message:"
+						+ request.responseText + "\n" + "error:" + error);
+			}
 
-      });
-   });
+		});
+	});
 </script>
 
 
 <!-- 하이차트 -->
-<figure class="highcharts-figure">
-   <div id="container"></div>
-</figure>
-
 <script>
-   $(function() {
-      $.ajax({
-         type : "post",
-         url : "/ajax/wordCloud.do",
-         dataType : "json", //POINT
-         success : function(data) {
-            var text = "";
-            console.log('데이터 사이즈 ' + data.length);
-            console.log('00 ' + data[0].count);
-            console.log('11 ' + data[1].count);
-            for (var i = 0; i < data.length; i++) {
-               for (var z = 0; z < data[i].count; z++) {
-                  console.log('흠...')
-                  text += data[i].cate_language + ' ';
-               }
-            }
-            console.log('text : ' + text);
-            var lines = text.split(/[,\. ]+/g)
-            data = Highcharts.reduce(lines, function(arr, word) {
-               var obj = Highcharts.find(arr, function(obj) {
-                  return obj.name === word;
-               });
-               if (obj) {
-                  obj.weight += 1;
-               } else {
-                  obj = {
-                     name : word,
-                     weight : 0.5
-                  };
-                  arr.push(obj);
-               }
-               return arr;
-            }, []);
+	$(function() {
+		$.ajax({
+			type : "post",
+			url : "/ajax/wordCloud.do",
+			dataType : "json", //POINT
+			success : function(data) {
+				var text = "";
+				console.log('데이터 사이즈 ' + data.length);
+				console.log('00 ' + data[0].count);
+				console.log('11 ' + data[1].count);
+				for (var i = 0; i < data.length; i++) {
+					for (var z = 0; z < data[i].count; z++) {
+						text += data[i].cate_language + ' ';
+					}
+				}
+				console.log('text : ' + text);
+				var lines = text.split(/[,\. ]+/g)
+				data = Highcharts.reduce(lines, function(arr, word) {
+					var obj = Highcharts.find(arr, function(obj) {
+						return obj.name === word;
+					});
+					if (obj) {
+						obj.weight += 1;
+					} else {
+						obj = {
+							name : word,
+							weight : 0.5
+						};
+						arr.push(obj);
+					}
+					return arr;
+				}, []);
 
-            Highcharts.chart('container', {
-               accessibility : {
-                  screenReaderSection : {
-                     beforeChartFormat : '<h5>{chartTitle}</h5>'
-                           + '<div>{chartSubtitle}</div>'
-                           + '<div>{chartLongdesc}</div>'
-                           + '<div>{viewTableButton}</div>'
-                  }
-               },
-               series : [ {
-                  type : 'wordcloud',
-                  data : data,
-                  name : '언어'
-               } ],
-               title : {
-                  text : '[ 스터디가 개설된 언어 ]'
-               }
-            });
-         }
-      });
-   });
+				Highcharts.chart('container', {
+					accessibility : {
+						screenReaderSection : {
+							beforeChartFormat : '<h5>{chartTitle}</h5>'
+									+ '<div>{chartSubtitle}</div>'
+									+ '<div>{chartLongdesc}</div>'
+									+ '<div>{viewTableButton}</div>'
+						}
+					},
+					series : [ {
+						type : 'wordcloud',
+						data : data,
+						name : '언어'
+					} ],
+					title : {
+						text : '[ 스터디가 개설된 언어 ]'
+					},
+					chart: {
+						height: 600,
+						width: 790
+					}
+				});
+			}
+		});
+	});
 </script>
 
 <script>
-   $(function() {
-      $('figure').hide();
-      $('text').css('color', 'red');
-      $('text').css('fill', 'red');
-   });
+	$(function() {
+		$('figure').hide();
+		$('text').css('color', 'red');
+		$('text').css('fill', 'red');
+	});
 </script>
 
 
