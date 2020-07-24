@@ -102,7 +102,8 @@ html, body {
 } */
 .side {
 	position: fixed;
-	box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px, rgba(0, 0, 0, 0.5) 1px 2px 20px 1px;
+	box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px, rgba(0, 0, 0, 0.5) 1px 2px
+		20px 1px;
 	z-index: 100;
 }
 </style>
@@ -112,19 +113,19 @@ html, body {
 
 	<input type="hidden" id="ch_seq" th:value="${chatroom.ch_seq}" />
 	<input type="hidden" id="user_id" th:value="${user_id}" />
+
 	<!-- 사이드 -->
-	<div class="side"
-		style="width: 350px; height: 100%; display: none;">
+	<div class="side" style="width: 350px; height: 100%; display: none;">
 		<div class="row">
 
-			<div th:if="${user_id == master}"class="col-3"
-				style="text-align: center; align-self: center; padding-right: 0px; z-index:300;">
+			<div class="col-3"
+				style="text-align: center; align-self: center; padding-right: 0px; z-index: 300;">
 				<a href="#" role="button" data-toggle="modal"
 					data-target="#chatDetailModal"> <img
 					src="../../../../resources/images/img/setup_bl.png"
 					style="width: 25px; height: 25px;"></a>
 			</div>
-			
+
 			<div class="col-6" style="text-align: center;">
 				<h5 style="margin-top: 20px;">
 					<b>대화중 멤버</b>
@@ -138,7 +139,7 @@ html, body {
 			</div>
 
 		</div>
-		
+
 		<div class="nowMember">
 			<div class="row"
 				style="min-height: 700px; margin-top: 35px; margin-right: 40px; margin-left: 0px;">
@@ -155,9 +156,9 @@ html, body {
 				</div>
 			</div>
 		</div>
-		
-		
-		
+
+
+
 		<!--          <div class="row" style="display:block;">
          
          <a href="#" role="button" style="margin-left: 0px;"><img
@@ -185,9 +186,9 @@ html, body {
       </div> -->
 
 	<div class="right_bottom">
-	
+
 		<div class="row"
-			style="background-color: rgb(24, 210, 105); height: 55px; width: 100%; z-index:10; margin: 0px; position: fixed; top: 0;">
+			style="background-color: rgb(24, 210, 105); height: 55px; width: 100%; z-index: 10; margin: 0px; position: fixed; top: 0;">
 			<div class="col-12"
 				style="text-align: -webkit-center; align-self: center; color: white; margin-top: 5px;">
 				<a href="#" role="button" style="margin-left: 0px;" id="etc"><img
@@ -239,7 +240,7 @@ html, body {
    </script>
 
 
-<!-- 	<script>
+	<!-- 	<script>
       $(function() {
          var data = {
             ch_seq : $("#ch_seq").val(),
@@ -364,8 +365,7 @@ html, body {
                   let html = "";
                   if (d.user_id == $("#user_id").val()) { //나
                 	   html += "<div style='margin-right:20px;'>" 
-                      html += "<div style='margin-top:30px;'>" 
-                     //html += "<div style='float: right; text-align: center;'></div>"
+                       html += "<div style='margin-top:30px;'>"  
                        html += "<span style='margin-left:20px;'><b></b></span>"
                      html += "<div class='mybubble'>" + d.msg
                            + "</div></div></div><br>"
@@ -390,7 +390,7 @@ html, body {
                                  html += "<div style='margin-left:20px;'>"
                                  //html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
                                  //html += "<div style='float: left; text-align: center;'></div>"
-                                 html += "<div style='margin-top:30px;'><img src='/userboard/upload/"
+                                 html += "<div style=''><img src='/userboard/upload/"
                                        + data[1].PROFILE_IMG
                                        + "' alt='' style='height: 40px; width:40px; border-radius: 32%;'>"
 
@@ -529,6 +529,61 @@ html, body {
          })
 
       });
+   </script>
+
+
+
+	<script>
+	function chatDelete() {
+		var ch_seq = $('#ch_seq').val();
+		swal({
+				  title: "채팅방을 삭제 하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+					  location.href="/chat/chatDelete.do?ch_seq="+ch_seq
+				  } 
+				
+		});
+	}
+   
+   </script>
+   
+   <script>
+	function chatUpdate() {
+		var ch_seq = $('#ch_seq').val();
+		var ch_title = $('#ch_title').val();
+		var ch_description = $('#ch_description').val();
+		
+		 let data = {
+			"ch_seq" : ch_seq,
+			"ch_title" : ch_title,
+			"ch_description" : ch_description
+		}
+		 
+		 console.log(ch_seq)
+		 console.log(ch_title)
+		 console.log(ch_description)
+		
+		$.ajax({
+			url : '/chat/chatUpdate.do',
+			processData : false,
+			contentType : "application/json",
+			cache : false,
+			type : 'POST',
+			data : JSON.stringify(data),
+			success : function(data) {
+				$('#chatDetailModal').modal('hide');
+			},
+			error : function(e) {
+				console.log("error:", e);
+			}
+		})
+	}
+   
    </script>
 
 </body>

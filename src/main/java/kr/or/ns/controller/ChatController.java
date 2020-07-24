@@ -33,7 +33,7 @@ public class ChatController {
 
 	@Autowired
 	private ChatService service;
-	
+
 	@Autowired
 	private MyPageService mservice;
 
@@ -50,7 +50,8 @@ public class ChatController {
 
 	@RequestMapping("chatroominsert.do")
 	@ResponseBody
-	public List<ChatRoom> chatRoomInsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
+	public List<ChatRoom> chatRoomInsert(@RequestBody Map<String, Object> params, Principal principal)
+			throws IOException {
 		System.out.println("(채팅방 생성 후 DB 인서트)");
 
 		System.out.println("방제목 : " + params.get("ch_title"));
@@ -68,52 +69,62 @@ public class ChatController {
 		return list;
 	}
 
-	//채팅방 내부 입장 / 채팅멤버 테이블에 삽입
+	// 채팅방 내부 입장 / 채팅멤버 테이블에 삽입
 	@RequestMapping("entrance.do")
-	public String chatRoomEntrance(@RequestParam HashMap<Object, Object> params, Model model, Principal principal) throws ClassNotFoundException, SQLException {
-		
-		//현재날짜 포맷팅해서 구하기
+	public String chatRoomEntrance(@RequestParam HashMap<Object, Object> params, Model model, Principal principal)
+			throws ClassNotFoundException, SQLException {
+
+		// 현재날짜 포맷팅해서 구하기
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		String datestr = sdf.format(cal.getTime());
 		System.out.println(datestr);
-		
-		String ch_seq = (String)params.get("ch_seq");
+
+		String ch_seq = (String) params.get("ch_seq");
 		String user_id = principal.getName();
-		
+
 		ChatRoomMember cm = new ChatRoomMember();
 		cm.setCh_seq(Integer.parseInt(ch_seq));
 		cm.setUser_id(user_id);
 		int result = service.memberInsert(cm);
 		ChatRoom chatroom = service.getChatRoom(ch_seq);
 		System.out.println("삽입 결과 : " + result);
-		
+
 		List<HashMap<String, Object>> list = service.chatRoomMemberGet(ch_seq);
 		String master = (String) list.get(0).get("master");
 		System.out.println("master : " + master);
-		
-		model.addAttribute("master", master );
+
+		model.addAttribute("master", master);
 		model.addAttribute("chatroom", chatroom);
-		model.addAttribute("user_id", user_id );
+		model.addAttribute("user_id", user_id);
 		model.addAttribute("datestr", datestr);
-		
+
 		return "chat/chatroom";
 	}
-	
-	
+
 	@RequestMapping("chatRoomOut.do")
-	public String chatRoomOut(String ch_seq, Model model, Principal principal) throws ClassNotFoundException, SQLException {
-		
+	public String chatRoomOut(String ch_seq, Model model, Principal principal)
+			throws ClassNotFoundException, SQLException {
+
 		String user_id = principal.getName();
-		
+
 		ChatRoomMember cm = new ChatRoomMember();
 		cm.setCh_seq(Integer.parseInt(ch_seq));
 		cm.setUser_id(user_id);
-		int result = service.chatRoomOut(cm);
+		
+		List<HashMap<String, Object>> list = service.chatRoomMemberGet(ch_seq);
+		
+		System.out.println("user_id : " + user_id);
+		System.out.println("master : " + list.get(0).get("master"));
+		if(!user_id.equals(list.get(0).get("master"))) { 
+			System.out.println("오ㅓ지마라 너는");
+			int result = service.chatRoomOut(cm);
+		}
+	
 		List<ChatRoom> roomList = service.getListChatRoom();
 		model.addAttribute("roomList", roomList);
 		System.out.println("roomList : " + roomList);
-		
+
 		return "chat/roomlist";
 	}
 
@@ -130,16 +141,23 @@ public class ChatController {
 		}
 		return map;
 	}
-	
-	//채팅방 내부에서 멤버리스트 보는 페이지로 이동
+
+	// 채팅방 내부에서 멤버리스트 보는 페이지로 이동
 	@RequestMapping("chatmemberlist.do")
-	public String chatmemberlist(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
+	public String chatmemberlist() throws ClassNotFoundException, SQLException {
 		System.out.println("채팅멤버 리스트 페이지로 이동이동(연규가씀)");
-		
+
 		return "chat/memberlist";
 	}
-	
-	
+
+	// 채팅방 내부에서 멤버리스트 보는 페이지로 이동
+	@RequestMapping("chatDelete.do")
+	public String chatDelete(String ch_seq) throws ClassNotFoundException, SQLException {
+		System.out.println("채팅방 삭제");
+		int result = service.chatDelete(ch_seq);
+		return "redirect:/chat/roomlist.do";
+	}
+
 	@RequestMapping("chatRoomMemberGet.do")
 	@ResponseBody
 	public List<HashMap<String, Object>> chatRoomMemberGet(@RequestBody Map<String, Object> params) throws IOException {
@@ -149,5 +167,14 @@ public class ChatController {
 		return list;
 	}
 	
+
+	@RequestMapping("chatUpdate.do")
+	@ResponseBody
+	public void chatUpdate(@RequestBody Map<String, Object> params) throws IOException {
+		int result = service.chatUpdate(params);
+		
+	}
+	
+
 
 }

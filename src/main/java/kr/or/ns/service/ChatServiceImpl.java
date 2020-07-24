@@ -56,6 +56,19 @@ public class ChatServiceImpl implements ChatService {
 		ChatDao dao = sqlsession.getMapper(ChatDao.class);
 		int result = dao.chatRoomOut(cm);
 		return result;
+	}	
+	
+	public int chatUpdate(Map<String, Object> params) {
+		ChatDao dao = sqlsession.getMapper(ChatDao.class);
+		int result = dao.chatUpdate(params);
+		return result;
+	}
+	
+	public int chatDelete(String ch_seq) {
+		ChatDao dao = sqlsession.getMapper(ChatDao.class);
+		int result = dao.chatDelete(ch_seq);
+		System.out.println("채팅방 삭제 결과 : " + result);
+		return result;
 	}
 	
 	public List<HashMap<String, Object>> chatRoomMemberGet(String ch_seq){

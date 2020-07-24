@@ -26,6 +26,10 @@ public interface ChatService {
 	
 	public int chatRoomOut(ChatRoomMember cm);
 	
+	public int chatUpdate(Map<String, Object> params);
+	
+	public int chatDelete(String ch_seq);
+	
 	public List<HashMap<String, Object>> chatRoomMemberGet(String ch_seq);
 
 }
