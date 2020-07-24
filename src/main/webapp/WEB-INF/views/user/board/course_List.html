@@ -537,6 +537,7 @@ keyframes heart-keyframes { 100% {
 
 		<!--<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
 		<div class="courseFilter">
+		<th:block th:if="${list} != null">
 				<th:block th:each="list,index : ${list}">
 					<th:block th:if="${index.index%4==0}"
 						th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" />
@@ -592,6 +593,14 @@ keyframes heart-keyframes { 100% {
 					<th:block th:if="${index.index%4==3}" th:utext="'&lt;/div&gt;'" />
 
 				</th:block>
+				</th:block>
+				
+			<th:block th:if="${#lists.size(list)} == 0">
+				<!-- 연규야 채워라 동기 -->
+				<span>빈값</span>
+				
+			</th:block>
+				
 		</div>
 
 		<!-- 여기까지 카드 하나 끝 -->
