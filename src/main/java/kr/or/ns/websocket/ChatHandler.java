@@ -24,6 +24,7 @@ import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.service.MemberService;
 import kr.or.ns.service.MessageService;
+import kr.or.ns.vo.ChatRoom;
 import kr.or.ns.vo.ChatRoomMember;
 import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
@@ -190,9 +191,15 @@ public class ChatHandler extends TextWebSocketHandler {
 		cm.setCh_seq(Integer.parseInt(ch_seq));
 		cm.setUser_id(user_id);
 		
+		ChatRoom cr = service.getChatRoom(ch_seq);
+		String master = cr.getUser_id();
+		
+		System.out.println("user_id@@ : " + user_id);
+		System.out.println("master@@ : " + master);
+		
 		//System.out.println("마스터 " + list.get(0).get("master"));
 		//System.out.println("유저 아이디 " + user_id);
-		if(!user_id.equals(list.get(0).get("master"))) { //master는 채팅방을 삭제할때 나가기위한 것
+		if(!user_id.equals(master)){ //master는 채팅방을 삭제할때 나가기위한 것
 			int result = service.chatRoomOut(cm);
 			System.out.println("close시 채팅방 멤버 삭제");
 		}
@@ -215,13 +222,11 @@ public class ChatHandler extends TextWebSocketHandler {
 		sendAllSessionToMessage(map, user_id, user_id+"님이 방을 나가셨습니다."); 
 		
 		if (session != null) {
-			if (rls.size() > 0) { // 소켓이 종료되면 해당 세션값들을 찾아서 지운다.
-				for (int i = 0; i < rls.size(); i++) {
-					rls.get(i).remove(session.getId());
-				}
+			if (rls.size() > 0) { // 소켓이 종료되면 해당 방의 아이디 세션을 지운다
+				rls.get(idx).remove(user_id);
 			}
 		} else {
-			System.out.println("afterConnectionClosed()_session이 null");
+			System.out.println("afterConnectionClosed()_session@#!@!#@!#이 null");
 		}
 		 
 

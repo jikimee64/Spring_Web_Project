@@ -365,7 +365,7 @@ html, body {
                   let html = "";
                   if (d.user_id == $("#user_id").val()) { //나
                 	   html += "<div style='margin-right:20px;'>" 
-                       html += "<div style='margin-top:30px;'>"  
+                       html += "<div style='margin-top:20px;'>"  
                        html += "<span style='margin-left:20px;'><b></b></span>"
                      html += "<div class='mybubble'>" + d.msg
                            + "</div></div></div><br>"
@@ -387,7 +387,7 @@ html, body {
                                  console.log('하하 '
                                        + data[1].PROFILE_IMG)
 
-                                 html += "<div style='margin-left:20px;'>"
+                                 html += "<div style='margin-left:20px; margin-top:20px;'>"
                                  //html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
                                  //html += "<div style='float: left; text-align: center;'></div>"
                                  html += "<div style=''><img src='/userboard/upload/"
@@ -397,7 +397,7 @@ html, body {
                                  html += "<span style='margin-left:20px;'><b>"
 
                                        + d.user_id + "</b></span>"
-                                 html += "<div class='yourbubble' style='margin-left:50px; margin-top:0px;'>"
+                                 html += "<div class='yourbubble' style='margin-left:50px; margin-bottom:60px; margin-top:0px;'>"
                                        + d.msg
                                        + "</div></div><br>"
                                  $("#chatBoxArea").append(html);
@@ -434,7 +434,7 @@ html, body {
           * 웹소켓 사용자 연결 해제하는 경우 호출
           */
          Socket.onclose = function(message) {
-        	 //user_id가 나갔다고 메시지 보내야함
+        	 
             $("#chatBoxArea").append("Server is disconnd왜해제해!!!!ected!!.");
          };
 
