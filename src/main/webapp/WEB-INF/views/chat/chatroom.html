@@ -106,6 +106,69 @@ html, body {
 		20px 1px;
 	z-index: 100;
 }
+
+/* info 모달 */
+/* 라디오버튼 */
+._form_radio {
+	background: #fff;
+	/*    width: 509px; */
+	margin: auto;
+	padding: 30px;
+	min-width: 320px;
+	max-width: 540px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+		rgba(0, 0, 0, 0.26);
+	border-radius: 3px;
+}
+
+group+group {
+	margin-top: 20px;
+}
+
+.inline-radio {
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+._div_radio {
+	position: relative;
+	flex: 1;
+	border-radius: 3px;
+}
+
+._input_radio {
+	width: 100%;
+	opacity: 0;
+	height: 100%;
+	cursor: pointer;
+}
+
+._radio_label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #272C33;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+}
+
+._div_radio:last-child label {
+	border-right: 0;
+}
+
+._input_radio:checked+label {
+	background: #00d463;
+	font-weight: 500;
+	color: #fff;
+	border-radius: 5px;
+}
+
 </style>
 
 </head>
@@ -141,7 +204,7 @@ html, body {
 		</div>
 
 		<div class="nowMember">
-			<div class="row"
+			<!-- <div class="row"
 				style="min-height: 700px; margin-top: 35px; margin-right: 40px; margin-left: 0px;">
 				<div class="col" style="text-align: center; height: 100px;">
 					<img src="../../../../resources/images/img/chatroom.png"
@@ -154,7 +217,7 @@ html, body {
 							style="background-color: rgb(24, 210, 105); margin-top: 10px;">방장</span>
 					</h5>
 				</div>
-			</div>
+			</div> -->
 		</div>
 
 
@@ -213,7 +276,7 @@ html, body {
 		<div id="chatBoxArea" class="chatBoxArea"></div>
 
 		<div class="talk_write row"
-			style="width: 100%; position: fixed; bottom: 0; margin: 0px; min-height: 40px; background-color: #fff;">
+			style="width: 100%; position: fixed; bottom: 5px; margin: 0px; min-height: 40px; background-color: #fff;">
 			<div class="col"
 				style="margin: 0px 10px; bottom: 0; right: 0; padding-right: 0px; border-radius: 10px; height: 40px; background-color: #f5f6f8; width: 100%; display: flex;">
 				<input id="inputMsgBox" placeholder="메시지를 입력하세요." rows="2"
@@ -262,9 +325,13 @@ html, body {
       });
    </script> -->
 
-
+	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
+	</div>
 
 	<script type="text/javascript">
+	
+	
+	
 	
 	function nowMember(){
          var data = {
@@ -284,9 +351,14 @@ html, body {
             	    html += "<div class='row' style='height:50px; margin-top: 35px; margin-right: 40px; margin-left: 0px;'>";
            			html += "<div class='col' style='text-align: center; height: 50px;'>";
     				html += "<img src='/userboard/upload/"+data[index].profile_img+"' style='width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;'>";
+    				html += '<a href="" class="InfoModal'
+    					 +  data[index].cm_seq
+    					 + '" onclick=InfoModal("'
+    					 +  data[index].cm_seq
+    					 + '") data-toggle="modal" data-target="#userInfoModal">'
     				html += "<b style='vertical-align: revert; margin-left:30px;'>";
     				html += data[index].user_id
-    				html += "</b></div>"
+    				html += "</b></a></div>"
 	    			html += "<div class='col-3' style='height: 100px;'>";
 	    			html += "<h5 style='margin-bottom: 0px;'>";
 	    			html +=	"<span class='badge badge-success' style='background-color: rgb(24, 210, 105); margin-top: 10px;'>방장</span></h5></div></div>";
@@ -297,9 +369,14 @@ html, body {
             		   html += "<div class='row' style='height:50px; margin-top: 35px; margin-right: 40px; margin-left: 0px;'>";
               			html += "<div class='col' style='text-align: center; height: 50px;'>";
         				html += "<img src='/userboard/upload/"+data[index].profile_img+"' style='width: 45px; height: 45px; margin-right: 10px; border-radius: 20px;'>";
+        				html += '<a href="" class="InfoModal'
+       					 +  data[index].cm_seq
+       					 + '" onclick=InfoModal("'
+       					 +  data[index].cm_seq
+       					 + '") data-toggle="modal" data-target="#userInfoModal">'
         				html += "<b style='vertical-align: revert; margin-left:30px;'>";
         				html += data[index].user_id
-        				html += "</b></div>"
+        				html += "</b></a></div>"
     	    			html += "<div class='col-3' style='height: 100px;'>";
     	    			html += "<h5 style='margin-bottom: 0px;'>";
     	    			html +=	"<span class='badge badge-success' style='background-color: rgb(24, 210, 105); margin-top: 10px;'>회원</span></h5></div></div>";
@@ -314,6 +391,79 @@ html, body {
                console.log("error:", e);
             }
          });
+	}
+	
+	
+	
+	function InfoModal(idx) {
+
+		let id = $('.InfoModal' + idx).children().text();
+		//formData.append("user_id" , this.id);
+
+		console.log("아이디 : " + id);
+		// let obj = {"user_id" : id}; 
+
+		let data = {
+			"user_id" : id
+		}
+
+		$.ajax({
+			url : '/ajax/userInfoModal.do',
+			processData : false,
+			contentType : "application/json",
+			cache : false,
+			type : 'POST',
+			data : JSON.stringify(data),
+			success : function(data) {
+				console.warn('aaaaaaaaaaaaa');
+				console.warn(data[0].USER_NAME);
+				console.warn(data[0][0].USER_NAME);
+				console.warn(data[0][1].USER_NAME);
+				$('.ModalUserName').text(data[0][0].USER_NAME);
+				$('.introduce').text(data[0][0].INTRODUCE)
+				'src','/material/images/jQuery/asimo.png'
+				$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+				console.log(data[0][0].INTRODUCE);
+				$.each(data[0], function (index, item) {
+					if (item.SKILL_LEVEL === '입문') {
+						$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
+					} else if (data[0][index].SKILL_LEVEL === '초급') {
+						$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
+					} else {
+						$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
+					}
+				})
+				
+//						<td>1578</td>
+//												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+				
+				$('._user_board_list').empty();
+				
+				let userBoardList = "";
+				$.each(data[1],function(index, item){
+					userBoardList += "<tr>";
+					userBoardList += "<td>";
+					userBoardList += data[1][index].S_SEQ;
+					userBoardList += "</td>";
+					userBoardList += "<td>";
+					userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+								+ data[1][index].S_SEQ
+								+ "'>";
+					userBoardList += data[1][index].TITLE;
+					userBoardList += "</a>"	
+					userBoardList += "</td>";
+					userBoardList += "</tr>";
+				});
+				
+				
+				$('._user_board_list').append(userBoardList);
+//						$('._user_board_list');
+			},
+			error : function(e) {
+				console.log("error:", e);
+			}
+		});
+
 	}
 	
        /* function moveScroll() {
@@ -432,7 +582,7 @@ html, body {
 
          /**
           * 웹소켓 사용자 연결 해제하는 경우 호출
-          */
+          *
          Socket.onclose = function(message) {
         	 
             $("#chatBoxArea").append("Server is disconnd왜해제해!!!!ected!!.");
@@ -523,10 +673,12 @@ html, body {
          $('#etc').click(function() {
             $('.side').toggle();
             $('.right_bottom').toggleClass("right_bottom2");
+            nowMember();
          })
 
          $('#etc_out').click(function() {
             $('.side').toggle();
+            nowMember();
          })
 
       });

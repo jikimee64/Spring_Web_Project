@@ -487,8 +487,8 @@ group+group {
 								<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 									<!-- <a
 								th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
-									<button id="delete" type="button" class="btn btn-danger"
-										style="height: 30px; padding-top: 3px;">삭제</button>
+									<button id="delete" type="button" class="btn btn-danger" 
+										style="height: 30px; padding-top: 3px;background-color:red;">삭제(관리자)</button>
 									<!--        </a> -->
 								</th:block>
 
@@ -799,9 +799,11 @@ group+group {
                            }
                            
                            html += "<blockquote class='OComment'><a href='' class='InfoModal"
-                                 + obj.R_SEQ
+
+                                 + obj.R_NAME
                                  + "' onclick=InfoModal('"
-                                 + obj.R_SEQ
+                                 + obj.R_NAME
+
                                  +"') data-toggle='modal' data-target='#userInfoModal'>"
                            html += "<b style='"+depthcss+ "'>" + obj.R_NAME + "</b></a>"  + " ";
                            console.warn(obj.S_SEQ);

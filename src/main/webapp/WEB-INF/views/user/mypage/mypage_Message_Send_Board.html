@@ -189,8 +189,8 @@ group+group {
 				</div>
 				<div class="col-md-7"
 					style="text-align: right; padding-right: 28px; padding-top: 8px;">
-					<button type="button" class="btn btn-warning" id="deletemessage" name="deletemessage"
-						style="width: 100px; color: white; margin-top: 30px;">삭제</button>
+					<button type="button" class="btn btn-danger" id="deletemessage" name="deletemessage"
+						style="width: 80px; color: white; margin-top: 30px;border:none;font-weight:bold;">삭제</button>
 				</div>
 			</div>
 
@@ -247,7 +247,7 @@ group+group {
 						th:unless="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31"
 						class="col-md-6" style="place-self: center; text-align: center;">
 						<a style="color: #636e72;"
-							th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
+							th:href="@{/message/mypage_Message_Send_Detail_Board.do(m_seq=${list.M_SEQ})}">
 							<span th:text="${list.CONTENT}"></span>
 						</a>
 					</div>
@@ -409,10 +409,10 @@ group+group {
 					'src','/material/images/jQuery/asimo.png'
 					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
 					console.log(data[0][0].INTRODUCE);
-					$.each(data, function (index, item) {
+					$.each(data[0], function (index, item) {
 						if (item.SKILL_LEVEL === '입문') {
 							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
-						} else if (item.SKILL_LEVEL === '초급') {
+						} else if (data[0][index].SKILL_LEVEL === '초급') {
 							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
 						} else {
 							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
