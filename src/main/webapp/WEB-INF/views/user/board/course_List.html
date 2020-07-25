@@ -646,28 +646,30 @@ keyframes heart-keyframes { 100% {
 
 
 			<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-			<li class="page-item"
-				th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
-				th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
-
-				<th:block th:if="${type == 'Search'}">
-					<a class="page-link"
-						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
-						th:text="${idx}"></a>
-				</th:block> <th:block th:if="${type == 'FS'}">
-					<a class="page-link"
-						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
-						th:text="${idx}"></a>
-				</th:block> <th:block th:if="${type == null}">
-					<a class="page-link"
-						th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=header)}"
-						th:text="${idx}"></a>
-				</th:block> <th:block th:if="${type == 'filter'}">
-					<a class="page-link"
-						th:href="@{course_FilterList.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
-						th:text="${idx}"></a>
-				</th:block> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
-			</li>
+			<th:block th:if="${#lists.size(list) != 0}">
+				<li class="page-item"
+					th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}"
+					th:classappend="${pageMaker.cri.page} == ${idx} ? active : null">
+	
+					<th:block th:if="${type == 'Search'}">
+						<a class="page-link"
+							th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=search,searchType=${searchType},keyword=${keyword})}"
+							th:text="${idx}"></a>
+					</th:block> <th:block th:if="${type == 'FS'}">
+						<a class="page-link"
+							th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},searchType=${searchType},keyword=${keyword})}"
+							th:text="${idx}"></a>
+					</th:block> <th:block th:if="${type == null}">
+						<a class="page-link"
+							th:href="@{course_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum},root=header)}"
+							th:text="${idx}"></a>
+					</th:block> <th:block th:if="${type == 'filter'}">
+						<a class="page-link"
+							th:href="@{course_FilterList.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
+							th:text="${idx}"></a>
+					</th:block> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+				</li>
+			</th:block>
 
 
 			<!-- 다음버튼 생성여부 -->
@@ -823,6 +825,7 @@ keyframes heart-keyframes { 100% {
                         var list_length = data[0].length;
                         
                         if (index === 0) {
+                        	if(list_length != 0){
 							for (var i = 0; i < list_length; i++) {
 								let html = "";
 								if (i % 4 === 0) {
@@ -907,6 +910,23 @@ keyframes heart-keyframes { 100% {
 							}
 							
 							}
+                        	}else{
+                        		//연규야 채우ㅠㅓ라 비동기
+                        		  let html = "";
+                                  
+                                  html += "<div style='text-align:center; margin-top:20px;margin-bottom:20px;'>"
+                                  html += '<img style="width:150px;" src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png" alt="" />'
+                                  html += "</div>"
+                                  html += "<div style='text-align:center;'>"
+                                  html += "<b style='font-size:x-large'>등록된 게시물이 없습니다</b>"
+                                  html += "</div>"
+                                  html += "<div style='height: 65px;'>"
+                                  html += "</div>"
+                                     $(
+                                     '.courseFilter')
+                                     .append(
+                                           html);
+                        	}
 							
 						}
 
