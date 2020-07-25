@@ -36,7 +36,7 @@ public interface ManagerDao {
 	
 	public String bestLocation();
 	
-	public String bestLanguage();
+	public int getLectureCount();
 
 	public int blameCount();
 

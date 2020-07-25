@@ -103,8 +103,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  select max(loc) from location;
 	</select>
 
-	<select id="bestLanguage" resultType="String">
-		select max(cate_language) from language_category;
+	<select id="getLectureCount" resultType="int">
+		select count(*) from lecture_board
 	</select>
 
 	<select id="blameCount" resultType="java.lang.Integer">

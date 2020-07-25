@@ -131,10 +131,10 @@ public class ManagerServiceImpl implements ManagerService {
 
 	// 가장 많이 선택받은 언어
 	@Override
-	public String bestLanguage() {
+	public int getLectureCount() {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		String bestLanguage = dao.bestLanguage();
-		return bestLanguage;
+		int result = dao.getLectureCount();
+		return result;
 	}
 
 	// 처리 안된 신고 갯수

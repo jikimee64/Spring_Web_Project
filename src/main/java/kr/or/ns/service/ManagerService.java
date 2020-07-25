@@ -48,7 +48,7 @@ public interface ManagerService {
 	public String bestLocation();
 	
 	//가장 많이 선택받은 언어
-	public String bestLanguage();
+	public int getLectureCount();
 	
 	//처리안된 신고 갯수
 	public int blameCount();
