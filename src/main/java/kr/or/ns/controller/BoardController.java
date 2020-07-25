@@ -594,7 +594,9 @@ public class BoardController {
 		// 트랜잭션 처리
 		try {
 			Map<String, Object> study = service.getStudy(s_seq);
+			Map<String, Object> onlineInfo = service.onlineDetailInfo(s_seq);
 			model.addAttribute("study", study);
+			model.addAttribute("onlineInfo", onlineInfo);
 
 			List<Map<String, Object>> commentList = service.getComment(s_seq);
 			int count = service.getReplyCnt(s_seq);

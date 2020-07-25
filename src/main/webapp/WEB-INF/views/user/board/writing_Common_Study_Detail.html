@@ -602,7 +602,7 @@ group+group {
 									</th:block>
 
 									<th:block th:if="${page == null && perPageNum == null}">
-										<a th:href="@{/board/study_List.do}">
+										<a th:href="@{/board/study_List.do(root=header)}">
 											<button type="button" class="btn btn-warning"
 												style="width: 100%;font-weight:bold;">목록으로</button>
 										</a>
@@ -1340,15 +1340,15 @@ group+group {
 
 
 	<script>
-//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 -->
+//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 (내가쓴게시글(댓글) -> 상세보기)-->
  	$(function(){
  		
  		
  		if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
  			$('._to_the_list_a_tag').removeAttr('href');
  			
- 			$('._to_the_list_button')[0].innerText = "마이페이지로";
- 			$('._to_the_list_a_tag')[0].setAttribute('href', '/mypage/mypage.do');
+ 			$('._to_the_list_button')[0].innerText = "목록으로";
+ 			$('._to_the_list_a_tag')[0].setAttribute('href', '/board/study_List.do?root=header');
  		}
  		
  	});
