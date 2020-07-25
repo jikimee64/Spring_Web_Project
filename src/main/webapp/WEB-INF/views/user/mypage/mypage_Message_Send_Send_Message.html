@@ -119,6 +119,12 @@ body {
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 	 $(function() {
+		 $('input[type="form-g"]').keydown(function() {
+			  if (event.keyCode === 13) {
+			    event.preventDefault();
+			  };
+			});
+		 
 	    $("._user_id").autocomplete({
 	    		
 	         source : function(request, response) {
