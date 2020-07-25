@@ -479,6 +479,19 @@ public class AjaxServiceImpl implements AjaxService {
 		
 	}
 
+	@Override
+	public List<HashMap<String, Object>> getAutoKeyword(String keyword) {
+
+		List<HashMap<String, Object>> list = null;
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		System.out.println("서비스 임플인데 여기 탔어");
+		System.out.println(keyword);
+		list = dao.getAutoKeyword(keyword);
+		
+		System.out.println("서비스 임플인데 이제 리턴 간다 ");
+		return list;
+	}
+
 
 
 }

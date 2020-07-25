@@ -107,5 +107,8 @@ public interface AjaxRestDao {
 	//유저정보 모달창에 게시판 뿌리기
 	public List<HashMap<String, Object>> getUserBoardInfo(String user_id);
 
+	//자동검색기능을 위한 
+	public List<HashMap<String, Object>> getAutoKeyword(String keyword);
+
 
 }
