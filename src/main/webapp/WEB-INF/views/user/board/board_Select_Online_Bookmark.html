@@ -171,7 +171,7 @@ body {
 		<!-- Breadcrumbs Section -->
 
 		<section id="portfolio" class="section-bg"
-			style="background-color: white; padding-top: 30px; padding-bottom: 30px;">
+			style="background-color: white; padding-top: 30px; padding-bottom: 30px; min-height:325px;">
 			<div class="container aos-init aos-animate" data-aos="fade-up">
 
 				<div style="text-align: right"></div>
@@ -232,16 +232,19 @@ body {
 					</th:block>
 
 					<th:block th:if="${#lists.isEmpty(bookMarkList)}">
-						<div
-							style='text-align: center; margin-top: 20px; margin-bottom: 20px;'>
-							<img style="width: 150px;"
-								src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png"
-								alt="" />
+						<!-- 연규야 채워라 동기 -->
+						<div style="transform:translateX(440px);">
+							<div
+								style='text-align: center; margin-top: 20px; margin-bottom: 20px;'>
+								<img style="width: 150px;"
+									src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png"
+									alt="" />
+							</div>
+							<div style='text-align: center;'>
+								<b style='font-size: x-large'>등록된 북마크가 없습니다</b>
+							</div>
+							<div style='height: 65px;'></div>
 						</div>
-						<div style='text-align: center;'>
-							<b style='font-size: x-large'>등록된 북마크가 없습니다</b>
-						</div>
-						<div style='height: 65px;'></div>
 					</th:block>
 
 					<br />
