@@ -538,9 +538,9 @@ group+group {
                         <div class="row">
                            <div class="col-md-11" style="padding: 0px;"></div>
                            <div class="col-md-1" style="position: relative; padding: 0px;">
-                              <button class="btn btn-warning" id="commentWrite"
+                              <button class="btn btn-outline-success" id="commentWrite"
                                  name="commentWrite"
-                                 style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
+                                 style="padding: 7px; height: 30px; padding-top: 4px; ">등록</button>
                            </div>
                         </div>
                         <!-- </form> -->
@@ -772,10 +772,12 @@ group+group {
                                  + obj.R_SEQ
 
                                  +"') data-toggle='modal' data-target='#userInfoModal'>"
+                           html += '<input type="hidden" id="user_id" value="'+obj.R_NAME+'">';
                            html += "<b style='"+depthcss+ "'>" + obj.R_NICKNAME + "</b></a>"  + " ";
                            if(user_id === obj.R_NAME){
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
+                           		
                            }
                            html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" + getDateFormet(date1) +
                            quillpen +"</div></blockquote>";
@@ -810,9 +812,9 @@ group+group {
                html += '<div class="row">';
                html += '<div class="col-md-10" style="padding: 0px;"></div>';
                html += '<div class="col-md-2" style="position: relative; padding: 0px;text-align-last: end;padding-right: 21px;">';
-               html += '<button class="btn btn-outline-secondary reCommentCBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px;margin-right: 8px; ">';
+               html += '<button class="btn btn-outline-warning reCommentCBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px;margin-right: 8px; ">';
                html += '취소</button>';
-               html += '<button class="btn btn-outline-primary reCommentBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px; ">';
+               html += '<button class="btn btn-outline-success reCommentBtn" id="'+ r_seq +'" style="padding: 7px; height: 30px; padding-top: 3px; ">';
                html += '등록</button>';
                html += '</div>';
                html += '</div>';
@@ -1361,7 +1363,7 @@ group+group {
 <script>
 function InfoModal(idx) {
 
-   let id = $('.InfoModal' + idx).children().text();
+	 let id = $('.InfoModal' + idx).children(":eq(0)").val();
    //formData.append("user_id" , this.id);
 
    // let obj = {"user_id" : id}; 
@@ -1379,7 +1381,7 @@ function InfoModal(idx) {
       data : JSON.stringify(data),
       success : function(data) {
          $('.ModalUserName').text(data[0][0].USER_NAME);
-         $('.ModalUserID').text(data[0][0].USER_ID);
+         $('.ModalUserID').text(data[0][0].NICKNAME);
          $('.introduce').text(data[0][0].INTRODUCE)
          'src','/material/images/jQuery/asimo.png'
          $('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
