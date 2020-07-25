@@ -510,16 +510,16 @@ group+group {
 								<div class="card" style="width: 100%">
 									<img class="card-img-top"
 										th:src="'/studyboard/upload/' + ${list.IMAGE}"
-										alt="Card image" style="width: 100%;">
+										alt="Card image" style="width: 100%;max-height:261px;">
 								</div>
 							</div>
 
 							<div th:case="1" class="col-md-3">
 								<th:block th:each="list2 : ${onlineInfo}">
 									<th:block th:switch="${list2.S_SEQ}">
-										<div th:case="${list.S_SEQ}" class="card" style="width: 100%">
+										<div th:case="${list.S_SEQ}" class="card" style="width: 100%;max-height:261px;">
 											<img class="card-img-top" th:src="${list.IMAGE}"
-												alt="Card image" style="width: 100%;">
+												alt="Card image" style="width: 100%;max-height:261px;">
 											<div class="card-body">
 												<h6 th:text="${list2.L_TITLE}" class="card-title _margin_0"></h6>
 												<p class="card-text _margin_0" th:text="${list2.L_WRITER}"
@@ -557,7 +557,7 @@ group+group {
 										th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
 										data-toggle="modal" data-target="#userInfoModal"> 
 										<input type="hidden" th:value="${list.USER_ID}">
-										<b th:text="${list.NICKNAME}"
+										<b th:text="${list.USER_ID}"
 										style="color: black; margin-right: 10px;"> </b>
 									</a>
 
@@ -721,456 +721,454 @@ group+group {
 	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
 	</div>
 
-	<script>
-		//내용에 이미지 뜨는거 막기 시작
-		$(function() {
-			$('p > img').remove();
-			$('iframe').remove();
-		});
-		//내용에 이미지 뜨는거 막기 끝
-	</script>
+   <script>
+      //내용에 이미지 뜨는거 막기 시작
+      $(function() {
+         $('p > img').remove();
+         $('iframe').remove();
+      });
+      //내용에 이미지 뜨는거 막기 끝
+   </script>
 
-	<script>
-		$(function() {
+   <script>
+      $(function() {
 
-			/* 페이지 0 뜨는거 없애기 시작 */
+         /* 페이지 0 뜨는거 없애기 시작 */
 
-			var _page_button0 = $('.page-item').children().last().text();
+         var _page_button0 = $('.page-item').children().last().text();
 
-			if (_page_button0 == 0) {
-				$('.page-item').children().last().remove();
-			}
-			/*  페이지 0 뜨는거 없애기 끝 */
+         if (_page_button0 == 0) {
+            $('.page-item').children().last().remove();
+         }
+         /*  페이지 0 뜨는거 없애기 끝 */
 
-		});
+      });
 
-		function InfoModal(idx) {
+      function InfoModal(idx) {
 
-			let id = $('.InfoModal' + idx).children(":eq(0)").val();
-			console.log("idididid: " + id);
-			//formData.append("user_id" , this.id);
+         let id = $('.InfoModal' + idx).children().text();
+         //formData.append("user_id" , this.id);
 
-			// let obj = {"user_id" : id}; 
+         // let obj = {"user_id" : id}; 
 
-			let data = {
-				"user_id" : id
-			}
+         let data = {
+            "user_id" : id
+         }
 
-			$.ajax({
-				url : '/ajax/userInfoModal.do',
-				processData : false,
-				contentType : "application/json",
-				cache : false,
-				type : 'POST',
-				data : JSON.stringify(data),
-				success : function(data) {
-					$('.ModalUserName').text(data[0][0].USER_NAME);
-					$('.ModalUserID').text(data[0][0].NICKNAME);
-					$('.introduce').text(data[0][0].INTRODUCE)
-					'src','/material/images/jQuery/asimo.png'
-					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
-					$.each(data[0], function (index, item) {
-						if (item.SKILL_LEVEL === '입문') {
-							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
-						} else if (data[0][index].SKILL_LEVEL === '초급') {
-							$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
-						} else {
-							$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
-						}
-					})
-					
-// 						<td>1578</td>
-// 												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
-					
-					$('._user_board_list').empty();
-					
-					let userBoardList = "";
-					$.each(data[1],function(index, item){
-						userBoardList += "<tr>";
-						userBoardList += "<td>";
-						userBoardList += data[1][index].S_SEQ;
-						userBoardList += "</td>";
-						userBoardList += "<td>";
-						userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
-									+ data[1][index].S_SEQ
-									+ "'>";
-						userBoardList += data[1][index].TITLE;
-						userBoardList += "</a>"	
-						userBoardList += "</td>";
-						userBoardList += "</tr>";
-					});
-					
-					
-					$('._user_board_list').append(userBoardList);
-// 						$('._user_board_list');
-				},
-				error : function(e) {
-					console.log("error:", e);
-				}
-			});
+         $.ajax({
+            url : '/ajax/userInfoModal.do',
+            processData : false,
+            contentType : "application/json",
+            cache : false,
+            type : 'POST',
+            data : JSON.stringify(data),
+            success : function(data) {
+               $('.ModalUserName').text(data[0][0].USER_NAME);
+               $('.ModalUserID').text(data[0][0].USER_ID);
+               $('.introduce').text(data[0][0].INTRODUCE)
+               'src','/material/images/jQuery/asimo.png'
+               $('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+               $.each(data[0], function (index, item) {
+                  if (item.SKILL_LEVEL === '입문') {
+                     $('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
+                  } else if (data[0][index].SKILL_LEVEL === '초급') {
+                     $('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
+                  } else {
+                     $('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
+                  }
+               })
+               
+//                   <td>1578</td>
+//                                     <td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+               
+               $('._user_board_list').empty();
+               
+               let userBoardList = "";
+               $.each(data[1],function(index, item){
+                  userBoardList += "<tr>";
+                  userBoardList += "<td>";
+                  userBoardList += data[1][index].S_SEQ;
+                  userBoardList += "</td>";
+                  userBoardList += "<td>";
+                  userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+                           + data[1][index].S_SEQ
+                           + "'>";
+                  userBoardList += data[1][index].TITLE;
+                  userBoardList += "</a>"   
+                  userBoardList += "</td>";
+                  userBoardList += "</tr>";
+               });
+               
+               
+               $('._user_board_list').append(userBoardList);
+//                   $('._user_board_list');
+            },
+            error : function(e) {
+               console.log("error:", e);
+            }
+         });
 
-		}
-	</script>
+      }
+   </script>
 
-	<script th:inline="javascript">
-	$(function(){
-		
-		//searchType select 박스 설정
-		setSearchTypeSelect();
-		
-	function setSearchTypeSelect(){
-		var $searchTypeSel = $('#searchTypeSel');
-		var $keyword = $('#keyword');
-		
+   <script th:inline="javascript">
+   $(function(){
+      
+      //searchType select 박스 설정
+      setSearchTypeSelect();
+      
+   function setSearchTypeSelect(){
+      var $searchTypeSel = $('#searchTypeSel');
+      var $keyword = $('#keyword');
+      
     /* <![CDATA[ */
-  		var pcs = /*[[${pageMakerb.cri_b.searchType}]]*/;
+        var pcs = /*[[${pageMakerb.cri_b.searchType}]]*/;
     /* ]]> */
-		
-		$searchTypeSel.val(pcs).prop("selected",true);
-		
-		//검색 버튼이 눌리면
-		$('#searchBtn').on('click',function(){
-			searchTypeVal = $searchTypeSel.val();
-			keywordVal = $keyword.val().replace(/ /g,"+");
-			
-			//검색 조건 입력 안했으면 경고창 
-			if(!searchTypeVal){
-				alert("검색 조건을 선택해주세요");
-				$searchTypeSel.focus();
-				return;
-				
-			//검색어 입력 안했으면 검색창
-			}else if(!keywordVal){
-				alert("검색어를 입력해주세요");
-				$('#keyword').focus();
-				return;
-			}
-			
-			if($('.filterRow li').hasClass("filter-active")){ //필터중 하나라도 선택했을때
-				var url = "study_List.do?searchType=" + searchTypeVal
-				+ "&keyword=" + encodeURIComponent(keywordVal);
-			window.location.href = url;
-			}else{
-				var url = "study_List.do?root=search&searchType=" + searchTypeVal
-				+ "&keyword=" + encodeURIComponent(keywordVal);
-			window.location.href = url;
-			}
-		})
-		
-	} //searchType
-	
-	
-	})//func
-	</script>
+      
+      $searchTypeSel.val(pcs).prop("selected",true);
+      
+      //검색 버튼이 눌리면
+      $('#searchBtn').on('click',function(){
+         searchTypeVal = $searchTypeSel.val();
+         keywordVal = $keyword.val().replace(/ /g,"+");
+         
+         //검색 조건 입력 안했으면 경고창 
+         if(!searchTypeVal){
+            alert("검색 조건을 선택해주세요");
+            $searchTypeSel.focus();
+            return;
+            
+         //검색어 입력 안했으면 검색창
+         }else if(!keywordVal){
+            alert("검색어를 입력해주세요");
+            $('#keyword').focus();
+            return;
+         }
+         
+         if($('.filterRow li').hasClass("filter-active")){ //필터중 하나라도 선택했을때
+            var url = "study_List.do?searchType=" + searchTypeVal
+            + "&keyword=" + encodeURIComponent(keywordVal);
+         window.location.href = url;
+         }else{
+            var url = "study_List.do?root=search&searchType=" + searchTypeVal
+            + "&keyword=" + encodeURIComponent(keywordVal);
+         window.location.href = url;
+         }
+      })
+      
+   } //searchType
+   
+   
+   })//func
+   </script>
 
 
 
 
-	<script>
-		$('.filterRow li')
-				.on(
-						"click",
-						function() {
-							var ingOrDone = $('#portfolio-flters-ingOrDone')
-									.children('.filter-active').attr(
-											'data-filter');
-							var level = $('#portfolio-flters-level').children(
-									'.filter-active').attr('data-filter');
-							var language = new Array();
-							$.each($('#portfolio-flters-lan').find(
-									'.filter-active'), function(index, item) {
-								language[index] = item
-										.getAttribute('data-filter');
-							});
-							
+   <script>
+      $('.filterRow li')
+            .on(
+                  "click",
+                  function() {
+                     var ingOrDone = $('#portfolio-flters-ingOrDone')
+                           .children('.filter-active').attr(
+                                 'data-filter');
+                     var level = $('#portfolio-flters-level').children(
+                           '.filter-active').attr('data-filter');
+                     var language = new Array();
+                     $.each($('#portfolio-flters-lan').find(
+                           '.filter-active'), function(index, item) {
+                        language[index] = item
+                              .getAttribute('data-filter');
+                     });
+                     
 
-							var local = $('#portfolio-flters-local').children(
-									'.filter-active').attr('data-filter');
-							var studyContent = $(
-									'#portfolio-flters-studyContent').children(
-									'.filter-active').attr('data-filter');
+                     var local = $('#portfolio-flters-local').children(
+                           '.filter-active').attr('data-filter');
+                     var studyContent = $(
+                           '#portfolio-flters-studyContent').children(
+                           '.filter-active').attr('data-filter');
 
-							let data = {
-								"ingOrDone" : ingOrDone,
-								"level" : level,
-								"language" : language,
-								"local" : local,
-								"studyContent" : studyContent
-							}
+                     let data = {
+                        "ingOrDone" : ingOrDone,
+                        "level" : level,
+                        "language" : language,
+                        "local" : local,
+                        "studyContent" : studyContent
+                     }
 
-							$
-									.ajax({
-										url : '/ajax/studyBoardFilter.do',
-										processData : false,
-										contentType : "application/json",
-										cache : false,
-										type : 'POST',
-										data : JSON.stringify(data),
-										success : function(data) {
+                     $
+                           .ajax({
+                              url : '/ajax/studyBoardFilter.do',
+                              processData : false,
+                              contentType : "application/json",
+                              cache : false,
+                              type : 'POST',
+                              data : JSON.stringify(data),
+                              success : function(data) {
 
-											
-											$('.studyFilter').empty();
-											$('.studyPaging').empty();
-											
-											var perPageNum = data[2].cri_b.perPageNum;
-											var page = data[2].cri_b.page;
-												
-											
-											$
-													.each(
-															data,
-															function(index,
-																	item) {
-																var list_length = data[0].length;
-																var onlineInfo_length = data[1].length;
-															
-															
-																if (index === 0) {
-																	if(list_length != 0){
-																	for (var i = 0; i < list_length; i++) {
-																		let html = "";
-																		var write_date = new Date(
-																				data[0][i].WRITE_DATE);
-																		var deadline = new Date(
-																				data[0][i].DEADLINE);
-																		html += "<div>"
-																		html += "<div class='row'>"
-																		html += "<div class='col-md-3'></div>"
-																		html += "<div class='col-md-4'>"
-																		html += "<span class='badge badge-pill badge-primary' style='margin-right:4px;'>"
-																				+ data[0][i].STATUS
-																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-info' style='margin-right:4px;'>"
-																				+ data[0][i].LEVEL
-																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-secondary' style='margin-right:4px;'>"
-																				+ data[0][i].CATE_LANGUAGE
-																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-success' style='margin-right:4px;'>"
-																				+ data[0][i].PEOPLE
-																				+ "명</span>"
-																		html += "<span class='badge badge-pill badge-warning' style='margin-right:4px;'>"
-																				+ data[0][i].LOC
-																				+ "</span>"
-																		html += "<span class='badge badge-pill badge-light' style='margin-right:4px;'>"
-																				+ data[0][i].CONTENT_KIND
-																				+ "</span></div></div>"
-																		html += "<div class='row'>"
-																		if (data[0][i].CONTENT_KIND == "일반") {
-																			html += "<div class='col-md-3 align-self-center'>"
-																			html += "<div class='card' style='width: 100%'>"
-																			html += "<img class='card-img-top' src='/studyboard/upload/"
-																					+ data[0][i].IMAGE
-																					+ "' alt='Card image' style='width: 100%;'>"
-																			html += "</div></div>"
-																		} else { //온라인
-																			for (var j = 0; j < onlineInfo_length; j++) {
-																								+ data[1][j].S_SEQ)
-																				if (data[1][j].S_SEQ === data[0][i].S_SEQ) {
-																					html += "<div class='col-md-3'>"
-																					html += "<div class='card' style='width: 100%'>"
-																					html += "<img class='card-img-top' src='"
-																							+ data[1][j].L_IMAGE
-																							+ "' alt='Card image'style='width:100%;'>"
-																					html += "<div class='card-body'>"
-																					html += "<h6 class='card-title _margin_0'>"
-																							+ data[1][j].L_TITLE
-																							+ "</h6>"
-																					html += "<p class='card-text _margin_0' style='color: gray; font-size: small;'>"
-																							+ data[1][j].L_WRITER
-																							+ "</p>"//여기원래 L_WRITER였음
-																					html += "<a href='"+data[1][j].L_ADDRESS+"' class='stretched-link'></a>"
-																					html += '<div style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif\') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">'
-																						
-																					html += '<p class="_star"style="WIDTH: '+data[1][j].L_STAR*20+'%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif\') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">'
-																					html += "</p></div>"	
-																					html += "<span>("+data[1][j].L_REVIEW+")</span>" //여기에 수강평 개수?
-																					html += "<b>₩"+data[1][j].L_PRICE+"</b></div></div></div>" //여기에 가격 데이터
-																				}
-																			}
+                                 
+                                 $('.studyFilter').empty();
+                                 $('.studyPaging').empty();
+                                 
+                                 var perPageNum = data[2].cri_b.perPageNum;
+                                 var page = data[2].cri_b.page;
+                                    
+                                 
+                                 $
+                                       .each(
+                                             data,
+                                             function(index,
+                                                   item) {
+                                                var list_length = data[0].length;
+                                                var onlineInfo_length = data[1].length;
+                                             
+                                             
+                                                if (index === 0) {
+                                                   if(list_length != 0){
+                                                   for (var i = 0; i < list_length; i++) {
+                                                      let html = "";
+                                                      var write_date = new Date(
+                                                            data[0][i].WRITE_DATE);
+                                                      var deadline = new Date(
+                                                            data[0][i].DEADLINE);
+                                                      html += "<div>"
+                                                      html += "<div class='row'>"
+                                                      html += "<div class='col-md-3'></div>"
+                                                      html += "<div class='col-md-4'>"
+                                                      html += "<span class='badge badge-pill badge-primary' style='margin-right:4px;'>"
+                                                            + data[0][i].STATUS
+                                                            + "</span>"
+                                                      html += "<span class='badge badge-pill badge-info' style='margin-right:4px;'>"
+                                                            + data[0][i].LEVEL
+                                                            + "</span>"
+                                                      html += "<span class='badge badge-pill badge-secondary' style='margin-right:4px;'>"
+                                                            + data[0][i].CATE_LANGUAGE
+                                                            + "</span>"
+                                                      html += "<span class='badge badge-pill badge-success' style='margin-right:4px;'>"
+                                                            + data[0][i].PEOPLE
+                                                            + "명</span>"
+                                                      html += "<span class='badge badge-pill badge-warning' style='margin-right:4px;'>"
+                                                            + data[0][i].LOC
+                                                            + "</span>"
+                                                      html += "<span class='badge badge-pill badge-light' style='margin-right:4px;'>"
+                                                            + data[0][i].CONTENT_KIND
+                                                            + "</span></div></div>"
+                                                      html += "<div class='row'>"
+                                                      if (data[0][i].CONTENT_KIND == "일반") {
+                                                         html += "<div class='col-md-3 align-self-center'>"
+                                                         html += "<div class='card' style='width: 100%'>"
+                                                         html += "<img class='card-img-top' src='/studyboard/upload/"
+                                                               + data[0][i].IMAGE
+                                                               + "' alt='Card image' style='width: 100%;max-height:261px;'>"
+                                                         html += "</div></div>"
+                                                      } else { //온라인
+                                                         for (var j = 0; j < onlineInfo_length; j++) {
+                                                            if (data[1][j].S_SEQ === data[0][i].S_SEQ) {
+                                                               html += "<div class='col-md-3'>"
+                                                               html += "<div class='card' style='width: 100%max-height:261px;'>"
+                                                               html += "<img class='card-img-top' src='"
+                                                                     + data[1][j].L_IMAGE
+                                                                     + "' alt='Card image'style='width:100%;max-height:261px;'>"
+                                                               html += "<div class='card-body'>"
+                                                               html += "<h6 class='card-title _margin_0'>"
+                                                                     + data[1][j].L_TITLE
+                                                                     + "</h6>"
+                                                               html += "<p class='card-text _margin_0' style='color: gray; font-size: small;'>"
+                                                                     + data[1][j].L_WRITER
+                                                                     + "</p>"//여기원래 L_WRITER였음
+                                                               html += "<a href='"+data[1][j].L_ADDRESS+"' class='stretched-link'></a>"
+                                                               html += '<div style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif\') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+                                                                  
+                                                               html += '<p class="_star"style="WIDTH: '+data[1][j].L_STAR*20+'%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url(\'https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif\') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;">'
+                                                               html += "</p></div>"   
+                                                               html += "<span>("+data[1][j].L_REVIEW+")</span>" //여기에 수강평 개수?
+                                                               html += "<b>₩"+data[1][j].L_PRICE+"</b></div></div></div>" //여기에 가격 데이터
+                                                            }
+                                                         }
 
-																		} //else 끝
-																		html += "<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
-																		html += "<div class='row' style='margin-top: 10px;'>"
-																		//html += "<b style='margin-left: 35px;'>작성자:</b>" 
-																		html += "<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
-																		html += "<b style='color: black; margin-right: 15px;'>작성자 :</b>"
-																		html += '<a href="" class="InfoModal'
-																				+ data[0][i].S_SEQ
-																				+ '" onclick=InfoModal("'
-																				+ data[0][i].S_SEQ
-																				+ '") data-toggle="modal" data-target="#userInfoModal">'
-																		html += "<b style='color: black; margin-right: 10px;'>"+data[0][i].USER_ID +"</b></a></div>"
-																		html += "<div class='col-md-4' style='text-align: center; padding-right: 0px;text-align:right;'>"
+                                                      } //else 끝
+                                                      html += "<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
+                                                      html += "<div class='row' style='margin-top: 10px;'>"
+                                                      //html += "<b style='margin-left: 35px;'>작성자:</b>" 
+                                                      html += "<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
+                                                      html += "<b style='color: black; margin-right: 15px;'>작성자 :</b>"
+                                                      html += '<a href="" class="InfoModal'
+                                                            + data[0][i].S_SEQ
+                                                            + '" onclick=InfoModal("'
+                                                            + data[0][i].S_SEQ
+                                                            + '") data-toggle="modal" data-target="#userInfoModal">'
+                                                      html += "<b style='color: black; margin-right: 10px;'>"+data[0][i].USER_ID +"</b></a></div>"
+                                                      html += "<div class='col-md-4' style='text-align: center; padding-right: 0px;text-align:right;'>"
 
-																		html += "<b>등록일 : "
-																				+ getDateFormet(write_date)
-																				+ "</b></div>"
+                                                      html += "<b>등록일 : "
+                                                            + getDateFormet(write_date)
+                                                            + "</b></div>"
 
-																		html += "<div class='col-md-4' style='text-align: center; padding-left: 0px;'>"
+                                                      html += "<div class='col-md-4' style='text-align: center; padding-left: 0px;'>"
 
-																		html += "<b>마감일 : "
-																				+ getDateFormet(deadline)
-																				+ "</b></div></div>";
+                                                      html += "<b>마감일 : "
+                                                            + getDateFormet(deadline)
+                                                            + "</b></div></div>";
 
-																		html += "<div class='row'>"
-																		html +="<a href='/board/writing_Common_Study_Detail.do?s_seq="+data[0][index].S_SEQ+"&page="+page+"&perPageNum="+perPageNum+"'>"
-																		html += "<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"
-																				+ data[0][i].TITLE
-																				+ "</h2></a></div>"
-																		html += "<div class='row _content' style='margin: 0px 5px 0px 28px; height: 145px;'>"
-																		html += "<xmp-line class='_xmp'>"
-																				+ data[0][i].CONTENT
-																				+ "</xmp-line></div></div></div>"
-																		html += "<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"
+                                                      html += "<div class='row'>"
+                                                      html +="<a href='/board/writing_Common_Study_Detail.do?s_seq="+data[0][index].S_SEQ+"&page="+page+"&perPageNum="+perPageNum+"'>"
+                                                      html += "<h2 class='_title' style='margin-top: 20px; padding-left: 34px;'>"
+                                                            + data[0][i].TITLE
+                                                            + "</h2></a></div>"
+                                                      html += "<div class='row _content' style='margin: 0px 5px 0px 28px; height: 145px;'>"
+                                                      html += "<xmp-line class='_xmp'>"
+                                                            + data[0][i].CONTENT
+                                                            + "</xmp-line></div></div></div>"
+                                                      html += "<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"
 
-																		$(
-																				'.studyFilter')
-																				.append(
-																						html);
-																	/* 문자열 태그 그대로 출력하게 하는 함수== */	
-																	$('._xmp').eq(i)[0].innerText= $('._xmp').eq(
-																			index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
-																	/*== 문자열 태그 그대로 출력하게 하는 함수 */
-																	/* 문자열 자르는 함수 */
-// 																		if ($('._xmp').eq(i)[0].innerText.length > 350) {
-// 																			$('._xmp').eq(i)[0].innerText = $('._xmp').eq(i)[0].innerText.substring(0, 350) + "...";
-// 																				}
-																	/* 문자열 자르는 함수 */
-																	}
-																}else{
-																	//연규야 채워라 비동기
-																	//빈값일떄
-																	let html = "";
-																	
-																	html += "<div style='text-align:center; margin-top:20px;margin-bottom:20px;'>"
-																	html += '<img style="width:150px;" src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png" alt="" />'
-																	html += "</div>"
-																	html += "<div style='text-align:center;'>"
-																	html += "<b style='font-size:x-large'>등록된 게시물이 없습니다</b>"
-																	html += "</div>"
-																	html += "<div style='height: 65px;'>"
-																	html += "</div>"
-																		$(
-																		'.studyFilter')
-																		.append(
-																				html);
-																}
-															}
-															}) //each문 끝
-														
-															
+                                                      $(
+                                                            '.studyFilter')
+                                                            .append(
+                                                                  html);
+                                                   /* 문자열 태그 그대로 출력하게 하는 함수== */   
+                                                   $('._xmp').eq(i)[0].innerText= $('._xmp').eq(
+                                                         index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
+                                                   /*== 문자열 태그 그대로 출력하게 하는 함수 */
+                                                   /* 문자열 자르는 함수 */
+//                                                       if ($('._xmp').eq(i)[0].innerText.length > 350) {
+//                                                          $('._xmp').eq(i)[0].innerText = $('._xmp').eq(i)[0].innerText.substring(0, 350) + "...";
+//                                                             }
+                                                   /* 문자열 자르는 함수 */
+                                                   }
+                                                }else{
+                                                   //연규야 채워라 비동기
+                                                   //빈값일떄
+                                                   let html = "";
+                                                   
+                                                   html += "<div style='text-align:center; margin-top:20px;margin-bottom:20px;'>"
+                                                   html += '<img style="width:150px;" src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png" alt="" />'
+                                                   html += "</div>"
+                                                   html += "<div style='text-align:center;'>"
+                                                   html += "<b style='font-size:x-large'>등록된 게시물이 없습니다</b>"
+                                                   html += "</div>"
+                                                   html += "<div style='height: 65px;'>"
+                                                   html += "</div>"
+                                                      $(
+                                                      '.studyFilter')
+                                                      .append(
+                                                            html);
+                                                }
+                                             }
+                                             }) //each문 끝
+                                          
+                                             
 
-											//페이지 each
-											$
-													.each(
-															data,
-															function(index,
-																	item) {
-																let page = "";
-																if (index === 2) {
-																	page += "<ul class='pager d-flex studyPaging' style='place-content: center; margin-top: 35px; margin-bottom: 140px;'>"
-																	if (data[2].prev === true) {
-																		page += "<li><a href='study_FilterList.do?page="
-																				+ data[2].startPage
-																				- 1
-																				+ "&perPageNum="
-																				+ data[2].cri_b.perPageNum
-																				+ " class='page-link'>&laquo;Previous</a></li>"
-																	}
+                                 //페이지 each
+                                 $
+                                       .each(
+                                             data,
+                                             function(index,
+                                                   item) {
+                                                let page = "";
+                                                if (index === 2) {
+                                                   page += "<ul class='pager d-flex studyPaging' style='place-content: center; margin-top: 35px; margin-bottom: 140px;'>"
+                                                   if (data[2].prev === true) {
+                                                      page += "<li><a href='study_FilterList.do?page="
+                                                            + data[2].startPage
+                                                            - 1
+                                                            + "&perPageNum="
+                                                            + data[2].cri_b.perPageNum
+                                                            + " class='page-link'>&laquo;Previous</a></li>"
+                                                   }
 
-																	for (var i = data[2].startPage; i <= data[2].endPage; i++) {
-																		if (data[2].cri_b.page === i) {
-																			page += "<li class='page-item active'>"
-																			page += "<a class='page-link' href='study_FilterList.do?page="
-																					+ i
-																					+ "&perPageNum="
-																					+ data[2].cri_b.perPageNum
-																					+ "'>"
-																					+ i
-																					+ "</a></li>"
-																		} else {
-																			page += "<li class='page-item'>"
-																			page += "<a class='page-link' href='study_FilterList.do?page="
-																					+ i
-																					+ "&perPageNum="
-																					+ data[2].cri_b.perPageNum
-																					+ "'>"
-																					+ i
-																					+ "</a></li>"
-																		}
-																	}
+                                                   for (var i = data[2].startPage; i <= data[2].endPage; i++) {
+                                                      if (data[2].cri_b.page === i) {
+                                                         page += "<li class='page-item active'>"
+                                                         page += "<a class='page-link' href='study_FilterList.do?page="
+                                                               + i
+                                                               + "&perPageNum="
+                                                               + data[2].cri_b.perPageNum
+                                                               + "'>"
+                                                               + i
+                                                               + "</a></li>"
+                                                      } else {
+                                                         page += "<li class='page-item'>"
+                                                         page += "<a class='page-link' href='study_FilterList.do?page="
+                                                               + i
+                                                               + "&perPageNum="
+                                                               + data[2].cri_b.perPageNum
+                                                               + "'>"
+                                                               + i
+                                                               + "</a></li>"
+                                                      }
+                                                   }
 
-																	if (data[2].next === true
-																			&& data[2].endPage > 0) {
-																		page += "<li><a href='study_FilterList.do?page="
-																				+ data[2].endPage
-																				+ 1
-																				+ "&perPageNum="
-																				+ data[2].cri_b.perPageNum
-																				+ " class='page-link'>&raquo;Next</a></li></ul>"
+                                                   if (data[2].next === true
+                                                         && data[2].endPage > 0) {
+                                                      page += "<li><a href='study_FilterList.do?page="
+                                                            + data[2].endPage
+                                                            + 1
+                                                            + "&perPageNum="
+                                                            + data[2].cri_b.perPageNum
+                                                            + " class='page-link'>&raquo;Next</a></li></ul>"
 
-																	}
+                                                   }
 
-																} //if문
-																$(
-																		'.studyPaging')
-																		.append(
-																				page);
-															})
+                                                } //if문
+                                                $(
+                                                      '.studyPaging')
+                                                      .append(
+                                                            page);
+                                             })
 
-											
-													
-										}, //success
-										error : function(e) {
-											console.log("error:", e);
-										}
-									});
+                                 
+                                       
+                              }, //success
+                              error : function(e) {
+                                 console.log("error:", e);
+                              }
+                           });
 
-						});
+                  });
 
-	</script>
+   </script>
 
-	<script>
-		
-	
-	</script>
+   <script>
+      
+   
+   </script>
 
 
-	<script>
-		$('._content').each(
-				function(index, item) {
+   <script>
+      $('._content').each(
+            function(index, item) {
 
-					$('._content').eq(index)[0].innerText = $('._content').eq(
-							index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
+               $('._content').eq(index)[0].innerText = $('._content').eq(
+                     index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
 
-				});
-	</script>
+            });
+   </script>
 
-	<script>
-		$(function() {
-			a = $('#language').val();
-			var b = a.split(",")
+   <script>
+      $(function() {
+         a = $('#language').val();
+         var b = a.split(",")
 
-			for (var i = 0; i < b.length; i++) {
-				var filter = regExp(b[i]).trim()
-				$('.lan' + filter).addClass('filter-active');
-			}
-		})
+         for (var i = 0; i < b.length; i++) {
+            var filter = regExp(b[i]).trim()
+            $('.lan' + filter).addClass('filter-active');
+         }
+      })
 
-		function regExp(str) {
-			var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
-			//특수문자 검증
-			if (reg.test(str)) {
-				//특수문자 제거후 리턴
-				return str.replace(reg, "");
-			} else {
-				//특수문자가 없으므로 본래 문자 리턴
-				return str;
-			}
-		}
-	</script>
-	<script>
+      function regExp(str) {
+         var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi
+         //특수문자 검증
+         if (reg.test(str)) {
+            //특수문자 제거후 리턴
+            return str.replace(reg, "");
+         } else {
+            //특수문자가 없으므로 본래 문자 리턴
+            return str;
+         }
+      }
+   </script>
+   <script>
  
       //Get the button
       var mybutton = document.getElementById("myBtn");

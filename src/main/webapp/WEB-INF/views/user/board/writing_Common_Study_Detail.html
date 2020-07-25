@@ -231,6 +231,7 @@ keyframes heart-keyframes { 100% {
 		height: 20%;
 	}
 }
+
 ._form_radio {
 	background: #fff;
 	/*    width: 509px; */
@@ -242,6 +243,7 @@ keyframes heart-keyframes { 100% {
 		rgba(0, 0, 0, 0.26);
 	border-radius: 3px;
 }
+
 group+group {
 	margin-top: 20px;
 }
@@ -342,21 +344,37 @@ group+group {
 						th:text="${study.TITLE}"></b></span>
 				</div>
 				<div class="col-md-6 d-flex justify-content-between"
-					style="text-align: right;">
-					<div>
-						<b> 작성자: </b> <span id="user_id" th:text="${study.USER_ID}"></span>
+					style="text-align: right;place-items:flex-end;">
+					<div class="col" style="text-align-last: left;">
+						<div>
+							<b style="margin-right: 10px;"> 작성자: </b> 
+							<a
+										href="" th:classappend="|InfoModal${study.S_SEQ}|"
+										th:onclick="|javascript:InfoModal('${study.S_SEQ}')|"
+										data-toggle="modal" data-target="#userInfoModal"> 
+										<input type="hidden" th:value="${study.USER_ID}">
+										<b th:text="${study.USER_ID}"
+										style="color: black; margin-right: 10px;"> </b>
+									</a>
+						</div>
+
+						<div>
+							<b style="margin-right: 10px;"> 등록일: </b> <span
+								th:text="${#dates.format(study.WRITE_DATE, 'yyyy/MM/dd HH:mm')}"></span>
+						</div>
 					</div>
-					<div>
-						<b> 등록일: </b> <span
-							th:text="${#dates.format(study.WRITE_DATE, 'yyyy/MM/dd HH:mm')}"></span>
+
+					<div class="col" style="text-align-last: left;">
+						<div>
+							<b style="margin-right: 10px;"> 조회수: </b> <span style="font:message-box;" th:text="${study.READNUM}"></span>
+						</div>
+						<div>
+							<b style="margin-right: 10px;"> 마감일: </b> <span
+								th:text="${#dates.format(study.DEADLINE, 'yyyy/MM/dd HH:mm')}"></span>
+						</div>
 					</div>
-					<div>
-						<b> 마감일: </b> <span
-							th:text="${#dates.format(study.DEADLINE, 'yyyy/MM/dd HH:mm')}"></span>
-					</div>
-					<div>
-						<b> 조회수: </b> <span th:text="${study.READNUM}"></span>
-					</div>
+
+
 				</div>
 
 				<!-- <div class="col-md-1" style="align-self: flex-end;">
@@ -430,7 +448,7 @@ group+group {
 								name="" cols="30" rows="10"
 								class="form-control _textarea_readonly" readonly
 								style="background-color: #F5F5F5; resize: none;"></textarea></span>
-						<div class="row" style="margin-top:45px;">
+						<div class="row" style="margin-top: 45px;">
 							<div class="col-6" style="text-align: start;">
 
 								<!-- <a href="#" style="margin-right: 5px;"> <img
@@ -451,8 +469,8 @@ group+group {
 								</label> <span style="margin-left: 50px;"> <strong>좋아요&nbsp;</strong>
 									<strong id="replyTotal" th:text="${study.LIKE_CNT}"
 									class="heartt" style="margin-right: 10px;"></strong>
-								</span> <span style="margin-right: 5px; margin-left: 10px;"> <img
-									style="margin-right: 5px;"
+								</span> <span style=" margin-left: 10px;"> <img
+									style="margin-right: 2px;"
 									src="../../../../resources/images/img/comment-dots-regular.svg">
 								</span> <strong>댓글&nbsp; </strong> <strong id="replyTotal"
 									th:text="${count}" class="dott" style="margin-right: 10px;"></strong>
@@ -487,8 +505,8 @@ group+group {
 								<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 									<!-- <a
 								th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
-									<button id="delete" type="button" class="btn btn-danger" 
-										style="height: 30px; padding-top: 3px;background-color:red;">삭제(관리자)</button>
+									<button id="delete" type="button" class="btn btn-danger"
+										style="height: 30px; padding-top: 3px; background-color: red;">삭제(관리자)</button>
 									<!--        </a> -->
 								</th:block>
 
@@ -559,7 +577,7 @@ group+group {
 								<div th:case="일반" class="card" style="width: 100%">
 									<img class="card-img-top"
 										th:src="'/studyboard/upload/' + ${study.IMAGE}"
-										alt="Card image" style="width: 100%">
+										alt="Card image" style="width: 100%;max-height:350px;">
 								</div>
 
 								<div th:case="온라인강의" class="card" style="width: 100%">
@@ -569,11 +587,11 @@ group+group {
 										<div class="card-body">
 											<h6 class="card-title _margin_0"
 												th:text="${onlineInfo.L_TITLE}"></h6>
-											<p class="card-text _margin_0" 
+											<p class="card-text _margin_0"
 												th:text="${onlineInfo.L_WRITER}"
-												style="color: gray; font-size: small;margin-bottom:0px;">이지스 퍼블리싱</p>
-											<a th:href="${onlineInfo.L_ADDRESS}"
-												class="stretched-link"></a>
+												style="color: gray; font-size: small; margin-bottom: 0px;">이지스
+												퍼블리싱</p>
+											<a th:href="${onlineInfo.L_ADDRESS}" class="stretched-link"></a>
 											<div
 												style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
 												<p class="_star"
@@ -597,14 +615,14 @@ group+group {
 										<a
 											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}">
 											<button type="button" class="btn btn-warning"
-												style="width: 100%;font-weight:bold;">목록으로</button>
+												style="width: 100%; font-weight: bold;">목록으로</button>
 										</a>
 									</th:block>
 
 									<th:block th:if="${page == null && perPageNum == null}">
 										<a th:href="@{/board/study_List.do}">
 											<button type="button" class="btn btn-warning"
-												style="width: 100%;font-weight:bold;">목록으로</button>
+												style="width: 100%; font-weight: bold;">목록으로</button>
 										</a>
 									</th:block>
 
@@ -616,12 +634,12 @@ group+group {
 										<th:block th:case="0">
 											<th:block th:if="${study.STATUS == '모집중'}">
 												<button id="apply" type="submit" class="btn btn-success"
-													style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원하기</button>
+													style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e; font-weight: bold;">지원하기</button>
 											</th:block>
 										</th:block>
 										<th:block th:case="1">
 											<button id="applycancel" type="submit" class="btn"
-												style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원취소하기</button>
+												style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e; font-weight: bold;">지원취소하기</button>
 										</th:block>
 									</th:block>
 									<!-- 이거는 사용자 권한 -->
@@ -631,7 +649,7 @@ group+group {
 											class="_to_the_list_a_tag">
 											<button type="button"
 												class="btn btn-warning _to_the_list_button"
-												style="width: 100%;font-weight:bold;">목록으로</button>
+												style="width: 100%; font-weight: bold;">목록으로</button>
 										</a>
 									</div>
 								</div>
@@ -664,7 +682,7 @@ group+group {
 	</div>
 	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
 	</div>
-	
+
 	<input th:class="${heart}" type="hidden" id="heartlike">
 	<input th:class="${sessionid}" type="hidden" id="userId">
 	<input th:class="${commentList}" type="hidden" id="commentList">
@@ -674,7 +692,7 @@ group+group {
 
 	<!-- alert창 꾸미기 -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	
+
 	<script>
       $(function() {
          
@@ -1103,13 +1121,13 @@ group+group {
          
          
           if($('#fileHas1').children().children().children().hasClass("_file_name1")){
-		     if($('._file_name1')[0].innerText.length >= 15){
-		         $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,15) + "...";
+		     if($('._file_name1')[0].innerText.length >= 13){
+		         $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,13) + "...";
 		     }
           }
           if($('#fileHas2').children().children().children().hasClass("_file_name2")){   
-	          if($('._file_name2')[0].innerText.length >= 15){
-	             $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
+	          if($('._file_name2')[0].innerText.length >= 13){
+	             $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,13) + "...";
 	          }
           }
           
@@ -1375,7 +1393,7 @@ group+group {
  </script>
 
 
-<script>
+	<script>
 function InfoModal(idx) {
 
 	let id = $('.InfoModal' + idx).children().text();
@@ -1443,7 +1461,7 @@ function InfoModal(idx) {
 }
 </script>
 
-	
+
 
 </body>
 
