@@ -442,7 +442,7 @@ group+group {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					$('.ModalUserName').text(data[0][0].USER_NAME);
+					$('.ModalUserName').text(data[0][0].USER_ID);
 					$('.ModalUserID').text(data[0][0].NICKNAME);
 					$('.introduce').text(data[0][0].INTRODUCE)
 					'src','/material/images/jQuery/asimo.png'
