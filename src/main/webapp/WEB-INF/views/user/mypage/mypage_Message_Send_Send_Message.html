@@ -160,14 +160,18 @@ body {
 									  title: "쪽지보내기 성공",
 									  icon: "success",
 									  buttons: true
-									  
-									})
-									toggleid = true;
+									}).then((willDelete) => {
+										 if (willDelete) {
+											//location.href="/message/mypage_Message_From_Board.do";
+											toggleid = true;
+										}
+									 });
+									
 								
 							//$('.idcheck').html("사용하셔도 됩니다.")
-							toggleid = true;
+							//toggleid = true;
 							send();
-							location.href="/message/mypage_Message_From_Board.do";
+						
 						}
 					},
 					error : function(request, status, error) {
@@ -197,13 +201,9 @@ body {
 		}
 
 		function onOpen(evt) {
-			console.log("onOpen(evt)");
 		}
 
 		function onMessage(evt) {
-			/* console.log("evt :" + evt);
-			var data = evt.data;
-			appendMessage(data); */
 		}
 
 		function onClose(evt) {

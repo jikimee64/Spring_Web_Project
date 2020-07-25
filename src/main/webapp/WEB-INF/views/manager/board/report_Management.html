@@ -203,18 +203,10 @@ td:focus {
 		});
 	</script>
 
-	<script>
-	$(function() {
-		function declareYes() {
-			console.log("sss")
-		}
-	});
-	</script>
 
 	<script>
 	function declareModal(bl_seq) {
 
-		console.log("신고번호 : " + bl_seq);
 		// let obj = {"user_id" : id}; 
 
 		let data = {
@@ -231,7 +223,6 @@ td:focus {
 			success : function(data) {
 				$('#declareButtons').empty();
 			/* 	$('#message').empty(); */
-				console.log(data);
 				var write_date = new Date(data.WRITE_DATE);
 						
 				let html = "";
@@ -245,7 +236,6 @@ td:focus {
 				
 				if(data.PLACE ==='쪽지 게시판'){
 					$('#study_blamed_title').hide();
-					console.log('이오 : ' + data.BOARD_SEQ)
 					$('#m_seq').val(data.BOARD_SEQ);
 					$('#bl_seq').val(data.BL_SEQ);
 					$('#target').val(data.BL_TARGET_ID);
@@ -329,7 +319,6 @@ td:focus {
 	
 	function messageCheck(){
 		var m_seq = $('#m_seq').val();
-		console.log('나는 메시지번호' + m_seq);
 		
 		 let data = {
 					"m_seq" : m_seq
@@ -343,7 +332,6 @@ td:focus {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					console.log(data);
 					swal({
 						  title: "쪽지 내용",
 						  text: data.CONTENT,
@@ -362,8 +350,6 @@ td:focus {
 		
 		var bl_seq = $('#bl_seq').val();
 		var bl_target_id = $('#target').val();
-		console.log('나ㅣ는 퉁퉁이' + bl_seq);
-		console.log('나ㅣ는 퉁퉁이22 ' + bl_target_id);
 		
 		 let data = {
 			"bl_seq" : bl_seq,
@@ -399,7 +385,6 @@ td:focus {
 	
 	function declareNo() {
 		var bl_seq = $('#bl_seq').val();
-		console.log('나ㅣ는 퉁퉁이' + bl_seq);
 		
 		 let data = {
 			"bl_seq" : bl_seq,
