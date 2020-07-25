@@ -988,7 +988,7 @@ group+group {
                                                          }
 
                                                       } //else 끝
-                                                      html += "<div class='col-md-9' style='padding: 3px 30px 30px 30px;'>"
+                                                      html += "<div class='col-md-9' style='padding: 3px 30px;'>"
                                                       html += "<div class='row' style='margin-top: 10px;'>"
                                                       //html += "<b style='margin-left: 35px;'>작성자:</b>" 
                                                       html += "<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
@@ -998,6 +998,7 @@ group+group {
                                                             + '" onclick=InfoModal("'
                                                             + data[0][i].S_SEQ
                                                             + '") data-toggle="modal" data-target="#userInfoModal">'
+                                                      html += '<input type="hidden" id="user_id" value="'+data[0][i].USER_ID+'">';
                                                       html += "<b style='color: black; margin-right: 10px;'>"+data[0][i].NICKNAME +"</b></a></div>"
                                                       html += "<div class='col-md-4' style='text-align: center; padding-right: 0px;text-align:right;'>"
 
