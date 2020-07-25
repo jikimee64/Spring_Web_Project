@@ -54,7 +54,7 @@ public class MessageController {
 			//페이징
 			PageMaker_Board pageMakerb = new PageMaker_Board();
 			pageMakerb.setCri_b(cri_b);
-			pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
+			pageMakerb.setTotalCount(mservice.getFromMyMessageCount(user_id));
 			
 			
 			// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
@@ -112,7 +112,7 @@ public class MessageController {
 		//페이징
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
-		pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
+		pageMakerb.setTotalCount(mservice.getToMyMessageCount(user_id));
 		
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
 		// 받은 쪽지 뿌려주기

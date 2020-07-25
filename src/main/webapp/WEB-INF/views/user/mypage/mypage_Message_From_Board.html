@@ -398,15 +398,16 @@ group+group {
 									}
 														
 									$.ajax({
-										url : '/ajax/deleteMessage.do',
+										url : '/ajax/deleteFromMessage.do',
 										processData : false,
 										contentType : "application/json",
 										cache : false,
 										type : 'POST',
 										data : JSON.stringify(data),
 										success : function(data) {
-											$('#parent').remove();
-										 $('#hr'+data.M_SEQ) 
+										//$('#parent').remove();
+										 //$('#hr'+data.M_SEQ) 
+										 location.href="/message/mypage_Message_From_Board.do"
 										},
 										error : function(e) {
 											console.log("error:", e);

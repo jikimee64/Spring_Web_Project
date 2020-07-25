@@ -22,8 +22,11 @@ public interface MessageService {
 	//목록
 	public List<Message> getListMessage(String userid);
 	
-	//내 메세지 갯수
-	public int getMyMessageCount(String user_id);
+	//내 메세지 갯수(받은편지함)
+	public int getFromMyMessageCount(String user_id);
+	
+	//내 메세지 갯수(보낸편지함)
+	public int getToMyMessageCount(String user_id);
 	
 	//받은목록+페이징
 	public List<HashMap<String, Object>> getMessageList(HashMap<String, Object> map);

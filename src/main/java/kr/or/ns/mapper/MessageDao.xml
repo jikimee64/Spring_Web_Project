@@ -44,10 +44,17 @@
 
 
 
-<!-- 내 메세지 총 갯수 -->
-	<select id="getMyMessageCount" resultType="Integer">
+<!-- 내 메세지 총 갯수(받은) -->
+	<select id="getFromMyMessageCount" resultType="Integer">
 		<![CDATA[
-		select count(*) from message where receptionid = #{user_id}
+		select count(*) from message where receptionid = #{user_id} and type = '수신'
+		]]>
+	</select>
+	
+	<!-- 내 메세지 총 갯수(보낸) -->
+	<select id="getToMyMessageCount" resultType="Integer">
+		<![CDATA[
+		select count(*) from message where senderid = #{user_id} and type = '발신'
 		]]>
 	</select>
 
