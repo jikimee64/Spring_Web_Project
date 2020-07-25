@@ -116,8 +116,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	//소셜 로그인 회원가입
 	@Override
+	@Transactional
 	public int socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
-		System.out.println("서비스오나요");
+		System.out.println("소셜서비스오나요");
 		System.out.println("유저정보" + users.getUser_id());
 		System.out.println("기타 : " + users.getIntroduce());
 
@@ -131,6 +132,7 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("받아온 이미지파일이름" + imagefile);
 			filename = users.getFile().getOriginalFilename();
 			System.out.println("파일 이름 : " + filename);
+			System.out.println("경로" + request.getServletContext().getRealPath("/userboard/upload")); 
 			path = request.getServletContext().getRealPath("/userboard/upload");
 			fpath = path + "\\" + filename;
 			users.setProfile_img(filename);

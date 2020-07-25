@@ -361,41 +361,11 @@ body {
 				&nbsp;&nbsp;
 
 				<th:block th:if="${uemail != null}">
-					<div class="value">
-						<div class="row" style="padding-left: 100px; height: 63px;">
-
-							<!-- 	<div class="col-2 _label_center"
-							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="place-self: center">아이디</label>
-						</div> -->
-
 
 
 							<input type="hidden" th:value="${uemail}" name="user_id"
 								id="user_id" /> <input type="hidden" th:value="${snstype}"
 								name="snstype" id="snstype" />
-
-
-							<div class="col-2 _label_center"
-								style="padding-top: 7px; text-align: right;">
-								<label class="label-input100" for="pwd"
-									style="place-self: center">아이디</label>
-							</div>
-
-							<div class="col-7">
-								<input type="text" class="input--style-6" id="user_id"
-									placeholder="아이디를 입력해주세요." name="user_id" required /> <span
-									class="idcheck hide"></span>
-							</div>
-
-							<div class="col-3" style="padding-left: 0px">
-								<button class="login100-form-btn" id="IdCheck"
-									style="border: 1px solid #18d26e; height: 40px; width: 78px; transform: translateX(-13px);">중복체크</button>
-							</div>
-						</div>
-					</div>
-				&nbsp;&nbsp;
 
 
 				<div class="value">
