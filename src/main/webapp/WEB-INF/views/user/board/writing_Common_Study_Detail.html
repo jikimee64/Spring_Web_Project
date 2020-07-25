@@ -800,9 +800,9 @@ group+group {
                            
                            html += "<blockquote class='OComment'><a href='' class='InfoModal"
 
-                                 + obj.R_NAME
+                                 + obj.R_SEQ
                                  + "' onclick=InfoModal('"
-                                 + obj.R_NAME
+                                 + obj.R_SEQ
 
                                  +"') data-toggle='modal' data-target='#userInfoModal'>"
                            html += "<b style='"+depthcss+ "'>" + obj.R_NAME + "</b></a>"  + " ";
@@ -1441,6 +1441,7 @@ function InfoModal(idx) {
 			console.warn(data[0][0].USER_NAME);
 			console.warn(data[0][1].USER_NAME);
 			$('.ModalUserName').text(data[0][0].USER_NAME);
+			$('.ModalUserID').text(data[0][0].USER_ID);
 			$('.introduce').text(data[0][0].INTRODUCE)
 			'src','/material/images/jQuery/asimo.png'
 			$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);

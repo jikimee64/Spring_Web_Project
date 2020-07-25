@@ -36,10 +36,16 @@ body {
 	background-color: rgb(230, 244, 232) !important;
 }
 
-._message_hover:hover {
+._status_hover:hover {
+	box-shadow: 0 0 6px forestgreen !important;
+	border-radius:50%;
+}
+._user_info_hover:hover {
 	box-shadow: 0 0 6px red !important;
 	border-radius:50%;
 }
+
+
 
 /* .container::-webkit-scrollbar-thumb {
 	background-color:;
@@ -121,10 +127,10 @@ body {
 
 				<div class="col-md-4 pl-0" style="align-self: center;">
 					<b style="font-size: larger; margin-left: 20px;"
-						th:text="${user.nickname}"></b> <a class="_message_hover"
+						th:text="${user.nickname}"></b> <a class="_user_info_hover"
 						th:href="@{/mypage/MyPageUserDetail.do}"> <img
 						src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
-						class="mb-1 _message_hover" alt="" style="height: 27px;">
+						class="mb-1 _user_info_hover" alt="" style="height: 30px;">
 					</a> 
 					<hr
 						style="border: solid 1px; margin-top: 0px; margin-bottom: 5px; width: 99%;" />
@@ -225,8 +231,8 @@ body {
 									class="badge badge-pill "
 										th:text="|${studylist.ACCEPT_STATUS}|"></span><a
 										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"><img
-										src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg"
-										class="mb-1 _message_hover" alt="" style="height: 27px;">
+										src="https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png"
+										class="mb-1 _status_hover" alt="" style="height: 30px;">
 									</a></div><br /> <a th:href='@{/board/my_Writing_Common_Study_Detail.do(s_seq=${studylist.S_SEQ})}'>
 										<div class="_title" style="margin-top: 9px;">
 											<b><span th:text="${studylist.TITLE}"
@@ -250,7 +256,7 @@ body {
 								</div>
 							</div>
 								<hr
-								style="border: solid 1px; margin-top: 0px; margin-bottom: 0px;" />
+								style="border: solid 1px; margin-top: 0px; margin-bottom: 0px; width:99%;" />
 						</div>
 						
 						
@@ -458,12 +464,12 @@ body {
 																	/* html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
 																			+ data[index].ACCEPT_STATUS
 																			+ "</span>"; */
-																	html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
+																	html += "<a class='_status_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
 																			+ data[index].S_SEQ
 																			+ "'>";
 
 																	/* html += "<a href = '/board/board.Support_Status.do'>"; */
-																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;transform:translateY(-3px);'></a>";
+																	html += "<img src='https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png' class='mb-1 _status_hover' alt='' style='height: 30px;transform:translateY(-3px);'></a>";
 																	html += " ";
 																	html += "<div style='font-size:small; font-weight:bold;'>";
 																	html += "<span style='margin-right:15px;'>"
@@ -495,7 +501,7 @@ body {
 																	html += "</div>"
 																	html += "</div>";
 																	html += "</div>";
-																	html += "<hr style='border: solid 1px; margin-top: 0px;margin-bottom:0px; width:96%;' />";
+																	html += "<hr style='border: solid 1px; margin-top: 0px;margin-bottom:0px; width:99%;' />";
 																	$(
 																			'#recruting_study')
 																			.append(
@@ -549,7 +555,7 @@ body {
 																	let html = "";
 
 																	html += "<div>";
-																	html += "<hr style='border: solid 1px; margin-top: 0px; margin-bottom:0px; width:99%;' />";
+																	
 																	html += "<div class='row p-3'>";
 																	html += "<div class='col-md-1' style='text-align: center;'>";
 																	html += "<p style='font-size: xx-large; font-weight: bold;'>"
@@ -584,10 +590,10 @@ body {
 																	html += "<span class='badge badge-pill badge-light'>"
 																			+ data[index].ACCEPT_STATUS
 																			+ "</span>";
-																	html += "<a class='_message_hover' href='/mypage/SupportStatus.do?s_seq="
+																	html += "<a class='_status_hover' href='/mypage/SupportStatus.do?s_seq="
 																			+ data[index].S_SEQ
 																			+ "'>";
-																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 27px;'></a><br/>";
+																	html += "<img src='https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png' class='mb-1 _status_hover' alt='' style='height: 30px;'></a><br/>";
 																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
 																			+ data[index].S_SEQ
 																			+ "'>";
@@ -608,6 +614,7 @@ body {
 																	html += "</div>"
 																	html += "</div>";
 																	html += "</div>";
+																	html += "<hr style='border: solid 1px; margin-top: 0px; margin-bottom:0px; width:99%;' />";
 																	$(
 																			'#recruting_study')
 																			.append(

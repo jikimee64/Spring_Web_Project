@@ -47,9 +47,9 @@ public class ManagerController {
 		int membercount = service.membercount();
 		model.addAttribute("membercount", membercount);
 		
-		//스터디 언어로 가장 많이 선택된 언어
-		String bestLanguage = service.bestLanguage();
-		model.addAttribute("bestLanguage", bestLanguage);
+		//현재 가지고온 온라인 강의 개수 
+		int result = service.getLectureCount();
+		model.addAttribute("bestLanguage", result);
 		
 		//가장 많이 스터디가 개설된 지역
 		String bestLocation = service.bestLocation();

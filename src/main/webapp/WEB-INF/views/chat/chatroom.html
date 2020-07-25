@@ -168,6 +168,23 @@ group+group {
 	color: #fff;
 	border-radius: 5px;
 }
+@media(max-width:992px){
+	._intro{
+		height:auto !important;
+	}
+}
+@media(max-width:992px){
+	#profile_img{
+		width:50px !important;
+		height:50px !important;
+	}
+}
+@media(max-width:768px){
+	._intro_img{
+		transform:translateY(-65px) !important;
+	}
+}
+
 
 </style>
 
@@ -420,6 +437,7 @@ group+group {
 				console.warn(data[0][0].USER_NAME);
 				console.warn(data[0][1].USER_NAME);
 				$('.ModalUserName').text(data[0][0].USER_NAME);
+				$('.ModalUserID').text(data[0][0].USER_ID);
 				$('.introduce').text(data[0][0].INTRODUCE)
 				'src','/material/images/jQuery/asimo.png'
 				$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
