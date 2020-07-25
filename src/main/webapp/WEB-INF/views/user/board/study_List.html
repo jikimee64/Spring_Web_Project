@@ -488,7 +488,7 @@ group+group {
 				<div th:each="list : ${list}">
 					<div class="row">
 						<div class="col-md-3"></div>
-						<div class="col-md-4">
+						<div class="col-md-5">
 							<!-- 여기에 뱃지 -->
 							<span class="badge badge-pill badge-primary"
 								th:text="${list.STATUS}"></span> <span
@@ -500,6 +500,8 @@ group+group {
 								class="badge badge-pill badge-warning" th:text="${list.LOC}"></span>
 							<span class="badge badge-pill badge-light"
 								th:text="${list.CONTENT_KIND}"></span>
+						</div>
+						<div class="col">
 						</div>
 
 					</div>
@@ -935,7 +937,7 @@ group+group {
                                                       html += "<div>"
                                                       html += "<div class='row'>"
                                                       html += "<div class='col-md-3'></div>"
-                                                      html += "<div class='col-md-4'>"
+                                                      html += "<div class='col-md-5'>"
                                                       html += "<span class='badge badge-pill badge-primary' style='margin-right:4px;'>"
                                                             + data[0][i].STATUS
                                                             + "</span>"
@@ -953,7 +955,10 @@ group+group {
                                                             + "</span>"
                                                       html += "<span class='badge badge-pill badge-light' style='margin-right:4px;'>"
                                                             + data[0][i].CONTENT_KIND
-                                                            + "</span></div></div>"
+                                                            + "</span></div>";
+                                                      html +="<div class='col'></div>"      
+                                                      html +="</div>"
+                                                            
                                                       html += "<div class='row'>"
                                                       if (data[0][i].CONTENT_KIND == "일반") {
                                                          html += "<div class='col-md-3 align-self-center'>"
