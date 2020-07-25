@@ -261,8 +261,10 @@ group+group {
 						<!-- @{/ajax/userInfoModal.do=(senderid=${list.senderid})} -->
 						<a href="" th:classappend="|InfoModal${list.M_SEQ}|"
 							th:onclick="|javascript:InfoModal('${list.M_SEQ}')|"
-							data-toggle="modal" data-target="#userInfoModal"> <span
-							th:text="${list.SENDERID}"></span>
+							data-toggle="modal" data-target="#userInfoModal"> 
+							<input type="hidden" th:value="${list.USER_ID}">
+							<span
+							th:text="${list.NICKNAME}"></span>
 						</a>
 					</div>
 
@@ -456,7 +458,7 @@ group+group {
 	<script>
 		function InfoModal(idx) {
 
-			let id = $('.InfoModal' + idx).children().text();
+			let id = $('.InfoModal' + idx).children(":eq(0)").val();
 			//formData.append("user_id" , this.id);
 
 			// let obj = {"user_id" : id}; 
@@ -474,7 +476,7 @@ group+group {
 				data : JSON.stringify(data),
 				success : function(data) {
 					$('.ModalUserName').text(data[0][0].USER_NAME);
-					$('.ModalUserID').text(data[0][0].USER_ID);
+					$('.ModalUserID').text(data[0][0].NICKNAME);
 					$('.introduce').text(data[0][0].INTRODUCE)
 					'src','/material/images/jQuery/asimo.png'
 					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);

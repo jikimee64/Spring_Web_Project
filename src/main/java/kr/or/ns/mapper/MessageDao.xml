@@ -55,7 +55,9 @@
 <!--  받은목록 페이징 -->
 	<select id="getMessageList" resultType="hashmap" parameterType="hashmap" >
 	   <![CDATA[
-		select * from message 
+		select * from message
+		left outer join users
+		on message.senderid = users.user_id 
 		where receptionid = #{user_id}  and type = '수신'
 		ORDER BY m_seq desc 
 		limit #{pageStart}, #{perPageNum}
@@ -66,6 +68,8 @@
 	<select id="getSendMessageList" resultType="hashmap" parameterType="hashmap" >
 	   <![CDATA[
 		select * from message 
+		left outer join users
+		on message.receptionid = users.user_id 
 		where senderid = #{user_id}  and type = '발신'
 		ORDER BY m_seq desc 
 		limit #{pageStart}, #{perPageNum}
@@ -73,15 +77,20 @@
 	</select> 
 
 
-
 	<select id="getMessage" parameterType="String"
-		resultType="kr.or.ns.vo.Message">
-		select * from message where m_seq = #{m_seq}
+		resultType="hashmap">
+		select * from message 
+		left outer join users
+		on message.receptionid = users.user_id 
+		where m_seq = #{m_seq}
 	</select>
 
 	<select id="sendListMessage" parameterType="String"
-		resultType="kr.or.ns.vo.Message">
-		select * from message where senderid = #{userid} and type = '발신' ORDER BY m_seq desc
+		resultType="hashmap">
+		select * from message 
+		left outer join users
+		on message.receptionid = users.user_id 
+		where senderid = #{userid} and type = '발신' ORDER BY m_seq desc
 	</select>
 	
 	<delete id="deleteSendMessageOne">

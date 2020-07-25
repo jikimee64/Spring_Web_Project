@@ -10,7 +10,7 @@ import kr.or.ns.vo.Message;
 public interface MessageService {
 	public int getmsgcount(String userid);
 	public int insertMessage(Message message);
-	public Message getMessage(String m_seq);
+	public HashMap<String, Object> getMessage(String m_seq);
 	
 	//보낸목록
 	public List<Message> sendListMessage(String userid);

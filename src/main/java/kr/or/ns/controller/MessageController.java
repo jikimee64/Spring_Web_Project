@@ -43,8 +43,6 @@ public class MessageController {
 //	
 	
 	
-	
-	
 	//받은 쪽지 목록+페이징
 		@RequestMapping("mypage_Message_From_Board.do")
 		public String myMessageFromBoardPage(Criteria_Board cri_b, Principal principal, Model model) {
@@ -149,24 +147,13 @@ public class MessageController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// 받은편지함 -> 상세보기
 	@RequestMapping("mypage_Message_From_Detail_Board.do")
 	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
 		System.out.println("1 컨트롤러 시작해욤:");
-		Message message = mservice.getMessage(m_seq);
+		HashMap<String, Object> message = mservice.getMessage(m_seq);
 		model.addAttribute("message", message);
 
-		
 		
 		System.out.println("4.컨트롤러: "+message);
 		System.out.println("받은 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
@@ -177,7 +164,7 @@ public class MessageController {
 	@RequestMapping("mypage_Message_Send_Detail_Board.do")
 	public String mypageMessageSendDetailBoardPage(String m_seq, Model model) {
 
-		Message message = mservice.getMessage(m_seq);
+		HashMap<String, Object> message = mservice.getMessage(m_seq);
 		model.addAttribute("message", message);
 
 		System.out.println("보낸 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");

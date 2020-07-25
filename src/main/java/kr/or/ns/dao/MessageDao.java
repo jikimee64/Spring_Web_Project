@@ -15,7 +15,7 @@ public interface MessageDao {
 	public int insertSendMessage(Message message);
 
 	// 받은 편지 상세보기
-	public Message getMessage(String m_seq);
+	public HashMap<String, Object> getMessage(String m_seq);
 
 	// 보낸 쪽지함 목록
 	public List<Message> sendListMessage(String userid);

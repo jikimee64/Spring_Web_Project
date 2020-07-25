@@ -40,7 +40,7 @@ body {
 	<!-- 받은 쪽지함 상세보기 -->
 	<div th:replace="/user/includes/header :: header"></div>
 
-	<input id="m_seq" type="hidden" th:value="${message.m_seq}" />
+	<input id="m_seq" type="hidden" th:value="${message.M_SEQ}" />
 
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 	<main id="main">
@@ -79,7 +79,7 @@ body {
 				<div class="col-md-7"
 					style="text-align: right; padding-right: 28px; padding-top: 8px;">
 					<a
-						th:href="@{/message/mypage_Message_From_Send_Message.do(senderid=${message.senderid})}">
+						th:href="@{/message/mypage_Message_From_Send_Message.do(senderid=${message.SENDERID})}">
 						<button type="button" class="btn btn-success"
 							style="width: 80px; margin-top: 30px;font-weight:bold;">답장</button>
 					</a>
@@ -104,7 +104,7 @@ body {
 					</span>
 				</div>
 				<div class="col-md-10" style="align-self: center;">
-					<span id= "user_id" th:text="${message.senderid}"></span>
+					<span id= "user_id" th:text="${message.NICKNAME}"></span>
 				</div>
 			</div>
 			<div class="row"
@@ -116,14 +116,14 @@ body {
 					</span>
 				</div>
 				<div class="col-md-10" style="align-self: center;">
-					<span th:text="${#dates.format(message.senddate,'yyyy/MM/dd HH:mm')}">ㅇㅇ</span>
+					<span th:text="${#dates.format(message.SENDDATE,'yyyy/MM/dd HH:mm')}">ㅇㅇ</span>
 				</div>
 			</div>
 			<div class="row"
 				style="margin: 20px 30px 0px 30px; position: relative; top: -90px;">
 				<textarea class="form-control" id="msg" cols="30" rows="10"
 					style="width: 100%; margin-left: 32px; margin-right: 32px; resize:none; background-color: #f0f0f0;"
-					readonly placeholder="내용을 입력해주세요" th:text="${message.content}"></textarea>
+					readonly placeholder="내용을 입력해주세요" th:text="${message.CONTENT}"></textarea>
 			</div>
 		</div>
 	</div>

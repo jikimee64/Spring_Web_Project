@@ -128,10 +128,10 @@ public class MessageServiceImpl implements MessageService {
 	// 편지 상세보기
 	@Transactional
 	@Override
-	public Message getMessage(String m_seq) {
+	public HashMap<String, Object> getMessage(String m_seq) {
 
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
-		Message message = null;
+		HashMap<String, Object> message = null;
 		try {
 			
 			System.out.println("2 서비스 왓어욤:"+message);
