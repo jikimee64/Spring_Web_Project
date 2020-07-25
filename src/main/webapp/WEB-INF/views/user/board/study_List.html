@@ -556,7 +556,7 @@ group+group {
 										href="" th:classappend="|InfoModal${list.S_SEQ}|"
 										th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
 										data-toggle="modal" data-target="#userInfoModal"> 
-										<input type="hidden" th:value="${list.USER_ID}">
+										<input type="hidden" id="user_id" th:value="${list.USER_ID}">
 										<b th:text="${list.USER_ID}"
 										style="color: black; margin-right: 10px;"> </b>
 									</a>
