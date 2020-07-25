@@ -71,13 +71,13 @@
 					
 						<th:block sec:authorize="hasRole('ROLE_USER')">
 							
-						 <th:block th:if="${session.currentUser.profile_img} != null">
+						<!--  <th:block th:if="${session.currentUser.profile_img} != null">
 							<a href="/mypage/mypage.do" style="padding-left: 20px;"> 
 							 <img
 								th:src="'/userboard/upload/' + ${session.currentUser.profile_img}"
 								alt="" style="height: 50px; width:50px; border-radius: 50%; background-color:white;"> 
 							</a> 
-						</th:block> 
+						</th:block>  -->
 							
 							<!-- <span sec:authentication="principal"></span> -->
 							<li class="drop-down"

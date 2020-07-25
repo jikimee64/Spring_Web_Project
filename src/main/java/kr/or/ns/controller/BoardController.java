@@ -616,7 +616,9 @@ public class BoardController {
 			Map<String, Object> onlineInfo = service.onlineDetailInfo(s_seq);
 			model.addAttribute("study", study);
 			model.addAttribute("onlineInfo", onlineInfo);
-
+			model.addAttribute("page", 1);
+			model.addAttribute("perPageNum", 10);
+			
 			List<Map<String, Object>> commentList = service.getComment(s_seq);
 			int count = service.getReplyCnt(s_seq);
 			model.addAttribute("count", count);
