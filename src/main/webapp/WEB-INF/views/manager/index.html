@@ -206,7 +206,6 @@ tspan {
 			url : "/ajax/mainChart.do",
 			dataType : "json", //POINT
 			success : function(data) {
-				console.log('data사이즈 : ' + data.length);
 				var barChartData = {
 					labels : [],
 					//type: 'bar',
@@ -280,15 +279,11 @@ tspan {
 			dataType : "json", //POINT
 			success : function(data) {
 				var text = "";
-				console.log('데이터 사이즈 ' + data.length);
-				console.log('00 ' + data[0].count);
-				console.log('11 ' + data[1].count);
 				for (var i = 0; i < data.length; i++) {
 					for (var z = 0; z < data[i].count; z++) {
 						text += data[i].cate_language + ' ';
 					}
 				}
-				console.log('text : ' + text);
 				var lines = text.split(/[,\. ]+/g)
 				data = Highcharts.reduce(lines, function(arr, word) {
 					var obj = Highcharts.find(arr, function(obj) {
