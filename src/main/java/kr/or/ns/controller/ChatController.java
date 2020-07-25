@@ -83,6 +83,9 @@ public class ChatController {
 		String ch_seq = (String) params.get("ch_seq");
 		String user_id = principal.getName();
 
+		Users user = mservice.getUsers(user_id);
+		String nickname = user.getNickname();
+		
 		ChatRoomMember cm = new ChatRoomMember();
 		cm.setCh_seq(Integer.parseInt(ch_seq));
 		cm.setUser_id(user_id);
@@ -97,6 +100,7 @@ public class ChatController {
 		model.addAttribute("master", master);
 		model.addAttribute("chatroom", chatroom);
 		model.addAttribute("user_id", user_id);
+		model.addAttribute("nickname", nickname);
 		model.addAttribute("datestr", datestr);
 
 		return "chat/chatroom";
