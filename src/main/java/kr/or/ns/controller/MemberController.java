@@ -287,7 +287,6 @@ public class MemberController {
 				return "user/member/join";
 
 			} else if (check == 1 && after_enabled == 0) {
-				System.out.println("구글구글권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
 				redirect.addFlashAttribute("errormsg", msg);
 				return "redirect:/member/normallogin.do";
