@@ -259,6 +259,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		parameterType="kr.or.ns.vo.Criteria_Board">
 		SELECT *
 		FROM STUDY_BOARD
+		left outer join users
+		on study_board.user_id = users.user_id
 		left outer join language_category
 		on study_board.lan_seq = language_category.lan_seq
 		left outer join location
