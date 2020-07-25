@@ -364,6 +364,7 @@ td:focus {
 			type : 'POST',
 			data : JSON.stringify(data),
 			success : function(data) {
+				console.log("data : " + data)
 				if(data === 1){
 					swal({
 						  title: "신고정상처리가 되었습니다.",

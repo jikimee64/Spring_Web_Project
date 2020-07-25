@@ -84,7 +84,10 @@ public class ManagerServiceImpl implements ManagerService {
 		int result = 0;
 		try {
 			int a = dao.blameYes(bl_seq);
+			 
+			System.out.println("bl_target_id : " + bl_target_id);
 			int b = dao.blameTargetUp(bl_target_id);
+			
 			System.out.println("a : " + a);
 			System.out.println("b : " + b);
 			if (a == 1 && b == 1) {
