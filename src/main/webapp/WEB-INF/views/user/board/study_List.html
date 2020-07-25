@@ -965,7 +965,7 @@ group+group {
 																			html += "</div></div>"
 																		} else { //온라인
 																			for (var j = 0; j < onlineInfo_length; j++) {
-																								+ data[1][j].S_SEQ)
+																		
 																				if (data[1][j].S_SEQ === data[0][i].S_SEQ) {
 																					html += "<div class='col-md-3'>"
 																					html += "<div class='card' style='width: 100%'>"
@@ -1000,7 +1000,8 @@ group+group {
 																				+ '" onclick=InfoModal("'
 																				+ data[0][i].S_SEQ
 																				+ '") data-toggle="modal" data-target="#userInfoModal">'
-																		html += "<b style='color: black; margin-right: 10px;'>"+data[0][i].USER_ID +"</b></a></div>"
+																		html += '<input type="hidden" value="+data[0][i].USER_ID+">'
+																		html += "<b style='color: black; margin-right: 10px;'>"+data[0][i].NICKNAME +"</b></a></div>"
 																		html += "<div class='col-md-4' style='text-align: center; padding-right: 0px;text-align:right;'>"
 
 																		html += "<b>등록일 : "

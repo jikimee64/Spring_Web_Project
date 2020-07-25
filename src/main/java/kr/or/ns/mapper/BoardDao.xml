@@ -336,6 +336,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getStudy" resultType="hashmap">
 		select *
 		from study_board
+		left outer join users
+		on study_board.user_id = users.user_id
 		left
 		outer join language_category
 		on study_board.lan_seq =
