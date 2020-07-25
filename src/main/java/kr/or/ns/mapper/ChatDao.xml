@@ -55,7 +55,7 @@
 	
 	<!-- 가장 먼저 들어온 데이터는 방장이기 때문에 cm_seq asc를 줘서 가장 첫번쨰로 뽑이는 데이터가 master  -->
 	<select id="chatRoomMemberGet" resultType="hashmap">
-		SELECT chatmember.cm_seq, users.nickname, users.profile_img
+		SELECT chatmember.cm_seq, users.nickname, users.profile_img, users.user_id
 		FROM chatmember
 		left outer join users
 		on users.user_id = chatmember.user_id
