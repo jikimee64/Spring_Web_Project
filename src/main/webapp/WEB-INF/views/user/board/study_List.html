@@ -482,7 +482,7 @@ group+group {
 
 		</div>
 		<div class="_border_box_shadow2 studyFilter _main_board_box"
-			style="border: 4px solid gainsboro; padding: 30px 30px 0px 30px;">
+			style="border: 1px solid gainsboro; padding: 30px 30px 0px 30px;">
 			<!-- 타임리프 반복시작 -->
 			<th:block th:if="${list} != null">
 				<div th:each="list : ${list}">
@@ -541,7 +541,7 @@ group+group {
 						</th:block>
 
 
-						<div class="col-md-9" style="padding: 3px 30px 30px 30px;">
+						<div class="col-md-9" style="padding: 3px 30px;">
 							<div class="row" style="margin-top: 10px;">
 								<!-- <div class="col-md-2">
 							<b th:text="${list.USER_ID}">
@@ -748,7 +748,6 @@ group+group {
 			let id = $('.InfoModal' + idx).children().text();
 			//formData.append("user_id" , this.id);
 
-			console.log("아이디 : " + id);
 			// let obj = {"user_id" : id}; 
 
 			let data = {
@@ -763,16 +762,11 @@ group+group {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					console.warn('aaaaaaaaaaaaa');
-					console.warn(data[0].USER_NAME);
-					console.warn(data[0][0].USER_NAME);
-					console.warn(data[0][1].USER_NAME);
 					$('.ModalUserName').text(data[0][0].USER_NAME);
 					$('.ModalUserID').text(data[0][0].USER_ID);
 					$('.introduce').text(data[0][0].INTRODUCE)
 					'src','/material/images/jQuery/asimo.png'
 					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
-					console.log(data[0][0].INTRODUCE);
 					$.each(data[0], function (index, item) {
 						if (item.SKILL_LEVEL === '입문') {
 							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
@@ -885,10 +879,8 @@ group+group {
 									'.filter-active'), function(index, item) {
 								language[index] = item
 										.getAttribute('data-filter');
-								console.log(item.getAttribute('data-filter'))
 							});
 							
-							console.log('배열 사이즈 :' + language.length)
 
 							var local = $('#portfolio-flters-local').children(
 									'.filter-active').attr('data-filter');
@@ -927,26 +919,14 @@ group+group {
 															data,
 															function(index,
 																	item) {
-																console
-																		.log('ss'
-																				+ index)
 																var list_length = data[0].length;
 																var onlineInfo_length = data[1].length;
-																console.log('onlineInfo_length : '  + onlineInfo_length)
 															
-																console.warn('데이터 개수 : ' + list_length)
 															
 																if (index === 0) {
 																	if(list_length != 0){
-																	console
-																			.log('한ㅂ넘나타라')
-																	console
-																			.log('천재 데이터 개수 : '
-																					+ list_length)
 																	for (var i = 0; i < list_length; i++) {
 																		let html = "";
-																		console
-																				.log('두번나와야됨')
 																		var write_date = new Date(
 																				data[0][i].WRITE_DATE);
 																		var deadline = new Date(
@@ -982,21 +962,9 @@ group+group {
 																					+ "' alt='Card image' style='width: 100%;'>"
 																			html += "</div></div>"
 																		} else { //온라인
-																			console.log('온라인')
-																			console
-																					.log('호호'
-																							+ data[0][i].S_SEQ)
-																			console
-																					.log('히히'
-																							+ onlineInfo_length)
 																			for (var j = 0; j < onlineInfo_length; j++) {
-																				console
-																						.log('하하 '
 																								+ data[1][j].S_SEQ)
 																				if (data[1][j].S_SEQ === data[0][i].S_SEQ) {
-																					console
-																							.log('크크'
-																									+ data[1][j].S_SEQ)
 																					html += "<div class='col-md-3'>"
 																					html += "<div class='card' style='width: 100%'>"
 																					html += "<img class='card-img-top' src='"
@@ -1072,7 +1040,6 @@ group+group {
 																	//연규야 채워라 비동기
 																	//빈값일떄
 																	let html = "";
-																	console.warn('데이터 개수 : ' + list_length)
 																	
 																	html += "<div style='text-align:center; margin-top:20px;margin-bottom:20px;'>"
 																	html += '<img style="width:150px;" src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png" alt="" />'
@@ -1099,23 +1066,7 @@ group+group {
 															function(index,
 																	item) {
 																let page = "";
-																console
-																		.log('*****************데이터개수 : '
-																				+ data[0].length)
 																if (index === 2) {
-																	console
-																			.log('안녕'
-																					+ data[2].prev)
-																	console
-																			.log('안녕'
-																					+ data[2].startPage)
-																	console
-																			.log('안녕'
-																					+ data[2].endPage)
-																	console
-																			.log('안녕'
-																					+ data[2].cri_b.perPageNum)
-
 																	page += "<ul class='pager d-flex studyPaging' style='place-content: center; margin-top: 35px; margin-bottom: 140px;'>"
 																	if (data[2].prev === true) {
 																		page += "<li><a href='study_FilterList.do?page="
@@ -1166,8 +1117,6 @@ group+group {
 																				page);
 															})
 
-											console
-													.log("=============================")
 											
 													
 										}, //success
@@ -1202,10 +1151,7 @@ group+group {
 			var b = a.split(",")
 
 			for (var i = 0; i < b.length; i++) {
-				console.log('시작')
-				console.log(regExp(b[i]).trim());
 				var filter = regExp(b[i]).trim()
-				console.log('i : ' + i)
 				$('.lan' + filter).addClass('filter-active');
 			}
 		})
@@ -1252,15 +1198,6 @@ group+group {
 		}
 	}
 	</script> -->
-	<script>
-		
-// 		$('._main_board_box').bind("DOMSubtreeModified",function(){
-			
-// 			console.warn($.trim( $('._main_board_box').html()).length);
-			
-				
-// 			});
-	</script>
 </body>
 
 

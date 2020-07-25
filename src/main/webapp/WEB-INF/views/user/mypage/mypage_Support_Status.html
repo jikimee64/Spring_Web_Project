@@ -277,8 +277,6 @@ body {
 		<script>
 			//모집마감
 			function finishh(s_seq) {
-				console.log("finishh 입성")
-				console.log(s_seq)
 
 				let data = {
 					"s_seq" : s_seq
@@ -322,10 +320,7 @@ body {
 							type : 'POST',
 							data : JSON.stringify(data),
 							success : function(data) {
-								console.log('ss!!s')
-								console.log(data[0].USER_ID);
 								//승인누른거 지우기
-								console.log('지워줘라!!' + user_id)
 								$('.right' + user_id).remove();
 								$('#success').empty();
 
@@ -334,8 +329,6 @@ body {
 												data,
 												function(index, item) {
 													var host = data[0].USER_ID;
-													console.log('ㅎㅇ : '
-															+ data.length)
 													var id = data[data.length - 1].user_id
 
 													let html = "";
@@ -406,7 +399,6 @@ body {
 					type : 'POST',
 					data : JSON.stringify(data),
 					success : function(data) {
-						console.log("단단히 꼬였네" + data);
 						//승인누른거 지우기
 						$('.right' + user_id).remove();
 
@@ -421,8 +413,6 @@ body {
 			//승인취소
 			function cancel(user_id, s_seq) {
 
-				console.log("승인취소 user_id: " + user_id);
-				console.log("승인취소 s_seq:" + s_seq);
 
 				let data = {
 					"user_id" : user_id,
@@ -438,8 +428,6 @@ body {
 							type : 'POST',
 							data : JSON.stringify(data),
 							success : function(data) {
-								console.log("설마:::");
-								console.log(data);
 
 								//승인누른거 지우기
 								$('.left' + user_id).remove();
@@ -450,16 +438,10 @@ body {
 												data,
 												function(index, item) {
 													var host = data[0].USER_ID;
-													console.log('gdgdgdgdgd : '
-															+ data.length)
-													console
-															.log('하하 : '
-																	+ data[index].USER_ID)
 
 													var id = data[data.length - 1].user_id
 
 													let html = "";
-													console.log("여긴타겠지");
 													/* 			if(data[index].ROLE_NAME === '방장'){ 
 																	html+= "<div></div>";*/
 													if (data[index].ACCEPT_STATUS === '승인대기중'
@@ -524,8 +506,6 @@ body {
 			}
 			/* 
 						 $(document).on("click","#cancel",function(USER_ID, S_SEQ){
-						 console.log("이걸타긴하는건가 취소: " + USER_ID)
-						 console.log("이걸타긴하는건가 취소: " +S_SEQ)
 						 
 							cancel(user_id, s_seq);
 						});
@@ -539,9 +519,6 @@ body {
 						});  */
 		</script>
 
-		<script>
-			
-		</script>
 </body>
 
 </html>

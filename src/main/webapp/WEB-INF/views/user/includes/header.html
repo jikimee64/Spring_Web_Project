@@ -166,12 +166,10 @@
 		}
 
 		function onOpen(evt) {
-			console.log("여긴오냐222")
 			send();
 		}
 
 		function onMessage(evt) {
-			console.log(evt);
 			//evt.data에 서버가 보낸 데이터가 들어가 있음
 			var data = evt.data;
 			appendMessage(data);
@@ -181,12 +179,10 @@
 		}
 
 		function send() {
-			console.log("여긴오냐")
 			wsocket.send("login");
 		}
 
 		function appendMessage(msg) {
-			console.log(msg)
 			$(".dot").text(msg);
 			/* $("#alertArea").empty();
 			$("#alertArea")
@@ -201,9 +197,6 @@
 		$(document).ready(function() {
 			  $('._pageactive.active').removeClass('active');
 			  $('a[href="' + location.pathname + '"]').closest('li').addClass('active'); 
-			  console.log('페이지 전환 찍히나여?');
-			 
-			  console.log('스크롤 없애기 전환 찍히나여?');
 			});
 	</script>
 </header>

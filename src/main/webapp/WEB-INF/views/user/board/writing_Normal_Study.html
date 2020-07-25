@@ -331,10 +331,7 @@
 
 			//로드 한 후
 			reader.onload = function() {
-				console.log('잘되니?')
 				document.querySelector('#preview').src = reader.result;
-				console.log('잘되니222?')
-				console.log('잘되니222?')
 			};
 		};
 	</script>
@@ -345,9 +342,7 @@
 		$(function() {
 			$("#registerform").submit(function(e) {
 				var formData = new FormData(this);
-				console.log(formData)
 
-				console.log("데이터 : " + formData)
 				$.ajax({
 					url : "",
 					processData : false,
@@ -382,7 +377,6 @@
 								0).val();
 						var selectBox2 = $('.selectpicker option:selected').eq(
 								1).val();
-						console.log(selectBox2)
 						var selectBox3 = $('.selectpicker option:selected').eq(
 								2).val();
 						var selectBox4 = $('.selectpicker option:selected').eq(
@@ -470,7 +464,6 @@
 	  
     //썸머노트 파일 업로드 json데이터 반환
     function sendFile(file, el) {
-       console.warn("여기 오냐?");
        var form_data = new FormData();
           form_data.append('file', file);
           $.ajax({
@@ -482,7 +475,6 @@
 				enctype : 'multipart/form-data',
 				cache : false,
             success: function(data) {
-               console.log(data);
                  $(el).summernote("editor.insertImage", data);
               }
           });

@@ -360,7 +360,6 @@ group+group {
             contentType : "application/json",
             data : JSON.stringify(data),
             success : function(data) {
-               console.log('채팅방멤버' + data)
                $('.nowMember').empty();
                $.each(data, function(index, item) {
             	   if(index === 0){ //방장
@@ -381,7 +380,6 @@ group+group {
 	    			html +=	"<span class='badge badge-success' style='background-color: rgb(24, 210, 105); margin-top: 10px;'>방장</span></h5></div></div>";
 	    			  $('.nowMember').append(html);
             	   }else{ //회원
-            		   console.log('제발 와라제발!!')
             		   let html = "";
             		   html += "<div class='row' style='height:50px; margin-top: 35px; margin-right: 40px; margin-left: 0px;'>";
               			html += "<div class='col' style='text-align: center; height: 50px;'>";
@@ -417,7 +415,6 @@ group+group {
 		let id = $('.InfoModal' + idx).children().text();
 		//formData.append("user_id" , this.id);
 
-		console.log("아이디 : " + id);
 		// let obj = {"user_id" : id}; 
 
 		let data = {
@@ -432,16 +429,11 @@ group+group {
 			type : 'POST',
 			data : JSON.stringify(data),
 			success : function(data) {
-				console.warn('aaaaaaaaaaaaa');
-				console.warn(data[0].USER_NAME);
-				console.warn(data[0][0].USER_NAME);
-				console.warn(data[0][1].USER_NAME);
 				$('.ModalUserName').text(data[0][0].USER_NAME);
 				$('.ModalUserID').text(data[0][0].USER_ID);
 				$('.introduce').text(data[0][0].INTRODUCE)
 				'src','/material/images/jQuery/asimo.png'
 				$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
-				console.log(data[0][0].INTRODUCE);
 				$.each(data[0], function (index, item) {
 					if (item.SKILL_LEVEL === '입문') {
 						$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
@@ -503,13 +495,10 @@ group+group {
 
          /* /"+$("#roomNumber").val() */
          Socket.onopen = function(message) {
-            console.log(message.user_id)
             //var d = JSON.parse(msg);
             //let html = "";
             //html += "<b>"+d.user_id+"님이 들어옴</b>"  
-            console.log('접속완료')
             nowMember();
-            console.log('제발')
             //여기서 현재 현좁
 
          };
@@ -519,7 +508,6 @@ group+group {
           */
          Socket.onmessage = function(message) {
             var msg = message.data;
-            console.log('제발 : ' + msg);
             //<![CDATA[
             if (msg != null && msg.trim() != '') {
 
@@ -539,7 +527,6 @@ group+group {
                            + "</div></div></div><br>"
                      $("#chatBoxArea").append(html);
                   } else { //상대
-                     console.log('제발!!@@')
                      var data = {}
                      data["user_id"] = d.user_id;
                      $
@@ -552,8 +539,6 @@ group+group {
                               data : JSON.stringify(data),
                               success : function(data) {
                                  let html = "";
-                                 console.log('하하 '
-                                       + data[1].PROFILE_IMG)
 
                                  html += "<div style='margin-left:20px; margin-top:20px;'>"
                                  //html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
@@ -578,8 +563,6 @@ group+group {
                      $("#chatBoxArea").append(html);
                   }
                } else if (d.type == "allMessage") { //all 메시지?
-                  console.warn("msg : " + msg);
-                  console.warn("d : " + d);
                   let html = "";
                   html += "<span style='clear:both;'><b style='display: block; text-align:center; margin:15px 0px; '>"
                         + d.msg + "</b></span>"
@@ -618,10 +601,8 @@ group+group {
        * Send 버튼 클릭하는 경우 호출 (서버로 메시지 전송)
        */
       function sendButton_onclick() {
-         console.log('여긴오냐')
          var inputMsgBox = $("#inputMsgBox");
          if (inputMsgBox == null || inputMsgBox.val() == '') {
-            console.warn('오면안되~~!')
             return false;
          }
 
@@ -629,7 +610,6 @@ group+group {
 
          if (Socket == null || Socket.readyState == 3) {
             chatBoxArea.value += "Server is disconne으악!!!cted.\n";
-            console.warn('오면안되~~222!')
             return false;
          }
 
@@ -735,9 +715,6 @@ group+group {
 			"ch_description" : ch_description
 		}
 		 
-		 console.log(ch_seq)
-		 console.log(ch_title)
-		 console.log(ch_description)
 		
 		$.ajax({
 			url : '/chat/chatUpdate.do',

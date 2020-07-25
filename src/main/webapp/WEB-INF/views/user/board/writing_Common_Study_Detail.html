@@ -702,10 +702,6 @@ group+group {
          
          /* 댓글 만들어 주는 함수 */
             function makeComment(result) {
-               console.log("makeComment함수 도착");
-               console.log("makeComment함수 도착");
-               console.log("makeComment함수 도착");
-               console.log("makeComment함수 도착");
                var user_id =$('input[id="userId"]').attr('class');
                var html = "";
                
@@ -720,12 +716,6 @@ group+group {
                });
                $('#com').append(html);
                
-               
-               console.warn('111111111111111');
-               console.warn('111111111111111');
-               console.warn('111111111111111');
-               console.warn('111111111111111');
-               console.warn(obj.R_NAME);
             }
          
          
@@ -771,14 +761,10 @@ group+group {
             
             //댓글 틀 만들어주는 함수@!
             function makeComment(result) {
-               console.log("makeComment함수 도착");
                var user_id =$('input[id="userId"]').attr('class');
                var html = "";
                
                    $.each(result, function(index, obj) {
-                	   console.warn('보바네미');
-                	   console.warn('보바네미');
-                	   console.warn('보바네미');
                 	   
                 	   
 //                 	   	var date1 = new Date(obj.r_date);
@@ -806,7 +792,6 @@ group+group {
 
                                  +"') data-toggle='modal' data-target='#userInfoModal'>"
                            html += "<b style='"+depthcss+ "'>" + obj.R_NAME + "</b></a>"  + " ";
-                           console.warn(obj.S_SEQ);
                            if(user_id === obj.R_NAME){
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
@@ -835,7 +820,6 @@ group+group {
             
             //대댓글 틀 만들어주는 함수
             $(document).on("click",".rereply",function(){
-               console.log("대댓글 틀 만들어주는 함수");
                var r_seq = $(this).attr('id');
                var parentTag = $(this).parent();
                parentTag.empty(); 
@@ -874,7 +858,6 @@ group+group {
                    contentType:"application/json",
                      data : JSON.stringify(obj),
                      success : function(data) {
-                        console.warn("댓글 기능 끝"+data);
                         $('.dott').text(data);
                      },
                      error : function(e) {
@@ -919,7 +902,6 @@ group+group {
             
             //대댓글 등록///////////////////////////////////////////////////////////////////////////////
             $(document).on("click",".reCommentBtn",function(){
-               console.log("등록버튼 눌렀을때 떠야하는 곳");
                   if($('#reComment').val() == "") {
                      swal({title:"댓글을 입력하세요",
                         icon: "warning"})
@@ -929,11 +911,6 @@ group+group {
                      var r_seq = $(this).attr('id'); //부모댓글 번호   //이걸 refer 로 쓴다 
                   var s_seq = $('#s_seq').val();  //글번호
                   var r_content = $('#reComment').val(); //댓글 내용
-                  console.warn("페이지에서 찍는거");
-                  console.warn(r_seq);
-                  console.warn(s_seq);
-                  console.warn(r_content);
-                  console.warn("다 찍어본거 ");
                   let obj = {
                         "s_seq" : s_seq,
                         "r_content" : r_content,
@@ -959,7 +936,6 @@ group+group {
             });
             //대댓글 등록 취소///////////////////////////////////////////////////////////////////////////////
             $(document).on("click",".reCommentCBtn",function(){
-               console.log("등록취소버튼 눌렀을때 떠야하는 곳");
                var s_seqq = $('#s_seq').val();
                let obj = {
                      "s_seq" : s_seqq
@@ -1012,7 +988,6 @@ group+group {
             //댓글 수정//////////////////////////////////////////////////////////////////////////////////////////////////// 
             var check = true;
             $('#com').on('click', '.updateComment', function() {
-               console.log("여기로 와야합니다");
                
                   var r_seq = $(this).attr('id');
                   
@@ -1112,9 +1087,7 @@ group+group {
          /* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
 
          var heart = $('#heartlike').attr('class').trim();  
-         console.log("하트 찍업보기 "+heart) ;
          if(heart.trim() === '1'){
-            console.warn("---------여기 들어오냐------");
             $("input:checkbox[id='heartheart33333']").attr("checked", true);
 
          }
@@ -1128,8 +1101,6 @@ group+group {
           /* 첨부파일명 자르기 시작 */
          
          
-         console.log($('#fileHas1').children().children().children().hasClass("_file_name1"))
-         console.log($('#fileHas2').children().children().children().hasClass("_file_name2"))
          
           if($('#fileHas1').children().children().children().hasClass("_file_name1")){
 		     if($('._file_name1')[0].innerText.length >= 15){
@@ -1218,7 +1189,6 @@ group+group {
                
                   data : JSON.stringify(obj),
                   success : function(data) {
-                     console.log("이게뭐라고?" + data);
 	                     if(data == 0){
 	                        swal({
 	                           title: "이미 지원한 스터디입니다.",
@@ -1315,12 +1285,6 @@ group+group {
            e.preventDefault();
           var formData = new FormData(this);
          
-         console.log("데이터2 : " + formData.get("bl_title"))
-         console.log("데이터2 : " + formData.get("blame"))
-         console.log("데이터3 : " + formData.get("comment"))
-		console.log("타이틀:"+ $('#title').text());
-         console.log("콘텐츠:"+  $('#content').text());
-         
          
          let data = {
             "s_seq":$('#s_seq').val(), //신고당하는 글번호
@@ -1375,7 +1339,6 @@ group+group {
  <!-- 하트 이모티콘 클릭시 라이크 테이블에 인서트 -->
  $('#heartheart33333').click(function(evt){
      var s_seq = $(this).attr('class');//input 태그안의 class 밸류값 가져오기 
-     console.warn(s_seq);
      
      var obj = {"s_seq" : s_seq};
      $.ajax({
@@ -1400,9 +1363,6 @@ group+group {
  	$(function(){
  		
  		
- 		console.warn(window.location.href.substr(73, 1));
- 		console.warn($('._to_the_list_a_tag')[0]);
- 		console.warn($('._to_the_list_button')[0].innerText);
  		if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
  			$('._to_the_list_a_tag').removeAttr('href');
  			
@@ -1421,7 +1381,6 @@ function InfoModal(idx) {
 	let id = $('.InfoModal' + idx).children().text();
 	//formData.append("user_id" , this.id);
 
-	console.log("아이디 : " + id);
 	// let obj = {"user_id" : id}; 
 
 	let data = {
@@ -1436,16 +1395,11 @@ function InfoModal(idx) {
 		type : 'POST',
 		data : JSON.stringify(data),
 		success : function(data) {
-			console.warn('aaaaaaaaaaaaa');
-			console.warn(data[0].USER_NAME);
-			console.warn(data[0][0].USER_NAME);
-			console.warn(data[0][1].USER_NAME);
 			$('.ModalUserName').text(data[0][0].USER_NAME);
 			$('.ModalUserID').text(data[0][0].USER_ID);
 			$('.introduce').text(data[0][0].INTRODUCE)
 			'src','/material/images/jQuery/asimo.png'
 			$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
-			console.log(data[0][0].INTRODUCE);
 			$.each(data[0], function (index, item) {
 				if (item.SKILL_LEVEL === '입문') {
 					$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);

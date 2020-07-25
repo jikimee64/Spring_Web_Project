@@ -613,9 +613,7 @@ body {
 				/*    var formData = $(".joinform").serialize() */
 				/* var file = $(#'joinform')[0].files[0]; */
 				var formData = new FormData(this);
-				console.log(formData)
 
-				console.log("데이터 : " + formData)
 				$.ajax({
 					url : "/member/join.do",
 					processData : false,
@@ -684,7 +682,6 @@ body {
 			$('#IdCheck').on(
 					'click',
 					function(e) {
-						console.log("이리로오나");
 						e.preventDefault();
 						var value = $('#user_id').val();
 						$.ajax({
@@ -695,7 +692,6 @@ body {
 							},
 							success : function(data) {
 								//아이디 중복시 아이디 인풋값 제거
-								console.log(data);
 								if ($('#user_id').val() === '') {
 									$('.idcheck').html("아이디를 입력해주세요.")
 									toggle = false;

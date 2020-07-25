@@ -751,11 +751,9 @@ keyframes heart-keyframes { 100% {
       
       /* 이거는 하트 클릭시 alert창 띄우는거*/
         $('._bookMark').click(function(evt){
-           console.log('여긴오냐북마크')
            var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
            var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
            
-           console.warn(L_seq);
            
            
             if($(this).is(":checked")){
@@ -790,7 +788,6 @@ keyframes heart-keyframes { 100% {
 	$('.filterRow li').on(
             "click",
             function() {
-            	console.warn('찍어야함')
                var price = $('#portfolio-flters-price').children(
                      '.filter-active').attr('data-filter');
                var level = $('#portfolio-flters-level').children(
@@ -800,7 +797,6 @@ keyframes heart-keyframes { 100% {
                      function(index, item) {
                         language[index] = item
                               .getAttribute('data-filter');
-                        console.log(item.getAttribute('data-filter'))
                      });
                var site = $('#portfolio-flters-site')
                      .children('.filter-active').attr('data-filter');
@@ -811,7 +807,6 @@ keyframes heart-keyframes { 100% {
                   "language" : language,
                   "site" : site
                }
-            console.log("선택data" + data.level);               
                $
                .ajax({
                   url : '/ajax/courseBoardFilter.do',
@@ -821,7 +816,6 @@ keyframes heart-keyframes { 100% {
                   type : 'POST',
                   data : JSON.stringify(data),
                   success : function(data) {
-                     //console.log("강의리스트data" + data);
                      $('.courseFilter').empty();
                      $('.coursePaging').empty();
                      
@@ -832,8 +826,6 @@ keyframes heart-keyframes { 100% {
 							for (var i = 0; i < list_length; i++) {
 								let html = "";
 								if (i % 4 === 0) {
-									console
-											.log('여긴타냐')
 									html += "<div class='row row"
 											+ i
 											+ "' style= 'width:100%; margin: auto; margin-bottom:20px;'>"
@@ -880,8 +872,6 @@ keyframes heart-keyframes { 100% {
 								html += "<input type='hidden' class='_list_l_seq' value="+data[0][i].L_SEQ+"/></div></div>"
 								html += "</div></div></div>"
 								if (i % 4 === 0) {
-									console
-											.log('row만들고 닫음')
 									html += "</div>"
 									$(
 											'.courseFilter')
@@ -925,23 +915,7 @@ keyframes heart-keyframes { 100% {
                      
                      $.each(data,function(index,item) {
 									let page = "";
-									console
-											.log('*****************데이터개수 : '
-													+ data[0].length)
 									if (index === 1) {
-										console
-												.log('안녕'
-														+ data[1].prev)
-										console
-												.log('안녕'
-														+ data[1].startPage)
-										console
-												.log('안녕'
-														+ data[1].endPage)
-										console
-												.log('안녕'
-														+ data[1].cri.perPageNum)
-
 										page += "<ul class='pager d-flex coursePaging' style='place-content: center; margin-top: 35px; margin-bottom: 140px;'>"
 										if (data[1].prev === true) {
 											page += "<li><a href='course_FilterList.do?page="
@@ -988,11 +962,9 @@ keyframes heart-keyframes { 100% {
                      //정적으로 만든거에 js적용시키기 위한 것들..(중복 Damn!!)
                      
                       $('._bookMark').click(function(evt){
-                          console.log('여긴오냐북마크')
                           var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
                           var L_seq = $(this).attr('id');//input 태그안의 id 밸류값 가져오기 
                           
-                          console.warn(L_seq);
                           
                           
                            if($(this).is(":checked")){
@@ -1079,10 +1051,7 @@ keyframes heart-keyframes { 100% {
 			var b = a.split(",")
 
 			for (var i = 0; i < b.length; i++) {
-				console.log('시작')
-				console.log(regExp(b[i]).trim());
 				var filter = regExp(b[i]).trim()
-				console.log('i : ' + i)
 				$('.lan' + filter).addClass('filter-active');
 			}
 		})
@@ -1108,11 +1077,8 @@ keyframes heart-keyframes { 100% {
 	function setSearchTypeSelect(){
 		var $searchTypeSel = $('#searchTypeSel');
 		var $keyword = $('#keyword');
-		console.log($keyword);
 		var tempStr = $('#keyword').val();
-		console.log($('#keyword').val())
 		var ke =  $('#keyword').val().replace(/ /g,"+");
-		console.log(ke)
 
 	    /* <![CDATA[ */
   		var pcs = /*[[${pageMaker.cri.searchType}]]*/;

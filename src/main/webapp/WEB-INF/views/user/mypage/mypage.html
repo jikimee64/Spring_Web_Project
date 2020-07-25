@@ -383,7 +383,6 @@ body {
 	<script>
 		$(function() {
 			let user_id = $('#user_id').val();
-			console.log("유저아이디: " + user_id);
 			let data = {
 				"user_id" : user_id
 			}
@@ -393,8 +392,6 @@ body {
 					.on(
 							"click",
 							function() {
-								console.log("유저아이디(모집중): " + user_id);
-								$
 								$
 										.ajax({
 											url : '/ajax/recrutingStudy.do',
@@ -410,29 +407,11 @@ body {
 																data,
 																function(index,
 																		item) {
-																	console
-																			.log(item.S_SEQ);
-																	/*  제목이랑 내용 문자열 자르기 시작 */
-																	// 															if (data[index].TITLE.length > 18) {
-																	// 																data[index].TITLE = data[index].TITLE
-																	// 																		.substr(
-																	// 																				0,
-																	// 																				18)
-																	// 																		+ "...";
-																	// 															}
-																	// 															if (data[index].CONTENT.length > 335) {
-																	// 																data[index].CONTENT = data[index].CONTENT
-																	// 																		.substr(
-																	// 																				0,
-																	// 																				335)
-																	// 																		+ "...";
-																	// 															}
 																	var write_date = new Date(
 																			data[index].WRITE_DATE);
 																	var deadline = new Date(
 																			data[index].DEADLINE);
 
-																	/*  제목이랑 내용 문자열 자르기 끝  */
 																	let html = "";
 																	html += "<div>";
 																	html += "<div class='row p-3'>";
@@ -520,7 +499,6 @@ body {
 	<script>
 		$(function() {
 			let user_id = $('#user_id').val();
-			console.log("유저아이디: " + user_id);
 			let data = {
 				"user_id" : user_id
 			}
@@ -530,7 +508,6 @@ body {
 					.on(
 							"click",
 							function() {
-								console.log("유저아이디: " + user_id);
 								$
 										.ajax({
 											url : '/ajax/inStudy.do',
@@ -540,7 +517,6 @@ body {
 											type : 'POST',
 											data : JSON.stringify(data),
 											success : function(data) {
-												console.log("가져오기");
 												$('#recruting_study').empty();
 
 												$
@@ -634,7 +610,6 @@ body {
 
 	<script>
 		function deleteBookMark(l_seq) {
-			console.log('우철 : ' + l_seq);
 
 			let data = {
 				"l_seq" : l_seq

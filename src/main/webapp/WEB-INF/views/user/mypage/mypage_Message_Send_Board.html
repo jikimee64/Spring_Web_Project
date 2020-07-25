@@ -325,18 +325,13 @@ group+group {
 			$('#deletemessage')
 					.click(
 							function(e) {					
-								console.log("여기왓냐");
 								//체크된 체크박스의 개수 구하기
-								console
-										.log("length: "
-												+ $("input:checkbox[name=_input_check]:checked").length);
 
 								let idList = "";
 								let nameList = "";
 
 								//체크된 체크박스를 가져온다.
 								var checkbox = $("input:checkbox[name=_input_check]:checked");
-								console.log("체크박스");
 								
 								
 								//체크된 체크박스의 값을 반복해서 불러오기
@@ -345,8 +340,6 @@ group+group {
 									let check = checkbox.parent().parent().eq(i);
 									let check2 = check.children(); //부모태그의 자식들로 접근
 									
-									console.log(check); //row
-									console.log(check2);
 									 
 									let m_seq1 = check2.eq(4).val(); //쪽지번호
 
@@ -355,7 +348,6 @@ group+group {
 										"m_seq" : m_seq1
 									}
 																
-									console.log(data);					
 									$.ajax({
 										url : '/ajax/deleteMessage.do',
 										processData : false,
@@ -364,8 +356,6 @@ group+group {
 										type : 'POST',
 										data : JSON.stringify(data),
 										success : function(data) {
-											console.log("아나")
-											console.log(data);
 											$('#parent').remove();
 										 $('#hr'+data.M_SEQ) 
 										},
@@ -385,7 +375,6 @@ group+group {
 			let id = $('.InfoModal' + idx).children().text();
 			//formData.append("user_id" , this.id);
 
-			console.log("아이디 : " + id);
 			// let obj = {"user_id" : id}; 
 
 			let data = {
@@ -400,16 +389,11 @@ group+group {
 				type : 'POST',
 				data : JSON.stringify(data),
 				success : function(data) {
-					console.warn('aaaaaaaaaaaaa');
-					console.warn(data[0].USER_NAME);
-					console.warn(data[0][0].USER_NAME);
-					console.warn(data[0][1].USER_NAME);
 					$('.ModalUserName').text(data[0][0].USER_NAME);
 					$('.ModalUserID').text(data[0][0].USER_ID);
 					$('.introduce').text(data[0][0].INTRODUCE)
 					'src','/material/images/jQuery/asimo.png'
 					$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
-					console.log(data[0][0].INTRODUCE);
 					$.each(data[0], function (index, item) {
 						if (item.SKILL_LEVEL === '입문') {
 							$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);

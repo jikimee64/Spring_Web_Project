@@ -210,7 +210,6 @@ td:focus {
 	<script>
 		//idx는 user_id받음, 정지버튼 onclick
 		function stopButton(idx){
-			console.log(idx)
 			
 			 let data = {
 				"user_id" : idx
@@ -234,7 +233,6 @@ td:focus {
 							type : 'POST',
 							data : JSON.stringify(data),
 							success : function(data) {
-								console.log('우철 : ' + data)
 								if(data === 1){
 									swal({
 										  title: "정상적으로 정지되었습니다.",
@@ -256,7 +254,6 @@ td:focus {
 		}
 		
 		function restoreButton(idx){
-			console.log(idx)
 			
 			 let data = {
 				"user_id" : idx
@@ -335,18 +332,13 @@ td:focus {
 		}
 
 		function onMessage(evt) {
-			/* console.log("evt :" + evt);
-			var data = evt.data;
-			appendMessage(data); */
 		}
 
 		function onClose(evt) {
 		}
 
 		function send() {
-			console.log("여긴오2222냐!!")
 			let message = $('#message').val();
-			console.log('ㅇㅇ : ' + message);
 			
 			wsocket.send("all," + message);
 		/* 	$('#message').val(""); */
@@ -354,7 +346,6 @@ td:focus {
 
 		//자기 자신한테 보냈을때 실행
 		function appendMessage(msg) {
-			console.log(msg);
 			alert("msg : " + msg);
 		}
 

@@ -356,10 +356,7 @@
 
 			//로드 한 후
 			reader.onload = function() {
-				console.log('잘되니?')
 				document.querySelector('#preview').src = reader.result;
-				console.log('잘되니222?')
-				console.log('잘되니222?')
 			};
 		};
 	</script>
@@ -374,9 +371,7 @@
 			
 			$("#registerform").submit(function(e) {
 				var formData = new FormData(this);
-				console.log(formData)
 				formData.append("s_seq", $('#s_seq').val());
-				console.log("데이터 : " + formData)
 				$.ajax({
 					url : "/lecture/writing_Course_Study_Edit.do?page="+page+"&perPageNum="+perPageNum,",
 					processData : false,
@@ -403,7 +398,6 @@
 								0).val();
 						var selectBox2 = $('.selectpicker option:selected').eq(
 								1).val();
-						console.log(selectBox2)
 						var selectBox3 = $('.selectpicker option:selected').eq(
 								2).val();
 						var selectBox4 = $('.selectpicker option:selected').eq(

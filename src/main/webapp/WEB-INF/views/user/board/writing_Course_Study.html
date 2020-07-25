@@ -348,7 +348,6 @@
 				enctype : 'multipart/form-data',
 				cache : false,
             success: function(data) {
-               console.log(data);
                  $(el).summernote("editor.insertImage", data);
             }
           });
@@ -358,7 +357,6 @@
 
 	<!-- mysql이랑 맞출것  -->
 	<script>
-	console.warn('sss : ' + $('#l_seq').val())
       $(function() {
          $('#date-time').bootstrapMaterialDatePicker({
             format : 'YYYY-MM-DD HH:mm',
@@ -372,11 +370,9 @@
       $(function() {
          $("#registerform").submit(function(e) {
             var formData = new FormData(this);
-            console.log(formData)
             //formData.append('image', $('#l_image').val());
             //formData.append('l_seq', $('#l_seq').val());
 
-            console.log("데이터 : " + formData)
             $.ajax({
                url : "",
                processData : false,

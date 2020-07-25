@@ -82,10 +82,8 @@ body{
 <script>
 	function onClickHandler() {
 		if ($("input:checkbox[id='flag']").is(":checked") === true) {
-			console.log('true일떄')
 			$('#ch_pw').attr('disabled', false);
 		} else {
-			console.log('false일떄')
 			$('#ch_pw').attr('disabled', true);
 		}
 	}
@@ -97,11 +95,9 @@ body{
 //방 참여버튼 눌렀을 시 호출
 	function goRoom(ch_seq) {
 	//<![CDATA[
-		console.log('ch_seq : ' + ch_seq)
 		
 		var pw_room_status = $('.pwStatus'+ch_seq)
 		
-		console.log(pw_room_status.children('img').length);
 		
 		
 		if(pw_room_status.children('img').length === 1){ //비밀방O
@@ -112,7 +108,6 @@ body{
 				},
 				type : 'POST',
 				success : function(res) {
-					console.log('비밀번호 : ' + res.pw)
 						
 					swal("방 비밀번호를 입력해주세요:", {
 					  content: "input",
@@ -153,9 +148,6 @@ body{
 		
 			var formData = new FormData(this);
 
-			console.log("방 제목 : " + formData.get("ch_title"))
-			console.log("방 설명 : " + formData.get("ch_description"))
-			console.log("방 비밀방 : " + formData.get("ch_pw"))
 
 			let data = {
 				"ch_title" : formData.get("ch_title"), //신고유형

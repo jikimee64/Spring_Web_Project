@@ -123,7 +123,6 @@ body {
 			$('#sendBtn').click(function(e) {
 				e.preventDefault();
 				var value = $('._user_id').val();
-				console.log($('._user_id').val());
 				$.ajax({
 					url : "/ajax/idcheck.do",
 					type : 'POST',
@@ -222,7 +221,6 @@ body {
 
 		//자기 자신한테 보냈을때 실행
 		function appendMessage(msg) {
-			console.log(msg);
 			alert("msg : " + msg);
 		}
 		

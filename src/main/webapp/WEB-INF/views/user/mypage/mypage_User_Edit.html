@@ -677,9 +677,7 @@ group+group {
 		$(function() {
 			$(".updateform").submit(function(e) {
 				var formData = new FormData(this);
-				console.log(formData)
 
-				console.log("데이터 : " + formData)
 				$.ajax({
 					url : "/mypage/MyPageUserEdit.do",
 					processData : false,
