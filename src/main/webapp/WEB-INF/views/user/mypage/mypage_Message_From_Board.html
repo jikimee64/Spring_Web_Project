@@ -262,7 +262,7 @@ group+group {
 						<a href="" th:classappend="|InfoModal${list.M_SEQ}|"
 							th:onclick="|javascript:InfoModal('${list.M_SEQ}')|"
 							data-toggle="modal" data-target="#userInfoModal"> 
-							<input type="hidden" th:value="${list.USER_ID}">
+							<input type="hidden" id="user_id" th:value="${list.USER_ID}">
 							<span
 							th:text="${list.NICKNAME}"></span>
 						</a>
@@ -420,40 +420,6 @@ group+group {
 		});/* func */
 	</script>
 
-	<script>
-		$(function() {
-			$(".blameform").submit(function(e) {
-				e.preventDefault();
-				var formData = new FormData(this);
-
-
-				let data = {
-					"s_seq" : $('#s_seq').val(), //신고당하는 글번호
-					"type" : formData.get("blame"), //신고유형
-					"place" : "2", //신고장소(게시판)	
-					"target" : $('#user_id').text(), //신고당하는 사람
-					"bl_title" : formData.get("bl_title"), //신고제목
-					"comment" : formData.get("comment")
-				//신고내용
-				}
-
-				$.ajax({
-					url : '/ajax/blameinsert.do',
-					processData : false,
-					contentType : "application/json",
-					cache : false,
-					type : 'POST',
-					data : JSON.stringify(data),
-					success : function(data) {
-					},
-					error : function(e) {
-						console.log("error:", e);
-					}
-				})
-			})
-
-		});
-	</script>
 
 
 	<script>

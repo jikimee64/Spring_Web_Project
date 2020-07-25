@@ -181,10 +181,9 @@ public class MemberController {
 				model.addAttribute("snstype", "naver");
 				return "user/member/join";
 			} else if (check == 1 && after_enabled == 0) {
-
 				System.out.println("권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
-				redirect.addAttribute("errormsg", msg);
+				redirect.addFlashAttribute("errormsg", msg);
 				return "redirect:/member/normallogin.do";
 			} else if (check == 1 && after_enabled == 1) {
 				// 스프링 시큐리티 수동 로그인을 위한 작업//
@@ -288,10 +287,9 @@ public class MemberController {
 				return "user/member/join";
 
 			} else if (check == 1 && after_enabled == 0) {
-
-				System.out.println("권한확인" + enabled);
+				System.out.println("구글구글권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
-				redirect.addAttribute("errormsg", msg);
+				redirect.addFlashAttribute("errormsg", msg);
 				return "redirect:/member/normallogin.do";
 			} else if (check == 1 && after_enabled == 1) {
 				// 스프링 시큐리티 수동 로그인을 위한 작업//
