@@ -61,11 +61,20 @@ public class MessageServiceImpl implements MessageService {
 	
 	
 	
-	//내 메세지 총갯수
+	//내 메세지 총갯수(받은 편지함)
 	@Override
-	public int getMyMessageCount(String user_id) {
+	public int getFromMyMessageCount(String user_id) {
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
-		int count = dao.getMyMessageCount(user_id);
+		int count = dao.getFromMyMessageCount(user_id);
+		
+		return count;
+	}
+	
+	//내 메세지 총갯수(받은 편지함)
+	@Override
+	public int getToMyMessageCount(String user_id) {
+		MessageDao dao = sqlsession.getMapper(MessageDao.class);
+		int count = dao.getToMyMessageCount(user_id);
 		
 		return count;
 	}

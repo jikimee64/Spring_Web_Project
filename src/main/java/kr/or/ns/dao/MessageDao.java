@@ -33,7 +33,10 @@ public interface MessageDao {
 	public List<Message> getListMessage(String userid);
 	
 	//내 메세지 총갯수
-	public int getMyMessageCount(String user_id);
+	public int getFromMyMessageCount(String user_id);
+	
+	//내 메세지 총갯수
+	public int getToMyMessageCount(String user_id);
 	
 	//받은 쪽지함 목록 + 페이징
 	public List<HashMap<String, Object>> getMessageList(HashMap<String, Object> map);
