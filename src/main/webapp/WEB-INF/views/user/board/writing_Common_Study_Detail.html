@@ -464,40 +464,46 @@ group+group {
 
                      <div class="col-2"></div>
                      <div class="col-4" style="text-align: end;">
-                        <th:block th:switch="${sessionid}">
-                           <!-- 로그인한 아이디가 글쓴이와 같다면..  -->
-                           <span th:case="${study.USER_ID}"> <th:block
-                                 th:switch="${study.C_SEQ}">
-                                 <a th:case="1"
-                                    th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
-                                    <button type="button" class="btn btn-warning"
-                                       style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
-                                 </a>
-                                 <a th:case="2"
-                                    th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
-                                    <button type="button" class="btn btn-warning"
-                                       style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
-                                 </a>
-                              </th:block> <!--   <a
-                                   th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
-                              <button id="delete" type="button" class="btn btn-danger"
-                                 style="height: 30px; padding-top: 3px;">삭제</button> <!-- </a> -->
-                           </span>
-                        </th:block>
-
+                     
+                     <!-- 관리자는 모든 글을 삭제 가능  -->
                         <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                           <!-- <a
-                        th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
                            <button id="delete" type="button" class="btn btn-danger" 
-                              style="height: 30px; padding-top: 3px;background-color:red;">삭제(관리자)</button>
-                           <!--        </a> -->
+                              style="height: 30px; padding-top: 3px;background-color:red;">삭제</button>
+                        </th:block>
+                     
+                        <th:block th:switch="${user_id}">
+                           <!-- 로그인한 아이디가 글쓴이와 같다면..  -->
+                           <span th:case="${study.USER_ID}"> 
+	                           <th:block
+	                                 th:switch="${study.C_SEQ}">
+	                                 <a th:case="1"
+	                                    th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+	                                    <button type="button" class="btn btn-warning"
+	                                       style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
+	                                 </a>
+	                                 <a th:case="2"
+	                                    th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+	                                    <button type="button" class="btn btn-warning"
+	                                       style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
+	                                 </a>
+	                           </th:block>
+                              <button id="delete" type="button" class="btn btn-danger"
+                                 style="height: 30px; padding-top: 3px;">삭제</button> 
+                           </span>
+                           
+                           <!-- 글쓴이와 접속한 유저 아이디가 다를때 신고버튼 렌더링  -->
+                            <span th:case="*"> 
+	                           <a href="" data-toggle="modal" data-target="#declationPageModal"
+	                           style="color: black;"> <img
+	                           src="../../../../resources/images/img/siren.png"
+	                           style="width: 30px; height: 30px;">
+                        		</a>
+                            </span>
                         </th:block>
 
-                        <a href="" data-toggle="modal" data-target="#declationPageModal"
-                           style="color: black;"> <img
-                           src="../../../../resources/images/img/siren.png"
-                           style="width: 30px; height: 30px;">
-                        </a>
+						 
+
+                      
                      </div>
                   </div>
 
@@ -620,10 +626,13 @@ group+group {
 	                                 </th:block>
 	                              </th:block>
 	                              <th:block th:case="1">
-	                                 <button id="applycancel" type="submit" class="btn"
-	                                    style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원취소하기</button>
+	                              	 <th:block th:if="${study.STATUS == '모집중'}">
+		                                 <button id="applycancel" type="submit" class="btn"
+		                                    style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원취소하기</button>
+	                              	 </th:block>
 	                              </th:block>
 	                           </th:block>
+	                           
 	                           <!-- 이거는 사용자 권한 -->
 	                           <div style="text-align: center; margin: 10px 0px 10px 0px;">
 	                              <a
