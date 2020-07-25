@@ -302,6 +302,7 @@ group+group {
    <input id="s_seq" type="hidden" th:value="${study.S_SEQ}" />
    <input id="page" type="hidden" th:value="${page}" />
    <input id="perPageNum" type="hidden" th:value="${perPageNum}" />
+	
 
    <div th:replace="/user/includes/header :: header"></div>
    <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
@@ -587,9 +588,9 @@ group+group {
                         </div>
                      </th:block>
 
-
+					
                      <!-- onclick="history.go(-1); return false;" -->
-                     <th:block th:switch="${sessionid}">
+                     <th:block th:switch="${user_id}">
                         <div th:case="${study.USER_ID}"
                            style="text-align: center; margin: 10px 0px 10px 0px;">
 
@@ -607,34 +608,33 @@ group+group {
                                     style="width: 100%;font-weight:bold;">목록으로</button>
                               </a>
                            </th:block>
-
-
                         </div>
-                        <div th:case="*"
-                           style="text-align: center; margin: 10px 0px 10px 0px;">
-                           <th:block th:switch="${apply}">
-                              <th:block th:case="0">
-                                 <th:block th:if="${study.STATUS == '모집중'}">
-                                    <button id="apply" type="submit" class="btn btn-success"
-                                       style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원하기</button>
-                                 </th:block>
-                              </th:block>
-                              <th:block th:case="1">
-                                 <button id="applycancel" type="submit" class="btn"
-                                    style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원취소하기</button>
-                              </th:block>
-                           </th:block>
-                           <!-- 이거는 사용자 권한 -->
-                           <div style="text-align: center; margin: 10px 0px 10px 0px;">
-                              <a
-                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}"
-                                 class="_to_the_list_a_tag">
-                                 <button type="button"
-                                    class="btn btn-warning _to_the_list_button"
-                                    style="width: 100%;font-weight:bold;">목록으로</button>
-                              </a>
-                           </div>
-                        </div>
+                        
+	                        <div th:case="*"
+	                           style="text-align: center; margin: 10px 0px 10px 0px;">
+	                           <th:block th:switch="${apply}">
+	                              <th:block th:case="0">
+	                                 <th:block th:if="${study.STATUS == '모집중'}">
+	                                    <button id="apply" type="submit" class="btn btn-success"
+	                                       style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원하기</button>
+	                                 </th:block>
+	                              </th:block>
+	                              <th:block th:case="1">
+	                                 <button id="applycancel" type="submit" class="btn"
+	                                    style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원취소하기</button>
+	                              </th:block>
+	                           </th:block>
+	                           <!-- 이거는 사용자 권한 -->
+	                           <div style="text-align: center; margin: 10px 0px 10px 0px;">
+	                              <a
+	                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}"
+	                                 class="_to_the_list_a_tag">
+	                                 <button type="button"
+	                                    class="btn btn-warning _to_the_list_button"
+	                                    style="width: 100%;font-weight:bold;">목록으로</button>
+	                              </a>
+	                           </div>
+	                        </div>
                      </th:block>
                      <!-- <th:block th:switch="${sessionid}">
                      <div th:case="${study.USER_ID}" style="text-align: center; margin: 10px 0px 10px 0px;">
@@ -1154,6 +1154,10 @@ group+group {
       let perPageNum =  $('#perPageNum').val();
       
       
+      console.log('잘받니1 : ' + s_seq)
+      console.log('잘받니 2: ' + page)
+      console.log('잘받니 3: ' + perPageNum)
+      
       
    $('#apply').click(function(){
        let obj = {"s_seq" : s_seq}; 
@@ -1184,8 +1188,8 @@ group+group {
                           /* swal({title:"지원이 완료되었습니다.",
                                   icon: "success"}) */
                                  
-                                      
-                                  location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
+                                  
+                                  location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum="+perPageNum
                                    
                                              
                        }else{
@@ -1233,7 +1237,7 @@ group+group {
                          title: "지원이 취소되었습니다. ",
                            icon: "success"
                          }) */
-                         location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
+                         location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum="+perPageNum
                   },
                   error: function(request, status, error){
                      console.log("code:" + request.status + "\n"
