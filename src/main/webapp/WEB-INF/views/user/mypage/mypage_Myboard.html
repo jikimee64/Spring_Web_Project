@@ -121,7 +121,7 @@ body {
 	max-inline-size: -webkit-fill-available;
 }
 ._message_hover:hover {
-	box-shadow: 0 0 6px red !important;
+	box-shadow: 0 0 6px forestgreen !important;
 	border-radius:50%;
 }
 
@@ -236,98 +236,105 @@ body {
 						success : function(data) {
 							$('#recruting_study').empty();
 							$
-									.each(
-											data,
-											function(index, item) {
-												/*  제목이랑 내용 문자열 자르기 시작 */
-// 												if (data[index].TITLE.length > 18) {
-// 													data[index].TITLE = data[index].TITLE
-// 															.substr(0, 18)
-// 															+ "...";
-// 												}
-// 												if (data[index].CONTENT.length > 335) {
-// 													data[index].CONTENT = data[index].CONTENT
-// 															.substr(0, 335)
-// 															+ "...";
-// 												}
+							.each(
+									data,
+									function(index,
+											item) {
+										/*  제목이랑 내용 문자열 자르기 시작 */
+//											if (data[index].TITLE.length > 18) {
+//												data[index].TITLE = data[index].TITLE
+//														.substr(
+//																0,
+//																18)
+//														+ "...";
+//											}
+//											if (data[index].CONTENT.length > 335) {
+//												data[index].CONTENT = data[index].CONTENT
+//														.substr(
+//																0,
+//																335)
+//														+ "...";
+//											}
 
-												var write_date = new Date(
-														data[index].WRITE_DATE);
-												var deadline = new Date(
-														data[index].DEADLINE);
+										var write_date = new Date(
+												data[index].WRITE_DATE);
+										var deadline = new Date(
+												data[index].DEADLINE);
 
-												/*  제목이랑 내용 문자열 자르기 끝  */
-												let html = "";
-												html += "<div>";
-												html += "<div class='row p-3' style='height:170px'>";
-												html += "<div class='col-md-1' style='text-align: center;'>";
-												html += "<p style='font-size: xx-large; font-weight: bold;'>"
-														+ data[index].S_SEQ
-														+ "</p></div>";
+										/*  제목이랑 내용 문자열 자르기 끝  */
+										let html = "";
+										html += "<div>";
+										html += "<div class='row p-3' style='height:170px'>";
+										html += "<div class='col-md-1' style='text-align: center;'>";
+										html += "<p style='font-size: xx-large; font-weight: bold;'>"
+												+ data[index].S_SEQ
+												+ "</p></div>";
 
-												html += "<div class='col-md-8'>";
-												html += "<div  style='padding-left:15px; padding-right:15px;'>"
-												html += "<span class='badge badge-pill badge-primary' style='height:20px;'>"
-														+ data[index].STATUS
-														+ "</span>";
-												html += "<span class='badge badge-pill badge-info' style='height:20px;'>"
-														+ data[index].LEVEL
-														+ "</span>";
-												html += "<span class='badge badge-pill badge-secondary' style='height:20px;'>"
-														+ data[index].CATE_LANGUAGE
-														+ "</span>";
-												html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
-														+ data[index].PEOPLE
-														+ "명</span>";
-												html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
-														+ data[index].LOC
-														+ "</span>"
-												html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
-														+ data[index].CONTENT_KIND
-														+ "</span>";
-												html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
-														+ data[index].ACCEPT_STATUS
-														+ "</span>";
-												html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
-														+ data[index].S_SEQ
-														+ "'>";
+										html += "<div class='col-md-8'>";
+										html += "<div style='padding-left:15px; padding-right:15px;'>"
+										html += "<span class='badge badge-pill badge-primary' >"
+												+ data[index].STATUS
+												+ "</span>";
+										html += "<span class='badge badge-pill badge-info' >"
+												+ data[index].LEVEL
+												+ "</span>";
+										html += "<span class='badge badge-pill badge-secondary' >"
+												+ data[index].CATE_LANGUAGE
+												+ "</span>";
+										html += "<span class='badge badge-pill badge-success'>"
+												+ data[index].PEOPLE
+												+ "명</span>";
+										html += "<span class='badge badge-pill badge-warning' >"
+												+ data[index].LOC
+												+ "</span>"
+										html += "<span class='badge badge-pill badge-light'>"
+												+ data[index].CONTENT_KIND
+												+ "</span>";
+										html += "<span class='badge badge-pill badge-light' >"
+												+ data[index].ACCEPT_STATUS
+												+ "</span>";
+										html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
+												+ data[index].S_SEQ
+												+ "'>";
 
-												/* html += "<a href = '/board/board.Support_Status.do'>"; */
-												html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px; transform: translateY(-3px);'></a>";
-												html += " ";
-												html += "<div style='font-size:small; font-weight:bold;'>";
-												html += "<span style='margin-right: 25px;'>"
-												html += " 등록일 : ";
-												html += getDateFormet(write_date)
-												html += "</span>"
-												html += "<span>"
-												html += " 마감일 : "
-												html += getDateFormet(deadline)
-												html += "</span>"
-												html += "</div>";
-												html += "</div>";
-												html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
-														+ data[index].S_SEQ
-														+ "'>";
-												/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
-												html += "<div style='margin-top: 15px;padding-left: 15px;'>"
-												html += "<b><span class='_title' style='font-size:x-large;height:100%;'>"
-														+ data[index].TITLE
-														+ "</span></b></div><br/></a>";
-												html += "</div>";
-												html += "<div class='col-md-3' style='text-align: right;'>";
-												if (data[index].CONTENT_KIND === '온라인강의') {
-													html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
-												} else {
-													html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
-												}
-												/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
-												html += "</div>";
-												html += "</div>"
-												html += "</div>";
-												html += "</div>";
-												html += "<hr style='border: solid 1px; margin-top: 0px; margin-bottom:0px; width:96%;' />";
-												$('#recruting_study').append(
+										/* html += "<a href = '/board/board.Support_Status.do'>"; */
+										html += "<img src='https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png' class='mb-1 _message_hover' alt='' style='height: 30px;transform: translateY(-3px);'></a>";
+										html += " ";
+										html += "<div style='font-size:small; font-weight:bold;'>";
+										html += "<span style='margin-right: 25px;'>"
+										html += " 등록일 : ";
+										html += getDateFormet(write_date)
+										html += "</span>"
+										html += "<span>"
+										html += " 마감일 : "
+										html += getDateFormet(deadline)
+										html += "</span>"
+										html += "</div>";
+										html += "</div>";
+										html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+												+ data[index].S_SEQ
+												+ "'>";
+										/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
+										html += "<div  style='margin-top: 15px;padding-left: 15px;'>"
+										html += "<b><span class='_title' style='font-size:xx-large;padding-top:10px;height:100%;'>"
+												+ data[index].TITLE
+												+ "</span></b></div><br/></a>";
+										html += "</div>";
+										html += "<div class='col-md-3' style='text-align: right;'>";
+										if (data[index].CONTENT_KIND === '온라인강의') {
+											html += "<img src=" + data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
+										} else {
+											html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
+										}
+										/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
+										html += "</div>";
+										html += "</div>"
+										html += "</div>";
+										html += "</div>";
+										html += "<hr style='border: solid 1px; margin-top: 0px; margin-bottom:0px; width:96%;' />";
+										$(
+												'#recruting_study')
+												.append(
 														html);
 											});
 						},
@@ -390,25 +397,25 @@ body {
 
 																	html += "<div class='col-md-8'>";
 																	html += "<div style='padding-left:15px; padding-right:15px;'>"
-																	html += "<span class='badge badge-pill badge-primary' style='height:20px;'>"
+																	html += "<span class='badge badge-pill badge-primary' >"
 																			+ data[index].STATUS
 																			+ "</span>";
-																	html += "<span class='badge badge-pill badge-info' style='height:20px;'>"
+																	html += "<span class='badge badge-pill badge-info' >"
 																			+ data[index].LEVEL
 																			+ "</span>";
-																	html += "<span class='badge badge-pill badge-secondary' style='height:20px;'>"
+																	html += "<span class='badge badge-pill badge-secondary' >"
 																			+ data[index].CATE_LANGUAGE
 																			+ "</span>";
-																	html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
+																	html += "<span class='badge badge-pill badge-success'>"
 																			+ data[index].PEOPLE
 																			+ "명</span>";
-																	html += "<span class='badge badge-pill badge-warning' style='height:20px;'>"
+																	html += "<span class='badge badge-pill badge-warning' >"
 																			+ data[index].LOC
 																			+ "</span>"
-																	html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
+																	html += "<span class='badge badge-pill badge-light' >"
 																			+ data[index].CONTENT_KIND
 																			+ "</span>";
-																	html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
+																	html += "<span class='badge badge-pill badge-light'>"
 																			+ data[index].ACCEPT_STATUS
 																			+ "</span>";
 																	html += "<a class='_message_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
@@ -416,7 +423,7 @@ body {
 																			+ "'>";
 
 																	/* html += "<a href = '/board/board.Support_Status.do'>"; */
-																	html += "<img src='https://previews.123rf.com/images/martialred/martialred1507/martialred150700691/42613509-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%9D%98-%EC%84%A4%EC%A0%95-%EC%95%84%EC%9D%B4%EC%BD%98-%EC%95%84%EC%9D%B4%EC%BD%98.jpg' class='mb-1 _message_hover' alt='' style='height: 30px;transform: translateY(-3px);'></a>";
+																	html += "<img src='https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png' class='mb-1 _message_hover' alt='' style='height: 30px;transform: translateY(-3px);'></a>";
 																	html += " ";
 																	html += "<div style='font-size:small; font-weight:bold;'>";
 																	html += "<span style='margin-right: 25px;'>"
@@ -555,7 +562,7 @@ body {
 																	// 																						html += "<span class='badge badge-pill badge-secondary'>"
 																	// 																								+ data[index].R_NAME
 																	// 																								+ "</span>";
-																	// 																						html += "<span class='badge badge-pill badge-warning'>"
+																	// 																						html += "<span class='badge badge-pill badge-success'>"
 																	// 																								+ data[index].R_DATE
 																	// 																								+ "명</span>";
 																	// 																						html += "<span class='badge badge-pill badge-warning'>"

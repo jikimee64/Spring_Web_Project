@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.or.ns.page.PageMaker;
@@ -485,5 +486,20 @@ public class AjaxRestController {
 	}
 
 	// 워드클라우드 차트
+	
+	
+	
+	
+	//검색자동완성
+	@RequestMapping(value = "getAutoKeyword.do", method = RequestMethod.POST)
+	public List<HashMap<String, Object>> getAutoKeyword(@RequestBody HashMap<String, Object> params) {
+		System.out.println(params.get("keyword"));
+		String keyword = (String) params.get("keyword");
+		List<HashMap<String, Object>> list = null;
+		list = service.getAutoKeyword(keyword);
+		
+		System.out.println(list+"컨트롤러에서 가져온 유저 아이디목록 확인하기 ");
+		return list;
+	}
 
 }

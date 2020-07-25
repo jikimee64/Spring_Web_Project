@@ -114,7 +114,65 @@ body {
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
-
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	 $(function() {
+		 $('input[type="form-g"]').keydown(function() {
+			  if (event.keyCode === 13) {
+			    event.preventDefault();
+			  };
+			});
+		 
+	    $("._user_id").autocomplete({
+	    		
+	         source : function(request, response) {
+	        	 	var a = $('._user_id').val().trim();
+	    	    	
+	    	    	let data = {
+	    	                  "keyword" : a
+	    	              }
+	        	 
+	            $.ajax({
+	            	  url : '/ajax/getAutoKeyword.do'
+	                , contentType : "application/json"
+	                , type : "POST"
+	                , data : JSON.stringify(data) // 검색 키워드
+	                , success : function(data){ // 성공
+	                	console.log("자동완성기능 성공")
+	                     response(
+	                        $.map(data, function(item) {
+	                            return {
+	                                  label : item.user_id    //목록에 표시되는 값
+	                                , value : item.user_id   //선택 시 input창에 표시되는 값
+	                                
+	                            };
+	                        })
+	                    );     //response
+	                }
+	                ,
+	                error : function(){ //실패
+	                    alert("통신에 실패했습니다.");
+	                }
+	            });
+	        }
+	        , minLength : 1    
+	        , autoFocus : false    
+	        , select : function(evt, ui) {
+	            console.log("전체 data: " + JSON.stringify(ui));
+	            console.log("검색 데이터 : " + ui.item.value);
+	        }
+	        , focus : function(evt, ui) {
+	            return false;
+	        }
+	        , close : function(evt) {
+	        } 
+	    });
+	 })
+ 
+	</script>
+	
 
 	<script type="text/javascript">
 	 $(function() {
