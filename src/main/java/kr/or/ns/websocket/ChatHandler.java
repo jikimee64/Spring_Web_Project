@@ -24,6 +24,7 @@ import kr.or.ns.service.ManagerService;
 import kr.or.ns.service.ManagerServiceImpl;
 import kr.or.ns.service.MemberService;
 import kr.or.ns.service.MessageService;
+import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.ChatRoom;
 import kr.or.ns.vo.ChatRoomMember;
 import kr.or.ns.vo.Message;
@@ -34,6 +35,9 @@ public class ChatHandler extends TextWebSocketHandler {
 
 	@Autowired
 	private ChatService service;
+	
+	@Autowired
+	private MyPageService mservice;
 	
 	// private Map<String, WebSocketSession> users = new HashMap();
 	List<HashMap<String, Object>> rls = new ArrayList(); // 웹소켓 세션을 담아둘 리스트 ---roomListSessions
@@ -77,7 +81,9 @@ public class ChatHandler extends TextWebSocketHandler {
 				HashMap<String, Object> map = rls.get(idx);
 				map.put(user_id, session);
 				System.out.println("존재하는 방이면 세션 추가");
-				sendAllSessionToMessage(map, user_id, user_id+"님이 접속되었습니다."); 
+				Users user = mservice.getUsers(user_id);
+				String nickname = user.getNickname();
+				sendAllSessionToMessage(map, user_id, nickname+"님이 접속되었습니다."); 
 				//그 방에대한 전체 map / 접속한 사람의 user_id(키값) / 메시지
 			} else { // 최초 생성하는 방이라면 방번호와 세션을 추가한다.
 				HashMap<String, Object> map = new HashMap<String, Object>();
@@ -219,7 +225,9 @@ public class ChatHandler extends TextWebSocketHandler {
 		
 		//방에 대한 List중 하나를 가져와야됨
 		HashMap<String, Object> map = rls.get(idx);
-		sendAllSessionToMessage(map, user_id, user_id+"님이 방을 나가셨습니다."); 
+		Users user = mservice.getUsers(user_id);
+		String nickname = user.getNickname();
+		sendAllSessionToMessage(map, user_id, nickname+"님이 방을 나가셨습니다."); 
 		
 		if (session != null) {
 			if (rls.size() > 0) { // 소켓이 종료되면 해당 방의 아이디 세션을 지운다

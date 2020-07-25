@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>writing_normal_study_detail</title>
 <link rel="shortcut icon"
-	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+   href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 <link
-	href="https://cdn.jsdelivr.net/npm/remixicon@2.4.0/fonts/remixicon.css"
-	rel="stylesheet">
+   href="https://cdn.jsdelivr.net/npm/remixicon@2.4.0/fonts/remixicon.css"
+   rel="stylesheet">
 
 <!-- Template Main CSS File -->
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-	crossorigin="anonymous">
+   href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+   integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+   crossorigin="anonymous">
 
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -31,428 +31,409 @@
       background-color: aquamarine;
    } */
 .cover4 {
-	background-image:
-		url(../../../../resources/images/img/coursewritepage.jpg);
-	background-position: center center;
-	background-size: 2000px;
-	background-repeat: no-repeat;
-	opacity: 0.7;
+   background-image:
+      url(../../../../resources/images/img/coursewritepage.jpg);
+   background-position: center center;
+   background-size: 2000px;
+   background-repeat: no-repeat;
+   opacity: 0.7;
 }
 
 /* 하트 체크박스 스타일 시작 */
 input[type=checkbox] {
-	clear: both;
-	display: none;
+   clear: both;
+   display: none;
 }
 
 input[type="checkbox"] {
-	display: none;
+   display: none;
 }
 
 input[type="checkbox"]+label {
-	position: absolute;
-	z-index: 100;
-	overflow: hidden;
-	height: 60px;
-	width: 50px;
-	display: block;
-	text-align: center;
-	line-height: 60px;
-	cursor: pointer;
-	border-radius: 50%;
-	transform: translate3d(-10px, -7px, 10px);
+   position: absolute;
+   z-index: 100;
+   overflow: hidden;
+   height: 60px;
+   width: 50px;
+   display: block;
+   text-align: center;
+   line-height: 60px;
+   cursor: pointer;
+   border-radius: 50%;
+   transform: translate3d(-10px, -7px, 10px);
 }
 
 input[type="checkbox"]+label svg {
-	-webkit-transition: all 100ms ease-in-out;
-	transition: all 100ms ease-in-out;
+   -webkit-transition: all 100ms ease-in-out;
+   transition: all 100ms ease-in-out;
 }
 
 input[type="checkbox"]+label:before {
-	content: '';
-	z-index: -1;
-	position: absolute;
-	background: #E8336D;
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	top: 0;
-	left: 0;
-	transform: scale(0);
-	-webkit-transform: scale(0);
+   content: '';
+   z-index: -1;
+   position: absolute;
+   background: #E8336D;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   top: 0;
+   left: 0;
+   transform: scale(0);
+   -webkit-transform: scale(0);
 }
 
 input[type="checkbox"]+label:after {
-	content: '';
-	z-index: -1;
-	position: absolute;
-	background: white;
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	top: 0;
-	left: 0;
-	transform: scale(0);
-	-webkit-transform: scale(0);
+   content: '';
+   z-index: -1;
+   position: absolute;
+   background: white;
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+   top: 0;
+   left: 0;
+   transform: scale(0);
+   -webkit-transform: scale(0);
 }
 /* 호버는 연규가넣음  */
 input[type="checkbox"]:hover+label svg {
-	-webkit-transition: all 400ms ease-in-out;
-	transition: all 400ms ease-in-out;
-	fill: rgb(255, 188, 188);
-	transform: scale(1.3);
-	-webkit-transform: scale(1.3);
+   -webkit-transition: all 400ms ease-in-out;
+   transition: all 400ms ease-in-out;
+   fill: rgb(255, 188, 188);
+   transform: scale(1.3);
+   -webkit-transform: scale(1.3);
 }
 /* 호버는 연규가 넣음 끝 */
 input[type="checkbox"]:checked+label svg {
-	-webkit-transition: all 400ms ease-in-out;
-	transition: all 400ms ease-in-out;
-	fill: rgb(220, 72, 127);
-	transform: scale(1.3);
-	-webkit-transform: scale(1.3);
+   -webkit-transition: all 400ms ease-in-out;
+   transition: all 400ms ease-in-out;
+   fill: rgb(220, 72, 127);
+   transform: scale(1.3);
+   -webkit-transform: scale(1.3);
 }
 
 input[type="checkbox"]:checked+label:after {
-	-webkit-animation: heart-keyframes 0.3s 0.2s forwards;
-	-moz-animation: heart-keyframes 0.3s 0.2s forwards;
-	animation: heart-keyframes 0.3s 0.2s forwards;
+   -webkit-animation: heart-keyframes 0.3s 0.2s forwards;
+   -moz-animation: heart-keyframes 0.3s 0.2s forwards;
+   animation: heart-keyframes 0.3s 0.2s forwards;
 }
 
 input[type="checkbox"]:checked+label:before {
-	-webkit-animation: heart-keyframes 0.5s 0s forwards;
-	-moz-animation: heart-keyframes 0.5s 0s forwards;
-	animation: heart-keyframes 0.5s 0s forwards;
+   -webkit-animation: heart-keyframes 0.5s 0s forwards;
+   -moz-animation: heart-keyframes 0.5s 0s forwards;
+   animation: heart-keyframes 0.5s 0s forwards;
 }
 
 label svg {
-	display: inline-flex;
-	vertical-align: middle;
-	width: 25px;
-	fill: #ddd;
+   display: inline-flex;
+   vertical-align: middle;
+   width: 25px;
+   fill: #ddd;
 }
 
 @
 -webkit-keyframes heart-keyframes { 75% {
-	-webkit-transform: scale(1.025);
-	transform: scale(1.025);
-	-moz-transform: scale(1.025);
+   -webkit-transform: scale(1.025);
+   transform: scale(1.025);
+   -moz-transform: scale(1.025);
 }
 
 }
 @
 -webkit-keyframes heart-keyframes { 100% {
-	background: transparent;
-	-webkit-transform: scale(1.03);
-	transform: scale(1.03);
-	-moz-transform: scale(1.03);
+   background: transparent;
+   -webkit-transform: scale(1.03);
+   transform: scale(1.03);
+   -moz-transform: scale(1.03);
 }
 
 }
 @
 -moz-keyframes heart-keyframes { 75% {
-	-webkit-transform: scale(1.025);
-	transform: scale(1.025);
-	-moz-transform: scale(1.025);
+   -webkit-transform: scale(1.025);
+   transform: scale(1.025);
+   -moz-transform: scale(1.025);
 }
 
 }
 @
 -moz-keyframes heart-keyframes { 100% {
-	background: transparent;
-	-webkit-transform: scale(1.03);
-	transform: scale(1.03);
-	-moz-transform: scale(1.03);
+   background: transparent;
+   -webkit-transform: scale(1.03);
+   transform: scale(1.03);
+   -moz-transform: scale(1.03);
 }
 
 }
 @
 keyframes heart-keyframes { 75% {
-	-webkit-transform: scale(1.025);
-	transform: scale(1.025);
-	-moz-transform: scale(1.025);
+   -webkit-transform: scale(1.025);
+   transform: scale(1.025);
+   -moz-transform: scale(1.025);
 }
 
 }
 @
 keyframes heart-keyframes { 100% {
-	background: transparent;
-	-webkit-transform: scale(1.03);
-	transform: scale(1.03);
-	-moz-transform: scale(1.03);
+   background: transparent;
+   -webkit-transform: scale(1.03);
+   transform: scale(1.03);
+   -moz-transform: scale(1.03);
 }
 
 }
 /* 하트 체크박스 끝 */
 .updateComment, .deleteComment {
-	cursor: pointer;
+   cursor: pointer;
 }
 
 ._update_content {
-	border-color: #CED4DA;
-	border-radius: 3px;
+   border-color: #CED4DA;
+   border-radius: 3px;
 }
 
 ._update_content:focus {
-	border-color: rgba(126, 239, 104, 0.8);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
-		rgba(126, 239, 104, 0.6);
-	outline: 0 none;
+   border-color: rgba(126, 239, 104, 0.8);
+   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
+      rgba(126, 239, 104, 0.6);
+   outline: 0 none;
 }
 
 ._border_box_shadow2 {
-	background: #fff;
-	margin: auto;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
-		rgba(0, 0, 0, 0.26);
-	border-radius: 3px;
-	padding: 0px;
-	width: 100%;
-	height: 100%;
+   background: #fff;
+   margin: auto;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
+      rgba(0, 0, 0, 0.26);
+   border-radius: 3px;
+   padding: 0px;
+   width: 100%;
+   height: 100%;
 }
 
 ._textarea_border:focus {
-	border-color: rgba(126, 239, 104, 0.8);
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
-		rgba(126, 239, 104, 0.6);
-	outline: 0 none;
+   border-color: rgba(126, 239, 104, 0.8);
+   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px
+      rgba(126, 239, 104, 0.6);
+   outline: 0 none;
 }
 
 .modal {
-	text-align: center;
+   text-align: center;
 }
 
 @media screen and (min-width: 768px) {
-	.modal:before {
-		display: inline-block;
-		vertical-align: middle;
-		content: " ";
-		height: 20%;
-	}
+   .modal:before {
+      display: inline-block;
+      vertical-align: middle;
+      content: " ";
+      height: 20%;
+   }
 }
-
 ._form_radio {
-	background: #fff;
-	/*    width: 509px; */
-	margin: auto;
-	padding: 30px;
-	min-width: 320px;
-	max-width: 540px;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
-		rgba(0, 0, 0, 0.26);
-	border-radius: 3px;
+   background: #fff;
+   /*    width: 509px; */
+   margin: auto;
+   padding: 30px;
+   min-width: 320px;
+   max-width: 540px;
+   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
+      rgba(0, 0, 0, 0.26);
+   border-radius: 3px;
 }
-
 group+group {
-	margin-top: 20px;
+   margin-top: 20px;
 }
 
 .inline-radio {
-	display: flex;
-	border-radius: 3px;
-	overflow: hidden;
+   display: flex;
+   border-radius: 3px;
+   overflow: hidden;
 }
 
 ._div_radio {
-	position: relative;
-	flex: 1;
-	border-radius: 3px;
+   position: relative;
+   flex: 1;
+   border-radius: 3px;
 }
 
 ._input_radio {
-	width: 100%;
-	opacity: 0;
-	height: 100%;
-	cursor: pointer;
+   width: 100%;
+   opacity: 0;
+   height: 100%;
+   cursor: pointer;
 }
 
 ._radio_label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	color: #272C33;
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
+   position: absolute;
+   top: 0;
+   left: 0;
+   color: #272C33;
+   width: 100%;
+   height: 100%;
+   background: #fff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   pointer-events: none;
 }
 
 ._div_radio:last-child label {
-	border-right: 0;
+   border-right: 0;
 }
 
 ._input_radio:checked+label {
-	background: #00d463;
-	font-weight: 500;
-	color: #fff;
-	border-radius: 5px;
+   background: #00d463;
+   font-weight: 500;
+   color: #fff;
+   border-radius: 5px;
 }
 
 .modal-dialog {
-	display: inline-block;
-	text-align: left;
-	vertical-align: middle;
+   display: inline-block;
+   text-align: left;
+   vertical-align: middle;
 }
 </style>
 
 <body>
 
-	<input id="s_seq" type="hidden" th:value="${study.S_SEQ}" />
-	<input id="page" type="hidden" th:value="${page}" />
-	<input id="perPageNum" type="hidden" th:value="${perPageNum}" />
-	<input id="user_id" type="hidden"  th:value="${study.USER_ID}"/>
+   <input id="s_seq" type="hidden" th:value="${study.S_SEQ}" />
+   <input id="page" type="hidden" th:value="${page}" />
+   <input id="perPageNum" type="hidden" th:value="${perPageNum}" />
 
-	<div th:replace="/user/includes/header :: header"></div>
-	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+   <div th:replace="/user/includes/header :: header"></div>
+   <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
-	<main id="main">
-		<!-- ======= Breadcrumbs Section ======= -->
-		<section class="breadcrumbs cover4"
-			style="margin-top: 70px; height: 300px; padding: 1000 0 100 0px;">
-			<div class="container d-flex h-100" style="padding: 200px 0;">
-				<div class="row justify-content-center align-self-center">
-					<h1 style="color: white; font-size: 50px;">
-						<b>상세보기</b>
-					</h1>
-				</div>
-			</div>
+   <main id="main">
+      <!-- ======= Breadcrumbs Section ======= -->
+      <section class="breadcrumbs cover4"
+         style="margin-top: 70px; height: 300px; padding: 1000 0 100 0px;">
+         <div class="container d-flex h-100" style="padding: 200px 0;">
+            <div class="row justify-content-center align-self-center">
+               <h1 style="color: white; font-size: 50px;">
+                  <b>상세보기</b>
+               </h1>
+            </div>
+         </div>
 
-		</section>
-		<!-- Breadcrumbs Section -->
-	</main>
+      </section>
+      <!-- Breadcrumbs Section -->
+   </main>
 
-	<div class="_border_box_shadow2" style="width: 1430px;">
-		<!-- <form action="study_List.do" method="post" class="nomalstudy" id="nomalstudy"
+   <div class="_border_box_shadow2" style="width: 1430px;">
+      <!-- <form action="study_List.do" method="post" class="nomalstudy" id="nomalstudy"
       enctype="multipart/form-data" novalidate> -->
-		<div
-			style="margin-top: 40px; margin-bottom: 25px; padding-top: 30px; padding-bottom: 30px;">
-			<span class="badge badge-pill badge-primary"
-				th:text="${study.STATUS}" style="margin-left: 45px;"></span> <span
-				class="badge badge-pill badge-info" th:text="${study.LEVEL}"></span>
-			<span class="badge badge-pill badge-secondary"
-				th:text="${study.CATE_LANGUAGE}"></span> <span
-				class="badge badge-pill badge-success" th:text="|${study.PEOPLE}명|"></span>
-			<span class="badge badge-pill badge-warning" th:text="${study.LOC}"></span>
-			<span class="badge badge-pill badge-light"
-				th:text="${study.CONTENT_KIND}"></span>
-			<div class="row" style="padding: 0px 50px;">
-				<div class="col-md-6">
-					<span style="font-size: x-large;" id="title"><b
-						th:text="${study.TITLE}"></b></span>
-				</div>
-				<div class="col-md-6 d-flex justify-content-between"
-					style="text-align: right;place-items:flex-end;">
-					<div class="col" style="text-align-last: left;">
-						<div>
-							<b style="margin-right: 10px;"> 작성자: </b> 
-							<a
-										href="" th:classappend="|InfoModal${study.S_SEQ}|"
-										th:onclick="|javascript:InfoModal('${study.S_SEQ}')|"
-										data-toggle="modal" data-target="#userInfoModal"> 
-										<input type="hidden" th:value="${study.NICKNAME}">
-										<b th:text="${study.NICKNAME}"
-										style="color: black; margin-right: 10px;"> </b>
-									</a>
-						</div>
+      <div
+         style="margin-top: 40px; margin-bottom: 25px; padding-top: 30px; padding-bottom: 30px;">
+         <span class="badge badge-pill badge-primary"
+            th:text="${study.STATUS}" style="margin-left: 45px;"></span> <span
+            class="badge badge-pill badge-info" th:text="${study.LEVEL}"></span>
+         <span class="badge badge-pill badge-secondary"
+            th:text="${study.CATE_LANGUAGE}"></span> <span
+            class="badge badge-pill badge-success" th:text="|${study.PEOPLE}명|"></span>
+         <span class="badge badge-pill badge-warning" th:text="${study.LOC}"></span>
+         <span class="badge badge-pill badge-light"
+            th:text="${study.CONTENT_KIND}"></span>
+         <div class="row" style="padding: 0px 50px;">
+            <div class="col-md-6">
+               <span style="font-size: x-large;" id="title"><b
+                  th:text="${study.TITLE}"></b></span>
+            </div>
+            <div class="col-md-6 d-flex justify-content-between"
+               style="text-align: right;">
+               <div>
+                  <b> 작성자: </b> <span id="user_id" th:text="${study.NICKNAME}"></span>
+               </div>
+               <div>
+                  <b> 등록일: </b> <span
+                     th:text="${#dates.format(study.WRITE_DATE, 'yyyy/MM/dd HH:mm')}"></span>
+               </div>
+               <div>
+                  <b> 마감일: </b> <span
+                     th:text="${#dates.format(study.DEADLINE, 'yyyy/MM/dd HH:mm')}"></span>
+               </div>
+               <div>
+                  <b> 조회수: </b> <span th:text="${study.READNUM}"></span>
+               </div>
+            </div>
 
-						<div>
-							<b style="margin-right: 10px;"> 등록일: </b> <span
-								th:text="${#dates.format(study.WRITE_DATE, 'yyyy/MM/dd HH:mm')}"></span>
-						</div>
-					</div>
-
-					<div class="col" style="text-align-last: left;">
-						<div>
-							<b style="margin-right: 10px;"> 조회수: </b> <span style="font:message-box;" th:text="${study.READNUM}"></span>
-						</div>
-						<div>
-							<b style="margin-right: 10px;"> 마감일: </b> <span
-								th:text="${#dates.format(study.DEADLINE, 'yyyy/MM/dd HH:mm')}"></span>
-						</div>
-					</div>
-
-
-				</div>
-
-				<!-- <div class="col-md-1" style="align-self: flex-end;">
+            <!-- <div class="col-md-1" style="align-self: flex-end;">
             <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
                <button type="button" class="btn btn-danger">신고</button>
             </a>
          </div> -->
 
 
-				<hr
-					style="border-color: rgb(224, 224, 224); width: 100%; margin-top: 10px;">
-			</div>
-			<!-- 타임리프 -->
-			<div class="container" style="margin-bottom: 25px; margin-top: 20px;">
-				<!--    <th:block th:each="study : ${study}"> -->
-				<div class="row">
-					<div class="col-md-9">
-						<div class="row">
-							<div class="col-md-7"></div>
+            <hr
+               style="border-color: rgb(224, 224, 224); width: 100%; margin-top: 10px;">
+         </div>
+         <!-- 타임리프 -->
+         <div class="container" style="margin-bottom: 25px; margin-top: 20px;">
+            <!--    <th:block th:each="study : ${study}"> -->
+            <div class="row">
+               <div class="col-md-9">
+                  <div class="row">
+                     <div class="col-md-7"></div>
 
-							<!--                      <h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
+                     <!--                      <h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
 
-						</div>
-
-
-						<div class="row">
-							<div class="col-md-8"></div>
-							<div class="col-md-4" style="width: 100%;">
-								<div class="row" id="fileHas1"
-									style="margin-left: 30px; margin-top: -20px;">
-									<th:block th:switch="${study.FILESRC}">
-										<div th:case="defaultfile" class="form-group"
-											style="margin: 0"></div>
-										<div th:case="${study.FILESRC}" class="form-group"
-											style="margin: 0">
-											<a th:href="@{FileDownload.do(filesrc=${study.FILESRC})}"
-												style="color: black;"> <i class="fa fa-folder-open"
-												aria-hidden="true"></i> <sapn class="_file_name1"
-													th:text="${study.FILESRC}"> </span></a>
-										</div>
-									</th:block>
-								</div>
-							</div>
-						</div>
+                  </div>
 
 
-						<div class="row">
-							<div class="col-md-8"></div>
-							<div class="col-md-4" style="width: 100%">
-								<div class="row" id="fileHas2"
-									style="margin-left: 30px; margin-top: 5px;">
-									<th:block th:switch="${study.FILESRC2}">
-										<div th:case="defaultfile2" class="form-group"
-											style="margin: 0"></div>
-										<div th:case="${study.FILESRC2}" class="form-group"
-											style="margin: 0">
-											<a th:href="@{FileDownload.do(filesrc=${study.FILESRC2})}"
-												style="color: black;"> <i class="fa fa-folder-open"
-												aria-hidden="true"></i> <span class="_file_name2"
-												th:text="${study.FILESRC2}"></span>
-											</a>
-										</div>
-									</th:block>
-								</div>
-							</div>
-						</div>
-						<br />
-						<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
+                  <div class="row">
+                     <div class="col-md-8"></div>
+                     <div class="col-md-4" style="width: 100%;">
+                        <div class="row" id="fileHas1"
+                           style="margin-left: 30px; margin-top: -20px;">
+                           <th:block th:switch="${study.FILESRC}">
+                              <div th:case="defaultfile" class="form-group"
+                                 style="margin: 0"></div>
+                              <div th:case="${study.FILESRC}" class="form-group"
+                                 style="margin: 0">
+                                 <a th:href="@{FileDownload.do(filesrc=${study.FILESRC})}"
+                                    style="color: black;"> <i class="fa fa-folder-open"
+                                    aria-hidden="true"></i> <sapn class="_file_name1"
+                                       th:text="${study.FILESRC}"> </span></a>
+                              </div>
+                           </th:block>
+                        </div>
+                     </div>
+                  </div>
 
-						<span th:utext="${study.CONTENT}" id="content"><textarea
-								name="" cols="30" rows="10"
-								class="form-control _textarea_readonly" readonly
-								style="background-color: #F5F5F5; resize: none;"></textarea></span>
-						<div class="row" style="margin-top: 45px;">
-							<div class="col-6" style="text-align: start;">
 
-								<!-- <a href="#" style="margin-right: 5px;"> <img
+                  <div class="row">
+                     <div class="col-md-8"></div>
+                     <div class="col-md-4" style="width: 100%">
+                        <div class="row" id="fileHas2"
+                           style="margin-left: 30px; margin-top: 5px;">
+                           <th:block th:switch="${study.FILESRC2}">
+                              <div th:case="defaultfile2" class="form-group"
+                                 style="margin: 0"></div>
+                              <div th:case="${study.FILESRC2}" class="form-group"
+                                 style="margin: 0">
+                                 <a th:href="@{FileDownload.do(filesrc=${study.FILESRC2})}"
+                                    style="color: black;"> <i class="fa fa-folder-open"
+                                    aria-hidden="true"></i> <span class="_file_name2"
+                                    th:text="${study.FILESRC2}"></span>
+                                 </a>
+                              </div>
+                           </th:block>
+                        </div>
+                     </div>
+                  </div>
+                  <br />
+                  <!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
+
+                  <span th:utext="${study.CONTENT}" id="content"><textarea
+                        name="" cols="30" rows="10"
+                        class="form-control _textarea_readonly" readonly
+                        style="background-color: #F5F5F5; resize: none;"></textarea></span>
+                  <div class="row" style="margin-top:45px;">
+                     <div class="col-6" style="text-align: start;">
+
+                        <!-- <a href="#" style="margin-right: 5px;"> <img
                         style="margin-right: 5px;"
                         src="../../../../resources/images/img/board_like.svg"> 
                         
@@ -460,67 +441,67 @@ group+group {
                         style="margin-right: 10px;">1</strong> -->
 
 
-								<input type="checkbox" id="heartheart33333"
-									th:class="${study.S_SEQ}" /> <label for="heartheart33333"
-									style="transform: translateY(-16px);"> <svg
-										xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 51.02">
+                        <input type="checkbox" id="heartheart33333"
+                           th:class="${study.S_SEQ}" /> <label for="heartheart33333"
+                           style="transform: translateY(-16px);"> <svg
+                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 51.02">
                          <path
-											d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
+                                 d="M27.22,50.73a2.31,2.31,0,0,0,2.25,0C35.36,47.48,62.08,31.43,55.72,11,52.4.38,36.25-5.78,28.68,7.79a.38.38,0,0,1-.67,0C20.44-5.78,4.3.38,1,11-5.39,31.43,21.34,47.48,27.22,50.73Z" />
                                           </svg>
-								</label> <span style="margin-left: 50px;"> <strong>좋아요&nbsp;</strong>
-									<strong id="replyTotal" th:text="${study.LIKE_CNT}"
-									class="heartt" style="margin-right: 10px;"></strong>
-								</span> <span style=" margin-left: 10px;"> <img
-									style="margin-right: 2px;"
-									src="../../../../resources/images/img/comment-dots-regular.svg">
-								</span> <strong>댓글&nbsp; </strong> <strong id="replyTotal"
-									th:text="${count}" class="dott" style="margin-right: 10px;"></strong>
+                        </label> <span style="margin-left: 50px;"> <strong>좋아요&nbsp;</strong>
+                           <strong id="replyTotal" th:text="${study.LIKE_CNT}"
+                           class="heartt" style="margin-right: 10px;"></strong>
+                        </span> <span style="margin-right: 5px; margin-left: 10px;"> <img
+                           style="margin-right: 5px;"
+                           src="../../../../resources/images/img/comment-dots-regular.svg">
+                        </span> <strong>댓글&nbsp; </strong> <strong id="replyTotal"
+                           th:text="${count}" class="dott" style="margin-right: 10px;"></strong>
 
-							</div>
+                     </div>
 
-							<!-- <span id="userid" sec:authentication="principal.username"></span> -->
+                     <!-- <span id="userid" sec:authentication="principal.username"></span> -->
 
-							<div class="col-2"></div>
-							<div class="col-4" style="text-align: end;">
-								<th:block th:switch="${sessionid}">
-									<!-- 로그인한 아이디가 글쓴이와 같다면..  -->
-									<span th:case="${study.USER_ID}"> <th:block
-											th:switch="${study.C_SEQ}">
-											<a th:case="1"
-												th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
-												<button type="button" class="btn btn-warning"
-													style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
-											</a>
-											<a th:case="2"
-												th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
-												<button type="button" class="btn btn-warning"
-													style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
-											</a>
-										</th:block> <!--   <a
-										     th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
-										<button id="delete" type="button" class="btn btn-danger"
-											style="height: 30px; padding-top: 3px;">삭제</button> <!-- </a> -->
-									</span>
-								</th:block>
+                     <div class="col-2"></div>
+                     <div class="col-4" style="text-align: end;">
+                        <th:block th:switch="${sessionid}">
+                           <!-- 로그인한 아이디가 글쓴이와 같다면..  -->
+                           <span th:case="${study.USER_ID}"> <th:block
+                                 th:switch="${study.C_SEQ}">
+                                 <a th:case="1"
+                                    th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+                                    <button type="button" class="btn btn-warning"
+                                       style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
+                                 </a>
+                                 <a th:case="2"
+                                    th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+                                    <button type="button" class="btn btn-warning"
+                                       style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
+                                 </a>
+                              </th:block> <!--   <a
+                                   th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
+                              <button id="delete" type="button" class="btn btn-danger"
+                                 style="height: 30px; padding-top: 3px;">삭제</button> <!-- </a> -->
+                           </span>
+                        </th:block>
 
-								<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-									<!-- <a
-								th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
-									<button id="delete" type="button" class="btn btn-danger"
-										style="height: 30px; padding-top: 3px; background-color: red;">삭제(관리자)</button>
-									<!--        </a> -->
-								</th:block>
+                        <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                           <!-- <a
+                        th:href="@{/board/writing_Common_Study_Delete.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}"> -->
+                           <button id="delete" type="button" class="btn btn-danger" 
+                              style="height: 30px; padding-top: 3px;background-color:red;">삭제(관리자)</button>
+                           <!--        </a> -->
+                        </th:block>
 
-								<a href="" data-toggle="modal" data-target="#declationPageModal"
-									style="color: black;"> <img
-									src="../../../../resources/images/img/siren.png"
-									style="width: 30px; height: 30px;">
-								</a>
-							</div>
-						</div>
+                        <a href="" data-toggle="modal" data-target="#declationPageModal"
+                           style="color: black;"> <img
+                           src="../../../../resources/images/img/siren.png"
+                           style="width: 30px; height: 30px;">
+                        </a>
+                     </div>
+                  </div>
 
 
-						<!-- <div style="text-align: end;">
+                  <!-- <div style="text-align: end;">
                   <a href="/board/writing_Course_Study_Edit.do">
                      <button type="button" class="btn btn-warning"
                         style="background-color: #18d26e; color: white; border-color: #18d26e;">수정</button>
@@ -533,168 +514,168 @@ group+group {
                   </a>
                </div> -->
 
-						<!--  댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글   -->
+                  <!--  댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글 댓글   -->
 
-						<div class="card my-4">
-							<p class="card-header" style="padding: 0px 20px 0px 20px">
-								<b>댓글</b>
-							</p>
-							<div class="card-body" style="padding: 10px;">
+                  <div class="card my-4">
+                     <p class="card-header" style="padding: 0px 20px 0px 20px">
+                        <b>댓글</b>
+                     </p>
+                     <div class="card-body" style="padding: 10px;">
 
-								<!-- 댓글이 생기는 곳  -->
-								<div class="media mb-4">
+                        <!-- 댓글이 생기는 곳  -->
+                        <div class="media mb-4">
 
-									<div class="media-body" id="com">
-										<h5 class="mt-0"></h5>
-									</div>
+                           <div class="media-body" id="com">
+                              <h5 class="mt-0"></h5>
+                           </div>
 
-								</div>
+                        </div>
 
-								<div class="form-group">
-									<textarea class="form-control" rows="2" id="comment"
-										name="comment" style="resize: none;"></textarea>
-								</div>
-								<div class="row">
-									<div class="col-md-11" style="padding: 0px;"></div>
-									<div class="col-md-1" style="position: relative; padding: 0px;">
-										<button class="btn btn-warning" id="commentWrite"
-											name="commentWrite"
-											style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
-									</div>
-								</div>
-								<!-- </form> -->
-							</div>
-						</div>
+                        <div class="form-group">
+                           <textarea class="form-control" rows="2" id="comment"
+                              name="comment" style="resize: none;"></textarea>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-11" style="padding: 0px;"></div>
+                           <div class="col-md-1" style="position: relative; padding: 0px;">
+                              <button class="btn btn-warning" id="commentWrite"
+                                 name="commentWrite"
+                                 style="padding: 7px; height: 30px; padding-top: 4px; color: white;">등록</button>
+                           </div>
+                        </div>
+                        <!-- </form> -->
+                     </div>
+                  </div>
 
-					</div>
-
-
-
-					<div class="col-md-3">
-						<div
-							style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
-
-							<th:block th:switch="${study.CONTENT_KIND}">
-								<div th:case="일반" class="card" style="width: 100%">
-									<img class="card-img-top"
-										th:src="'/studyboard/upload/' + ${study.IMAGE}"
-										alt="Card image" style="width: 100%;max-height:350px;">
-								</div>
-
-								<div th:case="온라인강의" class="card" style="width: 100%">
-									<th:block th:if="${onlineInfo != null}">
-										<img class="card-img-top" th:src="${study.IMAGE}"
-											alt="Card image" style="width: 100%">
-										<div class="card-body">
-											<h6 class="card-title _margin_0"
-												th:text="${onlineInfo.L_TITLE}"></h6>
-											<p class="card-text _margin_0"
-												th:text="${onlineInfo.L_WRITER}"
-												style="color: gray; font-size: small; margin-bottom: 0px;">이지스
-												퍼블리싱</p>
-											<a th:href="${onlineInfo.L_ADDRESS}" class="stretched-link"></a>
-											<div
-												style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
-												<p class="_star"
-													th:style="|WIDTH:| +${onlineInfo.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
-												</p>
-											</div>
-											<span th:text="|(${onlineInfo.L_REVIEW})|">(6)</span> <b
-												th:text="|₩${onlineInfo.L_PRICE}|">₩44,000</b>
-										</div>
-										<th:block>
-								</div>
-							</th:block>
+               </div>
 
 
-							<!-- onclick="history.go(-1); return false;" -->
-							<th:block th:switch="${sessionid}">
-								<div th:case="${study.USER_ID}"
-									style="text-align: center; margin: 10px 0px 10px 0px;">
 
-									<th:block th:if="${page != null && perPageNum != null}">
-										<a
-											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}">
-											<button type="button" class="btn btn-warning"
-												style="width: 100%; font-weight: bold;">목록으로</button>
-										</a>
-									</th:block>
+               <div class="col-md-3">
+                  <div
+                     style="border-left: 1px solid rgb(224, 224, 224); height: 100%; padding-left: 20px;">
 
-									<th:block th:if="${page == null && perPageNum == null}">
-										<a th:href="@{/board/study_List.do(root=header)}">
-											<button type="button" class="btn btn-warning"
-												style="width: 100%; font-weight: bold;">목록으로</button>
-										</a>
-									</th:block>
+                     <th:block th:switch="${study.CONTENT_KIND}">
+                        <div th:case="일반" class="card" style="width: 100%">
+                           <img class="card-img-top"
+                              th:src="'/studyboard/upload/' + ${study.IMAGE}"
+                              alt="Card image" style="width: 100%">
+                        </div>
+
+                        <div th:case="온라인강의" class="card" style="width: 100%">
+                           <th:block th:if="${onlineInfo != null}">
+                              <img class="card-img-top" th:src="${study.IMAGE}"
+                                 alt="Card image" style="width: 100%">
+                              <div class="card-body">
+                                 <h6 class="card-title _margin_0"
+                                    th:text="${onlineInfo.L_TITLE}"></h6>
+                                 <p class="card-text _margin_0" 
+                                    th:text="${onlineInfo.L_WRITER}"
+                                    style="color: gray; font-size: small;margin-bottom:0px;">이지스 퍼블리싱</p>
+                                 <a th:href="${onlineInfo.L_ADDRESS}"
+                                    class="stretched-link"></a>
+                                 <div
+                                    style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;">
+                                    <p class="_star"
+                                       th:style="|WIDTH:| +${onlineInfo.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+                                    </p>
+                                 </div>
+                                 <span th:text="|(${onlineInfo.L_REVIEW})|">(6)</span> <b
+                                    th:text="|₩${onlineInfo.L_PRICE}|">₩44,000</b>
+                              </div>
+                              <th:block>
+                        </div>
+                     </th:block>
 
 
-								</div>
-								<div th:case="*"
-									style="text-align: center; margin: 10px 0px 10px 0px;">
-									<th:block th:switch="${apply}">
-										<th:block th:case="0">
-											<th:block th:if="${study.STATUS == '모집중'}">
-												<button id="apply" type="submit" class="btn btn-success"
-													style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e; font-weight: bold;">지원하기</button>
-											</th:block>
-										</th:block>
-										<th:block th:case="1">
-											<button id="applycancel" type="submit" class="btn"
-												style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e; font-weight: bold;">지원취소하기</button>
-										</th:block>
-									</th:block>
-									<!-- 이거는 사용자 권한 -->
-									<div style="text-align: center; margin: 10px 0px 10px 0px;">
-										<a
-											th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}"
-											class="_to_the_list_a_tag">
-											<button type="button"
-												class="btn btn-warning _to_the_list_button"
-												style="width: 100%; font-weight: bold;">목록으로</button>
-										</a>
-									</div>
-								</div>
-							</th:block>
-							<!-- <th:block th:switch="${sessionid}">
+                     <!-- onclick="history.go(-1); return false;" -->
+                     <th:block th:switch="${sessionid}">
+                        <div th:case="${study.USER_ID}"
+                           style="text-align: center; margin: 10px 0px 10px 0px;">
+
+                           <th:block th:if="${page != null && perPageNum != null}">
+                              <a
+                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}">
+                                 <button type="button" class="btn btn-warning"
+                                    style="width: 100%;font-weight:bold;">목록으로</button>
+                              </a>
+                           </th:block>
+
+                           <th:block th:if="${page == null && perPageNum == null}">
+                              <a th:href="@{/board/study_List.do}">
+                                 <button type="button" class="btn btn-warning"
+                                    style="width: 100%;font-weight:bold;">목록으로</button>
+                              </a>
+                           </th:block>
+
+
+                        </div>
+                        <div th:case="*"
+                           style="text-align: center; margin: 10px 0px 10px 0px;">
+                           <th:block th:switch="${apply}">
+                              <th:block th:case="0">
+                                 <th:block th:if="${study.STATUS == '모집중'}">
+                                    <button id="apply" type="submit" class="btn btn-success"
+                                       style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원하기</button>
+                                 </th:block>
+                              </th:block>
+                              <th:block th:case="1">
+                                 <button id="applycancel" type="submit" class="btn"
+                                    style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;font-weight:bold;">지원취소하기</button>
+                              </th:block>
+                           </th:block>
+                           <!-- 이거는 사용자 권한 -->
+                           <div style="text-align: center; margin: 10px 0px 10px 0px;">
+                              <a
+                                 th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum},root=header)}"
+                                 class="_to_the_list_a_tag">
+                                 <button type="button"
+                                    class="btn btn-warning _to_the_list_button"
+                                    style="width: 100%;font-weight:bold;">목록으로</button>
+                              </a>
+                           </div>
+                        </div>
+                     </th:block>
+                     <!-- <th:block th:switch="${sessionid}">
                      <div th:case="${study.USER_ID}" style="text-align: center; margin: 10px 0px 10px 0px;">
                      <button id="apply" type="submit" class="btn btn-success"
                            style="width: 100%; background-color: #18d26e; color: white; border-color: #18d26e;">지원하기</button>
                         이거는 사용자 권한
                      </div>
                   </th:block> -->
-							<!-- <div style="text-align: center; margin: 10px 0px 10px 0px;">
+                     <!-- <div style="text-align: center; margin: 10px 0px 10px 0px;">
                      <a th:href="@{/board/study_List.do(page=${page},perPageNum=${perPageNum})}">
                         <button type="button" class="btn btn-warning" style="width:100%;">목록으로</button>
                      </a>
                   </div> -->
-						</div>
-					</div>
-				</div>
-				<!--       </th:block> -->
-			</div>
-		</div>
-	</div>
-	<!-- </form> -->
-	<div th:replace="/user/includes/footer :: footer"></div>
+                  </div>
+               </div>
+            </div>
+            <!--       </th:block> -->
+         </div>
+      </div>
+   </div>
+   <!-- </form> -->
+   <div th:replace="/user/includes/footer :: footer"></div>
 
-	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
-	<div
-		th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
-	</div>
-	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
-	</div>
+   <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+   <div
+      th:replace="/user/includes/declation_Page_Modal :: declation_Page_Modal">
+   </div>
+   <div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
+   </div>
+   
+   <input th:class="${heart}" type="hidden" id="heartlike">
+   <input th:class="${sessionid}" type="hidden" id="userId">
+   <input th:class="${commentList}" type="hidden" id="commentList">
 
-	<input th:class="${heart}" type="hidden" id="heartlike">
-	<input th:class="${sessionid}" type="hidden" id="userId">
-	<input th:class="${commentList}" type="hidden" id="commentList">
-
-	<!-- <input type="hidden" id="commentList" th:value="${commentList}"> -->
+   <!-- <input type="hidden" id="commentList" th:value="${commentList}"> -->
 
 
-	<!-- alert창 꾸미기 -->
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-	<script>
+   <!-- alert창 꾸미기 -->
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
+   <script>
       $(function() {
          
          /***********************************************   댓글 시리즈    ***********************************************/
@@ -723,39 +704,39 @@ group+group {
       
 //          /* yyyymmddhhmm으로 포맷 */
 //          function getDateFormet(date){
-//         	 var dd = date.getDate();
-//         	 var mm = date.getMonth()+1; //January is 0
-        	 
-//         	 var yyyy = date.getFullYear();
-        	 
-//         	 if(dd<10){
-//         		 dd='0'+dd
-//         	 }
-        	 
-//         	 if(mm<10){
-//         		 mm='0'+mm
-//         	 }
-        	 
-//         	 yyyy = yyyy.toString();
-//         	 mm = mm.toString();
-//         	 dd = dd.toString();
-        	 
-//         	 var m = date.getHours();
-//         	 var s = date.getMinutes();
-        	 
-//         	 if(m<10){
-//         		 m='0'+m
-//         	 }
-        	 
-//         	 if(s<10){
-//         		 s='0'+s
-//         	 }
-	        	 
-//         	 m = m.toString();
-//         	 s = s.toString();
-        	 
-//         	 var s1 = yyyy+'/'+mm+'/'+dd+' '+m+':'+s;
-//         	 return s1;
+//             var dd = date.getDate();
+//             var mm = date.getMonth()+1; //January is 0
+            
+//             var yyyy = date.getFullYear();
+            
+//             if(dd<10){
+//                dd='0'+dd
+//             }
+            
+//             if(mm<10){
+//                mm='0'+mm
+//             }
+            
+//             yyyy = yyyy.toString();
+//             mm = mm.toString();
+//             dd = dd.toString();
+            
+//             var m = date.getHours();
+//             var s = date.getMinutes();
+            
+//             if(m<10){
+//                m='0'+m
+//             }
+            
+//             if(s<10){
+//                s='0'+s
+//             }
+               
+//             m = m.toString();
+//             s = s.toString();
+            
+//             var s1 = yyyy+'/'+mm+'/'+dd+' '+m+':'+s;
+//             return s1;
 //          }
 
             
@@ -765,17 +746,17 @@ group+group {
                var html = "";
                
                    $.each(result, function(index, obj) {
-                	   
-                	   
-//                 	   	var date1 = new Date(obj.r_date);
-//                 	   	date1.setHours(date1.getHours()-9);
+                      
+                      
+//                          var date1 = new Date(obj.r_date);
+//                          date1.setHours(date1.getHours()-9);
 
-                	  var date1 = new Date(obj.R_DATE);
-                	 
-                	
+                     var date1 = new Date(obj.R_DATE);
+                    
+                   
                       if(obj.R_EXISTS === 'Y'){
        
-                    	  
+                         
                            var depthcss = "";
                            var quillpen = " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='rereply' id='" + obj.R_SEQ + "'"+">답글쓰기&nbsp;<i class='ri-quill-pen-line'></i></a>";
                         
@@ -1103,14 +1084,14 @@ group+group {
          
          
           if($('#fileHas1').children().children().children().hasClass("_file_name1")){
-		     if($('._file_name1')[0].innerText.length >= 13){
-		         $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,13) + "...";
-		     }
+           if($('._file_name1')[0].innerText.length >= 15){
+               $('._file_name1')[0].innerText  = $('._file_name1')[0].innerText.substring(0,15) + "...";
+           }
           }
           if($('#fileHas2').children().children().children().hasClass("_file_name2")){   
-	          if($('._file_name2')[0].innerText.length >= 13){
-	             $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,13) + "...";
-	          }
+             if($('._file_name2')[0].innerText.length >= 15){
+                $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
+             }
           }
           
        /* 첨부파일명 자르기 끝 */
@@ -1129,11 +1110,11 @@ group+group {
                });
          
          $('#delete').click(function(){
-        	 
-        	 var page = $('#page');
-        	 var perPageNum = $('#perPageNum');
-        	 var root = "back";
-        	 
+            
+            var page = $('#page');
+            var perPageNum = $('#perPageNum');
+            var root = "back";
+            
             swal({
                  title: "정말 삭제하시겠습니까?",
                  text: "",
@@ -1159,17 +1140,17 @@ group+group {
    </script>
 
 
-	<script>
-	/*        지원하기         */
+   <script>
+   /*        지원하기         */
    $(function() {
-	   
-	   
-	   let s_seq =  $('#s_seq').val();
-	   let page =  $('#page').val();
-	   let perPageNum =  $('#perPageNum').val();
-	   
-	   
-	   
+      
+      
+      let s_seq =  $('#s_seq').val();
+      let page =  $('#page').val();
+      let perPageNum =  $('#perPageNum').val();
+      
+      
+      
    $('#apply').click(function(){
        let obj = {"s_seq" : s_seq}; 
       swal({
@@ -1189,24 +1170,24 @@ group+group {
                
                   data : JSON.stringify(obj),
                   success : function(data) {
-	                     if(data == 0){
-	                        swal({
-	                           title: "이미 지원한 스터디입니다.",
-	                             icon: "warning",
-	                             buttons: true
-	                           })
-	                       }else if(data == 1){
-	                    	/* swal({title:"지원이 완료되었습니다.",
-	                       		  icon: "success"}) */
-	                       		 
-	                       				
-	                       		  location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
-	                       			
-	                       		             
-				           }else{
-				        	   swal({title:"모집이 마감되었습니다.",
-				                   icon: "warning"})
-				           }
+                        if(data == 0){
+                           swal({
+                              title: "이미 지원한 스터디입니다.",
+                                icon: "warning",
+                                buttons: true
+                              })
+                          }else if(data == 1){
+                          /* swal({title:"지원이 완료되었습니다.",
+                                  icon: "success"}) */
+                                 
+                                      
+                                  location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum"+perPageNum
+                                   
+                                             
+                       }else{
+                          swal({title:"모집이 마감되었습니다.",
+                               icon: "warning"})
+                       }
                   },
                   error: function(request, status, error){
                      console.log("code:" + request.status + "\n"
@@ -1277,20 +1258,20 @@ group+group {
    </script>
 
 
-	<script>
+   <script>
  $(function() {
     
     
      $(".blameform").submit(function(e) {
            e.preventDefault();
           var formData = new FormData(this);
-         	
-         console.warn("유저아이디"  + $('#user_id').val());
+         
+         
          let data = {
             "s_seq":$('#s_seq').val(), //신고당하는 글번호
             "type":formData.get("blame"), //신고유형
             "place":"1", //신고장소(게시판)   
-            "target": $('#user_id').val(), //신고당하는 사람
+            "target": $('#user_id').text(), //신고당하는 사람
             "bl_title":formData.get("bl_title"),  //신고제목
             "comment":formData.get("comment"), //신고내용
             "blamed_title": $('#title').text(),
@@ -1328,8 +1309,8 @@ group+group {
  
  </script>
 
-	<!-- 신고하기버튼 클릭 후 모달 닫기  -->
-	<script>   
+   <!-- 신고하기버튼 클릭 후 모달 닫기  -->
+   <script>   
  $("#blame-btn").click(function(e) {
     
         $('#declationPageModal').modal('hide');
@@ -1358,92 +1339,92 @@ group+group {
  </script>
 
 
-	<script>
-//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 (내가쓴게시글(댓글) -> 상세보기)-->
- 	$(function(){
- 		
- 		
- 		if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
- 			$('._to_the_list_a_tag').removeAttr('href');
- 			
- 			$('._to_the_list_button')[0].innerText = "목록으로";
- 			$('._to_the_list_a_tag')[0].setAttribute('href', '/board/study_List.do?root=header');
- 		}
- 		
- 	});
- 	//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 ... 끝 -->
+   <script>
+//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 -->
+    $(function(){
+       
+       
+       if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
+          $('._to_the_list_a_tag').removeAttr('href');
+          
+          $('._to_the_list_button')[0].innerText = "마이페이지로";
+          $('._to_the_list_a_tag')[0].setAttribute('href', '/mypage/mypage.do');
+       }
+       
+    });
+    //  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 ... 끝 -->
  </script>
 
 
-	<script>
+<script>
 function InfoModal(idx) {
 
-	let id = $('.InfoModal' + idx).children().text();
-	//formData.append("user_id" , this.id);
+   let id = $('.InfoModal' + idx).children().text();
+   //formData.append("user_id" , this.id);
 
-	// let obj = {"user_id" : id}; 
+   // let obj = {"user_id" : id}; 
 
-	let data = {
-		"user_id" : id
-	}
+   let data = {
+      "user_id" : id
+   }
 
-	$.ajax({
-		url : '/ajax/userInfoModal.do',
-		processData : false,
-		contentType : "application/json",
-		cache : false,
-		type : 'POST',
-		data : JSON.stringify(data),
-		success : function(data) {
-			$('.ModalUserName').text(data[0][0].USER_NAME);
-			$('.ModalUserID').text(data[0][0].USER_ID);
-			$('.introduce').text(data[0][0].INTRODUCE)
-			'src','/material/images/jQuery/asimo.png'
-			$('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
-			$.each(data[0], function (index, item) {
-				if (item.SKILL_LEVEL === '입문') {
-					$('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
-				} else if (data[0][index].SKILL_LEVEL === '초급') {
-					$('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
-				} else {
-					$('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
-				}
-			})
-			
-//					<td>1578</td>
-//											<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
-			
-			$('._user_board_list').empty();
-			
-			let userBoardList = "";
-			$.each(data[1],function(index, item){
-				userBoardList += "<tr>";
-				userBoardList += "<td>";
-				userBoardList += data[1][index].S_SEQ;
-				userBoardList += "</td>";
-				userBoardList += "<td>";
-				userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
-							+ data[1][index].S_SEQ
-							+ "'>";
-				userBoardList += data[1][index].TITLE;
-				userBoardList += "</a>"	
-				userBoardList += "</td>";
-				userBoardList += "</tr>";
-			});
-			
-			
-			$('._user_board_list').append(userBoardList);
-//					$('._user_board_list');
-		},
-		error : function(e) {
-			console.log("error:", e);
-		}
-	});
+   $.ajax({
+      url : '/ajax/userInfoModal.do',
+      processData : false,
+      contentType : "application/json",
+      cache : false,
+      type : 'POST',
+      data : JSON.stringify(data),
+      success : function(data) {
+         $('.ModalUserName').text(data[0][0].USER_NAME);
+         $('.ModalUserID').text(data[0][0].USER_ID);
+         $('.introduce').text(data[0][0].INTRODUCE)
+         'src','/material/images/jQuery/asimo.png'
+         $('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+         $.each(data[0], function (index, item) {
+            if (item.SKILL_LEVEL === '입문') {
+               $('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
+            } else if (data[0][index].SKILL_LEVEL === '초급') {
+               $('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
+            } else {
+               $('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
+            }
+         })
+         
+//               <td>1578</td>
+//                                 <td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+         
+         $('._user_board_list').empty();
+         
+         let userBoardList = "";
+         $.each(data[1],function(index, item){
+            userBoardList += "<tr>";
+            userBoardList += "<td>";
+            userBoardList += data[1][index].S_SEQ;
+            userBoardList += "</td>";
+            userBoardList += "<td>";
+            userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+                     + data[1][index].S_SEQ
+                     + "'>";
+            userBoardList += data[1][index].TITLE;
+            userBoardList += "</a>"   
+            userBoardList += "</td>";
+            userBoardList += "</tr>";
+         });
+         
+         
+         $('._user_board_list').append(userBoardList);
+//               $('._user_board_list');
+      },
+      error : function(e) {
+         console.log("error:", e);
+      }
+   });
 
 }
 </script>
 
-
+   
 
 </body>
 

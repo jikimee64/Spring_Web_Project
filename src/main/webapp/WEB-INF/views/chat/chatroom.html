@@ -199,6 +199,7 @@ group+group {
 
 	<input type="hidden" id="ch_seq" th:value="${chatroom.ch_seq}" />
 	<input type="hidden" id="user_id" th:value="${user_id}" />
+	<input type="hidden" id="nickname" th:value="${nickname}" />
 
 	<!-- 사이드 -->
 	<div class="side" style="width: 350px; height: 100%; display: none;">
@@ -396,7 +397,7 @@ group+group {
        					 +  data[index].cm_seq
        					 + '") data-toggle="modal" data-target="#userInfoModal">'
         				html += "<b style='vertical-align: revert; margin-left:30px;'>";
-        				html += data[index].user_id
+        				html += data[index].nickname
         				html += "</b></a></div>"
     	    			html += "<div class='col-3' style='height: 100px;'>";
     	    			html += "<h5 style='margin-bottom: 0px;'>";
@@ -555,7 +556,7 @@ group+group {
 
                                  html += "<span style='margin-left:20px;'><b>"
 
-                                       + d.user_id + "</b></span>"
+                                       + d.nickname + "</b></span>"
                                  html += "<div class='yourbubble' style='margin-left:50px; margin-bottom:60px; margin-top:0px;'>"
                                        + d.msg
                                        + "</div></div><br>"
@@ -626,6 +627,7 @@ group+group {
             type : "message",
             ch_seq : $("#ch_seq").val(),
             user_id : $("#user_id").val(),
+            nickname : $("#nickname").val(),
             /*             userName : $("#userid").val(), */
             msg : inputMsgBox.val()
          }
