@@ -134,11 +134,17 @@ public class MemberServiceImpl implements MemberService {
 			System.out.println("파일 이름 : " + filename);
 			System.out.println("경로" + request.getServletContext().getRealPath("/userboard/upload")); 
 			path = request.getServletContext().getRealPath("/userboard/upload");
+			System.out.println("에러1");
 			fpath = path + "\\" + filename;
+			System.out.println("에러2");
 			users.setProfile_img(filename);
-			fs = new FileOutputStream(path);
+			System.out.println("에러3");
+			fs = new FileOutputStream(fpath);
+			System.out.println("에러4");
 			fs.write(users.getFile().getBytes());
+			System.out.println("에러5");
 			fs.close();
+			System.out.println("에러6");
 		} else {
 			users.setProfile_img("member.png");
 		}

@@ -100,7 +100,7 @@ public class MemberController {
 			HttpServletRequest request) {
 		Map<String, Object> map = (Map<String, Object>) RequestContextUtils.getInputFlashMap(request);
 		if (map != null) {
-			request.setAttribute("errormsgname", (String)map.get("errormsg"));
+			request.setAttribute("errormsgname", (String) map.get("errormsg"));
 		}
 		return "user/member/login";
 	}
@@ -120,8 +120,7 @@ public class MemberController {
 
 		// 넘어온 페이지
 		session.setAttribute("returnUrl", (String) request.getHeader("REFERER"));
-		
-		
+
 		// url 전달
 		model.addAttribute("naver_url", naverUrl); // 네이버 url
 		model.addAttribute("google_url", googleurl); // 구글 url
@@ -136,9 +135,8 @@ public class MemberController {
 	// 네이버 callback호출 메소드
 	@RequestMapping(value = "naverlogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String naverLogin(Model model, @RequestParam String code, @RequestParam String state, HttpSession session,
-			HttpServletRequest request, Users user, RedirectAttributes redirect) throws SQLException, Exception {
+			HttpServletRequest request, RedirectAttributes redirect) throws SQLException, Exception {
 		System.out.println("여기는 네이버 callback");
-		System.out.println("userserser" + user);
 		OAuth2AccessToken oauthToken;
 
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -166,66 +164,64 @@ public class MemberController {
 
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
-		//권한확인
+		// 권한확인
 		String enabled = null;
-		//회원가입 후의 권한확인
+		// 회원가입 후의 권한확인
 		int after_enabled = 0;
-		check = ajaxservice.idcheck(email);		
-		enabled = Integer.toString(user.getEnabled());
-		
+		check = ajaxservice.idcheck(email);
+		if (check == 1) {
+			after_enabled = ajaxservice.enabledcheck(email);
+		}
 		System.out.println("이게 왜?" + after_enabled);
-
-		try {	
+		try {
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
 				System.out.println("naver회원가입으로 이동");
 				model.addAttribute("uemail", email);
 				model.addAttribute("snstype", "naver");
 				return "user/member/join";
-				
-			}else if(check == 1 && after_enabled == 0) {
-				after_enabled = ajaxservice.enabledcheck(email);
+			} else if (check == 1 && after_enabled == 0) {
+
 				System.out.println("권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
-				redirect.addAttribute("errormsg",msg);
+				redirect.addAttribute("errormsg", msg);
 				return "redirect:/member/normallogin.do";
-					}else if(check==1 && after_enabled == 1){
-						// 스프링 시큐리티 수동 로그인을 위한 작업//
-						// 로그인 세션에 들어갈 권한을 설정
-						List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-						list.add(new SimpleGrantedAuthority("ROLE_USER"));
+			} else if (check == 1 && after_enabled == 1) {
+				// 스프링 시큐리티 수동 로그인을 위한 작업//
+				// 로그인 세션에 들어갈 권한을 설정
+				List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+				list.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-						SecurityContext sc = SecurityContextHolder.getContext();
-						// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-						// 패스워드는 null로 하여도 값이 생성.
-						sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
-						session = request.getSession(true);
+				SecurityContext sc = SecurityContextHolder.getContext();
+				// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
+				// 패스워드는 null로 하여도 값이 생성.
+				sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
+				session = request.getSession(true);
 
-						// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-						session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-						// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
+				// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
+				session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+				// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
 
-						System.out.println("이미 가입된 회원");
-						Users users = new Users();
-						users = mypageservice.getUsers(email);
-						session = request.getSession();
-						session.setAttribute("currentUser", users);
-						System.out.println("이미 가입된 회원의 정보" + users);
+				System.out.println("이미 가입된 회원");
+				Users users = new Users();
+				users = mypageservice.getUsers(email);
+				session = request.getSession();
+				session.setAttribute("currentUser", users);
+				System.out.println("이미 가입된 회원의 정보" + users);
 
-				 // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
-					}
+				// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
+			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		
+
 		return "redirect:../user/main.do";
 	}
-
 
 	// 구글 콜백함수
 	@RequestMapping(value = "googlelogin.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String googleLogin(Model model, @RequestParam(required = false, defaultValue = "0") String code,
-			HttpSession session, Users user, HttpServletRequest request, RedirectAttributes redirectAttributes,
+			HttpSession session, HttpServletRequest request, RedirectAttributes redirectAttributes,
 			HttpServletResponse response, RedirectAttributes redirect) throws IOException, ClassNotFoundException {
 
 		String Googlecode = request.getParameter("code");
@@ -243,7 +239,7 @@ public class MemberController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(
-				parameters, headers );
+				parameters, headers);
 		ResponseEntity<Map> responseEntity = restTemplate.exchange("https://www.googleapis.com/oauth2/v4/token",
 				HttpMethod.POST, requestEntity, Map.class);
 		Map<String, Object> responseMap = responseEntity.getBody();
@@ -276,55 +272,56 @@ public class MemberController {
 
 		// DB에 등록된 이메일인지 확인
 		int check = 0;
-		int enabled = 0;
-		int after_enabled = 0; 
-		check = ajaxservice.idcheck(email);		
-		enabled = user.getEnabled();
-		
-		try {	
+		String enabled = null;
+		int after_enabled = 0;
+		check = ajaxservice.idcheck(email);
+		System.out.println("가입여부 확인" + check);
+		if (check == 1) {
+			after_enabled = ajaxservice.enabledcheck(email);
+		}
+		try {
 			if (check == 0) {
 				System.out.println("DB에 등록되지 않은 이메일");
 				System.out.println("google 회원가입으로 이동");
 				model.addAttribute("uemail", email);
-				model.addAttribute("snstype", "naver");
+				model.addAttribute("snstype", "google");
 				return "user/member/join";
-				
-			}else if(check == 1 && after_enabled == 0) {
-				after_enabled = ajaxservice.enabledcheck(email);
+
+			} else if (check == 1 && after_enabled == 0) {
+
 				System.out.println("권한확인" + enabled);
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
-				redirect.addAttribute("errormsg",msg);
-				return "redirect:/member/normallogin.do"; 
-				
-					}else if(check==1 && after_enabled == 1){
-						// 스프링 시큐리티 수동 로그인을 위한 작업//
-						// 로그인 세션에 들어갈 권한을 설정
-						List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-						list.add(new SimpleGrantedAuthority("ROLE_USER"));
+				redirect.addAttribute("errormsg", msg);
+				return "redirect:/member/normallogin.do";
+			} else if (check == 1 && after_enabled == 1) {
+				// 스프링 시큐리티 수동 로그인을 위한 작업//
+				// 로그인 세션에 들어갈 권한을 설정
+				List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
+				list.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-						SecurityContext sc = SecurityContextHolder.getContext();
-						// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
-						// 패스워드는 null로 하여도 값이 생성.
-						sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
-						session = request.getSession(true);
+				SecurityContext sc = SecurityContextHolder.getContext();
+				// 아이디, 패스워드, 권한을 설정. 아이디는 Object단위로 넣어도 무방하며
+				// 패스워드는 null로 하여도 값이 생성.
+				sc.setAuthentication(new UsernamePasswordAuthenticationToken(email, null, list));
+				session = request.getSession(true);
 
-						// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
-						session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
-						// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
+				// 위에서 설정한 값을 Spring security에서 사용할 수 있도록 세션에 설정
+				session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
+				// 스프링 시큐리티 수동 로그인을 위한 작업 끝//
 
-						System.out.println("이미 가입된 회원");
-						Users users = new Users();
-						users = mypageservice.getUsers(email);
-						session = request.getSession();
-						session.setAttribute("currentUser", users);
-						System.out.println("이미 가입된 회원의 정보" + users);
+				System.out.println("이미 가입된 회원");
+				Users users = new Users();
+				users = mypageservice.getUsers(email);
+				session = request.getSession();
+				session.setAttribute("currentUser", users);
+				System.out.println("이미 가입된 회원의 정보" + users);
 
-				 // 가입하지 않은 회원이면 회원가입으로 이동시켜주기
-					}
+				// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
+			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
-		
+
 		return "redirect:../user/main.do";
 	}
 
@@ -419,7 +416,4 @@ public class MemberController {
 		return "redirect:../user/main.do";
 	}
 
-	
-
-	
 }
