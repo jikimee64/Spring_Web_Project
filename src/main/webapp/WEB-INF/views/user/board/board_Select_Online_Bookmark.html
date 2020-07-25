@@ -1,135 +1,137 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <link rel="shortcut icon"
-   href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>board_select_online</title>
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
 <link rel="stylesheet"
-   href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style>
 hover-css>div {
-   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px
-      rgba(0, 0, 0, 0.22);
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px
+		rgba(0, 0, 0, 0.22);
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-   font-family: 'Nanum Gothic', sans-serif;
-   font-weight: 500;
-   line-height: 1.1;
-   color: inherit;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-weight: 500;
+	line-height: 1.1;
+	color: inherit;
 }
 
 #portfolio .portfolio-wrap:hover {
-   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 #portfolio .portfolio-item figure .link-preview, #portfolio .portfolio-item figure .link-details
-   {
-   position: absolute;
-   display: inline-block;
-   opacity: 0;
-   line-height: 1;
-   text-align: center;
-   width: 80px;
-   height: 36px;
-   background: #fff;
-   border-radius: 15%;
-   transition: 0.3s linear;
+	{
+	position: absolute;
+	display: inline-block;
+	opacity: 0;
+	line-height: 1;
+	text-align: center;
+	width: 80px;
+	height: 36px;
+	background: #fff;
+	border-radius: 15%;
+	transition: 0.3s linear;
 }
 
 .portfolio-info>h4>a {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 .cover2 {
-   background-image: url(../../../../resources/images/img/bookmarkpage.jpg);
-   background-position: center center;
-   background-size: 2300px;
-   background-repeat: no-repeat;
-   opacity: 0.7;
+	background-image: url(../../../../resources/images/img/bookmarkpage.jpg);
+	background-position: center center;
+	background-size: 2300px;
+	background-repeat: no-repeat;
+	opacity: 0.7;
 }
 </style>
 <style>
 .pager li>a, .pager li>span {
-   border: white;
-   background-color: #fff;
+	border: white;
+	background-color: #fff;
 }
 
 .pager li>a, .pager li>span {
-   display: inline-block;
-   padding: 5px 14px;
-   border-radius: 5px;
+	display: inline-block;
+	padding: 5px 14px;
+	border-radius: 5px;
 }
 
 .page-link {
-   color: #18d26e !important;
+	color: #18d26e !important;
 }
 
 .page-link {
-   position: relative;
-   margin-left: -1px;
-   line-height: 1.25;
+	position: relative;
+	margin-left: -1px;
+	line-height: 1.25;
 }
 
 a {
-   text-decoration: none;
+	text-decoration: none;
 }
 
 a {
-   transition: 0.5s;
+	transition: 0.5s;
 }
 
 * {
-   box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 a:-webkit-any-link {
-   cursor: pointer;
+	cursor: pointer;
 }
 
 li {
-   text-align: -webkit-match-parent;
+	text-align: -webkit-match-parent;
 }
 
 .pager {
-   padding-left: 0;
-   margin: 20px 0;
-   list-style: none;
+	padding-left: 0;
+	margin: 20px 0;
+	list-style: none;
 }
 
 body {
-   font-size: 14px;
-   background-color: #fff;
-   background: #fff;
-   margin: 0;
+	font-size: 14px;
+	background-color: #fff;
+	background: #fff;
+	margin: 0;
 }
 
 .page-item.active .page-link {
-   z-index: 3;
-   color: #fff !important;
-   background-color: #18d26e !important;
-   border-color: #18d26e;
+	z-index: 3;
+	color: #fff !important;
+	background-color: #18d26e !important;
+	border-color: #18d26e;
 }
-._course_title{
- display: inline-block; width: 200px;
-  white-space: nowrap; overflow: hidden;
-   text-overflow: ellipsis; 
- white-space: normal;
-  line-height: 1.2; 
-  height: 2.4em; 
-/*   text-align: left; */
-   word-wrap: break-word;
-    display: -webkit-box; 
-    -webkit-line-clamp: 2; 
-    -webkit-box-orient: vertical;
-    max-inline-size: -webkit-fill-available;
 
+._course_title {
+	display: inline-block;
+	width: 200px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 2.4em;
+	/*   text-align: left; */
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	max-inline-size: -webkit-fill-available;
 }
 </style>
 
@@ -137,150 +139,167 @@ body {
 </head>
 
 <body>
-   <div th:replace="/user/includes/header :: header"></div>
-   <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
+	<div th:replace="/user/includes/header :: header"></div>
+	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
-   <main id="main">
-      <!-- ======= Breadcrumbs Section ======= -->
-      <section class="breadcrumbs cover2"
-         style="margin-top: 70px; height: 300px; padding: 1000 0 100 0px;">
-         <div class="container d-flex h-100" style="padding: 200px 0;">
-            <div class="row justify-content-center align-self-center">
-               <h1 style="color: white; font-size: 50px;">
-                  <b>강의 선택하기</b>
-               </h1>
-            </div>
-         </div>
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs cover2"
+			style="margin-top: 70px; height: 300px; padding: 1000 0 100 0px;">
+			<div class="container d-flex h-100" style="padding: 200px 0;">
+				<div class="row justify-content-center align-self-center">
+					<h1 style="color: white; font-size: 50px;">
+						<b>강의 선택하기</b>
+					</h1>
+				</div>
+			</div>
 
-      </section>
-      <!-- Breadcrumbs Section -->
-   </main>
-   <main id="main">
-      <!-- ======= Breadcrumbs Section ======= -->
-      <section class="breadcrumbs" style="margin-top: 0;">
-         <div class="container">
+		</section>
+		<!-- Breadcrumbs Section -->
+	</main>
+	<main id="main">
+		<!-- ======= Breadcrumbs Section ======= -->
+		<section class="breadcrumbs" style="margin-top: 0;">
+			<div class="container">
 
-            <div class="d-flex justify-content-between align-items-center">
-               <h2 style="margin-top: 0px;">북마크한 강의중 원하는 온라인 강의를 선택해주세요.</h2>
-            </div>
+				<div class="d-flex justify-content-between align-items-center">
+					<h2 style="margin-top: 0px;">북마크한 강의중 원하는 온라인 강의를 선택해주세요.</h2>
+				</div>
 
-         </div>
-      </section>
-      <!-- Breadcrumbs Section -->
+			</div>
+		</section>
+		<!-- Breadcrumbs Section -->
 
-      <section id="portfolio" class="section-bg"
-         style="background-color: white; padding-top: 30px; padding-bottom: 30px;">
-         <div class="container aos-init aos-animate" data-aos="fade-up">
+		<section id="portfolio" class="section-bg"
+			style="background-color: white; padding-top: 30px; padding-bottom: 30px;">
+			<div class="container aos-init aos-animate" data-aos="fade-up">
 
-            <div style="text-align: right">
-            </div>
-            <br />
+				<div style="text-align: right"></div>
+				<br />
 
-            <div class="row aos-init aos-animate" data-aos="fade-up"
-               data-aos-delay="100">
-               <div class=" col-lg-12">
-                  <ul id="portfolio-flters" style="display: none">
-                     <li data-filter="*" class="filter-active">All</li>
-                  </ul>
-               </div>
-            </div>
+				<div class="row aos-init aos-animate" data-aos="fade-up"
+					data-aos-delay="100">
+					<div class=" col-lg-12">
+						<ul id="portfolio-flters" style="display: none">
+							<li data-filter="*" class="filter-active">All</li>
+						</ul>
+					</div>
+				</div>
 
-            <div class="row portfolio-container aos-init aos-animate hover-css"
-               data-aos="fade-up" data-aos-delay="200"
-               style="position: relative; height: 3240px;">
+				<div class="row portfolio-container aos-init aos-animate hover-css"
+					data-aos="fade-up" data-aos-delay="200"
+					style="position: relative; height: 3240px;">
+					<th:block th:if="${bookMarkList} != null">
+						<th:block th:each="bookMarkList,index : ${bookMarkList}">
+							<!--                   <th:block th:if="${index.index%3==0}" -->
+							<!--                      th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" /> -->
 
-               <!-- 타임리프? -->
-               <th:block th:each="bookMarkList,index : ${bookMarkList}">
-                  <!--                   <th:block th:if="${index.index%3==0}" -->
-                  <!--                      th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" /> -->
+							<div class="col-lg-4 portfolio-item filter-app kwc"
+								style="position: absolute; left: 0px; top: 0px;">
+								<div class="portfolio-wrap">
+									<figure>
 
-                  <div class="col-lg-4 portfolio-item filter-app kwc"
-                     style="position: absolute; left: 0px; top: 0px;">
-                     <div class="portfolio-wrap">
-                        <figure>
+										<img th:src="${bookMarkList.L_IMAGE}" class="img-fluid" alt="">
+										<!-- 강의번호 넘기기  -->
+										<a
+											th:href="@{/lecture/writing_Course_Study.do(l_seq=${bookMarkList.L_SEQ})}"
+											data-lightbox="portfolio" data-title="App 1"
+											class="link-details"><i class="ion ion-heart"></i></a>
+									</figure>
 
-                           <img th:src="${bookMarkList.L_IMAGE}" class="img-fluid" alt="">
-                           <!-- 강의번호 넘기기  -->
-                           <a
-                              th:href="@{/lecture/writing_Course_Study.do(l_seq=${bookMarkList.L_SEQ})}"
-                              data-lightbox="portfolio" data-title="App 1"
-                              class="link-details"><i class="ion ion-heart"></i></a>
-                        </figure>
+									<div class="portfolio-info"
+										style="padding-top: 10px; height: 100px;">
+										<div class="_course_title"
+											style="text-align-last: center; width: 300px; margin-top: 5px; margin-bottom: 7px;">
+											<h4 th:text="${bookMarkList.L_TITLE}"
+												style="display: contents;">
+												<!--                            <a href="/lecture/writing_Course_Study.do?">등록 폼이동(임시)</a> -->
+											</h4>
+										</div>
+										<div
+											style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px; transform: translate3d(75px, 2px, 10px);">
+											<p
+												th:style="|WIDTH:| +${bookMarkList.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
+											</p>
+										</div>
+										<span th:text="'('+${bookMarkList.L_REVIEW}+')'">리뷰수</span>
+										<!--                               <p th:text="${bookMarkList.LAN_SEQ}">글번호</p> -->
 
-                        <div class="portfolio-info" style="padding-top: 10px; height: 100px;">
-                        <div class="_course_title" style="text-align-last:center; width:300px; margin-top:5px;margin-bottom:7px;">
-                           <h4  th:text="${bookMarkList.L_TITLE}"
-                              style="display: contents;">
-                              <!--                            <a href="/lecture/writing_Course_Study.do?">등록 폼이동(임시)</a> -->
-                           </h4>
-                           </div>
-                           <div
-                     style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853568-33ab9d00-c946-11ea-9123-21c2ec016b03.gif') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 90px; PADDING-TOP: 0px; HEIGHT: 18px;transform:translate3d(75px, 2px, 10px);">
-                     <p
-                        th:style="|WIDTH:| +${bookMarkList.L_STAR}*20+|%; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('https://user-images.githubusercontent.com/61257242/87853576-40c88c00-c946-11ea-8b70-98a4d286ef1c.gif') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; HEIGHT: 18px;|">
-                     </p>
-                  </div> <span th:text="'('+${bookMarkList.L_REVIEW}+')'">리뷰수</span>
-<!--                               <p th:text="${bookMarkList.LAN_SEQ}">글번호</p> -->
-                           
-                        </div>
-                     </div>
-                  </div>
-               </th:block>
-               <br />
-            </div>
-         </div>
-      </section>
+									</div>
+								</div>
+							</div>
+						</th:block>
+					</th:block>
 
-   </main>
-   <!-- End #main -->
+					<th:block th:if="${#lists.isEmpty(bookMarkList)}">
+						<div
+							style='text-align: center; margin-top: 20px; margin-bottom: 20px;'>
+							<img style="width: 150px;"
+								src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png"
+								alt="" />
+						</div>
+						<div style='text-align: center;'>
+							<b style='font-size: x-large'>등록된 북마크가 없습니다</b>
+						</div>
+						<div style='height: 65px;'></div>
+					</th:block>
 
-   <div class="row" style="place-content: center;">
-      <!-- 페이징 부트스트랩 버튼 생성하기  -->
-      <ul class="pager d-flex" style="place-content: center;">
+					<br />
+				</div>
+			</div>
+		</section>
 
-         <!-- 이전버튼 생성여부-->
-         <li th:if="${pageMakers.prev} == true"><a
-            th:href="@{board_Select_Online_Bookmark.do(page=${pageMakers.startPage}-1,perPageNum=${pageMakers.cri_s.perPageNum})}"
-            class="page-link"> Previous </a></li>
+	</main>
+	<!-- End #main -->
 
+	<div class="row" style="place-content: center;">
+		<!-- 페이징 부트스트랩 버튼 생성하기  -->
+		<ul class="pager d-flex" style="place-content: center;">
 
-         <!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
-         <li class="page-item"
-            th:each="idx,iterStat : ${#numbers.sequence(pageMakers.startPage,pageMakers.endPage)}"
-            th:classappend="${pageMakers.cri_s.page} == ${idx} ? active : null">
-            <a class="page-link"
-            th:href="@{board_Select_Online_Bookmark.do(page=${idx},perPageNum=${pageMakers.cri_s.perPageNum})}"
-            th:text="${idx}">1 </a>
-         </li>
-
-
-         <!-- 다음버튼 생성여부 -->
-         <li th:if="${pageMakers.next} == true and ${pageMakers.endPage > 0}">
-            <a
-            th:href="@{board_Select_Online_Bookmark.do(page=${pageMakers.endPage}+1,perPageNum=${pageMakers.cri_s.perPageNum})}"
-            class="page-link"> Next</a> <!--                                    <a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
-         </li>
+			<!-- 이전버튼 생성여부-->
+			<li th:if="${pageMakers.prev} == true"><a
+				th:href="@{board_Select_Online_Bookmark.do(page=${pageMakers.startPage}-1,perPageNum=${pageMakers.cri_s.perPageNum})}"
+				class="page-link"> Previous </a></li>
 
 
-      </ul>
-      <!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
-   </div>
+			<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
+			<th:block th:if="${#lists.size(bookMarkList) != 0}">
+				<li class="page-item"
+					th:each="idx,iterStat : ${#numbers.sequence(pageMakers.startPage,pageMakers.endPage)}"
+					th:classappend="${pageMakers.cri_s.page} == ${idx} ? active : null">
+					<a class="page-link"
+					th:href="@{board_Select_Online_Bookmark.do(page=${idx},perPageNum=${pageMakers.cri_s.perPageNum})}"
+					th:text="${idx}">1 </a>
+				</li>
+			</th:block>
 
-   <div th:replace="/user/includes/footer :: footer"></div>
-   <div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
+
+			<!-- 다음버튼 생성여부 -->
+			<li th:if="${pageMakers.next} == true and ${pageMakers.endPage > 0}">
+				<a
+				th:href="@{board_Select_Online_Bookmark.do(page=${pageMakers.endPage}+1,perPageNum=${pageMakers.cri_s.perPageNum})}"
+				class="page-link"> Next</a> <!--                                    <a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+			</li>
+
+
+		</ul>
+		<!-- 페이징 부트스트랩 버튼 생성하기 끝  -->
+	</div>
+
+	<div th:replace="/user/includes/footer :: footer"></div>
+	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 
 
 </body>
 
 <script>
+	/* 페이지 0 뜨는거 없애기 시작 */
+	var _page_button0 = $('.page-item').children().last().text();
 
-/* 페이지 0 뜨는거 없애기 시작 */
-var _page_button0 = $('.page-item').children().last().text();
-
-if(_page_button0 == 0){
-   $('.page-item').children().last().remove();
-}
-/*  페이지 0 뜨는거 없애기 끝 */
+	if (_page_button0 == 0) {
+		$('.page-item').children().last().remove();
+	}
+	/*  페이지 0 뜨는거 없애기 끝 */
 </script>
 
 

@@ -321,7 +321,7 @@ body {
 							data : JSON.stringify(data),
 							success : function(data) {
 								//승인누른거 지우기
-								$('.right' + user_id).remove();
+								$('.right' + $.escapeSelector(user_id)).remove();
 								$('#success').empty();
 
 								$
@@ -343,9 +343,7 @@ body {
 																	+ data[0].USER_ID
 																	+ "</span></div>";
 															html += "<div class='col-md-6' id='doing_study_col'>";
-															html += '<img
-																src="https://user-images.githubusercontent.com/61257242/87928038-2534c100-cabf-11ea-8099-c5edf44d6126.jpeg"
-																	alt="" style="height:32px;" />';
+															html += "<img src='https://user-images.githubusercontent.com/61257242/87928038-2534c100-cabf-11ea-8099-c5edf44d6126.jpeg' alt='' style='height:32px;' />";
 															html += "</div></div>";
 														} else {
 															html += "<div class='row left"
@@ -430,7 +428,7 @@ body {
 							success : function(data) {
 
 								//승인누른거 지우기
-								$('.left' + user_id).remove();
+								$('.left' + $.escapeSelector(user_id)).remove();
 								$('#wait').empty();
 
 								$

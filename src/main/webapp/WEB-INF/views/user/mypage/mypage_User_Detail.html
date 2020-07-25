@@ -313,7 +313,7 @@ body {
 			<div class="_border_box_shadow">
 				&nbsp;&nbsp;
 				<div style="text-align: center;">
-			<span th:text="${member.nickname} +'님의 회원정보'" style="text-align: center; font-weight: bold; font-size: xx-large;">
+			<span th:text="${member.user_id} +'님의 회원정보'" style="text-align: center; font-weight: bold; font-size: xx-large;">
 					</span>
 				</div>
 		
@@ -376,7 +376,7 @@ body {
 
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="user_name"
-								placeholder="이름을 입력해주세요." name="user_name" th:value="${member.user_id}" readonly > <span
+								placeholder="이름을 입력해주세요." name="user_name" th:value="${member.user_name}" readonly > <span
 								class="name hide"></span>
 
 						</div>

@@ -98,7 +98,10 @@ public class MyPageController {
 	@RequestMapping(value = "MyPageUserEdit.do", method = RequestMethod.POST)
 	public String mypageUserEdit(@RequestParam(value = "file", required = false) MultipartFile ipload, Users user,
 			HttpServletRequest request, Model model, Principal principal) {
-		user.setUser_pwd(this.bCryptPasswordEncoder.encode(user.getUser_pwd()));
+		
+		if(user.getSnstype() == "normal") {
+			user.setUser_pwd(this.bCryptPasswordEncoder.encode(user.getUser_pwd()));
+		}
 
 		System.out.println("컨트롤러1");
 		System.out.println(user);

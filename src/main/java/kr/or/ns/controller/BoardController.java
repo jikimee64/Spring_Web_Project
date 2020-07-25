@@ -324,6 +324,10 @@ public class BoardController {
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
 
+		System.out.println("s_seq 값 : " + s_seq);
+		System.out.println("page 값 : " + page);
+		System.out.println("perPageNum 값 : " + perPageNum);
+		
 		System.out.println("게시판 디테일 페이지 입니다.");
 		String user_id = principal.getName();
 		Likes like = new Likes();
