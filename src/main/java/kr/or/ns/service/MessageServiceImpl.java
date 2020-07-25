@@ -193,6 +193,28 @@ public class MessageServiceImpl implements MessageService {
 			return result;
 		}
 
+		//받은쪽지 상세
+		@Override
+		public HashMap<String, Object> getReceptionMessage(String m_seq) {
+
+			MessageDao dao = sqlsession.getMapper(MessageDao.class);
+			HashMap<String, Object> message = null;
+			try {
+				
+				System.out.println("2222222 서비스 왓어욤:"+message);
+				System.out.println("222222아이디 : " + m_seq);
+				message = dao.getReceptionMessage(m_seq);
+				dao.updateMessage(m_seq);
+				
+				
+				System.out.println("3.매퍼갓다왓어욤: "+message);
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return message;
+		}
 	
 
 }

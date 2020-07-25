@@ -14,7 +14,7 @@ public interface MessageDao {
 	// 쪽지 보내기
 	public int insertSendMessage(Message message);
 
-	// 받은 편지 상세보기
+	// 보낸 편지 상세보기
 	public HashMap<String, Object> getMessage(String m_seq);
 
 	// 보낸 쪽지함 목록
@@ -43,4 +43,7 @@ public interface MessageDao {
 
 	//수신 쪽지함 insert
 	public void insertReceptionMessage(Message message);
+
+	//받은편지 상세
+	public HashMap<String, Object> getReceptionMessage(String m_seq);
 }

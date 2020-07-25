@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 import kr.or.ns.vo.Message;
 
 public interface MessageService {
+	
 	public int getmsgcount(String userid);
+	
 	public int insertMessage(Message message);
+	
+	
 	public HashMap<String, Object> getMessage(String m_seq);
 	
 	//보낸목록
@@ -30,5 +34,8 @@ public interface MessageService {
 	
 	//보낸목록+페이징
 	public List<HashMap<String, Object>> getSendMessageList(HashMap<String, Object> map);
+
+	//받은쪽지 상세
+	public HashMap<String, Object> getReceptionMessage(String m_seq);
 	
 }

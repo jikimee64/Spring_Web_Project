@@ -77,6 +77,17 @@
 	</select> 
 
 
+
+<!-- 받은편지 상세 -->
+	<select id="getReceptionMessage" parameterType="String"
+		resultType="hashmap">
+		select * from message 
+		left outer join users
+		on message.senderid = users.user_id 
+		where m_seq = #{m_seq}
+	</select>
+
+<!-- 보낸편지 상세 -->
 	<select id="getMessage" parameterType="String"
 		resultType="hashmap">
 		select * from message 

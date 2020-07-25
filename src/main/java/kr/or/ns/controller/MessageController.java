@@ -141,17 +141,13 @@ public class MessageController {
 	
 	
 	
-	
-	
-	
-	
-	
+
 	
 	// 받은편지함 -> 상세보기
 	@RequestMapping("mypage_Message_From_Detail_Board.do")
 	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
-		System.out.println("1 컨트롤러 시작해욤:");
-		HashMap<String, Object> message = mservice.getMessage(m_seq);
+		System.out.println("12121212 컨트롤러 시작해욤:");
+		HashMap<String, Object> message = mservice.getReceptionMessage(m_seq);
 		model.addAttribute("message", message);
 
 		
