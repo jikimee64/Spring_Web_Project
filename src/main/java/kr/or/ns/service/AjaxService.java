@@ -101,6 +101,9 @@ public interface AjaxService {
 	
 	
 	public List<HashMap<String, Object>> userInfoChat(@RequestBody HashMap<String, Object> params);
+
+	//자동검색완성기능
+	public List<HashMap<String, Object>> getAutoKeyword(String keyword);
 	
 
 }

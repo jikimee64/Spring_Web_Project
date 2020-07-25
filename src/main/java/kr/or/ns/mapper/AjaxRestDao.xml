@@ -348,4 +348,11 @@
 		select enabled from users where user_id = #{user_id}
 	</select>
 	
+	<!-- 유저정보모달창에 게시판 띄우기 -->
+	<select id="getAutoKeyword"  resultType="hashMap">
+		select user_id 
+		from users 
+		where user_id like CONCAT('%',#{keyword},'%')
+	</select>
+	
 </mapper>
