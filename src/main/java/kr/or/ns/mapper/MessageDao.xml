@@ -44,10 +44,17 @@
 
 
 
-<!-- 내 메세지 총 갯수 -->
-	<select id="getMyMessageCount" resultType="Integer">
+<!-- 내 메세지 총 갯수(받은) -->
+	<select id="getFromMyMessageCount" resultType="Integer">
 		<![CDATA[
-		select count(*) from message where receptionid = #{user_id}
+		select count(*) from message where receptionid = #{user_id} and type = '수신'
+		]]>
+	</select>
+	
+	<!-- 내 메세지 총 갯수(보낸) -->
+	<select id="getToMyMessageCount" resultType="Integer">
+		<![CDATA[
+		select count(*) from message where senderid = #{user_id} and type = '발신'
 		]]>
 	</select>
 
@@ -55,7 +62,9 @@
 <!--  받은목록 페이징 -->
 	<select id="getMessageList" resultType="hashmap" parameterType="hashmap" >
 	   <![CDATA[
-		select * from message 
+		select * from message
+		left outer join users
+		on message.senderid = users.user_id 
 		where receptionid = #{user_id}  and type = '수신'
 		ORDER BY m_seq desc 
 		limit #{pageStart}, #{perPageNum}
@@ -66,6 +75,8 @@
 	<select id="getSendMessageList" resultType="hashmap" parameterType="hashmap" >
 	   <![CDATA[
 		select * from message 
+		left outer join users
+		on message.receptionid = users.user_id 
 		where senderid = #{user_id}  and type = '발신'
 		ORDER BY m_seq desc 
 		limit #{pageStart}, #{perPageNum}
@@ -74,14 +85,30 @@
 
 
 
+<!-- 받은편지 상세 -->
+	<select id="getReceptionMessage" parameterType="String"
+		resultType="hashmap">
+		select * from message 
+		left outer join users
+		on message.senderid = users.user_id 
+		where m_seq = #{m_seq}
+	</select>
+
+<!-- 보낸편지 상세 -->
 	<select id="getMessage" parameterType="String"
-		resultType="kr.or.ns.vo.Message">
-		select * from message where m_seq = #{m_seq}
+		resultType="hashmap">
+		select * from message 
+		left outer join users
+		on message.receptionid = users.user_id 
+		where m_seq = #{m_seq}
 	</select>
 
 	<select id="sendListMessage" parameterType="String"
-		resultType="kr.or.ns.vo.Message">
-		select * from message where senderid = #{userid} and type = '발신' ORDER BY m_seq desc
+		resultType="hashmap">
+		select * from message 
+		left outer join users
+		on message.receptionid = users.user_id 
+		where senderid = #{userid} and type = '발신' ORDER BY m_seq desc
 	</select>
 	
 	<delete id="deleteSendMessageOne">

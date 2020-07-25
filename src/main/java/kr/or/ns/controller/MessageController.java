@@ -43,8 +43,6 @@ public class MessageController {
 //	
 	
 	
-	
-	
 	//받은 쪽지 목록+페이징
 		@RequestMapping("mypage_Message_From_Board.do")
 		public String myMessageFromBoardPage(Criteria_Board cri_b, Principal principal, Model model) {
@@ -56,7 +54,7 @@ public class MessageController {
 			//페이징
 			PageMaker_Board pageMakerb = new PageMaker_Board();
 			pageMakerb.setCri_b(cri_b);
-			pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
+			pageMakerb.setTotalCount(mservice.getFromMyMessageCount(user_id));
 			
 			
 			// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
@@ -114,7 +112,7 @@ public class MessageController {
 		//페이징
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
-		pageMakerb.setTotalCount(mservice.getMyMessageCount(user_id));
+		pageMakerb.setTotalCount(mservice.getToMyMessageCount(user_id));
 		
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결========
 		// 받은 쪽지 뿌려주기
@@ -143,30 +141,15 @@ public class MessageController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	// 받은편지함 -> 상세보기
 	@RequestMapping("mypage_Message_From_Detail_Board.do")
 	public String mypageMessageFromDetailBoardPage(String m_seq, Model model) {
-		System.out.println("1 컨트롤러 시작해욤:");
-		Message message = mservice.getMessage(m_seq);
+		System.out.println("12121212 컨트롤러 시작해욤:");
+		HashMap<String, Object> message = mservice.getReceptionMessage(m_seq);
 		model.addAttribute("message", message);
 
-		
 		
 		System.out.println("4.컨트롤러: "+message);
 		System.out.println("받은 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");
@@ -177,7 +160,7 @@ public class MessageController {
 	@RequestMapping("mypage_Message_Send_Detail_Board.do")
 	public String mypageMessageSendDetailBoardPage(String m_seq, Model model) {
 
-		Message message = mservice.getMessage(m_seq);
+		HashMap<String, Object> message = mservice.getMessage(m_seq);
 		model.addAttribute("message", message);
 
 		System.out.println("보낸 쪽지함에서 해당게시글(쪽지)클릭시 해당쪽지 상세보기로 이동이동(연규가씀)");

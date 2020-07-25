@@ -104,8 +104,8 @@
 									</th:block>
 
 									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-										<li class="_pageactive" style="margin-left: 21px;"><b><span
-												sec:authentication="principal.username"></span>님 환영합니다</b></li>
+									<!-- 	<li class="_pageactive" style="margin-left: 21px;"><b><span
+												sec:authentication="principal.username"></span>님 환영합니다</b></li> -->
 										<li class="_pageactive"><a th:href="@{/manager/index.do}"
 											>관리자 페이지</a></li>
 										<li class="_pageactive"><a

@@ -61,11 +61,20 @@ public class MessageServiceImpl implements MessageService {
 	
 	
 	
-	//내 메세지 총갯수
+	//내 메세지 총갯수(받은 편지함)
 	@Override
-	public int getMyMessageCount(String user_id) {
+	public int getFromMyMessageCount(String user_id) {
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
-		int count = dao.getMyMessageCount(user_id);
+		int count = dao.getFromMyMessageCount(user_id);
+		
+		return count;
+	}
+	
+	//내 메세지 총갯수(받은 편지함)
+	@Override
+	public int getToMyMessageCount(String user_id) {
+		MessageDao dao = sqlsession.getMapper(MessageDao.class);
+		int count = dao.getToMyMessageCount(user_id);
 		
 		return count;
 	}
@@ -128,10 +137,10 @@ public class MessageServiceImpl implements MessageService {
 	// 편지 상세보기
 	@Transactional
 	@Override
-	public Message getMessage(String m_seq) {
+	public HashMap<String, Object> getMessage(String m_seq) {
 
 		MessageDao dao = sqlsession.getMapper(MessageDao.class);
-		Message message = null;
+		HashMap<String, Object> message = null;
 		try {
 			
 			System.out.println("2 서비스 왓어욤:"+message);
@@ -193,6 +202,28 @@ public class MessageServiceImpl implements MessageService {
 			return result;
 		}
 
+		//받은쪽지 상세
+		@Override
+		public HashMap<String, Object> getReceptionMessage(String m_seq) {
+
+			MessageDao dao = sqlsession.getMapper(MessageDao.class);
+			HashMap<String, Object> message = null;
+			try {
+				
+				System.out.println("2222222 서비스 왓어욤:"+message);
+				System.out.println("222222아이디 : " + m_seq);
+				message = dao.getReceptionMessage(m_seq);
+				dao.updateMessage(m_seq);
+				
+				
+				System.out.println("3.매퍼갓다왓어욤: "+message);
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return message;
+		}
 	
 
 }

@@ -14,8 +14,8 @@ public interface MessageDao {
 	// 쪽지 보내기
 	public int insertSendMessage(Message message);
 
-	// 받은 편지 상세보기
-	public Message getMessage(String m_seq);
+	// 보낸 편지 상세보기
+	public HashMap<String, Object> getMessage(String m_seq);
 
 	// 보낸 쪽지함 목록
 	public List<Message> sendListMessage(String userid);
@@ -33,7 +33,10 @@ public interface MessageDao {
 	public List<Message> getListMessage(String userid);
 	
 	//내 메세지 총갯수
-	public int getMyMessageCount(String user_id);
+	public int getFromMyMessageCount(String user_id);
+	
+	//내 메세지 총갯수
+	public int getToMyMessageCount(String user_id);
 	
 	//받은 쪽지함 목록 + 페이징
 	public List<HashMap<String, Object>> getMessageList(HashMap<String, Object> map);
@@ -43,4 +46,7 @@ public interface MessageDao {
 
 	//수신 쪽지함 insert
 	public void insertReceptionMessage(Message message);
+
+	//받은편지 상세
+	public HashMap<String, Object> getReceptionMessage(String m_seq);
 }

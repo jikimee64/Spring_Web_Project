@@ -336,6 +336,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getStudy" resultType="hashmap">
 		select *
 		from study_board
+		left outer join users
+		on study_board.user_id = users.user_id
 		left
 		outer join language_category
 		on study_board.lan_seq =
@@ -416,8 +418,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 댓글 조회 -->
 	<select id="getComment" resultType="hashmap">
-		select * from comment
-		WHERE S_SEQ = #{S_SEQ} order by r_refer asc, r_step asc
+		
+	select * from comment
+	left outer join study_board
+	on study_board.s_seq = comment.s_seq
+	left outer join users
+	on users.user_id = study_board.user_id
+	WHERE comment.S_SEQ = #{S_SEQ} order by r_refer asc, r_step asc
 	</select>
 
 

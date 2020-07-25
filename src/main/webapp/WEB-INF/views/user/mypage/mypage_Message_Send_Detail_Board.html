@@ -39,7 +39,7 @@ body {
 	<div th:replace="/user/includes/header :: header"></div>
 	<!--  윗부분 시작 //////////////////////////////////////// -->
 	
-	<input type="hidden" id="m_seq" th:value="${message.m_seq}"></input>
+	<input type="hidden" id="m_seq" th:value="${message.M_SEQ}"></input>
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -94,7 +94,7 @@ body {
 					</span>
 				</div>
 				<div class="col-md-10" style="align-self: center;">
-					<span th:text="${message.receptionid}"></span>
+					<span th:text="${message.NICKNAME}"></span>
 				</div>
 			</div>
 			<div class="row"
@@ -106,7 +106,7 @@ body {
 					</span>
 				</div>
 				<div class="col-md-10" style="align-self: center;">
-					<span th:text="${#dates.format(message.senddate,'yyyy/MM/dd HH:mm')}">ㅇㅇ</span>
+					<span th:text="${#dates.format(message.SENDDATE,'yyyy/MM/dd HH:mm')}">ㅇㅇ</span>
 				</div>
 			</div>
 			<div class="row"
@@ -114,7 +114,7 @@ body {
 				<textarea class="form-control" id="msg" cols="30" rows="10"
 					style="width: 100%; margin-left: 32px; margin-right: 32px; resize:none;
 					background-color:#f0f0f0" readonly
-					placeholder="내용을 입력해주세요" th:text="${message.content}"></textarea>
+					placeholder="내용을 입력해주세요" th:text="${message.CONTENT}"></textarea>
 			</div>
 		</div>
 	</div>

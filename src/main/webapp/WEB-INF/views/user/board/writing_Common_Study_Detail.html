@@ -327,10 +327,10 @@ group+group {
 	<div class="_border_box_shadow2" style="width: 1430px;">
 		<!-- <form action="study_List.do" method="post" class="nomalstudy" id="nomalstudy"
       enctype="multipart/form-data" novalidate> -->
-		<div class="container"
+		<div
 			style="margin-top: 40px; margin-bottom: 25px; padding-top: 30px; padding-bottom: 30px;">
 			<span class="badge badge-pill badge-primary"
-				th:text="${study.STATUS}"></span> <span
+				th:text="${study.STATUS}" style="margin-left: 45px;"></span> <span
 				class="badge badge-pill badge-info" th:text="${study.LEVEL}"></span>
 			<span class="badge badge-pill badge-secondary"
 				th:text="${study.CATE_LANGUAGE}"></span> <span
@@ -338,7 +338,7 @@ group+group {
 			<span class="badge badge-pill badge-warning" th:text="${study.LOC}"></span>
 			<span class="badge badge-pill badge-light"
 				th:text="${study.CONTENT_KIND}"></span>
-			<div class="row">
+			<div class="row" style="padding: 0px 50px;">
 				<div class="col-md-6">
 					<span style="font-size: x-large;" id="title"><b
 						th:text="${study.TITLE}"></b></span>
@@ -352,8 +352,8 @@ group+group {
 										href="" th:classappend="|InfoModal${study.S_SEQ}|"
 										th:onclick="|javascript:InfoModal('${study.S_SEQ}')|"
 										data-toggle="modal" data-target="#userInfoModal"> 
-										<input type="hidden" th:value="${study.USER_ID}">
-										<b th:text="${study.USER_ID}"
+										<input type="hidden" th:value="${study.NICKNAME}">
+										<b th:text="${study.NICKNAME}"
 										style="color: black; margin-right: 10px;"> </b>
 									</a>
 						</div>
@@ -620,7 +620,7 @@ group+group {
 									</th:block>
 
 									<th:block th:if="${page == null && perPageNum == null}">
-										<a th:href="@{/board/study_List.do}">
+										<a th:href="@{/board/study_List.do(root=header)}">
 											<button type="button" class="btn btn-warning"
 												style="width: 100%; font-weight: bold;">목록으로</button>
 										</a>
@@ -710,6 +710,7 @@ group+group {
                data : JSON.stringify(obj),
                success : function(data) {
                   makeComment(data);
+                
                },
                error : function(e) {
                   console.log("error:", e);
@@ -718,27 +719,7 @@ group+group {
                
             });
          
-         /* 댓글 만들어 주는 함수 */
-            function makeComment(result) {
-               var user_id =$('input[id="userId"]').attr('class');
-               var html = "";
-               
-                $.each(result, function(index, obj) {
-                  html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
-                  if(user_id === obj.R_NAME){
-                     html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
-                     html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
-                  }  
-                
-                  html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
-               });
-               $('#com').append(html);
-               
-            }
-         
-         
-         
-         
+      
 //          /* yyyymmddhhmm으로 포맷 */
 //          function getDateFormet(date){
 //         	 var dd = date.getDate();
@@ -809,7 +790,7 @@ group+group {
                                  + obj.R_SEQ
 
                                  +"') data-toggle='modal' data-target='#userInfoModal'>"
-                           html += "<b style='"+depthcss+ "'>" + obj.R_NAME + "</b></a>"  + " ";
+                           html += "<b style='"+depthcss+ "'>" + obj.NICKNAME + "</b></a>"  + " ";
                            if(user_id === obj.R_NAME){
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
@@ -1377,15 +1358,15 @@ group+group {
 
 
 	<script>
-//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 -->
+//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 (내가쓴게시글(댓글) -> 상세보기)-->
  	$(function(){
  		
  		
  		if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
  			$('._to_the_list_a_tag').removeAttr('href');
  			
- 			$('._to_the_list_button')[0].innerText = "마이페이지로";
- 			$('._to_the_list_a_tag')[0].setAttribute('href', '/mypage/mypage.do');
+ 			$('._to_the_list_button')[0].innerText = "목록으로";
+ 			$('._to_the_list_a_tag')[0].setAttribute('href', '/board/study_List.do?root=header');
  		}
  		
  	});
