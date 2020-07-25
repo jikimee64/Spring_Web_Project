@@ -692,6 +692,7 @@ group+group {
                data : JSON.stringify(obj),
                success : function(data) {
                   makeComment(data);
+                
                },
                error : function(e) {
                   console.log("error:", e);
@@ -700,27 +701,7 @@ group+group {
                
             });
          
-         /* 댓글 만들어 주는 함수 */
-            function makeComment(result) {
-               var user_id =$('input[id="userId"]').attr('class');
-               var html = "";
-               
-                $.each(result, function(index, obj) {
-                  html += "<blockquote><b>" + obj.R_NAME + "</b>"  + " ";
-                  if(user_id === obj.R_NAME){
-                     html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
-                     html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
-                  }  
-                
-                  html += "<code><div style='font-size:15px; color:black;'>" + obj.R_CONTENT + "</div></code>" + "<br><div style='font-size:14px'>" +  obj.R_DATE+"날짜니" + "</div></blockquote>";
-               });
-               $('#com').append(html);
-               
-            }
-         
-         
-         
-         
+      
 //          /* yyyymmddhhmm으로 포맷 */
 //          function getDateFormet(date){
 //         	 var dd = date.getDate();
@@ -791,7 +772,7 @@ group+group {
                                  + obj.R_SEQ
 
                                  +"') data-toggle='modal' data-target='#userInfoModal'>"
-                           html += "<b style='"+depthcss+ "'>" + obj.R_NAME + "</b></a>"  + " ";
+                           html += "<b style='"+depthcss+ "'>" + obj.NICKNAME + "</b></a>"  + " ";
                            if(user_id === obj.R_NAME){
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
