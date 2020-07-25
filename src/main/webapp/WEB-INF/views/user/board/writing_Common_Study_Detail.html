@@ -666,7 +666,7 @@ group+group {
    </div>
    
    <input th:class="${heart}" type="hidden" id="heartlike">
-   <input th:class="${sessionid}" type="hidden" id="userId">
+   <input th:class="${user_id}" type="hidden" id="userId">
    <input th:class="${commentList}" type="hidden" id="commentList">
 
    <!-- <input type="hidden" id="commentList" th:value="${commentList}"> -->
@@ -677,14 +677,14 @@ group+group {
    
    <script>
       $(function() {
-         
+     
          /***********************************************   댓글 시리즈    ***********************************************/
          /* 상세페이지 들어가면 댓글 뿌려주는 로직 */
          var s_seqq = $('#s_seq').val();
          let obj = {
                "s_seq" : s_seqq
          };
-         
+        
           $.ajax({
              url: "/board/SelectCommentList.do",
              type : 'POST',
@@ -692,7 +692,7 @@ group+group {
                data : JSON.stringify(obj),
                success : function(data) {
                   makeComment(data);
-                
+             
                },
                error : function(e) {
                   console.log("error:", e);
@@ -772,7 +772,7 @@ group+group {
                                  + obj.R_SEQ
 
                                  +"') data-toggle='modal' data-target='#userInfoModal'>"
-                           html += "<b style='"+depthcss+ "'>" + obj.NICKNAME + "</b></a>"  + " ";
+                           html += "<b style='"+depthcss+ "'>" + obj.R_NICKNAME + "</b></a>"  + " ";
                            if(user_id === obj.R_NAME){
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='updateComment' id='" + obj.R_SEQ + "'"+">&nbsp;&nbsp;<i class='ri-pencil-line'></i></a>";
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
@@ -858,10 +858,12 @@ group+group {
                      
                   var s_seq = $('#s_seq').val();
                   var r_content = $('#comment').val().trim();
+                  var user_id = $('#userId').val();
                   
                   let obj = {
                         "s_seq" : s_seq,
-                        "r_content" : r_content
+                        "r_content" : r_content,
+                        "user_id" : user_id
                   };
                   
                   $.ajax({

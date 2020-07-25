@@ -34,15 +34,18 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.itextpdf.text.log.SysoLogger;
 import com.sun.media.jfxmedia.logging.Logger;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.BoardService;
+import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.Comment;
 import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Likes;
 import kr.or.ns.vo.Study;
+import kr.or.ns.vo.Users;
 
 /*
 클래스명 : BoardController
@@ -61,6 +64,9 @@ public class BoardController {
 	
 	@Autowired
 	private AjaxService aservice;
+	
+	@Autowired
+	private MyPageService mservice;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
@@ -347,7 +353,7 @@ public class BoardController {
 			List<Map<String, Object>> commentList = service.getComment(s_seq);
 			int count = service.getReplyCnt(s_seq);
 			model.addAttribute("count", count);
-			model.addAttribute("sessionid", user_id);
+			model.addAttribute("user_id", user_id);
 			model.addAttribute("heart", heart);
 			model.addAttribute("commentList", commentList);
 			System.out.println("목록 -> 일반 ************: " + study);
@@ -466,18 +472,24 @@ public class BoardController {
 	public List<Map<String, Object>> commentInsert(@RequestBody Map<String, Object> params, Principal principal)
 			throws IOException {
 		String user_id = principal.getName();
+		Users user = mservice.getUsers(user_id);
+		System.out.println("user" + user);
+		
 		String s_seq = (String) params.get("s_seq");
 		String r_content = (String) params.get("r_content");
-
+		String r_nickname = user.getNickname();
+		System.out.println("nickname" + r_nickname);
+		
 		Comment cm = new Comment();
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_content(r_content);
 		cm.setR_name(user_id);
-
+		cm.setR_nickname(r_nickname);
+		
 		service.commentInsert(cm);
 
 		List<Map<String, Object>> commentList = service.getComment(s_seq);
-
+		System.out.println("댓글리스트: " + commentList);
 		return commentList;
 	}
 
@@ -560,14 +572,17 @@ public class BoardController {
 	public List<Map<String, Object>> reCommentInsert(@RequestBody Map<String, Object> params, Principal principal)
 			throws IOException {
 		String user_id = principal.getName(); // 유저 아이디
+		Users user = mservice.getUsers(user_id);
 		String s_seq = (String) params.get("s_seq"); // 글 번호
 		String r_seq = (String) params.get("r_seq"); // 부모글 번호
 		String r_content = (String) params.get("r_content"); // 대댓글 내용
+		String r_nickname = user.getNickname();
 
 		Comment cm = new Comment();
 		cm.setR_name(user_id); // 아이디
 		cm.setS_seq(Integer.parseInt(s_seq)); // 글번호
 		cm.setR_content(r_content); // 대댓글내용
+		cm.setR_nickname(r_nickname); //닉네임
 
 		int r_refer = service.getP_refer(r_seq); // 부모글의 r_refer
 		cm.setR_refer(r_refer);// 그룹번호
