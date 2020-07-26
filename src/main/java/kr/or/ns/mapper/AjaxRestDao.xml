@@ -95,7 +95,7 @@
 	<!-- 마이페이지 모집중 스터디 -->
 	<select id="recrutingStudy" resultType="hashMap">
 	<![CDATA[
-        	select *
+        	select * ,(select count(*) from study_group where accept_status = '승인완료' and s_seq= study_board.s_seq) as 'accept'
 		from study_board
 		left outer join language_category
 		on study_board.lan_seq = language_category.lan_seq
