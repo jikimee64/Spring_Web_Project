@@ -22,16 +22,16 @@ import kr.or.ns.vo.Blame;
 import kr.or.ns.vo.Users;
 
 public class WriteReportListToPdfFile {
-	public static void writeReportListToPdfFile(String fileName, List<HashMap<String, Object>> blameList, HttpServletRequest request)
-			throws Exception {
+	public static void writeReportListToPdfFile(String fileName, List<HashMap<String, Object>> blameList,
+			HttpServletRequest request) throws Exception {
 
 		String result = ""; // 초기값이 null이 들어가면 오류가 발생될수 있기 때문에 공백을 지정
 
 		try {
 			Document document = new Document(); // pdf문서를 처리하는 객체
 			String path = request.getServletContext().getRealPath("/manager/report/");
-			File pdfFile = new File(path+fileName); //저장경로 설정
-			
+			File pdfFile = new File(path + fileName); // 저장경로 설정
+
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
 			// pdf파일의 저장경로 지정
 
@@ -65,10 +65,10 @@ public class WriteReportListToPdfFile {
 
 			PdfPCell cell4 = new PdfPCell(new Phrase("신고자", font));
 			cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
-			
+
 			PdfPCell cell5 = new PdfPCell(new Phrase("피신고자", font));
 			cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
-			
+
 			PdfPCell cell6 = new PdfPCell(new Phrase("처리상태", font));
 			cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
 
@@ -78,12 +78,13 @@ public class WriteReportListToPdfFile {
 			table.addCell(cell4);
 			table.addCell(cell5);
 			table.addCell(cell6);
-			
+
 			for (int i = 0; i < blameList.size(); i++) {
 				HashMap<String, Object> blame = blameList.get(i); // 레코드에 값들을 꺼내서 dto에 저장
-				PdfPCell cellReportNumber = new PdfPCell(new Phrase("" + blame.get("BL_SEQ"), font)); // 반복문을 사용해서 상품정보를 하나씩
+				PdfPCell cellReportNumber = new PdfPCell(new Phrase("" + blame.get("BL_SEQ"), font)); // 반복문을 사용해서 상품정보를
+																										// 하나씩
 
-				PdfPCell cellType = new PdfPCell(new Phrase("" +blame.get("TYPE"), font));
+				PdfPCell cellType = new PdfPCell(new Phrase("" + blame.get("TYPE"), font));
 				// Phrase타입은 숫자형(int형 같은타입)으로 하면 에러가 발생되기 때문에 dto앞에 공백("")주어서 String타입으로 변경한다.
 
 				PdfPCell cellBoardNumber = new PdfPCell(new Phrase("" + blame.get("BOARD_SEQ"), font));
@@ -91,9 +92,9 @@ public class WriteReportListToPdfFile {
 
 				PdfPCell cellReporter = new PdfPCell(new Phrase("" + blame.get("BL_ID"), font));
 				// Phrase타입은 숫자형(int형 같은타입)으로 하면 에러가 발생되기 때문에 dto앞에 공백("")주어서 String타입으로 변경한다.
-				
+
 				PdfPCell cellPeReporter = new PdfPCell(new Phrase("" + blame.get("BL_TARGET_ID"), font));
-				
+
 				PdfPCell cellStatus = new PdfPCell(new Phrase("" + blame.get("BL_STATUS"), font));
 
 				table.addCell(cellReportNumber); // 셀의 데이터를 테이블에 저장한다. (장바구니안에 들어있는 갯수만큼 테이블이 만들어진다)

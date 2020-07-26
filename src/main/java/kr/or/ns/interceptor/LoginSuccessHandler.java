@@ -29,14 +29,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     private RedirectStrategy redirectStratgy = new DefaultRedirectStrategy();
     
     public LoginSuccessHandler() {
-    	System.out.println("LoginSuccessHandler 생성");
     }
 	
-//    private UserService userService;
-//	@Autowired
-//	public void setUserService(UserService userService) {
-//		this.userService = userService;
-//	}
     @Autowired
     private SqlSession sqlsession;
     
@@ -80,22 +74,16 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     
     //세션 저장
     protected void sessionAdd(HttpServletRequest request , Authentication authentication) {
-    	
     	//true일시 세션이 있으면 기존꺼 사용 아니면 세션을새로 만듬
         HttpSession session = request.getSession(true);
         Users currentUser = null;
-        System.out.println("sqlsession : "+ sqlsession);
-//        currentUser= userService.getUser(authentication.getName());
       try {	
-        	System.out.println("authentication.getName() : "+authentication.getName());
         	MyPageDao userdao = sqlsession.getMapper(MyPageDao.class);
         	currentUser = userdao.getUsers(authentication.getName());
-        	System.out.println("우철 : " + currentUser);
         
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        System.out.println("currentUser : "+currentUser);
         session.setAttribute("currentUser", currentUser);
         }
 

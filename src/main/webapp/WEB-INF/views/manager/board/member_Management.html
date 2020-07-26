@@ -1,84 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon"
-	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>WeStudy-Admin</title>
-<meta name="description" content="Sufee Admin - HTML5 Admin Template">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WeStudy-Admin</title>
+	<meta name="description" content="Sufee Admin - HTML5 Admin Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div th:replace="/manager/includes/head :: head"></div>
+	<div th:replace="/manager/includes/head :: head"></div>
 
-<!-- dataTable start -->
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/responsive.dataTables.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
-<!-- dataTable end  -->
+	<!-- dataTable start -->
+	<link rel="stylesheet" type="text/css"
+		href="../../../../resources/admin_assets/assets/dataTable/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="../../../../resources/admin_assets/assets/dataTable/css/responsive.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
+	<!-- dataTable end  -->
 
-<style>
-#myTable td {
-	padding-top: 16px;
-}
+	<style>
+		#myTable td {
+			padding-top: 16px;
+		}
 
-td:focus {
-	outline: none;
-}
+		td:focus {
+			outline: none;
+		}
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-	background: #bbbdc2;
-	color: white !important;
-	border-radius: 5px;
-	height: 30px;
-	vertical-align: middle;
-	padding-top: 3px;
-	border: none;
-}
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+			background: #bbbdc2;
+			color: white !important;
+			border-radius: 5px;
+			height: 30px;
+			vertical-align: middle;
+			padding-top: 3px;
+			border: none;
+		}
 
-.excel {
-	margin-right: 5px;
-	text-align: center;
-	border: 1px solid white;
-	transition: all 0.15s;
-	background-color: #00694a;
-	padding: 5px 3px;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 80px;
-}
+		.excel {
+			margin-right: 5px;
+			text-align: center;
+			border: 1px solid white;
+			transition: all 0.15s;
+			background-color: #00694a;
+			padding: 5px 3px;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 80px;
+		}
 
-.pdf {
-	margin-right: 5px;
-	text-align: center;
-	border: 1px solid white;
-	transition: all 0.15s;
-	background-color: #ff3c00;
-	padding: 5px 3px;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 80px;
-}
+		.pdf {
+			margin-right: 5px;
+			text-align: center;
+			border: 1px solid white;
+			transition: all 0.15s;
+			background-color: #ff3c00;
+			padding: 5px 3px;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 80px;
+		}
 
-.message {
-	margin-right: 5px;
-	text-align: center;
-	border: 1px solid white;
-	transition: all 0.15s;
-	background-color: #f0cf65;
-	padding: 5px 3px;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 80px;
-}
-</style>
+		.message {
+			margin-right: 5px;
+			text-align: center;
+			border: 1px solid white;
+			transition: all 0.15s;
+			background-color: #f0cf65;
+			padding: 5px 3px;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 80px;
+		}
+	</style>
 </head>
 
 <body>
@@ -111,8 +109,7 @@ td:focus {
 					<div class="row ">
 						<div class="col-12">
 							<div class="wrap">
-								<table id="myTable" class="table text-center"
-									style="width: 100%;">
+								<table id="myTable" class="table text-center" style="width: 100%;">
 									<thead>
 										<tr class="text-center">
 											<th class="text-center" style="width: 50px;">아이디</th>
@@ -129,10 +126,9 @@ td:focus {
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
 												<!-- 													<a th:href="@{noticeDetail.htm(seq=${n.seq})}"> -->
-												<td align="center"><a
-													th:classappend="|${memberList.user_id}|"
-													th:href="@{/manager/board/member_Detail.do(user_id=${memberList.user_id})}"
-													th:text="${memberList.user_id}"></a>
+												<td align="center"><a th:classappend="|${memberList.user_id}|"
+														th:href="@{/manager/board/member_Detail.do(user_id=${memberList.user_id})}"
+														th:text="${memberList.user_id}"></a>
 												</td>
 												<td align="center" th:text="${memberList.user_email}"></td>
 												<td align="center" th:text="${memberList.nickname}"></td>
@@ -142,14 +138,14 @@ td:focus {
 													<td th:case="0" align="center" th:text="비활성화"></td>
 												</th:block>
 												<td align="center" class="button" style="padding-top: 10px;">
-													<a href="#" 
-													th:onclick="|javascript:stopButton('${memberList.user_id}')|"
+													<a href="#"
+														th:onclick="|javascript:stopButton('${memberList.user_id}')|"
 														id="stop">
 														<button type="button" class="btn btn-danger btn-sm"
 															style="color: white; border-radius: 5px;">정지</button>
 													</a>
-													<a href="#" 
-													th:onclick="|javascript:restoreButton('${memberList.user_id}')|"
+													<a href="#"
+														th:onclick="|javascript:restoreButton('${memberList.user_id}')|"
 														id="stop">
 														<button type="button" class="btn btn-success btn-sm"
 															style="color: white; border-radius: 5px;">복구</button>
@@ -172,145 +168,134 @@ td:focus {
 
 
 	<!-- <div th:replace="/manager/includes/script :: script"></div> -->
-	
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
-<script
-		src="../../../../resources/admin_assets/vendors/jquery/dist/jquery.min.js"></script> 
-	<script
-		src="../../../../resources/admin_assets/vendors/popper.js/dist/umd/popper.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="../../../../resources/admin_assets/vendors/jquery/dist/jquery.min.js"></script>
+	<script src="../../../../resources/admin_assets/vendors/popper.js/dist/umd/popper.min.js"></script>
 	<script src="../../../../resources/admin_assets/assets/js/main.js"></script>
 
 	<!-- alert창 꾸미기 -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-	
+
 
 	<!-- dataTaBle start -->
- 	<script
-		src='../../../../resources/admin_assets/assets/dataTable/js/jquery-3.3.1.min.js'></script> 
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/jquery.dataTables.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.responsive.min.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.buttons.min.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/buttons.html5.min.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/member.js"></script>
+	<script src='../../../../resources/admin_assets/assets/dataTable/js/jquery-3.3.1.min.js'></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/jquery.dataTables.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.responsive.min.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.buttons.min.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/buttons.html5.min.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/member.js"></script>
 	<!-- dataTaBle end -->
 
-	<script
-		src="../../../../resources/admin_assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../../../../resources/admin_assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
-	<div
-		th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
+	<div th:replace="/manager/includes/message_Page_Modal :: messagePageModal">
 	</div>
 
 	<script>
 		//idx는 user_id받음, 정지버튼 onclick
-		function stopButton(idx){
-			
-			 let data = {
-				"user_id" : idx
+		function stopButton(idx) {
+
+			let data = {
+				"user_id": idx
 			}
-			
+
 			swal({
-				  title: idx+"계정을 정지 하시겠습니까?",
-				  text: "",
-				  icon: "warning",
-				  buttons: true,
-				  dangerMode: true,
-				})
+				title: idx + "계정을 정지 하시겠습니까?",
+				text: "",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
 				.then((willDelete) => {
-				  if (willDelete) {
-				    //ajax id값 보내줘서 enabled 0으로 세팅
-					   $.ajax({
-							url : '/manager/stopMember.do',
-							processData : false,
-							contentType : "application/json",
-							cache : false,
-							type : 'POST',
-							data : JSON.stringify(data),
-							success : function(data) {
-								if(data === 1){
+					if (willDelete) {
+						//ajax id값 보내줘서 enabled 0으로 세팅
+						$.ajax({
+							url: '/manager/stopMember.do',
+							processData: false,
+							contentType: "application/json",
+							cache: false,
+							type: 'POST',
+							data: JSON.stringify(data),
+							success: function (data) {
+								if (data === 1) {
 									swal({
-										  title: "정상적으로 정지되었습니다.",
-										  icon: "success",
-										  buttons: true,
-										}).then((willDelete) => {
-											if(willDelete){
-												location.href="/manager/board/member_Management.do"
-											}
-										})
+										title: "정상적으로 정지되었습니다.",
+										icon: "success",
+										buttons: true,
+									}).then((willDelete) => {
+										if (willDelete) {
+											location.href = "/manager/board/member_Management.do"
+										}
+									})
 								}
 							},
-							error : function(e) {
+							error: function (e) {
 								console.log("error:", e);
 							}
-						});  
-				  }
+						});
+					}
 				});
 		}
-		
-		function restoreButton(idx){
-			
-			 let data = {
-				"user_id" : idx
+
+		function restoreButton(idx) {
+
+			let data = {
+				"user_id": idx
 			}
-			 console.log('1번 : ' + idx)
-			
+			console.log('1번 : ' + idx)
+
 			swal({
-				  title: idx+"계정정지를 해제 하시겠습니까?",
-				  text: "",
-				  icon: "warning",
-				  buttons: true,
-				  dangerMode: true,
-				})
+				title: idx + "계정정지를 해제 하시겠습니까?",
+				text: "",
+				icon: "warning",
+				buttons: true,
+				dangerMode: true,
+			})
 				.then((willDelete) => {
-				  if (willDelete) {
-				    //ajax id값 보내줘서 enabled 0으로 세팅
-					   $.ajax({
-							url : '/manager/restoreMember.do',
-							processData : false,
-							contentType : "application/json",
-							cache : false,
-							type : 'POST',
-							data : JSON.stringify(data),
-							success : function(data) {
-								if(data === 1){
+					if (willDelete) {
+						//ajax id값 보내줘서 enabled 0으로 세팅
+						$.ajax({
+							url: '/manager/restoreMember.do',
+							processData: false,
+							contentType: "application/json",
+							cache: false,
+							type: 'POST',
+							data: JSON.stringify(data),
+							success: function (data) {
+								if (data === 1) {
 									swal({
-										  title: "정상적으로 정지가 해지되었습니다.",
-										  icon: "success",
-										  buttons: true,
-										}).then((willDelete) => {
-											if(willDelete){
-												location.href="/manager/board/member_Management.do"
-											}
-										})
+										title: "정상적으로 정지가 해지되었습니다.",
+										icon: "success",
+										buttons: true,
+									}).then((willDelete) => {
+										if (willDelete) {
+											location.href = "/manager/board/member_Management.do"
+										}
+									})
 								}
 							},
-							error : function(e) {
+							error: function (e) {
 								console.log("error:", e);
 							}
-						});  
-				  }
+						});
+					}
 				});
 		}
-		
+
 	</script>
 
 	<script type="text/javascript">
-	 $(function() {
+		$(function () {
 			connect();
-			$('#message-btn').click(function() {
+			$('#message-btn').click(function () {
 				swal({
-					  title: "정상적으로 쪽지를 보냈습니다.",
-					  icon: "info",
-					  buttons: true,
-					 /*  dangerMode: true, */
-					})
-	  				$('#messagePageModal').modal('hide');
+					title: "정상적으로 쪽지를 보냈습니다.",
+					icon: "info",
+					buttons: true,
+					/*  dangerMode: true, */
+				})
+				$('#messagePageModal').modal('hide');
 				send();
 				//form태그 이동..
 			});
@@ -339,9 +324,9 @@ td:focus {
 
 		function send() {
 			let message = $('#message').val();
-			
+
 			wsocket.send("all," + message);
-		/* 	$('#message').val(""); */
+			/* 	$('#message').val(""); */
 		}
 
 		//자기 자신한테 보냈을때 실행

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -11,9 +10,6 @@
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <style>
 html, body {
-	/*    height: 100%;
-   margin: 0px; */
-	/* 가로스크로 없앰 */
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -73,13 +69,6 @@ html, body {
 	background-color: white;
 	z-index: 5;
 	position: absolute;
-}
-
-.wrapper {
-}
-
-.chatBoxArea {
-	
 }
 
 .side {
@@ -150,41 +139,42 @@ group+group {
 	color: #fff;
 	border-radius: 5px;
 }
-@media(max-width:992px){
-	._intro{
-		height:auto !important;
+
+@media ( max-width :992px) {
+	._intro {
+		height: auto !important;
 	}
 }
-@media(max-width:992px){
-	#profile_img{
-		width:50px !important;
-		height:50px !important;
+
+@media ( max-width :992px) {
+	#profile_img {
+		width: 50px !important;
+		height: 50px !important;
 	}
 }
-@media(max-width:768px){
-	._intro_img{
-		transform:translateY(-65px) !important;
+
+@media ( max-width :768px) {
+	._intro_img {
+		transform: translateY(-65px) !important;
 	}
-	#_seq{
-		font-size:small !important;
-		padding:0 !important;
+	#_seq {
+		font-size: small !important;
+		padding: 0 !important;
 		transform: translateY(-14px) !important;
-		
-	}
-}
-@media(max-width:768px){
-	._intro{
-		min-height:135px !important;
 	}
 }
 
-@media(max-width:992px){
-.ModalUserName{
-	font-size:large !important;
-}
+@media ( max-width :768px) {
+	._intro {
+		min-height: 135px !important;
+	}
 }
 
-
+@media ( max-width :992px) {
+	.ModalUserName {
+		font-size: large !important;
+	}
+}
 </style>
 
 </head>
@@ -220,8 +210,7 @@ group+group {
 
 		</div>
 
-		<div class="nowMember">
-		</div>
+		<div class="nowMember"></div>
 
 	</div>
 
@@ -271,46 +260,12 @@ group+group {
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/chat_Detail_Modal :: chat_Detail_Modal"></div>
 
-
-	<!-- chatBoxArea -->
-	<script>
-
-          $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20);
-          console.log( $('.chatBoxArea').scrollTop);
-
-   </script>
-
-
-	<!-- 	<script>
-      $(function() {
-         var data = {
-            ch_seq : $("#ch_seq").val(),
-         }
-         $.ajax({
-            url : "/chat/chatRoomMemberGet.do",
-            type : 'POST',
-            contentType : "application/json",
-            data : JSON.stringify(data),
-            success : function(data) {
-               console.log('채팅방멤버' + data)
-
-            },
-            error : function(e) {
-               console.log("error:", e);
-            }
-         })
-
-      });
-   </script> -->
-
 	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
 	</div>
 
 	<script type="text/javascript">
 	
-	
-	
-	
+	//채팅방에 참여중인 멤버현황을 불러오는 함수
 	function nowMember(){
          var data = {
             ch_seq : $("#ch_seq").val(),
@@ -360,26 +315,18 @@ group+group {
     	    			html +=	"<span class='badge badge-success' style='background-color: rgb(24, 210, 105); margin-top: 10px;'>회원</span></h5></div></div>";
     	    			$('.nowMember').append(html);
             	   }
-            	   
                });
-               
-
             },
             error : function(e) {
                console.log("error:", e);
             }
          });
 	}
-	
-	
-	
+
+	//닉네임 클릭시 회원 정보를 불러오는 함수
 	function InfoModal(idx) {
 
 		  let id = $('.InfoModal' + idx).children(":eq(0)").val();
-		//let id = $('.InfoModal' + idx).children().text();
-		//formData.append("user_id" , this.id);
-
-		// let obj = {"user_id" : id}; 
 
 		let data = {
 			"user_id" : id
@@ -408,9 +355,6 @@ group+group {
 					}
 				})
 				
-//						<td>1578</td>
-//												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
-				
 				$('._user_board_list').empty();
 				
 				let userBoardList = "";
@@ -431,7 +375,6 @@ group+group {
 				
 				
 				$('._user_board_list').append(userBoardList);
-//						$('._user_board_list');
 			},
 			error : function(e) {
 				console.log("error:", e);
@@ -439,11 +382,6 @@ group+group {
 		});
 
 	}
-	
-       /* function moveScroll() {
-           $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20));
-          console.warn( $('.chatBoxArea')[0].scrollHeight); 
-      }   */
 
       let Socket = null;
       var loginId = null;
@@ -459,12 +397,8 @@ group+group {
 
          /* /"+$("#roomNumber").val() */
          Socket.onopen = function(message) {
-            //var d = JSON.parse(msg);
-            //let html = "";
-            //html += "<b>"+d.user_id+"님이 들어옴</b>"  
+        	 //채팅방 접속시 참여중인 회원현황을 불러오는 함수
             nowMember();
-            //여기서 현재 현좁
-
          };
 
          /**
@@ -505,8 +439,6 @@ group+group {
                                  let html = "";
 
                                  html += "<div style='margin-left:20px; margin-top:20px;'>"
-                                 //html += "<img src='#' alt='#' style='height: 165px; border-radius: 32%; border: 2px solid black;'>"
-                                 //html += "<div style='float: left; text-align: center;'></div>"
                                  html += "<div style=''><img src='/userboard/upload/"
                                        + data[1].PROFILE_IMG
                                        + "' alt='' style='height: 40px; width:40px; border-radius: 32%;'>"
@@ -536,28 +468,21 @@ group+group {
             }
             //]]>
             
-            
+            //채팅 입력시 스크롤 하단으로 내려감
               $(document).scrollTop($(document).height());
-            
-            //moveScroll()
-            /*   $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20));
-             console.warn( $('.chatBoxArea')[0].scrollHeight);   */
 
          };
 
          /**
           * 웹소켓 사용자 연결 해제하는 경우 호출
-          *
+          */
          Socket.onclose = function(message) {
         	 
-            $("#chatBoxArea").append("Server is disconnd왜해제해!!!!ected!!.");
          };
-
          /**
           * 웹소켓 에러 발생하는 경우 호출
           */
          Socket.onerror = function(message) {
-            /* addLineToChatBox("Error!"); */
          };
       } //onload
 
@@ -593,9 +518,6 @@ group+group {
          Socket.send(JSON.stringify(option));
          inputMsgBox.val("")
          inputMsgBox.focus();
-
-         
-
          
          return true;
       }
@@ -603,11 +525,11 @@ group+group {
       /**
        * Disconnect 버튼 클릭하는 경우 호출
        */
-      /* function disconnectButton_onclick() {
+      function disconnectButton_onclick() {
          if (Socket != null) {
             Socket.close();
          }
-      } */
+      } 
 
       /**
        * inputMsgBox 키입력하는 경우 호출
@@ -624,10 +546,6 @@ group+group {
          }
       }
       
-/*       function moveScroll() {
-           $('.chatBoxArea').scrollTop($(".chatBoxArea")[0].scrollHeight+20));
-          console.warn( $('.chatBoxArea')[0].scrollHeight); 
-      }   */
    </script>
 
 
@@ -647,8 +565,6 @@ group+group {
       });
    </script>
 
-
-
 	<script>
 	function chatDelete() {
 		var ch_seq = $('#ch_seq').val();
@@ -662,13 +578,12 @@ group+group {
 				  if (willDelete) {
 					  location.href="/chat/chatDelete.do?ch_seq="+ch_seq
 				  } 
-				
 		});
 	}
    
    </script>
-   
-   <script>
+
+	<script>
 	function chatUpdate() {
 		var ch_seq = $('#ch_seq').val();
 		var ch_title = $('#ch_title').val();

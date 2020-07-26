@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import org.springframework.stereotype.Service;
- 
+
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -30,8 +30,8 @@ public class WriteMemberListToPdfFile {
 		try {
 			Document document = new Document(); // pdf문서를 처리하는 객체
 			String path = request.getServletContext().getRealPath("/manager/member/");
-			File pdfFile = new File(path+fileName); //저장경로 설정
-			
+			File pdfFile = new File(path + fileName); // 저장경로 설정
+
 			PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
 			// pdf파일의 저장경로 지정
 
@@ -65,7 +65,7 @@ public class WriteMemberListToPdfFile {
 
 			PdfPCell cell4 = new PdfPCell(new Phrase("신고횟수", font));
 			cell4.setHorizontalAlignment(Element.ALIGN_CENTER);
-			
+
 			PdfPCell cell5 = new PdfPCell(new Phrase("활성상태", font));
 			cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
 
@@ -74,12 +74,12 @@ public class WriteMemberListToPdfFile {
 			table.addCell(cell3);
 			table.addCell(cell4);
 			table.addCell(cell5);
-			
+
 			for (int i = 0; i < memberList.size(); i++) {
 				Users users = memberList.get(i); // 레코드에 값들을 꺼내서 dto에 저장
 				PdfPCell cellUserId = new PdfPCell(new Phrase(users.getUser_id(), font)); // 반복문을 사용해서 상품정보를 하나씩
-																									// 출력해서 셀에 넣고 테이블에
-																									// 저장한다.
+																							// 출력해서 셀에 넣고 테이블에
+																							// 저장한다.
 				PdfPCell cellUserEmail = new PdfPCell(new Phrase("" + users.getUser_email(), font));
 				// Phrase타입은 숫자형(int형 같은타입)으로 하면 에러가 발생되기 때문에 dto앞에 공백("")주어서 String타입으로 변경한다.
 

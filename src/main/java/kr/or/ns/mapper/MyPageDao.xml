@@ -8,11 +8,11 @@
 		user_id=#{USER_ID}
 	</select>
 
+	<!-- 회원스킬정보 가져오기 -->
 	<select id="getSkill" resultType="hashmap">
 		select skill_name, skill_level
 		from skill where user_id=#{userid}
 	</select>
-	<!-- 회원정보 가져오기 끝 -->
 
 	<!-- 회원정보 수정 -->
 	<update id="MyPageUserEdit" parameterType="kr.or.ns.vo.Users">
@@ -28,6 +28,7 @@
 		where user_id = #{user_id}
 	</update>
 
+	<!-- 회원스킬정보 수정 -->
 	<update id="editskill" parameterType="hashmap">
 		update skill
 		set skill_level
@@ -36,9 +37,6 @@
 		and skill_name =
 		#{skill_name}
 	</update>
-
-
-	<!-- 회원정보 수정 끝 -->
 
 	<!-- 회원탈퇴 -->
 	<delete id="userDelete">
@@ -113,6 +111,7 @@
 			]]>
 	</select>
 
+	<!-- 스터디 게시글번호에 따른 스터디 그룹정보 가져오기  -->
 	<select id="studyStatus" resultType="hashMap">
 	   	select users.nickname, study_group.s_seq,study_group.user_id,study_group.accept_status,study_group.role_name from study_group 
 	    left outer join users
@@ -121,25 +120,18 @@
 	</select>
 	
 	
+	<!-- 스터디 방장에대한 정보 가져오기  -->
 	<select id="getRole" parameterType="hashmap" resultType="hashMap">
-	    <!--  select user_id from study_group where role_name = #{role_name} and s_seq = #{s_seq}  -->
 	   select users.user_id, users.nickname from study_group
        left outer join users
        on study_group.user_id = users.user_id
        where study_group.role_name = #{role_name} and study_group.s_seq = #{s_seq}
 	</select>
 	
+	<!-- 스터디가 모집중인지 모집완료중인지에 대한 정보 가져오기  -->
 	<select id="getStatus" resultType="string">
 	     select status from study_board where s_seq = #{s_seq} 
 	</select>
-	
-	<select id="getNicknames" resultType="hashMap">
-	select nickname from users where 
-	</select>
-	
-	
-	
-	
 	
 
 </mapper>

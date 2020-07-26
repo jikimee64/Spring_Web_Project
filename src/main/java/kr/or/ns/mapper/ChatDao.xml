@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ns.dao.ChatDao">
 
+	<!-- 개설된 모든 채팅장 정보  -->
 	<select id="getListChatRoom" resultType="hashmap">
 		select * from chatroom
 	</select>
@@ -34,12 +35,13 @@
 		select #{user_id}, #{ch_seq} from dual where not exists(select user_id from chatmember where user_id=#{user_id} and ch_seq = #{ch_seq})
 	</insert>
 	
+	<!-- 채팅방에서 나갈시 채팅방 현황 테이블에서  삭제-->
 	<delete id="chatRoomOut" parameterType="kr.or.ns.vo.ChatRoomMember">
 		delete from chatmember
 		where ch_seq=#{ch_seq} and user_id=#{user_id}
 	</delete>
 	
-	
+	<!-- 채팅방 수정 -->
 	<update id="chatUpdate" parameterType="hashmap">
 		update chatroom
 		set ch_title=#{ch_title},
@@ -47,11 +49,12 @@
 		where ch_seq=#{ch_seq}
 	</update>
 	
-	
+	<!-- 채팅방 삭제  -->
 	<delete id="chatDelete" parameterType="kr.or.ns.vo.ChatRoomMember">
 		delete from chatroom
 		where ch_seq=#{ch_seq}
 	</delete>
+	
 	
 	<!-- 가장 먼저 들어온 데이터는 방장이기 때문에 cm_seq asc를 줘서 가장 첫번쨰로 뽑이는 데이터가 master  -->
 	<select id="chatRoomMemberGet" resultType="hashmap">

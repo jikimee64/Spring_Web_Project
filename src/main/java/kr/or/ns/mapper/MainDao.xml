@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.or.ns.dao.MainDao">
 
-
-   <!-- 페이징 스터디 글목록 -->
-   <!-- <select id="getStudyBoardList" resultType="hashmap" parameterType="hashmap"> -->
+   <!-- 모집중인 스터디 모록 -->
    <select id="getNewListStudy" resultType="hashmap">
       select sb.S_SEQ,
       sb.USER_ID, sb.C_SEQ,

@@ -22,4 +22,3 @@ public class CustomViewResolver extends UrlBasedViewResolver implements Ordered 
 	}
 }
 // .jsp가 포함되어 있다면 null을 반환하여 다음 ViewResolver을 탐
-// 일단 지우지말아주세요 나중에 사용할수도 있어서..

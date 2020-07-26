@@ -1,310 +1,311 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon"
-	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>회원정보 상세보기</title>
-<meta name="description" content="Sufee Admin - HTML5 Admin Template">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>회원정보 상세보기</title>
+	<meta name="description" content="Sufee Admin - HTML5 Admin Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div th:replace="/manager/includes/head :: head"></div>
+	<div th:replace="/manager/includes/head :: head"></div>
 
-<!-- dataTable start -->
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/responsive.dataTables.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
-<!-- dataTable end  -->
+	<!-- dataTable start -->
+	<link rel="stylesheet" type="text/css"
+		href="../../../../resources/admin_assets/assets/dataTable/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="../../../../resources/admin_assets/assets/dataTable/css/responsive.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
+	<!-- dataTable end  -->
 
-<style>
-/*[ Input ]*/
-body {
-	background-color: rgb(230, 244, 232) !important;
-}
+	<style>
+		/*[ Input ]*/
+		body {
+			background-color: rgb(230, 244, 232) !important;
+		}
 
-button:focus {
-	outline: none !important;
-}
+		button:focus {
+			outline: none !important;
+		}
 
-.wrap-input100 {
-	position: relative;
-	width: 100%;
-	z-index: 1;
-}
+		.wrap-input100 {
+			position: relative;
+			width: 100%;
+			z-index: 1;
+		}
 
-input, textarea {
-	outline: none;
-	margin: 0;
-	border: none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
-	box-shadow: none;
-	width: 100%;
-	font-size: 14px;
-	font-family: inherit;
-}
+		input,
+		textarea {
+			outline: none;
+			margin: 0;
+			border: none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			width: 100%;
+			font-size: 14px;
+			font-family: inherit;
+		}
 
-textarea {
-	resize: none;
-}
+		textarea {
+			resize: none;
+		}
 
-.input-group {
-	position: relative;
-	margin: 0;
-}
+		.input-group {
+			position: relative;
+			margin: 0;
+		}
 
-.input100 {
-	color: #686868;
-	background: #f0f0f0;
-}
+		.input100 {
+			color: #686868;
+			background: #f0f0f0;
+		}
 
-.input--style-6, .textarea--style-6 {
-	font-family: Raleway-SemiBold;
-	font-size: 18px;
-	background: transparent;
-	line-height: 1.2;
-	display: block;
-	width: 100%;
-	height: 39px;
-	border: 1px solid #cccccc;
-	/* border-style: hidden; */
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	color: #666;
-	font-size: 15px;
-	-webkit-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-	padding: 0 15px;
-}
+		.input--style-6,
+		.textarea--style-6 {
+			font-family: Raleway-SemiBold;
+			font-size: 18px;
+			background: transparent;
+			line-height: 1.2;
+			display: block;
+			width: 100%;
+			height: 39px;
+			border: 1px solid #cccccc;
+			/* border-style: hidden; */
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			color: #666;
+			font-size: 15px;
+			-webkit-transition: all 0.4s ease;
+			-o-transition: all 0.4s ease;
+			-moz-transition: all 0.4s ease;
+			transition: all 0.4s ease;
+			padding: 0 15px;
+		}
 
-.input--style-6::-webkit-input-placeholder, .textarea--style-6::-webkit-input-placeholder
-	{
-	/* WebKit, Blink, Edge */
-	color: #999;
-}
+		.input--style-6::-webkit-input-placeholder,
+		.textarea--style-6::-webkit-input-placeholder {
+			/* WebKit, Blink, Edge */
+			color: #999;
+		}
 
-.input--style-6:-moz-placeholder, .textarea--style-6:-moz-placeholder {
-	/* Mozilla Firefox 4 to 18 */
-	color: #999;
-	opacity: 1;
-}
+		.input--style-6:-moz-placeholder,
+		.textarea--style-6:-moz-placeholder {
+			/* Mozilla Firefox 4 to 18 */
+			color: #999;
+			opacity: 1;
+		}
 
-.input--style-6::-moz-placeholder, .textarea--style-6::-moz-placeholder
-	{
-	/* Mozilla Firefox 19+ */
-	color: #999;
-	opacity: 1;
-}
+		.input--style-6::-moz-placeholder,
+		.textarea--style-6::-moz-placeholder {
+			/* Mozilla Firefox 19+ */
+			color: #999;
+			opacity: 1;
+		}
 
-.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
-	{
-	/* Internet Explorer 10-11 */
-	color: #999;
-}
+		.input--style-6:-ms-input-placeholder,
+		.textarea--style-6:-ms-input-placeholder {
+			/* Internet Explorer 10-11 */
+			color: #999;
+		}
 
-.input--style-6:-ms-input-placeholder, .textarea--style-6:-ms-input-placeholder
-	{
-	/* Microsoft Edge */
-	color: #999;
-}
+		.input--style-6:-ms-input-placeholder,
+		.textarea--style-6:-ms-input-placeholder {
+			/* Microsoft Edge */
+			color: #999;
+		}
 
-.input--style-6:focus, .textarea--style-6:focus {
-	-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-	-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
-	-webkit-transform: translateY(-3px);
-	-moz-transform: translateY(-3px);
-	-ms-transform: translateY(-3px);
-	-o-transform: translateY(-3px);
-	transform: translateY(-3px);
-}
+		.input--style-6:focus,
+		.textarea--style-6:focus {
+			-webkit-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+			-moz-box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+			box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+			-webkit-transform: translateY(-3px);
+			-moz-transform: translateY(-3px);
+			-ms-transform: translateY(-3px);
+			-o-transform: translateY(-3px);
+			transform: translateY(-3px);
+		}
 
-.textarea--style-6 {
-	line-height: 1.2;
-	min-height: 120px;
-	padding: 10px 20px;
-}
+		.textarea--style-6 {
+			line-height: 1.2;
+			min-height: 120px;
+			padding: 10px 20px;
+		}
 
-.label--desc {
-	font-size: 13px;
-	color: #999;
-	margin-top: 10px;
-}
+		.label--desc {
+			font-size: 13px;
+			color: #999;
+			margin-top: 10px;
+		}
 
-@media ( max-width : 767px) {
-	.label--desc {
-		margin-top: 14px;
-	}
-}
+		@media (max-width : 767px) {
+			.label--desc {
+				margin-top: 14px;
+			}
+		}
 
-.input-file {
-	display: none;
-}
+		.input-file {
+			display: none;
+		}
 
-.input-file+label {
-	font-size: 15px;
-	color: #fff;
-	color: white;
-	line-height: 40px;
-	background-color: #666666;
-	padding: 0 20px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	display: inline-block;
-	margin-right: 15px;
-	-webkit-transition: all 0.4s ease;
-	-o-transition: all 0.4s ease;
-	-moz-transition: all 0.4s ease;
-	transition: all 0.4s ease;
-	cursor: pointer;
-}
+		.input-file+label {
+			font-size: 15px;
+			color: #fff;
+			color: white;
+			line-height: 40px;
+			background-color: #666666;
+			padding: 0 20px;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			display: inline-block;
+			margin-right: 15px;
+			-webkit-transition: all 0.4s ease;
+			-o-transition: all 0.4s ease;
+			-moz-transition: all 0.4s ease;
+			transition: all 0.4s ease;
+			cursor: pointer;
+		}
 
-.input-file:focus+label, .input-file+label:hover {
-	background: #1b1b1b;
-}
+		.input-file:focus+label,
+		.input-file+label:hover {
+			background: #1b1b1b;
+		}
 
-.input-file__info {
-	font-size: 15px;
-	color: #666;
-}
+		.input-file__info {
+			font-size: 15px;
+			color: #666;
+		}
 
-@media ( max-width : 767px) {
-	.input-file__info {
-		display: block;
-		margin-top: 6px;
-	}
-}
+		@media (max-width : 767px) {
+			.input-file__info {
+				display: block;
+				margin-top: 6px;
+			}
+		}
 
-/* 버튼 */
-.login100-form-btn {
-	font-family: Raleway-Bold;
-	font-size: 16px;
-	line-height: 1.5;
-	color: #18d26e;
-	outline: none;
-	text-transform: uppercase;
-	width: auto;
-	height: auto;
-	border-radius: 3px;
-	border: 0;
-	/*       outline: 0; */
-	background: 0;
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 0px;
-	margin: 0px;
-	border-style: hidden;
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	-moz-transition: all 0.4s;
-	transition: all 0.4s;
-}
+		/* 버튼 */
+		.login100-form-btn {
+			font-family: Raleway-Bold;
+			font-size: 16px;
+			line-height: 1.5;
+			color: #18d26e;
+			outline: none;
+			text-transform: uppercase;
+			width: auto;
+			height: auto;
+			border-radius: 3px;
+			border: 0;
+			/*       outline: 0; */
+			background: 0;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0px;
+			margin: 0px;
+			border-style: hidden;
+			-webkit-transition: all 0.4s;
+			-o-transition: all 0.4s;
+			-moz-transition: all 0.4s;
+			transition: all 0.4s;
+		}
 
-.login100-form-btn:hover {
-	background: #18d26e;
-	color: white;
-}
+		.login100-form-btn:hover {
+			background: #18d26e;
+			color: white;
+		}
 
-._label_center {
-	align-self: center;
-}
+		._label_center {
+			align-self: center;
+		}
 
-*:focus {
-	border: solid 1px #18d26e;
-}
+		*:focus {
+			border: solid 1px #18d26e;
+		}
 
-a:focus {
-	border: none;
-}
+		a:focus {
+			border: none;
+		}
 
-._border_box_shadow {
-	background: #fff;
-	margin: auto;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0
-		rgba(0, 0, 0, 0.26);
-	border-radius: 3px;
-	padding: 0px 0px 40px 0px;
-	width: 100%;
-	height: 100%;
-}
+		._border_box_shadow {
+			background: #fff;
+			margin: auto;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+			border-radius: 3px;
+			padding: 0px 0px 40px 0px;
+			width: 100%;
+			height: 100%;
+		}
 
-/* 라디오버튼 */
-._form_radio {
-	background: #fff;
-	/*    width: 509px; */
-	margin: auto;
-	padding: 30px;
-	min-width: 320px;
-	max-width: 540px;
-	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0
-		rgba(0, 0, 0, 0.26);
-	border-radius: 3px;
-}
+		/* 라디오버튼 */
+		._form_radio {
+			background: #fff;
+			/*    width: 509px; */
+			margin: auto;
+			padding: 30px;
+			min-width: 320px;
+			max-width: 540px;
+			box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 1px 5px 0 rgba(0, 0, 0, 0.26);
+			border-radius: 3px;
+		}
 
-group+group {
-	margin-top: 20px;
-}
+		group+group {
+			margin-top: 20px;
+		}
 
-.inline-radio {
-	display: flex;
-	border-radius: 3px;
-	overflow: hidden;
-}
+		.inline-radio {
+			display: flex;
+			border-radius: 3px;
+			overflow: hidden;
+		}
 
-._div_radio {
-	position: relative;
-	flex: 1;
-	border-radius: 3px;
-}
+		._div_radio {
+			position: relative;
+			flex: 1;
+			border-radius: 3px;
+		}
 
-._input_radio {
-	width: 100%;
-	opacity: 0;
-	height: 100%;
-	cursor: pointer;
-}
+		._input_radio {
+			width: 100%;
+			opacity: 0;
+			height: 100%;
+			cursor: pointer;
+		}
 
-._radio_label {
-	position: absolute;
-	top: 0;
-	left: 0;
-	color: #272C33;
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
-}
+		._radio_label {
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: #272C33;
+			width: 100%;
+			height: 100%;
+			background: #fff;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			pointer-events: none;
+		}
 
-._div_radio:last-child label {
-	border-right: 0;
-}
+		._div_radio:last-child label {
+			border-right: 0;
+		}
 
-._input_radio:checked+label {
-	background: #00d463;
-	font-weight: 500;
-	color: #fff;
-	border-radius: 5px;
-}
-</style>
+		._input_radio:checked+label {
+			background: #00d463;
+			font-weight: 500;
+			color: #fff;
+			border-radius: 5px;
+		}
+	</style>
 
 </head>
 
@@ -323,13 +324,12 @@ group+group {
 		<!-- Header-->
 
 
-		<div class="container"
-			style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
+		<div class="container" style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
 			<div class="_border_box_shadow">
 				&nbsp;&nbsp;
 				<div style="text-align: center;">
-					<span style="text-align: center; font-size: xx-large;"><b
-						th:text="|${member.user_id}님의 회원정보|">아이디님의 회원정보</b></span>
+					<span style="text-align: center; font-size: xx-large;"><b th:text="|${member.user_id}님의 회원정보|">아이디님의
+							회원정보</b></span>
 				</div>
 				<hr style="width: 80%;" />
 
@@ -344,8 +344,7 @@ group+group {
 						<div class="col-2"></div>
 
 						<div class="col-8" style="text-align: center;">
-							<img id="preview"
-								th:src="'/userboard/upload/' + ${member.profile_img}" alt="썸네일"
+							<img id="preview" th:src="'/userboard/upload/' + ${member.profile_img}" alt="썸네일"
 								style="margin-bottom: 15px; width: 150px; height: 150px;">
 						</div>
 
@@ -366,9 +365,8 @@ group+group {
 						</div>
 
 						<div class="col-8">
-							<input type="text" class="input--style-6" id="user_id"
-								placeholder="아이디를 입력해주세요." name="user_id"
-								th:value="${member.user_id}" readonly />
+							<input type="text" class="input--style-6" id="user_id" placeholder="아이디를 입력해주세요."
+								name="user_id" th:value="${member.user_id}" readonly />
 
 						</div>
 
@@ -380,13 +378,11 @@ group+group {
 					<div class="row" style="place-content: center; padding-left: 100px">
 						<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center" readonly>이름</label>
+							<label class="label-input100" for="pwd" style="align-self: center" readonly>이름</label>
 						</div>
 						<div class="col-8">
-							<input type="text" class="input--style-6" id="user_name"
-								placeholder="이름을 입력해주세요." name="user_name"
-								th:value="${member.user_name}" readonly>
+							<input type="text" class="input--style-6" id="user_name" placeholder="이름을 입력해주세요."
+								name="user_name" th:value="${member.user_name}" readonly>
 						</div>
 						<div class="col-2"></div>
 					</div>
@@ -399,14 +395,12 @@ group+group {
 					<div class="row" style="place-content: center; padding-left: 100px">
 						<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center">닉네임</label>
+							<label class="label-input100" for="pwd" style="align-self: center">닉네임</label>
 						</div>
 
 						<div class="col-8">
-							<input type="text" class="input--style-6" id="nickname"
-								placeholder="닉네임을 입력해주세요" name="nickname"
-								th:value="${member.nickname}" readonly>
+							<input type="text" class="input--style-6" id="nickname" placeholder="닉네임을 입력해주세요"
+								name="nickname" th:value="${member.nickname}" readonly>
 
 						</div>
 
@@ -422,14 +416,12 @@ group+group {
 					<div class="row" style="place-content: center; padding-left: 100px">
 						<div class="col-2 _label_center"
 							style="align-self: center; padding-top: 10px; text-align: right;">
-							<label class="label-input100" for="pwd"
-								style="align-self: center" readonly>이메일 주소</label>
+							<label class="label-input100" for="pwd" style="align-self: center" readonly>이메일 주소</label>
 						</div>
 
 						<div class="col-8">
-							<input type="email" class="input--style-6" id="user_email"
-								placeholder="이메일을 입력해주세요" name="user_email"
-								th:value="${member.user_email}" readonly>
+							<input type="email" class="input--style-6" id="user_email" placeholder="이메일을 입력해주세요"
+								name="user_email" th:value="${member.user_email}" readonly>
 
 						</div>
 
@@ -446,8 +438,8 @@ group+group {
 					<div class="col-2"></div>
 					<div class="col-8">
 						<h3>
-							<b style="margin-left: 10px; font-size: larger;"
-								th:text="|${member.user_id} 님의실력|">@@님의 실력</b>
+							<b style="margin-left: 10px; font-size: larger;" th:text="|${member.user_id} 님의실력|">@@님의
+								실력</b>
 						</h3>
 					</div>
 					<div class="col-2"></div>
@@ -456,118 +448,95 @@ group+group {
 
 
 				<div class="_form_radio">
-					<group class="inline-radio"> <span
-						style="font-size: larger; width: 140px;">Java</span>
-					<div class="_div_radio">
-						<input type="radio" name="java" value="입문" class="_input_radio"
-						 onclick="return(false);"
-							th:attr="checked=${skill[0].skill_level == '입문' ? 'true' : 'false'}"><label
-							class="_radio_label">입문</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="java" value="초급" class="_input_radio"
-						 onclick="return(false);"
-							th:attr="checked=${skill[0].skill_level == '초급' ? 'true' : 'false'}"><label
-							class="_radio_label">초급</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="java" value="중급이상" class="_input_radio"
-						 onclick="return(false);"
-							th:attr="checked=${skill[0].skill_level == '중급이상' ? 'true' : 'false'}"><label
-							class="_radio_label">중급이상</label>
-					</div>
+					<group class="inline-radio"> <span style="font-size: larger; width: 140px;">Java</span>
+						<div class="_div_radio">
+							<input type="radio" name="java" value="입문" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[0].skill_level == '입문' ? 'true' : 'false'}"><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="java" value="초급" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[0].skill_level == '초급' ? 'true' : 'false'}"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="java" value="중급이상" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[0].skill_level == '중급이상' ? 'true' : 'false'}"><label
+								class="_radio_label">중급이상</label>
+						</div>
 					</group>
 
-					<group class="inline-radio"> <span
-						style="font-size: larger; width: 140px;">Python</span>
-					<div class="_div_radio">
-						<input type="radio" name="Python" value="입문" class="_input_radio"
-						 onclick="return(false);"
-							th:attr="checked=${skill[1].skill_level == '입문' ? 'true' : 'false'}"><label
-							class="_radio_label">입문</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="Python" value="초급" class="_input_radio"
-						 onclick="return(false);"
-							th:attr="checked=${skill[1].skill_level == '초급' ? 'true' : 'false'}"><label
-							class="_radio_label">초급</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="Python" value="중급이상"
-							class="_input_radio"
-							 onclick="return(false);"
-							th:attr="checked=${skill[1].skill_level == '중급이상' ? 'true' : 'false'}"><label
-							class="_radio_label">중급이상</label>
-					</div>
+					<group class="inline-radio"> <span style="font-size: larger; width: 140px;">Python</span>
+						<div class="_div_radio">
+							<input type="radio" name="Python" value="입문" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[1].skill_level == '입문' ? 'true' : 'false'}"><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Python" value="초급" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[1].skill_level == '초급' ? 'true' : 'false'}"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Python" value="중급이상" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[1].skill_level == '중급이상' ? 'true' : 'false'}"><label
+								class="_radio_label">중급이상</label>
+						</div>
 					</group>
-					<group class="inline-radio"> <span
-						style="font-size: larger; width: 140px;">HTML/CSS</span>
-					<div class="_div_radio">
-						<input type="radio" name="html_css" value="입문"
-							class="_input_radio" 
-							 onclick="return(false);"
-							th:attr="checked=${skill[2].skill_level == '입문' ? 'true' : 'false'}"><label
-							class="_radio_label">입문</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="html_css" value="초급"
-							class="_input_radio"
-							 onclick="return(false);"
-							th:attr="checked=${skill[2].skill_level == '초급' ? 'true' : 'false'}"><label
-							class="_radio_label">초급</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="html_css" value="중급이상"
-							class="_input_radio"
-							 onclick="return(false);"
-							th:attr="checked                                                                                                                    =${skill[2].skill_level == '중급이상' ? 'true' : 'false'}"><label
-							class="_radio_label">중급이상</label>
-					</div>
+					<group class="inline-radio"> <span style="font-size: larger; width: 140px;">HTML/CSS</span>
+						<div class="_div_radio">
+							<input type="radio" name="html_css" value="입문" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[2].skill_level == '입문' ? 'true' : 'false'}"><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="html_css" value="초급" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[2].skill_level == '초급' ? 'true' : 'false'}"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="html_css" value="중급이상" class="_input_radio"
+								onclick="return(false);"
+								th:attr="checked                                                                                                                    =${skill[2].skill_level == '중급이상' ? 'true' : 'false'}"><label
+								class="_radio_label">중급이상</label>
+						</div>
 					</group>
-					<group class="inline-radio"> <span
-						style="font-size: larger; width: 140px;">Javascript</span>
-					<div class="_div_radio">
-						<input type="radio" name="Javascript" value="입문"
-							class="_input_radio" 
-							 onclick="return(false);"
-							th:attr="checked=${skill[3].skill_level == '입문' ? 'true' : 'false'}"><label
-							class="_radio_label">입문</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="Javascript" value="초급"
-							class="_input_radio"
-							 onclick="return(false);"
-							th:attr="checked=${skill[3].skill_level == '초급' ? 'true' : 'false'}"><label
-							class="_radio_label">초급</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="Javascript" value="중급이상"
-							class="_input_radio"
-							 onclick="return(false);"
-							th:attr="checked=${skill[3].skill_level == '중급이상' ? 'true' : 'false'}"><label
-							class="_radio_label">중급이상</label>
-					</div>
+					<group class="inline-radio"> <span style="font-size: larger; width: 140px;">Javascript</span>
+						<div class="_div_radio">
+							<input type="radio" name="Javascript" value="입문" class="_input_radio"
+								onclick="return(false);"
+								th:attr="checked=${skill[3].skill_level == '입문' ? 'true' : 'false'}"><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Javascript" value="초급" class="_input_radio"
+								onclick="return(false);"
+								th:attr="checked=${skill[3].skill_level == '초급' ? 'true' : 'false'}"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="Javascript" value="중급이상" class="_input_radio"
+								onclick="return(false);"
+								th:attr="checked=${skill[3].skill_level == '중급이상' ? 'true' : 'false'}"><label
+								class="_radio_label">중급이상</label>
+						</div>
 					</group>
-					<group class="inline-radio"> <span
-						style="font-size: larger; width: 140px;">SQL</span>
-					<div class="_div_radio">
-						<input type="radio" name="sql" value="입문" class="_input_radio"
-							 onclick="return(false);"
-							th:attr="checked=${skill[4].skill_level == '입문' ? 'true' : 'false'}"><label
-							class="_radio_label">입문</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="sql" value="초급" class="_input_radio"
-						 onclick="return(false);"
-							th:attr="checked=${skill[4].skill_level == '초급' ? 'true' : 'false'}"><label
-							class="_radio_label">초급</label>
-					</div>
-					<div class="_div_radio">
-						<input type="radio" name="sql" value="중급이상" class="_input_radio"
-						 onclick="return(false);"
-							th:attr="checked=${skill[4].skill_level == '중급이상' ? 'true' : 'false'}"><label
-							class="_radio_label">중급이상</label>
-					</div>
+					<group class="inline-radio"> <span style="font-size: larger; width: 140px;">SQL</span>
+						<div class="_div_radio">
+							<input type="radio" name="sql" value="입문" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[4].skill_level == '입문' ? 'true' : 'false'}"><label
+								class="_radio_label">입문</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="sql" value="초급" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[4].skill_level == '초급' ? 'true' : 'false'}"><label
+								class="_radio_label">초급</label>
+						</div>
+						<div class="_div_radio">
+							<input type="radio" name="sql" value="중급이상" class="_input_radio" onclick="return(false);"
+								th:attr="checked=${skill[4].skill_level == '중급이상' ? 'true' : 'false'}"><label
+								class="_radio_label">중급이상</label>
+						</div>
 					</group>
 				</div>
 
@@ -582,32 +551,29 @@ group+group {
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
 
-						<b style="font-size: larger;"> <i class="xi-emoticon-cool-o"
-							aria-hidden="true"></i> 저는 이런것도 할줄 알아요~
+						<b style="font-size: larger;"> <i class="xi-emoticon-cool-o" aria-hidden="true"></i> 저는 이런것도 할줄
+							알아요~
 						</b>
 						<p></p>
-						<textarea class="textarea--style-6" name="introduce"
-							th:text="${member.introduce}" id="introduce" rows="5" required
-							style="resize: none;" readonly> </textarea>
+						<textarea class="textarea--style-6" name="introduce" th:text="${member.introduce}"
+							id="introduce" rows="5" required style="resize: none;" readonly> </textarea>
 					</div>
 				</div>
 				<br />
 				<div class="row" style="place-content: center;">
 					<div class="col" style="text-align-last:end;">
-<!-- 					th:href="@{/manager/board/member_Detail.do(user_id=${memberList.USER_ID})} -->
-						<a href="#" type="button"
-							class="btn btn-danger btn _delete"
+						<!-- 					th:href="@{/manager/board/member_Detail.do(user_id=${memberList.USER_ID})} -->
+						<a href="#" type="button" class="btn btn-danger btn _delete"
 							style="border-radius: 3px; background-color: red; border-color: red;">
 							<i class="fa fa-dot-circle-o"></i> 삭제
 						</a>
 					</div>
 					<div class="col">
-						<a href="#" type="button" onclick="history.go(-1); return false;"
-							class="btn btn-danger btn"
+						<a href="#" type="button" onclick="history.go(-1); return false;" class="btn btn-danger btn"
 							style="border-radius: 3px; background-color: #00d463; border-color: #00d463;">
 							<i class="fa fa-dot-circle-o"></i> 목록으로
 						</a>
-						
+
 					</div>
 				</div>
 
@@ -626,29 +592,29 @@ group+group {
 			<!-- 	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script> -->
 
 			<script>
-			$(function() {
-				
-				
-				
-				$('._delete').click(function(){
-					var userId = $('#user_id').val();
-					swal({
-						  title: userId+ "계정을 삭제하시겠습니까?",
-						  icon: "warning",
-						  buttons: true,
-						  dangerMode: true,
+				$(function () {
+
+
+
+					$('._delete').click(function () {
+						var userId = $('#user_id').val();
+						swal({
+							title: userId + "계정을 삭제하시겠습니까?",
+							icon: "warning",
+							buttons: true,
+							dangerMode: true,
 						})
-						.then((willDelete) => {
-						  if (willDelete) {
-						    /* swal("성공적으로 삭제완료!!", {
-						      icon: "success",
-						    }); */
-						    	location.href="/manager/board/memberDel.do?user_id="+userId
-						    
-						  }
-						});
-				})
-			});
+							.then((willDelete) => {
+								if (willDelete) {
+									/* swal("성공적으로 삭제완료!!", {
+									  icon: "success",
+									}); */
+									location.href = "/manager/board/memberDel.do?user_id=" + userId
+
+								}
+							});
+					})
+				});
 			</script>
 </body>
 

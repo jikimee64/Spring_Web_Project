@@ -56,9 +56,8 @@ public interface LectureDao {
 	
 	//l_seq 를 가져오는 함수
 	public List<Integer> getCheckedL_seq(String user_id);
-
-//	public List<HashMap<?, ?>> getBookmarkList(Criteria_Select cri_s, String userid);
-
+	
+	//스터디 게시판에서 온라인강의 컨텐츠로 올린 게시글에 대한 정보를 가져오는 함수
 	public HashMap<String, Object> getLecture(String l_seq);
 
 }

@@ -38,8 +38,8 @@ public class Mailer {
 	}
 
 	public void sendMail(Mail mail, String key) {
-		
-		//String userid = principal.getName();
+
+		// String userid = principal.getName();
 		// SimpleMailMessage message = new SimpleMailMessage();
 		MimeMessage message = mailSender.createMimeMessage();
 		// JavaMailSender 인터페이스에서
@@ -50,7 +50,6 @@ public class Mailer {
 			message.addRecipient(RecipientType.TO, new InternetAddress(mail.getMailTo()));
 			message.setSubject(mail.getMailSubject());
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -65,8 +64,8 @@ public class Mailer {
 		Template template = velocityEngine.getTemplate(mail.getTemplateName(), "UTF-8");
 
 		VelocityContext velocityContext = new VelocityContext();
-		velocityContext.put("key", key);	
-		//velocityContext.put("userid", userid);
+		velocityContext.put("key", key);
+		// velocityContext.put("userid", userid);
 
 		StringWriter stringWriter = new StringWriter();
 

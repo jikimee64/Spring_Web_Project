@@ -1,223 +1,220 @@
 <!doctype html>
 
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <!--<![endif]-->
-<link rel="shortcut icon"
-	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap"
-	rel="stylesheet">
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700;800&display=swap" rel="stylesheet">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>WeStudy Admin</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WeStudy Admin</title>
 
-<meta name="description" content="Sufee Admin - HTML5 Admin Template">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<meta name="description" content="Sufee Admin - HTML5 Admin Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-
-
-<div th:replace="/manager/includes/head :: head"></div>
+	<div th:replace="/manager/includes/head :: head"></div>
 
 </head>
 <style>
-canvas {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-}
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+	}
 
-.highcharts-figure, .highcharts-data-table table {
-	min-width: 320px;
-	max-width: 800px;
-	margin: 1em auto;
-}
+	.highcharts-figure,
+	.highcharts-data-table table {
+		min-width: 320px;
+		max-width: 800px;
+		margin: 1em auto;
+	}
 
-.highcharts-data-table table {
-	border-collapse: collapse;
-	border: 1px solid #EBEBEB;
-	margin: 10px auto;
-	text-align: center;
-	width: 100%;
-	max-width: 500px;
-}
+	.highcharts-data-table table {
+		border-collapse: collapse;
+		border: 1px solid #EBEBEB;
+		margin: 10px auto;
+		text-align: center;
+		width: 100%;
+		max-width: 500px;
+	}
 
-.highcharts-data-table caption {
-	padding: 1em 0;
-	font-size: 1.2em;
-	color: #555;
-}
-
-.highcharts-data-table th {
-	font-weight: 600;
-	padding: 0.5em;
-}
-
-.highcharts-data-table td, .highcharts-data-table th,
 	.highcharts-data-table caption {
-	padding: 0.5em;
-}
+		padding: 1em 0;
+		font-size: 1.2em;
+		color: #555;
+	}
 
-.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even)
-	{
-	background: #f8f8f8;
-}
+	.highcharts-data-table th {
+		font-weight: 600;
+		padding: 0.5em;
+	}
 
-.highcharts-data-table tr:hover {
-	background: #f1f7ff;
-}
+	.highcharts-data-table td,
+	.highcharts-data-table th,
+	.highcharts-data-table caption {
+		padding: 0.5em;
+	}
 
-tspan {
-	font-family: 'Nanum Gothic', sans-serif;
-	color: black;
-	fill: black;
-	font-size: 20px;
-	margin-top:20px;
-}
+	.highcharts-data-table thead tr,
+	.highcharts-data-table tr:nth-child(even) {
+		background: #f8f8f8;
+	}
+
+	.highcharts-data-table tr:hover {
+		background: #f1f7ff;
+	}
+
+	tspan {
+		font-family: 'Nanum Gothic', sans-serif;
+		color: black;
+		fill: black;
+		font-size: 20px;
+		margin-top: 20px;
+	}
 </style>
+
 <body style="font-family: 'Nanum Gothic', sans-serif;">
 
 
 	<div th:replace="/manager/includes/nav_side :: nav_side"></div>
-	<!-- 이거하면 깨짐...  -->
-
 
 	<!-- Right Panel -->
 
-	  <div id="right-panel" class="right-panel">
+	<div id="right-panel" class="right-panel">
 
-      <div th:replace="/manager/includes/nav_top :: nav_top"></div>
+		<div th:replace="/manager/includes/nav_top :: nav_top"></div>
 
 
-      <div class="breadcrumbs">
-         <div class="col-sm-4">
-            <div class="page-header float-left">
-               <div class="page-title">
-                  <h1>메인페이지 입니다.</h1>
-               </div>
-            </div>
-         </div>
-      </div>
+		<div class="breadcrumbs">
+			<div class="col-sm-4">
+				<div class="page-header float-left">
+					<div class="page-title">
+						<h1>메인페이지 입니다.</h1>
+					</div>
+				</div>
+			</div>
+		</div>
 
-      <div class="content" style="padding: 0px; ">
+		<div class="content" style="padding: 0px; ">
 
-         <div class="col-lg-3 col-md-6">
-            <div class="card">
-               <div class="card-body">
-                  <p style="align-self: center; height: 30px;">
-                     <b>총 회원 수</b>
-                  </p>
-                  <img src="/resources/admin_assets/images/member.png"
-                     style="width: 50px;"> <span th:text="${membercount}"
-                     style="font-size: xx-large; margin-left: 35px; padding-left: 65px; font-weight: bolder;"></span>
-                  <b> 명 </b>
-                  <div id="chart2" class="stat-digit"></div>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-3 col-md-6">
-            <div class="card">
+			<div class="col-lg-3 col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<p style="align-self: center; height: 30px;">
+							<b>총 회원 수</b>
+						</p>
+						<img src="/resources/admin_assets/images/member.png" style="width: 50px;"> <span
+							th:text="${membercount}"
+							style="font-size: xx-large; margin-left: 35px; padding-left: 65px; font-weight: bolder;"></span>
+						<b> 명 </b>
+						<div id="chart2" class="stat-digit"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="card">
 
-               <div class="card-body" style="height: 144px;">
-                  <p style="align-self: center; margin-left: 5px; height: 30px;">
-                     <b>스터디 최다 개설 지역</b>
-                  </p>
-                  <img src="/resources/admin_assets/images/map.png"
-                     style="width: 50px;"> <span th:text="${bestLocation}"
-                     style="font-size: x-large; padding-left: 65px; font-weight: bolder;"></span>
-                  <div id="chart2" class="stat-digit"></div>
-               </div>
-            </div>
-         </div>
-         <div class="col-lg-3 col-md-6">
-            <div class="card">
+					<div class="card-body" style="height: 144px;">
+						<p style="align-self: center; margin-left: 5px; height: 30px;">
+							<b>스터디 최다 개설 지역</b>
+						</p>
+						<img src="/resources/admin_assets/images/map.png" style="width: 50px;"> <span
+							th:text="${bestLocation}"
+							style="font-size: x-large; padding-left: 65px; font-weight: bolder;"></span>
+						<div id="chart2" class="stat-digit"></div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="card">
 
-               <div class="card-body">
-                  <p style="align-self: center; margin-left: 5px; height: 30px;">
-                     <b>서비스 중인 강의 수</b>
-                  </p>
-                  <img src="/resources/admin_assets/images/language.png"
-                     style="width: 50px;"> <span th:text="${bestLanguage}"
-                     style="font-size: xx-large; padding-left: 65px; font-weight: bolder;"></span>
-                     <b> 건</b>
-                  <div id="chart3" class="stat-digit"></div>
-               </div>
-            </div>
-         </div>
+					<div class="card-body">
+						<p style="align-self: center; margin-left: 5px; height: 30px;">
+							<b>서비스 중인 강의 수</b>
+						</p>
+						<img src="/resources/admin_assets/images/language.png" style="width: 50px;"> <span
+							th:text="${bestLanguage}"
+							style="font-size: xx-large; padding-left: 65px; font-weight: bolder;"></span>
+						<b> 건</b>
+						<div id="chart3" class="stat-digit"></div>
+					</div>
+				</div>
+			</div>
 
-         <div class="col-lg-3 col-md-6">
-            <div class="card">
-               <div class="card-body">
-                  <p style="align-self: center; margin-left: 5px; height: 30px;">
-                     <b>처리해야 할 신고 건수</b>
-                  </p>
-                  <img src="/resources/admin_assets/images/bookmark.png"
-                     style="width: 50px;"> <span th:text="${blameCount}"
-                     style="font-size: xx-large; margin-left: 35px; padding-left: 65px; font-weight: bolder;"></span>
-                  <b> 건 </b>
-               </div>
-               <div id="chart4" class="stat-digit"></div>
-            </div>
-         </div>
-      </div>
-      <!--   하이차트 -->
-      <div class="col-md-6 col-md-6">
-         <div class="card">
-            <div class="card-body" id="container" style="position:absolute; padding:0px;">
-               <div id="highchart">
-                  <canvas id="chart-area"></canvas>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- 차트JS  -->
-      <div class="col-md-6 col-md-6">
-         <div class="card">
-            <div class="card-body" style="height: 600px; position: relative;">
-               <!-- 차트JS-->
-               <canvas id="myChart" style="height: 600vh;"></canvas>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- .content -->
-   <!-- /#right-panel -->
+			<div class="col-lg-3 col-md-6">
+				<div class="card">
+					<div class="card-body">
+						<p style="align-self: center; margin-left: 5px; height: 30px;">
+							<b>처리해야 할 신고 건수</b>
+						</p>
+						<img src="/resources/admin_assets/images/bookmark.png" style="width: 50px;"> <span
+							th:text="${blameCount}"
+							style="font-size: xx-large; margin-left: 35px; padding-left: 65px; font-weight: bolder;"></span>
+						<b> 건 </b>
+					</div>
+					<div id="chart4" class="stat-digit"></div>
+				</div>
+			</div>
+		</div>
+		<!--   하이차트 -->
+		<div class="col-md-6 col-md-6">
+			<div class="card">
+				<div class="card-body" id="container" style="position:absolute; padding:0px;">
+					<div id="highchart">
+						<canvas id="chart-area"></canvas>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 차트JS  -->
+		<div class="col-md-6 col-md-6">
+			<div class="card">
+				<div class="card-body" style="height: 600px; position: relative;">
+					<!-- 차트JS-->
+					<canvas id="myChart" style="height: 600vh;"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- .content -->
+	<!-- /#right-panel -->
 
-   <!-- Right Panel -->
+	<!-- Right Panel -->
 
-   <div th:replace="/manager/includes/script :: script"></div>
-   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
-   <!-- 차트JS -->
-   <script type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+	<div th:replace="/manager/includes/script :: script"></div>
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.min.js"></script>
+	<!-- 차트JS -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
 </body>
 
 
 
 <script>
-	$(function() {
+	//ChartJS 호출(파이 그래프)
+	$(function () {
 		$.ajax({
-			type : "post",
-			url : "/ajax/mainChart.do",
-			dataType : "json", //POINT
-			success : function(data) {
+			type: "post",
+			url: "/ajax/mainChart.do",
+			dataType: "json", //POINT
+			success: function (data) {
 				var barChartData = {
-					labels : [],
+					labels: [],
 					//type: 'bar',
-					datasets : [ {
-						data : [],
-						backgroundColor : [ 'rgb(255, 99, 132)',
-								'rgb(54,162,235)', 'rgb(255,206,86)',
-								'rgb(75,192,192)', 'rgb(137, 89, 168)' ],
-						label : '총 북마크 개수',
-						weight : 300,
-					} ]
+					datasets: [{
+						data: [],
+						backgroundColor: ['rgb(255, 99, 132)',
+							'rgb(54,162,235)', 'rgb(255,206,86)',
+							'rgb(75,192,192)', 'rgb(137, 89, 168)'],
+						label: '총 북마크 개수',
+						weight: 300,
+					}]
 				};
 				if (data.length < 6) {
 					for (var i = 0; i < data.length; i++) {
@@ -228,42 +225,42 @@ tspan {
 
 				var ctx = $('#myChart').get(0).getContext("2d");
 				window.theChart = new Chart(ctx, {
-					type : 'doughnut',
-					data : barChartData,
-					options : {
-						title : {
-							display : true,
-							text : '[ 북마크된 강의 TOP 5 ]',
-							position : 'top',
-							fontSize : 20,
-							lineHeight : 1.2,
-							padding : 5,
-							fontColor : 'black',
-							fontFamily : 'Nanum Gothic'
+					type: 'doughnut',
+					data: barChartData,
+					options: {
+						title: {
+							display: true,
+							text: '[ 북마크된 강의 TOP 5 ]',
+							position: 'top',
+							fontSize: 20,
+							lineHeight: 1.2,
+							padding: 5,
+							fontColor: 'black',
+							fontFamily: 'Nanum Gothic'
 						},
-						legend : {
-							display : true,
-							labels : {
-								fontSize : 11,
+						legend: {
+							display: true,
+							labels: {
+								fontSize: 11,
 							},
 
 						},
-						maintainAspectRatio : false,
-						layout : {
-							padding : {
-								left : 50,
-								right : 0,
-								top : 50,
-								bottom : 0
+						maintainAspectRatio: false,
+						layout: {
+							padding: {
+								left: 50,
+								right: 0,
+								top: 50,
+								bottom: 0
 							}
 						}
 					}
 				});
 
 			},
-			error : function(request, status, error) {
+			error: function (request, status, error) {
 				console.log("code:" + request.status + "\n" + "message:"
-						+ request.responseText + "\n" + "error:" + error);
+					+ request.responseText + "\n" + "error:" + error);
 			}
 
 		});
@@ -273,12 +270,12 @@ tspan {
 
 <!-- 하이차트 -->
 <script>
-	$(function() {
+	$(function () {
 		$.ajax({
-			type : "post",
-			url : "/ajax/wordCloud.do",
-			dataType : "json", //POINT
-			success : function(data) {
+			type: "post",
+			url: "/ajax/wordCloud.do",
+			dataType: "json", //POINT
+			success: function (data) {
 				var text = "";
 				for (var i = 0; i < data.length; i++) {
 					for (var z = 0; z < data[i].count; z++) {
@@ -286,16 +283,16 @@ tspan {
 					}
 				}
 				var lines = text.split(/[,\. ]+/g)
-				data = Highcharts.reduce(lines, function(arr, word) {
-					var obj = Highcharts.find(arr, function(obj) {
+				data = Highcharts.reduce(lines, function (arr, word) {
+					var obj = Highcharts.find(arr, function (obj) {
 						return obj.name === word;
 					});
 					if (obj) {
 						obj.weight += 1;
 					} else {
 						obj = {
-							name : word,
-							weight : 0.5
+							name: word,
+							weight: 0.5
 						};
 						arr.push(obj);
 					}
@@ -303,21 +300,21 @@ tspan {
 				}, []);
 
 				Highcharts.chart('container', {
-					accessibility : {
-						screenReaderSection : {
-							beforeChartFormat : '<h5>{chartTitle}</h5>'
-									+ '<div>{chartSubtitle}</div>'
-									+ '<div>{chartLongdesc}</div>'
-									+ '<div>{viewTableButton}</div>'
+					accessibility: {
+						screenReaderSection: {
+							beforeChartFormat: '<h5>{chartTitle}</h5>'
+								+ '<div>{chartSubtitle}</div>'
+								+ '<div>{chartLongdesc}</div>'
+								+ '<div>{viewTableButton}</div>'
 						}
 					},
-					series : [ {
-						type : 'wordcloud',
-						data : data,
-						name : '언어'
-					} ],
-					title : {
-						text : '[ 스터디가 개설된 언어 ]'
+					series: [{
+						type: 'wordcloud',
+						data: data,
+						name: '언어'
+					}],
+					title: {
+						text: '[ 스터디가 개설된 언어 ]'
 					},
 					chart: {
 						height: 600,
@@ -330,7 +327,7 @@ tspan {
 </script>
 
 <script>
-	$(function() {
+	$(function () {
 		$('figure').hide();
 		$('text').css('color', 'red');
 		$('text').css('fill', 'red');

@@ -29,6 +29,7 @@ public interface BoardDao {
 	//페이징 스터디 글목록(필터 적용)
 	public List<Map<String, Object>> getStudyBoardListFilter(HashMap<String, Object> params);
 
+	//페이징 스터디 글목록(필터적용한 사이즈만을 가져오기 위한 메소드)
 	public List<Map<String, Object>> getStudyBoardListFilterSize(HashMap<String, Object> params);
 	
 	//페이징 스터디 글목록
@@ -46,9 +47,6 @@ public interface BoardDao {
 	
 	//총 스터디게시글 수
 	public int getStudyBoardCount();
-	
-	//총 스터디게시글 수
-//	public int getStudyBoardCount(Criteria_Board cri_b);
 	
 	//스터디 글 등록(공통)
 	public int studyReg(Study study);

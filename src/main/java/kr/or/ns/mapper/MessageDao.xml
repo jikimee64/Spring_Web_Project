@@ -9,7 +9,7 @@
 		where opendate = '9999-12-31' and receptionid = #{user_id}
 	</select>
 
-	<!-- public int insertMessage(Message message) -->
+	<!-- 메시지 전송시 type을 발신으로 메시지 삽입 -->
 	<insert id="insertSendMessage" parameterType="kr.or.ns.vo.Message">
 		insert into
 		message(receptionid, senderid, content, opendate, senddate, type)
@@ -22,6 +22,8 @@
 		'발신'
 		)
 	</insert>
+	
+		<!-- 메시지 전송시 type을 수신으로 메시지 삽입 -->
 	<insert id="insertReceptionMessage" parameterType="kr.or.ns.vo.Message">
 		insert into
 		message(receptionid, senderid, content, senddate)
@@ -32,8 +34,6 @@
 		DATE_SUB(now(), INTERVAL 9 HOUR)
 		)
 	</insert>
-	
-
 
 
 <!-- 페이징 매퍼 -->
@@ -41,7 +41,6 @@
 		resultType="kr.or.ns.vo.Message">
 		select * from message where receptionid = #{userid} ORDER BY m_seq desc
 	</select>
-
 
 
 <!-- 내 메세지 총 갯수(받은) -->
@@ -84,7 +83,6 @@
 	</select> 
 
 
-
 <!-- 받은편지 상세 -->
 	<select id="getReceptionMessage" parameterType="String"
 		resultType="hashmap">
@@ -111,14 +109,17 @@
 		where senderid = #{userid} and type = '발신' ORDER BY m_seq desc
 	</select>
 	
+	<!-- 보낸편지함에서 메시지 삭제  -->
 	<delete id="deleteSendMessageOne">
 		delete from message where m_seq = #{m_seq} and type = '발신'
 	</delete>
 	
+	<!-- 받은편지함에서 메시지 삭제  -->
 	<delete id="deleteFromMessageOne">
 		delete from message where m_seq = #{m_seq} and type = '수신'
 	</delete>
 	
+	<!-- 메시지 읽었을시 열람일자 업데이트  -->
 	<update id="updateMessage">
  		update message set opendate=DATE_SUB(now(), INTERVAL 9 HOUR) where m_seq = #{m_seq}
  	</update>

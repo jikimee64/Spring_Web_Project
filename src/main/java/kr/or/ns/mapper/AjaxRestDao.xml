@@ -109,6 +109,8 @@
 		order by study_board.s_seq desc
 			]]>
 	</select>
+	
+	<!--  승인 완료된 회원정보 및 회원수  -->
 	<select id="inStudy" resultType="hashMap">
 	    			<![CDATA[
 		select * ,(select count(*) from study_group where accept_status = '승인완료' and s_seq= study_board.s_seq) as 'accept' 
@@ -127,12 +129,14 @@
 
 	</select>
 
+	<!-- 승인된 회원 상태 승인완료로 업데이트  -->
 	<update id="accept">
 		update study_group
 		set accept_status = '승인완료'
 		where user_id = #{user_id} and s_seq = #{s_seq}
 	</update>
 
+	<!--승인완료된 회원 리스트 출력  -->
 	<select id="acceptList" resultType="hashMap">
 		select users.NICKNAME, study_group.S_SEQ,study_group.USER_ID,study_group.ACCEPT_STATUS,study_group.ROLE_NAME
 		from study_group
@@ -142,18 +146,21 @@
 		order by role_name
 	</select>
 
+		<!-- 승인 거절시 스터디 그룹테이블에서 삭제  -->
 	<delete id="reject">
 		delete from study_group
 		where user_id = #{user_id} and s_seq = #{s_seq}
 	</delete>
 
+	<!-- 승인 취소 업데이트  -->
 	<update id="cancel">
 		update study_group
 		set accept_status = '승인대기중'
 		where user_id = #{user_id} and s_seq = #{s_seq}
 			order by role_name
 	</update>
-
+	
+	<!-- 승인 대기중인 회원 리스트 출력  -->
 	<select id="cancelList" resultType="hashMap">
 		select users.NICKNAME, study_group.S_SEQ,study_group.USER_ID,study_group.ACCEPT_STATUS,study_group.ROLE_NAME
 		from study_group
@@ -163,6 +170,7 @@
 		order by role_name
 	</select>
 
+	<!-- 북마크 삭제  -->
 	<delete id="deleteBookMark" parameterType="hashMap">
 		delete from bookmark
 		where user_id = #{user_id} and l_seq = #{l_seq}
@@ -179,6 +187,7 @@
        limit 5
 	</select>
 	
+	<!-- 가장 많이 스터디가 개설된 언어에 대한 정보   -->
 	<select id="wordCloud" resultType="hashMap">
 		select cate_language, count(*) as count from study_board s
 		left outer join language_category l
@@ -186,6 +195,7 @@
         group by cate_language
 	</select>
 	
+	<!-- 스터디 게시판 리스트 필터사이즈 체크용 -->
 	<select id="studyBoardFilterSize" resultType="hashMap">
 		select * from study_board
 		left outer join language_category
@@ -217,7 +227,7 @@
 		order by study_board.s_seq desc
 	</select>
 	
-	
+	<!-- 스터디 게시판 리스트 필터 -->
 	<select id="studyBoardFilter" resultType="hashMap">
 		select * from study_board
 		left outer join users
@@ -283,7 +293,7 @@
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
-		<!-- 강의리스트 필터 -->
+		<!-- 강의리스트 필터사이즈 체크용 -->
 	<select id="courseBoardFilterSize" resultType="hashMap">
 			select * from lecture_board
 		left outer join language_category
@@ -348,6 +358,7 @@
 		delete from study_group where s_seq = #{param1} and  user_id = #{param2}
 	</delete>
 	
+	<!-- 해당회원의 enabeld 체크  -->
 	<select id="enabledcheck" resultType="int">
 		select enabled from users where user_id = #{user_id}
 	</select>

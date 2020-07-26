@@ -37,12 +37,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 
-	<!-- public List<Blame> getBlameList(String bl_seq); -->
 	<!-- 신고게시판 목록 뿌려주기 -->
 	<select id="getBlameList" resultType="hashmap">
-		<!-- SELECT * FROM blame_board -->
-		<!-- ORDER -->
-		<!-- BY BL_SEQ asc -->
 		select *
 		from blame_board b
 		join blame_type_category t
@@ -52,18 +48,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on b.BPC_SEQ = p.BPC_SEQ
 	</select>
 
+	<!-- 회원 계정 정지  -->
 	<update id="stopMember">
 		update users set enabled = 0 where user_id=#{user_id}
 	</update>
 
+	<!-- 회원 계정 복구시 경고횟수 0으로 초기화  -->
 	<update id="restoreResetMember">
 		update users set blame_count = 0 where user_id=#{user_id}
 	</update>
 
+	<!-- 회원 계정 복구  -->
 	<update id="restoreMember">
 		update users set enabled = 1 where user_id=#{user_id}
 	</update>
 
+	<!-- 신고내용 상세보기  -->
 	<select id="getDetailDeclare" resultType="hashmap">
 		select *
 		from
@@ -76,7 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where BL_SEQ = #{BL_SEQ}
 	</select>
 
-
+	<!-- 신고처리 완료  -->
 	<update id="blameYes">
 		update blame_board
 		set bl_status = '처리완료'
@@ -84,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		= #{bl_seq}
 	</update>
 
-	<!-- blameYes와 트랜잭션 묶음 -->
+	<!-- blameYes와 트랜잭션처리 / 신고처리 완료시 피신고자에 대한 경고횟수 1 증가-->
 	<update id="blameTargetUp">
 		update users
 		set blame_count = blame_count + 1
@@ -92,6 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		user_id = #{user_id}
 	</update>
 
+	<!-- 신고처리 취소  -->
 	<update id="blameNo">
 		update blame_board
 		set bl_status = '처리취소'
@@ -99,23 +100,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		= #{bl_seq}
 	</update>
 
+	<!-- 총 회원수   -->
 	<select id="memberCount" resultType="java.lang.Integer">
 		select count(*) from users;
 	</select>
 
+	<!-- 스터디 최다 개설 지역   -->
 	<select id="bestLocation" resultType="String">
 		  select max(loc) from location;
 	</select>
 
+	<!-- 제공중이 온라인 강의 수   -->
 	<select id="getLectureCount" resultType="int">
 		select count(*) from lecture_board
 	</select>
 
+	<!-- 처리중인 신고건수   -->
 	<select id="blameCount" resultType="java.lang.Integer">
 	 select count(bl_status) from blame_board where bl_status='처리중';
 	</select>
 
-	
+	<!-- 해당 메시지에 대한 정보 얻기  -->
 	<select id="messageGet" resultType="hashmap">
 		select *
 		from message

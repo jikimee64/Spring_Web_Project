@@ -1,83 +1,81 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon"
-	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>WeStudy Admin</title>
-<meta name="description" content="Sufee Admin - HTML5 Admin Template">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WeStudy Admin</title>
+	<meta name="description" content="Sufee Admin - HTML5 Admin Template">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div th:replace="/manager/includes/head :: head"></div>
+	<div th:replace="/manager/includes/head :: head"></div>
 
-<!-- dataTable start -->
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/responsive.dataTables.min.css">
-<link rel="stylesheet" type="text/css"
-	href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
-<!-- dataTable end  -->
-<style>
-#myTable td {
-	padding-top: 14px;
-}
+	<!-- dataTable start -->
+	<link rel="stylesheet" type="text/css"
+		href="../../../../resources/admin_assets/assets/dataTable/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="../../../../resources/admin_assets/assets/dataTable/css/responsive.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="../../../../resources/admin_assets/assets/dataTable/css/main.css">
+	<!-- dataTable end  -->
+	<style>
+		#myTable td {
+			padding-top: 14px;
+		}
 
-td:focus {
-	outline: none;
-}
+		td:focus {
+			outline: none;
+		}
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-	background: #bbbdc2;
-	color: white !important;
-	border-radius: 5px;
-	height: 30px;
-	vertical-align: middle;
-	padding-top: 3px;
-	border: none;
-}
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+			background: #bbbdc2;
+			color: white !important;
+			border-radius: 5px;
+			height: 30px;
+			vertical-align: middle;
+			padding-top: 3px;
+			border: none;
+		}
 
-.excel {
-	margin-right: 5px;
-	text-align: center;
-	border: 1px solid white;
-	transition: all 0.15s;
-	background-color: #00694a;
-	padding: 5px 3px;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 80px;
-}
+		.excel {
+			margin-right: 5px;
+			text-align: center;
+			border: 1px solid white;
+			transition: all 0.15s;
+			background-color: #00694a;
+			padding: 5px 3px;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 80px;
+		}
 
-.pdf {
-	margin-right: 5px;
-	text-align: center;
-	border: 1px solid white;
-	transition: all 0.15s;
-	background-color: #ff3c00;
-	padding: 5px 3px;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 80px;
-}
+		.pdf {
+			margin-right: 5px;
+			text-align: center;
+			border: 1px solid white;
+			transition: all 0.15s;
+			background-color: #ff3c00;
+			padding: 5px 3px;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 80px;
+		}
 
-.message {
-	margin-right: 5px;
-	text-align: center;
-	border: 1px solid white;
-	transition: all 0.15s;
-	background-color: #f0cf65;
-	padding: 5px 3px;
-	color: white;
-	border-radius: 5px;
-	cursor: pointer;
-	width: 80px;
-}
-</style>
+		.message {
+			margin-right: 5px;
+			text-align: center;
+			border: 1px solid white;
+			transition: all 0.15s;
+			background-color: #f0cf65;
+			padding: 5px 3px;
+			color: white;
+			border-radius: 5px;
+			cursor: pointer;
+			width: 80px;
+		}
+	</style>
 </head>
 
 <body>
@@ -110,8 +108,7 @@ td:focus {
 					<div class="row ">
 						<div class="col-12">
 							<div class="wrap">
-								<table id="myTable" class="table text-center"
-									style="width: 100%;">
+								<table id="myTable" class="table text-center" style="width: 100%;">
 									<thead>
 										<tr class="text-center">
 											<th class="text-center" style="width: 50px;">신고번호</th>
@@ -129,9 +126,9 @@ td:focus {
 											<tr onmouseover="this.style.backgroundColor='#cecece'"
 												onmouseout="this.style.backgroundColor='white'">
 												<td align="center"><a
-													th:onclick="|javascript:declareModal('${blameList.BL_SEQ}')|"
-													data-toggle="modal" data-target="#declationPageModal"
-													href="#" th:text="${blameList.BL_SEQ}"></a></td>
+														th:onclick="|javascript:declareModal('${blameList.BL_SEQ}')|"
+														data-toggle="modal" data-target="#declationPageModal" href="#"
+														th:text="${blameList.BL_SEQ}"></a></td>
 												<td align="center" th:text="${blameList.PLACE}"></td>
 												<td align="center" th:text="${blameList.BOARD_SEQ}"></td>
 												<td align="center" th:text="${blameList.BL_ID}"></td>
@@ -158,266 +155,172 @@ td:focus {
 	<div th:replace="/manager/includes/script :: script"></div>
 
 	<!-- dataTaBle start -->
-	<script
-		src='../../../../resources/admin_assets/assets/dataTable/js/jquery-3.3.1.min.js'></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/jquery.dataTables.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.responsive.min.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.buttons.min.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/buttons.html5.min.js"></script>
-	<script
-		src="../../../../resources/admin_assets/assets/dataTable/js/report.js"></script>
-	<script
-		src="../../../../resources/js/dateformat.js"></script>
+	<script src='../../../../resources/admin_assets/assets/dataTable/js/jquery-3.3.1.min.js'></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/jquery.dataTables.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.responsive.min.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/dataTables.buttons.min.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/buttons.html5.min.js"></script>
+	<script src="../../../../resources/admin_assets/assets/dataTable/js/report.js"></script>
+	<script src="../../../../resources/js/dateformat.js"></script>
 	<!-- dataTaBle end -->
 
-	<div
-		th:replace="/manager/includes/declation_Page_Modal :: declation_Page_Modal">
+	<div th:replace="/manager/includes/declation_Page_Modal :: declation_Page_Modal">
 	</div>
 
-
 	<script>
-		$(function() {
-			$('#declare').click(function(){
-				swal({
-					  title: "신고를 처리하시겠습니까?",
-					  text: "",
-					  icon: "warning",
-					  buttons: true,
-					  dangerMode: true,
-					})
-					.then((willDelete) => {
-					  if (willDelete) {
-					    swal("처리가 완료되었습니다(처리상태 db에서 변경)", {
-					      icon: "success",
-					    });
-					  } else {
-					    swal("처리가 취소되었습니다.");
-					  }
-					});
-			})
-		
-		});
-	</script>
+
+		//신고 번호를 눌렀을시 신고번호를 보내 정보를 얻은 후 쪽지 신고 or 게시판 신고에 따라 보여지는 html이 달라짐
+		function declareModal(bl_seq) {
+			let data = {
+				"bl_seq": bl_seq
+			}
+
+			$.ajax({
+				url: '/manager/getDetailDeclare.do',
+				processData: false,
+				contentType: "application/json",
+				cache: false,
+				type: 'POST',
+				data: JSON.stringify(data),
+				success: function (data) {
+					$('#declareButtons').empty();
+					var write_date = new Date(data.WRITE_DATE);
+
+					let html = "";
+					let html2 = "";
+					$('#write_date').text(getDateFormet(write_date));
+					$('#bl_title').val(data.BL_TITLE);
+					$('#type').text(data.TYPE);
+					$('#bl_content').text(data.BL_CONTENT);
+					$('#blamed_content').text(data.BLAMED_CONTENT);
 
 
-	<script>
-	function declareModal(bl_seq) {
+					if (data.PLACE === '쪽지 게시판') {
+						$('#study_blamed_title').hide();
+						$('#m_seq').val(data.BOARD_SEQ);
+						$('#bl_seq').val(data.BL_SEQ);
+						$('#target').val(data.BL_TARGET_ID);
+						$('#study').hide();
+						$('#message').show();
 
-		// let obj = {"user_id" : id}; 
+						if (data.BL_STATUS === '처리중') {
+							$('#declareMessageButtons').attr('class', 'col-4');
+							$('#messageOk').show();
+							$('#messageNo').show();
+						} else {
+							$('#declareMessageButtons').attr('class', 'col-12');
+							$('#messageOk').hide();
+							$('#messageNo').hide();
+						}
 
-		let data = {
-			"bl_seq" : bl_seq
+						html += "<div class='col-4' style='padding:0px;'>";
+						html += "<button id='message' type='button' class='btn btn-outline-success' data-dismiss='modal'>쪽지내용</button>";
+						html += "</div>";
+					} else {
+						$('#study_blamed_title').show();
+						$('#bl_seq').val(data.BL_SEQ);
+						$('#target').val(data.BL_TARGET_ID);
+						$('#blamed_title').text(data.BLAMED_TITLE)
+						$('#blamed_content').text(data.BLAMED_CONTENT);
+						$('#message').hide();
+						$('#study').show();
+
+						if (data.BL_STATUS === '처리중') {
+							$('#declareButtons').attr('class', 'col-4');
+							$('#studyOk').show();
+							$('#studyNo').show();
+						} else {
+							$('#declareButtons').attr('class', 'col-12');
+							$('#studyOk').hide();
+							$('#studyNo').hide();
+						}
+					}
+
+				},
+				error: function (e) {
+					console.log("error:", e);
+				}
+			});
+
 		}
 
-		$.ajax({
-			url : '/manager/getDetailDeclare.do',
-			processData : false,
-			contentType : "application/json",
-			cache : false,
-			type : 'POST',
-			data : JSON.stringify(data),
-			success : function(data) {
-				$('#declareButtons').empty();
-			/* 	$('#message').empty(); */
-				var write_date = new Date(data.WRITE_DATE);
-						
-				let html = "";
-				let html2 = "";
-				$('#write_date').text(getDateFormet(write_date));
-				$('#bl_title').val(data.BL_TITLE);
-				$('#type').text(data.TYPE);
-				$('#bl_content').text(data.BL_CONTENT);
-				$('#blamed_content').text(data.BLAMED_CONTENT);
-				
-				
-				if(data.PLACE ==='쪽지 게시판'){
-					$('#study_blamed_title').hide();
-					$('#m_seq').val(data.BOARD_SEQ);
-					$('#bl_seq').val(data.BL_SEQ);
-					$('#target').val(data.BL_TARGET_ID);
-					$('#study').hide();
-					$('#message').show();
-					
-					if(data.BL_STATUS ==='처리중'){
-						$('#declareMessageButtons').attr('class', 'col-4');
-						$('#messageOk').show();
-						$('#messageNo').show();
-					}else{
-						$('#declareMessageButtons').attr('class', 'col-12');
-						$('#messageOk').hide();
-						$('#messageNo').hide();
-					}
-					
-					html += "<div class='col-4' style='padding:0px;'>";
-					html += "<button id='message' type='button' class='btn btn-outline-success' data-dismiss='modal'>쪽지내용</button>";
-					html += "</div>";
-					/* html += "<div class='col-4' style='padding: 0px;' text-align: center;'>";
-					html += "<a href='/message/mypage_Message_From_Board.do?'>";
-					html += "<button id='board' type='button' class='btn btn-outline-success'>쪽지함이동</button>";
-					html += "</a>";
-					html += "</div>"; */
-				/* 	html += "<div class='col-4' style='padding:0px;'>";
-					html += "<button id='declare' type='button' class='btn btn-outline-danger' data-dismiss='modal'>신고처리</button>";
-					html += "</div>"; */
-					
-				/* 	html2 += "<h5><b>[쪽지]</b></h5>";
-					html2 += "<div style='padding-left:30px;'>";
-					html2 += "<label id='type' for='1'></label><br>"
-					html2 += "<div class='form-group'>";
-					html2 += "<textarea class='form-control' rows='3' id='bl_content' readonly name='comment' placeholder='추가내용'></textarea>";
-					html2 += "</div>";
-					html2 += "</div>"; */
-				}else{
-					$('#study_blamed_title').show();
-					$('#bl_seq').val(data.BL_SEQ);
-					$('#target').val(data.BL_TARGET_ID);
-					$('#blamed_title').text(data.BLAMED_TITLE)
-					$('#blamed_content').text(data.BLAMED_CONTENT);
-					$('#message').hide();
-					$('#study').show();
-					
-					if(data.BL_STATUS ==='처리중'){
-						$('#declareButtons').attr('class', 'col-4');
-						$('#studyOk').show();
-						$('#studyNo').show();
-					}else{
-						$('#declareButtons').attr('class', 'col-12');
-						$('#studyOk').hide();
-						$('#studyNo').hide();
-					}
-					
-					//html += "<div class='col-4' style='padding: 0px;' text-align: center;'>";
-					/* html += "<a href='/board/writing_Common_Study_Detail.do?s_seq="+ data.BOARD_SEQ +"'>"; */
-					//html += "<button id='board' type='button' class='btn btn-outline-success' data-dismiss='modal'>내용 확인</button>";
-					//html += "</a>";
-					//html += "</div>";
-				/* 	html += "<div class='col-4' style='padding:0px;'>";
-					html += "<button th:onclick='|javascript:declareYess()|' id='declareYes' type='button' class='btn btn-outline-danger'>신고정상</button>";
-					html += "</div>";
-					html += "<div class='col-4' style='padding:0px;'>";
-					html += "<button id='declareNo' type='button' class='btn btn-outline-danger'>신고비정상</button>";
-					html += "</div>"; */
-				}
-				
-				//$('#declareButtons').append(html);
-				/* $('#message').append(html2); */
-			},
-			error : function(e) {
-				console.log("error:", e);
-			}
-		});
-
-	}
-	
 	</script>
 
 	<script>
-	
-	function messageCheck(){
-		var m_seq = $('#m_seq').val();
-		
-		 let data = {
-					"m_seq" : m_seq
+
+		//경고처리버튼을 눌렀을시 실행되는 함수
+		function declareYes() {
+			var bl_seq = $('#bl_seq').val();
+			var bl_target_id = $('#target').val();
+
+			let data = {
+				"bl_seq": bl_seq,
+				"bl_target_id": bl_target_id
 			}
-		
-		 $.ajax({
-				url : '/manager/messageGet.do',
-				processData : false,
-				contentType : "application/json",
-				cache : false,
-				type : 'POST',
-				data : JSON.stringify(data),
-				success : function(data) {
-					swal({
-						  title: "쪽지 내용",
-						  text: data.CONTENT,
-						  icon: "info",
-						  buttons: true,
+
+			$.ajax({
+				url: '/manager/blameYes.do',
+				processData: false,
+				contentType: "application/json",
+				cache: false,
+				type: 'POST',
+				data: JSON.stringify(data),
+				success: function (data) {
+					console.log("data : " + data)
+					if (data === 1) {
+						swal({
+							title: "신고정상처리가 되었습니다.",
+							icon: "success",
+							buttons: true,
+						}).then((willDelete) => {
+							if (willDelete) {
+								location.href = "/manager/board/report_Management.do"
+							}
 						})
+					}
 				},
-				error : function(e) {
+				error: function (e) {
 					console.log("error:", e);
 				}
 			})
-		
-	}
-	
-	function declareYes() {	
-		console.log("여기타나");
-		var bl_seq = $('#bl_seq').val();
-		var bl_target_id = $('#target').val();
-		
-		 let data = {
-			"bl_seq" : bl_seq,
-			"bl_target_id" : bl_target_id
+
 		}
-		
-		$.ajax({
-			url : '/manager/blameYes.do',
-			processData : false,
-			contentType : "application/json",
-			cache : false,
-			type : 'POST',
-			data : JSON.stringify(data),
-			success : function(data) {
-				console.log("data : " + data)
-				if(data === 1){
-					swal({
-						  title: "신고정상처리가 되었습니다.",
-						  icon: "success",
-						  buttons: true,
+
+		//경고취소버튼을 눌렀을시 실행되는 함수
+		function declareNo() {
+			var bl_seq = $('#bl_seq').val();
+
+			let data = {
+				"bl_seq": bl_seq,
+			}
+
+			$.ajax({
+				url: '/manager/blameNo.do',
+				processData: false,
+				contentType: "application/json",
+				cache: false,
+				type: 'POST',
+				data: JSON.stringify(data),
+				success: function (data) {
+					if (data === 1) {
+						swal({
+							title: "신고기 비정상처리 되었습니다.",
+							icon: "success",
+							buttons: true,
 						}).then((willDelete) => {
-							if(willDelete){
-								location.href="/manager/board/report_Management.do"
+							if (willDelete) {
+								location.href = "/manager/board/report_Management.do"
 							}
 						})
+					}
+				},
+				error: function (e) {
+					console.log("error:", e);
 				}
-			},
-			error : function(e) {
-				console.log("error:", e);
-			}
-		})
-		
-	}
-	
-	function declareNo() {
-		var bl_seq = $('#bl_seq').val();
-		
-		 let data = {
-			"bl_seq" : bl_seq,
+			})
 		}
-		
-		$.ajax({
-			url : '/manager/blameNo.do',
-			processData : false,
-			contentType : "application/json",
-			cache : false,
-			type : 'POST',
-			data : JSON.stringify(data),
-			success : function(data) {
-				if(data === 1){
-					swal({
-						  title: "신고기 비정상처리 되었습니다.",
-						  icon: "success",
-						  buttons: true,
-						}).then((willDelete) => {
-							if(willDelete){
-								location.href="/manager/board/report_Management.do"
-							}
-						})
-				}
-			},
-			error : function(e) {
-				console.log("error:", e);
-			}
-		})
-	}
-		
-	
+
+
 	</script>
 
 	</script>

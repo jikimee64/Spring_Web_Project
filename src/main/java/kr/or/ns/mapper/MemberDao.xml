@@ -12,21 +12,16 @@
 		#{introduce}, #{blame_count}, #{snstype})
 	</insert>
 	
-	
-	
-	<!-- skill table -->
+	<!-- 회원에 대한 스킬정보 삽입 -->
 	<insert id="insertskill" parameterType="hashMap">
 		INSERT INTO skill(skill_seq, user_id, skill_name, skill_level) values
 		<foreach collection="insertlist" item="item" separator=",">
 			(#{skill_seq}, #{item.user_id}, #{item.skill_name},
 			#{item.skill_level})
 		</foreach>
-	
 	</insert>
 	
 	<!-- 소셜회원가입 -->
-
-	
 		<insert id="socialjoininsert" parameterType="kr.or.ns.vo.Users">
 		insert into users(user_id, user_pwd, enabled, user_name, user_email,
 		profile_img, nickname, introduce, blame_count, snstype)
