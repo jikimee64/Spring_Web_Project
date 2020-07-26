@@ -272,6 +272,11 @@ group+group {
    -webkit-box-orient: vertical;
    max-inline-size: -webkit-fill-available;
 }
+
+._xmp br{
+	display:none;
+}
+
 </style>
 
 
@@ -731,7 +736,6 @@ group+group {
 		</div>
 	</div>
 	<!-- 페이징 버튼 끝 -->
-	<!-- 페이징 버튼 끝 -->
 
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 	<!-- 	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div> -->
@@ -756,15 +760,13 @@ group+group {
       $('._xmp').eq(index)[0].innerText = $('._xmp').eq(
             index)[0].innerText.replace(/(<([^>]+)>)/ig, "").replace(/&nbsp;/gi,"").replace(/&gt;/gi,"")
             .replace(/&lt;/gi,"").replace(/&amp;/gi,"").replace(/&quot;/gi,"").replace(/&#035;/gi,"")
-            .replace(/&#039;/gi,"");
+            .replace(/&#039;/gi,"")
    });  
    </script>
 
    <script>
       $(function() {
-
          /* 페이지 0 뜨는거 없애기 시작 */
-
          var _page_button0 = $('.page-item').children().last().text();
 
          if (_page_button0 == 0) {
@@ -1053,8 +1055,6 @@ group+group {
                                                             + data[0][i].CONTENT
                                                             + "</xmp-line></div></div></div>"
                                                       html += "<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"
-                                                      console.log('내용: ' + data[0][i].CONTENT)
-                                                      console.log("i : " + i);
                                                       $(
                                                             '.studyFilter')
                                                             .append(
@@ -1065,7 +1065,7 @@ group+group {
                                                     $('._xmp').eq(i)[0].innerText= $('._xmp').eq(
                                                          i)[0].innerText.replace(/(<([^>]+)>)/ig, "").replace(/&nbsp;/gi,"").replace(/&gt;/gi,"")
                                                          .replace(/&lt;/gi,"").replace(/&amp;/gi,"").replace(/&quot;/gi,"").replace(/&#035;/gi,"")
-                                                         .replace(/&#039;/gi,""); 
+                                                         .replace(/&#039;/gi,"")
                                                          
                                                          
                                                          
