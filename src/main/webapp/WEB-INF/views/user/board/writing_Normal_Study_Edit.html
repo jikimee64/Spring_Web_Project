@@ -333,23 +333,65 @@
      });
 	
 	  
-   //썸머노트 파일 업로드 json데이터 반환
-   function sendFile(file, el) {
-      var form_data = new FormData();
-         form_data.append('file', file);
-         $.ajax({
-      	   data: form_data,
-             type: "POST",
-             url: "/board/ProfileImage.do",
-             	processData : false,
-				contentType : false,
-				enctype : 'multipart/form-data',
-				cache : false,
-           success: function(data) {
-                $(el).summernote("editor.insertImage", data);
-             }
-         });
-   } 
+	 //썸머노트 파일 업로드 json데이터 반환
+    function sendFile(file, el) {
+       var form_data = new FormData();
+          form_data.append('file', file);
+          
+          var flag = checkFileName(file.name)
+			          
+          if(flag){
+	          $.ajax({
+	       	   data: form_data,
+	              type: "POST",
+	              url: "/board/ProfileImage.do",
+	              	processData : false,
+					contentType : false,
+					enctype : 'multipart/form-data',
+					cache : false,
+	            success: function(data) {
+	                 $(el).summernote("editor.insertImage", data);
+	              }
+	          });
+          }else{
+        		swal({
+      			  title: "확장자 및 특수문자를 체크해주세요.",
+      			  icon: "warning",
+      			  buttons: true,
+      			  dangerMode: true,
+      			})
+          }
+    } 
+	 
+	 
+    function checkFileName(str){
+    	//1. 확장자명 체크
+    	let one = false;
+    	let two = false;
+    	var ext =  str.split('.').pop().toLowerCase();
+    	if($.inArray(ext, ['hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx', 'doc']) !== -1) {
+    		//alert(ext+'파일은 업로드 하실 수 없습니다.');
+    		//alert(ext);
+    	}else {
+    		one = true;
+    		//alert("3333");
+    	}
+    	//2. 파일명에 특수문자 체크
+    	var pattern =   /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+    	if(pattern.test(str) ){
+    		//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
+    		//alert('파일명에 특수문자를 제거해주세요.');
+    	}else {
+    		two = true;
+    		//alert("444ss");
+    	}
+    	
+    	if(one === false || two === false){
+    		return false;
+    	}else{
+    		return true;
+    	}
+    }
 	</script>
 
 	<!-- mysql이랑 맞출것  -->
