@@ -10,7 +10,6 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 public class CustomViewResolver extends UrlBasedViewResolver implements Ordered {
 	@Override
 	protected View loadView(String viewName, Locale locale) throws Exception {
-// TODO Auto-generated method stub
 		AbstractUrlBasedView view = buildView(viewName);
 		View viewObj = (View) getApplicationContext().getAutowireCapableBeanFactory().initializeBean(view, viewName);
 		if (viewObj instanceof JstlView) {

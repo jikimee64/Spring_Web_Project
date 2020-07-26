@@ -26,13 +26,10 @@ public class MemberServiceImpl implements MemberService {
 		this.sqlsession = sqlsession;
 	}
 
+	//일반 회원가입
 	@Override
 	@Transactional
 	public int joininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
-		
-		System.out.println("서비스오나요");
-		System.out.println("유저정보" + users.getUser_id());
-		System.out.println("기타 : " + users.getIntroduce());
 
 		String filename = null;
 		String path = null;
@@ -41,9 +38,7 @@ public class MemberServiceImpl implements MemberService {
 
 		CommonsMultipartFile imagefile = users.getFile();
 		if (!imagefile.isEmpty()) {
-			System.out.println("받아온 이미지파일이름" + imagefile);
 			filename = users.getFile().getOriginalFilename();
-			System.out.println("파일 이름 : " + filename);
 			path = request.getServletContext().getRealPath("/userboard/upload");
 			fpath = path + "\\" + filename;
 			users.setProfile_img(filename);
@@ -98,13 +93,9 @@ public class MemberServiceImpl implements MemberService {
 		HashMap<String, Object> mo = new HashMap();
 		mo.put("insertlist", list);
 		
-		System.out.println( "실력리스트"+ list);
 		try {
 			result = dao.joininsert(users);
-			System.out.println("일반 회원가입 결과 : "  +result);
 			result2 = dao.insertskill(mo);
-			System.out.println("정상적인 처리 일 때 출력되는 부분 insert 정상, update 정상");
-	
 		} catch (Exception e) {
 			System.out.println("둘 중에 하나라도 문제가 생기면 예외가 떨어지는 부분" + e.getMessage());
 			throw e; // 예외를 다시 돌려줌. 그리고 이 예외가 발생하는 시점에 transactionManager가 감시를 하다가 rollback 처리를 한다.
@@ -118,10 +109,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public int socialjoininsert(Users users, HttpServletRequest request) throws Exception, SQLException {
-		System.out.println("소셜서비스오나요");
-		System.out.println("유저정보" + users.getUser_id());
-		System.out.println("기타 : " + users.getIntroduce());
-
 		String filename = null;
 		String path = null;
 		String fpath = null;
@@ -129,22 +116,13 @@ public class MemberServiceImpl implements MemberService {
 
 		CommonsMultipartFile imagefile = users.getFile();
 		if (!imagefile.isEmpty()) {
-			System.out.println("받아온 이미지파일이름" + imagefile);
 			filename = users.getFile().getOriginalFilename();
-			System.out.println("파일 이름 : " + filename);
-			System.out.println("경로" + request.getServletContext().getRealPath("/userboard/upload")); 
 			path = request.getServletContext().getRealPath("/userboard/upload");
-			System.out.println("에러1");
 			fpath = path + "\\" + filename;
-			System.out.println("에러2");
 			users.setProfile_img(filename);
-			System.out.println("에러3");
 			fs = new FileOutputStream(fpath);
-			System.out.println("에러4");
 			fs.write(users.getFile().getBytes());
-			System.out.println("에러5");
 			fs.close();
-			System.out.println("에러6");
 		} else {
 			users.setProfile_img("member.png");
 		}
@@ -192,13 +170,9 @@ public class MemberServiceImpl implements MemberService {
 		int result = 0;
 		int result2 = 0;
 
-		System.out.println( "실력리스트"+ list);
 		try {
 			result = dao.socialjoininsert(users);
-			System.out.println("소셜회원가입비 결과 : "  +result);
 			result2 = dao.insertskill(mo);
-			System.out.println("정상적인 처리 일 때 출력되는 부분 insert 정상, update 정상");
-	
 		} catch (Exception e) {
 			System.out.println("둘 중에 하나라도 문제가 생기면 예외가 떨어지는 부분" + e.getMessage());
 			throw e; // 예외를 다시 돌려줌. 그리고 이 예외가 발생하는 시점에 transactionManager가 감시를 하다가 rollback 처리를 한다.
@@ -207,6 +181,7 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	
 	@Override
 	public Users confirmsocial(String user_id) {
 		MemberDao dao = sqlsession.getMapper(MemberDao.class);

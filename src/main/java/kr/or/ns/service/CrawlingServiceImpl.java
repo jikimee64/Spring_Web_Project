@@ -23,8 +23,6 @@ public class CrawlingServiceImpl implements CrawlingService{
 		
 		HashMap<String, Object> mo = new HashMap();
 		mo.put("onlineStudyList", map);
-		System.out.println("사이즈dsasad : " + map.size());
-		
 		int result = dao.insertStudy(mo);
 		
 		return result;

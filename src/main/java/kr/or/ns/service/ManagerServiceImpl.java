@@ -28,47 +28,44 @@ public class ManagerServiceImpl implements ManagerService {
 		List<Users> list = dao.getMemberList();
 		return list;
 	}
-
+	//회원정보 가져오기
 	@Override
 	public Users getUsers(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		Users user = dao.getUsers(user_id);
 		return user;
 	}
-
+	//회원정보 스킬부분 가져오기
 	@Override
 	public List<HashMap<String, String>> getSkill(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		List<HashMap<String, String>> list = dao.getSkill(user_id);
-		System.out.println("욘두 : " + list);
 		return list;
 	}
-
+	//회원탈퇴
 	@Override
 	public String memberDel(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		dao.memberDelete(user_id);
-		System.out.println("삭제 될까요?");
 		return "redirect:member_Management.do";
 	}
-
+	//신고리스트
 	@Override
 	public List<HashMap<String, Object>> getBlameList() {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		List<HashMap<String, Object>> blame = dao.getBlameList();
 		return blame;
 	}
-
+	//회원권한 (정지)
 	public int stopMember(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = dao.stopMember(user_id);
 		return result;
 	}
-
+	//회원권한 (복구)
 	@Transactional
 	public int restoreMember(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		System.out.println("계정복구 아이디 : " + user_id);
 		int result = 0;
 		try {
 			dao.restoreResetMember(user_id);
@@ -80,13 +77,13 @@ public class ManagerServiceImpl implements ManagerService {
 		}
 		return result;
 	}
-
+    //신고내역 상세 확인
 	public HashMap<String, Object> getDetailDeclare(String bl_seq) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		HashMap<String, Object> map = dao.getDetailDeclare(bl_seq);
 		return map;
 	}
-
+	//신고처리
 	@Override
 	@Transactional 
 	public int blameYes(String bl_seq, String bl_target_id) {
@@ -94,22 +91,18 @@ public class ManagerServiceImpl implements ManagerService {
 		int result = 0;
 		try {
 			int a = dao.blameYes(bl_seq);
-			 
-			System.out.println("bl_target_id : " + bl_target_id);
 			int b = dao.blameTargetUp(bl_target_id);
 			
-			System.out.println("a : " + a);
-			System.out.println("b : " + b);
 			if (a == 1 && b == 1) {
 				result = 1;
 			}
 		} catch (Exception e) {
-			System.out.println("관리자트랜잭션왜안됨!!!!!" + e.getMessage());
+			System.out.println(e.getMessage());
 			throw e; // 예외를 다시 돌려줌. 그리고 이 예외가 발생하는 시점에 transactionManager가 감시를 하다가 rollback 처리를 한다.
 		}
 		return result;
 	}
-
+   //신고 취소
 	public int blameNo(String bl_seq) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
 		int result = dao.blameNo(bl_seq);
@@ -119,9 +112,7 @@ public class ManagerServiceImpl implements ManagerService {
 	//신고관리 쪽지내용 확인
 	public HashMap<String, Object> messageGet(String m_seq) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		System.out.println("메시지벊소 : " + m_seq);
 		HashMap<String, Object> map = dao.messageGet(m_seq);
-		System.out.println("서비스입니다 : " + map);
 		return map;
 	}
 

@@ -38,8 +38,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<Map<String, Object>> myPagelist(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<Map<String, Object>> myPagelist = dao.getBookMark(userid);
-		System.out.println("마이페이지 서비스 잘 오는가" + myPagelist);
-
 		return myPagelist;
 	}
 
@@ -47,16 +45,13 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public Users getUsers(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
-		System.out.println("서비스 : " + userid);
 		Users user = dao.getUsers(userid);
-		System.out.println("서비스2 : " + user);
 		return user;
 	}
-
+	//회원정보 스킬 가져오기
 	public List<HashMap<String, String>> getSkill(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<HashMap<String, String>> list = dao.getSkill(userid);
-		System.out.println("우철 : " + list);
 		return list;
 	}
 
@@ -65,9 +60,6 @@ public class MyPageServiceImpl implements MyPageService {
 	@Transactional
 	public int MyPageUserEdit(Users users, HttpServletRequest request) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
-		System.out.println("서비스오나요");
-		System.out.println("유저정보" + users.getUser_id());
-		System.out.println("기타 : " + users.getIntroduce());
 
 		String filename = null;
 		String path = null;
@@ -76,14 +68,11 @@ public class MyPageServiceImpl implements MyPageService {
 
 		Users user = dao.getUsers(users.getUser_id());
 		String origin_profile = user.getProfile_img();
-		System.out.println("origin_profile : " + origin_profile);
 
 		CommonsMultipartFile imagefile = users.getFile();
 
 		if (!imagefile.isEmpty()) {
-			System.out.println("받아온 이미지파일이름" + imagefile);
 			filename = users.getFile().getOriginalFilename();
-			System.out.println("파일 이름 : " + filename);
 			path = request.getServletContext().getRealPath("/userboard/upload");
 			fpath = path + "\\" + filename;
 			users.setProfile_img(filename);
@@ -143,7 +132,6 @@ public class MyPageServiceImpl implements MyPageService {
 
 		try {
 			result = dao.MyPageUserEdit(users);
-			System.out.println("회원강비 결과 : " + result);
 			result2 = dao.editskill(map);
 			result2 = dao.editskill(map2);
 			result2 = dao.editskill(map3);
@@ -162,7 +150,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public void userDelete(String user) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		dao.userDelete(user);
-		System.out.println("탈퇴오는거겠지");
 	}
 
 	// 사용자 정보 가져오기
@@ -178,7 +165,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public int bookmarkCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.getbkCount(users);
-		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
 
@@ -187,7 +173,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public int commentCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.getcmCount(users);
-		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
 
@@ -196,27 +181,22 @@ public class MyPageServiceImpl implements MyPageService {
 	public int s_boardCount(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.getsbCount(users);
-		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
 
 	// 마이페이지(스터디리스트)
 	@Override
 	public List<HashMap<String, Object>> myPageStudyList(String user_id) {
-		System.out.println("불러와야 한다");
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<HashMap<String, Object>> myPageStudyList = dao.myPageStudyList(user_id);
-		System.out.println("이거 되는거니...?" + myPageStudyList);
-
 		return myPageStudyList;
 	}
+	
 
 	@Override
 	public List<HashMap<String, Object>> studyStatus(String userid) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		List<HashMap<String, Object>> myPageStudyList = dao.studyStatus(userid);
-		System.out.println("이거 되는거니...?" + myPageStudyList);
-
 		return myPageStudyList;
 	}
 
@@ -224,7 +204,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public HashMap<String, Object> getRole(HashMap<String, Object> map) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		HashMap<String, Object> getRole = dao.getRole(map);
-		System.out.println(getRole);
 		return getRole;
 	}
 
@@ -232,7 +211,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public int join_study(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.join_study(users);
-		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
 
@@ -240,7 +218,6 @@ public class MyPageServiceImpl implements MyPageService {
 	public int recruit_study(String users) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
 		int count = dao.recruit_study(users);
-		System.out.println("--------------" + count + "--------------");
 		return count;
 	}
 

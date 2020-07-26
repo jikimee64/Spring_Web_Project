@@ -22,7 +22,6 @@ public class ChatServiceImpl implements ChatService {
 	public List<HashMap<String, Object>> getListChatRoom() {
 		ChatDao dao = sqlsession.getMapper(ChatDao.class);
 		List<HashMap<String, Object>> list = dao.getListChatRoom();
-
 		return list;
 	}
 
@@ -67,7 +66,6 @@ public class ChatServiceImpl implements ChatService {
 	public int chatDelete(String ch_seq) {
 		ChatDao dao = sqlsession.getMapper(ChatDao.class);
 		int result = dao.chatDelete(ch_seq);
-		System.out.println("채팅방 삭제 결과 : " + result);
 		return result;
 	}
 	
