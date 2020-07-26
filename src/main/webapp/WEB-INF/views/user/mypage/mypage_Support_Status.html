@@ -56,6 +56,54 @@ body {
 	border-radius: 3px;
 }
 
+group+group {
+	margin-top: 20px;
+}
+.inline-radio {
+	display: flex;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+._div_radio {
+	position: relative;
+	flex: 1;
+	border-radius: 3px;
+}
+
+._input_radio {
+	width: 100%;
+	opacity: 0;
+	height: 100%;
+	cursor: pointer;
+}
+
+._radio_label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #272C33;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+}
+
+._div_radio:last-child label {
+	border-right: 0;
+}
+
+._input_radio:checked+label {
+	background: #00d463;
+	font-weight: 500;
+	color: #fff;
+	border-radius: 5px;
+}
+
+
 #doing_study_row {
 	text-align: center;
 	height: 30px;
@@ -130,12 +178,19 @@ body {
 									<th:block th:case="0">
 										<div class="row"
 											style="text-align: center; margin-bottom: 10px; font-size: x-large; width: 100%">
-											<div class="col-md-6" id="doing_study_col">
-
-												<span th:if="${list.ROLE_NAME == '방장'}"> <span
-													th:text="${list.USER_ID}"></span> <!-- 방장 아이콘 추가 -->
+											<div class="col-md-6">
+											
+											<a href=""  th:classappend="|InfoModal${list.user_id}|" 
+											th:onclick="|javascript:InfoModal('${list.user_id}')|" 
+											data-toggle="modal" data-target="#userInfoModal" >
+												<input type="hidden" th:value="${list.user_id}"  />
+												<span th:if="${list.role_name == '방장'}"> <span
+													th:text="${list.nickname}"></span> <!-- 방장 아이콘 추가 -->
 												</span>
+											</a>
+											
 											</div>
+										
 											<div class="col-md-6" id="doing_study_col">
 												<img
 													src="https://user-images.githubusercontent.com/61257242/87928038-2534c100-cabf-11ea-8099-c5edf44d6126.jpeg"
@@ -146,35 +201,35 @@ body {
 
 									<th:block th:case="*">
 										<th:block
-											th:if="${list.ACCEPT_STATUS} == '승인완료' and ${list.ROLE_NAME} == '회원'">
-											<div class="row" th:classappend="|left${list.USER_ID}|"
+											th:if="${list.accept_status} == '승인완료' and ${list.role_name} == '회원'">
+											<div class="row" th:classappend="|left${list.user_id} |"
 												style="text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;">
 												<div class="col-md-6">
-													<span class="row" th:classappend="|cancel${list.USER_ID}|"
-														id="doing_study_row"> <span class="col"
-														id="doing_study_col">
-															<p style="margin-left: 30px;" th:text="${list.USER_ID}"></p>
+												<a href="" th:classappend="|InfoModal${list.user_id}|" th:onclick="|javascript:InfoModal('${list.user_id}')|" 
+											data-toggle="modal" data-target="#userInfoModal">
+											<input type="hidden" th:value="${list.user_id}" />
+													<span class="row" th:classappend="|cancel${list.user_id} |"> 
+													<span class="col">	
+														<span th:text="${list.nickname}"></span>
+													</span>	
 													</span>
-													</span>
+													</a>
 												</div>
 												<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
 					
 					
 											<th:block th:if="${s_board_staus} == '모집중'">
-												<th:block th:if="${writer} == ${id}">
+												<th:block th:if="${writer.user_id} == ${id}">
 													<div class="col-md-6">
 														<button type="button" class="btn btn-danger btn"
-															th:onclick="|javascript:cancel('${list.USER_ID}','${list.S_SEQ}')|"
-															th:classappend="|cancel${list.USER_ID}|"
+															th:onclick="|javascript:cancel('${list.user_id}','${list.s_seq}')|"
+															th:classappend="|cancel${list.user_id}|"
 															style="line-height: normal;">
 															<span style="font-size: smaller;">취소</span>
 														</button>
 													</div>
 												</th:block>
 											</th:block>
-												
-												
-												
 											</div>
 										</th:block>
 									</th:block>
@@ -225,33 +280,42 @@ body {
 
 									<th:block th:case="*">
 										<th:block
-											th:if="${list.ACCEPT_STATUS} == '승인대기중' and ${list.ROLE_NAME} == '회원'">
-											<div class="row" th:classappend="|right${list.USER_ID}|"
-												style="text-align: center; margin-bottom: 10px; width: 100%">
+											th:if="${list.accept_status} == '승인대기중' and ${list.role_name} == '회원'">
+											
+											<div class="row"  th:classappend="|right${list.user_id}|">
+												<input type="hidden" th:value="${list.user_id}" id="user_id" />
 												<div class="col-md-6">
+												<a href="" th:classappend="|InfoModal${list.user_id}|"
+											th:onclick = "|javascript:InfoModal('${list.user_id}')|" data-toggle="modal" 
+											data-target="#userInfoModal" style="text-align: center; margin-bottom: 10px; width: 100%">
 													<span class="row" id="doing_study_row"> <span
 														class="col" id="doing_study_col"
 														style="font-size: x-large">
-															<p style="margin-left: 30px;" th:text="${list.USER_ID}"></p>
+															<p style="margin-left: 30px;" th:text="${list.nickname}"></p>
 													</span>
 													</span>
+													</a>
 												</div>
+							
+										
 												<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
 
-												<th:block th:if="${writer} == ${id}">
+												<th:block th:if="${writer.user_id} == ${id}">
 													<div class="col-md-6">
 														<button type="button"
-															th:onclick="|javascript:accept('${list.USER_ID}','${list.S_SEQ}')|"
+															th:onclick="|javascript:accept('${list.user_id}','${list.s_seq}')|"
 															class="btn btn-success btn" id="button_approval">
 															<span style="font-size: smaller;">승인</span>
 														</button>
 														<button type="button"
-															th:onclick="|javascript:reject('${list.USER_ID}','${list.S_SEQ}')|"
+															th:onclick="|javascript:reject('${list.user_id}','${list.s_seq}')|"
 															class="btn btn-danger btn" style="line-height: normal;">
 															<span style="font-size: smaller;">거절</span>
 														</button>
 													</div>
 												</th:block>
+												</div>	
+												
 											</div>
 
 										</th:block>
@@ -262,7 +326,7 @@ body {
 					</div>
 				</div>
 			</div>
-			<th:block th:if="${writer} == ${id}">
+			<th:block th:if="${writer.user_id} == ${id}">
 				<th:block th:if="${s_board_staus} == '모집중'">
 					<div class="row finishCheck"
 						style="align-items: center; margin-top: 50px; margin-bottom: 30px; place-content: center;">
@@ -280,7 +344,7 @@ body {
 		<div th:replace="/user/includes/footer :: footer"></div>
 		<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+		<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal"></div>
 
 		<script>
 			//모집마감
@@ -347,10 +411,17 @@ body {
 														if (data[index].ROLE_NAME === '방장') { //0번째 인덱스
 															/* 		html += "<div id='success'>"; */
 															html += "<div class='row' style='text-align: center; margin-bottom: 10px; font-size: x-large; width: 100%'>";
-															html += "<div class='col-md-6' id='doing_study_col'>";
-															html += "<span>"
-																	+ data[0].USER_ID
-																	+ "</span></div>";
+															html += "<div class='col-md-6'>";
+															html += '<a href=""  class="InfoModal'
+																	+data[index].USER_ID
+																	+'" onclick = InfoModal("'
+																	+data[index].USER_ID
+																	+ '") data-toggle="modal" data-target="#userInfoModal">'
+															html += "<input type='hidden' value="+data[index].USER_ID+">"
+						
+															html += '<span>'
+																	+ data[0].NICKNAME
+																	+ "</span></a></div>";
 															html += "<div class='col-md-6' id='doing_study_col'>";
 															html += "<img src='https://user-images.githubusercontent.com/61257242/87928038-2534c100-cabf-11ea-8099-c5edf44d6126.jpeg' alt='' style='height:32px;' />";
 															html += "</div></div>";
@@ -361,15 +432,25 @@ body {
 																	+ data[index].USER_ID
 																	+ "' style='text-align: center; margin-bottom: 10px; width: 100%; font-size: x-large;'>"
 															html += "<div class='col-md-6'>"
-
+																
+															
+																html += '<a href="" class="InfoModal'
+																	+data[index].USER_ID
+																	+'" onclick = InfoModal("'
+																	+data[index].USER_ID
+																	+ '") data-toggle="modal" data-target="#userInfoModal">'
+															html += "<input type='hidden' value='"+data[index].USER_ID+"' />"
+				
+															
 															/* html += "<span class='col' id='doing_study_col'>" */
 															html += "<span style='margin-left: 30px;'>"
-																	+ data[index].USER_ID
-																	+ "</span></div>";
+																	+ data[index].NICKNAME
+																	+ "</span></a></div>";
 														}
 														if (host === id
 																&& index !== 0) {
 															html += "<div class='col-md-6'>"
+															
 															html += '<button type="button" onclick=cancel("'
 																	+ data[index].USER_ID
 																	+ '","'
@@ -445,7 +526,8 @@ body {
 												data,
 												function(index, item) {
 													var host = data[0].USER_ID;
-
+													console.warn("datatatatata" + data[0].USER_ID);
+													console.warn("datatatatata" + data[0].NICKNAME);
 													var id = data[data.length - 1].user_id
 
 													let html = "";
@@ -459,12 +541,20 @@ body {
 																+ data[index].USER_ID
 																+ "' style='text-align: center; margin-bottom: 10px; width: 100%'>";
 														html += "<div class='col-md-6'>";
+														html += '<a href="" class="InfoModal'
+															+data[index].USER_ID
+															+'" onclick = InfoModal("'
+															+data[index].USER_ID
+															+ '") data-toggle="modal" data-target="#userInfoModal">'
+													html += "<input type='hidden' value="+data[index].USER_ID+">"
+														
+														
 														html += "<span class='row' id='doing_study_row'>";
 														html += "<span class='col' id='doing_study_col' style='font-size: x-large'>";
 														html += "<p style='margin-left: 30px;'>"
-																+ data[index].USER_ID
+																+ data[index].NICKNAME
 																+ "</p></span></span>";
-														html += "</div>"
+														html += "</a></div>"
 
 														html += "<div class='col-md-6'>";
 
@@ -524,7 +614,79 @@ body {
 						$(document).on("click", "#reject",function(user_id, s_seq){
 							reject(user_id, s_seq);
 						});  */
+					    function InfoModal(idx) {
+				    		console.log('idx : ' + $.escapeSelector(idx));
+				    		
+
+				    	  let id = $('.InfoModal' + $.escapeSelector(idx)).children(":eq(0)").val();
+				    	  console.log('id : ' + id);
+				         //formData.append("user_id" , this.id);
+
+				         // let obj = {"user_id" : id}; 
+
+				         let data = {
+				            "user_id" : id
+				         }
+
+				         $.ajax({
+				            url : '/ajax/userInfoModal.do',
+				            processData : false,
+				            contentType : "application/json",
+				            cache : false,
+				            type : 'POST',
+				            data : JSON.stringify(data),
+				            success : function(data) {
+				               $('.ModalUserName').text(data[0][0].USER_ID);
+				               $('.ModalUserID').text(data[0][0].NICKNAME);
+				               $('.introduce').text(data[0][0].INTRODUCE)
+				               'src','/material/images/jQuery/asimo.png'
+				               $('#profile_img').attr('src', '/userboard/upload/' + data[0][0].PROFILE_IMG);
+				               $.each(data[0], function (index, item) {
+				                  if (item.SKILL_LEVEL === '입문') {
+				                     $('input[name='+item.SKILL_NAME+']:radio[value="입문"]').prop('checked',true);
+				                  } else if (data[0][index].SKILL_LEVEL === '초급') {
+				                     $('input[name='+item.SKILL_NAME+']:radio[value="초급"]').prop('checked',true);
+				                  } else {
+				                     $('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
+				                  }
+				               })
+				               
+//				                   <td>1578</td>
+//				                                     <td><a href="">입문자들 다 모여라~~~~~!!</a></td>
+				               
+				               $('._user_board_list').empty();
+				               
+				               let userBoardList = "";
+				               $.each(data[1],function(index, item){
+				                  userBoardList += "<tr>";
+				                  userBoardList += "<td>";
+				                  userBoardList += data[1][index].S_SEQ;
+				                  userBoardList += "</td>";
+				                  userBoardList += "<td>";
+				                  userBoardList += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
+				                           + data[1][index].S_SEQ
+				                           + "'>";
+				                  userBoardList += data[1][index].TITLE;
+				                  userBoardList += "</a>"   
+				                  userBoardList += "</td>";
+				                  userBoardList += "</tr>";
+				               });
+				               
+				               
+				               $('._user_board_list').append(userBoardList);
+//				                   $('._user_board_list');
+				            },
+				            error : function(e) {
+				               console.log("error:", e);
+				            }
+				         });
+
+				      }
+						
+						
+						
 		</script>
+		
 
 </body>
 

@@ -140,6 +140,7 @@ body {
 	background-color: #18d26e;
 	border-color: #18d26e;
 }
+
 /* 라디오버튼 css*/
 ._form_radio {
 	background: #fff;
@@ -554,7 +555,8 @@ group+group {
 								<!-- <b style="margin-left: 35px;">작성자:</b> -->
 								<div class="col-md-4"
 									style="padding-right: 0px; font-size: medium;">
-									<b style="color: black; margin-right: 10px;"> 작성자 : </b> <a
+									<b style="color: black; margin-right: 10px;"> 작성자 : </b> 
+									<a
 										href="" th:classappend="|InfoModal${list.S_SEQ}|"
 										th:onclick="|javascript:InfoModal('${list.S_SEQ}')|"
 										data-toggle="modal" data-target="#userInfoModal"> 
