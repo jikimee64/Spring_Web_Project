@@ -62,7 +62,6 @@ textarea {
 	width: 100%;
 	height: 39px;
 	border: 1px solid #cccccc;
-	/* border-style: hidden; */
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -186,7 +185,6 @@ textarea {
 	height: auto;
 	border-radius: 3px;
 	border: 0;
-	/*       outline: 0; */
 	background: 0;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -233,7 +231,6 @@ textarea {
 /* 라디오버튼 */
 ._form_radio {
 	background: #fff;
-	/*    width: 509px; */
 	margin: auto;
 	padding: 30px;
 	min-width: 320px;
@@ -335,11 +332,7 @@ body {
 						<div class="col-2"></div>
 					</div>
 				</div>
-
-
-
 				&nbsp;&nbsp;
-
 
 				<div class="value">
 					<div class="row" style="place-content: center; padding-left: 100px">
@@ -364,7 +357,6 @@ body {
 					</div>
 				</div>
 
-
 				&nbsp;&nbsp;
 				<div class="value">
 					<div class="row" style="place-content: center; padding-left: 100px">
@@ -386,8 +378,6 @@ body {
 				</div>
 
 				&nbsp;&nbsp;
-
-
 				<div class="value">
 					<div class="row" style="place-content: center; padding-left: 100px">
 						<div class="col-2 _label_center"
@@ -395,7 +385,6 @@ body {
 							<label class="label-input100" for="pwd"
 								style="align-self: center">닉네임</label>
 						</div>
-
 						<div class="col-8">
 							<input type="text" class="input--style-6" id="nickname"
 								placeholder="닉네임을 입력해주세요" name="nickname" th:value="${member.nickname}" readonly>
@@ -408,7 +397,6 @@ body {
 				</div>
 
 				&nbsp;&nbsp;
-
 
 				<div class="value">
 					<div class="row" style="place-content: center; padding-left: 100px">
@@ -431,9 +419,6 @@ body {
 
 				&nbsp;&nbsp; <br /> <br /> <br />
 				<hr style="width: 80%;" />
-
-
-
 				&nbsp;
 				<div class="row" style="text-align: center;">
 					<div class="col-2"></div>
@@ -445,8 +430,6 @@ body {
 					<div class="col-2"></div>
 					&nbsp;&nbsp;
 				</div>
-
-
 
 				<div class="_form_radio">
 					<group class="inline-radio"> <span
@@ -557,12 +540,9 @@ body {
 					</group>
 				</div>
 
-
-
 				<br /> <br />
 				<hr style="width: 80%;" />
 				&nbsp;&nbsp;
-
 
 				<div class="row">
 					<div class="col-md-2"></div>
@@ -585,13 +565,10 @@ body {
 								<i class="xi-border-color" aria-hidden="true"></i>수정하러가기
 							</button>
 						</a>
-
-						<!-- <a th:href="@{/mypage/userDelete.do}">  -->
 						<a id="out">
 							<button type="button" class="btn btn-outline-danger"
 								style="border: 2px solid;font-weight:bold;">회원탈퇴</button>
 						</a>
-
 
 					</div>
 
@@ -608,10 +585,7 @@ body {
 	<!-- 데이터 전송 ajax -->
 	<script>
 		$(function() {
-			/* $("#btn_submit").click(function() { */
 			$(".joinform").submit(function(e) {
-				/*    var formData = $(".joinform").serialize() */
-				/* var file = $(#'joinform')[0].files[0]; */
 				var formData = new FormData(this);
 
 				$.ajax({
@@ -715,20 +689,6 @@ body {
 					});
 		});
 	</script>
-	<!--    <script>
-      if(typeof file=='undefined'){
-         file = new File(["un"], "default",){
-            type:"text/plain",
-         });
-      }
-      if(Users.getFile().getOriginalFilename().equals("default")){
-         profilePicturePath = "/userboard/upload/member.png";}
-      else   {
-         profilePicturePath = fileuploadService.restore(Users.getFile());
-      }
-            }
-      
-   </script> -->
 	<script>
 		$(function() {
 

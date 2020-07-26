@@ -74,7 +74,6 @@ body {
 						alt="" style="height: 45px;"> &nbsp; <span
 						style="font-size: x-large;"> <b>받은 쪽지</b>
 					</span>
-					<!-- <hr style="border: solid 0.5px; margin-top: 0px;"> -->
 				</div>
 				<div class="col-md-7"
 					style="text-align: right; padding-right: 28px; padding-top: 8px;">
@@ -166,8 +165,6 @@ body {
 	  $(".blameform").submit(function(e) {
 		 	 e.preventDefault();
 			 var formData = new FormData(this);
-			
-			
 			
 			let data = {
 				"m_seq":$('#m_seq').val(), //신고당하는 글번호

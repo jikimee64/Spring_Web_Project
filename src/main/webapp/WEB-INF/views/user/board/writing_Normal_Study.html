@@ -26,13 +26,6 @@
 
 
 <style>
-/* body {
-         margin-top: 200px;
-      } */
-
-/* #category select {
-         margin-right: 10px;
-      } */
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
@@ -112,7 +105,6 @@
 			id="registerform" enctype="multipart/form-data">
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
-				<!-- <br /> -->
 				<div class="row" id="row" style="padding-top: 30px;">
 					<div class="col-1">
 						<select name="lan_seq" class="selectpicker mb-3"
@@ -185,10 +177,6 @@
 							class="form-control _deadline" name="selectend" id="date-time"
 							placeholder="모집마감일">
 					</div>
-					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
-				<option selected>모집마감일</option>
-				<option value="_calendar">달력</option>
-			</select> -->
 				</div>
 			</div>
 
@@ -231,10 +219,6 @@
 									accept=".gif, .jpg, .png, .jpeg" type="file" id="ex_file">
 							</div>
 						</div>
-
-						<!-- 						<div class="form-group" style="margin: 0"> -->
-
-						<!-- 						</div> -->
 
 						<div class="form-group" style="margin: 0">
 							<div class="custom-file mb-3" style="width: 280px;">
@@ -313,20 +297,14 @@
 			var ext = str.split('.').pop().toLowerCase();
 			if ($.inArray(ext, [ 'hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx',
 					'doc' ]) !== -1) {
-				//alert(ext+'파일은 업로드 하실 수 없습니다.');
-				//alert(ext);
 			} else {
 				one = true;
-				//alert("3333");
 			}
 			//2. 파일명에 특수문자 체크
 			var pattern = /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
 			if (pattern.test(str)) {
-				//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
-				//alert('파일명에 특수문자를 제거해주세요.');
 			} else {
 				two = true;
-				//alert("444ss");
 			}
 
 			if (one === false || two === false) {
@@ -537,20 +515,14 @@
 			var ext = str.split('.').pop().toLowerCase();
 			if ($.inArray(ext, [ 'hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx',
 					'doc' ]) !== -1) {
-				//alert(ext+'파일은 업로드 하실 수 없습니다.');
-				//alert(ext);
 			} else {
 				one = true;
-				//alert("3333");
 			}
 			//2. 파일명에 특수문자 체크
 			var pattern = /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
 			if (pattern.test(str)) {
-				//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
-				//alert('파일명에 특수문자를 제거해주세요.');
 			} else {
 				two = true;
-				//alert("444ss");
 			}
 
 			if (one === false || two === false) {

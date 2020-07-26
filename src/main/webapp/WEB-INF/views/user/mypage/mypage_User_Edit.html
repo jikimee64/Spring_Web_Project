@@ -68,7 +68,6 @@ textarea {
 	width: 100%;
 	height: 39px;
 	border: 1px solid #cccccc;
-	/* border-style: hidden; */
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -83,7 +82,6 @@ textarea {
 
 .input--style-6::-webkit-input-placeholder, .textarea--style-6::-webkit-input-placeholder
 	{
-	/* WebKit, Blink, Edge */
 	color: #999;
 }
 
@@ -192,7 +190,6 @@ textarea {
 	height: auto;
 	border-radius: 3px;
 	border: 0;
-	/*       outline: 0; */
 	background: 0;
 	display: -webkit-box;
 	display: -webkit-flex;
@@ -216,7 +213,6 @@ textarea {
 }
 
 ._label_center {
-/* 	align-self: center; */
 }
 
 *:focus {
@@ -239,7 +235,6 @@ textarea {
 /* 라디오버튼 */
 ._form_radio {
 	background: #fff;
-	/*    width: 509px; */
 	margin: auto;
 	padding: 30px;
 	min-width: 320px;
@@ -303,9 +298,6 @@ group+group {
 
 
 
-
-
-
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
@@ -325,8 +317,6 @@ group+group {
 				<hr style="width: 80%;" />
 
 
-
-
 				<div class="value">
 
 
@@ -334,9 +324,6 @@ group+group {
 						<div class="col-2"></div>
 
 						<div class="col-8" style="text-align: center;">
-<!-- 					<img id="preview" th:src="'/userboard/upload/' + ${member.profile_img}" alt="썸네일" -->
-
-<!-- th:if=" ${member.profile_img} ne null"> -->
 					<img id="preview" th:if=" ${member.profile_img} ne null" th:src="'/userboard/upload/' + ${member.profile_img}" alt="썸네일"
 								style="margin-bottom: 15px; width: 250px; height: 250px;">
 
@@ -345,18 +332,12 @@ group+group {
 						<div class="col-2"></div>
 					</div>
 
-
-
-
 					<div class="row" style="padding-left: 100px;height:63px;">
 						<div class="col-2" style=" text-align: right;">
 							<label class="label-input100" for="pwd"
 								>프로필 사진</label>
-							<!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
 						</div>
-
 						<div class="col-8">
-							<!-- <input type="file" class="form-control" name="file" id="file">  -->
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" id="file" accept=".gif, .jpg, .png, .jpeg"
 									name="file"> <label class="custom-file-label" 
@@ -365,14 +346,10 @@ group+group {
 						</div>
 
 						<div class="col-2">
-							<!--                      <img id="preview" src="/userboard/upload/member.png" alt="썸네일" -->
-							<!--                         style="margin-bottom: 15px; width: 50px;"> -->
 						</div>
 
 					</div>
 				</div>
-
-
 
 				&nbsp;&nbsp; &nbsp;&nbsp;
 
@@ -399,7 +376,6 @@ group+group {
 					</div>
 				</div>
 
-
 				&nbsp;&nbsp;
 
 			<th:block th:if="${member.getSnstype().toString()} =='normal'">
@@ -421,7 +397,6 @@ group+group {
 						<div class="col-2"></div>
 					</div>
 				</div>
-
 
 				&nbsp;&nbsp;
 
@@ -518,8 +493,6 @@ group+group {
 				&nbsp;&nbsp; <br /> <br /> <br />
 				<hr style="width: 80%;" />
 
-
-
 				&nbsp;
 				<div class="row" style="text-align: center;">
 					<div class="col-2"></div>
@@ -531,8 +504,6 @@ group+group {
 					<div class="col-2"></div>
 					&nbsp;&nbsp;
 				</div>
-
-
 
 				<div class="_form_radio">
 					<group class="inline-radio"> <span
@@ -636,13 +607,9 @@ group+group {
 					</group>
 				</div>
 
-
-
 				<br /> <br />
 				<hr style="width: 80%;" />
 				&nbsp;&nbsp;
-
-
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-8">
@@ -668,9 +635,6 @@ group+group {
 	</form>
 
 
-
-
-
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	
@@ -683,7 +647,6 @@ group+group {
 	<th:block th:if="${snstype != 'normal'}">
 		<script src="../../../../resources/js/socialjoin.js"></script>
 	</th:block>
-	
 	
 	<script>
 		$(function() {
@@ -711,7 +674,6 @@ group+group {
 
 	<script>
 		$(function() {
-
 			// Add the following code if you want the name of the file appear on select
 			$(".custom-file-input").on(
 					"change",
@@ -723,7 +685,6 @@ group+group {
 
 			//썸네일 시작
 			var file = document.querySelector('#file');
-
 			file.onchange = function() {
 				var fileList = file.files;
 
@@ -739,11 +700,6 @@ group+group {
 
 		});
 	</script>
-	
-	
-	
-	
-	
 
 </body>
 

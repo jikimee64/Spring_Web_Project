@@ -191,8 +191,6 @@ body {
 					style="position: relative; height: 3240px;">
 					<th:block th:if="${bookMarkList} != null">
 						<th:block th:each="bookMarkList,index : ${bookMarkList}">
-							<!--                   <th:block th:if="${index.index%3==0}" -->
-							<!--                      th:utext="|&lt;div class=&quot;row&quot; style=&quot;width:100%;margin: auto;margin-bottom: 20px;&quot;&gt;|" /> -->
 
 							<div class="col-lg-4 portfolio-item filter-app kwc"
 								style="position: absolute; left: 0px; top: 0px;">
@@ -213,7 +211,6 @@ body {
 											style="text-align-last: center; width: 300px; margin-top: 5px; margin-bottom: 7px;">
 											<h4 th:text="${bookMarkList.L_TITLE}"
 												style="display: contents;">
-												<!--                            <a href="/lecture/writing_Course_Study.do?">등록 폼이동(임시)</a> -->
 											</h4>
 										</div>
 										<div
@@ -223,7 +220,6 @@ body {
 											</p>
 										</div>
 										<span th:text="'('+${bookMarkList.L_REVIEW}+')'">리뷰수</span>
-										<!--                               <p th:text="${bookMarkList.LAN_SEQ}">글번호</p> -->
 
 									</div>
 								</div>
@@ -232,7 +228,6 @@ body {
 					</th:block>
 
 					<th:block th:if="${#lists.isEmpty(bookMarkList)}">
-						<!-- 연규야 채워라 동기 -->
 						<div style="transform:translateX(440px);">
 							<div
 								style='text-align: center; margin-top: 20px; margin-bottom: 20px;'>
@@ -281,7 +276,7 @@ body {
 			<li th:if="${pageMakers.next} == true and ${pageMakers.endPage > 0}">
 				<a
 				th:href="@{board_Select_Online_Bookmark.do(page=${pageMakers.endPage}+1,perPageNum=${pageMakers.cri_s.perPageNum})}"
-				class="page-link"> Next</a> <!--                                    <a th:href="@{user/board/study_List.do(page=${pageMaker.endPage}+1,perPageNum=${pageMaker.cri.perPageNum})}">&raquo;</a> -->
+				class="page-link"> Next</a> 
 			</li>
 
 

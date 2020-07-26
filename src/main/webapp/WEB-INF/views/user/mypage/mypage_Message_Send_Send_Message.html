@@ -70,7 +70,6 @@ body {
 						alt="" style="height: 45px;"> &nbsp; <span
 						style="font-size: x-large;"> <b>쪽지보내기</b>
 					</span>
-					<!-- <hr style="border: solid 0.5px; margin-top: 0px;"> -->
 				</div>
 				<div class="col-md-7"
 					style="text-align: right; padding-right: 28px; padding-top: 8px;">
@@ -129,7 +128,6 @@ body {
 	    		
 	         source : function(request, response) {
 	        	 	var a = $('._user_id').val().trim();
-	    	    	
 	    	    	let data = {
 	    	                  "keyword" : a
 	    	              }
@@ -200,7 +198,6 @@ body {
 								  buttons: true
 								})
 							
-							//$('.idcheck').html("아이디를 입력해주세요.")
 							toggleid = false;
 						} else if (data == 0) { //아이디 존재하지 않을때
 							
@@ -210,7 +207,6 @@ body {
 								  buttons: true
 								})
 							
-							//$('.idcheck').html("동일한 아이디가 존재합니다.")
 							$('._user_id').val("");
 							$('._user_id').focus();
 							toggleid = false;
@@ -221,14 +217,10 @@ body {
 									  buttons: true
 									}).then((willDelete) => {
 										 if (willDelete) {
-											//location.href="/message/mypage_Message_From_Board.do";
 											toggleid = true;
 										}
 									 });
-									
 								
-							//$('.idcheck').html("사용하셔도 됩니다.")
-							//toggleid = true;
 							send();
 						
 						}
@@ -242,8 +234,6 @@ body {
 				
 			});
 			/* 아이디 체크 끝 */
-			
-			
 			
 		})
 
@@ -282,8 +272,6 @@ body {
 		function appendMessage(msg) {
 			alert("msg : " + msg);
 		}
-		
-		
 		
 	</script>
 

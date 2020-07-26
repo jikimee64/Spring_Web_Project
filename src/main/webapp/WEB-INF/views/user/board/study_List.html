@@ -456,14 +456,7 @@ group+group {
 							<li data-filter="2"
 								th:classappend="${studyContent} == '2' ? filter-active : null"
 								style="margin-right: 200px;">일반</li>
-
-
-
 							<!-- 검색 form -->
-
-
-
-
 						</ul>
 					</div>
 				</div>
@@ -471,10 +464,6 @@ group+group {
 
 		</div>
 	</section>
-
-
-
-
 
 	<!-- 여기부터 스터디 목록 -->
 	<div class="container"
@@ -567,13 +556,6 @@ group+group {
 
 						<div class="col-md-9" style="padding: 3px 30px;">
 							<div class="row" style="margin-top: 10px;">
-								<!-- <div class="col-md-2">
-							<b th:text="${list.USER_ID}">
-								여기에 닉네임
-								미네미네
-							</b>
-						</div> -->
-								<!-- <b style="margin-left: 35px;">작성자:</b> -->
 								<div class="col-md-4"
 									style="padding-right: 0px; font-size: medium;">
 									<b style="color: black; margin-right: 10px;"> 작성자 : </b> 
@@ -621,7 +603,6 @@ group+group {
 
 			</th:block>
 			<th:block th:if="${#lists.isEmpty(list)}">
-				<!-- 연규야 채워라 동기 -->
 				<div style='text-align: center; margin-top: 20px;margin-bottom:20px;'>
 					<img style="width: 150px;"
 						src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png"
@@ -639,19 +620,14 @@ group+group {
 	</div>
 	<!-- 경계끝 -->
 
-
 	<!-- 타임리프로 바꾸자 -->
 	<!-- 페이징 버튼 시작-->
 	<div id="pager-wrapper" class="margin-small">
 		<div class="pager clear">
 			<!-- 경계 -->
-			<!-- 			<ul class="btn-group pagination" style="place-content: center;"> -->
-
 			<!-- 페이징 부트스트랩 버튼 생성하기  -->
 			<ul class="pager d-flex studyPaging"
 				style="place-content: center; margin-top: 35px; margin-bottom: 140px;">
-
-
 
 				<!-- 이전버튼 생성여부 -->
 				<li th:if="${pageMakerb.prev} == true"><th:block
@@ -672,9 +648,6 @@ group+group {
 							th:href="@{study_FilterList.do(page=${pageMakerb.startPage}-1,perPageNum=${pageMakerb.cri_b.perPageNum})}"
 							class="page-link" th:text="Previous">&laquo; </a>
 					</th:block></li>
-				<!-- 									<a th:href="@{user/board/study_List.do(page=${pageMaker.startPage}-1,perPageNum=${pageMaker.cri.perPageNum})}">&laquo;</a> -->
-
-
 
 				<!-- 페이지의 시작번호와 끝번호를 이용해 페이지 버튼들을 뿌려줄것임 / 현재페이지 어디인지 알기위해 추가-->
 				<th:block th:if="${#lists.size(list) != 0}">
@@ -701,14 +674,13 @@ group+group {
 							<a class="page-link"
 								th:href="@{study_FilterList.do(page=${idx},perPageNum=${pageMakerb.cri_b.perPageNum})}"
 								th:text="${idx}"></a>
-						</th:block> <!-- <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+						</th:block> 
 					</li>
 				</th:block>
 				
 				
 
 				<!-- 다음버튼 생성여부 -->
-				<!-- 				<th:block th:if="${pageMaker.next && pageMaker.endPage > 0 }"> -->
 				<li th:if="${pageMakerb.next} == true and ${pageMakerb.endPage > 0}">
 
 					<th:block th:if="${type == 'FS'}">
@@ -738,7 +710,6 @@ group+group {
 	<!-- 페이징 버튼 끝 -->
 
 	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-	<!-- 	<div th:replace="user/includes/user_Info_Modal :: user_Info_Modal"></div> -->
 	<div th:replace="user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/user_Info_Modal :: user_Info_Modal">
@@ -779,10 +750,6 @@ group+group {
       function InfoModal(idx) {
 
     	  let id = $('.InfoModal' + idx).children(":eq(0)").val();
-         //formData.append("user_id" , this.id);
-
-         // let obj = {"user_id" : id}; 
-
          let data = {
             "user_id" : id
          }
@@ -809,10 +776,6 @@ group+group {
                      $('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
                   }
                })
-               
-//                   <td>1578</td>
-//                                     <td><a href="">입문자들 다 모여라~~~~~!!</a></td>
-               
                $('._user_board_list').empty();
                
                let userBoardList = "";
@@ -833,7 +796,6 @@ group+group {
                
                
                $('._user_board_list').append(userBoardList);
-//                   $('._user_board_list');
             },
             error : function(e) {
                console.log("error:", e);
@@ -1023,7 +985,6 @@ group+group {
                                                       } //else 끝
                                                       html += "<div class='col-md-9' style='padding: 3px 30px;'>"
                                                       html += "<div class='row' style='margin-top: 10px;'>"
-                                                      //html += "<b style='margin-left: 35px;'>작성자:</b>" 
                                                       html += "<div class='col-md-4' style='padding-right: 0px; font-size: medium;'>"
                                                       html += "<b style='color: black; margin-right: 15px;'>작성자 :</b>"
                                                       html += '<a href="" class="InfoModal'

@@ -59,12 +59,8 @@ public class ChatHandler extends TextWebSocketHandler {
 			//getAttribute라는 private 함수 이용
 			String ch_seq = getAttribute(session, "ch_seq");
 			String user_id = getAttribute(session, "user_id");
-			
-			System.out.println("ch_seq : " + ch_seq);
-			System.out.println("user_id : " + user_id);
-
+		
 			int idx = rls.size(); // 방의 사이즈를 조사한다.
-			System.out.println("idx : " + idx);
 			if (rls.size() > 0) {
 				for (int i = 0; i < rls.size(); i++) {
 					String rN = (String) rls.get(i).get("ch_seq");
@@ -80,7 +76,6 @@ public class ChatHandler extends TextWebSocketHandler {
 			if (flag) { // 존재하는 방이라면 세션만 추가한다.
 				HashMap<String, Object> map = rls.get(idx);
 				map.put(user_id, session);
-				System.out.println("존재하는 방이면 세션 추가");
 				Users user = mservice.getUsers(user_id);
 				String nickname = user.getNickname();
 				sendAllSessionToMessage(map, user_id, nickname+"님이 접속되었습니다."); 
@@ -90,7 +85,6 @@ public class ChatHandler extends TextWebSocketHandler {
 				map.put("ch_seq", ch_seq);
 				map.put(user_id, session);
 				rls.add(map);
-				System.out.println("최초 생성");
 
 			}
 			// 세션등록이 끝나면 발급받은 세션ID값의 메시지를 발송한다.
@@ -127,7 +121,6 @@ public class ChatHandler extends TextWebSocketHandler {
 					try {
 						if(!k.equals(user_id)) { //key값은 user_id인데 자기자신을 제외한 모든사람들한테 메시지 전송
 							wss.sendMessage(new TextMessage(obj.toJSONString()));
-							System.out.println("나 뺴고 나머지한테 전송");
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -200,14 +193,8 @@ public class ChatHandler extends TextWebSocketHandler {
 		ChatRoom cr = service.getChatRoom(ch_seq);
 		String master = cr.getUser_id();
 		
-		System.out.println("user_id@@ : " + user_id);
-		System.out.println("master@@ : " + master);
-		
-		//System.out.println("마스터 " + list.get(0).get("master"));
-		//System.out.println("유저 아이디 " + user_id);
 		if(!user_id.equals(master)){ //master는 채팅방을 삭제할때 나가기위한 것
 			int result = service.chatRoomOut(cm);
-			System.out.println("close시 채팅방 멤버 삭제");
 		}
 		
 		boolean flag = false;
@@ -234,7 +221,7 @@ public class ChatHandler extends TextWebSocketHandler {
 				rls.get(idx).remove(user_id);
 			}
 		} else {
-			System.out.println("afterConnectionClosed()_session@#!@!#@!#이 null");
+			System.out.println("afterConnectionClosed()_session이 null");
 		}
 		 
 

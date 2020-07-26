@@ -22,35 +22,6 @@
 </head>
 
 <style>
-/*    a:link {
-      color: red;
-      text-decoration: none;
-   }
-
-   a:visited {
-      color: black;
-      text-decoration: none;
-   }
-
-   a:hover {
-      color: darkgoldenrod;
-      text-decoration: underline;
-   }
-
-   ._find {
-      color: #d8a80a;
-   }
-
-   ._other_login:hover {
-      background-color: #E2E6EA;
-   }
-
-   ._other_login {
-      background-color: white;
-   } */
-
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
 .limiter {
 	width: 100%;
 	margin: 0 auto;
@@ -88,15 +59,6 @@
 	background-color: #F9FBFC;
 }
 
-/* .wrap-login100 {
-	width: 550px;
-	background: #fff;
-	border-radius: 3px;
-	overflow: hidden;
-	height:690px;
-} 
-*/
-
 /*---------------------------------------------*/
 .wrap-input100 {
 	position: relative;
@@ -104,26 +66,6 @@
 	z-index: 1;
 }
 
-/* .input100 {
-  font-family: Raleway-SemiBold;
-  font-size: 18px;
-  line-height: 1.2;
-  color: #686868;
-
-  display: block;
-  width: 100%;
-  background: #f0f0f0;
-  height: 62px;
-  border-radius: 3px;
-  padding: 0 10px 0 10px;
-
-  border-style: hidden;
-} */
-/*------------------------------------------------------------------
-[ Focus ]*/
-/* *:focus{
-   outline: none;
-} */
 .form-group {
 	margin-bottom: 0.5rem;
 }
@@ -155,7 +97,6 @@
 .input100:focus {
 	outline: none !important;
 	border: 1.5px solid #18d26e;
-	/* box-shadow: 0 0 10px #719ECE; */
 }
 
 .symbol-input100 {
@@ -243,13 +184,11 @@ button:focus {
 	font-family: Raleway-SemiBold;
 	font-size: 18px;
 	background: #f0f0f0;
-	/* background: transparent; */
 	line-height: 1.2;
 	display: block;
 	width: 70%;
 	height: 42px;
 	border: 1px solid #cccccc;
-	/* border-style: hidden; */
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -316,7 +255,6 @@ button:focus {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	/* 	width: calc((100% - 10px)/2); */
 	width: 90%;
 	height: 50px;
 	border-radius: 3px;
@@ -431,7 +369,6 @@ button:focus {
 /* 아이콘 */
 .fa-a:before {
 	font-family: Arial;
-	/* your font family here! */
 	font-weight: bold;
 	content: 'A';
 }
@@ -492,20 +429,7 @@ button:focus {
 
 	</main>
 	<!-- End #main -->
-
-	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
 	<input type="hidden" th:value="${param.error}" id="error" />
-
-	<!-- 	<div th:if="${param.error!=null}">
-		로그인 실패 <br />
-		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
-			<c:if test="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
-			<span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
-			<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"></c:out>
-		</th:block>
-		</c:if>
-	</div>    -->
-
 
 	<div class="limiter" style="height: 834px;">
 		<div class="container-login100" style="position: inherit;">
@@ -529,9 +453,6 @@ button:focus {
 							<a href="/member/normaljoin.do">
 								<button type="button" class="_btn_normal btn-light _other_login"
 									style="place-content: center; height: 75px; width: 93%;">
-									<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
-									<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
-									<!-- 								style="margin: 0 23px 0 10px"></i>  -->
 									<span class="_normal_span" style="font-size: x-large;">
 										<b>일반 회원가입</b>
 									</span>
@@ -547,9 +468,6 @@ button:focus {
 							<a th:href="@{${google_url}}">
 								<button type="button" class="btn-google btn-light _other_login"
 									style="border: 2.5px solid #DA5A4A;">
-									<!-- <img src="/resources/images/img/facebook.png" alt="" style="height: 25px; float: left;"> -->
-									<!-- 							<i class="fa fa-facebook-square" aria-hidden="true" -->
-									<!-- 								style="margin: 0 23px 0 10px"></i>  -->
 									<i class="fa fa-google _google_icon" aria-hidden="true"
 										style="margin: 0 23px 0 12px;"></i> <span
 										class="_color_white _google_span"
@@ -581,18 +499,6 @@ button:focus {
 		</div>
 	</div>
 
-	<!-- 	 	<script>
-			$(function() {
-					$('#login-button').click(function(){
-					let a = $('#kwc').text();
-					alert(a)
-						if(a !== null){
-							alert(a);	
-						}
-					});
-			});
-		</script>
- -->
 	<div th:replace="/user/includes/footer :: footer"></div>
 
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>

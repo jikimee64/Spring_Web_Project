@@ -26,13 +26,6 @@
 
 
 <style>
-/* body {
-         margin-top: 200px;
-      } */
-
-/* #category select {
-         margin-right: 10px;
-      } */
 .filebox label {
 	display: inline-block;
 	padding: .5em .75em;
@@ -91,8 +84,6 @@
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
- <!-- 	 <input type="hidden" name = "l_image" id="l_image" th:value="${lecture.L_IMAGE}" />
-	<input type="hidden" name = "l_seq" id="l_seq" th:value="${lecture.L_SEQ}" />  -->
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
@@ -120,7 +111,6 @@
 
 			<div class="container" style="margin-bottom: 25px; margin-top: 40px;">
 				<!-- <h2>스터디 모집 글 작성하기(일반)</h2> -->
-				<!-- <br /> -->
 				<div class="row" id="row" style="padding-top: 30px;">
 					<div class="col-1">
 						<select name="lan_seq" class="selectpicker mb-3"
@@ -193,10 +183,6 @@
 							class="form-control _deadline" name="selectend" id="date-time"
 							placeholder="모집마감일">
 					</div>
-					<!-- <select name="" class="custom-select mb-3" style="width: 10%;">
-            <option selected>모집마감일</option>
-            <option value="_calendar">달력</option>
-         </select> -->
 				</div>
 			</div>
 
@@ -336,8 +322,6 @@
          
       });
 	
-	  
-	  
 
 	  //썸머노트 파일 업로드 json데이터 반환
 	    function sendFile(file, el) {
@@ -376,20 +360,14 @@
 	    	let two = false;
 	    	var ext =  str.split('.').pop().toLowerCase();
 	    	if($.inArray(ext, ['hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx', 'doc']) !== -1) {
-	    		//alert(ext+'파일은 업로드 하실 수 없습니다.');
-	    		//alert(ext);
 	    	}else {
 	    		one = true;
-	    		//alert("3333");
 	    	}
 	    	//2. 파일명에 특수문자 체크
 	    	var pattern =   /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
 	    	if(pattern.test(str) ){
-	    		//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
-	    		//alert('파일명에 특수문자를 제거해주세요.');
 	    	}else {
 	    		two = true;
-	    		//alert("444ss");
 	    	}
 	    	
 	    	if(one === false || two === false){
@@ -416,8 +394,6 @@
       $(function() {
          $("#registerform").submit(function(e) {
             var formData = new FormData(this);
-            //formData.append('image', $('#l_image').val());
-            //formData.append('l_seq', $('#l_seq').val());
 
             $.ajax({
                url : "",
@@ -427,14 +403,9 @@
                type : 'POST',
                data : formData,
                success : function(data) {
-            	   //alert('넘겨받은 데이터 : ' + data)
-            	   //지우지말것..
             	   location.href="/board/study_List.do?root=headear"
                },
                error:function(request,status,error){
-            	   //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-               	   ///ㅠㅠ
-               	   //지우지말것..
                	   location.href="/board/study_List.do?root=headear"
                   console.log("error:", e);
                }
@@ -458,7 +429,6 @@
                         3).val();
                   var selectBox5 = $('._deadline').val();
                   var selectBox6 = $('#usr').val();
-                  //selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
 
                   var selectAlert = "";
                   if (selectBox1 == "언어" || selectBox2 == "모집인원"
@@ -493,7 +463,6 @@
 						}else if($('.note-editable').html().length > 4000){	
 							swal("글 내용을 4000자 이하로 입력해주세요", "", "error");
 						} else {
-							//swal("작성이 완료되었습니다", "", "success");			
 							$('._submit').unbind();
 							$(this).click();
 						}

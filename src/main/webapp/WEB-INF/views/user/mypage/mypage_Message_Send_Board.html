@@ -333,15 +333,12 @@ group+group {
 
 								//체크된 체크박스를 가져온다.
 								var checkbox = $("input:checkbox[name=_input_check]:checked");
-								console.log('checkbox : ' + checkbox)
 								
 								//체크된 체크박스의 값을 반복해서 불러오기
 								checkbox.each(function(i) {
 									//let check = checkbox.parent().parent().eq(i);
 									let check = checkbox.parent().parent().eq(i);
 									let check2 = check.children(); //부모태그의 자식들로 접근
-									
-									 
 									let m_seq1 = check2.eq(4).val(); //쪽지번호
 
 									let data = {
@@ -375,10 +372,6 @@ group+group {
 		function InfoModal(idx) {
 
 			let id = $('.InfoModal' + idx).children(":eq(0)").val();
-			//formData.append("user_id" , this.id);
-
-			// let obj = {"user_id" : id}; 
-
 			let data = {
 				"user_id" : id
 			}
@@ -406,8 +399,6 @@ group+group {
 						}
 					})
 					
-// 						<td>1578</td>
-// 												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
 					
 					$('._user_board_list').empty();
 					
@@ -429,7 +420,6 @@ group+group {
 					
 					
 					$('._user_board_list').append(userBoardList);
-// 						$('._user_board_list');
 				},
 				error : function(e) {
 					console.log("error:", e);

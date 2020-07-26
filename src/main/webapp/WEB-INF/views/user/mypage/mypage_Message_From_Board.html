@@ -162,23 +162,6 @@ group+group {
 		<!-- ======= Breadcrumbs Section ======= -->
 		
 		<div th:replace="/user/includes/message_header :: message_header"></div>
-		
-		<!-- <section class="breadcrumbs" style="margin-top: 70px;">
-			<div class="container">
-
-				<div class="d-flex justify-content-between align-items-center">
-					<h2 style="color: #666666;">
-					
-						<b><span sec:authentication="principal.username"></span>님의 쪽지함</b>
-						
-						<b><span th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b>
-							
-					</h2>
-				</div>
-
-			</div>
-		</section> -->
-		<!-- Breadcrumbs Section -->
 	</main>
 
 
@@ -255,10 +238,8 @@ group+group {
 							style="transform: translateY(2px);" />
 					</div>
 					<!-- td2(보낸사람) -->
-					<!-- 이게모달이다 ★★★★★★★★★★★★★★★ -->
 					<div class="col-md-2"
 						style="place-self: center; text-align: center;">
-						<!-- @{/ajax/userInfoModal.do=(senderid=${list.senderid})} -->
 						<a href="" th:classappend="|InfoModal${list.M_SEQ}|"
 							th:onclick="|javascript:InfoModal('${list.M_SEQ}')|"
 							data-toggle="modal" data-target="#userInfoModal"> 
@@ -268,12 +249,10 @@ group+group {
 						</a>
 					</div>
 
-					<!-- opendate가 null이 아닐경우 색깔 회색?  -->
 					<!-- td3(내용) -->
 					   <div th:if="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
                   style="place-self: center; text-align: center;">
                   
-                  <!-- 초록색  -->
                      <a style="color: #00b894;" 
                      th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
                      <span th:text="${list.CONTENT}"></span>
@@ -426,9 +405,6 @@ group+group {
 		function InfoModal(idx) {
 
 			let id = $('.InfoModal' + idx).children(":eq(0)").val();
-			//formData.append("user_id" , this.id);
-
-			// let obj = {"user_id" : id}; 
 
 			let data = {
 				"user_id" : id
@@ -457,8 +433,6 @@ group+group {
 						}
 					})
 					
-// 						<td>1578</td>
-// 												<td><a href="">입문자들 다 모여라~~~~~!!</a></td>
 					
 					$('._user_board_list').empty();
 					
@@ -480,7 +454,6 @@ group+group {
 					
 					
 					$('._user_board_list').append(userBoardList);
-// 						$('._user_board_list');
 				},
 				error : function(e) {
 					console.log("error:", e);

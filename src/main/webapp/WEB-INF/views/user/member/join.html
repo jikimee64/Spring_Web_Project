@@ -207,7 +207,6 @@ textarea {
 }
 
 ._label_center {
-	/* 	align-self: center; */
 	
 }
 
@@ -229,7 +228,6 @@ textarea {
 /* 라디오버튼 */
 ._form_radio {
 	background: #fff;
-	/* 	width: 509px; */
 	margin: auto;
 	padding: 30px;
 	min-width: 320px;
@@ -294,10 +292,8 @@ body {
 
 
 
-
 <body>
 	<div th:replace="/user/includes/header :: header"></div>
-
 
 
 	<form action="login.do" method="post" class="joinform" id="joinform"
@@ -335,11 +331,9 @@ body {
 						<div class="col-2" style="text-align: right; padding-top: 7px;">
 							<label class="label-input100" for="pwd"
 								style="place-self: center">프로필 사진</label>
-							<!-- <label class="custom-file-label" for="inputGroupFile01" style="text-align: left">Choose file</label> -->
 						</div>
 
 						<div class="col-8">
-							<!-- <input type="file" class="form-control" name="file" id="file">  -->
 							<div class="custom-file">
 								<input type="file" class="custom-file-input" id="file"
 									accept=".gif, .jpg, .png, .jpeg" name="file"> <label
@@ -349,13 +343,10 @@ body {
 						</div>
 
 						<div class="col-2">
-							<!--                      <img id="preview" src="/userboard/upload/member.png" alt="썸네일" -->
-							<!--                         style="margin-bottom: 15px; width: 50px;"> -->
 						</div>
 
 					</div>
 				</div>
-
 
 
 				&nbsp;&nbsp;
@@ -366,7 +357,6 @@ body {
 							<input type="hidden" th:value="${uemail}" name="user_id"
 								id="user_id" /> <input type="hidden" th:value="${snstype}"
 								name="snstype" id="snstype" />
-
 
 				<div class="value">
 						<div class="row" style="padding-left: 100px; height: 63px;">
