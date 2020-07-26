@@ -322,7 +322,10 @@
                      }
                  }
             }
-         });
+         }).on("summernote.enter", function(we, e) {
+				$(this).summernote("pasteHTML", "<br><br>");
+				e.preventDefault();
+			}); //Enter 후에 <br><br> 제거 하는 코드;
          
          $("p").each(function() {
             if (!$(this).text().trim().length) {

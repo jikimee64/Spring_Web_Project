@@ -370,7 +370,7 @@ public class AjaxServiceImpl implements AjaxService {
 		params.put("pageStart", cri_b.getPageStart());
 		params.put("perPageNum", cri_b.getPerPageNum());
 		List<HashMap<String, Object>> result = dao.studyBoardFilter(params);
-		/* System.out.println("필터 결과 : " + result); */
+		 System.out.println("필터 결과 : " + result); 
 		return result;
 	}
 	
