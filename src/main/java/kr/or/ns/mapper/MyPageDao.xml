@@ -114,16 +114,27 @@
 	</select>
 
 	<select id="studyStatus" resultType="hashMap">
-	    select * from study_group where s_seq = #{s_seq} order by s_seq asc, role_name
+	   	select users.nickname, study_group.s_seq,study_group.user_id,study_group.accept_status,study_group.role_name from study_group 
+	    left outer join users
+	    on study_group.user_id = users.user_id
+	    where s_seq = #{s_seq} order by s_seq asc, role_name
 	</select>
 	
 	
 	<select id="getRole" parameterType="hashmap" resultType="hashMap">
-	     select user_id from study_group where role_name = #{role_name} and s_seq = #{s_seq} 
+	    <!--  select user_id from study_group where role_name = #{role_name} and s_seq = #{s_seq}  -->
+	   select users.user_id, users.nickname from study_group
+       left outer join users
+       on study_group.user_id = users.user_id
+       where study_group.role_name = #{role_name} and study_group.s_seq = #{s_seq}
 	</select>
 	
 	<select id="getStatus" resultType="string">
 	     select status from study_board where s_seq = #{s_seq} 
+	</select>
+	
+	<select id="getNicknames" resultType="hashMap">
+	select nickname from users where 
 	</select>
 	
 	

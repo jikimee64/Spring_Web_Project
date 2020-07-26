@@ -23,6 +23,8 @@ import kr.or.ns.vo.Users;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itextpdf.text.log.SysoLogger;
+
 @Controller
 @RequestMapping("/mypage/")
 public class MyPageController {
@@ -163,6 +165,7 @@ public class MyPageController {
 	public String SupportStatus(String s_seq, Model model, Principal principal) {
 		System.out.println("스터디 상세페이지");
 		List<HashMap<String, Object>> status = service.studyStatus(s_seq);
+		System.out.println("status~!~!" + status);
 		String user_id = principal.getName();
 		System.out.println("프린서플 네임 : " + user_id);
 		HashMap<String, Object> map = new HashMap<String, Object>();
@@ -174,15 +177,17 @@ public class MyPageController {
 		String s_board_staus = service.getStatus(s_seq);
 		model.addAttribute("id", user_id);
 		model.addAttribute("status", status);
-		model.addAttribute("writer", a);
+		model.addAttribute("writer", writer);
 		model.addAttribute("s_seq", s_seq);
 		model.addAttribute("s_board_staus", s_board_staus);
+		
 		System.out.println("뭐뭐 찍히나 봅니다");
 		System.out.println(user_id);
 		System.out.println(status);
 		System.out.println(a);
 		System.out.println(s_seq);
 		System.out.println(s_board_staus);
+		
 		return "user/mypage/mypage_Support_Status.html";
 
 	}

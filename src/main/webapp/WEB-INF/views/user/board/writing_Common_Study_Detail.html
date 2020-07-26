@@ -302,7 +302,7 @@ group+group {
    <input id="s_seq" type="hidden" th:value="${study.S_SEQ}" />
    <input id="page" type="hidden" th:value="${page}" />
    <input id="perPageNum" type="hidden" th:value="${perPageNum}" />
-	
+   <input id="studyUserId" type="hiddden" th:value="${study.USER_ID}" />
 
    <div th:replace="/user/includes/header :: header"></div>
    <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
@@ -1193,7 +1193,7 @@ group+group {
                                 icon: "warning",
                                 buttons: true
                               })
-                          }else if(data == 1){
+                          }else{
                           /* swal({title:"지원이 완료되었습니다.",
                                   icon: "success"}) */
                                  
@@ -1201,9 +1201,6 @@ group+group {
                                   location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum="+perPageNum
                                    
                                              
-                       }else{
-                          swal({title:"모집이 마감되었습니다.",
-                               icon: "warning"})
                        }
                   },
                   error: function(request, status, error){
@@ -1288,7 +1285,7 @@ group+group {
             "s_seq":$('#s_seq').val(), //신고당하는 글번호
             "type":formData.get("blame"), //신고유형
             "place":"1", //신고장소(게시판)   
-            "target": $('#user_id').text(), //신고당하는 사람
+            "target": $('#studyUserId').val(), //신고당하는 사람
             "bl_title":formData.get("bl_title"),  //신고제목
             "comment":formData.get("comment"), //신고내용
             "blamed_title": $('#title').text(),

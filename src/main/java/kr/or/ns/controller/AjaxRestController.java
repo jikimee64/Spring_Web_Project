@@ -413,13 +413,24 @@ public class AjaxRestController {
 
 	}
 
-	// 마이페이지 내가쓴 댓글 비동기
+	// 방장이 모집마감 버튼 눌러서 스터디 모집 마감하기 
 	@RequestMapping(value = "finishRecruit.do", method = RequestMethod.POST)
-	public void finishRecruit(@RequestBody HashMap<String, Object> params) {
+	public int finishRecruit(@RequestBody HashMap<String, Object> params) {
 		String s_seq = (String) params.get("s_seq");
 		System.out.println(s_seq);
-		service.deleteWaitingUsers(s_seq);
-		service.finishRecruit(s_seq);
+		//해당글에 승인 완료된 인원수 
+		int result = service.checkA_staCount(s_seq);
+		
+		if(result != 0) {
+			
+			service.deleteWaitingUsers(s_seq);
+			service.finishRecruit(s_seq);
+			return result;
+		}else {
+			
+			return result;
+		}
+		
 	}
 
 	// 일반스터디 지원취소하기

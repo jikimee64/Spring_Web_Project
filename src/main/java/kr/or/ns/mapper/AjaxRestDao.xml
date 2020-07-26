@@ -51,7 +51,7 @@
 		#{bl_target_id}, #{bl_title}, #{bl_content}, now(), #{blamed_title}, #{blamed_content} from dual
 		where not
 		exists(select * from blame_board where bpc_seq=#{bpc_seq} and
-		board_seq=#{board_seq})
+		board_seq=#{board_seq} and bl_id = #{current_userid})
 	</insert>
 
 	<!-- 신고처리(쪽지) -->
@@ -134,8 +134,10 @@
 	</update>
 
 	<select id="acceptList" resultType="hashMap">
-		select *
+		select users.NICKNAME, study_group.S_SEQ,study_group.USER_ID,study_group.ACCEPT_STATUS,study_group.ROLE_NAME
 		from study_group
+       left outer join users
+       on study_group.user_id = users.user_id
 		where s_seq = #{s_seq} and accept_status = '승인완료'
 		order by role_name
 	</select>
@@ -153,8 +155,10 @@
 	</update>
 
 	<select id="cancelList" resultType="hashMap">
-		select *
+		select users.NICKNAME, study_group.S_SEQ,study_group.USER_ID,study_group.ACCEPT_STATUS,study_group.ROLE_NAME
 		from study_group
+       left outer join users
+       on study_group.user_id = users.user_id
 		where s_seq = #{s_seq} and accept_status = '승인대기중'
 		order by role_name
 	</select>

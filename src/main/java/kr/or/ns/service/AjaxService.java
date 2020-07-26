@@ -104,6 +104,9 @@ public interface AjaxService {
 
 	//자동검색완성기능
 	public List<HashMap<String, Object>> getAutoKeyword(String keyword);
+
+	//승인완료인원체크 
+	public int checkA_staCount(String s_seq);
 	
 
 }
