@@ -174,15 +174,10 @@ public class AjaxServiceImpl implements AjaxService {
 		int people = dao.checkPeople(s_seq);
 		System.out.println(people+ ": 모집정원");
 		
-		if(a_staCount < people) {
 			System.out.println("-------insert 하러 갑니다.----------");
 			//insert 하러 간다 
 			int insertResult = dao.insertStudyGroup(map);
 			return insertResult;
-		}else {
-			System.out.println("-------인서트 안해요----------");
-			return 2;
-		}
 		
 	}
 
@@ -490,6 +485,24 @@ public class AjaxServiceImpl implements AjaxService {
 		
 		System.out.println("서비스 임플인데 이제 리턴 간다 ");
 		return list;
+	}
+
+	//승인 완료된 인원수 체크 
+	@Override
+	public int checkA_staCount(String s_seq) {
+		AjaxRestDao dao = sqlsession.getMapper(AjaxRestDao.class);
+		
+		//승인 완료된 인원수 체크 한다 
+		int result = dao.checkA_staCount(s_seq);
+		int recruitingpeople = dao.checkPeople(s_seq);
+		if(result > recruitingpeople) {
+			//모집정원보다 승인완료 인원이 크다면 return 0;
+			return 0;
+		}else {
+			return 1;
+		}
+		
+
 	}
 
 

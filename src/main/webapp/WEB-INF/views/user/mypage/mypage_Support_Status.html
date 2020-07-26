@@ -285,7 +285,7 @@ body {
 		<script>
 			//모집마감
 			function finishh(s_seq) {
-				$('.finishCheck').remove();
+				//$('.finishCheck').remove();
 
 				let data = {
 					"s_seq" : s_seq
@@ -299,10 +299,21 @@ body {
 					type : 'POST',
 					data : JSON.stringify(data),
 					success : function(data) {
-
+						if(data != 0){
+							
 						$('#wait').empty();
 						swal("완료되었습니다", "", "success");
 						$('#wait').text('모집이 마감 되었습니다.');
+						
+						}else{
+						
+							 swal({
+	                              title: "승인인원이 모집정원을 초과합니다.",
+	                                icon: "warning",
+	                                buttons: true
+	                              })
+						}
+
 
 					},
 					error : function(e) {
