@@ -406,21 +406,68 @@
 
 
 	<script>
-		//썸네일 시작
-		var file = document.querySelector('#ex_file');
+		function checkFileName(str) {
+			//1. 확장자명 체크
+			let one = false;
+			let two = false;
+			var ext = str.split('.').pop().toLowerCase();
+			if ($.inArray(ext, [ 'hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx',
+					'doc' ]) !== -1) {
+				//alert(ext+'파일은 업로드 하실 수 없습니다.');
+				//alert(ext);
+			} else {
+				one = true;
+				//alert("3333");
+			}
+			//2. 파일명에 특수문자 체크
+			var pattern = /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+			if (pattern.test(str)) {
+				//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
+				//alert('파일명에 특수문자를 제거해주세요.');
+			} else {
+				two = true;
+				//alert("444ss");
+			}
 
-		file.onchange = function() {
-			var fileList = file.files;
+			if (one === false || two === false) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 
-			// 읽기
-			var reader = new FileReader();
-			reader.readAsDataURL(fileList[0]);
+		$(function() {
+			$("input:file[name='files[0]']")
+					.change(
+							function() {
+								var str = $(this).val();
+								var fileName = str.split('\\').pop()
+										.toLowerCase();
+								var flag = checkFileName(fileName);
+								if (!flag) { //flag가 false면 썸네일 value 비우기
+									swal({
+										title : "확장자 및 특수문자를 체크해주세요.",
+										icon : "warning",
+										buttons : true,
+										dangerMode : true,
+									})
+									$('#ex_file').val("");
+								} else { //정상적으로 올렸을 때(썸네일 업로드)
+									var file = document
+											.querySelector('#ex_file');
+										var fileList = file.files;
 
-			//로드 한 후
-			reader.onload = function() {
-				document.querySelector('#preview').src = reader.result;
-			};
-		};
+										// 읽기
+										var reader = new FileReader();
+										reader.readAsDataURL(fileList[0]);
+
+										//로드 한 후
+										reader.onload = function() {
+											document.querySelector('#preview').src = reader.result;
+										};
+								}
+							});
+		});
 	</script>
 
 

@@ -216,7 +216,7 @@
 
 						<div style="text-align: center; padding-bottom: 30px;">
 							<button type="submit" class="btn btn-primary _submit"
-								style="width: 15%; background-color: #18d26e; border-color: #18d26e;font-weight:bold;">작성</button>
+								style="width: 15%; background-color: #18d26e; border-color: #18d26e; font-weight: bold;">작성</button>
 						</div>
 					</div>
 
@@ -226,9 +226,9 @@
 								src="/studyboard/upload/study_board_default.jpg" alt="썸네일"
 								style="margin-bottom: 15px; width: 280px; height: 200px;">
 							<div class="filebox"
-								style="text-align: center; margin-left: 22px;font-weight:bold;">
-								<label for="ex_file">썸네일 업로드</label> <input name="files[0]" accept=".gif, .jpg, .png, .jpeg"
-									type="file" id="ex_file">
+								style="text-align: center; margin-left: 22px; font-weight: bold;">
+								<label for="ex_file">썸네일 업로드</label> <input name="files[0]"
+									accept=".gif, .jpg, .png, .jpeg" type="file" id="ex_file">
 							</div>
 						</div>
 
@@ -292,26 +292,13 @@
 				});
 	</script>
 
-	<!-- 	<script>
-		
-		$("#summernote").on('drop',function(e){
-	        for(i=0; i< e.originalEvent.dataTransfer.files.length; i++){
-	        	uploadSummernoteImageFile(e.originalEvent.dataTransfer.files[i],$("#summernote")[0]);
-	        }
-	       e.preventDefault();
-	  	})
-  
-	
-	</script>	 -->
-	
-
 
 	<!-- mysql이랑 맞출것  -->
 	<script>
 		$(function() {
 			$('#date-time').bootstrapMaterialDatePicker({
 				format : 'YYYY-MM-DD HH:mm:ss',
-				minDate: moment()
+				minDate : moment()
 
 			});
 		});
@@ -319,23 +306,69 @@
 
 
 	<script>
-		//썸네일 시작
-		var file = document.querySelector('#ex_file');
+		function checkFileName(str) {
+			//1. 확장자명 체크
+			let one = false;
+			let two = false;
+			var ext = str.split('.').pop().toLowerCase();
+			if ($.inArray(ext, [ 'hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx',
+					'doc' ]) !== -1) {
+				//alert(ext+'파일은 업로드 하실 수 없습니다.');
+				//alert(ext);
+			} else {
+				one = true;
+				//alert("3333");
+			}
+			//2. 파일명에 특수문자 체크
+			var pattern = /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+			if (pattern.test(str)) {
+				//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
+				//alert('파일명에 특수문자를 제거해주세요.');
+			} else {
+				two = true;
+				//alert("444ss");
+			}
 
-		file.onchange = function() {
-			var fileList = file.files;
+			if (one === false || two === false) {
+				return false;
+			} else {
+				return true;
+			}
+		}
 
-			// 읽기
-			var reader = new FileReader();
-			reader.readAsDataURL(fileList[0]);
+		$(function() {
+			$("input:file[name='files[0]']")
+					.change(
+							function() {
+								var str = $(this).val();
+								var fileName = str.split('\\').pop()
+										.toLowerCase();
+								var flag = checkFileName(fileName);
+								if (!flag) { //flag가 false면 썸네일 value 비우기
+									swal({
+										title : "확장자 및 특수문자를 체크해주세요.",
+										icon : "warning",
+										buttons : true,
+										dangerMode : true,
+									})
+									$('#ex_file').val("");
+								} else { //정상적으로 올렸을 때(썸네일 업로드)
+									var file = document
+											.querySelector('#ex_file');
+										var fileList = file.files;
 
-			//로드 한 후
-			reader.onload = function() {
-				document.querySelector('#preview').src = reader.result;
-			};
-		};
+										// 읽기
+										var reader = new FileReader();
+										reader.readAsDataURL(fileList[0]);
+
+										//로드 한 후
+										reader.onload = function() {
+											document.querySelector('#preview').src = reader.result;
+										};
+								}
+							});
+		});
 	</script>
-
 
 
 	<script>
@@ -351,16 +384,16 @@
 					type : 'POST',
 					data : formData,
 					success : function(data) {
-						  //alert('넘겨받은 데이터 : ' + data)
-						  //지우지말것..
-		            	  location.href="/board/study_List.do?root=header"
+						//alert('넘겨받은 데이터 : ' + data)
+						//지우지말것..
+						location.href = "/board/study_List.do?root=header"
 					},
-					error:function(request,status,error){
-		            	   //alert("cod!!!e:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		               	   ///ㅠㅠ
-		               	   //지우지말것..
-		               	   location.href="/board/study_List.do?root=headear"
-		               }
+					error : function(request, status, error) {
+						//alert("cod!!!e:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						///ㅠㅠ
+						//지우지말것..
+						location.href = "/board/study_List.do?root=headear"
+					}
 				})
 			})
 		});
@@ -369,178 +402,190 @@
 	<script>
 		$(function() {
 			/* 작성 버튼 클릭시 유효성검사 시작*/
-			$('._submit').click(
-					function(evt) {
-						evt.preventDefault();
-						
-						var selectBox1 = $('.selectpicker option:selected').eq(
-								0).val();
-						var selectBox2 = $('.selectpicker option:selected').eq(
-								1).val();
-						var selectBox3 = $('.selectpicker option:selected').eq(
-								2).val();
-						var selectBox4 = $('.selectpicker option:selected').eq(
-								3).val();
-						var selectBox5 = $('._deadline').val();
-						var selectBox6 = $('#usr').val();
-						//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
-						
-						var selectAlert = "";
-						if (selectBox1 == "언어" || selectBox2 == "모집인원"
-								|| selectBox3 == "지역" || selectBox4 == "난이도"
-								|| selectBox5 == "") {
-							if (selectBox1 == "언어") {
-								selectAlert += "언어";
-							}
-							if (selectBox2 == "모집인원") {
-								selectAlert += ", 모집인원";
-							}
-							if (selectBox3 == "지역") {
-								selectAlert += ", 지역";
-							}
-							if (selectBox4 == "난이도") {
-								selectAlert += ", 난이도";
-							}
-							if (selectBox5 == "") {
-								selectAlert += ", 날짜";
-							}
+			$('._submit')
+					.click(
+							function(evt) {
+								evt.preventDefault();
 
-							if (selectAlert.substr(0, 1) == ",") {
-								selectAlert = selectAlert.substr(1,
-										selectAlert.length);
-							}
-							swal(selectAlert + "를 선택해주세요", "", "error");
-						} else {
-							if (selectBox6 == "") {
-								swal("글 제목을 입력해주세요", "", "error");
-							}else if(selectBox6.length > 40){
-								swal("글 제목을 40자 이하로 입력해주세요", "", "error");
-							}else if($('.note-editable').html().length > 798){	
-								swal("글 내용을 800자 이하로 입력해주세요", "", "error");
-							} else {
-								//swal("작성이 완료되었습니다", "", "success");			
-								$('._submit').unbind();
-								$(this).click();
-							}
+								var selectBox1 = $(
+										'.selectpicker option:selected').eq(0)
+										.val();
+								var selectBox2 = $(
+										'.selectpicker option:selected').eq(1)
+										.val();
+								var selectBox3 = $(
+										'.selectpicker option:selected').eq(2)
+										.val();
+								var selectBox4 = $(
+										'.selectpicker option:selected').eq(3)
+										.val();
+								var selectBox5 = $('._deadline').val();
+								var selectBox6 = $('#usr').val();
+								//selectBox1,2,3,4는 위에 셀렉트 박스, 5는 날짜, 6은 내용
 
-						}
+								var selectAlert = "";
+								if (selectBox1 == "언어" || selectBox2 == "모집인원"
+										|| selectBox3 == "지역"
+										|| selectBox4 == "난이도"
+										|| selectBox5 == "") {
+									if (selectBox1 == "언어") {
+										selectAlert += "언어";
+									}
+									if (selectBox2 == "모집인원") {
+										selectAlert += ", 모집인원";
+									}
+									if (selectBox3 == "지역") {
+										selectAlert += ", 지역";
+									}
+									if (selectBox4 == "난이도") {
+										selectAlert += ", 난이도";
+									}
+									if (selectBox5 == "") {
+										selectAlert += ", 날짜";
+									}
 
-					});
+									if (selectAlert.substr(0, 1) == ",") {
+										selectAlert = selectAlert.substr(1,
+												selectAlert.length);
+									}
+									swal(selectAlert + "를 선택해주세요", "", "error");
+								} else {
+									if (selectBox6 == "") {
+										swal("글 제목을 입력해주세요", "", "error");
+									} else if (selectBox6.length > 40) {
+										swal("글 제목을 40자 이하로 입력해주세요", "",
+												"error");
+									} else if ($('.note-editable').html().length > 798) {
+										swal("글 내용을 800자 이하로 입력해주세요", "",
+												"error");
+									} else {
+										//swal("작성이 완료되었습니다", "", "success");			
+										$('._submit').unbind();
+										$(this).click();
+									}
+
+								}
+
+							});
 			/* 작성 버튼 클릭시 유효성검사  끝*/
-			
+
 		});
 	</script>
 
 
 
 	<script>
-	$(function() {
-         $('#summernote').summernote({
-            tabsize : 2,
-            height : 500,
-            focus : false,
-            minHeight : null,
-            maxHeight : null,
-            lang : 'ko-KR',
-            placeholder : '글 내용을 입력해주세요',
-            callbacks: {
-               onImageUpload: function(files, editor, welEditable) {
-                     for (var i = files.length - 1; i >= 0; i--) {
-                        sendFile(files[i], this);
-                     }
-                 }
-            }
-         });
-         
-         $("p").each(function() {
-            if (!$(this).text().trim().length) {
-               $(this).remove();
-            }
-         });
-         
-         
-      });
-	
-	  
-    //썸머노트 파일 업로드 json데이터 반환
-    function sendFile(file, el) {
-       var form_data = new FormData();
-          form_data.append('file', file);
-          
-          var flag = checkFileName(file.name)
-          
-          if(flag){
-	          $.ajax({
-	       	   data: form_data,
-	              type: "POST",
-	              url: "/board/ProfileImage.do",
-	              	processData : false,
+		$(function() {
+			$('#summernote').summernote({
+				tabsize : 2,
+				height : 500,
+				focus : false,
+				minHeight : null,
+				maxHeight : null,
+				lang : 'ko-KR',
+				placeholder : '글 내용을 입력해주세요',
+				callbacks : {
+					onImageUpload : function(files, editor, welEditable) {
+						for (var i = files.length - 1; i >= 0; i--) {
+							sendFile(files[i], this);
+						}
+					}
+				}
+			});
+
+			$("p").each(function() {
+				if (!$(this).text().trim().length) {
+					$(this).remove();
+				}
+			});
+
+		});
+
+		//썸머노트 파일 업로드 json데이터 반환
+		function sendFile(file, el) {
+			var form_data = new FormData();
+			form_data.append('file', file);
+
+			var flag = checkFileName(file.name)
+
+			if (flag) {
+				$.ajax({
+					data : form_data,
+					type : "POST",
+					url : "/board/ProfileImage.do",
+					processData : false,
 					contentType : false,
 					enctype : 'multipart/form-data',
 					cache : false,
-	            success: function(data) {
-	                 $(el).summernote("editor.insertImage", data);
-	              }
-	          });
-          }else{
-        		swal({
-      			  title: "확장자 및 특수문자를 체크해주세요.",
-      			  icon: "warning",
-      			  buttons: true,
-      			  dangerMode: true,
-      			})
-          }
-    } 
-    
-    function checkFileName(str){
-    	//1. 확장자명 체크
-    	let one = false;
-    	let two = false;
-    	var ext =  str.split('.').pop().toLowerCase();
-    	if($.inArray(ext, ['hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx', 'doc']) !== -1) {
-    		//alert(ext+'파일은 업로드 하실 수 없습니다.');
-    		//alert(ext);
-    	}else {
-    		one = true;
-    		//alert("3333");
-    	}
-    	//2. 파일명에 특수문자 체크
-    	var pattern =   /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
-    	if(pattern.test(str) ){
-    		//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
-    		//alert('파일명에 특수문자를 제거해주세요.');
-    	}else {
-    		two = true;
-    		//alert("444ss");
-    	}
-    	
-    	if(one === false || two === false){
-    		return false;
-    	}else{
-    		return true;
-    	}
-    }
-    
-   </script>
-	
+					success : function(data) {
+						$(el).summernote("editor.insertImage", data);
+					}
+				});
+			} else {
+				swal({
+					title : "확장자 및 특수문자를 체크해주세요.",
+					icon : "warning",
+					buttons : true,
+					dangerMode : true,
+				})
+			}
+		}
+
+		function checkFileName(str) {
+			//1. 확장자명 체크
+			let one = false;
+			let two = false;
+			var ext = str.split('.').pop().toLowerCase();
+			if ($.inArray(ext, [ 'hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx',
+					'doc' ]) !== -1) {
+				//alert(ext+'파일은 업로드 하실 수 없습니다.');
+				//alert(ext);
+			} else {
+				one = true;
+				//alert("3333");
+			}
+			//2. 파일명에 특수문자 체크
+			var pattern = /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+			if (pattern.test(str)) {
+				//alert("파일명에 허용된 특수문자는 '-', '_', '(', ')', '[', ']', '.' 입니다.");
+				//alert('파일명에 특수문자를 제거해주세요.');
+			} else {
+				two = true;
+				//alert("444ss");
+			}
+
+			if (one === false || two === false) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+	</script>
+
 	<script>
-			
-/* 파일 이름이 길경우 튀어나오는 현상이 생기므로 문자열 자르기가 필요함   ====>*/
-$(function(){
-	
-	
-	$("input:file[name='files[1]']").change(function () {
-		if($('.custom-file-label')[0].innerText.length > 12){
-			$('.custom-file-label')[0].innerText = $('.custom-file-label')[0].innerText.substr(0,12)+"...";
-		}
-	});
-	$("input:file[name='files[2]']").change(function () {
-		if($('.custom-file-label')[1].innerText.length > 12){
-			$('.custom-file-label')[1].innerText = $('.custom-file-label')[1].innerText.substr(0,12)+"...";
-		}
-	});
-});
-/*<==== 파일 이름이 길경우 튀어나오는 현상이 생기므로 문자열 자르기가 필요함   */
+		/* 파일 이름이 길경우 튀어나오는 현상이 생기므로 문자열 자르기가 필요함   ====>*/
+		$(function() {
+
+			$("input:file[name='files[1]']")
+					.change(
+							function() {
+								if ($('.custom-file-label')[0].innerText.length > 12) {
+									$('.custom-file-label')[0].innerText = $('.custom-file-label')[0].innerText
+											.substr(0, 12)
+											+ "...";
+								}
+							});
+			$("input:file[name='files[2]']")
+					.change(
+							function() {
+								if ($('.custom-file-label')[1].innerText.length > 12) {
+									$('.custom-file-label')[1].innerText = $('.custom-file-label')[1].innerText
+											.substr(0, 12)
+											+ "...";
+								}
+							});
+		});
+		/*<==== 파일 이름이 길경우 튀어나오는 현상이 생기므로 문자열 자르기가 필요함   */
 	</script>
 </body>
 
