@@ -323,10 +323,13 @@ group+group {
 								</th:block>
 							</th:block>
 						</div>
+						
+
+						
 					</div>
+					
 				</div>
-			</div>
-			<th:block th:if="${writer.user_id} == ${id}">
+					<th:block th:if="${writer.user_id} == ${id}">
 				<th:block th:if="${s_board_staus} == '모집중'">
 					<div class="row finishCheck"
 						style="align-items: center; margin-top: 50px; margin-bottom: 30px; place-content: center;">
@@ -336,7 +339,19 @@ group+group {
 						</button>
 					</div>
 				</th:block>
-			</th:block>
+			</th:block> 
+			</div>
+	<!-- 		<th:block th:if="${writer.user_id} == ${id}">
+				<th:block th:if="${s_board_staus} == '모집중'">
+					<div class="row finishCheck"
+						style="align-items: center; margin-top: 50px; margin-bottom: 30px; place-content: center;">
+						<button type="button" th:onclick="|javascript:finishh('${s_seq}')|"
+							class="btn btn-secondary btn finishh" id="finishh">
+							<span style="font-size: smaller;font-weight:bold;">모집 마감</span>
+						</button>
+					</div>
+				</th:block>
+			</th:block> -->
 		</div>
 
 		<!-- 모집중 첫번째 줄 끝 -->
@@ -366,9 +381,23 @@ group+group {
 						if(data != 0){
 							
 						$('#wait').empty();
-						swal("완료되었습니다", "", "success");
-						$('#wait').text('모집이 마감 되었습니다.');
+						//swal("완료되었습니다", "", "success");
 						
+						
+						swal({
+							  title: "완료되었습니다",
+							  icon: "success",
+							  buttons: true,
+							})
+							.then((willDelete) => {
+							  if (willDelete) {
+								  $('#wait').text('모집이 마감 되었습니다.');
+									location.href="/mypage/SupportStatus.do?s_seq="+s_seq;
+							  } 
+							
+							});
+						
+				
 						}else{
 						
 							 swal({
