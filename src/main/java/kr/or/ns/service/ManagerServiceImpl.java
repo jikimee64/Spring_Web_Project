@@ -65,9 +65,19 @@ public class ManagerServiceImpl implements ManagerService {
 		return result;
 	}
 
+	@Transactional
 	public int restoreMember(String user_id) {
 		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		int result = dao.restoreMember(user_id);
+		System.out.println("계정복구 아이디 : " + user_id);
+		int result = 0;
+		try {
+			dao.restoreResetMember(user_id);
+			dao.restoreMember(user_id);
+			result = 1;
+		} catch (Exception e) {
+			System.out.println("둘 중에 하나라도 문제가 생기면 예외가 떨어지는 부분" + e.getMessage());
+			throw e; // 예외를 다시 돌려줌. 그리고 이 예외가 발생하는 시점에 transactionManager가 감시를 하다가 rollback 처리를 한다.
+		}
 		return result;
 	}
 

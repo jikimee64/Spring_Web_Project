@@ -56,6 +56,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update users set enabled = 0 where user_id=#{user_id}
 	</update>
 
+	<update id="restoreResetMember">
+		update users set blame_count = 0 where user_id=#{user_id}
+	</update>
+
 	<update id="restoreMember">
 		update users set enabled = 1 where user_id=#{user_id}
 	</update>

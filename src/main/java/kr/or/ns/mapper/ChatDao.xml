@@ -31,7 +31,7 @@
 	<!-- 채팅방 입장시 멤버추가 -->
 	<insert id="memberInsert" parameterType="kr.or.ns.vo.ChatRoomMember">
 		insert into chatmember(user_id, ch_seq)
-		select #{user_id}, #{ch_seq} from dual where not exists(select user_id from chatmember where user_id=#{user_id})
+		select #{user_id}, #{ch_seq} from dual where not exists(select user_id from chatmember where user_id=#{user_id} and ch_seq = #{ch_seq})
 	</insert>
 	
 	<delete id="chatRoomOut" parameterType="kr.or.ns.vo.ChatRoomMember">
