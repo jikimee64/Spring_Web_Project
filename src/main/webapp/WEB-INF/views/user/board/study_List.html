@@ -256,6 +256,22 @@ group+group {
 	padding-left: .5rem;
 	font-size: .875rem;
 }
+.card-title {
+   display: inline-block;
+   width: 200px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: normal;
+   line-height: 1.2;
+   height: 2.4em;
+   text-align: left;
+   word-wrap: break-word;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   max-inline-size: -webkit-fill-available;
+}
 </style>
 
 
@@ -588,8 +604,7 @@ group+group {
 							</div>
 							<div class="row _content"
 								style="margin: 0px 5px 0px 28px; height: 145px;">
-								<span th:text="${list.CONTENT}"></span>
-								<p></p>
+								  <xmp-line class="_xmp" th:text="${list.CONTENT}"></xmp-line>
 							</div>
 						</div>
 					</div>
@@ -733,6 +748,17 @@ group+group {
       });
       //내용에 이미지 뜨는거 막기 끝
    </script>
+   
+   <script>
+   /* HTML 엔티티 치환 (동기 HTML에만 먹힘 ) */
+   $('._xmp').each(
+   function(index, item) {
+      $('._xmp').eq(index)[0].innerText = $('._xmp').eq(
+            index)[0].innerText.replace(/(<([^>]+)>)/ig, "").replace(/&nbsp;/gi,"").replace(/&gt;/gi,"")
+            .replace(/&lt;/gi,"").replace(/&amp;/gi,"").replace(/&quot;/gi,"").replace(/&#035;/gi,"")
+            .replace(/&#039;/gi,"");
+   });  
+   </script>
 
    <script>
       $(function() {
@@ -867,8 +893,6 @@ group+group {
    </script>
 
 
-
-
    <script>
       $('.filterRow li')
             .on(
@@ -919,6 +943,7 @@ group+group {
                                  var page = data[2].cri_b.page;
                                     
                                  
+                                 
                                  $
                                        .each(
                                              data,
@@ -926,7 +951,6 @@ group+group {
                                                    item) {
                                                 var list_length = data[0].length;
                                                 var onlineInfo_length = data[1].length;
-                                             
                                              
                                                 if (index === 0) {
                                                    if(list_length != 0){
@@ -1029,24 +1053,30 @@ group+group {
                                                             + data[0][i].CONTENT
                                                             + "</xmp-line></div></div></div>"
                                                       html += "<hr style='border: solid 1px rgb(224, 224, 224); margin-top: 10px; margin-bottom: 10px'/>"
-
+                                                      console.log('내용: ' + data[0][i].CONTENT)
+                                                      console.log("i : " + i);
                                                       $(
                                                             '.studyFilter')
                                                             .append(
                                                                   html);
-                                                   /* 문자열 태그 그대로 출력하게 하는 함수== */   
-                                                   $('._xmp').eq(i)[0].innerText= $('._xmp').eq(
-                                                         index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
+                                                   /* 문자열 태그 그대로 출력하게 하는 함수== */  
+                                                   
+                                                   
+                                                    $('._xmp').eq(i)[0].innerText= $('._xmp').eq(
+                                                         i)[0].innerText.replace(/(<([^>]+)>)/ig, "").replace(/&nbsp;/gi,"").replace(/&gt;/gi,"")
+                                                         .replace(/&lt;/gi,"").replace(/&amp;/gi,"").replace(/&quot;/gi,"").replace(/&#035;/gi,"")
+                                                         .replace(/&#039;/gi,""); 
+                                                         
+                                                         
+                                                         
                                                    /*== 문자열 태그 그대로 출력하게 하는 함수 */
                                                    /* 문자열 자르는 함수 */
 //                                                       if ($('._xmp').eq(i)[0].innerText.length > 350) {
 //                                                          $('._xmp').eq(i)[0].innerText = $('._xmp').eq(i)[0].innerText.substring(0, 350) + "...";
 //                                                             }
                                                    /* 문자열 자르는 함수 */
-                                                   }
+                                                   } //for문 마지막
                                                 }else{
-                                                   //연규야 채워라 비동기
-                                                   //빈값일떄
                                                    let html = "";
                                                    
                                                    html += "<div style='text-align:center; margin-top:20px;margin-bottom:20px;'>"
@@ -1138,22 +1168,6 @@ group+group {
    </script>
 
    <script>
-      
-   
-   </script>
-
-
-   <script>
-      $('._content').each(
-            function(index, item) {
-
-               $('._content').eq(index)[0].innerText = $('._content').eq(
-                     index)[0].innerText.replace(/(<([^>]+)>)/ig, "");
-
-            });
-   </script>
-
-   <script>
       $(function() {
          a = $('#language').val();
          var b = a.split(",")
@@ -1198,14 +1212,6 @@ group+group {
          document.documentElement.scrollTop = 0;
       }
    </script>
-
-	<!-- 	<script>
-	function enterkey(){
-		if(window.event.keyCode == 13){
-			setSearchTypeSelect();
-		}
-	}
-	</script> -->
 </body>
 
 

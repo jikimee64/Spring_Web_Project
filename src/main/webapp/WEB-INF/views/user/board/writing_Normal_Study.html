@@ -337,36 +337,32 @@
 		}
 
 		$(function() {
-			$("input:file[name='files[0]']")
-					.change(
-							function() {
-								var str = $(this).val();
-								var fileName = str.split('\\').pop()
-										.toLowerCase();
-								var flag = checkFileName(fileName);
-								if (!flag) { //flag가 false면 썸네일 value 비우기
-									swal({
-										title : "확장자 및 특수문자를 체크해주세요.",
-										icon : "warning",
-										buttons : true,
-										dangerMode : true,
-									})
-									$('#ex_file').val("");
-								} else { //정상적으로 올렸을 때(썸네일 업로드)
-									var file = document
-											.querySelector('#ex_file');
-										var fileList = file.files;
+			$("input:file[name='files[0]']").change(function() {
+				var str = $(this).val();
+				var fileName = str.split('\\').pop().toLowerCase();
+				var flag = checkFileName(fileName);
+				if (!flag) { //flag가 false면 썸네일 value 비우기
+					swal({
+						title : "확장자 및 특수문자를 체크해주세요.",
+						icon : "warning",
+						buttons : true,
+						dangerMode : true,
+					})
+					$('#ex_file').val("");
+				} else { //정상적으로 올렸을 때(썸네일 업로드)
+					var file = document.querySelector('#ex_file');
+					var fileList = file.files;
 
-										// 읽기
-										var reader = new FileReader();
-										reader.readAsDataURL(fileList[0]);
+					// 읽기
+					var reader = new FileReader();
+					reader.readAsDataURL(fileList[0]);
 
-										//로드 한 후
-										reader.onload = function() {
-											document.querySelector('#preview').src = reader.result;
-										};
-								}
-							});
+					//로드 한 후
+					reader.onload = function() {
+						document.querySelector('#preview').src = reader.result;
+					};
+				}
+			});
 		});
 	</script>
 
@@ -491,7 +487,10 @@
 						}
 					}
 				}
-			});
+			}).on("summernote.enter", function(we, e) {
+				$(this).summernote("pasteHTML", "<br><br>");
+				e.preventDefault();
+			}); //Enter 후에 <br><br> 제거 하는 코드
 
 			$("p").each(function() {
 				if (!$(this).text().trim().length) {
