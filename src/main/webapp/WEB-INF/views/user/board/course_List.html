@@ -1112,13 +1112,15 @@ keyframes heart-keyframes { 100% {
 			keywordVal = $keyword.val().replace(/ /g,"+");
 			//검색 조건 입력 안했으면 경고창 
 			if(!searchTypeVal){
-				alert("검색 조건을 선택해주세요");
+			
+				swal("검색 조건을 선택해주세요","", "info");
 				$searchTypeSel.focus();
 				return;
 				
 			//검색어 입력 안했으면 검색창
 			}else if(!keywordVal){
-				alert("검색어를 입력해주세요");
+				
+				swal("검색어를 입력해주세요","", "info");
 				$('#keyword').focus();
 				return;
 			}

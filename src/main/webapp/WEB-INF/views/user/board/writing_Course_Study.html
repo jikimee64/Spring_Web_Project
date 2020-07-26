@@ -485,10 +485,10 @@
                   } else {
                 	  if (selectBox6 == "") {
 							swal("글 제목을 입력해주세요", "", "error");
-						}else if(selectBox6.length > 40){
-							swal("글 제목을 40자 이하로 입력해주세요", "", "error");
-						}else if($('.note-editable').html().length > 798){	
-							swal("글 내용을 800자 이하로 입력해주세요", "", "error");
+						}else if(selectBox6.length > 100){
+							swal("글 제목을 100자 이하로 입력해주세요", "", "error");
+						}else if($('.note-editable').html().length > 4000){	
+							swal("글 내용을 4000자 이하로 입력해주세요", "", "error");
 						} else {
 							//swal("작성이 완료되었습니다", "", "success");			
 							$('._submit').unbind();
