@@ -46,35 +46,27 @@ public class AjaxRestController {
 		// 정보넣어주기
 		String username = (String) params.get("username");
 		String useremail = (String) params.get("useremail");
-		System.out.println("-----------가져온 정보 찍어보기----------------");
-		System.out.println("username" + username);
-		System.out.println("useremail" + useremail);
-		System.out.println("-----------------------------------------------");
 		// 결과값 확인
 		int flag = service.emailCheck(username, useremail);
 		
-		System.out.println("asdasdasdssdaasdasdssssda");
 
 		return flag;
 
 	}
 
-	// 인증키 발급 하는 함수
+	// 인증키 6자리 발급해서 사용자가 아이디 찾을때 사용
 	@RequestMapping(value = "makeAuthKey.do", method = RequestMethod.POST)
 	public HashMap<String, String> makeAuthKey(@RequestBody HashMap<String, Object> params) {
-		System.out.println("----------------------------------------------------------컨트롤러-시작-------");
 		// 해쉬맵 생성
 		HashMap<String, String> map = new HashMap<String, String>();
 		String username = (String) params.get("username");
 		String useremail = (String) params.get("useremail");
 		// 이메일 보내기
-		System.out.println("여기탔습니다");
 		String key = service.emailSend(useremail);
 		map.put("key", key);
 
 		// ID 찾아오셈
 		String id = service.findId(username, useremail);
-		System.out.println("여기는 컨트롤러" + id + "여기는 컨트롤러");
 		map.put("id", id);
 
 		return map;
@@ -83,7 +75,6 @@ public class AjaxRestController {
 	// 임시비밀번호를 만들기 전에 이메일과 아이디값 확인하는 함수
 	@RequestMapping(value = "pwCheck.do", method = RequestMethod.POST)
 	public int pwCheck(@RequestBody HashMap<String, Object> params) {
-		System.out.println("----------------------------------------------------------컨트롤러-시작-------");
 		String userid = (String) params.get("userId");
 		String useremail = (String) params.get("userEmail");
 		// 서비스단에서 있는 이메일과, 아이디 인지 확인
@@ -91,17 +82,11 @@ public class AjaxRestController {
 		result = service.searchId(userid, useremail);
 
 		if (result == 0) {
-			System.out.println("--id 비어있어 --");
 
 			return result;
 
 		} else {
-			System.out.println("result : " + result);
-			System.out.println("----------------------------------------------------------컨트롤러-중간-------");
 			// service.makeNewPw(userid,useremail);
-			System.out.println("----------------------------------------------------------컨트롤러-끝-------");
-			System.out.println("이메일 발급후 리턴 전");
-			System.out.println("result : " + result);
 			return result;
 		}
 
@@ -110,7 +95,6 @@ public class AjaxRestController {
 	// 임시비밀번호 발급 하는 함수
 	@RequestMapping(value = "makeNewPWD.do", method = RequestMethod.POST)
 	public void makeNewPWD(@RequestBody HashMap<String, Object> params) {
-		System.out.println("----------------------------------------------------------컨트롤러-시작-------");
 		String userid = (String) params.get("userId");
 		String useremail = (String) params.get("userEmail");
 		service.makeNewPw(userid, useremail);
@@ -120,7 +104,6 @@ public class AjaxRestController {
 	// 아이디 중복체크
 	@RequestMapping(value = "idcheck.do", method = RequestMethod.POST)
 	public int idcheck(String id) throws ClassNotFoundException {
-		System.out.println(id + " : user_id 컨트롤러");
 		int userid = service.idcheck(id);
 
 		return userid;
@@ -136,26 +119,19 @@ public class AjaxRestController {
 		String s_seq = (String) params.get("s_seq");
 
 		// 확인용
-		System.out.println("잘오나욤!!");
-		System.out.println("아이디 : " + userid);
-		System.out.println("글번호 : " + s_seq);
 
-		// 인서트 결과 0,1,2 로 표시
+		// 인서트 결과 0,1, 로 표시
 		int result = service.applyNomalStudy(s_seq, userid);
-		System.out.println("잘됐나 확인" + result);
 
-		return result; // 0 또는 1 또는 2 리턴
+		return result; // 0 또는 1 리턴
 	}
 
 	// 신고하기(게시판)
 	@RequestMapping(value = "blameinsert.do", method = RequestMethod.POST)
 	public int blameInsert(@RequestBody HashMap<String, Object> params, Principal principal) {
 
-		System.out.println("신고하기 컨트롤러");
 		String current_userid = principal.getName(); // 현재 로그인한 사용자
-		System.out.println(params);
 		int result = service.blameInsert(params, current_userid); // 모달 내용과 로그인유저 정보 전달
-		System.out.println("인서트 성공" + result);
 		return result;
 
 	}
@@ -164,8 +140,6 @@ public class AjaxRestController {
 	@RequestMapping(value = "deleteFromMessage.do", method = RequestMethod.POST)
 	public List<HashMap<String, Object>> deleteFromMessage(@RequestBody HashMap<String, Object> params, Principal principal,
 			Criteria_Board cri_b) {
-		System.out.println("쪽지삭제 컨트롤러");
-		System.out.println(params);
 
 		int result = service.deleteMessage(params);
 
@@ -188,21 +162,14 @@ public class AjaxRestController {
 			map.put("user_id", user_id);
 			map.put("cri_b", cri_b);
 
-			System.out.println("아이디 : " + user_id);
 			messageList = mservice.getMessageList(map);
 
-			System.out.println("messageList:" + messageList);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		System.out.println("1.다음버튼이 있니?: " + pageMakerb.isNext());
-		System.out.println("2.이게 받은쪽지인가 : " + messageList.toString());
 
-		System.out.println("3.받은 쪽지함으로 이동이동(연규가씀)");
-		System.out.println("4.쪽지 삭제 성공");
-		System.out.println("5.messageList: " + messageList);
 
 		return messageList;
 	}
@@ -212,8 +179,6 @@ public class AjaxRestController {
 		@RequestMapping(value = "deleteToMessage.do", method = RequestMethod.POST)
 		public PageMaker_Board deleteToMessage(@RequestBody HashMap<String, Object> params, Principal principal,
 				Criteria_Board cri_b) {
-			System.out.println("쪽지삭제 컨트롤러");
-			System.out.println(params);
 
 			int result = service.deleteMessage(params);
 
@@ -236,22 +201,14 @@ public class AjaxRestController {
 				map.put("user_id", user_id);
 				map.put("cri_b", cri_b);
 
-				System.out.println("아이디 : " + user_id);
 				messageList = mservice.getMessageList(map);
 
-				System.out.println("messageList:" + messageList);
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
-			System.out.println("pageMakreb : " + pageMakerb.toString());
-			System.out.println("1.다음버튼이 있니?: " + pageMakerb.isNext());
-			System.out.println("2.이게 받은쪽지인가 : " + messageList.toString());
 
-			System.out.println("3.받은 쪽지함으로 이동이동(연규가씀)");
-			System.out.println("4.쪽지 삭제 성공");
-			System.out.println("5.messageList: " + messageList);
 
 			return pageMakerb;
 		}
@@ -259,8 +216,6 @@ public class AjaxRestController {
 	// 쪽지함에서 유저정보 모달 불러오기
 	@RequestMapping(value = "userInfoModal.do", method = RequestMethod.POST)
 	public List userInfoModal(@RequestBody HashMap<String, Object> params) {
-		System.out.println("유저정보 오나요");
-		System.out.println("유저정보:" + params);
 
 		List list =  new ArrayList();
 		
@@ -269,24 +224,21 @@ public class AjaxRestController {
 		
 		list.add(userInfoModal);
 		list.add(userBoardModal);
-		System.out.println("리스트에 유저정보 담기: " + list);
 		return list;
 	}
 
 	// 이메일 중복체크
 	@RequestMapping(value = "onlyEmailCheck.do", method = RequestMethod.POST)
 	public int onlyEmailCheck(String user_email) throws ClassNotFoundException {
-		System.out.println(user_email + " : user_id 컨트롤러");
 		int result = service.onlyEmailCheck(user_email);
 
 		return result;
 
 	}
 
-	// 마이페이지 모집중 스터디 비동기
+	// 마이페이지 모집중 스터디 비동기// 스터디 정보랑 , 승인완료된 카운트 값까지 넘겨받음
 	@RequestMapping(value = "recrutingStudy.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> recrutingStudy(@RequestBody HashMap<String, Object> params) {
-		System.out.println(params + " : 모집중 컨트롤러");
 		List<HashMap<String, Object>> list = null;
 
 		list = service.recrutingStudy(params);
@@ -294,10 +246,9 @@ public class AjaxRestController {
 
 	}
 
-	// 마이페이지 참여중 스터디 비동기
+	// 마이페이지 참여중 스터디 비동기// 스터디 정보랑 , 승인완료된 카운트 값까지 넘겨받음
 	@RequestMapping(value = "inStudy.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> inStudy(@RequestBody HashMap<String, Object> params) {
-		System.out.println(params + " : 참여중 컨트롤러");
 		List<HashMap<String, Object>> list = null;
 
 		list = service.inStudy(params);
@@ -309,17 +260,14 @@ public class AjaxRestController {
 	// 차트JS
 	@RequestMapping(value = "mainChart.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> mainChart() {
-		System.out.println("차트데이터");
 		List<HashMap<String, Object>> list = null;
 		list = service.mainChart();
-		System.out.println("차트 데이터 : " + list);
 		return list;
 	}
 
 	// 워드클라우드 차트
 	@RequestMapping(value = "wordCloud.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> wordCloud() {
-		System.out.println("차트데이터");
 		List<HashMap<String, Object>> list = null;
 		list = service.wordCloud();
 		return list;
@@ -332,7 +280,6 @@ public class AjaxRestController {
 		HashMap<String, Object> map = new HashMap();
 		map.put("user_id", principal.getName());
 		list.add(map);
-		System.out.println("우철이다!!! : " + list);
 		return list;
 	}
 
@@ -340,7 +287,6 @@ public class AjaxRestController {
 	@RequestMapping(value = "reject.do", method = RequestMethod.POST)
 	int reject(@RequestBody HashMap<String, Object> params) {
 		int result = service.reject(params);
-		System.out.println("거절 결과 : " + result);
 		return result;
 	}
 
@@ -351,7 +297,6 @@ public class AjaxRestController {
 		HashMap<String, Object> map = new HashMap();
 		map.put("user_id", principal.getName());
 		list.add(map);
-		System.out.println("취소 결과 : " + list);
 		return list;
 
 	}
@@ -363,7 +308,6 @@ public class AjaxRestController {
 		String user_id = principal.getName();
 		params.put("user_id", user_id);
 		int a = service.deleteBookMark(params);
-		System.out.println("북마크 삭제결과 : " + a);
 		return bookmark;
 	}
 
@@ -373,8 +317,6 @@ public class AjaxRestController {
 	// 스터디게시판 필터
 	@RequestMapping(value = "studyBoardFilter.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public List studyBoardFilter(@RequestBody HashMap<String, Object> params, Criteria_Board cri_b) {
-		System.out.println("테스트1");
-		System.out.println("이건떠야됨 " + params.get("language"));
 
 		paramsTemp = params;
 
@@ -390,14 +332,11 @@ public class AjaxRestController {
 		filterSize = listSize.size();
 
 		pageMakerb.setTotalCount(listSize.size());
-		System.out.println("제발.." + listSize);
-		System.out.println("이거제발맞아라 : " + listSize.size());
 
 		temp.add(list);
 		temp.add(onlineInfo);
 		temp.add(pageMakerb);
 
-		System.out.println("우철 : " + temp);
 
 		return temp;
 	}
@@ -405,7 +344,6 @@ public class AjaxRestController {
 	// 마이페이지 내가쓴 댓글 비동기
 	@RequestMapping(value = "commentList.do", method = RequestMethod.POST)
 	List<HashMap<String, Object>> commentList(@RequestBody HashMap<String, Object> params) {
-		System.out.println(params + " : 댓글리스트  컨트롤러");
 		List<HashMap<String, Object>> list = null;
 
 		list = service.commentList(params);
@@ -413,11 +351,10 @@ public class AjaxRestController {
 
 	}
 
-	// 방장이 모집마감 버튼 눌러서 스터디 모집 마감하기 
+	// 방장이 모집마감 버튼 눌러서 스터디 모집 마감하기 (인원수 초과시 불가능 미만일경우는 가능)
 	@RequestMapping(value = "finishRecruit.do", method = RequestMethod.POST)
 	public int finishRecruit(@RequestBody HashMap<String, Object> params) {
 		String s_seq = (String) params.get("s_seq");
-		System.out.println(s_seq);
 		//해당글에 승인 완료된 인원수 
 		int result = service.checkA_staCount(s_seq);
 		
@@ -433,14 +370,13 @@ public class AjaxRestController {
 		
 	}
 
-	// 일반스터디 지원취소하기
+	// 스터디 게시판에서 지원취소하기 버튼을 누르면 작동
 	@RequestMapping(value = "applycancel.do", method = RequestMethod.POST)
 	public void applycancelNomalStudy(@RequestBody HashMap<String, Object> params, Principal principal) {
 
 		// 아이디와 강의 글번호 받기
 		String user_id = principal.getName();
 		String s_seq = (String) params.get("s_seq");
-		System.out.println("여기까지 잘 왔으면 쏘리질러!!!!!!!!");
 
 		service.applycancelNomalStudy(s_seq, user_id);
 
@@ -454,7 +390,6 @@ public class AjaxRestController {
 	public List courseBoardFilter(@RequestBody HashMap<String, Object> params, Criteria cri_b, Principal principal) {
 
 		paramsTemp2 = params;
-		System.out.println("제발 타지마라제발제발제발");
 
 		PageMaker pageMakerb = new PageMaker();
 		pageMakerb.setCri(cri_b);
@@ -466,7 +401,6 @@ public class AjaxRestController {
 		List<HashMap<String, Object>> list = service.courseBoardFilter(params, cri_b);
 
 		filterSize2 = listSize.size();
-		System.out.println("필터링된 개수(온라인) : " + listSize.size());
 
 		pageMakerb.setTotalCount(listSize.size());
 
@@ -477,7 +411,6 @@ public class AjaxRestController {
 		temp.add(pageMakerb);
 		temp.add(seqlist);
 
-		// System.out.println("우철 : " + temp);
 
 		return temp;
 	}
@@ -486,13 +419,10 @@ public class AjaxRestController {
 	// 유ㅗ저사진 가져오기
 	@RequestMapping(value = "userInfoChat.do", method = RequestMethod.POST)
 	public List<HashMap<String, Object>> userInfoChat(@RequestBody HashMap<String, Object> params, String user_id) {
-		System.out.println("유저정보 오나요");
-		System.out.println("유저정보:" + params);
 
 		List<HashMap<String, Object>> list = null;
 		
 		list = service.userInfoChat(params);
-		System.out.println("리스트에 유저정보 담기: " + list);
 		return list;
 	}
 
@@ -501,15 +431,13 @@ public class AjaxRestController {
 	
 	
 	
-	//검색자동완성
+	//검색자동완성    (쪽지쓸때 아이디란에 글자를 쓰면 DB안의 아이디 목록을 가져와서 자동완성 시켜준다 )
 	@RequestMapping(value = "getAutoKeyword.do", method = RequestMethod.POST)
 	public List<HashMap<String, Object>> getAutoKeyword(@RequestBody HashMap<String, Object> params) {
-		System.out.println(params.get("keyword"));
 		String keyword = (String) params.get("keyword");
 		List<HashMap<String, Object>> list = null;
 		list = service.getAutoKeyword(keyword);
 		
-		System.out.println(list+"컨트롤러에서 가져온 유저 아이디목록 확인하기 ");
 		return list;
 	}
 

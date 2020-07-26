@@ -77,12 +77,10 @@ public class BoardController {
 			@RequestParam(value="root",required=false) String root
 			) throws ClassNotFoundException, SQLException {
 		
-		System.out.println(keyword +"keyword를 보드 컨트롤러에서 찍어봅니다. 룰루랄라");
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
 	
 		/////////////////////////////////////////////////////////////////////////////
-		System.out.println(keyword+"courseListPage  에서 찍어보기 ");
 		List<String> keywordCollec = new ArrayList();
 		if(keyword != null) {
 		String[] ccc = keyword.split("\\+");
@@ -90,11 +88,9 @@ public class BoardController {
 		keywordCollec.add(ccc[i]);
 		}
 		}
-		System.out.println("keywordCollec    "+keywordCollec+ "  이렇게 나와요");
 		///////////////////////////////////////////////////////////////////////////////
 		
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
-		System.out.println("온라인 강의 : " + onlineInfo);
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
@@ -105,24 +101,17 @@ public class BoardController {
 		
 		String redirectStr = "";
 		Map<String, Object> redirect = (Map<String, Object>) RequestContextUtils.getInputFlashMap(request);
-		System.out.println("이게왜널? " + redirect);
 		if(redirect != null) {
 			redirectStr = (String)redirect.get("root");
-			System.out.println("호호ss: " + redirectStr);
 		}
 		
-		System.out.println("keyword : " + keyword);
-		System.out.println("searchType : " + searchType);
 		if(root != null) {
 			HashMap<String, Object> map4 = new HashMap();
 			map4.put("keyword",keywordCollec );
 			list = service.getStudyBoardList(cri_b,map4);
-			System.out.println("호호 : " + redirectStr);
 			if(keyword == null) { //처음동기식으로 왔을때
-				System.out.println("처음엔 여길..");
 				pageMakerb.setTotalCount(service.getStudyBoardCount());
 			}else if(root.equals("search")){ //검색만 했을때(검색결과에 대한 사이즈 필요,리밋X)
-				System.out.println("..");
 				List<Map<String, Object>> listSize = service.getStudyBoardListSize(cri_b,map4);
 				pageMakerb.setTotalCount(listSize.size());
 				model.addAttribute("type", "Search");
@@ -131,10 +120,6 @@ public class BoardController {
 			}
 			
 		}else {
-			System.out.println("===============나 지금 엘스문 탄다 ===========");
-			System.out.println("filterSize: " + AjaxRestController.filterSize);
-			System.out.println("paramsTemp : " + AjaxRestController.paramsTemp);
-			System.out.println("필터된 후엔 여길..");
 			map = AjaxRestController.paramsTemp;
 			map.put("keyword",keywordCollec );
 			list = service.getStudyBoardListFilter(cri_b, map);
@@ -147,15 +132,12 @@ public class BoardController {
 			model.addAttribute("type", "FS");
 			model.addAttribute("searchType", cri_b.getSearchType());
 			model.addAttribute("keyword", cri_b.getKeyword());
-			System.out.println("필터링+검색 사이즈 : " + listSizeSearch.size());
 			pageMakerb.setTotalCount(listSizeSearch.size());
 			AjaxRestController.filterSize = 0;
 		}
-		System.out.println("===============나 지금 리턴하러간다 ===========");
 		/* pageMakerb.setTotalCount(list.size()); */
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
-		System.out.println("넘기는 onlineInfo : " + onlineInfo);
 		model.addAttribute("pageMakerb", pageMakerb);
 		
 		return "user/board/study_List"; // study_List.html
@@ -169,8 +151,6 @@ public class BoardController {
 	@RequestMapping("study_FilterList.do")
 	public String studyListFilterPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
 
-		System.out.println("받은 page :" + cri_b.getPage());
-		System.out.println("받은 perpagenum :" + cri_b.getPerPageNum());
 		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
@@ -187,7 +167,6 @@ public class BoardController {
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<HashMap<String, Object>> list = aservice.studyBoardFilter(map, cri_b);
 		
-		System.out.println("전체필터개수 : " + list.size());
 		
 		pageMakerb.setTotalCount(filterSize);
 		
@@ -203,8 +182,6 @@ public class BoardController {
 		
 		model.addAttribute("type", "Search");
 		
-		System.out.println("시작 : " + pageMakerb.getStartPage());
-		System.out.println("끝 : " + pageMakerb.getEndPage());
 		
 		model.addAttribute("type", "filter");
 		
@@ -218,19 +195,13 @@ public class BoardController {
 	public String boardRegister(Study study, HttpServletRequest request, Principal principal,
 			RedirectAttributes redirectAttr) {
 
-		System.out.println("넘어온 데이터 " + study.toString());
 
 		try {
 			// 서비스가서 DB에 등록
-			System.out.println("서비스는 잘가냐 ?");
 			service.studyReg(study, request, principal);
 		} catch (Exception e) {
-			System.out.println("컨트롤러 에러");
 			System.out.println(e.getMessage());
-
 		}
-		System.out.println("리턴 전...");
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@");
 		redirectAttr.addAttribute("root","header");
 		// return "user/board/study_List";
 		
@@ -253,19 +224,14 @@ public class BoardController {
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
 	public String writingNormalStudyEdit(String page, String perPageNum, RedirectAttributes redirect, Study study, Principal principal,
 			HttpServletRequest request) {
-		System.out.println("일반게시글수정@@");
-		System.out.println("넘어온 데이터22 " + study.toString());
 
 		try {
 			// 서비스가서 DB에 등록
-			System.out.println("서비스는 잘가냐 ?");
 			service.studyNormalEdit(study, request, principal);
 		} catch (Exception e) {
-			System.out.println("컨트롤러 에러");
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println("리턴 전ㄴㄴㄴㄴ...");
 
 		redirect.addAttribute("page", page);    
 		redirect.addAttribute("perPageNum", perPageNum);  
@@ -280,22 +246,17 @@ public class BoardController {
 	public String registerOnline(RedirectAttributes redirectAttr,
 			Study study, Principal principal, HttpServletRequest request) {
 
-		System.out.println("넘어온 데이터 " + study.toString());
-		System.out.println("넘어온 강의번호 " + study.getL_seq_temp());
 			
 		study.setL_seq(Integer.parseInt(study.getL_seq_temp()));
 		
 		try {
 			// 서비스가서 DB에 등록
-			System.out.println("서비스는 잘가냐 ?");
 			service.studyOnlineReg(study, request, principal);
 
 		} catch (Exception e) {
-			System.out.println("컨트롤러 에러");
 			System.out.println(e.getMessage());
 
 		}
-		System.out.println("리턴 전...!!");
 		redirectAttr.addAttribute("root","header");
 		return "";
 		// return "user/board/study_List";
@@ -307,14 +268,12 @@ public class BoardController {
 
 	@RequestMapping("board_Select.do")
 	public String boardSelectPage() {
-		System.out.println("온라인인지 일반인지 셀렉트하는 페이지로 이동이동(연규가씀)");
 
 		return "user/board/board_Select";
 	}
 
 	@RequestMapping("writing_Normal_Study.do")
 	public String writingNormalStudyPage() {
-		System.out.println("셀렉트하는 페이지에서 일반전용 글쓰기 페이지로 이동이동(연규가씀)");
 
 		return "user/board/writing_Normal_Study";
 	}
@@ -324,11 +283,7 @@ public class BoardController {
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
 
-		System.out.println("s_seq 값 : " + s_seq);
-		System.out.println("page 값 : " + page);
-		System.out.println("perPageNum 값 : " + perPageNum);
 		
-		System.out.println("게시판 디테일 페이지 입니다.");
 		String user_id = principal.getName();
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
@@ -346,7 +301,6 @@ public class BoardController {
 			Map<String, Object> study = service.getStudy(s_seq);
 			Map<String, Object> onlineInfo = service.onlineDetailInfo(s_seq);
 
-			System.out.println("onlineinfo : " + onlineInfo);
 
 			model.addAttribute("study", study);
 			model.addAttribute("onlineInfo", onlineInfo);
@@ -360,13 +314,7 @@ public class BoardController {
 			model.addAttribute("user_id", user_id);
 			model.addAttribute("heart", heart);
 			model.addAttribute("commentList", commentList);
-			System.out.println("목록 -> 일반 ************: " + study);
 
-
-			System.out.println("1.컨트롤러 댓글:" + commentList.toString());
-
-
-			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -394,12 +342,10 @@ public class BoardController {
 	// 글 수정 페이지 이동
 	@RequestMapping("writing_Normal_Study_Edit.do")
 	public String writingNormalStudyEditPage(String s_seq, String page, String perPageNum, Model model) {
-		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 		Map<String, Object> study = service.getStudy(s_seq);
 		model.addAttribute("study", study);
 		model.addAttribute("page", page);
 		model.addAttribute("perPageNum", perPageNum);
-		System.out.println("study" + study);
 
 		return "user/board/writing_Normal_Study_Edit";
 	}
@@ -408,11 +354,9 @@ public class BoardController {
 	@RequestMapping("writing_Common_Study_Delete.do")
 	public String writingNormalStudyDelete(String page, String perPageNum, Model model, String s_seq, RedirectAttributes redirect)
 			throws ClassNotFoundException, SQLException {
-		System.out.println("스터디리스트페이지로 이동이동(연규가씀)");
 		//Criteria_Board cri_b = new Criteria_Board();
 		// 게시글 삭제
 		int result = service.delete(s_seq);
-		System.out.println(result + "개가 되었습니다.");
 		//PageMaker_Board pageMakerb = new PageMaker_Board();
 		//pageMakerb.setCri_b(cri_b);
 
@@ -445,19 +389,16 @@ public class BoardController {
 
 	@RequestMapping("board_Support_Status.do")
 	public String boardSupportStatusPage() {
-		System.out.println("일반게시판 상세페이지에서 본인이 쓴글을 수정하는 페이지로 이동이동(연규가씀)");
 
 		return "user/board/board_Support_Status";
 	}
 
-	// 좋아요 넣는 로직
+	// 하트 누르면 좋아요 insert 하기
 	@RequestMapping(value = "heart.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int heartinsert(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
 		String user_id = principal.getName();
 		String s_seq = (String) params.get("s_seq");
-		System.out.println(user_id);
-		System.out.println(s_seq);
 
 		try {
 			service.heartinsert(user_id, s_seq);
@@ -477,12 +418,10 @@ public class BoardController {
 			throws IOException {
 		String user_id = principal.getName();
 		Users user = mservice.getUsers(user_id);
-		System.out.println("user" + user);
 		
 		String s_seq = (String) params.get("s_seq");
 		String r_content = (String) params.get("r_content");
 		String r_nickname = user.getNickname();
-		System.out.println("nickname" + r_nickname);
 		
 		Comment cm = new Comment();
 		cm.setS_seq(Integer.parseInt(s_seq));
@@ -493,7 +432,6 @@ public class BoardController {
 		service.commentInsert(cm);
 
 		List<Map<String, Object>> commentList = service.getComment(s_seq);
-		System.out.println("댓글리스트: " + commentList);
 		return commentList;
 	}
 
@@ -518,7 +456,7 @@ public class BoardController {
 
 	}
 
-	// 댓글 가져오는 함수
+	// 댓글목록 가져오는 함수
 	@RequestMapping(value = "SelectCommentList.do", method = RequestMethod.POST)
 	@ResponseBody
 	public List<Map<String, Object>> getCommentList(@RequestBody Map<String, Object> params, Principal principal)
@@ -526,8 +464,6 @@ public class BoardController {
 		String s_seq = (String) params.get("s_seq");
 
 		List<Map<String, Object>> commentList = service.getComment(s_seq);
-		System.out.println("----commentList 찍어보기----" + commentList);
-		System.out.println("0. 코멘트리스트 찍어보기:" + commentList);
 
 		return commentList;
 
@@ -546,16 +482,14 @@ public class BoardController {
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_seq(Integer.parseInt(r_seq));
 		cm.setR_content(r_content);
-		System.out.println(cm.toString());
 		service.commentUpdate(cm);
 
-		System.out.println("수정 로직 입성!");
 
 		List<Map<String, Object>> commentList = service.getComment(s_seq);
 		return commentList;
 	}
 
-	// 댓글 갯수 세기
+	// 해당글의 댓글 갯수 세기
 	@RequestMapping(value = "countComment.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int countComment(@RequestBody Map<String, Object> params, Principal principal) throws IOException {
@@ -565,7 +499,6 @@ public class BoardController {
 		cm.setS_seq(Integer.parseInt(s_seq));
 		int result = service.countComment(cm);
 
-		System.out.println("**********************************************");
 
 		return result;
 	}
@@ -602,7 +535,6 @@ public class BoardController {
 	@RequestMapping("my_Writing_Common_Study_Detail.do")
 	public String myWritingStudyDetailPage(String s_seq, Model model, Principal principal) {
 
-		System.out.println("게시판 디테일 페이지 ㅇ입니다.");
 		String user_id = principal.getName();
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
@@ -625,10 +557,6 @@ public class BoardController {
 			model.addAttribute("sessionid", user_id);
 			model.addAttribute("heart", heart);
 			model.addAttribute("commentList", commentList);
-			System.out.println("우철이는 : " + commentList);
-			System.out.println("목록 -> 일반 ************: " + study);
-
-			System.out.println("일반게시판에서 리스트에 있는거 클릭시 디테일 페이지로 이동이동(연규가씀)");
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -644,48 +572,27 @@ public class BoardController {
 			throws Exception {
 
 		PrintWriter out = response.getWriter();
-		// PrintWriter out = response.getWriter();
-		// 업로드할 폴더 경로
 		String realFolder = "C:\\summernote\\";
-		// String realFolder =
-		// request.getServletContext().getRealPath("/summernote/upload/");
 
-		System.out.println("업로드할 폴더경로 찍어봅니다.");
-		System.out.println(realFolder);
 		UUID uuid = UUID.randomUUID(); // 랜덤한키 생성해주는 객체
 
 		String fileExtension = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 		String storedFileName = uuid.toString().replaceAll("-", "") + fileExtension;
-		System.out.println("우철 : " + storedFileName);
-		// String filePath = "C:\\Users\\ksks7\\OneDrive\\바탕
-		// 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\";
-		// String filePath = "file:\\C:\\Users\\ksks7\\OneDrive\\바탕
-		// 화면\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp2\\wtpwebapps\\nosangStudy\\board\\profileUpload\\";
 
 		File f = new File(realFolder + storedFileName);
-		// File f = new File(filepath);
 		if (!f.exists()) {
 			f.mkdirs(); // 존재하지 않으면 경로에 폴더를 생성해서 만들어준다.
 		}
 		Boolean a = f.isAbsolute();
-		System.out.println(a);
 		Boolean b = f.canExecute();
-		System.out.println(b);
 
-		// FileOutputStream fs = new FileOutputStream(filePath + "\\"+
-		// file.getOriginalFilename());//
-		// fs.write(file.getBytes());//
 
 		file.transferTo(f);
-		// out.println(filePath + storedFileName);
-		// out.println("profileUpload/"+email+"/"+str_filename);
 
 		int as = storedFileName.lastIndexOf(".");
 		String bs = storedFileName.substring(0, as);
-		System.out.println("아오 : " + bs);
 
 		response.setContentType("text/html;charset=utf-8");
-		System.out.println("sss");
 		out.println("/filepath/" + storedFileName);
 		out.close();
 	}

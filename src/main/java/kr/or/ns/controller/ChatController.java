@@ -40,10 +40,8 @@ public class ChatController {
 	// 채팅리스트방 입장
 	@RequestMapping("roomlist.do")
 	public String roomListPage(Model model) throws ClassNotFoundException, SQLException {
-		System.out.println("채팅 페이지로 이동이동(연규가씀)");
 		List<HashMap<String, Object>> roomList = service.getListChatRoom();
 		model.addAttribute("roomList", roomList);
-		System.out.println("roomList :" + roomList);
 
 		return "chat/roomlist";
 	}
@@ -52,11 +50,7 @@ public class ChatController {
 	@ResponseBody
 	public List<HashMap<String, Object>> chatRoomInsert(@RequestBody Map<String, Object> params, Principal principal)
 			throws IOException {
-		System.out.println("(채팅방 생성 후 DB 인서트)");
 
-		System.out.println("방제목 : " + params.get("ch_title"));
-		System.out.println("방설명 : " + params.get("ch_description"));
-		System.out.println("방비번 : " + params.get("ch_pw"));
 		if (params.get("ch_pw") != null) {
 			params.put("ch_pw_check", 1);
 		} else {
@@ -65,7 +59,6 @@ public class ChatController {
 		params.put("user_id", principal.getName());
 		service.registerRoom(params);
 		List<HashMap<String, Object>> list = service.getListChatRoom();
-		System.out.println("채팅룸list" + list);
 		return list;
 	}
 
@@ -78,7 +71,6 @@ public class ChatController {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 		String datestr = sdf.format(cal.getTime());
-		System.out.println(datestr);
 
 		String ch_seq = (String) params.get("ch_seq");
 		String user_id = principal.getName();
@@ -91,7 +83,6 @@ public class ChatController {
 		cm.setUser_id(user_id);
 		int result = service.memberInsert(cm);
 		ChatRoom chatroom = service.getChatRoom(ch_seq);
-		System.out.println("삽입 결과 : " + result);
 
 		List<HashMap<String, Object>> list = service.chatRoomMemberGet(ch_seq);
 		ChatRoom cr = service.getChatRoom(ch_seq);
@@ -119,16 +110,12 @@ public class ChatController {
 		ChatRoom cr = service.getChatRoom(ch_seq);
 		String master = cr.getUser_id();
 		
-		System.out.println("user_id : " + user_id);
-		System.out.println("master : " + master);
 		if(!user_id.equals(master)) { 
-			System.out.println("오ㅓ지마라 너는");
 			int result = service.chatRoomOut(cm);
 		}
 	
 		List<HashMap<String, Object>> roomList = service.getListChatRoom();
 		model.addAttribute("roomList", roomList);
-		System.out.println("roomList : " + roomList);
 
 		return "chat/roomlist";
 	}
@@ -139,7 +126,6 @@ public class ChatController {
 		String pw = "";
 		Map<String, String> map = new HashMap<String, String>();
 		String ch_seq = (String) params.get("ch_seq");
-		System.out.println("방번호 : " + ch_seq);
 		if (ch_seq != null && !ch_seq.trim().equals("")) {
 			pw = service.roomPw(ch_seq);
 			map.put("pw", pw);
@@ -150,7 +136,6 @@ public class ChatController {
 	// 채팅방 내부에서 멤버리스트 보는 페이지로 이동
 	@RequestMapping("chatmemberlist.do")
 	public String chatmemberlist() throws ClassNotFoundException, SQLException {
-		System.out.println("채팅멤버 리스트 페이지로 이동이동(연규가씀)");
 
 		return "chat/memberlist";
 	}
@@ -158,7 +143,6 @@ public class ChatController {
 	// 채팅방 내부에서 멤버리스트 보는 페이지로 이동
 	@RequestMapping("chatDelete.do")
 	public String chatDelete(String ch_seq) throws ClassNotFoundException, SQLException {
-		System.out.println("채팅방 삭제");
 		int result = service.chatDelete(ch_seq);
 		return "redirect:/chat/roomlist.do";
 	}
@@ -174,7 +158,6 @@ public class ChatController {
 		//map.put("user_id", master);
 		//map.put("profile_img", master);
 		//list.add(0, map);
-		System.out.println("채팅룸 멤버 list" + list);
 		return list;
 	}
 	

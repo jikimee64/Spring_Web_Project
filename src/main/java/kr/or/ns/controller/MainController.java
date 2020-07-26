@@ -20,11 +20,9 @@ public class MainController {
 	
 	@RequestMapping("main.do")
 	public String mainPage(Model model) {
-		System.out.println("메인으로 이동이동(연규가씀)");
 		
 		List<Map<String, Object>> mainList = mainservice.getNewListStudy();
 		model.addAttribute("mainList", mainList);
-		System.out.println("mainList : " + mainList);
 		
 		return "user/main"; 
 	}

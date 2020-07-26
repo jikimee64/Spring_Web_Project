@@ -42,7 +42,6 @@ public class MyPageController {
 	@RequestMapping(value = "mypage.do")
 	public String myPage(Model model, Principal principal) {
 		String users = principal.getName();
-		System.out.println("유저정보" + users);
 
 		List<Map<String, Object>> list = null;
 		list = service.myPagelist(users); // 북마크 리스트
@@ -54,7 +53,6 @@ public class MyPageController {
 		int rs = service.recruit_study(users); // 모집중 스터디 개수
 
 		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
-		System.out.println(studylist + "찍어보기");
 		
 
 		model.addAttribute("list", list);
@@ -65,10 +63,7 @@ public class MyPageController {
 		model.addAttribute("js", js);
 		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
-		System.out.println("받아온 스터디리스트" + studylist);
-		System.out.println("받아온 북마크리스트" + list);
 
-		System.out.println("유저정보 확인" + user);
 
 		return "user/mypage/mypage";
 	}
@@ -76,19 +71,16 @@ public class MyPageController {
 	// 유저 상세정보 뿌리기
 	@RequestMapping(value = "MyPageUserDetail.do")
 	public String mypageUserEditView(Model model, Principal principal) {
-		System.out.println("상세정보");
 		Users user = service.getUsers(principal.getName());
 		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
 		model.addAttribute("skill", list);
-		System.out.println(user);
 		return "user/mypage/mypage_User_Detail.html";
 	}
 
 	// 유저정보 수정페이지로 이동
 	@RequestMapping(value = "MyPageUserEdit.do")
 	public String mypageUserEdit(Model model, Principal principal) {
-		System.out.println("여길 타는건가");
 		Users user = service.getUsers(principal.getName());
 		List<HashMap<String, String>> list = service.getSkill(principal.getName());
 		model.addAttribute("member", user);
@@ -105,13 +97,9 @@ public class MyPageController {
 			user.setUser_pwd(this.bCryptPasswordEncoder.encode(user.getUser_pwd()));
 		}
 
-		System.out.println("컨트롤러1");
-		System.out.println(user);
-		System.out.println("userrrrr:" + user);
 
 		service.MyPageUserEdit(user, request);
 
-		System.out.println("컨트롤러2");
 
 		return "redirect:mypage.do";
 //		return "user/mypage/mypage.html";
@@ -132,7 +120,6 @@ public class MyPageController {
 	@RequestMapping("mypage_Myboard.do")
 	public String myBoardPage(Model model, Principal principal) {
 		String users = principal.getName();
-		System.out.println("유저정보" + users);
 
 		List<Map<String, Object>> list = null;
 		list = service.myPagelist(users); // 북마크 리스트
@@ -152,10 +139,7 @@ public class MyPageController {
 		model.addAttribute("js", js);
 		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
-		System.out.println("받아온 스터디리스트" + studylist);
-		System.out.println("받아온 북마크리스트" + list);
 
-		System.out.println("유저정보 확인" + user);
 
 		return "user/mypage/mypage_Myboard";
 	}
@@ -163,16 +147,12 @@ public class MyPageController {
 	// 참여현황 페이지 정보 뿌려주기
 	@RequestMapping(value = "SupportStatus.do")
 	public String SupportStatus(String s_seq, Model model, Principal principal) {
-		System.out.println("스터디 상세페이지");
 		List<HashMap<String, Object>> status = service.studyStatus(s_seq);
-		System.out.println("status~!~!" + status);
 		String user_id = principal.getName();
-		System.out.println("프린서플 네임 : " + user_id);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("role_name", "방장");
 		map.put("s_seq", s_seq);
 		HashMap<String, Object> writer = service.getRole(map);
-		System.out.println("writer : " + writer);
 		String a = (String) writer.get("user_id");
 		String s_board_staus = service.getStatus(s_seq);
 		model.addAttribute("id", user_id);
@@ -181,12 +161,6 @@ public class MyPageController {
 		model.addAttribute("s_seq", s_seq);
 		model.addAttribute("s_board_staus", s_board_staus);
 		
-		System.out.println("뭐뭐 찍히나 봅니다");
-		System.out.println(user_id);
-		System.out.println(status);
-		System.out.println(a);
-		System.out.println(s_seq);
-		System.out.println(s_board_staus);
 		
 		return "user/mypage/mypage_Support_Status.html";
 

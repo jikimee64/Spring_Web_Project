@@ -28,20 +28,6 @@ public class MessageController {
 
 	
 	
-	//받은 쪽지 목록
-//	@RequestMapping("mypage_Message_From_Board.do")
-//	public String myMessageFromBoardPage(Principal principal, Model model) {
-//		// 받은 쪽지 뿌려주기
-//		List<Message> mlist = mservice.getListMessage(principal.getName());
-//		model.addAttribute("message", mlist);
-//
-//		System.out.println("이게 받은쪽지인가 : " + mlist);
-//		
-//		System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
-//		return "user/mypage/mypage_Message_From_Board";
-//	}
-//	
-	
 	
 	//받은 쪽지 목록+페이징
 		@RequestMapping("mypage_Message_From_Board.do")
@@ -68,15 +54,11 @@ public class MessageController {
 			map.put("cri_b", cri_b);
 			
 			messageList = mservice.getMessageList(map);
-			System.out.println("messageList:"+messageList);
 			
 			model.addAttribute("messageList", messageList);// view까지 전달(forward)
 			model.addAttribute("pageMakerb", pageMakerb);
 			
-			System.out.println("다음버튼이 있니?: " + pageMakerb.isNext());
-			System.out.println("이게 받은쪽지인가 : " + messageList.toString());
 			
-			System.out.println("받은 쪽지함으로 이동이동(연규가씀)");
 			
 			return "user/mypage/mypage_Message_From_Board";
 		}

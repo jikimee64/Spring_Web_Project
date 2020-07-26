@@ -41,7 +41,6 @@ public class ManagerController {
 
 	@RequestMapping("index.do")
 	public String indexPage(Model model) {
-		System.out.println("어드민대문이동");
 		
 		//총 회원 수
 		int membercount = service.membercount();
@@ -65,15 +64,11 @@ public class ManagerController {
 //	회원정보 아이디 클릭시 상세보기
 	@RequestMapping("board/member_Detail.do")
 	public String memberDetailPage(Model model, String user_id) {
-		System.out.println("우철 : " + user_id);
 
 		Users member = service.getUsers(user_id);
 		List<HashMap<String, String>> skill = service.getSkill(user_id);
-		System.out.println("일스킬이 찍히나요?");
 		model.addAttribute("member", member);
-		System.out.println("우철입니다 " + member);
 		model.addAttribute("skill", skill);
-		System.out.println("이스킬이 찍히나용? : " + skill);
 		return "manager/board/member_Detail";
 
 	}
@@ -81,14 +76,12 @@ public class ManagerController {
 //	회원정보 상세에서 삭제버튼클릭시 삭제하기
 	@RequestMapping("board/memberDel.do")
 	public String memberDel(String user_id) {
-		System.out.println("삭제 컨트롤러 찍히나요?");
 		return service.memberDel(user_id);
 	}
 
 	// 회원관리 목록
 	@RequestMapping("board/member_Management.do")
 	public String memberManagementPage(Model model) {
-		System.out.println("어드민 회원관리 테이블페이지이동");
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 
@@ -96,7 +89,6 @@ public class ManagerController {
 
 		memberList = service.getMemberList(); // 회원목록
 		model.addAttribute("memberList", memberList); // view까지 전달
-		System.out.println("멤버리스트" + memberList);
 
 		return "manager/board/member_Management";
 	}
@@ -160,7 +152,6 @@ public class ManagerController {
 	public ModelAndView pdfReportView(HttpServletRequest request) throws Exception {
 		List<HashMap<String, Object>> blameList = null;
 		blameList = service.getBlameList();
-		System.out.println("신고관리pdf : " + blameList);
 
 		// 배포경로에 엑셀을 만들어서 다운하는
 		WriteReportListToPdfFile.writeReportListToPdfFile("신고관리_목록.pdf", blameList, request);
@@ -176,13 +167,10 @@ public class ManagerController {
 	// ----------------------------------------------------------------------------
 	@RequestMapping("board/report_Management.do")
 	public String reportManagementPage(Model model, String bl_seq, String btc_seq) {
-		System.out.println("어드민 회원관리 테이블페이지이동");
 
 		List<HashMap<String, Object>> blameList = null;
 		blameList = service.getBlameList(); // 블레임리스트
-		System.out.println("신고다내갓힌고다내가 : " + blameList);
 		model.addAttribute("blameList", blameList); // view까지 전달
-		System.out.println("dncjf : " + blameList);
 
 		return "manager/board/report_Management";
 	}
@@ -218,11 +206,9 @@ public class ManagerController {
 		try {
 			String bl_seq = ((String) params.get("bl_seq"));
 			String bl_tasrget_id = ((String) params.get("bl_target_id"));
-			System.out.println();
 			result = service.blameYes(bl_seq, bl_tasrget_id); // 블레임리스트
 
 		} catch (Exception e) {
-			System.out.println("gd");
 			System.out.println(e.getMessage());
 		}
 		return result;
@@ -234,11 +220,9 @@ public class ManagerController {
 		int result = 0;
 		try {
 			String bl_seq = ((String) params.get("bl_seq"));
-			System.out.println();
 			result = service.blameNo(bl_seq); // 블레임리스트
 
 		} catch (Exception e) {
-			System.out.println("gd");
 			System.out.println(e.getMessage());
 		}
 		return result;
@@ -249,7 +233,6 @@ public class ManagerController {
 	public HashMap<String, Object> messageGet(@RequestBody Map<String, Object> params) throws IOException {
 		String m_seq = ((String) params.get("m_seq"));
 		HashMap<String, Object> result = service.messageGet(m_seq); // 블레임리스트
-		System.out.println("실제 반환 : "+ result);
 		return result;
 	}
 
