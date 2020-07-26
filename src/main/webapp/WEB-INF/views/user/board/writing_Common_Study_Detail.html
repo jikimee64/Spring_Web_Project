@@ -1193,7 +1193,7 @@ group+group {
                                 icon: "warning",
                                 buttons: true
                               })
-                          }else if(data == 1){
+                          }else{
                           /* swal({title:"지원이 완료되었습니다.",
                                   icon: "success"}) */
                                  
@@ -1201,9 +1201,6 @@ group+group {
                                   location.href="/board/writing_Common_Study_Detail.do?s_seq="+s_seq+"&page="+page+"&perPageNum="+perPageNum
                                    
                                              
-                       }else{
-                          swal({title:"모집이 마감되었습니다.",
-                               icon: "warning"})
                        }
                   },
                   error: function(request, status, error){

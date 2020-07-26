@@ -167,13 +167,12 @@ public class MyPageController {
 		List<HashMap<String, Object>> status = service.studyStatus(s_seq);
 		System.out.println("status~!~!" + status);
 		String user_id = principal.getName();
-		System.out.println(user_id);
+		System.out.println("프린서플 네임 : " + user_id);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("role_name", "방장");
 		map.put("s_seq", s_seq);
 		HashMap<String, Object> writer = service.getRole(map);
-		System.out.println("writer::" + writer);
-		
+		System.out.println("writer : " + writer);
 		String a = (String) writer.get("user_id");
 		String s_board_staus = service.getStatus(s_seq);
 		model.addAttribute("id", user_id);
@@ -193,9 +192,4 @@ public class MyPageController {
 
 	}
 
-//	이건 지워야됨
-	@RequestMapping(value = "mypage_Mycomment.do")
-	public String MycommentPage() {
-		return "user/mypage/mypage_Mycomment.html";
-	}
 }
