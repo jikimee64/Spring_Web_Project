@@ -507,7 +507,6 @@ keyframes heart-keyframes { 100% {
 
 
 	<!-- 여기부터 강의 목록 -->
-	<!--    th:each="idx,iterStat : ${#numbers.sequence(pageMaker.startPage,pageMaker.endPage)}" -->
 	<div class="container">
 
 		<div class="row" style="margin-top: 50px;">
@@ -535,7 +534,6 @@ keyframes heart-keyframes { 100% {
 
 
 
-		<!--<div class="row" style="width:100%;margin: auto;margin-bottom: 20px;"> -->
 		<div class="courseFilter">
 			<th:block th:if="${list} != null">
 				<th:block th:each="list,index : ${list}">
@@ -574,7 +572,7 @@ keyframes heart-keyframes { 100% {
 									<div class="col-3">
 										<!-- 하트 체크박스 시작 아이디랑 라벨을 맞춰줘야함-->
 										<input type="checkbox" class="_bookMark" th:id="${list.L_SEQ}" />
-										<label th:for="${list.L_SEQ}"> <!--                         <input type="checkbox" id="heart" /> <label for="heart"> -->
+										<label th:for="${list.L_SEQ}"> 
 											<svg xmlns="http://www.w3.org/2000/svg"
 												viewBox="0 0 56.69 51.02">
 	                      <path
@@ -596,7 +594,6 @@ keyframes heart-keyframes { 100% {
 			</th:block>
 
 			<th:block th:if="${#lists.isEmpty(list)}">
-				<!-- 연규야 채워라 동기 -->
 				<div style='text-align: center; margin-top: 20px;margin-bottom:20px;'>
 					<img style="width: 150px;"
 						src="https://user-images.githubusercontent.com/61257242/88354108-cf9c3500-cd9a-11ea-9226-2e1526df8db9.png"
@@ -614,9 +611,6 @@ keyframes heart-keyframes { 100% {
 
 		<th:block th:unless="${#lists.size(list)%4==0}"
 			th:utext="'&lt;/div&gt;'" />
-		<!-- 여기서 문제가 터질지 몰라 감안하세요 -->
-
-
 		<input class="_bookmark_l_seq" th:value="${seqlist}" type="hidden" />
 
 		<br />
@@ -667,7 +661,7 @@ keyframes heart-keyframes { 100% {
 						<a class="page-link"
 							th:href="@{course_FilterList.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}"
 							th:text="${idx}"></a>
-					</th:block> <!-- 					                <a th:href="@{user/board/study_List.do(page=${idx},perPageNum=${pageMaker.cri.perPageNum})}" th:text="${idx}"></a> -->
+					</th:block> 
 				</li>
 			</th:block>
 
@@ -835,11 +829,9 @@ keyframes heart-keyframes { 100% {
 								}
 								html += "<div class='col-md-3 _list_all'>"
 								html += "<div class='card _card_hover_effect' style='width: 100%; padding: 4px; margin: 10px;'>"
-								/* html += 	'<div style="height: 155px;">' */
 								html += "<img class='card-img-top'src="
 										+ data[0][i].L_IMAGE
 										+ " alt='Card image' style='height: 155px'>"
-								/* html += '</div>'		 */
 								html += "<div class='card-body'>"
 								html += "<h6 class='card-title _margin_0 _course_title'>"
 										+ data[0][i].L_TITLE
@@ -911,7 +903,6 @@ keyframes heart-keyframes { 100% {
 							
 							}
                         	}else{
-                        		//연규야 채우ㅠㅓ라 비동기
                         		  let html = "";
                                   
                                   html += "<div style='text-align:center; margin-top:20px;margin-bottom:20px;'>"
@@ -978,8 +969,6 @@ keyframes heart-keyframes { 100% {
 									$('.coursePaging').append(page);
 								})
                      
-                     
-                     //정적으로 만든거에 js적용시키기 위한 것들..(중복 Damn!!)
                      
                       $('._bookMark').click(function(evt){
                           var lectureTitle = $(evt.target).parent('div').parent('div').prev().prev().prev().prev().prev().text();
@@ -1179,26 +1168,6 @@ keyframes heart-keyframes { 100% {
    	})
    	/* =====처음에 리스트 동기로 뿌려줄때 유데미,인프런,구름에듀 색깔바꾸기 */
    </script>
-
-	<script>
-	/* 필터 적용후 다른페이지로 갓다가 다시 돌아올때 필터가 적용된 상태로 유지되서 
-		온라인강의 페이지로 이동시 한번의 새로고침 ====================*/
-		
-// 	$(function(){    
-// 	    //Check if the current URL contains '#'
-// 	    if(document.URL.indexOf("#")==-1){
-// 	        // Set the URL to whatever it was plus "#".
-// 	        url = document.URL+"#";
-// 	        location = "#";
-
-// 	        //Reload the page
-// 	        location.reload(true);
-// 	    }
-// 	});
-	
-	/*==================== 필터 적용후 다른페이지로 갓다가 다시 돌아올때 
-	필터가 적용된 상태로 유지되서  온라인강의 페이지로 이동시 한번의 새로고침 */
-	</script>
 
 </body>
 

@@ -78,20 +78,15 @@ public class MessageHandler extends TextWebSocketHandler {
 	// 웹소켓 클라이언트가 텍스트 메시지를 전송할 때 호출
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-
-		// System.out.println("하이욤 : " + message.getPayload());
 		String userid = session.getPrincipal().getName();
 		// 사용자가 보낸 텍스트 데이터 추출 후 분기 처리
 		if (message.getPayload().equals("login") || message.getPayload().equals("view")) {
 
-			// System.out.println("아나!! : " + userid);
 
-			System.out.println("userid" + userid);
 			int result = service.getmsgcount(userid);
 
 			// 내가 받은 메시지 개수 추출
 
-			System.out.println("resasdasdasdasdult : " + result);
 
 			// 사용자 아이디값이 소켓 접속시 users에 넣은 아이디값이 존재하는지 비교
 			if (users.containsKey(userid)) {

@@ -261,8 +261,6 @@ group+group {
 							</div>
 						</div>
 						<div class="row" style="height: 25px;"></div>
-						<!--    <div class="row"
-                     style="text-align: center; height: 35px; width: 100%"> -->
 
 						<div id="wait">
 							<th:block th:each="list,index : ${status}">
@@ -341,17 +339,6 @@ group+group {
 				</th:block>
 			</th:block> 
 			</div>
-	<!-- 		<th:block th:if="${writer.user_id} == ${id}">
-				<th:block th:if="${s_board_staus} == '모집중'">
-					<div class="row finishCheck"
-						style="align-items: center; margin-top: 50px; margin-bottom: 30px; place-content: center;">
-						<button type="button" th:onclick="|javascript:finishh('${s_seq}')|"
-							class="btn btn-secondary btn finishh" id="finishh">
-							<span style="font-size: smaller;font-weight:bold;">모집 마감</span>
-						</button>
-					</div>
-				</th:block>
-			</th:block> -->
 		</div>
 
 		<!-- 모집중 첫번째 줄 끝 -->
@@ -364,7 +351,6 @@ group+group {
 		<script>
 			//모집마감
 			function finishh(s_seq) {
-				//$('.finishCheck').remove();
 
 				let data = {
 					"s_seq" : s_seq
@@ -381,9 +367,6 @@ group+group {
 						if(data != 0){
 							
 						$('#wait').empty();
-						//swal("완료되었습니다", "", "success");
-						
-						
 						swal({
 							  title: "완료되었습니다",
 							  icon: "success",
@@ -449,7 +432,6 @@ group+group {
 													if (data[index].ACCEPT_STATUS === '승인완료') {
 
 														if (data[index].ROLE_NAME === '방장') { //0번째 인덱스
-															/* 		html += "<div id='success'>"; */
 															html += "<div class='row' style='text-align: center; margin-bottom: 10px; font-size: x-large; width: 100%'>";
 															html += "<div class='col-md-6'>";
 															html += '<a href=""  class="InfoModal'
@@ -480,9 +462,6 @@ group+group {
 																	+data[index].USER_ID
 																	+ '") data-toggle="modal" data-target="#userInfoModal">'
 															html += "<input type='hidden' value='"+data[index].USER_ID+"' />"
-				
-															
-															/* html += "<span class='col' id='doing_study_col'>" */
 															html += "<span style='margin-left: 30px;'>"
 																	+ data[index].NICKNAME
 																	+ "</span></a></div>";
@@ -571,12 +550,9 @@ group+group {
 													var id = data[data.length - 1].user_id
 
 													let html = "";
-													/* 			if(data[index].ROLE_NAME === '방장'){ 
-																	html+= "<div></div>";*/
 													if (data[index].ACCEPT_STATUS === '승인대기중'
 															&& data[index].ROLE_NAME === '회원') {
 
-														/* 		html += "<div id='wait'>"; */
 														html += "<div class='row right"
 																+ data[index].USER_ID
 																+ "' style='text-align: center; margin-bottom: 10px; width: 100%'>";
@@ -614,21 +590,6 @@ group+group {
 
 													}
 													if (host === id) {
-														/* html += "<div class='col-md-6'>";
-
-														html += '<button type="button" onclick=accept("'
-																+ data[index].USER_ID
-																+ '", "'
-																+ data[index].S_SEQ
-																+ '") "id="approval" class="btn btn-success btn" id="button_approval">';
-														html += "<span style='font-size: smaller;'>승인</span></button>";
-														html += '<button type="button" onclick=reject("'
-																+ data[index].user_ID
-																+ '", "'
-																+ data[index].S_SEQ
-																+ '") "id="reject" class="btn btn-danger btn" style="line-height: normal;">';
-														html += "<span style='font-size: smaller;'>거절</span></button></div>";
-														html += "</div></div>"; */
 													}
 
 													$('#wait').append(html);
@@ -641,28 +602,12 @@ group+group {
 						});
 
 			}
-			/* 
-						 $(document).on("click","#cancel",function(USER_ID, S_SEQ){
-						 
-							cancel(user_id, s_seq);
-						});
-						
-						$(document).on("click", "#approval",function(user_id, s_seq){
-							accept(user_id, s_seq);
-						});
-						
-						$(document).on("click", "#reject",function(user_id, s_seq){
-							reject(user_id, s_seq);
-						});  */
 					    function InfoModal(idx) {
 				    		console.log('idx : ' + $.escapeSelector(idx));
 				    		
 
 				    	  let id = $('.InfoModal' + $.escapeSelector(idx)).children(":eq(0)").val();
 				    	  console.log('id : ' + id);
-				         //formData.append("user_id" , this.id);
-
-				         // let obj = {"user_id" : id}; 
 
 				         let data = {
 				            "user_id" : id
@@ -690,10 +635,6 @@ group+group {
 				                     $('input[name='+item.SKILL_NAME+']:radio[value="중급이상"]').prop('checked',true);
 				                  }
 				               })
-				               
-//				                   <td>1578</td>
-//				                                     <td><a href="">입문자들 다 모여라~~~~~!!</a></td>
-				               
 				               $('._user_board_list').empty();
 				               
 				               let userBoardList = "";
@@ -714,7 +655,6 @@ group+group {
 				               
 				               
 				               $('._user_board_list').append(userBoardList);
-//				                   $('._user_board_list');
 				            },
 				            error : function(e) {
 				               console.log("error:", e);

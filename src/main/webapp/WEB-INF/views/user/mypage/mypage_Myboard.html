@@ -9,10 +9,6 @@
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 <title>mypage_myboard</title>
 
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
- -->
 <style>
 .pager li>a, .pager li>span {
    border: white;
@@ -256,21 +252,6 @@ body {
                            function(index,
                                  item) {
                               /*  제목이랑 내용 문자열 자르기 시작 */
-//                                 if (data[index].TITLE.length > 18) {
-//                                    data[index].TITLE = data[index].TITLE
-//                                          .substr(
-//                                                0,
-//                                                18)
-//                                          + "...";
-//                                 }
-//                                 if (data[index].CONTENT.length > 335) {
-//                                    data[index].CONTENT = data[index].CONTENT
-//                                          .substr(
-//                                                0,
-//                                                335)
-//                                          + "...";
-//                                 }
-
                               var write_date = new Date(
                                     data[index].WRITE_DATE);
                               var deadline = new Date(
@@ -312,7 +293,6 @@ body {
                                     + data[index].S_SEQ
                                     + "'>";
 
-                              /* html += "<a href = '/board/board.Support_Status.do'>"; */
                               html += "<img src='https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png' class='mb-1 _message_hover' alt='' style='height: 30px;transform: translateY(-3px);'></a>";
                               html += " ";
                               html += "<div style='font-size:small; font-weight:bold;'>";
@@ -329,7 +309,6 @@ body {
                               html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
                                     + data[index].S_SEQ
                                     + "'>";
-                              /* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
                               html += "<div  style='margin-top: 15px;padding-left: 15px;'>"
                               html += "<b><span class='_title' style='font-size:xx-large;padding-top:10px;height:100%;'>"
                                     + data[index].TITLE
@@ -341,7 +320,6 @@ body {
                               } else {
                                  html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px;width:220px;'>"
                               }
-                              /*    html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
                               html += "</div>";
                               html += "</div>"
                               html += "</div>";

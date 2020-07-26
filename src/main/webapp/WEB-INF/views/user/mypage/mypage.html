@@ -46,10 +46,6 @@ body {
 }
 
 
-
-/* .container::-webkit-scrollbar-thumb {
-	background-color:;
-} */
 .svg {
 	fill: #E8336D;
 	width: 30px;
@@ -134,7 +130,6 @@ body {
 
 	</main>
 
-	<!-- th:src="'/studyboard/upload/' + ${studylist.IMAGE}" -->
 	<div class="_border_box_shadow2" style="height: 1400px;">
 		<div class="container"
 			style="margin-top: 25px; padding: 0px; background-color: white;">
@@ -215,14 +210,11 @@ body {
 
 				<input type="hidden" id="user_id" name="user_id"
 					th:value="${user.user_id}">
-				<!-- <span th:text="${user.USER_ID}"></span> -->
-				
 				<div class="_border_box_shadow3"
 					style="padding: 9px;  overflow-y: auto; border: 1px solid #8EF9D5;">
 					<div class="recruting_study" style="overflow-x: hidden; width: 100%; height: 400px;"
 						id="recruting_study">
 						<div th:each="studylist,index: ${studylist}">
-
 							<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
 
 							<div class="row p-3">
@@ -234,7 +226,6 @@ body {
 
 								<div class="col-md-8">
 								<div>
-									<!-- @{/board/board_Support_Status.do} -->
 									<div>
 									<span class="badge badge-pill badge-primary"
 										th:text="${studylist.STATUS}"></span><span
@@ -266,8 +257,6 @@ body {
 										<div class="_title" style="margin-top: 9px;">
 											<b><span th:text="${studylist.TITLE}"
 												style="font-size: xx-large;"></span></b>
-
-
 										</div>
 									</a>
 								</div>
@@ -280,14 +269,11 @@ body {
 											th:src="'/studyboard/upload/' + ${studylist.IMAGE}"
 											alt='이미지가 없습니다' style='height: 140px; width: 220px;'>
 									</th:block>
-									<!-- <img th:src="${studylist.IMAGE}" alt=""
-									style="height: 140px; width: 140px;"> -->
 								</div>
 							</div>
 								<hr
 								style="border: solid 1px; margin-top: 0px; margin-bottom: 0px; width:99%;" />
 						</div>
-						
 						
 						<br />
 						<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
@@ -298,9 +284,6 @@ body {
 			<!-- 여기부터 마지막 부분 시작/// 북마크 -->
 			<div class="container" style="padding: 40px 30px; height: 500px;">
 				<div style="margin-bottom: 20px;">
-
-					<!-- <img src="../../../../resources/images/img/bookmark.png" alt=""
-					style="height: 40px; margin-bottom: 10px;">  -->
 
 					<div class="row" style="margin-left: 10px;">
 						<svg class="svg" xmlns="http://www.w3.org/2000/svg"
@@ -323,12 +306,6 @@ body {
 								<!-- 여기부터 데이터 하나 넣기 시작 -->
 								<!-- 타임리프 for문 -->
 								<div class="row" th:classappend="|bookmark${list.L_SEQ}|">
-
-									<!-- 									<div class="col-md-1" style="text-align: center;"> -->
-									<!-- 										스터디 글 번호 -->
-									<!-- 										<p style="font-size: xx-large; font-weight: bold;" -->
-									<!-- 											th:text="${list.L_SEQ}"></p> -->
-									<!-- 									</div> -->
 									<div class="col-md-3" style="text-align: center;">
 										<a th:href="${list.L_ADDRESS}" class="stretched-link"> <img
 											th:src="${list.L_IMAGE}" alt=""
@@ -469,14 +446,9 @@ body {
 																	html += "<span class='badge badge-pill badge-light'>"
 																			+ data[index].CONTENT_KIND
 																			+ "</span>";
-																	/* html += "<span class='badge badge-pill badge-light' style='height:20px;'>"
-																			+ data[index].ACCEPT_STATUS
-																			+ "</span>"; */
 																	html += "<a class='_status_hover' style='height:20px;' href='/mypage/SupportStatus.do?s_seq="
 																			+ data[index].S_SEQ
 																			+ "'>";
-
-																	/* html += "<a href = '/board/board.Support_Status.do'>"; */
 																	html += "<img src='https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png' class='mb-1 _status_hover' alt='' style='height: 30px;transform:translateY(-3px);'></a>";
 																	html += " ";
 																	html += "<div style='font-size:small; font-weight:bold;'>";
@@ -493,7 +465,6 @@ body {
 																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
 																			+ data[index].S_SEQ
 																			+ "'>";
-																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 																	html += "<div class='_title' style='padding-left: 15px; margin-top:21px;'><b><span style='font-size:xx-large;'>"
 																			+ data[index].TITLE
 																			+ "</span></b></div><br/></a>";
@@ -504,7 +475,6 @@ body {
 																	} else {
 																		html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width:220px;'>"
 																	}
-																	/* 	html += "<img src=../studyboard/upload/"+ data[index].IMAGE + " alt='이미지가 없습니다' style= 'height: 140px; width: 140px;'>" */
 																	html += "</div>";
 																	html += "</div>"
 																	html += "</div>";
@@ -590,10 +560,6 @@ body {
 																			+ data[index].CONTENT_KIND
 																			+ "</span>";
 
-// 																	html += "<span class='badge badge-pill badge-danger'>마감일 : "
-// 																			+ getDateFormet(date1)
-// 																			+ "</span>";
-
 																	html += "<span class='badge badge-pill badge-light'>"
 																			+ data[index].ACCEPT_STATUS
 																			+ "</span>";
@@ -616,7 +582,6 @@ body {
 																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
 																		+ data[index].S_SEQ
 																		+ "'>";
-																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 																	html += "<div class='_title' style='margin-top:33px;'><b><span style='font-size:xx-large;' class='_title2'>"
 																			+ data[index].TITLE
 																			+ "</span></b></div><br/><a/>";
@@ -687,6 +652,5 @@ body {
 	</script>
 
 </body>
-
 
 </html>

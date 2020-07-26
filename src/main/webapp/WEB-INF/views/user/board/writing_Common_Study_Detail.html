@@ -26,10 +26,6 @@
 </head>
 
 <style>
-
-/* ._textarea_readonly:read-only {
-      background-color: aquamarine;
-   } */
 .cover4 {
 	background-image:
 		url(../../../../resources/images/img/coursewritepage.jpg);
@@ -234,7 +230,6 @@ keyframes heart-keyframes { 100% {
 
 ._form_radio {
 	background: #fff;
-	/*    width: 509px; */
 	margin: auto;
 	padding: 30px;
 	min-width: 320px;
@@ -326,8 +321,6 @@ group+group {
 	</main>
 
 	<div class="_border_box_shadow2" style="width: 1430px;">
-		<!-- <form action="study_List.do" method="post" class="nomalstudy" id="nomalstudy"
-      enctype="multipart/form-data" novalidate> -->
 		<div
 			style="margin-top: 40px; margin-bottom: 25px; padding-top: 30px; padding-bottom: 30px;">
 			<span class="badge badge-pill badge-primary"
@@ -362,26 +355,15 @@ group+group {
 					</div>
 				</div>
 
-				<!-- <div class="col-md-1" style="align-self: flex-end;">
-            <a href="" data-toggle="modal" data-target="#exampleModalCenter" style="color:black;">
-               <button type="button" class="btn btn-danger">신고</button>
-            </a>
-         </div> -->
-
-
 				<hr
 					style="border-color: rgb(224, 224, 224); width: 100%; margin-top: 10px;">
 			</div>
 			<!-- 타임리프 -->
 			<div class="container" style="margin-bottom: 25px; margin-top: 20px;">
-				<!--    <th:block th:each="study : ${study}"> -->
 				<div class="row">
 					<div class="col-md-9">
 						<div class="row">
 							<div class="col-md-7"></div>
-
-							<!--                      <h2 th:text="${study.TITLE}">Node.js스터디원 모집합니다!!!</h2> -->
-
 						</div>
 
 
@@ -427,22 +409,12 @@ group+group {
 							</div>
 						</div>
 						<br />
-						<!-- <input type="textarea" class="form-control" id="usr" name="username" placeholder="글 제목을 입력해주세요"> -->
-
 						<span th:utext="${study.CONTENT}" id="content"><textarea
 								name="" cols="30" rows="10"
 								class="form-control _textarea_readonly" readonly
 								style="background-color: #F5F5F5; resize: none;"></textarea></span>
 						<div class="row" style="margin-top: 45px;">
 							<div class="col-6" style="text-align: start;">
-
-								<!-- <a href="#" style="margin-right: 5px;"> <img
-                        style="margin-right: 5px;"
-                        src="../../../../resources/images/img/board_like.svg"> 
-                        
-                     </a> <strong>좋아요&nbsp; </strong> <strong id="replyTotal"
-                        style="margin-right: 10px;">1</strong> -->
-
 
 								<input type="checkbox" id="heartheart33333"
 									th:class="${study.S_SEQ}" /> <label for="heartheart33333"
@@ -461,8 +433,6 @@ group+group {
 									th:text="${count}" class="dott" style="margin-right: 10px;"></strong>
 
 							</div>
-
-							<!-- <span id="userid" sec:authentication="principal.username"></span> -->
 
 							<div class="col-2"></div>
 							<div class="col-4" style="text-align: end;">
@@ -648,8 +618,6 @@ group+group {
 	<input th:class="${user_id}" type="hidden" id="userId">
 	<input th:class="${commentList}" type="hidden" id="commentList">
 
-	<!-- <input type="hidden" id="commentList" th:value="${commentList}"> -->
-
 
 	<!-- alert창 꾸미기 -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -674,7 +642,7 @@ group+group {
              
                },
                error : function(e) {
-                  console.log("error:", e);
+                
                }
                
                
@@ -1018,11 +986,7 @@ group+group {
          /* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
          
          
-         
-         
           /* 첨부파일명 자르기 시작 */
-         
-         
          
           if($('#fileHas1').children().children().children().hasClass("_file_name1")){
            if($('._file_name1')[0].innerText.length >= 15){
@@ -1036,7 +1000,6 @@ group+group {
           }
           
        /* 첨부파일명 자르기 끝 */
-       
          
          
          //   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
@@ -1187,14 +1150,6 @@ group+group {
          });
    })
    
-   
-   
-   
-   
-   
-   
-   
-   
     }); 
    
    </script>
@@ -1207,7 +1162,6 @@ group+group {
      $(".blameform").submit(function(e) {
            e.preventDefault();
           var formData = new FormData(this);
-         
          
          let data = {
             "s_seq":$('#s_seq').val(), //신고당하는 글번호
@@ -1254,7 +1208,6 @@ group+group {
 	<!-- 신고하기버튼 클릭 후 모달 닫기  -->
 	<script>   
  $("#blame-btn").click(function(e) {
-    
         $('#declationPageModal').modal('hide');
         
  });
@@ -1282,30 +1235,9 @@ group+group {
 
 
 	<script>
-//  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 시작 -->
- /*    $(function(){
-       
-       
-       if(window.location.href.substr(73, 1) == null || window.location.href.substr(73, 1) == ""){
-          $('._to_the_list_a_tag').removeAttr('href');
-          
-          $('._to_the_list_button')[0].innerText = "마이페이지로";
-          $('._to_the_list_a_tag')[0].setAttribute('href', '/mypage/mypage.do');
-       }
-       
-    }); */
-    //  <!-- 마이페이지에서는 목록으로 버튼 클릭시 마이페이지로 ... 끝 -->
- </script>
-
-
-	<script>
 function InfoModal(idx) {
 
 	 let id = $('.InfoModal' + idx).children(":eq(0)").val();
-   //formData.append("user_id" , this.id);
-
-   // let obj = {"user_id" : id}; 
-
    let data = {
       "user_id" : id
    }
@@ -1333,9 +1265,6 @@ function InfoModal(idx) {
             }
          })
          
-//               <td>1578</td>
-//                                 <td><a href="">입문자들 다 모여라~~~~~!!</a></td>
-         
          $('._user_board_list').empty();
          
          let userBoardList = "";
@@ -1356,7 +1285,6 @@ function InfoModal(idx) {
          
          
          $('._user_board_list').append(userBoardList);
-//               $('._user_board_list');
       },
       error : function(e) {
          console.log("error:", e);
