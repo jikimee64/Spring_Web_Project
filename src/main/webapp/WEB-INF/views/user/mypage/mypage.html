@@ -218,7 +218,7 @@ body {
 				<!-- <span th:text="${user.USER_ID}"></span> -->
 				
 				<div class="_border_box_shadow3"
-					style="padding: 9px;  overflow-y: auto; border: 3px solid #8EF9D5;">
+					style="padding: 9px;  overflow-y: auto; border: 1px solid #8EF9D5;">
 					<div class="recruting_study" style="overflow-x: hidden; width: 100%; height: 400px;"
 						id="recruting_study">
 						<div th:each="studylist,index: ${studylist}">
@@ -233,6 +233,7 @@ body {
 								</div>
 
 								<div class="col-md-8">
+								<div>
 									<!-- @{/board/board_Support_Status.do} -->
 									<div>
 									<span class="badge badge-pill badge-primary"
@@ -247,15 +248,21 @@ body {
 										class="badge badge-pill badge-warning"
 										th:text="${studylist.LOC}"></span><span
 										class="badge badge-pill badge-light"
-										th:text="${studylist.CONTENT_KIND}"></span><span
-										class="badge badge-pill badge-danger"
-										th:text="|마감일 : ${#dates.format(studylist.DEADLINE,'yyyy/MM/dd HH:mm')}|"></span><span 
+										th:text="${studylist.CONTENT_KIND}"></span><span 
 									class="badge badge-pill "
 										th:text="|${studylist.ACCEPT_STATUS}|"></span><a
 										th:href="@{SupportStatus.do(s_seq=${studylist.S_SEQ})}"><img
 										src="https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png"
 										class="mb-1 _status_hover" alt="" style="height: 30px;">
-									</a></div><br /> <a th:href='@{/board/my_Writing_Common_Study_Detail.do(s_seq=${studylist.S_SEQ})}'>
+									</a>
+									<div style="font-size:small; font-weight:bold;">
+									<span style="margin-right:15px;"
+										th:text="|등록일 : ${#dates.format(studylist.WRITE_DATE,'yyyy/MM/dd HH:mm')}|"></span>
+									<span
+										th:text="|마감일 : ${#dates.format(studylist.DEADLINE,'yyyy/MM/dd HH:mm')}|"></span>
+										
+										</div>
+									</div></div><br /> <a th:href='@{/board/my_Writing_Common_Study_Detail.do(s_seq=${studylist.S_SEQ})}'>
 										<div class="_title" style="margin-top: 9px;">
 											<b><span th:text="${studylist.TITLE}"
 												style="font-size: xx-large;"></span></b>
@@ -306,7 +313,7 @@ body {
 
 					</div>
 					<div class="_border_box_shadow3"
-						style="padding: 9px; border: 3px solid salmon;">
+						style="padding: 9px; border: 1px solid salmon;">
 
 						<div class="recruting_study"
 							style="overflow-y: auto; overflow-x: hidden; padding-top:10px;  width: 100%; height: 400px;">
@@ -315,7 +322,7 @@ body {
 							<div th:each="list: ${list}">
 								<!-- 여기부터 데이터 하나 넣기 시작 -->
 								<!-- 타임리프 for문 -->
-								<div class="row" th:classappend="|bookmark${list.L_SEQ}|" style="padding-top:20px;">
+								<div class="row" th:classappend="|bookmark${list.L_SEQ}|">
 
 									<!-- 									<div class="col-md-1" style="text-align: center;"> -->
 									<!-- 										스터디 글 번호 -->
@@ -453,11 +460,9 @@ body {
 																	html += "<span class='badge badge-pill badge-secondary'>"
 																			+ data[index].CATE_LANGUAGE
 																			+ "</span>";
-																			html += "<span class='badge badge-pill badge-success'>"
-																				+ data[index].accept
-																				+ "/"
-																				+ +data[index].PEOPLE
-																				+ "명</span>";
+																	html += "<span class='badge badge-pill badge-success' >"
+																			+ data[index].PEOPLE
+																			+ "명</span>";
 																	html += "<span class='badge badge-pill badge-warning'>"
 																			+ data[index].LOC
 																			+ "</span>"
@@ -549,19 +554,21 @@ body {
 																function(index,
 																		item) {
 
-																	var date1 = new Date(
+																	var deadline = new Date(
 																			data[index].DEADLINE);
-
+																	var write_date = new Date(data[index].WRITE_DATE)
 																	let html = "";
 
 																	html += "<div>";
 																	
-																	html += "<div class='row p-3'>";
+																	html += "<div class='row p-3' style='height:172px;'>";
 																	html += "<div class='col-md-1' style='text-align: center;'>";
 																	html += "<p style='font-size: xx-large; font-weight: bold;'>"
 																			+ data[index].S_SEQ
 																			+ "</p></div>";
 																	html += "<div class='col-md-8'>";
+																	
+																	html += "<div>"
 																	html += "<span class='badge badge-pill badge-primary'>"
 																			+ data[index].STATUS
 																			+ "</span>";
@@ -583,9 +590,9 @@ body {
 																			+ data[index].CONTENT_KIND
 																			+ "</span>";
 
-																	html += "<span class='badge badge-pill badge-danger'>마감일 : "
-																			+ getDateFormet(date1)
-																			+ "</span>";
+// 																	html += "<span class='badge badge-pill badge-danger'>마감일 : "
+// 																			+ getDateFormet(date1)
+// 																			+ "</span>";
 
 																	html += "<span class='badge badge-pill badge-light'>"
 																			+ data[index].ACCEPT_STATUS
@@ -594,9 +601,21 @@ body {
 																			+ data[index].S_SEQ
 																			+ "'>";
 																	html += "<img src='https://user-images.githubusercontent.com/61257242/88447179-5caebf00-ce6b-11ea-915f-f4e12493f16f.png' class='mb-1 _status_hover' alt='' style='height: 30px;'></a><br/>";
+																
+																			html += "<div style='font-size:small; font-weight:bold;'>";
+																			html += "<span style='margin-right:15px;'>"
+																			html += " 등록일 : ";
+																			html += getDateFormet(write_date)
+																			html += "</span>"
+																			html += "<span>"
+																			html += " 마감일 : "
+																			html += getDateFormet(deadline)
+																			html += "</span>"
+																			html += "</div>";
+																	html += "</div>";
 																	html += "<a href = '/board/my_Writing_Common_Study_Detail.do?s_seq="
-																			+ data[index].S_SEQ
-																			+ "'>";
+																		+ data[index].S_SEQ
+																		+ "'>";
 																	/* html += "<span class='ml-3 badge badge-pill badge-danger'마감일:>" + data[index].DEADLINE + "</span><br/>"; 날짜이상함*/
 																	html += "<div class='_title' style='margin-top:33px;'><b><span style='font-size:xx-large;' class='_title2'>"
 																			+ data[index].TITLE
