@@ -445,18 +445,19 @@ group+group {
 
 								<th:block th:switch="${user_id}">
 									<!-- 로그인한 아이디가 글쓴이와 같다면..  -->
-									<span th:case="${study.USER_ID}"> <th:block
-											th:switch="${study.C_SEQ}">
-											<a th:case="1"
-												th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
-												<button type="button" class="btn btn-warning"
-													style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
-											</a>
-											<a th:case="2"
-												th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
-												<button type="button" class="btn btn-warning"
-													style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
-											</a>
+									<span th:case="${study.USER_ID}"> 
+										<th:block th:if="${study.STATUS == '모집중'}"
+												th:switch="${study.C_SEQ}">
+												<a th:case="1"
+													th:href="@{/lecture/writing_Course_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+													<button type="button" class="btn btn-warning"
+														style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
+												</a>
+												<a th:case="2"
+													th:href="@{/board/writing_Normal_Study_Edit.do(s_seq=${study.S_SEQ},page=${page},perPageNum=${perPageNum})}">
+													<button type="button" class="btn btn-warning"
+														style="background-color: #18d26e; color: white; border-color: #18d26e; height: 30px; padding-top: 3px;">수정</button>
+												</a>
 										</th:block>
 										<button id="delete" type="button" class="btn btn-danger"
 											style="height: 30px; padding-top: 3px;">삭제</button>
