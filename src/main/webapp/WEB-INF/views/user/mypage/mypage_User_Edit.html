@@ -432,7 +432,7 @@ group+group {
 						</div>
 
 						<div class="col-8">
-							<input type="text" class="input--style-6" id="user_name"
+							<input type="text" class="input--style-6" id="user_name" maxlength="10"
 								placeholder="이름을 입력해주세요." name="user_name"
 								th:value="${member.user_name}"> <span class="name hide"></span>
 
@@ -454,7 +454,7 @@ group+group {
 						</div>
 
 						<div class="col-8">
-							<input type="text" class="input--style-6" id="nickname"
+							<input type="text" class="input--style-6" id="nickname" maxlength="10"
 								placeholder="닉네임을 입력해주세요" name="nickname"
 								th:value="${member.nickname}">
 
