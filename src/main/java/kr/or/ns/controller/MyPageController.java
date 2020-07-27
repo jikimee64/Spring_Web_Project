@@ -97,7 +97,8 @@ public class MyPageController {
 			user.setUser_pwd(this.bCryptPasswordEncoder.encode(user.getUser_pwd()));
 		}
 		service.MyPageUserEdit(user, request);
-		return "redirect:mypage.do";
+
+		return "redirect:/mypage/mypage.do"; // /index.htm
 
 	}
 

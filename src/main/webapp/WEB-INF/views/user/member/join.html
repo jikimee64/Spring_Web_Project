@@ -533,7 +533,7 @@ body {
 
 							<div class="col-8">
 								<input type="text" class="input--style-6" id="user_name" maxlength="10"
-									placeholder="을 입력해주세요." name="user_name" required> <span
+									placeholder="이름을 입력해주세요." name="user_name" required> <span
 									class="name hide"></span>
 
 							</div>
@@ -728,6 +728,61 @@ body {
 		<script src="../../../../resources/js/socialjoin.js"></script>
 	</th:block>
 
+
+	<script>
+		function checkFileName(str) {
+			//1. 확장자명 체크
+			let one = false;
+			let two = false;
+			var ext = str.split('.').pop().toLowerCase();
+			if ($.inArray(ext, [ 'hwp', 'pdf', 'xls', 'zip', 'pptx', 'xlsx',
+					'doc' ]) !== -1) {
+			} else {
+				one = true;
+			}
+			//2. 파일명에 특수문자 체크
+			var pattern = /[\{\}\/?,;:|*~`!^\+<>@\#$%&\\\=\'\"]/gi;
+			if (pattern.test(str)) {
+			} else {
+				two = true;
+			}
+
+			if (one === false || two === false) {
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		$(function() {
+			$("input:file[name='file']").change(function() {
+				var str = $(this).val();
+				var fileName = str.split('\\').pop().toLowerCase();
+				var flag = checkFileName(fileName);
+				if (!flag) { //flag가 false면 썸네일 value 비우기
+					swal({
+						title : "확장자 및 특수문자를 체크해주세요.",
+						icon : "warning",
+						buttons : true,
+						dangerMode : true,
+					})
+					$('#file').val("");
+				} else { //정상적으로 올렸을 때(썸네일 업로드)
+					var file = document.querySelector('#file');
+					var fileList = file.files;
+
+					// 읽기
+					var reader = new FileReader();
+					reader.readAsDataURL(fileList[0]);
+
+					//로드 한 후
+					reader.onload = function() {
+						document.querySelector('#preview').src = reader.result;
+					};
+				}
+			});
+		});
+	</script>
 
 
 </body>

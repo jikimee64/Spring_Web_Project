@@ -361,7 +361,7 @@ group+group {
 			<!-- 타임리프 -->
 			<div class="container" style="margin-bottom: 25px; margin-top: 20px;">
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-md-9" style="word-break:break-all;">
 						<div class="row">
 							<div class="col-md-7"></div>
 						</div>
@@ -685,7 +685,7 @@ group+group {
                               html += " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='deleteComment' id='" + obj.R_SEQ + "'"+"><i class='ri-delete-bin-line'></i></a><br>";
                            		
                            }
-                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" + getDateFormet(date1) +
+                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;word-break:break-all'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" + getDateFormet(date1) +
                            quillpen +"</div></blockquote>";
 //                            date1.toLocaleString()
                         }else{
@@ -696,7 +696,7 @@ group+group {
                                quillpen = "";
                            }
                            html += "<blockquote class='OComment'>" ;
-                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;'>&nbsp;삭제된 댓글 입니다.&nbsp;</div></code>" + "<div style='font-size:14px'></div></blockquote>";
+                           html += "<code><div style='font-size:15px;"+depthcss+ "color:black;word-break:break-all'>&nbsp;삭제된 댓글 입니다.&nbsp;</div></code>" + "<div style='font-size:14px'></div></blockquote>";
                            
                         }
                         
