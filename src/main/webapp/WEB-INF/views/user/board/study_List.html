@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>stydy_list</title>
 <div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	
 <!-- 폰트어썸 -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -828,13 +828,23 @@ group+group {
          
          //검색 조건 입력 안했으면 경고창 
          if(!searchTypeVal){
-            alert("검색 조건을 선택해주세요");
+        	 swal({
+       		  title: "검색조건을 선택해주세요",
+       		  text: "",
+       		  icon: "info",
+       		  button: "확인",
+       		});
             $searchTypeSel.focus();
             return;
             
          //검색어 입력 안했으면 검색창
          }else if(!keywordVal){
-            alert("검색어를 입력해주세요");
+        	 swal({
+          		  title: "검색어를 입력해주세요",
+          		  text: "",
+          		  icon: "info",
+          		  button: "확인",
+          		});
             $('#keyword').focus();
             return;
          }
