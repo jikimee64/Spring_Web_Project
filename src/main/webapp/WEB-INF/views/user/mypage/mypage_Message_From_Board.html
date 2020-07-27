@@ -149,6 +149,22 @@ group+group {
 	color: #fff;
 	border-radius: 5px;
 }
+._content_message{
+	display: inline-block;
+	width: 600px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	line-height: 1.2;
+	height: 2.4em;
+	text-align: left;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	max-inline-size: -webkit-fill-available;
+}
 </style>
 
 
@@ -209,7 +225,7 @@ group+group {
 			</div>
 
 			<div class="row _box_shadow_row"
-				style="margin: 0px 20px 10px 20px; position: relative; top: -90px; text-align: center;">
+				style="margin: 0px 20px 5px 20px; position: relative; top: -90px; text-align: center;">
 				<div class="col-md-1"
 					style="place-self: flex-end; text-align: center;">
 					<input type="checkbox" id="_all_check" />
@@ -253,9 +269,9 @@ group+group {
 					   <div th:if="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
                   style="place-self: center; text-align: center;">
                   
-                     <a style="color: #00b894;" 
+                     <a style="color: #00b894;-webkit-box-pack: center;" class="_content_message" 
                      th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
-                     <span th:text="${list.CONTENT}"></span>
+                     <span class="_content_message" th:text="${list.CONTENT}"></span>
                   </a>
                </div>
 
@@ -263,7 +279,7 @@ group+group {
                <!-- td3(내용) -->
                <div th:unless="${#dates.format(list.OPENDATE,'yyyy-MM-dd')} == 9999-12-31" class="col-md-6"
                   style="place-self: center; text-align: center;">
-                     <a style="color: #636e72;"
+                     <a style="color: #636e72;-webkit-box-pack: center;" class="_content_message"
                      th:href="@{/message/mypage_Message_From_Detail_Board.do(m_seq=${list.M_SEQ})}">
                      <span th:text="${list.CONTENT}"></span>
                   </a>
