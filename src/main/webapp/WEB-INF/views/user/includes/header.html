@@ -35,7 +35,6 @@
 }
 
 
-
 </style>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -43,7 +42,6 @@
 
 <header id="header" class="fixed-top header-transparent"
 	style="padding: 10px 10px;" th:fragment="header">
-
 
 
 	<!-- ======= Header ======= -->
@@ -55,9 +53,6 @@
 				<h1 class="logo mr-auto">
 					<a href="/user/main.do">WeStudy</a>
 				</h1>
-				<!-- Uncomment below if you prefer to use an image logo -->
-				<!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
 
 				<nav class="nav-menu d-none d-lg-block">
 					<ul>
@@ -71,31 +66,29 @@
 					
 						<th:block sec:authorize="hasRole('ROLE_USER')">
 							
-						<!--  <th:block th:if="${session.currentUser.profile_img} != null">
+					<th:block th:if="${session.currentUser.profile_img} != null">
 							<a href="/mypage/mypage.do" style="padding-left: 20px;"> 
 							 <img
 								th:src="'/userboard/upload/' + ${session.currentUser.profile_img}"
 								alt="" style="height: 50px; width:50px; border-radius: 50%; background-color:white;"> 
 							</a> 
-						</th:block>  -->
+						</th:block>  
 							
-							<!-- <span sec:authentication="principal"></span> -->
 							<li class="drop-down"
 								style="padding-left: 0px; padding-right: 15px;"><a href=""></a>
 						
 								<ul
 									style="border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-									<!-- <span sec:authentication="principal.username"></span> -->
 									<th:block
 										sec:authorize="hasRole('ROLE_USER') and !hasRole('ROLE_ADMIN')">
-										<!--  <th:block th:if="${principal != null}"> -->
+									
 										
-										<!-- <th:block th:if="${session.currentUser.user_name} != null">
+									 <th:block th:if="${session.currentUser.user_name} != null">
 										   <li style="margin-left: 21px;"><b><span
-													th:text="${session.currentUser.user_name} + '님 환영합니다!'"></span></b></li> 
-										</th:block> -->
+													th:text="${session.currentUser.nickname} + '님 환영합니다!'"></span></b></li> 
+										</th:block>
 					
-										<!-- </th:block> -->
+										
 										<li class="_pageactive"><a th:href="@{/mypage/mypage.do}">마이페이지</a></li>
 										<li class="_pageactive"><a
 											href="/mypage/mypage_Myboard.do">내가 쓴 게시글</a></li>
@@ -104,8 +97,11 @@
 									</th:block>
 
 									<th:block sec:authorize="hasRole('ROLE_ADMIN')">
-									<!-- 	<li class="_pageactive" style="margin-left: 21px;"><b><span
-												sec:authentication="principal.username"></span>님 환영합니다</b></li> -->
+											 <th:block th:if="${session.currentUser.user_name} != null">
+										   <li style="margin-left: 21px;"><b><span
+													th:text="${session.currentUser.nickname} + '님 환영합니다!'"></span></b></li> 
+										</th:block>
+									
 										<li class="_pageactive"><a th:href="@{/manager/index.do}"
 											>관리자 페이지</a></li>
 										<li class="_pageactive"><a
