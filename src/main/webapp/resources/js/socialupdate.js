@@ -22,11 +22,7 @@
 							) {
 							alert('모든 값을 조건에 맞게 입력해주세요.')
 							return false;
-						} else if (toggle === false) {
-							alert('이메일 중복체크를 해주세요.')
-							return false;
 						}
-						
 						else{
 							flag = true;
 						}
@@ -40,7 +36,7 @@
 							console.log("데이터 : " + formData.get("user_id"))
 							
 							$.ajax({
-								url : "/member/join.do",
+								url : "",
 								processData : false,
 								contentType : false,
 								cache : false,

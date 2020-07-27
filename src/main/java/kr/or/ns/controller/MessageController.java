@@ -28,7 +28,6 @@ public class MessageController {
 
 	
 	
-	
 	//받은 쪽지 목록+페이징
 		@RequestMapping("mypage_Message_From_Board.do")
 		public String myMessageFromBoardPage(Criteria_Board cri_b, Principal principal, Model model) {
@@ -64,24 +63,6 @@ public class MessageController {
 		}
 	
 	
-	
-	
-	
-	
-//보낸쪽지
-//	@RequestMapping("mypage_Message_Send_Board.do")
-//	public String mypageMessageSendBoardPage(Principal principal, Model model) {
-//		// 보낸 쪽지함
-//		List<Message> mlist = mservice.sendListMessage(principal.getName());
-//		model.addAttribute("message", mlist);
-//		System.out.println("보낸 목록 : " + mlist);
-//
-//		
-//		
-//		System.out.println("보낸 쪽지함으로 이동이동(연규가씀)");
-//		return "user/mypage/mypage_Message_Send_Board";
-//	}
-
 	
 	
 		//보낸쪽지 + 페이징

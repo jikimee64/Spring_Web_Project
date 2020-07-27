@@ -60,7 +60,6 @@ public class MyPageServiceImpl implements MyPageService {
 	@Transactional
 	public int MyPageUserEdit(Users users, HttpServletRequest request) {
 		MyPageDao dao = sqlsession.getMapper(MyPageDao.class);
-
 		String filename = null;
 		String path = null;
 		String fpath = null;
@@ -137,7 +136,6 @@ public class MyPageServiceImpl implements MyPageService {
 			result2 = dao.editskill(map3);
 			result2 = dao.editskill(map4);
 			result2 = dao.editskill(map5);
-			System.out.println("정상적인 처리 일 때 출력되는 부분 insert 정상, update 정상");
 		} catch (Exception e) {
 			System.out.println("둘 중에 하나라도 문제가 생기면 예외가 떨어지는 부분" + e.getMessage());
 		}

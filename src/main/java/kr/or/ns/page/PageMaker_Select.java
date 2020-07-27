@@ -24,9 +24,6 @@ public class PageMaker_Select {
 	private boolean next; //다음
 	private int displayPageNum = 5;  //5개씩 보여준다
 	
-
-	
-	
 	
 	//VO
 	public Criteria_Select getCri_s() {
@@ -37,7 +34,6 @@ public class PageMaker_Select {
 	}
 	
 	
-	
 	//총 게시글 수
 	public int getTotalCount() {
 		return totalCount;
@@ -45,8 +41,7 @@ public class PageMaker_Select {
 	
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		System.out.println("총 게시글 갯수 : " + this.totalCount);
-		calcData(); //얘는 뭐지? 계산?
+		calcData(); 
 	}
 	
 	
@@ -64,7 +59,6 @@ public class PageMaker_Select {
 		}
 															 //---------------한 페이지 당 보여줄 게시글의 갯수
 		int tempEndPage = (int)(Math.ceil(totalCount/(double)cri_s.getPerPageNum()));
-		System.out.println("현재 페이지 마지막 페이지 번호 : " + tempEndPage);
 	//  마지막 페이지 번호 = 총 게시글 수 /한 페이지당 보여줄 게시글의 갯수	
 		if(endPage > tempEndPage) {
 			endPage = tempEndPage;
@@ -76,10 +70,6 @@ public class PageMaker_Select {
 		//다음
 		//다음버튼 생성여부 = 끝페이지 번호 * 한페이지당 보여줄 게시글의 갯수 < 총 게시글의 수? true:false;
 		next = endPage*cri_s.getPerPageNum() < totalCount? true : false;
-		System.out.println("전체페이지 마지막번호 : "  + endPage);
-		System.out.println("페이지당 게시글 몇개보여주니 : "  + cri_s.getPerPageNum());
-		System.out.println("마지막x페이지당 게시글: "  + endPage*cri_s.getPerPageNum());
-		System.out.println("다음버튼이 생기나요? : " + next);
 	}
 	
 	
@@ -131,11 +121,5 @@ public class PageMaker_Select {
 
 	
 
-
-
-
-
-	
-	
 	
 }

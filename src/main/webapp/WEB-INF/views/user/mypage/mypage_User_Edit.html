@@ -302,9 +302,10 @@ group+group {
 	<div th:replace="/user/includes/header :: header"></div>
 	<div th:replace="/user/includes/bootstrap_link :: bootstrap_link"></div>
 
-	<form action="MyPageUserEdit.do" method="post" class="updateform"
-		id="updateform" enctype="multipart/form-data" novalidate>
+	<form action="/mypage/mypage.do" class="updateform"
+		id="updateform" enctype="multipart/form-data">
 
+		<input type="hidden" name="snstype" th:value="${member.snstype}" />
 
 		<div class="container"
 			style="margin-top: 30px; margin-top: 110px; margin-bottom: 25px;">
@@ -648,28 +649,6 @@ group+group {
 	<th:block th:if="${member.snstype != 'normal'}">
 		<script src="../../../../resources/js/socialupdate.js"></script>
 	</th:block>
-	
-	<script>
-		$(function() {
-			$(".updateform").submit(function(e) {
-				var formData = new FormData(this);
-
-				$.ajax({
-					url : "/mypage/MyPageUserEdit.do",
-					processData : false,
-					contentType : false,
-					cache : false,
-					type : 'POST',
-					data : formData,
-					success : function(data) {
-					},
-					error : function(e) {
-						console.log("error:", e);
-					}
-				})
-			})
-		});
-	</script>
 
 
 

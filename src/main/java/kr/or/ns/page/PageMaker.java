@@ -39,8 +39,6 @@ public class PageMaker {
 		return uriComponentsBuilder.build().encode().toString();
 
 	}
-
-	
 	
 	//VO
 	public Criteria getCri() {
@@ -51,14 +49,12 @@ public class PageMaker {
 	}
 
 	
-	
 	//총 게시글 수
 	public int getTotalCount() {
 		return totalCount;
 	}
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		System.out.println("우철이천재 : " + this.totalCount);
 		calcData(); //얘는 뭐지? 계산?
 	}
 	
@@ -77,7 +73,6 @@ public class PageMaker {
 		}
 															 //---------------한 페이지 당 보여줄 게시글의 갯수
 		int tempEndPage = (int)(Math.ceil(totalCount/(double)cri.getPerPageNum()));
-		System.out.println("tempEndPage : " + tempEndPage);
 	//  마지막 페이지 번호 = 총 게시글 수 /한 페이지당 보여줄 게시글의 갯수	
 		if(endPage > tempEndPage) {
 			endPage = tempEndPage;
@@ -132,13 +127,5 @@ public class PageMaker {
 		this.displayPageNum = displayPageNum;
 	}
 
-	
-
-
-
-
-
-	
-	
 	
 }

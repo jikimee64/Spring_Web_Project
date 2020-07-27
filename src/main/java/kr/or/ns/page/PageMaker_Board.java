@@ -42,8 +42,6 @@ public class PageMaker_Board {
 		return uriComponentsBuilder.build().encode().toString();
 
 	}
-
-	
 	
 	
 	// VO
@@ -63,7 +61,6 @@ public class PageMaker_Board {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		System.out.println("우철이천재 : " + this.totalCount);
 		calcData(); // 얘는 뭐지? 계산?
 	}
 
@@ -81,7 +78,6 @@ public class PageMaker_Board {
 		}
 		// ---------------한 페이지 당 보여줄 게시글의 갯수
 		int tempEndPage = (int) (Math.ceil(totalCount / (double) cri_b.getPerPageNum()));
-		System.out.println("tempEndPage : " + tempEndPage);
 		// 마지막 페이지 번호 = 총 게시글 수 /한 페이지당 보여줄 게시글의 갯수
 		if (endPage > tempEndPage) {
 			endPage = tempEndPage;

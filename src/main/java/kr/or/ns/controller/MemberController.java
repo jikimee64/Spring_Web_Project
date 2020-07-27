@@ -336,7 +336,6 @@ public class MemberController {
 	@RequestMapping(value = "normaljoin.do", method = RequestMethod.POST)
 	public String joininsert(@RequestParam(value = "file", required = false) MultipartFile ipload, Users users,
 			HttpServletRequest request) throws IOException {
-
 		users.setUser_pwd(this.bCryptPasswordEncoder.encode(users.getUser_pwd()));
 
 		try {
