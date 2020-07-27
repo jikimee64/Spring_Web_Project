@@ -2,7 +2,6 @@ package kr.or.ns.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,9 +22,6 @@ import kr.or.ns.export.WriteMemberListToPdfFile;
 import kr.or.ns.export.WriteReportListToExcelFile;
 import kr.or.ns.export.WriteReportListToPdfFile;
 import kr.or.ns.service.ManagerService;
-import kr.or.ns.service.ManagerServiceImpl;
-import kr.or.ns.service.MessageService;
-import kr.or.ns.vo.Message;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -35,13 +31,9 @@ public class ManagerController {
 	@Autowired
 	private ManagerService service;
 
-	/*
-	 * @Autowired private ManagerService service;
-	 */
-
+	//관리자 메인 페이지서 뿌려줄 데이터 가져오는 함수
 	@RequestMapping("index.do")
 	public String indexPage(Model model) {
-		
 		//총 회원 수
 		int membercount = service.membercount();
 		model.addAttribute("membercount", membercount);
@@ -83,24 +75,21 @@ public class ManagerController {
 	@RequestMapping("board/member_Management.do")
 	public String memberManagementPage(Model model) {
 
-		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
-
 		List<Users> memberList = null;
 
-		memberList = service.getMemberList(); // 회원목록
-		model.addAttribute("memberList", memberList); // view까지 전달
+		memberList = service.getMemberList(); 
+		model.addAttribute("memberList", memberList); 
 
 		return "manager/board/member_Management";
 	}
 
-	// 회원관리 목록 엑셀뽑기-----------------------------------------------------------
+	// 회원관리 목록 엑셀뽑기 
 	@RequestMapping("board/viewMemberExcel.do")
-//	public String excelMemberView(Model model) throws Exception {
 	public ModelAndView excelMemberView(HttpServletRequest request) throws Exception {
 		List<Users> memberList = null;
 		memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
 
-		// 배포경로에 엑셀을 만들어서 다운하는
+		// 배포경로에 엑셀을 만들어서 다운
 		WriteMemberListToExcelFile.writeMemberListToExcepFile("회원관리_목록.xls", memberList, request);
 		String path = request.getServletContext().getRealPath("/manager/member/");
 		File xlsFile = new File(path + "회원관리_목록.xls"); // 저장경로 설정
@@ -110,9 +99,8 @@ public class ManagerController {
 		return mv;
 	}
 
-	// 회원관리 목록 pdf뽑기-----------------------------------------------------------
+	// 회원관리 목록 pdf뽑기
 	@RequestMapping("board/viewMemberPdf.do")
-//		public String excelMemberView(Model model) throws Exception {
 	public ModelAndView pdfMemberView(HttpServletRequest request) throws Exception {
 		List<Users> memberList = null;
 		memberList = service.getMemberList(); // 회원목록가져와서 memberList에 넣음
@@ -127,15 +115,14 @@ public class ManagerController {
 		return mv;
 	}
 
-	// 신고관리 목록 엑셀뽑기-----------------------------------------------------------
+	// 신고관리 목록 엑셀뽑기
 	@RequestMapping("board/viewReportExcel.do")
-//		public String excelMemberView(Model model) throws Exception {
 	public ModelAndView excelReportView(HttpServletRequest request) throws Exception {
 
 		List<HashMap<String, Object>> blameList = null;
 		blameList = service.getBlameList();
 
-		// 배포경로에 엑셀을 만들어서 다운하는
+		// 배포경로에 엑셀을 만들어서 다운
 		WriteReportListToExcelFile.writeReportListToExcelFile("신고관리_목록.xls", blameList, request);
 		String path = request.getServletContext().getRealPath("/manager/report/");
 		File xlsFile = new File(path + "신고관리_목록.xls"); // 저장경로 설정
@@ -146,9 +133,8 @@ public class ManagerController {
 
 	}
 
-	// 신고관리 목록 pdf뽑기-----------------------------------------------------------
+	// 신고관리 목록 pdf뽑기
 	@RequestMapping("board/viewReportPdf.do")
-//		public String excelMemberView(Model model) throws Exception {
 	public ModelAndView pdfReportView(HttpServletRequest request) throws Exception {
 		List<HashMap<String, Object>> blameList = null;
 		blameList = service.getBlameList();
@@ -164,7 +150,7 @@ public class ManagerController {
 
 	}
 
-	// ----------------------------------------------------------------------------
+	// 신고관리 페이지 이동(신고 내역 리스트 뿌려줌)
 	@RequestMapping("board/report_Management.do")
 	public String reportManagementPage(Model model, String bl_seq, String btc_seq) {
 
@@ -199,6 +185,7 @@ public class ManagerController {
 		return result;
 	}
 
+	//경고 처리완료 후 바뀐 데이터 이후 신고 목록 뿌려주기
 	@RequestMapping(value = "blameYes.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int blameYes(@RequestBody Map<String, Object> params) throws IOException {
@@ -214,6 +201,7 @@ public class ManagerController {
 		return result;
 	}
 
+	//경고 취소 후 바뀐 데이터 이후 신고 목록 뿌려주기
 	@RequestMapping(value = "blameNo.do", method = RequestMethod.POST)
 	@ResponseBody
 	public int blameNo(@RequestBody Map<String, Object> params) throws IOException {
@@ -225,14 +213,6 @@ public class ManagerController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return result;
-	}
-
-	@RequestMapping(value = "messageGet.do", method = RequestMethod.POST)
-	@ResponseBody
-	public HashMap<String, Object> messageGet(@RequestBody Map<String, Object> params) throws IOException {
-		String m_seq = ((String) params.get("m_seq"));
-		HashMap<String, Object> result = service.messageGet(m_seq); // 블레임리스트
 		return result;
 	}
 

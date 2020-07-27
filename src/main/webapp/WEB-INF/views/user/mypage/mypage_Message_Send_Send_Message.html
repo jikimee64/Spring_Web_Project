@@ -2,7 +2,8 @@
 
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<link rel="shortcut icon" href="../../../resources/images/img/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon"
+	href="../../../resources/images/img/favicon.ico" type="image/x-icon" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>mypage_message_send_send_massage</title>
@@ -41,7 +42,7 @@ body {
 
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
-			<div th:replace="/user/includes/message_header :: message_header"></div>
+		<div th:replace="/user/includes/message_header :: message_header"></div>
 		<!-- Breadcrumbs Section -->
 	</main>
 
@@ -50,13 +51,13 @@ body {
 		<div class="_border_box_shadow2">
 			<a href="/message/mypage_Message_From_Board.do">
 				<button type="button" class="btn btn-secondary _btn_style"
-					style="height: 110px; position: relative; left: -70px; border-radius: 15px 0px 0px 15px;border:none; background-color: #18d26e; ">
+					style="height: 110px; position: relative; left: -70px; border-radius: 15px 0px 0px 15px; border: none; background-color: #18d26e;">
 					<b><span>받은<br> 쪽지함
 					</span></b>
 				</button>
 			</a> <a href="/message/mypage_Message_Send_Board.do">
 				<button type="button" class="btn btn-secondary _btn_style2"
-					style="height: 110px; position: relative; left: -144px; bottom: -110px; border-radius: 15px 0px 0px 15px;border:none;background-color: #86F0B4; ">
+					style="height: 110px; position: relative; left: -144px; bottom: -110px; border-radius: 15px 0px 0px 15px; border: none; background-color: #86F0B4;">
 					<b><span>보낸<br> 쪽지함
 					</span></b>
 				</button>
@@ -74,46 +75,44 @@ body {
 				<div class="col-md-7"
 					style="text-align: right; padding-right: 28px; padding-top: 8px;">
 					<button id="sendBtn" type="submit" class="btn btn-success"
-						style="width: 80px; margin-top: 30px; color: white; background-color: #18d26e;border:none; font-weight:bold;">보내기</button>
+						style="width: 80px; margin-top: 30px; color: white; background-color: #18d26e; border: none; font-weight: bold;">보내기</button>
 				</div>
 
 			</div>
 
-			<form action="sendMessage.do">
-				<div class="row form-group"
-					style="margin: 0px 20px 10px 20px; position: relative; top: -90px;">
-					<div class="col-md-2"
-						style="place-self: flex-end; text-align: center; padding-left: 30px; margin-bottom: 8px;">
-						<span style="font-size: large;"> <b>받는 사람</b>
-						</span>
+			<div class="row form-group"
+				style="margin: 0px 20px 10px 20px; position: relative; top: -90px;">
+				<div class="col-md-2"
+					style="place-self: flex-end; text-align: center; padding-left: 30px; margin-bottom: 8px;">
+					<span style="font-size: large;"> <b>받는 사람</b>
+					</span>
+				</div>
+				<th:block th:if="${senderid != null}">
+					<input style="text-align: center; padding-left: 0px; width: 150px;"
+						type="text" class="form-control" name="m_to" id="m_to"
+						th:value="${senderid}" readonly />
+				</th:block>
+				<th:block th:if="${senderid == null}">
+					<div class="col-md-10" style="align-self: center;">
+						<input style="padding-left: 0px; width: 150px;"
+							class="form-control _user_id" type="form-g" name="m_to" id="m_to" />
 					</div>
-					<th:block th:if="${senderid != null}">
-						<input
-							style="text-align: center; padding-left: 0px; width: 150px;"
-							type="text" class="form-control" name="m_to" id="m_to"
-							th:value="${senderid}" readonly />
-					</th:block>
-					<th:block th:if="${senderid == null}">
-						<div class="col-md-10" style="align-self: center;">
-							<input style="padding-left: 0px; width: 150px;"
-								class="form-control _user_id" type="form-g" name="m_to" id="m_to" />
-						</div>
-					</th:block>
-				</div>
+				</th:block>
+			</div>
 
-				<div class="row"
-					style="margin: 20px 30px 0px 30px; position: relative; top: -90px;">
-					<textarea class="form-control" id="msg" cols="30" rows="10"
-						style="margin-left: 32px; margin-right: 32px; width: 100%; resize:none;" 
-						placeholder="내용을 입력해주세요" maxlength="600"></textarea>
-				</div>
-			</form>
+			<div class="row"
+				style="margin: 20px 30px 0px 30px; position: relative; top: -90px;">
+				<textarea class="form-control" id="msg" cols="30" rows="10"
+					style="margin-left: 32px; margin-right: 32px; width: 100%; resize: none;"
+					placeholder="내용을 입력해주세요" maxlength="600"></textarea>
+			</div>
 		</div>
 	</div>
 	<!--  윗부분 끝 //////////////////////////////////////// -->
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<div th:replace="/user/includes/footer :: footer"></div>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
@@ -172,7 +171,7 @@ body {
 	 })
  
 	</script>
-	
+
 
 	<script type="text/javascript">
 	//아이디 체크

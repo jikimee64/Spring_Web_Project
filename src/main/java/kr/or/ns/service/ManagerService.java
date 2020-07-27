@@ -39,7 +39,6 @@ public interface ManagerService {
 	//신고관리(신고X)
 	public int blameNo(String bl_seq);
 	
-	public HashMap<String, Object> messageGet(String m_seq);
 
 	//총 회원 수
 	public int membercount();

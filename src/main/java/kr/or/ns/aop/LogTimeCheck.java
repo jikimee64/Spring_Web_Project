@@ -20,11 +20,11 @@ public class LogTimeCheck {
 		Object returnObj = null;
 		String method = joinPoint.getSignature().getName();
 		StopWatch stopWatch = new StopWatch();
+		log.warn("# " + method + "() Method Performance Time Check Start");
 		stopWatch.start();
 		returnObj = joinPoint.proceed();
 		stopWatch.stop();
-
-		log.warn("# " + method + "() Method Performance time : " + stopWatch.getTotalTimeMillis() + "(ms)");
+		log.warn("# " + method + "() Method Performance Time Check End : " + stopWatch.getTotalTimeMillis() + "(ms)");
 
 		return returnObj;
 

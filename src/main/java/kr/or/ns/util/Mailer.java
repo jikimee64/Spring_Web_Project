@@ -25,8 +25,6 @@ public class Mailer {
 
 	private JavaMailSender mailSender;
 
-	/* private Mailer mailer; */
-
 	private VelocityEngine velocityEngine;
 
 	public void setMailSender(JavaMailSender mailSender) {
@@ -37,14 +35,11 @@ public class Mailer {
 		this.velocityEngine = velocityEngine;
 	}
 
+	//.vm파일과 키값을 합쳐 html태그로 메일 전송
 	public void sendMail(Mail mail, String key) {
 
-		// String userid = principal.getName();
-		// SimpleMailMessage message = new SimpleMailMessage();
 		MimeMessage message = mailSender.createMimeMessage();
-		// JavaMailSender 인터페이스에서
-		// createMimeMessage()를 이용해서 주소 받기
-
+		// JavaMailSender 인터페이스에서  createMimeMessage()를 이용해서 주소 받기
 		try {
 			message.setFrom(new InternetAddress(mail.getMailFrom()));
 			message.addRecipient(RecipientType.TO, new InternetAddress(mail.getMailTo()));
@@ -57,7 +52,6 @@ public class Mailer {
 			System.out.println("getFrom : " + message.getFrom());
 			System.out.println("setSubject : " + message.getSubject());
 		} catch (MessagingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -65,7 +59,6 @@ public class Mailer {
 
 		VelocityContext velocityContext = new VelocityContext();
 		velocityContext.put("key", key);
-		// velocityContext.put("userid", userid);
 
 		StringWriter stringWriter = new StringWriter();
 
@@ -75,7 +68,6 @@ public class Mailer {
 			message.setText(stringWriter.toString(), "utf-8");
 			message.setContent(stringWriter.toString(), "text/html; charset=MS949");
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

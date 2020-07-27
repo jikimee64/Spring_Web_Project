@@ -23,7 +23,6 @@ import kr.or.ns.vo.Users;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itextpdf.text.log.SysoLogger;
 
 @Controller
 @RequestMapping("/mypage/")
@@ -53,7 +52,6 @@ public class MyPageController {
 		int rs = service.recruit_study(users); // 모집중 스터디 개수
 
 		List<HashMap<String, Object>> studylist = service.myPageStudyList(users); // 스터디 목록
-		
 
 		model.addAttribute("list", list);
 		model.addAttribute("user", user);
@@ -63,7 +61,6 @@ public class MyPageController {
 		model.addAttribute("js", js);
 		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
-
 
 		return "user/mypage/mypage";
 	}
@@ -113,6 +110,7 @@ public class MyPageController {
 		return "redirect:/index.do";
 	}
 
+	//마이페이지 메인화면
 	@RequestMapping("mypage_Myboard.do")
 	public String myBoardPage(Model model, Principal principal) {
 		String users = principal.getName();
@@ -136,11 +134,10 @@ public class MyPageController {
 		model.addAttribute("rs", rs);
 		model.addAttribute("studylist", studylist);
 
-
 		return "user/mypage/mypage_Myboard";
 	}
 
-	// 참여현황 페이지 정보 뿌려주기
+	// 스터디 참여현황 페이지 정보 뿌려주기
 	@RequestMapping(value = "SupportStatus.do")
 	public String SupportStatus(String s_seq, Model model, Principal principal) {
 		List<HashMap<String, Object>> status = service.studyStatus(s_seq);

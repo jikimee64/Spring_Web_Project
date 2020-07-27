@@ -12,6 +12,7 @@ public class Tempkey {
         return init();
     }
     
+    //랜덤으로 암호키 생성(아이디 : 6자리 or 비밀번호 : 10자리)
     private String init() {
         Random ran = new Random();
         StringBuffer sb = new StringBuffer();

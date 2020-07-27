@@ -26,7 +26,6 @@ public class PageMaker_Board {
 	private boolean next; // 다음 버튼 활성화 여부
 	private int displayPageNum = 5; // 5개씩 보여준다 = 화면에 보여질 페이지 번호 수
 
-	////////////////////////////////////////////////////////
 	public String makeQuery(int page, boolean needSearch) {
 		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", this.cri_b.getPerPageNum());
@@ -61,7 +60,7 @@ public class PageMaker_Board {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		calcData(); // 얘는 뭐지? 계산?
+		calcData(); 
 	}
 
 	// 페이징 관련 버튼 계산
