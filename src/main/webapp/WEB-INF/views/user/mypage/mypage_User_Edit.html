@@ -638,14 +638,15 @@ group+group {
 	<div th:replace="/user/includes/footer :: footer"></div>
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	
-		<!-- 일반 회원가입 jS -->
-	<th:block th:if="${snstype == 'normal'}">
-		<script src="../../../../resources/js/normaljoin.js"></script>
+	<!-- 일반 회원가입 jS -->
+	
+	<th:block th:if="${member.snstype == 'normal'}">
+		<script src="../../../../resources/js/normalupdate.js"></script>
 	</th:block>
 
 	<!-- 소셜 회원가입 jS -->
-	<th:block th:if="${snstype != 'normal'}">
-		<script src="../../../../resources/js/socialjoin.js"></script>
+	<th:block th:if="${member.snstype != 'normal'}">
+		<script src="../../../../resources/js/socialupdate.js"></script>
 	</th:block>
 	
 	<script>
