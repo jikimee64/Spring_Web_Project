@@ -279,7 +279,7 @@ group+group {
 										<th:block
 											th:if="${list.accept_status} == '승인대기중' and ${list.role_name} == '회원'">
 											
-											<div class="row"  th:classappend="|right${list.user_id}|">
+											<div class="row"  th:classappend="|right${list.user_id}|" style="margin-bottom: 10px;">
 												<input type="hidden" th:value="${list.user_id}" id="user_id" />
 												<div class="col-md-6">
 												<a href="" th:classappend="|InfoModal${list.user_id}|"
