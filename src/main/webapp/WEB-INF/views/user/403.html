@@ -356,14 +356,6 @@ button:focus {
 	</main>
 	<!-- End #main -->
 
-	<!-- 로그인실패시 alert창이든 머든 js로나타내기!! -->
-	<div th:if="${param.error!=null}">
-		로그인 실패 <br />
-		<th:block th:if="${SPRING_SECURITY_LAST_EXCEPTION !=null }">
-			<span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
-		</th:block>
-	</div>
-
 	<div class="limiter" style="height: 834px;">
 		<div class="container-login100" style="position: inherit;">
 

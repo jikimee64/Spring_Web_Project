@@ -217,7 +217,6 @@ group+group {
 												</div>
 												<!-- 현재 로그인한 사용자와 방장의 아아디가 같으면 모든회원마다 버튼이 생겨야됨  -->
 					
-					
 											<th:block th:if="${s_board_staus} == '모집중'">
 												<th:block th:if="${writer.user_id} == ${id}">
 													<div class="col-md-6">
@@ -322,8 +321,6 @@ group+group {
 							</th:block>
 						</div>
 						
-
-						
 					</div>
 					
 				</div>
@@ -400,7 +397,7 @@ group+group {
 		</script>
 
 		<script>
-		//승인
+		//지원현황에서 승인버튼 클릭 시 회원 아이디를 넘겨 승인 상태를 승인완료로 업데이트 해준 뒤 비동기로 화면 출력
 			function accept(user_id, s_seq) {
 				let data = {
 					"user_id" : user_id,
@@ -490,7 +487,8 @@ group+group {
 						});
 
 			}
-			//거절
+		
+			//지원현황에서 거절버튼 클릭 시 회원 아이디를 넘겨 승인 상태를 승인거절로 업데이트  해준 뒤 비동기로 화면 출력
 			function reject(user_id, s_seq) {
 				let data = {
 					"user_id" : user_id,

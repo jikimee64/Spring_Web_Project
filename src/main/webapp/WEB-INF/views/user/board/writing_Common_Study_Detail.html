@@ -91,7 +91,6 @@ input[type="checkbox"]+label:after {
 	transform: scale(0);
 	-webkit-transform: scale(0);
 }
-/* 호버는 연규가넣음  */
 input[type="checkbox"]:hover+label svg {
 	-webkit-transition: all 400ms ease-in-out;
 	transition: all 400ms ease-in-out;
@@ -99,7 +98,6 @@ input[type="checkbox"]:hover+label svg {
 	transform: scale(1.3);
 	-webkit-transform: scale(1.3);
 }
-/* 호버는 연규가 넣음 끝 */
 input[type="checkbox"]:checked+label svg {
 	-webkit-transition: all 400ms ease-in-out;
 	transition: all 400ms ease-in-out;
@@ -358,15 +356,12 @@ group+group {
 				<hr
 					style="border-color: rgb(224, 224, 224); width: 100%; margin-top: 10px;">
 			</div>
-			<!-- 타임리프 -->
 			<div class="container" style="margin-bottom: 25px; margin-top: 20px;">
 				<div class="row">
 					<div class="col-md-9" style="word-break:break-all;">
 						<div class="row">
 							<div class="col-md-7"></div>
 						</div>
-
-
 						<div class="row">
 							<div class="col-md-8"></div>
 							<div class="col-md-4" style="width: 100%;">
@@ -386,8 +381,6 @@ group+group {
 								</div>
 							</div>
 						</div>
-
-
 						<div class="row">
 							<div class="col-md-8"></div>
 							<div class="col-md-4" style="width: 100%">
@@ -472,9 +465,6 @@ group+group {
 									</span>
 								</th:block>
 
-
-
-
 							</div>
 						</div>
 						<!--  댓글  -->
@@ -510,8 +500,6 @@ group+group {
 						</div>
 
 					</div>
-
-
 
 					<div class="col-md-3">
 						<div
@@ -626,7 +614,6 @@ group+group {
 	<script>
       $(function() {
      
-         /***********************************************   댓글 시리즈    ***********************************************/
          /* 상세페이지 들어가면 댓글 뿌려주는 로직 */
          var s_seqq = $('#s_seq').val();
          let obj = {
@@ -646,11 +633,9 @@ group+group {
                 
                }
                
-               
             });
-
             
-            //댓글 틀 만들어주는 함수@!
+            //댓글 틀 만들어주는 함수
             function makeComment(result) {
                var user_id =$('input[id="userId"]').attr('class');
                var html = "";
@@ -658,11 +643,7 @@ group+group {
                    $.each(result, function(index, obj) {
 
                      var date1 = new Date(obj.R_DATE);
-                    
-                   
                       if(obj.R_EXISTS === 'Y'){
-       
-                         
                            var depthcss = "";
                            var quillpen = " <a href='javascript:void(0);' data-value='" + obj.R_SEQ + "' class='rereply' id='" + obj.R_SEQ + "'"+">답글쓰기&nbsp;<i class='ri-quill-pen-line'></i></a>";
                         
@@ -687,7 +668,6 @@ group+group {
                            }
                            html += "<code><div style='font-size:15px;"+depthcss+ "color:black;word-break:break-all'>" + obj.R_CONTENT + "</div></code>" + "<div style='font-size:14px; "+depthcss+"'>" + getDateFormet(date1) +
                            quillpen +"</div></blockquote>";
-//                            date1.toLocaleString()
                         }else{
                            
                            var depthcss = "";
@@ -705,7 +685,6 @@ group+group {
                
                $('#com').append(html);
             }
-            
             
             //대댓글 틀 만들어주는 함수
             $(document).on("click",".rereply",function(){
@@ -728,10 +707,8 @@ group+group {
                
                parentTag.append(html);
                $('#reComment').focus();
-               
 
                         });
-
          
             //댓글 카운트 갱신
             function countComment() {
@@ -754,7 +731,6 @@ group+group {
                      }
                   });
             }
-            
             
             //댓글 등록
             $('#commentWrite').click(function() {
@@ -971,21 +947,14 @@ group+group {
             
             });
             
-         
-            /***********************************************   댓글 시리즈 끝   ***********************************************/
-            
             
          /* 페이지 로딩시 북마크 된거 하트모양 표시하기 시작 */
-
          var heart = $('#heartlike').attr('class').trim();  
          if(heart.trim() === '1'){
             $("input:checkbox[id='heartheart33333']").attr("checked", true);
-
          }
          
-         
          /* 페이지 로딩시 북마크 된거 하트모양 표시하기 끝 */
-         
          
           /* 첨부파일명 자르기 시작 */
          
@@ -999,9 +968,6 @@ group+group {
                 $('._file_name2')[0].innerText  = $('._file_name2')[0].innerText.substring(0,15) + "...";
              }
           }
-          
-       /* 첨부파일명 자르기 끝 */
-         
          
          //   이건 파일첨부할때 쓰는 w3shool 에서 긁어온거
          //https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_form_custom_file&stacked=h

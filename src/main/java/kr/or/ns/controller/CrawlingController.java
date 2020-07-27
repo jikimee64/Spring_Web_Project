@@ -45,7 +45,10 @@ public class CrawlingController {
 	@Qualifier("restTemplate")
 	public RestTemplate restTemplate;
 
-	//인프런 사이트 크롤링
+	/* 
+	 * @Method 설명 : 지정된 카테고리 언어의 별점, 제목, 내용 등을 JSOUP을 이용해 크롤링 후 DB에 삽입(인프런 사이트 크롤링)
+	 * @return
+	*/
 	@RequestMapping("CrawlingInflearn.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingInflearn() {
@@ -377,7 +380,10 @@ public class CrawlingController {
 		int result = service.insertStudy(titleList);
 	}
 
-	//구름EDU 크롤링
+	/* 
+	 * 지정된 카테고리 언어의 별점, 제목, 내용 등을 JSOUP을 이용해 크롤링 후 DB에 삽입(구름EDU 크롤링)
+	 * @return
+	*/
 	@RequestMapping("CrawlingGoormEdu.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingGoormEdu() {
@@ -730,7 +736,10 @@ public class CrawlingController {
 		}
 	}
 
-	// 유데미 크롤링
+	/* 
+	 * @Method 설명 :지정된 카테고리 언어의 별점, 제목, 내용 등을 RestTemplate을 이용해 JSON을 데이터를 크롤링 후 DB에 삽입(유데미 크롤링)
+	 * @return
+	*/
 	@RequestMapping("CrawlingUdemy.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingUdemy() throws JsonProcessingException {

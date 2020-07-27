@@ -59,7 +59,14 @@ public class BoardController {
 	@Autowired
 	private MyPageService mservice;
 
-	// 스터디목록 + 페이징
+/*
+	*
+    * @Method 설명 : 동기식으로 기존 스터디 목록 뿌려주기 or 필터 후 static으로 선언한 HashMap에 담긴 카테고리 조건값을 가져와 필터 후 데이터를 기준으로 검색 하는 함수  
+    * @param searchType
+    * @param keyword
+    * @param root
+    * @return view 주소
+*/
 	@RequestMapping("study_List.do")
 	public String studyListPage(Criteria_Board cri_b, Model model, HttpServletRequest request,
 			@RequestParam(value = "searchType", required = false) String searchType,
@@ -129,7 +136,12 @@ public class BoardController {
 		return "user/board/study_List"; // study_List.html
 	}
 
-	//스터디 게시판 필터 적용 후 리스트
+	/*
+	    * @Method 설명 : 필터 후 static으로 선언한 HashMap에 담긴 카테고리 조건값을 가져와 지정한 카테고리에 해당하는 데이터를 가져오는 함수   
+	    * @param cri_b
+	    * @param model
+	    * @return view 주소
+    */
 	@RequestMapping("study_FilterList.do")
 	public String studyListFilterPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
 

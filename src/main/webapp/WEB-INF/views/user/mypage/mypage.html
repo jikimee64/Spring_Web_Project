@@ -112,7 +112,6 @@ body {
 	<!-- 마이페이지 -->
 	<div th:replace="/user/includes/header :: header"></div>
 
-	<!--  윗부분 시작 //////////////////////////////////////// -->
 	<main id="main">
 		<!-- ======= Breadcrumbs Section ======= -->
 		<section class="breadcrumbs" style="margin-top: 70px;">
@@ -189,8 +188,7 @@ body {
 				</div>
 			</div>
 		</div>
-		<!--  윗부분 끝 //////////////////////////////////////// -->
-		<!--  중간부분 시작  //////////////////////////////////////// -->
+		
 		<div class="container" style="height: 500px; padding-top: 15px;">
 			<div style="padding: 40px 30px;">
 				<div class="row">
@@ -207,7 +205,6 @@ body {
 					</button>
 				</div>
 
-
 				<input type="hidden" id="user_id" name="user_id"
 					th:value="${user.user_id}">
 				<div class="_border_box_shadow3"
@@ -215,7 +212,6 @@ body {
 					<div class="recruting_study" style="overflow-x: hidden; width: 100%; height: 400px;"
 						id="recruting_study">
 						<div th:each="studylist,index: ${studylist}">
-							<!-- 여기부터 참여중 스터디!!!!!!!!!!!!!!!!!!!!!!!! -->
 
 							<div class="row p-3">
 								<div class="col-md-1" style="text-align: center;">
@@ -276,12 +272,10 @@ body {
 						</div>
 						
 						<br />
-						<!-- 여기까지 참여중 스터디!!!!!!!!!!!!!!!!!!!!! -->
 					</div>
 				</div>
 			</div>
-			<!--  중간부분 끝  //////////////////////////////////////// -->
-			<!-- 여기부터 마지막 부분 시작/// 북마크 -->
+			<!-- 북마크 시작  -->
 			<div class="container" style="padding: 40px 30px; height: 500px;">
 				<div style="margin-bottom: 20px;">
 
@@ -344,7 +338,7 @@ body {
 						</div>
 					</div>
 				</div>
-				<!-- 여기까지 마지막 부분 끝/// 북마크 -->
+				<!-- 북마크 끝 -->
 			</div>
 		</div>
 	</div>

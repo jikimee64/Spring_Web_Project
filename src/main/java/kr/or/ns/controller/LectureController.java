@@ -45,7 +45,14 @@ public class LectureController {
 	@Autowired
 	private MyPageService service3;
 
-	// 스터디목록 + 페이징
+	/*
+	    * @Method 설명 : 동기식으로 기존 온라인 강의 목록 뿌려주기 or 필터 후 static으로 선언한 HashMap에 담긴 카테고리 조건값을 가져와 필터 후 데이터를 기준으로 검색 하는 함수  
+	    * @param searchType
+	    * @param keyword
+	    * @param root
+	    * @param language
+	    * @return view 주소
+	    */
 	@RequestMapping("course_List.do")
 	public String courseListPage(Criteria cri, Model model, Principal principal,
 			@RequestParam(value = "searchType", required = false) String searchType,
@@ -75,7 +82,6 @@ public class LectureController {
 		cri.setSearchType(searchType);
 
 		if (language != null) { //main에서 왔을 때
-			
 			map2.put("language", arr);
 			map2.put("perPageNum", cri.getPerPageNum());
 			map2.put("pageStart", cri.getPageStart());
@@ -134,8 +140,6 @@ public class LectureController {
 		return "user/board/course_List"; // study_List.html
 	}
 	
-	
-		// 온라인 강의 게시판 검색
 		@RequestMapping("course_SearchList.do")
 		public String courseSearchPage(Criteria cri, Model model, Principal principal) {
 			PageMaker pageMaker = new PageMaker();
@@ -162,7 +166,12 @@ public class LectureController {
 			return "user/board/course_List"; // study_List.html
 		}
 
-	// 스터디목록 + 페이징
+		/*
+		    * @Method 설명 : 필터 후 static으로 선언한 HashMap에 담긴 카테고리 조건값을 가져와 지정한 카테고리에 해당하는 데이터를 가져오는 함수   
+		    * @param cri_b
+		    * @param model
+		    * @return view 주소
+	    */
 	@RequestMapping("course_FilterList.do")
 	public String courseListFilterPage(Criteria cri, Model model, Principal principal) {
 		PageMaker pageMaker = new PageMaker();
