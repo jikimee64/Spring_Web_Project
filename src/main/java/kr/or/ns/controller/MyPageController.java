@@ -93,15 +93,11 @@ public class MyPageController {
 	public String mypageUserEdit(@RequestParam(value = "file", required = false) MultipartFile ipload, Users user,
 			HttpServletRequest request, Model model, Principal principal) {
 		
-		System.out.println("snstype : " + user.getSnstype());
 		if(user.getSnstype().equals("normal")) {
-			System.out.println("여긴타니??");
 			user.setUser_pwd(this.bCryptPasswordEncoder.encode(user.getUser_pwd()));
 		}
-		System.out.println("패스워드 암호화 1단게 : " + user.getUser_pwd());
 		service.MyPageUserEdit(user, request);
-		System.out.println("서비스 업데이트 마무리");
-		return "redirect:mypage.do";
+		return "redirect:/mypage/mypage.do"; // /index.htm
 
 	}
 

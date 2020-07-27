@@ -28,12 +28,7 @@
 						}
 		
 						if(flag === true){
-							/* var formData = $(".joinform").serialize() */
-							/* var file = $(#'joinform')[0].files[0]; */
 							var formData = new FormData(this);
-							console.log(formData)
-			
-							console.log("데이터 : " + formData.get("user_id"))
 							
 							$.ajax({
 								url : "",
