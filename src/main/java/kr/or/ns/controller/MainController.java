@@ -17,7 +17,7 @@ public class MainController {
 	@Autowired
 	private MainServiceImpl mainservice;
 	
-	
+	//메인 화면에서 모집중인 스터디 목록 뿌려주는 함수
 	@RequestMapping("main.do")
 	public String mainPage(Model model) {
 		

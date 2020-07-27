@@ -3,7 +3,6 @@ package kr.or.ns.controller;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -17,20 +16,15 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kr.or.ns.crawling.vo.UdemyCourses;
 import kr.or.ns.crawling.vo.UdemyKey;
@@ -39,7 +33,6 @@ import kr.or.ns.crawling.vo.UdemyPrice;
 import kr.or.ns.crawling.vo.UdemyResponse;
 import kr.or.ns.crawling.vo.UdemyResponsePrice;
 import kr.or.ns.crawling.vo.UdemyUnit;
-import kr.or.ns.service.BoardService;
 import kr.or.ns.service.CrawlingService;
 
 @RestController
@@ -52,6 +45,7 @@ public class CrawlingController {
 	@Qualifier("restTemplate")
 	public RestTemplate restTemplate;
 
+	//인프런 사이트 크롤링
 	@RequestMapping("CrawlingInflearn.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingInflearn() {
@@ -63,13 +57,10 @@ public class CrawlingController {
 
 		for (int i = 0; i < array.length; i++) {
 
-			// String url = "https://www.inflearn.com/courses/it-programming/web-dev"; //
 			// 크롤링할 url지정
 			String url = "https://www.inflearn.com/courses/it-programming/web-dev?order=seq&skill=" + array[i]; // 크롤링할
 
 			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
-
-			/* for (int i = 0; i < 6; i++) { */
 
 			Connection conn = Jsoup.connect(url);
 
@@ -107,7 +98,6 @@ public class CrawlingController {
 
 					element = html2.getElementsByClass("course_card_item");
 
-					/* for (Element fileblock : fileblocks) { */
 					for (int j = 0; j < element.size(); j++) {
 						Map<String, Object> map = new HashMap();
 
@@ -119,11 +109,8 @@ public class CrawlingController {
 						Elements level = element.get(j).getElementsByClass("course_level");
 						map.put("cate_level", level.text());
 
-						// 가격자르기
-						// Elements prices = element.get(j).getElementsByClass("price");
 						Elements prices2 = element.get(j).getElementsByClass("price").tagName("span");
 						Elements prices3 = element.get(j).getElementsByClass("pay_price");
-
 
 						if (prices2.text().equals("무료")) {
 							map.put("p_seq", 1);
@@ -154,7 +141,7 @@ public class CrawlingController {
 
 						}
 
-						map.put("site_seq", 1); // 인프런
+						map.put("site_seq", 1); 
 
 						if (i == 0) {
 							map.put("lan_seq", 1);
@@ -191,9 +178,6 @@ public class CrawlingController {
 						Elements instructors = element.get(j).getElementsByClass("instructor");
 						map.put("l_writer", instructors.text());
 
-						// List<Double> star2 = Arrays.asList
-						// (new Double[]{0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0});
-						// 자른후 ...?
 						Elements stars = element.get(j).getElementsByClass("star_solid");
 						int star_size = stars.attr("style").length();
 						String arr[] = stars.attr("style").split(": ");
@@ -251,7 +235,6 @@ public class CrawlingController {
 				}
 			} else {
 
-				/* for (Element fileblock : fileblocks) { */
 				for (int j = 0; j < element.size(); j++) {
 					Map<String, Object> map = new HashMap();
 
@@ -263,8 +246,6 @@ public class CrawlingController {
 					Elements level = element.get(j).getElementsByClass("course_level");
 					map.put("cate_level", level.text());
 
-					// 가격자르기
-					// Elements prices = element.get(j).getElementsByClass("price");
 					Elements prices2 = element.get(j).getElementsByClass("price").tagName("span");
 					Elements prices3 = element.get(j).getElementsByClass("pay_price");
 
@@ -298,9 +279,8 @@ public class CrawlingController {
 
 					}
 
-					map.put("site_seq", 1); // 인프런
+					map.put("site_seq", 1); 
 
-					// 스킬문제...
 					Elements skills = element.get(j).getElementsByClass("course_skills");
 					if (i == 0) {
 						map.put("lan_seq", 1);
@@ -337,9 +317,6 @@ public class CrawlingController {
 					Elements instructors = element.get(j).getElementsByClass("instructor");
 					map.put("l_writer", instructors.text());
 
-					// List<Double> star2 = Arrays.asList
-					// (new Double[]{0.5,1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0});
-					// 자른후 ...?
 					Elements stars = element.get(j).getElementsByClass("star_solid");
 					int star_size = stars.attr("style").length();
 					String arr[] = stars.attr("style").split(": ");
@@ -400,6 +377,7 @@ public class CrawlingController {
 		int result = service.insertStudy(titleList);
 	}
 
+	//구름EDU 크롤링
 	@RequestMapping("CrawlingGoormEdu.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingGoormEdu() {
@@ -410,7 +388,7 @@ public class CrawlingController {
 		languagelist.add("html");
 		languagelist.add("css");
 		languagelist.add("spring");
-		languagelist.add("파이썬"); // 40개?
+		languagelist.add("파이썬"); 
 		languagelist.add("vue.js");
 		languagelist.add("react");
 		languagelist.add("jQuery");
@@ -418,7 +396,6 @@ public class CrawlingController {
 		languagelist.add("bootstrap");
 		// JPA 없음
 
-		// 크롤링할 url지정
 		for (int i = 0; i < languagelist.size(); i++) {
 			String url = "https://edu.goorm.io/category/programming?page=1&sort=newest&classification="
 					+ languagelist.get(i);
@@ -488,8 +465,6 @@ public class CrawlingController {
 						// 가격
 						Elements pricesData = element.get(j).getElementsByClass("_3vh60A");
 						String pricesData2 = pricesData.text();
-						// String prices1 = pricesData2.replaceAll(",", "");
-						// String prices22 = prices1.substring(1);
 
 						if (pricesData2.equals("무료") || pricesData2.equals("\0")) {
 							map.put("p_seq", 1);
@@ -612,7 +587,6 @@ public class CrawlingController {
 
 			} else {
 
-				// Elements element = html.getElementsByClass("_1xnzzp");
 				for (int j = 0; j < element.size(); j++) {
 					Map<String, Object> map = new HashMap();
 					// 키값
@@ -636,8 +610,6 @@ public class CrawlingController {
 					// 가격
 					Elements pricesData = element.get(j).getElementsByClass("_3vh60A");
 					String pricesData2 = pricesData.text();
-					// String prices1 = pricesData2.replaceAll(",", "");
-					// String prices22 = prices1.substring(1);
 
 					if (pricesData2.equals("무료") || pricesData2.equals("\0")) {
 						map.put("p_seq", 1);
@@ -758,20 +730,16 @@ public class CrawlingController {
 		}
 	}
 
-	// 유데미 크롤링하기
+	// 유데미 크롤링
 	@RequestMapping("CrawlingUdemy.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingUdemy() throws JsonProcessingException {
 
-		// 서비스에 넘길 리스트맵
 		List<Map<String, Object>> listMap = new ArrayList();
-		// 강의 아이디만 보관
-		// List<String> idList = new ArrayList();
-		// 강의정보 보관
 		List<UdemyResponse> list = new ArrayList();
 
 		String course[] = { "6148", "4820", "7380", "4308", "6368", "6404", "7450" };
-		// html, 부트스트랩, 파이썬, vue.js, javascript, jquery, react,
+						// html, 부트스트랩, 파이썬, vue.js, javascript, jquery, react,
 
 		for (int i = 0; i < course.length; i++) {
 			UdemyResponse returnTypeData = new UdemyResponse();
@@ -791,7 +759,6 @@ public class CrawlingController {
 				Map<String, Object> map = new HashMap();
 
 				String id = Integer.toString(list.get(j).getUnit().getItems().get(z).getId());
-				// idList.add(id);
 				map.put("l_key", id);
 				String title = list.get(j).getUnit().getItems().get(z).getTitle();
 				map.put("l_title", title);
@@ -838,8 +805,6 @@ public class CrawlingController {
 
 				String author = list.get(j).getUnit().getItems().get(z).getAuthor();
 				map.put("l_writer", author);
-				// String label_title =
-				// list.get(j).getUnit().getItems().get(z).getContext_info().getLabel().getTitle();
 
 				switch (j) {
 				case 0:

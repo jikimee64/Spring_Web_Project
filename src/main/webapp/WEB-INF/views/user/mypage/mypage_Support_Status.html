@@ -400,8 +400,8 @@ group+group {
 		</script>
 
 		<script>
+		//승인
 			function accept(user_id, s_seq) {
-
 				let data = {
 					"user_id" : user_id,
 					"s_seq" : s_seq
@@ -490,9 +490,8 @@ group+group {
 						});
 
 			}
-
+			//거절
 			function reject(user_id, s_seq) {
-
 				let data = {
 					"user_id" : user_id,
 					"s_seq" : s_seq
@@ -602,6 +601,7 @@ group+group {
 						});
 
 			}
+			//유저정보 모달 연결
 					    function InfoModal(idx) {
 				    		console.log('idx : ' + $.escapeSelector(idx));
 				    		
@@ -662,12 +662,8 @@ group+group {
 				         });
 
 				      }
-						
-						
-						
+															
 		</script>
-		
-
 </body>
 
 </html>

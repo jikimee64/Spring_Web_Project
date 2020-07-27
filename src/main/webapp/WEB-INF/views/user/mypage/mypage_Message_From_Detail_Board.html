@@ -137,10 +137,9 @@ body {
 	</div>
 
 	<script>
+	//쪽지 삭제
 	$(function() {
-	
 	var m_seq = $('#m_seq').val();
-		
 	$('#delete').click(function(){
 		swal({
 			  title: "쪽지를 삭제 하시겠습니까?",
@@ -160,8 +159,8 @@ body {
 	</script>
 
 	<script>
+	//신고하기
  $(function() {
-	 
 	  $(".blameform").submit(function(e) {
 		 	 e.preventDefault();
 			 var formData = new FormData(this);
@@ -206,7 +205,6 @@ body {
 
  
  </script>
-
 	<!-- 신고하기버튼 클릭 후 모달 닫기  -->
 	<script>	
  $("#blame-btn").click(function(e) {

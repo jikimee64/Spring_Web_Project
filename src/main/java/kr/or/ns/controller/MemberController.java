@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.codec.binary.Base64;
-import org.apache.http.client.HttpClient;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +19,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -46,10 +42,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.itextpdf.text.log.SysoCounter;
 
 import kr.or.ns.service.AjaxService;
 import kr.or.ns.service.MemberService;
@@ -95,6 +89,7 @@ public class MemberController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+	// 일반 계정 로그이느 페이지 이동(시큐리티 페일러 핸들러에서 발생하 에러메시지 출력)
 	@RequestMapping(value = "normallogin.do", method = RequestMethod.GET)
 	public String loginPage(@RequestParam(value = "errormsg", required = false) Object errormsg,
 			HttpServletRequest request) {
@@ -105,6 +100,7 @@ public class MemberController {
 		return "user/member/login";
 	}
 
+	// 로그인 페이지 이동
 	@RequestMapping(value = "login.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public String socialloginPage(@RequestParam(value = "errormsg", required = false) Object errormsg,
 			HttpServletRequest request, HttpSession session, Model model) {
@@ -124,7 +120,6 @@ public class MemberController {
 		// url 전달
 		model.addAttribute("naver_url", naverUrl); // 네이버 url
 		model.addAttribute("google_url", googleurl); // 구글 url
-
 
 		return "user/member/login";
 	}
@@ -168,6 +163,7 @@ public class MemberController {
 			if (check == 0) {
 				model.addAttribute("uemail", email);
 				model.addAttribute("snstype", "naver");
+				// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 				return "user/member/join";
 			} else if (check == 1 && after_enabled == 0) {
 				String msg = "접근 권한이 없습니다. 관리자에게 문의해주세요.";
@@ -193,13 +189,10 @@ public class MemberController {
 				users = mypageservice.getUsers(email);
 				session = request.getSession();
 				session.setAttribute("currentUser", users);
-
-				// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
-
 		return "redirect:../user/main.do";
 	}
 
@@ -237,12 +230,9 @@ public class MemberController {
 		String body = new String(base64.decode(tokens[1]));
 		String tokenInfo = new String(Base64.decodeBase64(tokens[1]), "utf-8");
 
-
 		// Jackson을 사용한 JSON을 자바 Map 형식으로 변환
 		ObjectMapper temp = new ObjectMapper();
 		Map<String, String> googleUserInfo = temp.readValue(tokenInfo, Map.class);
-//      ObjectMapper mapper = new ObjectMapper();
-//      Map<String, String> result = mapper.readValue(body, Map.class);
 
 		String email = googleUserInfo.get("email");
 		/* 메인이외의 페이지에서 로그인했을시 해당 페이지로 return시켜주기위한 url */
@@ -260,6 +250,7 @@ public class MemberController {
 			if (check == 0) {
 				model.addAttribute("uemail", email);
 				model.addAttribute("snstype", "google");
+				// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 				return "user/member/join";
 
 			} else if (check == 1 && after_enabled == 0) {
@@ -286,13 +277,10 @@ public class MemberController {
 				users = mypageservice.getUsers(email);
 				session = request.getSession();
 				session.setAttribute("currentUser", users);
-
-				// 가입하지 않은 회원이면 회원가입으로 이동시켜주기
 			}
 		} catch (Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 		}
-
 		return "redirect:../user/main.do";
 	}
 
@@ -307,7 +295,6 @@ public class MemberController {
 		model.addAttribute("url", naverAuthUrl);
 		model.addAttribute("google_url", googleurl);
 
-
 		return "user/member/menujoin";
 	}
 
@@ -319,11 +306,6 @@ public class MemberController {
 		int loginusers = service.socialjoininsert(users, request);
 
 		return "redirect:/index.do";
-		// /index.htm
-		// 주의사항
-		// 요청 주소 ...아래처럼 ..
-		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
-		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
 	}
 
 	@RequestMapping("normaljoin.do")
@@ -340,18 +322,14 @@ public class MemberController {
 
 		try {
 			service.joininsert(users, request);
-
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 
 		return "redirect:/index.do"; // /index.htm
-		// 주의사항
-		// 요청 주소 ...아래처럼 ..
-		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
-		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
 	}
 
+	//시큐리티 페일러 핸들러이후 loginFail.do주소 매핑
 	@RequestMapping("loginFail.do")
 	public String loginFailPage(HttpServletRequest request, RedirectAttributes redirect) {
 		Object errormsg = request.getAttribute("errormsgname");
@@ -359,11 +337,13 @@ public class MemberController {
 		return "redirect:/member/normallogin.do";
 	}
 
+	//아이디 찾기 페이지 이동
 	@RequestMapping("find_Id.do")
 	public String findIdPage() {
 		return "user/member/find_Id";
 	}
 
+	//비밀번호 찾기 페이지 이동
 	@RequestMapping("find_Passward.do")
 	public String findPasswardPage() {
 		return "user/member/find_Passward";

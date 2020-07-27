@@ -747,6 +747,7 @@ group+group {
 
       });
 
+      //유저정보 모달 연결
       function InfoModal(idx) {
 
     	  let id = $('.InfoModal' + idx).children(":eq(0)").val();
@@ -806,6 +807,7 @@ group+group {
    </script>
 
    <script th:inline="javascript">
+   //검색
    $(function(){
       
       //searchType select 박스 설정
@@ -868,6 +870,7 @@ group+group {
 
 
    <script>
+   //필터기능
       $('.filterRow li')
             .on(
                   "click",

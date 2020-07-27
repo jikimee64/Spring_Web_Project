@@ -120,12 +120,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 select count(bl_status) from blame_board where bl_status='처리중';
 	</select>
 
-	<!-- 해당 메시지에 대한 정보 얻기  -->
-	<select id="messageGet" resultType="hashmap">
-		select *
-		from message
-		where m_seq = #{m_seq}
-	</select>
 	
 
 </mapper>

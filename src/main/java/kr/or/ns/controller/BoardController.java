@@ -1,11 +1,8 @@
 package kr.or.ns.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.Inet4Address;
-import java.net.InetAddress;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -14,28 +11,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.itextpdf.text.log.SysoLogger;
-import com.sun.media.jfxmedia.logging.Logger;
 
 import kr.or.ns.page.PageMaker_Board;
 import kr.or.ns.service.AjaxService;
@@ -61,67 +52,63 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
-	
+
 	@Autowired
 	private AjaxService aservice;
-	
+
 	@Autowired
 	private MyPageService mservice;
 
 	// 스터디목록 + 페이징
 	@RequestMapping("study_List.do")
-	public String studyListPage(Criteria_Board cri_b, Model model, 
-			HttpServletRequest request,
-			@RequestParam(value="searchType",required = false) String searchType,
-			@RequestParam(value="keyword",required=false) String keyword,
-			@RequestParam(value="root",required=false) String root
-			) throws ClassNotFoundException, SQLException {
-		
+	public String studyListPage(Criteria_Board cri_b, Model model, HttpServletRequest request,
+			@RequestParam(value = "searchType", required = false) String searchType,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "root", required = false) String root) throws ClassNotFoundException, SQLException {
+
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
-	
-		/////////////////////////////////////////////////////////////////////////////
+
 		List<String> keywordCollec = new ArrayList();
-		if(keyword != null) {
-		String[] ccc = keyword.split("\\+");
-		for( int i=0; i<ccc.length; i++) {
-		keywordCollec.add(ccc[i]);
+		if (keyword != null) {
+			String[] ccc = keyword.split("\\+");
+			for (int i = 0; i < ccc.length; i++) {
+				keywordCollec.add(ccc[i]);
+			}
 		}
-		}
-		///////////////////////////////////////////////////////////////////////////////
-		
+
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<Map<String, Object>> list = null;
 		HashMap<String, Object> map = null;
-		
+
 		cri_b.setKeyword(keyword);
 		cri_b.setSearchType(searchType);
-		
+
 		String redirectStr = "";
 		Map<String, Object> redirect = (Map<String, Object>) RequestContextUtils.getInputFlashMap(request);
-		if(redirect != null) {
-			redirectStr = (String)redirect.get("root");
+		if (redirect != null) {
+			redirectStr = (String) redirect.get("root");
 		}
-		
-		if(root != null) {
+
+		if (root != null) {
 			HashMap<String, Object> map4 = new HashMap();
-			map4.put("keyword",keywordCollec );
-			list = service.getStudyBoardList(cri_b,map4);
-			if(keyword == null) { //처음동기식으로 왔을때
+			map4.put("keyword", keywordCollec);
+			list = service.getStudyBoardList(cri_b, map4);
+			if (keyword == null) { // 처음동기식으로 왔을때
 				pageMakerb.setTotalCount(service.getStudyBoardCount());
-			}else if(root.equals("search")){ //검색만 했을때(검색결과에 대한 사이즈 필요,리밋X)
-				List<Map<String, Object>> listSize = service.getStudyBoardListSize(cri_b,map4);
+			} else if (root.equals("search")) { // 검색만 했을때(검색결과에 대한 사이즈 필요,리밋X)
+				List<Map<String, Object>> listSize = service.getStudyBoardListSize(cri_b, map4);
 				pageMakerb.setTotalCount(listSize.size());
 				model.addAttribute("type", "Search");
 				model.addAttribute("searchType", cri_b.getSearchType());
 				model.addAttribute("keyword", cri_b.getKeyword());
 			}
-			
-		}else {
+
+		} else {
 			map = AjaxRestController.paramsTemp;
-			map.put("keyword",keywordCollec );
+			map.put("keyword", keywordCollec);
 			list = service.getStudyBoardListFilter(cri_b, map);
 			List<Map<String, Object>> listSizeSearch = service.getStudyBoardListFilterSize(cri_b, map);
 			model.addAttribute("ingOrDone", map.get("ingOrDone"));
@@ -135,29 +122,19 @@ public class BoardController {
 			pageMakerb.setTotalCount(listSizeSearch.size());
 			AjaxRestController.filterSize = 0;
 		}
-		/* pageMakerb.setTotalCount(list.size()); */
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
-		
+
 		return "user/board/study_List"; // study_List.html
 	}
 
-	private List<Map<String, Object>> getStudyBoardListSize(Criteria_Board cri_b) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	//스터디 게시판 필터 적용 후 리스트
 	@RequestMapping("study_FilterList.do")
 	public String studyListFilterPage(Criteria_Board cri_b, Model model) throws ClassNotFoundException, SQLException {
 
-		
 		PageMaker_Board pageMakerb = new PageMaker_Board();
 		pageMakerb.setCri_b(cri_b);
-
-		// 서비스를 안가는ㄴㄴㄴ구먼........................
-
-		// study_board_online에있는 모든정보도 보내야하나?
 
 		List<Map<String, Object>> onlineInfo = service.getOnlineStudyBoard();
 
@@ -166,64 +143,45 @@ public class BoardController {
 
 		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
 		List<HashMap<String, Object>> list = aservice.studyBoardFilter(map, cri_b);
-		
-		
+
 		pageMakerb.setTotalCount(filterSize);
-		
+
 		model.addAttribute("list", list); // view까지 전달(forward)
 		model.addAttribute("onlineInfo", onlineInfo); // view까지 전달(forward)
 		model.addAttribute("pageMakerb", pageMakerb);
-		
+
 		model.addAttribute("ingOrDone", map.get("ingOrDone"));
 		model.addAttribute("level", map.get("level"));
 		model.addAttribute("language", map.get("language"));
 		model.addAttribute("local", map.get("local"));
 		model.addAttribute("studyContent", map.get("studyContent"));
-		
+
 		model.addAttribute("type", "Search");
-		
-		
+
 		model.addAttribute("type", "filter");
-		
 
 		return "user/board/study_List"; // study_List.html
 	}
 
 	// 일반컨텐츠(스터디 게시판 글 등록)
 	@RequestMapping(value = "register.do", method = RequestMethod.POST)
-	/* @ResponseBody */
 	public String boardRegister(Study study, HttpServletRequest request, Principal principal,
 			RedirectAttributes redirectAttr) {
 
-
 		try {
-			// 서비스가서 DB에 등록
 			service.studyReg(study, request, principal);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		redirectAttr.addAttribute("root","header");
-		// return "user/board/study_List";
-		
-		//return ""
-		//return "sss";
-		
-		// /index.htm
-		return "redirect:/board/study_List.do"; // /index.htm
-		 //return ""; // /index.htm
+		redirectAttr.addAttribute("root", "header");
 
-		/*
-		 * return "redirect:/index.do"; // /index.htm
-		 */ // 주의사항
-		// 요청 주소 ...아래처럼 ..
-		// http://localhost:8090/SpringMVC_Basic06_WebSite_Annotation_JdbcTemplate/index.htm
-		// return "redirect:noticeDetail.htm?seq="+n.getSeq();
+		return "redirect:/board/study_List.do"; 
 	}
 
 	// 일반컨텐츠(스터디 게시판 글 편집)
 	@RequestMapping(value = "writing_Normal_Study_Edit.do", method = RequestMethod.POST)
-	public String writingNormalStudyEdit(String page, String perPageNum, RedirectAttributes redirect, Study study, Principal principal,
-			HttpServletRequest request) {
+	public String writingNormalStudyEdit(String page, String perPageNum, RedirectAttributes redirect, Study study,
+			Principal principal, HttpServletRequest request) {
 
 		try {
 			// 서비스가서 DB에 등록
@@ -232,66 +190,55 @@ public class BoardController {
 			System.out.println(e.getMessage());
 		}
 
-
-		redirect.addAttribute("page", page);    
-		redirect.addAttribute("perPageNum", perPageNum);  
+		redirect.addAttribute("page", page);
+		redirect.addAttribute("perPageNum", perPageNum);
 		redirect.addAttribute("s_seq", study.getS_seq());
 
 		return "redirect:writing_Common_Study_Detail.do";
 	}
 
 	// 온라인컨텐츠(스터디 게시판 글 등록)
-	@RequestMapping(value = "registerOnline.do", method = {RequestMethod.POST, RequestMethod.GET})
-	 @ResponseBody 
-	public String registerOnline(RedirectAttributes redirectAttr,
-			Study study, Principal principal, HttpServletRequest request) {
+	@RequestMapping(value = "registerOnline.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public String registerOnline(RedirectAttributes redirectAttr, Study study, Principal principal,
+			HttpServletRequest request) {
 
-			
 		study.setL_seq(Integer.parseInt(study.getL_seq_temp()));
-		
+
 		try {
-			// 서비스가서 DB에 등록
 			service.studyOnlineReg(study, request, principal);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 
 		}
-		redirectAttr.addAttribute("root","header");
+		redirectAttr.addAttribute("root", "header");
 		return "";
-		// return "user/board/study_List";
-		//return "redirect:/board/study_List.do";
-		 //return "";
 	}
-	
-	
 
+	//게시판 등록 전 일반 or 온라인 강의 컨텐츠 등록 페이지
 	@RequestMapping("board_Select.do")
 	public String boardSelectPage() {
-
 		return "user/board/board_Select";
 	}
 
+	//일반 컨텐츠 스터디 등록 페이지 이동
 	@RequestMapping("writing_Normal_Study.do")
 	public String writingNormalStudyPage() {
-
 		return "user/board/writing_Normal_Study";
 	}
 
-	// 상세보기
+	// 스터디 게시글 상세보기
 	@RequestMapping("writing_Common_Study_Detail.do")
 	public String writingNormalStudyDetailPage(String s_seq, String page, String perPageNum, Model model,
 			Principal principal) {
 
-		
 		String user_id = principal.getName();
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
 		like.setUser_id(user_id);
-		// 좋아요 0/1 중 뭔지 알아오기
 		int heart = service.heartnum(like);
-		
-		//지원했는지 여부//insert 정보넘길 맵생성
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("s_seq", s_seq);
 		map.put("user_id", user_id);
@@ -300,7 +247,6 @@ public class BoardController {
 		try {
 			Map<String, Object> study = service.getStudy(s_seq);
 			Map<String, Object> onlineInfo = service.onlineDetailInfo(s_seq);
-
 
 			model.addAttribute("study", study);
 			model.addAttribute("onlineInfo", onlineInfo);
@@ -322,7 +268,7 @@ public class BoardController {
 		return "user/board/writing_Common_Study_Detail";
 	}
 
-//	파일 다운로드 
+	//	파일 다운로드 
 	@RequestMapping("FileDownload.do")
 	public ModelAndView FileDownload(String filesrc, HttpServletRequest request, Model model) {
 
@@ -352,45 +298,21 @@ public class BoardController {
 
 	// 스터디 게시판 글 삭제
 	@RequestMapping("writing_Common_Study_Delete.do")
-	public String writingNormalStudyDelete(String page, String perPageNum, Model model, String s_seq, RedirectAttributes redirect)
-			throws ClassNotFoundException, SQLException {
-		//Criteria_Board cri_b = new Criteria_Board();
-		// 게시글 삭제
+	public String writingNormalStudyDelete(String page, String perPageNum, Model model, String s_seq,
+			RedirectAttributes redirect) throws ClassNotFoundException, SQLException {
 		int result = service.delete(s_seq);
-		//PageMaker_Board pageMakerb = new PageMaker_Board();
-		//pageMakerb.setCri_b(cri_b);
-
-		
-		//여기도 잠시 수정...삭제가 될랑가?
-//		pageMakerb.setTotalCount(service.getStudyBoardCount(cri_b));
-		//pageMakerb.setTotalCount(service.getStudyBoardCount());
-
-		// DAO받아오기 + 매퍼를 통한 인터페이스 연결
-		//List<Map<String, Object>> list = null;
-		//list = service.getStudyBoardList(cri_b);
-		//model.addAttribute("list", list); // view까지 전달(forward)
-		//model.addAttribute("pageMakerb", pageMakerb);
-		if(result%10==0) {
+		if (result % 10 == 0) {
 			int ksk = Integer.parseInt(page);
 			ksk--;
 			page = Integer.toString(ksk);
 		}
-		
-		redirect.addAttribute("root", "root"); 
-		redirect.addAttribute("page", page);    
-		redirect.addAttribute("perPageNum", perPageNum);  
-		//redirect.addAttribute("list", list);  
-		//redirect.addAttribute("pageMakerb", pageMakerb);
+
+		redirect.addAttribute("root", "root");
+		redirect.addAttribute("page", page);
+		redirect.addAttribute("perPageNum", perPageNum);
 
 		return "redirect:/board/study_List.do";
-		
-		//return "user/board/study_List";
-	}
 
-	@RequestMapping("board_Support_Status.do")
-	public String boardSupportStatusPage() {
-
-		return "user/board/board_Support_Status";
 	}
 
 	// 하트 누르면 좋아요 insert 하기
@@ -418,17 +340,17 @@ public class BoardController {
 			throws IOException {
 		String user_id = principal.getName();
 		Users user = mservice.getUsers(user_id);
-		
+
 		String s_seq = (String) params.get("s_seq");
 		String r_content = (String) params.get("r_content");
 		String r_nickname = user.getNickname();
-		
+
 		Comment cm = new Comment();
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_content(r_content);
 		cm.setR_name(user_id);
 		cm.setR_nickname(r_nickname);
-		
+
 		service.commentInsert(cm);
 
 		List<Map<String, Object>> commentList = service.getComment(s_seq);
@@ -448,7 +370,6 @@ public class BoardController {
 		cm.setS_seq(Integer.parseInt(s_seq));
 		cm.setR_seq(Integer.parseInt(r_seq));
 
-		// service.commentDelete(cm);
 		service.updateR_exists(cm);
 
 		List<Map<String, Object>> commentList = service.getComment(s_seq);
@@ -484,7 +405,6 @@ public class BoardController {
 		cm.setR_content(r_content);
 		service.commentUpdate(cm);
 
-
 		List<Map<String, Object>> commentList = service.getComment(s_seq);
 		return commentList;
 	}
@@ -498,7 +418,6 @@ public class BoardController {
 		Comment cm = new Comment();
 		cm.setS_seq(Integer.parseInt(s_seq));
 		int result = service.countComment(cm);
-
 
 		return result;
 	}
@@ -519,7 +438,7 @@ public class BoardController {
 		cm.setR_name(user_id); // 아이디
 		cm.setS_seq(Integer.parseInt(s_seq)); // 글번호
 		cm.setR_content(r_content); // 대댓글내용
-		cm.setR_nickname(r_nickname); //닉네임
+		cm.setR_nickname(r_nickname); // 닉네임
 
 		int r_refer = service.getP_refer(r_seq); // 부모글의 r_refer
 		cm.setR_refer(r_refer);// 그룹번호
@@ -539,7 +458,6 @@ public class BoardController {
 		Likes like = new Likes();
 		like.setS_seq(Integer.parseInt(s_seq));
 		like.setUser_id(user_id);
-		// 좋아요 0/1 중 뭔지 알아오기
 		int heart = service.heartnum(like);
 
 		// 트랜잭션 처리
@@ -550,7 +468,7 @@ public class BoardController {
 			model.addAttribute("onlineInfo", onlineInfo);
 			model.addAttribute("page", 1);
 			model.addAttribute("perPageNum", 10);
-			
+
 			List<Map<String, Object>> commentList = service.getComment(s_seq);
 			int count = service.getReplyCnt(s_seq);
 			model.addAttribute("count", count);
@@ -585,7 +503,6 @@ public class BoardController {
 		}
 		Boolean a = f.isAbsolute();
 		Boolean b = f.canExecute();
-
 
 		file.transferTo(f);
 

@@ -18,13 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.or.ns.page.PageMaker_Board;
-import kr.or.ns.service.BoardService;
 import kr.or.ns.service.ChatService;
 import kr.or.ns.service.MyPageService;
 import kr.or.ns.vo.ChatRoom;
 import kr.or.ns.vo.ChatRoomMember;
-import kr.or.ns.vo.Criteria_Board;
 import kr.or.ns.vo.Users;
 
 @Controller
@@ -42,7 +39,6 @@ public class ChatController {
 	public String roomListPage(Model model) throws ClassNotFoundException, SQLException {
 		List<HashMap<String, Object>> roomList = service.getListChatRoom();
 		model.addAttribute("roomList", roomList);
-
 		return "chat/roomlist";
 	}
 
@@ -62,7 +58,7 @@ public class ChatController {
 		return list;
 	}
 
-	// 채팅방 내부 입장 / 채팅멤버 테이블에 삽입
+	// 채팅방 내부 입장 , 채팅멤버 테이블에 삽입
 	@RequestMapping("entrance.do")
 	public String chatRoomEntrance(@RequestParam HashMap<Object, Object> params, Model model, Principal principal)
 			throws ClassNotFoundException, SQLException {
@@ -136,7 +132,6 @@ public class ChatController {
 	// 채팅방 내부에서 멤버리스트 보는 페이지로 이동
 	@RequestMapping("chatmemberlist.do")
 	public String chatmemberlist() throws ClassNotFoundException, SQLException {
-
 		return "chat/memberlist";
 	}
 
@@ -147,21 +142,16 @@ public class ChatController {
 		return "redirect:/chat/roomlist.do";
 	}
 
+	// 채팅방 회원 참여현황 불러오기
 	@RequestMapping("chatRoomMemberGet.do")
 	@ResponseBody
 	public List<HashMap<String, Object>> chatRoomMemberGet(@RequestBody Map<String, Object> params) throws IOException {
 		String ch_seq = (String) params.get("ch_seq");
 		List<HashMap<String, Object>> list = service.chatRoomMemberGet(ch_seq);
-		//ChatRoom cr = service.getChatRoom(ch_seq);
-		//String master = cr.getUser_id();
-		//HashMap<String,Object> map = new HashMap();
-		//map.put("user_id", master);
-		//map.put("profile_img", master);
-		//list.add(0, map);
 		return list;
 	}
 	
-
+	// 채팅방 정보 수정
 	@RequestMapping("chatUpdate.do")
 	@ResponseBody
 	public void chatUpdate(@RequestBody Map<String, Object> params) throws IOException {

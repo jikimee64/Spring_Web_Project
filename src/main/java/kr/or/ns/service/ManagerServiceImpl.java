@@ -109,12 +109,6 @@ public class ManagerServiceImpl implements ManagerService {
 		return result;
 	}
 
-	//신고관리 쪽지내용 확인
-	public HashMap<String, Object> messageGet(String m_seq) {
-		ManagerDao dao = sqlsession.getMapper(ManagerDao.class);
-		HashMap<String, Object> map = dao.messageGet(m_seq);
-		return map;
-	}
 
 	// 총 회원 수
 	@Override
