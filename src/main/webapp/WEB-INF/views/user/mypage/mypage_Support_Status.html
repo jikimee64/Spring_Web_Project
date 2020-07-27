@@ -285,6 +285,7 @@ group+group {
 												<a href="" th:classappend="|InfoModal${list.user_id}|"
 											th:onclick = "|javascript:InfoModal('${list.user_id}')|" data-toggle="modal" 
 											data-target="#userInfoModal" style="text-align: center; margin-bottom: 10px; width: 100%">
+												<input type="hidden" th:value="${list.user_id}" />
 													<span class="row" id="doing_study_row"> <span
 														class="col" id="doing_study_col"
 														style="font-size: x-large">
@@ -602,8 +603,8 @@ group+group {
 			//유저정보 모달 연결
 					    function InfoModal(idx) {
 				    		console.log('idx : ' + $.escapeSelector(idx));
-				    		
-
+				    		console.log($('.InfoModal' + $.escapeSelector(idx)))
+							
 				    	  let id = $('.InfoModal' + $.escapeSelector(idx)).children(":eq(0)").val();
 				    	  console.log('id : ' + id);
 

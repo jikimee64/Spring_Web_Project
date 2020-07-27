@@ -117,15 +117,13 @@ public class ChatHandler extends TextWebSocketHandler {
 	}
 
 	// 클라이언트가 서버로 메시지를 전송했을 때 실행되는 메서드
+	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		/*
-		 * 2. 메시지 전송시 JSON파싱을 위해 message.getPayload()를 통해 받은 문자열을 만든 함수,
-		 * jsonToObjectParser에 넣어서 JSONObject값으로 받아서 강제 문자열 형태로 보내주는 부분이 추가
-		 */
-
 		String rcvMsg = message.getPayload();
-		JSONObject obj = JsonToObjectParser(rcvMsg);
+		JSONObject obj = JsonToObjectParser(rcvMsg); 
+		/*message.getPayload()를 통해 받은 문자열을 jsonToObjectParser 함수에 넣은뒤
+		JSONObject값으로 받음 */
 		String rN = (String) obj.get("ch_seq");
 		HashMap<String, Object> temp = new HashMap<String, Object>();
 		if (rls.size() > 0) {
@@ -138,10 +136,9 @@ public class ChatHandler extends TextWebSocketHandler {
 			}
 			// 해당 방의 세션들만 찾아서 메시지를 발송해준다.
 			for (String k : temp.keySet()) {
-				if (k.equals("ch_seq")) { // 다만 방번호일 경우에는 건너뛴다.
+				if (k.equals("ch_seq")) { // 방번호일 경우에는 건너뛴다.
 					continue;
 				}
-
 				WebSocketSession wss = (WebSocketSession) temp.get(k);
 				if (wss != null) {
 					try {

@@ -88,6 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		on study_board.c_seq = study_content_category.c_seq
 
 		<if test="cri.searchType != null">
+		
 			<if test="cri.searchType == 't'.toString()">
 				<if test="keyword.size != 0">
 					     where study_board.title like CONCAT('%',
@@ -104,6 +105,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					</foreach>
 				</if>
 			</if>
+			
+			
 			<if test="cri.searchType == 'w'.toString()">
 				<if test="keyword.size != 0">
 					     where users.nickname like CONCAT('%',
@@ -256,6 +259,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="studyContent != null">
 				and study_board.c_seq = #{studyContent}
 			</if>
+			
+			
 		ORDER BY S_SEQ DESC
 	</select>
 

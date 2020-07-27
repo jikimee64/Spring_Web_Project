@@ -81,7 +81,6 @@
 
 	<bean id="loginSuccessHandler"
 		class="kr.or.ns.interceptor.LoginSuccessHandler">
-		<!-- <property name="loginEmail" value="user_email"/> -->
 		<property name="defaultUrl" value="/user/main.do" />
 	</bean>
 

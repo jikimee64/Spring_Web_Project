@@ -52,21 +52,13 @@ public class CrawlingController {
 	@RequestMapping("CrawlingInflearn.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingInflearn() {
-
 		String array[] = new String[] { "java", "javascript", "html-css", "spring", "python", "vuejs", "react",
 				"jquery", "jsp", "bootstrap", "java-persistence-api" };
-
 		List<Map<String, Object>> titleList = new ArrayList<>();
-
 		for (int i = 0; i < array.length; i++) {
-
-			// 크롤링할 url지정
-			String url = "https://www.inflearn.com/courses/it-programming/web-dev?order=seq&skill=" + array[i]; // 크롤링할
-
+			String url = "https://www.inflearn.com/courses/it-programming/web-dev?order=seq&skill=" + array[i]; 
 			Document doc = null; // Document에는 페이지의 전체 소스가 저장된다
-
 			Connection conn = Jsoup.connect(url);
-
 			Document html = null;
 			try {
 				html = conn.get();
@@ -743,13 +735,9 @@ public class CrawlingController {
 	@RequestMapping("CrawlingUdemy.do")
 	@Scheduled(cron = "0 45 22 * * * ")
 	public void CrawlingUdemy() throws JsonProcessingException {
-
 		List<Map<String, Object>> listMap = new ArrayList();
 		List<UdemyResponse> list = new ArrayList();
-
 		String course[] = { "6148", "4820", "7380", "4308", "6368", "6404", "7450" };
-						// html, 부트스트랩, 파이썬, vue.js, javascript, jquery, react,
-
 		for (int i = 0; i < course.length; i++) {
 			UdemyResponse returnTypeData = new UdemyResponse();
 			URI uri = UriComponentsBuilder.fromHttpUrl("https://www.udemy.com/api-2.0/discovery-units/all_courses/")
