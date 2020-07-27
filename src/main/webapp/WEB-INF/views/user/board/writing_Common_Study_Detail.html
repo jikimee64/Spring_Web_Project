@@ -733,7 +733,7 @@ group+group {
                         });
 
          
-            //댓글 카운트 갱신 !!////////////////////////////////////////////////////////////////////////
+            //댓글 카운트 갱신
             function countComment() {
                
                var s_seq = $('#s_seq').val();
@@ -756,7 +756,7 @@ group+group {
             }
             
             
-            //댓글 등록///////////////////////////////////////////////////////////////////////////////////
+            //댓글 등록
             $('#commentWrite').click(function() {
                   if($('#comment').val() == "") {
                      swal({title:"댓글을 입력하세요",
@@ -791,7 +791,7 @@ group+group {
                      });
             });
             
-            //대댓글 등록///////////////////////////////////////////////////////////////////////////////
+            //대댓글 등록
             $(document).on("click",".reCommentBtn",function(){
                   if($('#reComment').val() == "") {
                      swal({title:"댓글을 입력하세요",
@@ -825,7 +825,7 @@ group+group {
                         }
                      }); 
             });
-            //대댓글 등록 취소///////////////////////////////////////////////////////////////////////////////
+            //대댓글 등록 취소
             $(document).on("click",".reCommentCBtn",function(){
                var s_seqq = $('#s_seq').val();
                let obj = {
@@ -849,7 +849,7 @@ group+group {
             });
             
             
-            //댓글 삭제/////////////////////////////////////////////////////////////////////////////////
+            //댓글 삭제
             $('#com').on('click', '.deleteComment', function() {
                var s_seq = $('#s_seq').val();
                 var r_seq = $(this).attr('id');
@@ -876,7 +876,7 @@ group+group {
             });
             
             
-            //댓글 수정//////////////////////////////////////////////////////////////////////////////////////////////////// 
+            //댓글 수정
             var check = true;
             $('#com').on('click', '.updateComment', function() {
                
@@ -945,7 +945,7 @@ group+group {
                            });
                   });
                
-               //수정 취소 눌렀을 경우 리스트 다시 불러오기//////////////////////////////////////////////////////////
+               //수정 취소 눌렀을 경우 리스트 다시 불러오기
                $('#com').on('click', '.cancelUpdate', function() {
                   var s_seqq = $('#s_seq').val();
                   let obj = {
@@ -1157,8 +1157,8 @@ group+group {
 
 
 	<script>
+	//신고하기
  $(function() {
-    
     
      $(".blameform").submit(function(e) {
            e.preventDefault();
@@ -1236,6 +1236,7 @@ group+group {
 
 
 	<script>
+	//유저정보 모달연결
 function InfoModal(idx) {
 
 	 let id = $('.InfoModal' + idx).children(":eq(0)").val();

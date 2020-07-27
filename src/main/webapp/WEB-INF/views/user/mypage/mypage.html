@@ -352,7 +352,6 @@ body {
 	<div th:replace="/user/includes/bootstrap_script :: bootstrap_script"></div>
 	<script>
 		$(function() {
-
 			// 참여중 스터디 버튼 클릭시 색깔 바꾸기 시작
 			$('#_study_button1').click(
 					function() {
@@ -617,7 +616,8 @@ body {
 	</script>
 
 	<script>
-		function deleteBookMark(l_seq) {
+	//북마크 삭제
+	function deleteBookMark(l_seq) {
 
 			let data = {
 				"l_seq" : l_seq
