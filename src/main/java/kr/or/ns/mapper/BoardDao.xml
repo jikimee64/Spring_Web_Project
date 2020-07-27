@@ -324,8 +324,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		lan_seq =
 		#{lan_seq},
 		people = #{people},
-		deadline = DATE_SUB(now(), INTERVAL 9
-		HOUR),
+		deadline = #{selectend},
 		title = #{title},
 		content = #{content},
 		level = #{level},
