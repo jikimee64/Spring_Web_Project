@@ -698,24 +698,6 @@ body {
 						$(this).siblings(".custom-file-label").addClass(
 								"selected").html(fileName);
 					});
-
-			//썸네일 시작
-			var file = document.querySelector('#file');
-
-			file.onchange = function() {
-				var fileList = file.files;
-
-				// 읽기
-				var reader = new FileReader();
-				reader.readAsDataURL(fileList[0]);
-
-				//로드 한 후
-				reader.onload = function() {
-					document.querySelector('#preview').src = reader.result;
-				};
-			};
-
-
 			
 		});
 	</script>

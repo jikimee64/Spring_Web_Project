@@ -505,8 +505,8 @@ group+group {
 					data : JSON.stringify(data),
 					success : function(data) {
 						//승인누른거 지우기
-						$('.right' + user_id).remove();
-
+						$('.right' + $.escapeSelector(user_id)).remove();
+						
 					},
 					error : function(e) {
 						console.log("error:", e);
@@ -543,8 +543,6 @@ group+group {
 												data,
 												function(index, item) {
 													var host = data[0].USER_ID;
-													console.warn("datatatatata" + data[0].USER_ID);
-													console.warn("datatatatata" + data[0].NICKNAME);
 													var id = data[data.length - 1].user_id
 
 													let html = "";
