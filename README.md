@@ -1,0 +1,3 @@
+# Spring Web Project
+  
+#### 스프링 MVC Mybatis 기반 웹 프로젝트 👉 스프링 부트 JPA 기반 프로젝트 리펙토링 예정...
