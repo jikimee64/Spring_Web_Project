@@ -22,9 +22,9 @@
   - 스터디 현황관리 기능
 
 ## 💻 1. 사용 기술
-|분야|사용 기술|
+|분야|사용 기술|비고|
 |---|---|---|
-|프론트 엔드| HTML, CSS, JavaScript, Thymeleaf, JQuery, Ajax, BootStrap4.X, 
+|프론트 엔드| HTML, CSS, JavaScript, Thymeleaf, JQuery, Ajax, BootStrap4.X,
 |백엔드|Spring 4.2.5, Mybatis 3.1.1, Spring-WebSocket, Spring Security4.0.1, Apache Tomcat9.X, Mysql8.X,    
 |형상관리|Git, Github|
 |TOOL|STS, VSCODE, SourceTree, Exerd, StarUML, Maven
