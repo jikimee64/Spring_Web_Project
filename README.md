@@ -58,6 +58,8 @@
 ## 🔖트러블 슈팅
 https://docs.google.com/spreadsheets/d/1YVl2CWOEc9noNR8SKoRxPNv_ERGvoOWRKg3IDCpsuW4/edit?usp=sharing
 
+## 🎥소개 영상
+https://www.youtube.com/watch?v=NpjJaSN4Afs
 
 ## 🎥시연 영상
 https://www.youtube.com/watch?v=SMbovelFQmw&feature=youtu.be
